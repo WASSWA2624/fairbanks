@@ -33,6 +33,7 @@ OUT_PPTX = Path(__file__).resolve().parent / "ppt_version.pptx"
 # Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
 PHOTOS = {
     "cover": "facility_exterior_entrance_01.jpg",
+    "cover_hero": "cover_hero_cinematic.jpg",
     "facility_sign": "facility_exterior_sign.jpeg",
     "pharmacy_branded": "pharmacy_exterior_01.jpg",
     "staff_team": "staff_team_reception.jpeg",
@@ -52,6 +53,7 @@ PHOTOS = {
     "mvp_capture": "outreach_registration_form_01.jpg",
     "impact": "waiting_room_mothers_02.jpeg",
     "closing": "facility_exterior_entrance_02.jpg",
+    "logo": "fairbanks_logo.jpeg",
 }
 
 
@@ -60,6 +62,64 @@ def img(name: str) -> str:
     if not path.exists():
         raise FileNotFoundError(f"Missing asset: {path}")
     return str(path)
+
+
+def ensure_cover_hero(force: bool = False) -> str:
+    """Build a cinematic full-bleed title background (widescreen 16:9)."""
+    from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
+
+    out = ASSETS / PHOTOS["cover_hero"]
+    src_path = ASSETS / PHOTOS["cover"]
+    if (
+        not force
+        and out.exists()
+        and out.stat().st_mtime >= src_path.stat().st_mtime
+    ):
+        return str(out)
+
+    W, H = 2400, 1350  # 16:9 presentation sharpness
+    base = Image.open(src_path).convert("RGB")
+    bw, bh = base.size
+    scale = max(W / bw, H / bh)
+    resized = base.resize((int(bw * scale), int(bh * scale)), Image.Resampling.LANCZOS)
+    left = (resized.width - W) // 2
+    # Bias crop so facility signage stays in the bright right third
+    top = max(0, (resized.height - H) // 2 - int(H * 0.04))
+    crop = resized.crop((left, top, left + W, top + H))
+    crop = ImageEnhance.Contrast(crop).enhance(1.1)
+    crop = ImageEnhance.Color(crop).enhance(1.08)
+    crop = ImageEnhance.Brightness(crop).enhance(0.97)
+
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    px = overlay.load()
+    for x in range(W):
+        t = x / float(W - 1)
+        # Smooth cinematic left wash — readable text, photo still visible
+        if t < 0.38:
+            a = int(198 - 25 * (t / 0.38))
+        elif t < 0.62:
+            u = (t - 0.38) / 0.24
+            a = int(173 * (1 - u) ** 1.35)
+        else:
+            u = (t - 0.62) / 0.38
+            a = int(48 * (1 - u) ** 1.1)
+        a = max(12, min(205, a))
+        for y in range(H):
+            # Gentle vertical vignette (stronger toward bottom)
+            vy = y / float(H - 1)
+            va = int(a + (38 if vy > 0.72 else 0) * max(0, (vy - 0.72) / 0.28))
+            va = min(220, va)
+            px[x, y] = (7, 22, 34, va)
+
+    draw = ImageDraw.Draw(overlay)
+    # Brand accent rail
+    draw.rectangle([0, 0, 22, H], fill=(20, 163, 163, 245))
+    draw.rectangle([22, 0, 30, H], fill=(196, 92, 38, 220))
+
+    composed = Image.alpha_composite(crop.convert("RGBA"), overlay).convert("RGB")
+    composed = composed.filter(ImageFilter.UnsharpMask(radius=1.1, percent=70, threshold=2))
+    composed.save(out, "JPEG", quality=93, optimize=True)
+    return str(out)
 
 
 # Visibility scale (pt)
@@ -208,36 +268,76 @@ def build():
     prs.slide_height = SLIDE_H
     blank = prs.slide_layouts[6]
 
-    # ========== 1. TITLE ==========
+    # ========== 1. TITLE (cinematic hero) ==========
     s = prs.slides.add_slide(blank)
-    add_picture_cover(s, img("cover"), 0, 0, SLIDE_W, SLIDE_H)
-    add_rect(s, 0, 0, Inches(7.4), SLIDE_H, NAVY)
-    add_rect(s, Inches(7.25), 0, Inches(0.14), SLIDE_H, TEAL_LIGHT)
-    textbox(s, Inches(0.5), Inches(0.85), Inches(6.5), Inches(0.4),
-            "AWIEF Pitch n Grow 2026  ·  Startup Track  ·  HealthTech",
-            size=BODY_SM, bold=True, color=TEAL_LIGHT)
-    textbox(s, Inches(0.5), Inches(1.4), Inches(6.6), Inches(1.2),
-            "FairBanks Community\nIntelligence Network",
-            size=H1, bold=True, color=WHITE)
-    textbox(s, Inches(0.5), Inches(2.75), Inches(6.5), Inches(0.45),
-            "Community Health Intelligence Platform (CHIP)",
-            size=H3, bold=True, color=TEAL_LIGHT)
-    textbox(s, Inches(0.5), Inches(3.25), Inches(6.5), Inches(0.35),
-            "Your health, our mission.",
-            size=BODY, bold=True, color=ACCENT)
-    textbox(s, Inches(0.5), Inches(3.7), Inches(6.5), Inches(1.15),
-            "AI-powered community health intelligence that turns last-mile data into "
-            "predictions — so African primary care prevents crises instead of waiting for them.",
-            size=BODY, color=LIGHT)
-    textbox(s, Inches(0.5), Inches(5.05), Inches(6.5), Inches(0.4),
-            "Theme: Deep Roots. Digital Futures.",
-            size=BODY, bold=True, color=ACCENT)
-    textbox(s, Inches(0.5), Inches(5.5), Inches(6.5), Inches(0.4),
-            "Uganda pilot  →  East Africa  →  Pan-African scale",
-            size=BODY_SM, bold=True, color=LIGHT)
-    textbox(s, Inches(0.5), Inches(6.35), Inches(6.5), Inches(0.4),
-            "Woman-led deep-tech  |  Live medical centre + CHW/VHT foundation",
-            size=BODY_SM, color=RGBColor(0xB0, 0xC4, 0xC8))
+    hero = ensure_cover_hero(force=False)
+    add_picture_cover(s, hero, 0, 0, SLIDE_W, SLIDE_H)
+
+    # Brand mark
+    try:
+        s.shapes.add_picture(img("logo"), Inches(0.78), Inches(0.38), height=Inches(0.58))
+    except Exception:
+        pass
+
+    # Programme line
+    textbox(
+        s, Inches(0.78), Inches(1.12), Inches(8.0), Inches(0.32),
+        "AWIEF Pitch n Grow 2026  ·  Startup Track  ·  HealthTech",
+        size=14, bold=True, color=TEAL_LIGHT,
+    )
+
+    # Brand / product name — hero-level signal
+    textbox(
+        s, Inches(0.78), Inches(1.55), Inches(8.4), Inches(0.85),
+        "FairBanks",
+        size=58, bold=True, color=WHITE,
+    )
+    textbox(
+        s, Inches(0.78), Inches(2.35), Inches(8.8), Inches(0.5),
+        "Community Intelligence Network",
+        size=30, bold=True, color=WHITE,
+    )
+
+    # Accent rule under title
+    add_rect(s, Inches(0.78), Inches(2.98), Inches(2.6), Inches(0.08), TEAL_LIGHT)
+
+    textbox(
+        s, Inches(0.78), Inches(3.2), Inches(8.2), Inches(0.38),
+        "Community Health Intelligence Platform (CHIP)",
+        size=19, bold=True, color=TEAL_LIGHT,
+    )
+    textbox(
+        s, Inches(0.78), Inches(3.62), Inches(7.8), Inches(0.38),
+        "Your health, our mission.",
+        size=22, bold=True, color=ACCENT,
+    )
+
+    # One supporting sentence
+    textbox(
+        s, Inches(0.78), Inches(4.25), Inches(7.9), Inches(1.05),
+        "AI that turns last-mile community data into predictions —\n"
+        "so African primary care prevents crises, not just treats them.",
+        size=18, color=LIGHT,
+    )
+
+    # Bottom meta strip
+    add_rect(s, 0, Inches(6.48), SLIDE_W, Inches(1.02), NAVY)
+    add_rect(s, 0, Inches(6.48), SLIDE_W, Inches(0.07), TEAL_LIGHT)
+    textbox(
+        s, Inches(0.78), Inches(6.65), Inches(7.8), Inches(0.35),
+        "Deep Roots. Digital Futures.",
+        size=17, bold=True, color=ACCENT,
+    )
+    textbox(
+        s, Inches(0.78), Inches(7.05), Inches(8.8), Inches(0.3),
+        "Uganda pilot  →  East Africa  →  Pan-African scale   ·   Live medical centre + CHW/VHT foundation",
+        size=13, bold=True, color=LIGHT,
+    )
+    textbox(
+        s, Inches(9.5), Inches(6.78), Inches(3.4), Inches(0.45),
+        "Woman-led deep-tech",
+        size=15, bold=True, color=TEAL_LIGHT, align=PP_ALIGN.RIGHT,
+    )
 
     # ========== 2. PROBLEM ==========
     s = prs.slides.add_slide(blank)
