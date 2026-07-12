@@ -33,6 +33,11 @@ OUT_PPTX = Path(__file__).resolve().parent / "ppt_version.pptx"
 # Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
 PHOTOS = {
     "cover": "facility_exterior_entrance_01.jpg",
+    "facility_sign": "facility_exterior_sign.jpeg",
+    "pharmacy_branded": "pharmacy_exterior_01.jpg",
+    "staff_team": "staff_team_reception.jpeg",
+    "mission_wall": "reception_mission_wall.jpeg",
+    "waiting_branded": "waiting_room_reception_01.jpeg",
     "problem": "clinic_reception_desk_01.jpg",
     "dashboard": "dashboard_demo.png",
     "deep_tech": "deep_tech_collage.png",
@@ -46,7 +51,7 @@ PHOTOS = {
     "pharmacy_digital": "pharmacy_staff_laptop_01.jpg",
     "mvp_capture": "outreach_registration_form_01.jpg",
     "impact": "waiting_room_mothers_02.jpeg",
-    "closing": "outreach_audience_full_group_01.jpg",
+    "closing": "facility_exterior_entrance_02.jpg",
 }
 
 
@@ -411,12 +416,14 @@ def build():
     s = prs.slides.add_slide(blank)
     section_band(s, "Traction & unfair advantage",
                  "Not a concept detached from the field — a live operating foundation.")
-    image_card(s, img("outreach_hero"), Inches(0.35), Inches(1.25), Inches(5.4), Inches(3.2),
-               "Live FairBanks Community Reach — canopy outreach")
-    image_card(s, img("mothers_wait"), Inches(0.35), Inches(4.55), Inches(2.6), Inches(2.3),
-               "Maternal & child")
-    image_card(s, img("pharmacy_digital"), Inches(3.1), Inches(4.55), Inches(2.65), Inches(2.3),
-               "Pharmacy digital workflow")
+    image_card(s, img("facility_sign"), Inches(0.35), Inches(1.25), Inches(2.7), Inches(2.55),
+               "FairBanks Medical Centre signage")
+    image_card(s, img("cover"), Inches(3.2), Inches(1.25), Inches(2.7), Inches(2.55),
+               "Branded facility entrance")
+    image_card(s, img("pharmacy_branded"), Inches(0.35), Inches(3.95), Inches(2.7), Inches(2.9),
+               "FairBanks Pharmacy branding")
+    image_card(s, img("staff_team"), Inches(3.2), Inches(3.95), Inches(2.7), Inches(2.9),
+               "Branded staff team at reception")
 
     assets = [
         "Functioning FairBanks medical centre",
@@ -428,16 +435,16 @@ def build():
         "Digital health records foundation",
         "Research & community partnerships",
     ]
-    right = add_round_rect(s, Inches(6.0), Inches(1.25), Inches(6.85), Inches(3.4), WHITE)
+    right = add_round_rect(s, Inches(6.15), Inches(1.25), Inches(6.7), Inches(3.4), WHITE)
     right.line.color.rgb = LINE
-    textbox(s, Inches(6.25), Inches(1.4), Inches(6.4), Inches(0.4),
+    textbox(s, Inches(6.4), Inches(1.4), Inches(6.2), Inches(0.4),
             "Existing FairBanks ecosystem", size=H3, bold=True, color=TEAL)
-    bullet_box(s, Inches(6.25), Inches(1.95), Inches(6.4), Inches(2.5), assets, size=BODY_SM)
+    bullet_box(s, Inches(6.4), Inches(1.95), Inches(6.2), Inches(2.5), assets, size=BODY_SM)
 
-    win = add_round_rect(s, Inches(6.0), Inches(4.8), Inches(6.85), Inches(2.05), NAVY)
-    textbox(s, Inches(6.25), Inches(4.95), Inches(6.4), Inches(0.35),
+    win = add_round_rect(s, Inches(6.15), Inches(4.8), Inches(6.7), Inches(2.05), NAVY)
+    textbox(s, Inches(6.4), Inches(4.95), Inches(6.2), Inches(0.35),
             "Why FairBanks wins", size=BODY, bold=True, color=TEAL_LIGHT)
-    textbox(s, Inches(6.25), Inches(5.4), Inches(6.4), Inches(1.3),
+    textbox(s, Inches(6.4), Inches(5.4), Inches(6.2), Inches(1.3),
             "Technology + field access in one venture.\n"
             "Context-rooted AI from African community realities.\n"
             "Design → pilot → validate → refine on a live site.\n"

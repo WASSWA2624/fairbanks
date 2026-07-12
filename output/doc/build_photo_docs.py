@@ -39,8 +39,16 @@ LINE = "D0DCDC"
 
 # Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
 PHOTOS = {
+    "logo": "fairbanks_logo.jpeg",
+    "facility_sign": "facility_exterior_sign.jpeg",
+    "facility_entrance": "facility_exterior_entrance_01.jpg",
+    "facility_entrance_2": "facility_exterior_entrance_02.jpg",
+    "pharmacy_branded": "pharmacy_exterior_01.jpg",
+    "staff_team": "staff_team_reception.jpeg",
+    "mission_wall": "reception_mission_wall.jpeg",
+    "waiting_branded": "waiting_room_reception_01.jpeg",
     "problem_clinic": "clinic_reception_desk_01.jpg",
-    "problem_pharmacy": "pharmacy_interior_01.jpg",
+    "problem_pharmacy": "pharmacy_exterior_01.jpg",
     "dashboard": "dashboard_demo.png",
     "architecture": "data_flow_iso_labeled.png",
     "deep_tech": "deep_tech_collage.png",
@@ -278,7 +286,20 @@ def build_docx():
         size=10, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4,
     )
     add_para(doc, "Application deadline: 20 July 2026", size=10, color=MUTED,
-             align=WD_ALIGN_PARAGRAPH.CENTER, space_after=18)
+             align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
+
+    add_image(
+        doc, photo("facility_sign"), width_in=5.8, max_height_in=2.8,
+        caption="FairBanks Medical Centre — Your health, our mission.",
+    )
+    add_two_images(
+        doc,
+        photo("facility_entrance"),
+        photo("pharmacy_branded"),
+        "Branded facility entrance — operating validation site",
+        "On-site FairBanks Pharmacy — clear Medical Centre branding",
+        max_height_in=2.4,
+    )
 
     add_para(
         doc,
@@ -338,7 +359,7 @@ def build_docx():
         photo("problem_clinic"),
         photo("problem_pharmacy"),
         "Facility reception - care still starts after patients arrive",
-        "On-site pharmacy - medicine supply needs predictive demand signals",
+        "On-site FairBanks Pharmacy — branded medicine supply point",
     )
     add_heading_custom(doc, "2.1 The reactive healthcare gap", 2)
     add_para(
@@ -554,6 +575,14 @@ def build_docx():
 
     # 8. Traction
     add_heading_custom(doc, "8. Traction, Foundation & Competitive Advantage", 1)
+    add_two_images(
+        doc,
+        photo("facility_sign"),
+        photo("facility_entrance"),
+        "FairBanks Medical Centre signage — brand identity in the community",
+        "Facility entrance — live operating foundation for CHIP validation",
+        max_height_in=2.5,
+    )
     add_image(doc, photo("outreach_hero"), width_in=6.4,
               caption="Live FairBanks Community Reach - canopy outreach in Kampala communities")
     add_heading_custom(doc, "8.1 Existing FairBanks ecosystem", 2)
@@ -575,6 +604,22 @@ def build_docx():
         "predictions - outreach screening, maternal programmes, pharmacy dispensing, facility "
         "encounters, and staff digital workflows.",
         space_after=6,
+    )
+    add_two_images(
+        doc,
+        photo("staff_team"),
+        photo("mission_wall"),
+        "FairBanks staff in branded uniforms at reception",
+        "Mission, vision & values wall — FairBanks Medical Centre identity",
+        max_height_in=2.6,
+    )
+    add_two_images(
+        doc,
+        photo("pharmacy_branded"),
+        photo("waiting_branded"),
+        "FairBanks Pharmacy exterior — Medical Centre branding",
+        "Waiting area with FairBanks mission branding visible",
+        max_height_in=2.6,
     )
     add_two_images(
         doc,
@@ -980,7 +1025,17 @@ def build_pdf():
         styles["Meta"],
     ))
     story.append(Paragraph("Application deadline: 20 July 2026", styles["Meta"]))
-    story.append(Spacer(1, 18))
+    story.append(Spacer(1, 12))
+    story.append(img(
+        "facility_sign", w=page_w * 0.85, max_h=2.4 * inch,
+        caption="FairBanks Medical Centre — Your health, our mission.",
+    ))
+    two_imgs(
+        "facility_entrance", "pharmacy_branded",
+        "Branded facility entrance — operating validation site",
+        "On-site FairBanks Pharmacy — clear Medical Centre branding",
+        max_h=2.1 * inch,
+    )
     story.append(Paragraph(
         '<link href="https://awief.untap.us/pitch-n-grow2026">'
         "https://awief.untap.us/pitch-n-grow2026</link>",
@@ -1031,7 +1086,7 @@ def build_pdf():
     two_imgs(
         "problem_clinic", "problem_pharmacy",
         "Facility reception - care still starts after patients arrive",
-        "On-site pharmacy - medicine supply needs predictive demand signals",
+        "On-site FairBanks Pharmacy — branded medicine supply point",
     )
     h2("2.1 The reactive healthcare gap")
     body("Across underserved African communities, health systems face a structural information gap.")
@@ -1205,6 +1260,12 @@ def build_pdf():
 
     # 8
     h1("8. Traction, Foundation &amp; Competitive Advantage")
+    two_imgs(
+        "facility_sign", "facility_entrance",
+        "FairBanks Medical Centre signage — brand identity in the community",
+        "Facility entrance — live operating foundation for CHIP validation",
+        max_h=2.2 * inch,
+    )
     story.append(img("outreach_hero",
                      caption="Live FairBanks Community Reach - canopy outreach in Kampala communities"))
     h2("8.1 Existing FairBanks ecosystem")
@@ -1223,6 +1284,18 @@ def build_pdf():
         "Real FairBanks operations already generate the community signals CHIP will turn into "
         "predictions - outreach screening, maternal programmes, pharmacy dispensing, facility "
         "encounters, and staff digital workflows."
+    )
+    two_imgs(
+        "staff_team", "mission_wall",
+        "FairBanks staff in branded uniforms at reception",
+        "Mission, vision &amp; values wall — FairBanks Medical Centre identity",
+        max_h=2.4 * inch,
+    )
+    two_imgs(
+        "pharmacy_branded", "waiting_branded",
+        "FairBanks Pharmacy exterior — Medical Centre branding",
+        "Waiting area with FairBanks mission branding visible",
+        max_h=2.4 * inch,
     )
     two_imgs(
         "outreach_bp", "outreach_outdoor",
