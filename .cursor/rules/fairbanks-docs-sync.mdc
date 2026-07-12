@@ -1,5 +1,5 @@
 ---
-description: Keep FairBanks pitch docs in sync across MD, PPTX, PDF, and DOCX
+description: Keep FairBanks pitch docs in sync and compliant with AWIEF Pitch n Grow 2026
 globs: refined_project_idea.md,output/pitch/ppt_version.pptx,output/pdf/pdf_version.pdf,output/doc/word_version.docx,output/pitch/build_awief_deck.py,output/doc/build_photo_docs.py
 alwaysApply: false
 ---
@@ -15,6 +15,18 @@ These files are one content set. Edit any one → update the others in the same 
 | PDF | `output/pdf/pdf_version.pdf` |
 | Word | `output/doc/word_version.docx` |
 
+## AWIEF Pitch n Grow 2026 compliance (mandatory)
+
+**All documents in this set must comply with** [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026). That page is the source of truth for eligibility, theme, tracks, submission format, and deadlines. If synced content conflicts with the portal, **fix the documents to match the portal**—do not invent alternate programme rules.
+
+When editing or regenerating any format, verify:
+
+1. **Theme:** Align with **Deep Roots. Digital Futures.** (deep tech rooted in African context, not imported soft services).
+2. **Track & sector:** Keep claims consistent with the chosen AWIEF track (e.g. Startup / HealthTech) and deep-technology core.
+3. **Pitch deck:** Investor deck is **10–12 slides**, suitable for **PDF upload**; highlight technology core, market, and unit economics—no bloated decks.
+4. **Audience fit:** Women-led / African-market venture narrative must remain accurate and submission-ready.
+5. **Portal sync:** Before major content changes, re-check https://awief.untap.us/pitch-n-grow2026 for updated requirements.
+
 ## Sync rules
 
 1. Prefer `refined_project_idea.md` when resolving conflicts, unless the user edited another format on purpose.
@@ -24,6 +36,7 @@ These files are one content set. Edit any one → update the others in the same 
    - Docs: `output/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf`
 4. Keep `*_version.*` as the working set; archive `FairBanks_FCIN_*` copies only if the build scripts write them.
 5. If a format cannot be updated, state what remains pending.
+6. Never ship a sync that breaks AWIEF compliance (slide count, theme, deep-tech positioning, or portal-stated submission constraints).
 
 ## Branding
 
