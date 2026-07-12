@@ -42,7 +42,7 @@ PHOTOS = {
     "problem_clinic": "clinic_reception_desk_01.jpg",
     "problem_pharmacy": "pharmacy_interior_01.jpg",
     "dashboard": "dashboard_demo.png",
-    "architecture": "data_flow_iso.png",
+    "architecture": "data_flow_iso_labeled.png",
     "deep_tech": "deep_tech_collage.png",
     "maternal": "bloom_maternal_health_participant_01.jpg",
     "gis": "gis_hotspots.png",
