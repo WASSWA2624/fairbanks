@@ -32,9 +32,9 @@ When editing or regenerating any format, verify:
 1. Prefer `refined_project_idea.md` when resolving conflicts, unless the user edited another format on purpose.
 2. Preserve layout/branding in PPTX/PDF/DOCX; update content only.
 3. Prefer regenerating via build scripts when possible:
-   - Deck: `output/pitch/build_awief_deck.py` → `ppt_version.pptx`
-   - Docs: `output/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf`
-4. Keep `*_version.*` as the working set; archive `FairBanks_FCIN_*` copies only if the build scripts write them.
+   - Deck: `output/pitch/build_awief_deck.py` → `ppt_version.pptx` only
+   - Docs: `output/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf` only
+4. Keep `*_version.*` as the only deliverables. Never write `FairBanks_FCIN_*` / long-name archive copies beside them.
 5. If a format cannot be updated, state what remains pending.
 6. Never ship a sync that breaks AWIEF compliance (slide count, theme, deep-tech positioning, or portal-stated submission constraints).
 

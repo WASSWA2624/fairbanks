@@ -37,12 +37,85 @@ MUTED = "3A4A54"
 CREAM = "F7F5F0"
 LINE = "D0DCDC"
 
+# Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
+PHOTOS = {
+    "cover": "facility_exterior_entrance_01.jpg",
+    "problem_clinic": "clinic_reception_desk_01.jpg",
+    "problem_pharmacy": "pharmacy_interior_01.jpg",
+    "dashboard": "dashboard_demo.png",
+    "architecture": "data_flow_iso.png",
+    "deep_tech": "deep_tech_collage.png",
+    "maternal": "bloom_maternal_health_participant_01.jpg",
+    "gis": "gis_hotspots.png",
+    "mobile": "outreach_mobile_phone_demo_01.jpg",
+    "outreach_hero": "outreach_facilitator_canopy_01.jpg",
+    "outreach_bp": "outreach_bp_screening.jpeg",
+    "outreach_outdoor": "outreach_outdoor_clinic.jpeg",
+    "training": "indoor_training_staff_presenting_01.jpg",
+    "pharmacy_digital": "pharmacy_staff_laptop_01.jpg",
+    "mothers_wait": "waiting_room_mothers_01.jpeg",
+    "gericare": "gericare_wheelchair_assist.jpeg",
+    "impact": "waiting_room_mothers_02.jpeg",
+    "mvp_capture": "outreach_registration_form_01.jpg",
+    "conclusion": "outreach_audience_full_group_01.jpg",
+    "facility_building": "facility_exterior_building_01.jpg",
+    "staff_field": "staff_outreach_conversation_01.jpg",
+}
+
 
 def asset(name: str) -> Path:
     p = ASSETS / name
     if not p.exists():
         raise FileNotFoundError(p)
     return p
+
+
+def photo(key: str) -> Path:
+    return asset(PHOTOS[key])
+
+
+def _pil_size(path: Path):
+    from PIL import Image as PILImage
+    with PILImage.open(path) as im:
+        return im.size
+
+
+def fit_width(path: Path, max_width_in: float, max_height_in: float = 3.6) -> float:
+    """Return an image width in inches that respects max width and height."""
+    iw, ih = _pil_size(path)
+    aspect = ih / float(iw)
+    w = max_width_in
+    h = w * aspect
+    if h > max_height_in:
+        w = max_height_in / aspect
+    return w
+
+
+def optimized_image(path: Path, max_px: int = 1600) -> Path:
+    """Downscale large photos for DOCX/PDF embedding; leave diagrams untouched if already small."""
+    from PIL import Image as PILImage
+
+    cache_dir = ROOT / "tmp" / "doc_assets"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    out = cache_dir / f"{path.stem}_opt{path.suffix.lower()}"
+    if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:
+        return out
+
+    with PILImage.open(path) as im:
+        im = im.convert("RGB") if im.mode not in ("RGB", "L") else im
+        iw, ih = im.size
+        scale = min(1.0, max_px / float(max(iw, ih)))
+        if scale < 1.0:
+            im = im.resize((int(iw * scale), int(ih * scale)), PILImage.Resampling.LANCZOS)
+        save_kw = {"optimize": True}
+        if out.suffix.lower() in (".jpg", ".jpeg"):
+            save_kw["quality"] = 85
+            if out.suffix.lower() == ".jpeg":
+                out = cache_dir / f"{path.stem}_opt.jpg"
+            im.save(out, format="JPEG", **save_kw)
+        else:
+            im.save(out, **save_kw)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -102,13 +175,15 @@ def add_heading_custom(doc, text, level=1):
     return p
 
 
-def add_image(doc, path, width_in=6.3, caption=None):
+def add_image(doc, path, width_in=6.3, caption=None, max_height_in=3.8):
+    path = optimized_image(Path(path))
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_before = Pt(6)
     p.paragraph_format.space_after = Pt(2)
     run = p.add_run()
-    run.add_picture(str(path), width=Inches(width_in))
+    w = fit_width(path, width_in, max_height_in=max_height_in)
+    run.add_picture(str(path), width=Inches(w))
     if caption:
         add_para(doc, caption, size=9, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER,
                  italic=True, space_after=12, space_before=2)
@@ -153,16 +228,18 @@ def add_table(doc, headers, rows, col_widths=None):
     return table
 
 
-def add_two_images(doc, path_a, path_b, cap_a="", cap_b="", width=3.1):
+def add_two_images(doc, path_a, path_b, cap_a="", cap_b="", width=3.1, max_height_in=2.6):
     table = doc.add_table(rows=2, cols=2)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     for i, (path, cap) in enumerate([(path_a, cap_a), (path_b, cap_b)]):
+        path = optimized_image(Path(path))
         cell = table.rows[0].cells[i]
         cell.text = ""
         p = cell.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         run = p.add_run()
-        run.add_picture(str(path), width=Inches(width))
+        w = fit_width(path, width, max_height_in=max_height_in)
+        run.add_picture(str(path), width=Inches(w))
         cell2 = table.rows[1].cells[i]
         cell2.text = ""
         p2 = cell2.paragraphs[0]
@@ -204,8 +281,8 @@ def build_docx():
     add_para(doc, "Application deadline: 20 July 2026", size=10, color=MUTED,
              align=WD_ALIGN_PARAGRAPH.CENTER, space_after=14)
 
-    add_image(doc, asset("hero_chw_mobile.png"), width_in=6.5,
-              caption="Community health workers bringing last-mile data into CHIP")
+    add_image(doc, photo("cover"), width_in=6.5,
+              caption="FairBanks Medical Centre - Your health, our mission.")
 
     add_para(
         doc,
@@ -262,10 +339,10 @@ def build_docx():
     add_heading_custom(doc, "2. Problem Statement", 1)
     add_two_images(
         doc,
-        asset("reactive_clinic.png"),
-        asset("pharmacy_stock.png"),
-        "Reactive clinic flow - care starts after sickness appears",
-        "Medicine supply often relies on historical guesswork",
+        photo("problem_clinic"),
+        photo("problem_pharmacy"),
+        "Facility reception - care still starts after patients arrive",
+        "On-site pharmacy - medicine supply needs predictive demand signals",
     )
     add_heading_custom(doc, "2.1 The reactive healthcare gap", 2)
     add_para(
@@ -306,7 +383,7 @@ def build_docx():
 
     # 3. Solution
     add_heading_custom(doc, "3. Solution: FairBanks Community Intelligence Network (FCIN)", 1)
-    add_image(doc, asset("dashboard_demo.png"), width_in=6.4,
+    add_image(doc, photo("dashboard"), width_in=6.4,
               caption="CHIP concept: facility and district health intelligence dashboards")
     add_heading_custom(doc, "3.1 Venture positioning", 2)
     add_table(
@@ -350,7 +427,7 @@ def build_docx():
     )
 
     add_heading_custom(doc, "3.3 Platform architecture", 2)
-    add_image(doc, asset("data_flow_iso.png"), width_in=6.4,
+    add_image(doc, photo("architecture"), width_in=6.4,
               caption="Data sources -> Capture -> CHIP intelligence -> Action in the community")
     add_para(
         doc,
@@ -380,7 +457,7 @@ def build_docx():
 
     # 4. Deep tech
     add_heading_custom(doc, "4. Deep Technology Core", 1)
-    add_image(doc, asset("deep_tech_collage.png"), width_in=6.4,
+    add_image(doc, photo("deep_tech"), width_in=6.4,
               caption="Integrated deep-tech stack: AI, ML, GIS, mobile edge, cloud, NLP")
     add_para(
         doc,
@@ -406,13 +483,13 @@ def build_docx():
     add_heading_custom(doc, "5. Predictive Use Cases", 1)
     add_two_images(
         doc,
-        asset("maternal_visit.png"),
-        asset("gis_hotspots.png"),
-        "Maternal health - home-visit risk signals",
+        photo("maternal"),
+        photo("gis"),
+        "Maternal and child health - community programme signals",
         "Disease surveillance - GIS hotspot early warning",
     )
-    add_image(doc, asset("mobile_capture.png"), width_in=5.2,
-              caption="Offline-capable mobile capture for CHWs and VHTs")
+    add_image(doc, photo("mobile"), width_in=5.8,
+              caption="Mobile-first field engagement - phones as last-mile data tools for CHIP")
 
     use_cases = [
         ("5.1 Disease surveillance",
@@ -481,8 +558,8 @@ def build_docx():
 
     # 8. Traction
     add_heading_custom(doc, "8. Traction, Foundation & Competitive Advantage", 1)
-    add_image(doc, asset("hero_chw_mobile.png"), width_in=6.4,
-              caption="Live FairBanks ecosystem - CHW/VHT engagement in Kampala communities")
+    add_image(doc, photo("outreach_hero"), width_in=6.4,
+              caption="Live FairBanks Community Reach - canopy outreach in Kampala communities")
     add_heading_custom(doc, "8.1 Existing FairBanks ecosystem", 2)
     add_bullets(doc, [
         "FairBanks Community Reach Programme",
@@ -495,6 +572,43 @@ def build_docx():
         "Research and community partnerships",
         "Functioning medical centre with direct patient and community access",
     ])
+    add_heading_custom(doc, "8.1.1 Evidence from the field", 3)
+    add_para(
+        doc,
+        "Real FairBanks operations already generate the community signals CHIP will turn into "
+        "predictions - outreach screening, maternal programmes, pharmacy dispensing, facility "
+        "encounters, and staff digital workflows.",
+        space_after=6,
+    )
+    add_two_images(
+        doc,
+        photo("outreach_bp"),
+        photo("outreach_outdoor"),
+        "BP screening and registration under outreach canopies",
+        "Outdoor community clinic - structured field capture opportunity",
+    )
+    add_two_images(
+        doc,
+        photo("training"),
+        photo("pharmacy_digital"),
+        "Staff training and product briefings for community programmes",
+        "Pharmacy digital workflow - stock and dispensing signals for CHIP",
+    )
+    add_two_images(
+        doc,
+        photo("mothers_wait"),
+        photo("gericare"),
+        "Maternal and child health touchpoints at the facility",
+        "Gericare - continuous support for older community members",
+        max_height_in=2.9,
+    )
+    add_two_images(
+        doc,
+        photo("facility_building"),
+        photo("staff_field"),
+        "FairBanks Medical Centre - operating validation site",
+        "Staff-community conversation - trust that enables data quality",
+    )
     add_heading_custom(doc, "8.2 Why FairBanks wins", 2)
     add_table(
         doc,
@@ -525,7 +639,7 @@ def build_docx():
 
     # 9. Impact
     add_heading_custom(doc, "9. Social Impact & Development Alignment", 1)
-    add_image(doc, asset("maternal_visit.png"), width_in=5.8,
+    add_image(doc, photo("impact"), width_in=5.2, max_height_in=4.2,
               caption="Impact focus: earlier intervention for mothers, children, and communities")
     add_para(
         doc,
@@ -558,9 +672,9 @@ def build_docx():
     add_heading_custom(doc, "10. MVP Scope & Product Roadmap", 1)
     add_two_images(
         doc,
-        asset("mobile_capture.png"),
-        asset("gis_hotspots.png"),
-        "MVP: CHW/VHT offline mobile capture",
+        photo("mvp_capture"),
+        photo("gis"),
+        "MVP: structured field registration and mobile capture",
         "MVP: GIS risk visualisation layer",
     )
     add_heading_custom(doc, "10.1 Minimum Viable Product (MVP)", 2)
@@ -648,8 +762,8 @@ def build_docx():
 
     # 14. Conclusion
     add_heading_custom(doc, "14. Conclusion", 1)
-    add_image(doc, asset("gis_hotspots.png"), width_in=6.4,
-              caption="From community signals to life-saving predictions")
+    add_image(doc, photo("conclusion"), width_in=6.4,
+              caption="From community signals to life-saving predictions - rooted in FairBanks outreach")
     add_para(
         doc,
         "FairBanks Community Intelligence Network represents a strategic evolution from community "
@@ -680,11 +794,12 @@ def build_docx():
     try:
         doc.save(str(OUT_DOC))
         print(f"DOCX: {OUT_DOC}")
+        return OUT_DOC
     except PermissionError:
         alt = OUT_DOC.with_name(OUT_DOC.stem + "_unlocked" + OUT_DOC.suffix)
         doc.save(str(alt))
         print(f"DOCX locked; saved as: {alt}")
-    return OUT_DOC
+        return alt
 
 
 # ---------------------------------------------------------------------------
@@ -753,16 +868,14 @@ def build_pdf():
     story = []
     page_w = A4[0] - 1.6 * inch
 
-    def img(name, w=page_w, caption=None):
-        path = str(asset(name))
-        im = Image(path, width=w, height=w * 0.5)
-        # Keep reasonable height for landscape-ish assets
+    def img(name, w=page_w, caption=None, max_h=3.4 * inch):
+        raw = asset(name) if str(name).endswith((".png", ".jpg", ".jpeg")) else photo(name)
+        path = str(optimized_image(raw))
         from PIL import Image as PILImage
         with PILImage.open(path) as pi:
             iw, ih = pi.size
         aspect = ih / float(iw)
         h = w * aspect
-        max_h = 3.4 * inch
         if h > max_h:
             h = max_h
             w = h / aspect
@@ -814,17 +927,21 @@ def build_pdf():
         story.append(t)
         story.append(Spacer(1, 10))
 
-    def two_imgs(a, b, ca="", cb=""):
+    def two_imgs(a, b, ca="", cb="", max_h=2.2 * inch):
         wa = (page_w - 10) / 2
         from PIL import Image as PILImage
 
-        def make(path, cap):
-            p = str(asset(path))
+        def resolve(name):
+            raw = asset(name) if str(name).endswith((".png", ".jpg", ".jpeg")) else photo(name)
+            return str(optimized_image(raw))
+
+        def make(path_key, cap):
+            p = resolve(path_key)
             with PILImage.open(p) as pi:
                 iw, ih = pi.size
             aspect = ih / float(iw)
-            h = min(wa * aspect, 2.2 * inch)
-            w = h / aspect if wa * aspect > 2.2 * inch else wa
+            h = min(wa * aspect, max_h)
+            w = h / aspect if wa * aspect > max_h else wa
             elems = [Image(p, width=w, height=h)]
             if cap:
                 elems.append(Paragraph(cap, styles["Caption"]))
@@ -868,8 +985,8 @@ def build_pdf():
     ))
     story.append(Paragraph("Application deadline: 20 July 2026", styles["Meta"]))
     story.append(Spacer(1, 10))
-    story.append(img("hero_chw_mobile.png", w=page_w,
-                     caption="Community health workers bringing last-mile data into CHIP"))
+    story.append(img("cover", w=page_w,
+                     caption="FairBanks Medical Centre - Your health, our mission."))
     story.append(Paragraph(
         '<link href="https://awief.untap.us/pitch-n-grow2026">'
         "https://awief.untap.us/pitch-n-grow2026</link>",
@@ -918,9 +1035,9 @@ def build_pdf():
     # 2
     h1("2. Problem Statement")
     two_imgs(
-        "reactive_clinic.png", "pharmacy_stock.png",
-        "Reactive clinic flow - care starts after sickness appears",
-        "Medicine supply often relies on historical guesswork",
+        "problem_clinic", "problem_pharmacy",
+        "Facility reception - care still starts after patients arrive",
+        "On-site pharmacy - medicine supply needs predictive demand signals",
     )
     h2("2.1 The reactive healthcare gap")
     body("Across underserved African communities, health systems face a structural information gap.")
@@ -953,7 +1070,7 @@ def build_pdf():
 
     # 3
     h1("3. Solution: FCIN / CHIP")
-    story.append(img("dashboard_demo.png", caption="CHIP concept: facility and district intelligence dashboards"))
+    story.append(img("dashboard", caption="CHIP concept: facility and district intelligence dashboards"))
     h2("3.1 Venture positioning")
     table(
         ["Instead of", "We present"],
@@ -990,7 +1107,7 @@ def build_pdf():
         "dashboards to the right users at the right time."
     )
     h2("3.3 Platform architecture")
-    story.append(img("data_flow_iso.png",
+    story.append(img("architecture",
                      caption="Data sources → Capture → CHIP intelligence → Action"))
     body(
         "CHIP sits between field data capture and decision-makers. Intelligence modules (AI/ML, "
@@ -1010,7 +1127,7 @@ def build_pdf():
 
     # 4
     h1("4. Deep Technology Core")
-    story.append(img("deep_tech_collage.png",
+    story.append(img("deep_tech", max_h=2.6 * inch,
                      caption="Integrated stack: AI, ML, GIS, mobile edge, cloud, NLP"))
     body(
         "AWIEF 2026 requires ventures built on substantial research and engineering, not "
@@ -1031,14 +1148,15 @@ def build_pdf():
     )
 
     # 5
+    story.append(PageBreak())
     h1("5. Predictive Use Cases")
     two_imgs(
-        "maternal_visit.png", "gis_hotspots.png",
-        "Maternal health - home-visit risk signals",
+        "maternal", "gis",
+        "Maternal and child health - community programme signals",
         "Disease surveillance - GIS hotspot early warning",
     )
-    story.append(img("mobile_capture.png", w=page_w * 0.75,
-                     caption="Offline-capable mobile capture for CHWs and VHTs"))
+    story.append(img("mobile", w=page_w * 0.9, max_h=2.8 * inch,
+                     caption="Mobile-first field engagement - phones as last-mile data tools for CHIP"))
     for title, text in [
         ("5.1 Disease surveillance",
          "Signal: Neighbouring villages report rising fever via VHT entries. Prediction: Possible "
@@ -1093,8 +1211,8 @@ def build_pdf():
 
     # 8
     h1("8. Traction, Foundation &amp; Competitive Advantage")
-    story.append(img("hero_chw_mobile.png",
-                     caption="Live FairBanks ecosystem - CHW/VHT engagement in Kampala communities"))
+    story.append(img("outreach_hero",
+                     caption="Live FairBanks Community Reach - canopy outreach in Kampala communities"))
     h2("8.1 Existing FairBanks ecosystem")
     bullets([
         "FairBanks Community Reach Programme",
@@ -1106,6 +1224,33 @@ def build_pdf():
         "Research and community partnerships",
         "Functioning medical centre with patient and community access",
     ])
+    h3("8.1.1 Evidence from the field")
+    body(
+        "Real FairBanks operations already generate the community signals CHIP will turn into "
+        "predictions - outreach screening, maternal programmes, pharmacy dispensing, facility "
+        "encounters, and staff digital workflows."
+    )
+    two_imgs(
+        "outreach_bp", "outreach_outdoor",
+        "BP screening and registration under outreach canopies",
+        "Outdoor community clinic - structured field capture opportunity",
+    )
+    two_imgs(
+        "training", "pharmacy_digital",
+        "Staff training and product briefings for community programmes",
+        "Pharmacy digital workflow - stock and dispensing signals for CHIP",
+    )
+    two_imgs(
+        "mothers_wait", "gericare",
+        "Maternal and child health touchpoints at the facility",
+        "Gericare - continuous support for older community members",
+        max_h=2.6 * inch,
+    )
+    two_imgs(
+        "facility_building", "staff_field",
+        "FairBanks Medical Centre - operating validation site",
+        "Staff-community conversation - trust that enables data quality",
+    )
     h2("8.2 Why FairBanks wins")
     table(
         ["Typical startup", "Typical facility", "FairBanks"],
@@ -1126,12 +1271,17 @@ def build_pdf():
     )
 
     # 9
-    h1("9. Social Impact &amp; SDG Alignment")
-    story.append(img("maternal_visit.png", w=page_w * 0.85,
-                     caption="Earlier intervention for mothers, children, and communities"))
-    body(
-        "CHIP shifts primary healthcare from sick-care to predictive, community-centred prevention."
-    )
+    impact_block = [
+        Paragraph("9. Social Impact &amp; SDG Alignment", styles["H1Custom"]),
+        HRFlowable(width="100%", thickness=1.2, color=teal, spaceAfter=8),
+        img("impact", w=page_w * 0.55, max_h=3.2 * inch,
+            caption="Earlier intervention for mothers, children, and communities"),
+        Paragraph(
+            "CHIP shifts primary healthcare from sick-care to predictive, community-centred prevention.",
+            styles["BodyCustom"],
+        ),
+    ]
+    story.append(KeepTogether(impact_block))
     bullets([
         "Earlier outbreak detection; lower communicable morbidity",
         "Fewer maternal and neonatal complications",
@@ -1155,8 +1305,8 @@ def build_pdf():
     # 10
     h1("10. MVP Scope &amp; Product Roadmap")
     two_imgs(
-        "mobile_capture.png", "gis_hotspots.png",
-        "MVP: CHW/VHT offline mobile capture",
+        "mvp_capture", "gis",
+        "MVP: structured field registration and mobile capture",
         "MVP: GIS risk visualisation layer",
     )
     h2("10.1 Minimum Viable Product")
@@ -1232,20 +1382,27 @@ def build_pdf():
         [page_w * 0.35, page_w * 0.65],
     )
 
-    h1("14. Conclusion")
-    story.append(img("gis_hotspots.png",
-                     caption="From community signals to life-saving predictions"))
-    body(
-        "FairBanks Community Intelligence Network represents a strategic evolution from community "
-        "medical practice to community health intelligence - matching AWIEF Pitch n Grow 2026's "
-        "call for women-led, deep-technology solutions rooted in African reality."
-    )
-    body(
-        "With an operating medical centre, established Kampala outreach, trusted CHW/VHT "
-        "relationships, digital health foundations, and a clear AI-powered roadmap, FairBanks is "
-        "ready to build, pilot, and scale CHIP."
-    )
-    body("Next immediate steps:", bold=True)
+    story.append(PageBreak())
+    conclusion_block = [
+        Paragraph("14. Conclusion", styles["H1Custom"]),
+        HRFlowable(width="100%", thickness=1.2, color=teal, spaceAfter=8),
+        img("conclusion", max_h=2.9 * inch,
+            caption="From community signals to life-saving predictions - rooted in FairBanks outreach"),
+        Paragraph(
+            "FairBanks Community Intelligence Network represents a strategic evolution from community "
+            "medical practice to community health intelligence - matching AWIEF Pitch n Grow 2026's "
+            "call for women-led, deep-technology solutions rooted in African reality.",
+            styles["BodyCustom"],
+        ),
+        Paragraph(
+            "With an operating medical centre, established Kampala outreach, trusted CHW/VHT "
+            "relationships, digital health foundations, and a clear AI-powered roadmap, FairBanks is "
+            "ready to build, pilot, and scale CHIP.",
+            styles["BodyCustom"],
+        ),
+        Paragraph("Next immediate steps:", styles["BodyBold"]),
+    ]
+    story.append(KeepTogether(conclusion_block))
     bullets([
         "Finalise MVP scope and AI priorities (surveillance, maternal risk, NCD hotspots)",
         "Complete AWIEF application and 10-12 slide pitch deck",
@@ -1272,7 +1429,6 @@ def build_pdf():
         canvas.restoreState()
 
     OUT_PDF.parent.mkdir(parents=True, exist_ok=True)
-    import shutil
 
     def write_pdf(path):
         doc = SimpleDocTemplate(
@@ -1290,22 +1446,12 @@ def build_pdf():
     try:
         write_pdf(OUT_PDF)
         print(f"PDF: {OUT_PDF}")
+        return OUT_PDF
     except PermissionError:
         alt = OUT_PDF.with_name(OUT_PDF.stem + "_unlocked" + OUT_PDF.suffix)
         write_pdf(alt)
         print(f"PDF locked; saved as: {alt}")
-        shutil.copy2(alt, OUT_PDF_ARCHIVE)
-        print(f"PDF: {OUT_PDF_ARCHIVE}")
-        return OUT_PDF
-
-    try:
-        shutil.copy2(OUT_PDF, OUT_PDF_ARCHIVE)
-        print(f"PDF: {OUT_PDF_ARCHIVE}")
-    except PermissionError:
-        alt = OUT_PDF_ARCHIVE.with_name(OUT_PDF_ARCHIVE.stem + "_unlocked" + OUT_PDF_ARCHIVE.suffix)
-        shutil.copy2(OUT_PDF, alt)
-        print(f"PDF archive locked; saved as: {alt}")
-    return OUT_PDF
+        return alt
 
 
 if __name__ == "__main__":

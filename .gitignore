@@ -1,2 +1,5 @@
 # Local media assets (kept on disk, not versioned)
 output/assets/
+
+# Build / render intermediates
+tmp/

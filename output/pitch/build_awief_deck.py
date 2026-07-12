@@ -28,6 +28,34 @@ SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
 
 ASSETS = Path(__file__).resolve().parents[1] / "assets"
+OUT_PPTX = Path(__file__).resolve().parent / "ppt_version.pptx"
+
+# Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
+PHOTOS = {
+    "cover": "facility_exterior_entrance_01.jpg",
+    "problem": "clinic_reception_desk_01.jpg",
+    "dashboard": "dashboard_demo.png",
+    "deep_tech": "deep_tech_collage.png",
+    "architecture": "data_flow_iso.png",
+    "maternal": "bloom_maternal_health_participant_01.jpg",
+    "gis": "gis_hotspots.png",
+    "pharmacy": "pharmacy_interior_01.jpg",
+    "mobile": "outreach_mobile_phone_demo_01.jpg",
+    "outreach_hero": "outreach_facilitator_canopy_01.jpg",
+    "mothers_wait": "waiting_room_mothers_01.jpeg",
+    "pharmacy_digital": "pharmacy_staff_laptop_01.jpg",
+    "mvp_capture": "outreach_registration_form_01.jpg",
+    "impact": "waiting_room_mothers_02.jpeg",
+    "closing": "outreach_audience_full_group_01.jpg",
+}
+
+
+def img(name: str) -> str:
+    path = ASSETS / (PHOTOS.get(name, name))
+    if not path.exists():
+        raise FileNotFoundError(f"Missing asset: {path}")
+    return str(path)
+
 
 # Visibility scale (pt)
 H1 = 34
@@ -37,13 +65,6 @@ BODY = 17
 BODY_SM = 15
 CAPTION = 13
 FOOTER = 12
-
-
-def img(name: str) -> str:
-    path = ASSETS / name
-    if not path.exists():
-        raise FileNotFoundError(f"Missing asset: {path}")
-    return str(path)
 
 
 def set_run(run, size=18, bold=False, color=SLATE, font="Calibri"):
@@ -184,7 +205,7 @@ def build():
 
     # ========== 1. TITLE ==========
     s = prs.slides.add_slide(blank)
-    add_picture_cover(s, img("hero_chw_mobile.png"), 0, 0, SLIDE_W, SLIDE_H)
+    add_picture_cover(s, img("cover"), 0, 0, SLIDE_W, SLIDE_H)
     add_rect(s, 0, 0, Inches(7.4), SLIDE_H, NAVY)
     add_rect(s, Inches(7.25), 0, Inches(0.14), SLIDE_H, TEAL_LIGHT)
     textbox(s, Inches(0.5), Inches(0.85), Inches(6.5), Inches(0.4),
@@ -216,8 +237,8 @@ def build():
     # ========== 2. PROBLEM ==========
     s = prs.slides.add_slide(blank)
     section_band(s, "The problem", "Primary healthcare waits for sickness — intelligence arrives too late.")
-    image_card(s, img("reactive_clinic.png"), Inches(0.4), Inches(1.3), Inches(5.2), Inches(5.55),
-               "Reactive clinic — patients arrive after the crisis starts")
+    image_card(s, img("problem"), Inches(0.4), Inches(1.3), Inches(5.2), Inches(5.55),
+               "Facility reception — care still starts after patients arrive")
     problems = [
         ("Facilities wait for sickness", "Outbreaks detected too late"),
         ("Care ends at the gate", "No village-level visibility"),
@@ -258,7 +279,7 @@ def build():
                 t, size=H3, bold=True, color=TEAL)
         textbox(s, Inches(0.85), top + Inches(0.65), Inches(5.75), Inches(0.5),
                 b, size=BODY_SM, color=SLATE)
-    image_card(s, img("dashboard_demo.png"), Inches(7.1), Inches(1.25), Inches(5.75), Inches(5.55),
+    image_card(s, img("dashboard"), Inches(7.1), Inches(1.25), Inches(5.75), Inches(5.55),
                "Facility & district intelligence dashboard (concept)")
     footer(s, 3)
 
@@ -266,7 +287,7 @@ def build():
     s = prs.slides.add_slide(blank)
     section_band(s, "Deep technology core",
                  "Substantial engineering — not a lightweight booking app.")
-    image_card(s, img("deep_tech_collage.png"), Inches(0.4), Inches(1.3), Inches(5.7), Inches(5.55),
+    image_card(s, img("deep_tech"), Inches(0.4), Inches(1.3), Inches(5.7), Inches(5.55),
                "AI · ML · GIS · mobile edge · cloud · NLP")
     techs = [
         ("Artificial Intelligence", "Outbreak early warning; maternal & NCD risk scoring"),
@@ -289,7 +310,7 @@ def build():
     # ========== 5. HOW IT WORKS ==========
     s = prs.slides.add_slide(blank)
     section_band(s, "How it works", "Last-mile signals become predictions — then action.")
-    image_card(s, img("data_flow_iso.png"), Inches(0.35), Inches(1.25), Inches(7.2), Inches(5.6),
+    image_card(s, img("architecture"), Inches(0.35), Inches(1.25), Inches(7.2), Inches(5.6),
                "Community → Capture → CHIP intelligence → Decision-makers")
     layers = [
         ("1. Sources", "CHWs, clinics, pharmacies, schools, ANC/PNC, labs, HMIS"),
@@ -311,12 +332,12 @@ def build():
     # ========== 6. USE CASES ==========
     s = prs.slides.add_slide(blank)
     section_band(s, "Predictive use cases", "Proof-of-concept scenarios in FairBanks' live catchment.")
-    image_card(s, img("maternal_visit.png"), Inches(0.35), Inches(1.25), Inches(4.15), Inches(2.55),
-               "Maternal risk — home visits")
-    image_card(s, img("gis_hotspots.png"), Inches(4.6), Inches(1.25), Inches(4.15), Inches(2.55),
+    image_card(s, img("maternal"), Inches(0.35), Inches(1.25), Inches(4.15), Inches(2.55),
+               "Maternal & child — community programme signals")
+    image_card(s, img("gis"), Inches(4.6), Inches(1.25), Inches(4.15), Inches(2.55),
                "Surveillance — GIS early warning")
-    image_card(s, img("pharmacy_stock.png"), Inches(8.85), Inches(1.25), Inches(4.05), Inches(2.55),
-               "Medicine demand forecasting")
+    image_card(s, img("pharmacy"), Inches(8.85), Inches(1.25), Inches(4.05), Inches(2.55),
+               "Pharmacy & medicine demand signals")
 
     cases = [
         ("Disease surveillance", "Fever clusters → malaria risk in ~14 days → testing & bed-nets"),
@@ -339,8 +360,8 @@ def build():
     # ========== 7. MARKET ==========
     s = prs.slides.add_slide(blank)
     section_band(s, "Market & customers", "B2B / B2G buyers across Africa's primary-care stack.")
-    image_card(s, img("mobile_capture.png"), Inches(0.35), Inches(1.3), Inches(5.2), Inches(5.55),
-               "CHW/VHT mobile capture — frontline product")
+    image_card(s, img("mobile"), Inches(0.35), Inches(1.3), Inches(5.2), Inches(5.55),
+               "Mobile-first field engagement — last-mile data for CHIP")
     customers = [
         ("Medical centres & clinics", "Outreach planning & population visibility"),
         ("District health offices", "Disease intelligence & early warning"),
@@ -365,7 +386,7 @@ def build():
     # ========== 8. BUSINESS MODEL ==========
     s = prs.slides.add_slide(blank)
     section_band(s, "Business model", "Diversified HealthTech revenue — B2B, B2G, and partner channels.")
-    image_card(s, img("dashboard_demo.png"), Inches(9.15), Inches(1.3), Inches(3.75), Inches(5.55),
+    image_card(s, img("dashboard"), Inches(9.15), Inches(1.3), Inches(3.75), Inches(5.55),
                "SaaS dashboards & analytics")
     streams = [
         "Subscription licences for clinics and hospitals",
@@ -390,12 +411,12 @@ def build():
     s = prs.slides.add_slide(blank)
     section_band(s, "Traction & unfair advantage",
                  "Not a concept detached from the field — a live operating foundation.")
-    image_card(s, img("hero_chw_mobile.png"), Inches(0.35), Inches(1.25), Inches(5.4), Inches(3.2),
-               "Active CHW/VHT engagement across Kampala communities")
-    image_card(s, img("maternal_visit.png"), Inches(0.35), Inches(4.55), Inches(2.6), Inches(2.3),
+    image_card(s, img("outreach_hero"), Inches(0.35), Inches(1.25), Inches(5.4), Inches(3.2),
+               "Live FairBanks Community Reach — canopy outreach")
+    image_card(s, img("mothers_wait"), Inches(0.35), Inches(4.55), Inches(2.6), Inches(2.3),
                "Maternal & child")
-    image_card(s, img("pharmacy_stock.png"), Inches(3.1), Inches(4.55), Inches(2.65), Inches(2.3),
-               "Pharmacy & NCD")
+    image_card(s, img("pharmacy_digital"), Inches(3.1), Inches(4.55), Inches(2.65), Inches(2.3),
+               "Pharmacy digital workflow")
 
     assets = [
         "Functioning FairBanks medical centre",
@@ -427,11 +448,11 @@ def build():
     # ========== 10. MVP & ROADMAP ==========
     s = prs.slides.add_slide(blank)
     section_band(s, "MVP & roadmap", "Prove predictive intelligence in FairBanks' catchment first.")
-    image_card(s, img("mobile_capture.png"), Inches(0.35), Inches(1.25), Inches(4.05), Inches(2.45),
-               "MVP: CHW/VHT offline app")
-    image_card(s, img("gis_hotspots.png"), Inches(4.55), Inches(1.25), Inches(4.05), Inches(2.45),
+    image_card(s, img("mvp_capture"), Inches(0.35), Inches(1.25), Inches(4.05), Inches(2.45),
+               "MVP: field registration & capture")
+    image_card(s, img("gis"), Inches(4.55), Inches(1.25), Inches(4.05), Inches(2.45),
                "MVP: GIS risk layer v1")
-    image_card(s, img("dashboard_demo.png"), Inches(8.75), Inches(1.25), Inches(4.15), Inches(2.45),
+    image_card(s, img("dashboard"), Inches(8.75), Inches(1.25), Inches(4.15), Inches(2.45),
                "MVP: Facility analytics dashboard")
 
     mvp_bits = [
@@ -464,8 +485,8 @@ def build():
     s = prs.slides.add_slide(blank)
     section_band(s, "Impact & SDG alignment",
                  "From sick-care to predictive, community-centred prevention.")
-    image_card(s, img("maternal_visit.png"), Inches(0.35), Inches(1.3), Inches(5.2), Inches(5.55),
-               "Earlier intervention at household & village level")
+    image_card(s, img("impact"), Inches(0.35), Inches(1.3), Inches(5.2), Inches(5.55),
+               "Earlier intervention for mothers, children & communities")
     outcomes = [
         "Earlier outbreak detection; lower communicable morbidity",
         "Fewer maternal & neonatal complications",
@@ -493,7 +514,7 @@ def build():
 
     # ========== 12. ASK ==========
     s = prs.slides.add_slide(blank)
-    add_picture_cover(s, img("gis_hotspots.png"), Inches(5.8), 0, Inches(7.533), SLIDE_H)
+    add_picture_cover(s, img("closing"), Inches(5.8), 0, Inches(7.533), SLIDE_H)
     add_rect(s, 0, 0, Inches(6.3), SLIDE_H, NAVY)
     add_rect(s, Inches(6.15), 0, Inches(0.15), SLIDE_H, TEAL_LIGHT)
 
@@ -534,7 +555,7 @@ def build():
             size=CAPTION, bold=True, color=TEAL_LIGHT)
 
     pitch_dir = Path(__file__).resolve().parent
-    out = pitch_dir / "ppt_version.pptx"
+    out = OUT_PPTX
     try:
         prs.save(str(out))
         print(out)
