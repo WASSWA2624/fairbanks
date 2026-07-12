@@ -196,11 +196,14 @@ def build():
     textbox(s, Inches(0.5), Inches(2.75), Inches(6.5), Inches(0.45),
             "Community Health Intelligence Platform (CHIP)",
             size=H3, bold=True, color=TEAL_LIGHT)
-    textbox(s, Inches(0.5), Inches(3.4), Inches(6.5), Inches(1.35),
+    textbox(s, Inches(0.5), Inches(3.25), Inches(6.5), Inches(0.35),
+            "Your health, our mission.",
+            size=BODY, bold=True, color=ACCENT)
+    textbox(s, Inches(0.5), Inches(3.7), Inches(6.5), Inches(1.15),
             "AI-powered community health intelligence that turns last-mile data into "
             "predictions — so African primary care prevents crises instead of waiting for them.",
             size=BODY, color=LIGHT)
-    textbox(s, Inches(0.5), Inches(5.0), Inches(6.5), Inches(0.4),
+    textbox(s, Inches(0.5), Inches(5.05), Inches(6.5), Inches(0.4),
             "Theme: Deep Roots. Digital Futures.",
             size=BODY, bold=True, color=ACCENT)
     textbox(s, Inches(0.5), Inches(5.5), Inches(6.5), Inches(0.4),
@@ -514,29 +517,34 @@ def build():
         textbox(s, Inches(0.65), top + Inches(0.12), Inches(5.1), Inches(0.4),
                 f"{i + 1}.  {step}", size=BODY_SM, bold=True, color=WHITE)
 
-    textbox(s, Inches(0.45), Inches(5.55), Inches(5.5), Inches(0.45),
+    textbox(s, Inches(0.45), Inches(5.4), Inches(5.5), Inches(0.35),
+            "Your health, our mission.",
+            size=BODY_SM, bold=True, color=ACCENT)
+    textbox(s, Inches(0.45), Inches(5.8), Inches(5.5), Inches(0.4),
             "Vision: Africa's leading Community Health Intelligence Platform.",
             size=BODY_SM, bold=True, color=TEAL_LIGHT)
-    textbox(s, Inches(0.45), Inches(6.1), Inches(5.5), Inches(0.35),
+    textbox(s, Inches(0.45), Inches(6.25), Inches(5.5), Inches(0.3),
             "FairBanks Community Intelligence Network (FCIN) · CHIP",
             size=CAPTION + 1, color=LIGHT)
-    textbox(s, Inches(0.45), Inches(6.5), Inches(5.5), Inches(0.3),
+    textbox(s, Inches(0.45), Inches(6.55), Inches(5.5), Inches(0.25),
             "Contact: [founder · email · phone · web]",
             size=CAPTION + 1, color=RGBColor(0xB0, 0xC4, 0xC8))
-    textbox(s, Inches(0.45), Inches(6.85), Inches(5.5), Inches(0.3),
+    textbox(s, Inches(0.45), Inches(6.85), Inches(5.5), Inches(0.25),
             "awief.untap.us/pitch-n-grow2026  ·  Cape Town 10–11 Nov 2026",
             size=CAPTION, bold=True, color=TEAL_LIGHT)
 
-    out = Path(__file__).resolve().parent / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.pptx"
-    try:
-        prs.save(str(out))
-    except PermissionError:
-        out = Path(__file__).resolve().parent / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026_visual.pptx"
-        prs.save(str(out))
-        print(f"Main file locked; saved as: {out}")
-    else:
-        print(out)
-    return str(out)
+    pitch_dir = Path(__file__).resolve().parent
+    primary = pitch_dir / "ppt_version.pptx"
+    archive = pitch_dir / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.pptx"
+    for out in (primary, archive):
+        try:
+            prs.save(str(out))
+            print(out)
+        except PermissionError:
+            alt = out.with_name(out.stem + "_unlocked" + out.suffix)
+            prs.save(str(alt))
+            print(f"File locked; saved as: {alt}")
+    return str(primary)
 
 
 if __name__ == "__main__":

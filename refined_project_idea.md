@@ -2,6 +2,8 @@
 
 ## Community Health Intelligence Platform (CHIP)
 
+**Slogan:** Your health, our mission.
+
 **Grant & Pitch Application Write-Up**  
 **Programme:** [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026)  
 **Theme:** Deep Roots. Digital Futures.  

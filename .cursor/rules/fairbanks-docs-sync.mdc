@@ -1,0 +1,31 @@
+---
+description: Keep FairBanks pitch docs in sync across MD, PPTX, PDF, and DOCX
+globs: refined_project_idea.md,output/pitch/ppt_version.pptx,output/pdf/pdf_version.pdf,output/doc/word_version.docx,output/pitch/build_awief_deck.py,output/doc/build_photo_docs.py
+alwaysApply: false
+---
+
+# FairBanks document sync
+
+These files are one content set. Edit any one → update the others in the same session.
+
+| Role | Path |
+|------|------|
+| Canonical narrative | `refined_project_idea.md` |
+| Pitch deck | `output/pitch/ppt_version.pptx` |
+| PDF | `output/pdf/pdf_version.pdf` |
+| Word | `output/doc/word_version.docx` |
+
+## Sync rules
+
+1. Prefer `refined_project_idea.md` when resolving conflicts, unless the user edited another format on purpose.
+2. Preserve layout/branding in PPTX/PDF/DOCX; update content only.
+3. Prefer regenerating via build scripts when possible:
+   - Deck: `output/pitch/build_awief_deck.py` → `ppt_version.pptx`
+   - Docs: `output/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf`
+4. Keep `*_version.*` as the working set; archive `FairBanks_FCIN_*` copies only if the build scripts write them.
+5. If a format cannot be updated, state what remains pending.
+
+## Branding
+
+- Slogan (required on cover/title areas): **Your health, our mission.**
+- Do not invent alternate slogans or change product claims beyond syncing content and this tagline.

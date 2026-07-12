@@ -25,8 +25,10 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 ROOT = Path(__file__).resolve().parents[2]
 ASSETS = ROOT / "output" / "pitch" / "assets"
-OUT_DOC = ROOT / "output" / "doc" / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.docx"
-OUT_PDF = ROOT / "output" / "pdf" / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.pdf"
+OUT_DOC = ROOT / "output" / "doc" / "word_version.docx"
+OUT_DOC_ARCHIVE = ROOT / "output" / "doc" / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.docx"
+OUT_PDF = ROOT / "output" / "pdf" / "pdf_version.pdf"
+OUT_PDF_ARCHIVE = ROOT / "output" / "pdf" / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.pdf"
 
 NAVY = "0A1F2E"
 TEAL = "0D6E6E"
@@ -191,7 +193,9 @@ def build_docx():
     add_para(doc, "FairBanks Community Intelligence Network", size=26, bold=True,
              color=NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
     add_para(doc, "Community Health Intelligence Platform (CHIP)", size=16, bold=True,
-             color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
+             color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
+    add_para(doc, "Your health, our mission.", size=13, bold=True, color=ACCENT,
+             align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12, italic=True)
     add_para(doc, "Deep Roots. Digital Futures.", size=13, bold=True, color=ACCENT,
              align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
     add_para(
@@ -675,8 +679,14 @@ def build_docx():
     )
 
     OUT_DOC.parent.mkdir(parents=True, exist_ok=True)
-    doc.save(str(OUT_DOC))
-    print(f"DOCX: {OUT_DOC}")
+    for path in (OUT_DOC, OUT_DOC_ARCHIVE):
+        try:
+            doc.save(str(path))
+            print(f"DOCX: {path}")
+        except PermissionError:
+            alt = path.with_name(path.stem + "_unlocked" + path.suffix)
+            doc.save(str(alt))
+            print(f"DOCX locked; saved as: {alt}")
     return OUT_DOC
 
 
@@ -847,6 +857,10 @@ def build_pdf():
     story.append(Spacer(1, 8))
     story.append(Paragraph("FairBanks Community Intelligence Network", styles["CoverTitle"]))
     story.append(Paragraph("Community Health Intelligence Platform (CHIP)", styles["CoverSub"]))
+    story.append(Paragraph(
+        '<font color="#C45C26"><b><i>Your health, our mission.</i></b></font>',
+        styles["Meta"],
+    ))
     story.append(Paragraph(
         '<font color="#C45C26"><b>Deep Roots. Digital Futures.</b></font>',
         styles["Meta"],
@@ -1261,18 +1275,39 @@ def build_pdf():
         canvas.restoreState()
 
     OUT_PDF.parent.mkdir(parents=True, exist_ok=True)
-    doc = SimpleDocTemplate(
-        str(OUT_PDF),
-        pagesize=A4,
-        leftMargin=0.8 * inch,
-        rightMargin=0.8 * inch,
-        topMargin=0.7 * inch,
-        bottomMargin=0.7 * inch,
-        title="FairBanks FCIN / CHIP - AWIEF Pitch n Grow 2026",
-        author="FairBanks Community Intelligence Network",
-    )
-    doc.build(story, onFirstPage=add_page_number, onLaterPages=add_page_number)
-    print(f"PDF: {OUT_PDF}")
+    import shutil
+
+    def write_pdf(path):
+        doc = SimpleDocTemplate(
+            str(path),
+            pagesize=A4,
+            leftMargin=0.8 * inch,
+            rightMargin=0.8 * inch,
+            topMargin=0.7 * inch,
+            bottomMargin=0.7 * inch,
+            title="FairBanks FCIN / CHIP - AWIEF Pitch n Grow 2026",
+            author="FairBanks Community Intelligence Network",
+        )
+        doc.build(story, onFirstPage=add_page_number, onLaterPages=add_page_number)
+
+    try:
+        write_pdf(OUT_PDF)
+        print(f"PDF: {OUT_PDF}")
+    except PermissionError:
+        alt = OUT_PDF.with_name(OUT_PDF.stem + "_unlocked" + OUT_PDF.suffix)
+        write_pdf(alt)
+        print(f"PDF locked; saved as: {alt}")
+        shutil.copy2(alt, OUT_PDF_ARCHIVE)
+        print(f"PDF: {OUT_PDF_ARCHIVE}")
+        return OUT_PDF
+
+    try:
+        shutil.copy2(OUT_PDF, OUT_PDF_ARCHIVE)
+        print(f"PDF: {OUT_PDF_ARCHIVE}")
+    except PermissionError:
+        alt = OUT_PDF_ARCHIVE.with_name(OUT_PDF_ARCHIVE.stem + "_unlocked" + OUT_PDF_ARCHIVE.suffix)
+        shutil.copy2(OUT_PDF, alt)
+        print(f"PDF archive locked; saved as: {alt}")
     return OUT_PDF
 
 
