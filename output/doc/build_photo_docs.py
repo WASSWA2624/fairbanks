@@ -39,7 +39,6 @@ LINE = "D0DCDC"
 
 # Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
 PHOTOS = {
-    "cover": "facility_exterior_entrance_01.jpg",
     "problem_clinic": "clinic_reception_desk_01.jpg",
     "problem_pharmacy": "pharmacy_interior_01.jpg",
     "dashboard": "dashboard_demo.png",
@@ -279,10 +278,7 @@ def build_docx():
         size=10, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4,
     )
     add_para(doc, "Application deadline: 20 July 2026", size=10, color=MUTED,
-             align=WD_ALIGN_PARAGRAPH.CENTER, space_after=14)
-
-    add_image(doc, photo("cover"), width_in=6.5,
-              caption="FairBanks Medical Centre - Your health, our mission.")
+             align=WD_ALIGN_PARAGRAPH.CENTER, space_after=18)
 
     add_para(
         doc,
@@ -984,9 +980,7 @@ def build_pdf():
         styles["Meta"],
     ))
     story.append(Paragraph("Application deadline: 20 July 2026", styles["Meta"]))
-    story.append(Spacer(1, 10))
-    story.append(img("cover", w=page_w,
-                     caption="FairBanks Medical Centre - Your health, our mission."))
+    story.append(Spacer(1, 18))
     story.append(Paragraph(
         '<link href="https://awief.untap.us/pitch-n-grow2026">'
         "https://awief.untap.us/pitch-n-grow2026</link>",
