@@ -1,4 +1,5 @@
 # FairBanks Community Intelligence Network (FCIN)
+
 ## Community Health Intelligence Platform (CHIP)
 
 **Grant & Pitch Application Write-Up**  
@@ -24,19 +25,25 @@ FairBanks is uniquely positioned to build and validate this platform. We already
 
 ---
 
+
+
 ## 2. Problem Statement
+
+
 
 ### 2.1 The reactive healthcare gap
 
 Across underserved African communities, health systems face a structural information gap:
 
-| Current reality | Consequence |
-| --- | --- |
-| Facilities wait for patients to become sick | Late detection of outbreaks and complications |
-| Care ends when the patient leaves the facility | No continuous view of community-level health trends |
-| Outreach data sits in paper registers or siloed systems | District offices and NGOs lack real-time intelligence |
-| Medicine ordering is based on historical guesswork | Stock-outs during seasonal disease surges |
-| High-risk pregnancies and NCDs are identified late | Preventable maternal morbidity and stroke/diabetes burden |
+
+| Current reality                                         | Consequence                                               |
+| ------------------------------------------------------- | --------------------------------------------------------- |
+| Facilities wait for patients to become sick             | Late detection of outbreaks and complications             |
+| Care ends when the patient leaves the facility          | No continuous view of community-level health trends       |
+| Outreach data sits in paper registers or siloed systems | District offices and NGOs lack real-time intelligence     |
+| Medicine ordering is based on historical guesswork      | Stock-outs during seasonal disease surges                 |
+| High-risk pregnancies and NCDs are identified late      | Preventable maternal morbidity and stroke/diabetes burden |
+
 
 Health facilities, district health offices, NGOs, and ministries of health are forced to **react** to visible crises rather than **predict and prevent** them—despite having community health workers, outreach programmes, and mobile connectivity on the ground.
 
@@ -53,13 +60,19 @@ The result is fragmented data, delayed response, and missed opportunities for pr
 
 ---
 
+
+
 ## 3. Solution: FairBanks Community Intelligence Network (FCIN)
+
+
 
 ### 3.1 Venture positioning
 
-| Instead of | We present |
-| --- | --- |
+
+| Instead of                 | We present                                                                                                                                                             |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | "A private medical centre" | **A Community Health Intelligence Company** using AI, predictive analytics, and community-generated data to improve health outcomes in underserved African communities |
+
 
 **FCIN** is the venture brand. **CHIP** is the core deep-technology platform within that ecosystem—connecting communities, healthcare providers, governments, and development partners through one intelligent system.
 
@@ -67,64 +80,107 @@ The result is fragmented data, delayed response, and missed opportunities for pr
 
 CHIP continuously receives structured health information from:
 
-- Community Health Workers and Village Health Teams
-- Schools, churches, and community outreach events
-- Pharmacies and partner clinics
-- Patients (via mobile applications)
-- FairBanks medical centre and digital health records
+- Community Health Workers and Village Health Teams (household visits, symptom checks, referrals)
+- Patients and caregivers (via mobile applications and self-reporting)
+- FairBanks medical centre and partner clinics (encounters, vitals, diagnoses, digital health records)
+- Pharmacies, drug shops, and medicine outlets (dispensing patterns, stock levels, common complaints)
+- Schools, churches, mosques, and community outreach events (screening camps, health talks)
+- Maternal and child health touchpoints (ANC/PNC visits, immunisation posts, nutrition programmes)
+- Corporate and workplace wellness programmes (BP, BMI, glucose, occupational health checks)
+- Laboratories and point-of-care testing (malaria RDTs, HIV, Hb, glucose, and related results)
+- Geriatric / Gericare and chronic-disease follow-up cohorts (hypertension, diabetes, elderly care)
+- Public health and administrative systems (district HMIS/DHIS2 aggregates, where integration is approved)
+- Environmental and contextual signals (rainfall/seasonality, flooding, sanitation reports linked to outbreak risk)
+- Research partners and programme M&E teams (anonymised field datasets from NGO and academic collaborations)
 
 The platform processes this data through an AI and analytics engine to **predict**—not merely record—health events and resource needs, then delivers actionable alerts and dashboards to the right users at the right time.
 
 ### 3.3 Platform architecture
 
+CHIP sits between **field data capture** and **decision-makers**. Data flows in from the community, is processed by intelligence modules, and returns as alerts, dashboards, and referrals.
+
 ```
-Community Members
-        │
-        ▼
-Community Health Workers / VHTs
-        │
-        ▼
-Mobile Data Collection
-        │
-        ▼
-Community Health Intelligence Platform (CHIP)
-        │
- ┌──────┼────────┬───────────┐
- │      │        │           │
- ▼      ▼        ▼           ▼
-AI   Predictive GIS   Clinical Decision
-Engine Analytics Maps Support
-        │
-        ▼
-Health Facility Dashboard
-        │
-        ▼
-District Health Office / NGOs / Partners
+┌─────────────────────────────────────────────────────────────────┐
+│                     DATA SOURCES (last mile)                    │
+│  CHWs/VHTs · Patients (mobile) · FairBanks & partner clinics    │
+│  Pharmacies/drug shops · Schools/faith & outreach · ANC/PNC     │
+│  Corporate wellness · Labs/PoC tests · Gericare / NCD cohorts   │
+│  HMIS/DHIS2 (where approved) · Seasonality & sanitation signals │
+│  Research / NGO M&E datasets                                    │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              CAPTURE LAYER — Mobile & facility apps             │
+│         Offline-capable structured forms · sync to cloud        │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│        COMMUNITY HEALTH INTELLIGENCE PLATFORM (CHIP)            │
+│                                                                 │
+│   ┌──────────┐  ┌──────────────┐  ┌─────────┐  ┌────────────┐   │
+│   │ AI/ML    │  │ Predictive   │  │ GIS     │  │ Clinical   │   │
+│   │ Engine   │  │ Analytics    │  │ Maps    │  │ Decision   │   │
+│   └──────────┘  └──────────────┘  └─────────┘  │ Support    │   │
+│                                                └────────────┘   │
+│              Risk scores · early warnings · hotspots            │
+└───────────┬─────────────────┬─────────────────┬─────────────────┘
+            │                 │                 │
+            ▼                 ▼                 ▼
+   ┌────────────────┐ ┌──────────────┐ ┌──────────────────────┐
+   │ CHW / VHT      │ │ Health       │ │ District Health      │
+   │ mobile alerts  │ │ Facility     │ │ Office · NGOs ·      │
+   │ & worklists    │ │ Dashboard    │ │ Partners             │
+   └───────┬────────┘ └──────┬───────┘ └──────────┬───────────┘
+           │                 │                    │
+           └─────────────────┴────────────────────┘
+                             │
+                             ▼
+                    Actions in the community
+         (referrals · outreach · stock · surveillance)
 ```
 
-CHIP becomes the **digital nervous system** for community healthcare—moving data from the last mile to decision-makers in near real time.
+
+| Layer            | Role                                                                         |
+| ---------------- | ---------------------------------------------------------------------------- |
+| **Data sources** | Who generates health signals in the community and at facilities              |
+| **Capture**      | How those signals are entered and synced (mobile/offline + facility systems) |
+| **CHIP core**    | How signals become predictions, maps, and clinical guidance                  |
+| **Consumers**    | Who acts—CHWs (field), facilities (care), districts/partners (programmes)    |
+
+
+CHIP becomes the **digital nervous system** for community healthcare—moving data from the last mile to decision-makers in near real time, and closing the loop with actionable alerts back to the field.
 
 ---
+
+
 
 ## 4. Deep Technology Core
 
 AWIEF 2026 requires ventures built on substantial research and engineering, not lightweight digital services. CHIP meets this standard through an integrated deep-tech stack:
 
-| Technology | Function in CHIP |
-| --- | --- |
-| **Artificial Intelligence** | Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring |
-| **Machine Learning** | Pattern learning from historical community health data, seasonal trends, and outreach outcomes |
-| **GIS Mapping** | Geospatial visualisation of disease distribution, hotspots, and resource gaps |
-| **Mobile Data Collection** | Offline-capable CHW/VHT apps for structured capture at household and community level |
-| **Cloud Computing** | Secure synchronisation across facilities, partners, and administrative levels |
-| **Analytics Dashboard** | Real-time trend monitoring for clinicians, programme managers, and district officials |
-| **Natural Language Processing** | Local-language symptom reporting and summarisation where appropriate |
+
+| Technology                      | Function in CHIP                                                                               |
+| ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Artificial Intelligence**     | Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring                 |
+| **Machine Learning**            | Pattern learning from historical community health data, seasonal trends, and outreach outcomes |
+| **GIS Mapping**                 | Geospatial visualisation of disease distribution, hotspots, and resource gaps                  |
+| **Mobile Data Collection**      | Offline-capable CHW/VHT apps for structured capture at household and community level           |
+| **Cloud Computing**             | Secure synchronisation across facilities, partners, and administrative levels                  |
+| **Analytics Dashboard**         | Real-time trend monitoring for clinicians, programme managers, and district officials          |
+| **Natural Language Processing** | Local-language symptom reporting and summarisation where appropriate                           |
+
 
 This combination—AI + ML + geospatial intelligence + edge/mobile capture + cloud orchestration—is the **deep technology core** that distinguishes CHIP from a simple health app or consumer website.
 
 ---
 
+
+
 ## 5. Predictive Use Cases (Proof of Concept Scenarios)
+
+
 
 ### 5.1 Disease surveillance
 
@@ -158,22 +214,28 @@ This combination—AI + ML + geospatial intelligence + edge/mobile capture + clo
 
 ---
 
+
+
 ## 6. Target Market & Customers
 
-| Customer segment | Value delivered |
-| --- | --- |
-| **Medical centres & clinics** | Better follow-up, outreach planning, and population health visibility |
-| **District health offices** | Population-level disease intelligence and early warning |
-| **NGOs & development partners** | Real-time M&E, impact evidence, programme optimisation |
-| **Community health workers / VHTs** | Mobile tools, structured workflows, decision support |
-| **Insurance companies** | Prevention-focused population health insights |
-| **Ministries of health** | National and sub-national planning, outbreak preparedness |
-| **Research institutions** | Ethical, anonymised datasets for community health research |
+
+| Customer segment                    | Value delivered                                                       |
+| ----------------------------------- | --------------------------------------------------------------------- |
+| **Medical centres & clinics**       | Better follow-up, outreach planning, and population health visibility |
+| **District health offices**         | Population-level disease intelligence and early warning               |
+| **NGOs & development partners**     | Real-time M&E, impact evidence, programme optimisation                |
+| **Community health workers / VHTs** | Mobile tools, structured workflows, decision support                  |
+| **Insurance companies**             | Prevention-focused population health insights                         |
+| **Ministries of health**            | National and sub-national planning, outbreak preparedness             |
+| **Research institutions**           | Ethical, anonymised datasets for community health research            |
+
 
 **Primary market (Phase 1):** Uganda—starting with FairBanks' established community catchment and Kampala metropolitan outreach zones.  
 **Expansion markets (Phase 2–3):** East Africa, then additional African countries with similar primary healthcare and CHW/VHT infrastructure.
 
 ---
+
+
 
 ## 7. Business Model & Revenue Streams
 
@@ -192,7 +254,11 @@ This multi-channel model reduces dependence on a single revenue stream and align
 
 ---
 
+
+
 ## 8. Traction, Foundation & Competitive Advantage
+
+
 
 ### 8.1 Existing FairBanks ecosystem (live operational foundation)
 
@@ -208,27 +274,37 @@ FairBanks is not a concept-stage idea disconnected from the field. Active progra
 - **Research and community partnerships**
 - **Functioning medical centre** with direct patient and community access
 
+
+
 ### 8.2 Why FairBanks wins
 
-| Typical startup | Typical health facility | FairBanks |
-| --- | --- | --- |
-| Technology without field access | Patients without technology | **Both**: live healthcare operation + deep-tech build capability |
-| Imported solutions | Manual, reactive workflows | **Context-rooted** AI built from African community health realities |
-| Pilot without validation site | Data without intelligence layer | **Design → pilot → validate → refine** in a real setting before scale |
+
+| Typical startup                 | Typical health facility         | FairBanks                                                             |
+| ------------------------------- | ------------------------------- | --------------------------------------------------------------------- |
+| Technology without field access | Patients without technology     | **Both**: live healthcare operation + deep-tech build capability      |
+| Imported solutions              | Manual, reactive workflows      | **Context-rooted** AI built from African community health realities   |
+| Pilot without validation site   | Data without intelligence layer | **Design → pilot → validate → refine** in a real setting before scale |
+
 
 FairBanks can **design, pilot, validate, and refine** CHIP inside an operating community health ecosystem—de-risking product-market fit for district and national deployment.
 
 ### 8.3 Recommended AWIEF track
 
-| Track | Fit assessment |
-| --- | --- |
-| **Idea Track** | Applicable if pitching CHIP as pre-venture prototype (<18 months, early prototype) |
+
+| Track                           | Fit assessment                                                                                                                                                    |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Idea Track**                  | Applicable if pitching CHIP as pre-venture prototype (<18 months, early prototype)                                                                                |
 | **Startup Track (recommended)** | Strong fit: registered operating medical centre, revenue-generating services, active community programmes, building deep-tech platform on proven field operations |
-| **Scale-Up Track** | Future state after multi-market expansion and institutional funding |
+| **Scale-Up Track**              | Future state after multi-market expansion and institutional funding                                                                                               |
+
 
 ---
 
+
+
 ## 9. Social Impact & Development Alignment
+
+
 
 ### 9.1 Impact thesis
 
@@ -243,54 +319,76 @@ CHIP shifts primary healthcare from **sick-care** to **predictive, community-cen
 - **Reduced medicine stock-outs** and more efficient public-health resource allocation
 - **Evidence base** for NGOs, donors, and governments to invest in what works
 
-### 9.3 SDG alignment
 
-| SDG | CHIP contribution |
-| --- | --- |
-| **SDG 3 – Good Health and Well-Being** | Predictive community health, maternal/child/NCD focus |
-| **SDG 5 – Gender Equality** | Women-led venture; maternal health intelligence |
-| **SDG 9 – Industry, Innovation and Infrastructure** | Deep-tech health infrastructure for last-mile Africa |
-| **SDG 10 – Reduced Inequalities** | Intelligence for underserved communities |
-| **SDG 17 – Partnerships** | Multi-stakeholder health ecosystem integration |
+
+### 9.3 Sustainable Development Goal (SDG) alignment
+
+
+| SDG                                                 | CHIP contribution                                     |
+| --------------------------------------------------- | ----------------------------------------------------- |
+| **SDG 3 – Good Health and Well-Being**              | Predictive community health, maternal/child/NCD focus |
+| **SDG 5 – Gender Equality**                         | Women-led venture; maternal health intelligence       |
+| **SDG 9 – Industry, Innovation and Infrastructure** | Deep-tech health infrastructure for last-mile Africa  |
+| **SDG 10 – Reduced Inequalities**                   | Intelligence for underserved communities              |
+| **SDG 17 – Partnerships**                           | Multi-stakeholder health ecosystem integration        |
+
 
 ---
 
+
+
 ## 10. MVP Scope & Product Roadmap
+
+
 
 ### 10.1 Minimum Viable Product (MVP)
 
 **Goal:** Prove predictive community health intelligence in FairBanks' live catchment.
 
-| MVP component | Description |
-| --- | --- |
-| **CHW/VHT mobile app** | Offline data capture: symptoms, vitals, maternal/child indicators, household visits |
-| **Cloud sync & data pipeline** | Secure ingestion, validation, and storage from field to platform |
-| **Analytics dashboard** | Facility-level view of trends, alerts, and outreach priorities |
-| **AI Module v1** | Rule-based + ML-assisted risk scoring for 2–3 priority use cases (e.g., fever cluster detection, maternal risk flags, BP trend alerts) |
-| **GIS layer v1** | Map visualisation of reported cases and risk zones by village/parish |
-| **Pilot integration** | Connect existing FairBanks digital records and outreach workflows |
+
+| MVP component                  | Description                                                                                                                            |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **CHW/VHT mobile app**         | Offline data capture: symptoms, vitals, maternal/child indicators, household visits                                                    |
+| **Cloud sync & data pipeline** | Secure ingestion, validation, and storage from field to platform                                                                       |
+| **Analytics dashboard**        | Facility-level view of trends, alerts, and outreach priorities                                                                         |
+| **AI Module v1**               | Rule-based + ML-assisted risk scoring for 2–3 priority use cases (e.g., fever cluster detection, maternal risk flags, BP trend alerts) |
+| **GIS layer v1**               | Map visualisation of reported cases and risk zones by village/parish                                                                   |
+| **Pilot integration**          | Connect existing FairBanks digital records and outreach workflows                                                                      |
+
+
+
 
 ### 10.2 Roadmap
 
-| Phase | Timeline (indicative) | Milestones |
-| --- | --- | --- |
-| **Phase 1 – Pilot** | Months 0–12 | MVP deployed with FairBanks CHWs/VHTs; validate 3 predictive use cases; measure alert accuracy and response time |
-| **Phase 2 – District scale** | Months 12–24 | Expand to partner clinics and Kampala district health structures; NGO M&E modules; API for partners |
-| **Phase 3 – National & regional** | Months 24–36 | Multi-district Uganda deployment; East Africa market entry; advanced ML models and medicine demand forecasting |
-| **Phase 4 – Platform expansion** | Year 3+ | Clinical decision support, expanded NLP for local languages, research modules, optional future capabilities (e.g., workforce wellbeing analytics) |
+
+| Phase                             | Timeline (indicative) | Milestones                                                                                                                                        |
+| --------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Phase 1 – Pilot**               | Months 0–12           | MVP deployed with FairBanks CHWs/VHTs; validate 3 predictive use cases; measure alert accuracy and response time                                  |
+| **Phase 2 – District scale**      | Months 12–24          | Expand to partner clinics and Kampala district health structures; NGO M&E modules; API for partners                                               |
+| **Phase 3 – National & regional** | Months 24–36          | Multi-district Uganda deployment; East Africa market entry; advanced ML models and medicine demand forecasting                                    |
+| **Phase 4 – Platform expansion**  | Year 3+               | Clinical decision support, expanded NLP for local languages, research modules, optional future capabilities (e.g., workforce wellbeing analytics) |
+
 
 ---
 
+
+
 ## 11. AWIEF Pitch n Grow 2026 Alignment
+
+
 
 ### 11.1 Theme: Deep Roots. Digital Futures.
 
-| AWIEF expectation | FairBanks / CHIP response |
-| --- | --- |
-| Deep knowledge of local context | Years of community outreach in named Kampala communities; CHW/VHT relationships; primary care delivery experience |
-| Deep understanding of communities | Platform designed around how African communities actually report, move, and access care |
-| Deep technology, not superficial digital | AI + ML + GIS + mobile edge + cloud + NLP integrated platform |
-| African problems, African-built solutions | Technology developed from FairBanks' field operations, not imported without local validation |
+
+| AWIEF expectation                         | FairBanks / CHIP response                                                                                         |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Deep knowledge of local context           | Years of community outreach in named Kampala communities; CHW/VHT relationships; primary care delivery experience |
+| Deep understanding of communities         | Platform designed around how African communities actually report, move, and access care                           |
+| Deep technology, not superficial digital  | AI + ML + GIS + mobile edge + cloud + NLP integrated platform                                                     |
+| African problems, African-built solutions | Technology developed from FairBanks' field operations, not imported without local validation                      |
+
+
+
 
 ### 11.2 Sector & eligibility checklist
 
@@ -301,6 +399,8 @@ CHIP shifts primary healthcare from **sick-care** to **predictive, community-cen
 - **Commitment:** Available for AWIEF 2026 Conference live finals, Cape Town, 10–11 November 2026
 
 ---
+
+
 
 ## 12. Application-Ready Copy Blocks
 
@@ -335,34 +435,42 @@ Only venture combining a **live medical centre and community outreach engine** w
 5. **Traction (2:20–2:45):** FairBanks outreach communities, programmes, and validation environment.
 6. **Ask & vision (2:45–3:00):** MVP pilot funding; vision for Africa's leading community health intelligence platform.
 
+
+
 ### 12.7 Suggested pitch deck structure (10–12 slides)
 
-1. Title & one-line vision  
-2. Problem: reactive healthcare in underserved communities  
-3. Solution: FCIN / CHIP overview  
-4. Deep technology architecture  
-5. How it works (data flow diagram)  
-6. Use cases: surveillance, maternal, NCD, child health, pharmacy  
-7. Market & customers  
-8. Business model  
-9. Traction & competitive advantage (FairBanks ecosystem)  
-10. MVP & roadmap  
-11. Impact & SDG alignment  
-12. Team, ask, and contact  
+1. Title & one-line vision
+2. Problem: reactive healthcare in underserved communities
+3. Solution: FCIN / CHIP overview
+4. Deep technology architecture
+5. How it works (data flow diagram)
+6. Use cases: surveillance, maternal, NCD, child health, pharmacy
+7. Market & customers
+8. Business model
+9. Traction & competitive advantage (FairBanks ecosystem)
+10. MVP & roadmap
+11. Impact & SDG alignment
+12. Team, ask, and contact
 
 ---
+
+
 
 ## 13. Risks & Mitigation (Grant Reviewer Section)
 
-| Risk | Mitigation |
-| --- | --- |
-| Data quality from field capture | Structured mobile forms, validation rules, CHW training and certification |
-| Low CHW digital literacy | Simple UX, offline mode, local-language support, supervised rollout through existing VHT networks |
-| Privacy and consent | Ethical data governance, anonymisation for analytics, Uganda Data Protection compliance |
-| Model accuracy in early phase | Start with rule-based + limited ML scope; validate against FairBanks clinical outcomes before scaling algorithms |
-| Adoption by public sector | Pilot evidence from FairBanks; NGO and district co-design; align with MoH community health strategy |
+
+| Risk                            | Mitigation                                                                                                       |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Data quality from field capture | Structured mobile forms, validation rules, CHW training and certification                                        |
+| Low CHW digital literacy        | Simple UX, offline mode, local-language support, supervised rollout through existing VHT networks                |
+| Privacy and consent             | Ethical data governance, anonymisation for analytics, Protection compliance                                      |
+| Model accuracy in early phase   | Start with rule-based + limited ML scope; validate against FairBanks clinical outcomes before scaling algorithms |
+| Adoption by public sector       | Pilot evidence from FairBanks; NGO and district co-design; align with MoH community health strategy              |
+
 
 ---
+
+
 
 ## 14. Conclusion
 
@@ -379,4 +487,4 @@ With an operating medical centre, established outreach across Kampala communitie
 
 ---
 
-*Document prepared for AWIEF Pitch n Grow 2026 submission. Source of truth: `.curcor/raw_project_idea.mdc`.*
+*Document prepared for AWIEF Pitch n Grow 2026 submission.*
