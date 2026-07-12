@@ -27,7 +27,7 @@ LIGHT = RGBColor(0xE8, 0xF0, 0xF0)
 SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
 
-ASSETS = Path(__file__).resolve().parent / "assets"
+ASSETS = Path(__file__).resolve().parents[1] / "assets"
 
 # Visibility scale (pt)
 H1 = 34
@@ -534,17 +534,16 @@ def build():
             size=CAPTION, bold=True, color=TEAL_LIGHT)
 
     pitch_dir = Path(__file__).resolve().parent
-    primary = pitch_dir / "ppt_version.pptx"
-    archive = pitch_dir / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.pptx"
-    for out in (primary, archive):
-        try:
-            prs.save(str(out))
-            print(out)
-        except PermissionError:
-            alt = out.with_name(out.stem + "_unlocked" + out.suffix)
-            prs.save(str(alt))
-            print(f"File locked; saved as: {alt}")
-    return str(primary)
+    out = pitch_dir / "ppt_version.pptx"
+    try:
+        prs.save(str(out))
+        print(out)
+    except PermissionError:
+        alt = out.with_name(out.stem + "_unlocked" + out.suffix)
+        prs.save(str(alt))
+        print(f"File locked; saved as: {alt}")
+        return str(alt)
+    return str(out)
 
 
 if __name__ == "__main__":

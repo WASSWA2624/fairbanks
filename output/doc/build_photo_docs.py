@@ -24,11 +24,9 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSETS = ROOT / "output" / "pitch" / "assets"
+ASSETS = ROOT / "output" / "assets"
 OUT_DOC = ROOT / "output" / "doc" / "word_version.docx"
-OUT_DOC_ARCHIVE = ROOT / "output" / "doc" / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.docx"
 OUT_PDF = ROOT / "output" / "pdf" / "pdf_version.pdf"
-OUT_PDF_ARCHIVE = ROOT / "output" / "pdf" / "FairBanks_FCIN_CHIP_AWIEF_Pitch_n_Grow_2026.pdf"
 
 NAVY = "0A1F2E"
 TEAL = "0D6E6E"
@@ -679,14 +677,13 @@ def build_docx():
     )
 
     OUT_DOC.parent.mkdir(parents=True, exist_ok=True)
-    for path in (OUT_DOC, OUT_DOC_ARCHIVE):
-        try:
-            doc.save(str(path))
-            print(f"DOCX: {path}")
-        except PermissionError:
-            alt = path.with_name(path.stem + "_unlocked" + path.suffix)
-            doc.save(str(alt))
-            print(f"DOCX locked; saved as: {alt}")
+    try:
+        doc.save(str(OUT_DOC))
+        print(f"DOCX: {OUT_DOC}")
+    except PermissionError:
+        alt = OUT_DOC.with_name(OUT_DOC.stem + "_unlocked" + OUT_DOC.suffix)
+        doc.save(str(alt))
+        print(f"DOCX locked; saved as: {alt}")
     return OUT_DOC
 
 
