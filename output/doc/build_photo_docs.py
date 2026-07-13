@@ -44,6 +44,7 @@ PHOTOS = {
     "facility_entrance": "facility_exterior_entrance_01.jpg",
     "facility_entrance_2": "facility_exterior_entrance_02.jpg",
     "pharmacy_branded": "pharmacy_exterior_01.jpg",
+    "pharmacy_interior": "pharmacy_interior_02.jpg",
     "staff_team": "staff_team_reception.jpeg",
     "mission_wall": "reception_mission_wall.jpeg",
     "waiting_branded": "waiting_room_reception_01.jpeg",
@@ -287,15 +288,15 @@ def build_docx():
              align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
 
     add_image(
-        doc, photo("facility_sign"), width_in=5.8, max_height_in=2.8,
-        caption="FairBanks Medical Centre — Your health, our mission.",
+        doc, photo("pharmacy_interior"), width_in=5.8, max_height_in=2.8,
+        caption="FairBanks Pharmacy — Your health, our mission.",
     )
     add_two_images(
         doc,
         photo("facility_entrance"),
-        photo("pharmacy_branded"),
+        photo("outreach_hero"),
         "Branded facility entrance — operating validation site",
-        "On-site FairBanks Pharmacy — clear Medical Centre branding",
+        "Community outreach — last-mile engagement that feeds FCHIP",
         max_height_in=2.4,
     )
 
@@ -1025,13 +1026,13 @@ def build_pdf():
     story.append(Paragraph("Application deadline: 20 July 2026", styles["Meta"]))
     story.append(Spacer(1, 12))
     story.append(img(
-        "facility_sign", w=page_w * 0.85, max_h=2.4 * inch,
-        caption="FairBanks Medical Centre — Your health, our mission.",
+        "pharmacy_interior", w=page_w * 0.85, max_h=2.4 * inch,
+        caption="FairBanks Pharmacy — Your health, our mission.",
     ))
     two_imgs(
-        "facility_entrance", "pharmacy_branded",
+        "facility_entrance", "outreach_hero",
         "Branded facility entrance — operating validation site",
-        "On-site FairBanks Pharmacy — clear Medical Centre branding",
+        "Community outreach — last-mile engagement that feeds FCHIP",
         max_h=2.1 * inch,
     )
     story.append(Paragraph(

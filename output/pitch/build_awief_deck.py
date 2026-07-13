@@ -132,11 +132,14 @@ CAPTION = 13
 FOOTER = 12
 
 
-def set_run(run, size=18, bold=False, color=SLATE, font="Calibri"):
+def set_run(run, size=18, bold=False, color=SLATE, font="Calibri", char_spacing_pt=None):
     run.font.size = Pt(size)
     run.font.bold = bold
     run.font.color.rgb = color
     run.font.name = font
+    if char_spacing_pt is not None:
+        # OOXML spc = hundredths of a point
+        run._r.get_or_add_rPr().set("spc", str(int(round(char_spacing_pt * 100))))
 
 
 def fill_solid(shape, color):
@@ -166,8 +169,15 @@ def textbox(slide, left, top, width, height, text, size=18, bold=False, color=SL
     box = slide.shapes.add_textbox(left, top, width, height)
     tf = box.text_frame
     tf.word_wrap = True
+    # Zero margins so glyph bounds stay inside the box (avoids slide overlap)
+    tf.margin_left = 0
+    tf.margin_right = 0
+    tf.margin_top = 0
+    tf.margin_bottom = 0
     p = tf.paragraphs[0]
     p.alignment = align
+    p.space_before = Pt(0)
+    p.space_after = Pt(0)
     run = p.add_run()
     run.text = text
     set_run(run, size=size, bold=bold, color=color, font=font)
@@ -275,66 +285,87 @@ def build():
 
     # Brand mark
     try:
-        s.shapes.add_picture(img("logo"), Inches(0.78), Inches(0.38), height=Inches(0.58))
+        s.shapes.add_picture(img("logo"), Inches(0.78), Inches(0.26), height=Inches(0.46))
     except Exception:
         pass
 
     # Programme line
     textbox(
-        s, Inches(0.78), Inches(1.12), Inches(8.0), Inches(0.32),
+        s, Inches(0.78), Inches(0.86), Inches(9.0), Inches(0.26),
         "AWIEF Pitch n Grow 2026  ·  Startup Track  ·  HealthTech",
-        size=14, bold=True, color=TEAL_LIGHT,
+        size=13, bold=True, color=TEAL_LIGHT,
     )
 
-    # Brand / product name — hero-level signal
+    # FairBanks — box taller than the font so glyphs cannot spill into neighbours
+    box = s.shapes.add_textbox(Inches(0.78), Inches(1.48), Inches(10.5), Inches(0.85))
+    tf = box.text_frame
+    tf.word_wrap = False
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = Pt(0)
+    try:
+        from pptx.enum.text import MSO_AUTO_SIZE
+        tf.auto_size = MSO_AUTO_SIZE.NONE
+    except Exception:
+        pass
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.LEFT
+    p.space_before = Pt(0)
+    p.space_after = Pt(0)
+    run = p.add_run()
+    run.text = "FairBanks"
+    set_run(run, size=40, bold=True, color=WHITE, font="Segoe UI")
+
+    # Subtitle — clear air below FairBanks box (ends ~2.33\")
     textbox(
-        s, Inches(0.78), Inches(1.55), Inches(8.4), Inches(0.85),
-        "FairBanks",
-        size=58, bold=True, color=WHITE,
-    )
-    textbox(
-        s, Inches(0.78), Inches(2.35), Inches(8.8), Inches(0.5),
+        s, Inches(0.78), Inches(2.50), Inches(10.0), Inches(0.36),
         "Community Health Intelligence Platform",
-        size=28, bold=True, color=WHITE,
+        size=21, bold=True, color=WHITE, font="Segoe UI",
     )
 
-    # Accent rule under title
-    add_rect(s, Inches(0.78), Inches(2.98), Inches(2.6), Inches(0.08), TEAL_LIGHT)
+    add_rect(s, Inches(0.78), Inches(3.00), Inches(2.6), Inches(0.07), TEAL_LIGHT)
 
     textbox(
-        s, Inches(0.78), Inches(3.2), Inches(8.2), Inches(0.38),
+        s, Inches(0.78), Inches(3.22), Inches(8.2), Inches(0.34),
         "FCHIP",
-        size=19, bold=True, color=TEAL_LIGHT,
+        size=18, bold=True, color=TEAL_LIGHT,
     )
     textbox(
-        s, Inches(0.78), Inches(3.62), Inches(7.8), Inches(0.38),
+        s, Inches(0.78), Inches(3.68), Inches(7.8), Inches(0.40),
         "Your health, our mission.",
         size=22, bold=True, color=ACCENT,
     )
 
-    # One supporting sentence
-    textbox(
-        s, Inches(0.78), Inches(4.25), Inches(7.9), Inches(1.05),
-        "AI that turns last-mile community data into predictions —\n"
+    box = s.shapes.add_textbox(Inches(0.78), Inches(4.28), Inches(7.9), Inches(1.05))
+    tf = box.text_frame
+    tf.word_wrap = True
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    lines = [
+        "AI that turns last-mile community data into predictions —",
         "so African primary care prevents crises, not just treats them.",
-        size=18, color=LIGHT,
-    )
+    ]
+    for i, line in enumerate(lines):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.alignment = PP_ALIGN.LEFT
+        p.space_before = Pt(6 if i else 0)
+        p.space_after = Pt(0)
+        run = p.add_run()
+        run.text = line
+        set_run(run, size=18, bold=False, color=LIGHT)
 
     # Bottom meta strip
     add_rect(s, 0, Inches(6.48), SLIDE_W, Inches(1.02), NAVY)
     add_rect(s, 0, Inches(6.48), SLIDE_W, Inches(0.07), TEAL_LIGHT)
     textbox(
-        s, Inches(0.78), Inches(6.65), Inches(7.8), Inches(0.35),
+        s, Inches(0.78), Inches(6.62), Inches(7.5), Inches(0.32),
         "Deep Roots. Digital Futures.",
         size=17, bold=True, color=ACCENT,
     )
     textbox(
-        s, Inches(0.78), Inches(7.05), Inches(8.8), Inches(0.3),
+        s, Inches(0.78), Inches(7.02), Inches(8.5), Inches(0.28),
         "Uganda pilot  →  East Africa  →  Pan-African scale   ·   Live medical centre + CHW/VHT foundation",
         size=13, bold=True, color=LIGHT,
     )
     textbox(
-        s, Inches(9.5), Inches(6.78), Inches(3.4), Inches(0.45),
+        s, Inches(9.6), Inches(6.78), Inches(3.3), Inches(0.40),
         "Woman-led deep-tech",
         size=15, bold=True, color=TEAL_LIGHT, align=PP_ALIGN.RIGHT,
     )
