@@ -1,6 +1,4 @@
-# FairBanks Community Intelligence Network (FCIN)
-
-## Community Health Intelligence Platform (CHIP)
+# FairBanks Community Health Intelligence Platform (FCHIP)
 
 **Slogan:** Your health, our mission.
 
@@ -15,15 +13,15 @@
 
 ## 1. Executive Summary
 
-FairBanks is evolving from a community-rooted medical centre into **Africa's leading Community Health Intelligence Company**. Through the **FairBanks Community Intelligence Network (FCIN)**, we are building the **Community Health Intelligence Platform (CHIP)**—a deep-technology system that connects community health workers, clinics, outreach programmes, and public-health decision-makers into one intelligent network.
+FairBanks is evolving from a community-rooted medical centre into **Africa's leading Community Health Intelligence Company**. Through the **FairBanks Community Health Intelligence Platform (FCHIP)**, we are building a deep-technology system that connects community health workers, clinics, outreach programmes, and public-health decision-makers into one intelligent network.
 
-Today, primary healthcare in underserved African communities is largely **reactive**: facilities treat patients only after illness appears, with little visibility into what is happening in surrounding villages until outbreaks, complications, or stock-outs occur. CHIP transforms this model by continuously ingesting community-generated health data and using **artificial intelligence, machine learning, predictive analytics, and GIS mapping** to forecast disease risk, maternal complications, chronic-disease hotspots, child-health threats, and medicine demand **before** crises escalate.
+Today, primary healthcare in underserved African communities is largely **reactive**: facilities treat patients only after illness appears, with little visibility into what is happening in surrounding villages until outbreaks, complications, or stock-outs occur. FCHIP transforms this model by continuously ingesting community-generated health data and using **artificial intelligence, machine learning, predictive analytics, and GIS mapping** to forecast disease risk, maternal complications, chronic-disease hotspots, child-health threats, and medicine demand **before** crises escalate.
 
-FairBanks is uniquely positioned to build and validate this platform. We already operate a functioning medical centre, run active community outreach across Kampala-area communities (including Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya), work with Village Health Teams (VHTs) and community health workers (CHWs), and deliver maternal and child health, geriatric care (Gericare), chronic-disease screening, corporate and school health programmes, digital health records, and research partnerships. CHIP is the missing technology layer that unifies these activities into a scalable, evidence-driven health intelligence system.
+FairBanks is uniquely positioned to build and validate this platform. We already operate a functioning medical centre, run active community outreach across Kampala-area communities (including Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya), work with Village Health Teams (VHTs) and community health workers (CHWs), and deliver maternal and child health, geriatric care (Gericare), chronic-disease screening, corporate and school health programmes, digital health records, and research partnerships. FCHIP is the missing technology layer that unifies these activities into a scalable, evidence-driven health intelligence system.
 
 **Vision:** To build Africa's leading Community Health Intelligence Platform that harnesses artificial intelligence, community-generated data, and predictive analytics to transform primary healthcare from reactive treatment to proactive prevention.
 
-**Funding ask (indicative):** Support to develop and pilot CHIP MVP—mobile data collection for CHWs/VHTs, cloud sync, predictive analytics engine, and facility/district dashboards—validated in FairBanks' live community health ecosystem before district and regional scale-up.
+**Funding ask (indicative):** Support to develop and pilot FCHIP MVP—mobile data collection for CHWs/VHTs, cloud sync, predictive analytics engine, and facility/district dashboards—validated in FairBanks' live community health ecosystem before district and regional scale-up.
 
 ---
 
@@ -64,7 +62,7 @@ The result is fragmented data, delayed response, and missed opportunities for pr
 
 
 
-## 3. Solution: FairBanks Community Intelligence Network (FCIN)
+## 3. Solution: FairBanks Community Health Intelligence Platform (FCHIP)
 
 
 
@@ -76,11 +74,11 @@ The result is fragmented data, delayed response, and missed opportunities for pr
 | "A private medical centre" | **A Community Health Intelligence Company** using AI, predictive analytics, and community-generated data to improve health outcomes in underserved African communities |
 
 
-**FCIN** is the venture brand. **CHIP** is the core deep-technology platform within that ecosystem—connecting communities, healthcare providers, governments, and development partners through one intelligent system.
+**FCHIP** is FairBanks' deep-technology platform—connecting communities, healthcare providers, governments, and development partners through one intelligent system.
 
-### 3.2 What CHIP does
+### 3.2 What FCHIP does
 
-CHIP continuously receives structured health information from:
+FCHIP continuously receives structured health information from:
 
 - Community Health Workers and Village Health Teams (household visits, symptom checks, referrals)
 - Patients and caregivers (via mobile applications and self-reporting)
@@ -99,7 +97,7 @@ The platform processes this data through an AI and analytics engine to **predict
 
 ### 3.3 Platform architecture
 
-CHIP sits between **field data capture** and **decision-makers**. Data flows in from the community, is processed by intelligence modules, and returns as alerts, dashboards, and referrals.
+FCHIP sits between **field data capture** and **decision-makers**. Data flows in from the community, is processed by intelligence modules, and returns as alerts, dashboards, and referrals.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -119,7 +117,7 @@ CHIP sits between **field data capture** and **decision-makers**. Data flows in 
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│        COMMUNITY HEALTH INTELLIGENCE PLATFORM (CHIP)            │
+│        COMMUNITY HEALTH INTELLIGENCE PLATFORM (FCHIP)            │
 │                                                                 │
 │   ┌──────────┐  ┌──────────────┐  ┌─────────┐  ┌────────────┐   │
 │   │ AI/ML    │  │ Predictive   │  │ GIS     │  │ Clinical   │   │
@@ -148,11 +146,11 @@ CHIP sits between **field data capture** and **decision-makers**. Data flows in 
 | ---------------- | ---------------------------------------------------------------------------- |
 | **Data sources** | Who generates health signals in the community and at facilities              |
 | **Capture**      | How those signals are entered and synced (mobile/offline + facility systems) |
-| **CHIP core**    | How signals become predictions, maps, and clinical guidance                  |
+| **FCHIP core**    | How signals become predictions, maps, and clinical guidance                  |
 | **Consumers**    | Who acts—CHWs (field), facilities (care), districts/partners (programmes)    |
 
 
-CHIP becomes the **digital nervous system** for community healthcare—moving data from the last mile to decision-makers in near real time, and closing the loop with actionable alerts back to the field.
+FCHIP becomes the **digital nervous system** for community healthcare—moving data from the last mile to decision-makers in near real time, and closing the loop with actionable alerts back to the field.
 
 ---
 
@@ -160,10 +158,10 @@ CHIP becomes the **digital nervous system** for community healthcare—moving da
 
 ## 4. Deep Technology Core
 
-AWIEF 2026 requires ventures built on substantial research and engineering, not lightweight digital services. CHIP meets this standard through an integrated deep-tech stack:
+AWIEF 2026 requires ventures built on substantial research and engineering, not lightweight digital services. FCHIP meets this standard through an integrated deep-tech stack:
 
 
-| Technology                      | Function in CHIP                                                                               |
+| Technology                      | Function in FCHIP                                                                               |
 | ------------------------------- | ---------------------------------------------------------------------------------------------- |
 | **Artificial Intelligence**     | Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring                 |
 | **Machine Learning**            | Pattern learning from historical community health data, seasonal trends, and outreach outcomes |
@@ -174,7 +172,7 @@ AWIEF 2026 requires ventures built on substantial research and engineering, not 
 | **Natural Language Processing** | Local-language symptom reporting and summarisation where appropriate                           |
 
 
-This combination—AI + ML + geospatial intelligence + edge/mobile capture + cloud orchestration—is the **deep technology core** that distinguishes CHIP from a simple health app or consumer website.
+This combination—AI + ML + geospatial intelligence + edge/mobile capture + cloud orchestration—is the **deep technology core** that distinguishes FCHIP from a simple health app or consumer website.
 
 ---
 
@@ -241,7 +239,7 @@ This combination—AI + ML + geospatial intelligence + edge/mobile capture + clo
 
 ## 7. Business Model & Revenue Streams
 
-CHIP is designed for a diversified, scalable revenue model:
+FCHIP is designed for a diversified, scalable revenue model:
 
 1. **Subscription licences** for clinics and hospitals
 2. **District health office** deployments (SaaS + implementation)
@@ -288,14 +286,14 @@ FairBanks is not a concept-stage idea disconnected from the field. Active progra
 | Pilot without validation site   | Data without intelligence layer | **Design → pilot → validate → refine** in a real setting before scale |
 
 
-FairBanks can **design, pilot, validate, and refine** CHIP inside an operating community health ecosystem—de-risking product-market fit for district and national deployment.
+FairBanks can **design, pilot, validate, and refine** FCHIP inside an operating community health ecosystem—de-risking product-market fit for district and national deployment.
 
 ### 8.3 Recommended AWIEF track
 
 
 | Track                           | Fit assessment                                                                                                                                                    |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Idea Track**                  | Applicable if pitching CHIP as pre-venture prototype (<18 months, early prototype)                                                                                |
+| **Idea Track**                  | Applicable if pitching FCHIP as pre-venture prototype (<18 months, early prototype)                                                                                |
 | **Startup Track (recommended)** | Strong fit: registered operating medical centre, revenue-generating services, active community programmes, building deep-tech platform on proven field operations |
 | **Scale-Up Track**              | Future state after multi-market expansion and institutional funding                                                                                               |
 
@@ -310,7 +308,7 @@ FairBanks can **design, pilot, validate, and refine** CHIP inside an operating c
 
 ### 9.1 Impact thesis
 
-CHIP shifts primary healthcare from **sick-care** to **predictive, community-centred prevention**—directly benefiting underserved populations who depend on CHWs, outreach, and under-resourced facilities.
+FCHIP shifts primary healthcare from **sick-care** to **predictive, community-centred prevention**—directly benefiting underserved populations who depend on CHWs, outreach, and under-resourced facilities.
 
 ### 9.2 Expected outcomes
 
@@ -326,7 +324,7 @@ CHIP shifts primary healthcare from **sick-care** to **predictive, community-cen
 ### 9.3 Sustainable Development Goal (SDG) alignment
 
 
-| SDG                                                 | CHIP contribution                                     |
+| SDG                                                 | FCHIP contribution                                     |
 | --------------------------------------------------- | ----------------------------------------------------- |
 | **SDG 3 – Good Health and Well-Being**              | Predictive community health, maternal/child/NCD focus |
 | **SDG 5 – Gender Equality**                         | Women-led venture; maternal health intelligence       |
@@ -382,7 +380,7 @@ CHIP shifts primary healthcare from **sick-care** to **predictive, community-cen
 ### 11.1 Theme: Deep Roots. Digital Futures.
 
 
-| AWIEF expectation                         | FairBanks / CHIP response                                                                                         |
+| AWIEF expectation                         | FairBanks / FCHIP response                                                                                         |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Deep knowledge of local context           | Years of community outreach in named Kampala communities; CHW/VHT relationships; primary care delivery experience |
 | Deep understanding of communities         | Platform designed around how African communities actually report, move, and access care                           |
@@ -410,7 +408,7 @@ CHIP shifts primary healthcare from **sick-care** to **predictive, community-cen
 
 ### 12.1 One-line pitch
 
-FairBanks Community Intelligence Network (FCIN) is a deep-tech Community Health Intelligence Platform that uses AI and predictive analytics to transform African primary healthcare from reactive treatment to proactive, community-level prevention.
+FairBanks Community Health Intelligence Platform (FCHIP) is a deep-tech platform that uses AI and predictive analytics to transform African primary healthcare from reactive treatment to proactive, community-level prevention.
 
 ### 12.2 Problem (short form)
 
@@ -418,11 +416,11 @@ Underserved African communities lack real-time health intelligence. Facilities t
 
 ### 12.3 Solution (short form)
 
-CHIP ingests community-generated health data through mobile CHW tools, applies AI/ML and GIS analytics, and delivers predictive alerts and dashboards to facilities, districts, and partners—enabling prevention before crises escalate.
+FCHIP ingests community-generated health data through mobile CHW tools, applies AI/ML and GIS analytics, and delivers predictive alerts and dashboards to facilities, districts, and partners—enabling prevention before crises escalate.
 
 ### 12.4 Why now
 
-Mobile penetration, CHW networks, and cloud infrastructure make community health intelligence deployable at scale—FairBanks already has the field operations; CHIP completes the technology layer.
+Mobile penetration, CHW networks, and cloud infrastructure make community health intelligence deployable at scale—FairBanks already has the field operations; FCHIP completes the technology layer.
 
 ### 12.5 Unique value proposition
 
@@ -443,7 +441,7 @@ Only venture combining a **live medical centre and community outreach engine** w
 
 1. Title & one-line vision
 2. Problem: reactive healthcare in underserved communities
-3. Solution: FCIN / CHIP overview
+3. Solution: FCHIP overview
 4. Deep technology architecture
 5. How it works (data flow diagram)
 6. Use cases: surveillance, maternal, NCD, child health, pharmacy
@@ -476,9 +474,9 @@ Only venture combining a **live medical centre and community outreach engine** w
 
 ## 14. Conclusion
 
-FairBanks Community Intelligence Network represents a strategic evolution from community medical practice to **community health intelligence**—a venture that matches AWIEF Pitch n Grow 2026's call for women-led, deep-technology solutions rooted in African reality.
+FairBanks Community Health Intelligence Platform represents a strategic evolution from community medical practice to **community health intelligence**—a venture that matches AWIEF Pitch n Grow 2026's call for women-led, deep-technology solutions rooted in African reality.
 
-With an operating medical centre, established outreach across Kampala communities, trusted CHW/VHT relationships, digital health foundations, and a clear AI-powered product roadmap, FairBanks is ready to build, pilot, and scale CHIP as the platform that connects community-generated data to life-saving predictions.
+With an operating medical centre, established outreach across Kampala communities, trusted CHW/VHT relationships, digital health foundations, and a clear AI-powered product roadmap, FairBanks is ready to build, pilot, and scale FCHIP as the platform that connects community-generated data to life-saving predictions.
 
 **Next immediate steps:**
 

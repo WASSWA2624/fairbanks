@@ -1,5 +1,5 @@
 """
-AWIEF Pitch n Grow 2026 — FairBanks / FCIN / CHIP investor pitch deck (12 slides).
+AWIEF Pitch n Grow 2026 — FairBanks / FCHIP investor pitch deck (12 slides).
 Image-rich widescreen deck with large, high-visibility typography.
 """
 
@@ -294,8 +294,8 @@ def build():
     )
     textbox(
         s, Inches(0.78), Inches(2.35), Inches(8.8), Inches(0.5),
-        "Community Intelligence Network",
-        size=30, bold=True, color=WHITE,
+        "Community Health Intelligence Platform",
+        size=28, bold=True, color=WHITE,
     )
 
     # Accent rule under title
@@ -303,7 +303,7 @@ def build():
 
     textbox(
         s, Inches(0.78), Inches(3.2), Inches(8.2), Inches(0.38),
-        "Community Health Intelligence Platform (CHIP)",
+        "FCHIP",
         size=19, bold=True, color=TEAL_LIGHT,
     )
     textbox(
@@ -364,15 +364,15 @@ def build():
 
     # ========== 3. SOLUTION ==========
     s = prs.slides.add_slide(blank)
-    section_band(s, "The solution: FCIN / CHIP",
+    section_band(s, "The solution: FCHIP",
                  "From community medical practice to Africa's Community Health Intelligence Company.")
     textbox(s, Inches(0.45), Inches(1.25), Inches(6.4), Inches(1.0),
-            "CHIP ingests community-generated health data, runs AI/ML and GIS analytics, "
+            "FCHIP ingests community-generated health data, runs AI/ML and GIS analytics, "
             "and delivers predictive alerts to CHWs, facilities, districts, and partners — before crises escalate.",
             size=BODY, color=SLATE)
     pillars = [
-        ("FCIN", "Venture brand connecting communities, providers, governments & partners"),
-        ("CHIP", "Deep-tech platform: capture → intelligence → action"),
+        ("FCHIP", "Deep-tech platform connecting communities, providers, governments & partners"),
+        ("Intelligence loop", "Capture → AI/ML & GIS → predictive alerts → action"),
         ("FairBanks edge", "Live centre + CHW/VHT networks to pilot & validate in the field"),
     ]
     for i, (t, b) in enumerate(pillars):
@@ -416,11 +416,11 @@ def build():
     s = prs.slides.add_slide(blank)
     section_band(s, "How it works", "Last-mile signals become predictions — then action.")
     image_card(s, img("architecture"), Inches(0.35), Inches(1.25), Inches(7.2), Inches(5.6),
-               "Community → Capture → CHIP intelligence → Decision-makers")
+               "Community → Capture → FCHIP intelligence → Decision-makers")
     layers = [
         ("1. Sources", "CHWs, clinics, pharmacies, schools, ANC/PNC, labs, HMIS"),
         ("2. Capture", "Offline mobile & facility apps · cloud sync"),
-        ("3. CHIP core", "AI/ML · Predictive analytics · GIS · CDS"),
+        ("3. FCHIP core", "AI/ML · Predictive analytics · GIS · CDS"),
         ("4. Action", "Alerts · dashboards · referrals · stock · outreach"),
     ]
     for i, (t, b) in enumerate(layers):
@@ -466,7 +466,7 @@ def build():
     s = prs.slides.add_slide(blank)
     section_band(s, "Market & customers", "B2B / B2G buyers across Africa's primary-care stack.")
     image_card(s, img("mobile"), Inches(0.35), Inches(1.3), Inches(5.2), Inches(5.55),
-               "Mobile-first field engagement — last-mile data for CHIP")
+               "Mobile-first field engagement — last-mile data for FCHIP")
     customers = [
         ("Medical centres & clinics", "Outreach planning & population visibility"),
         ("District health offices", "Disease intelligence & early warning"),
@@ -628,7 +628,7 @@ def build():
     textbox(s, Inches(0.45), Inches(0.45), Inches(5.5), Inches(0.55),
             "The ask & next steps", size=H2, bold=True, color=WHITE)
     textbox(s, Inches(0.45), Inches(1.1), Inches(5.5), Inches(1.35),
-            "Support to pilot the CHIP MVP — mobile CHW/VHT capture, cloud sync, "
+            "Support to pilot the FCHIP MVP — mobile CHW/VHT capture, cloud sync, "
             "predictive analytics, and facility/district dashboards — validated in "
             "FairBanks' live ecosystem before district and regional scale-up.",
             size=BODY, color=LIGHT)
@@ -652,7 +652,7 @@ def build():
             "Vision: Africa's leading Community Health Intelligence Platform.",
             size=BODY_SM, bold=True, color=TEAL_LIGHT)
     textbox(s, Inches(0.45), Inches(6.25), Inches(5.5), Inches(0.3),
-            "FairBanks Community Intelligence Network (FCIN) · CHIP",
+            "FairBanks Community Health Intelligence Platform (FCHIP)",
             size=CAPTION + 1, color=LIGHT)
     textbox(s, Inches(0.45), Inches(6.55), Inches(5.5), Inches(0.25),
             "Contact: [founder · email · phone · web]",

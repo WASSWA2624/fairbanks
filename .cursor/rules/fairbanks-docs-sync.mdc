@@ -1,7 +1,7 @@
 ---
 description: Keep FairBanks pitch docs in sync and compliant with AWIEF Pitch n Grow 2026
 globs: refined_project_idea.md,output/pitch/ppt_version.pptx,output/pdf/pdf_version.pdf,output/doc/word_version.docx,output/pitch/build_awief_deck.py,output/doc/build_photo_docs.py
-alwaysApply: false
+alwaysApply: true
 ---
 
 # FairBanks document sync
@@ -34,7 +34,7 @@ When editing or regenerating any format, verify:
 3. Prefer regenerating via build scripts when possible:
    - Deck: `output/pitch/build_awief_deck.py` → `ppt_version.pptx` only
    - Docs: `output/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf` only
-4. Keep `*_version.*` as the only deliverables. Never write `FairBanks_FCIN_*` / long-name archive copies beside them.
+4. Keep `*_version.*` as the only deliverables. Never write `FairBanks_FCHIP_*` / long-name archive copies beside them.
 5. If a format cannot be updated, state what remains pending.
 6. Never ship a sync that breaks AWIEF compliance (slide count, theme, deep-tech positioning, or portal-stated submission constraints).
 

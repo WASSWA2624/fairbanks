@@ -272,10 +272,8 @@ def build_docx():
              align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
     add_para(doc, "Grant & Pitch Application Write-Up", size=11, color=MUTED,
              align=WD_ALIGN_PARAGRAPH.CENTER, space_after=16)
-    add_para(doc, "FairBanks Community Intelligence Network", size=26, bold=True,
-             color=NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
-    add_para(doc, "Community Health Intelligence Platform (CHIP)", size=16, bold=True,
-             color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
+    add_para(doc, "FairBanks Community Health Intelligence Platform (FCHIP)", size=26, bold=True,
+             color=NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
     add_para(doc, "Your health, our mission.", size=13, bold=True, color=ACCENT,
              align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12, italic=True)
     add_para(doc, "Deep Roots. Digital Futures.", size=13, bold=True, color=ACCENT,
@@ -312,17 +310,17 @@ def build_docx():
     add_para(
         doc,
         "FairBanks is evolving from a community-rooted medical centre into Africa's leading "
-        "Community Health Intelligence Company. Through the FairBanks Community Intelligence "
-        "Network (FCIN), we are building the Community Health Intelligence Platform (CHIP) - a "
-        "deep-technology system that connects community health workers, clinics, outreach "
-        "programmes, and public-health decision-makers into one intelligent network.",
+        "Community Health Intelligence Company. Through the FairBanks Community Health "
+        "Intelligence Platform (FCHIP), we are building a deep-technology system that connects "
+        "community health workers, clinics, outreach programmes, and public-health "
+        "decision-makers into one intelligent network.",
     )
     add_para(
         doc,
         "Today, primary healthcare in underserved African communities is largely reactive: "
         "facilities treat patients only after illness appears, with little visibility into what "
         "is happening in surrounding villages until outbreaks, complications, or stock-outs "
-        "occur. CHIP transforms this model by continuously ingesting community-generated health "
+        "occur. FCHIP transforms this model by continuously ingesting community-generated health "
         "data and using artificial intelligence, machine learning, predictive analytics, and GIS "
         "mapping to forecast disease risk, maternal complications, chronic-disease hotspots, "
         "child-health threats, and medicine demand before crises escalate.",
@@ -345,7 +343,7 @@ def build_docx():
     )
     add_para(
         doc,
-        "Funding ask (indicative): Support to develop and pilot CHIP MVP - mobile data collection "
+        "Funding ask (indicative): Support to develop and pilot FCHIP MVP - mobile data collection "
         "for CHWs/VHTs, cloud sync, predictive analytics engine, and facility/district dashboards "
         "- validated in FairBanks' live community health ecosystem before district and regional "
         "scale-up.",
@@ -399,9 +397,9 @@ def build_docx():
     )
 
     # 3. Solution
-    add_heading_custom(doc, "3. Solution: FairBanks Community Intelligence Network (FCIN)", 1)
+    add_heading_custom(doc, "3. Solution: FairBanks Community Health Intelligence Platform (FCHIP)", 1)
     add_image(doc, photo("dashboard"), width_in=6.4,
-              caption="CHIP concept: facility and district health intelligence dashboards")
+              caption="FCHIP concept: facility and district health intelligence dashboards")
     add_heading_custom(doc, "3.1 Venture positioning", 2)
     add_table(
         doc,
@@ -415,13 +413,12 @@ def build_docx():
     )
     add_para(
         doc,
-        "FCIN is the venture brand. CHIP is the core deep-technology platform within that "
-        "ecosystem - connecting communities, healthcare providers, governments, and development "
-        "partners through one intelligent system.",
+        "FCHIP is FairBanks' deep-technology platform - connecting communities, healthcare "
+        "providers, governments, and development partners through one intelligent system.",
     )
 
-    add_heading_custom(doc, "3.2 What CHIP does", 2)
-    add_para(doc, "CHIP continuously receives structured health information from:")
+    add_heading_custom(doc, "3.2 What FCHIP does", 2)
+    add_para(doc, "FCHIP continuously receives structured health information from:")
     add_bullets(doc, [
         "Community Health Workers and Village Health Teams (household visits, symptom checks, referrals)",
         "Patients and caregivers (via mobile applications and self-reporting)",
@@ -445,10 +442,10 @@ def build_docx():
 
     add_heading_custom(doc, "3.3 Platform architecture", 2)
     add_image(doc, photo("architecture"), width_in=6.4,
-              caption="Data sources -> Capture -> CHIP intelligence -> Action in the community")
+              caption="Data sources -> Capture -> FCHIP intelligence -> Action in the community")
     add_para(
         doc,
-        "CHIP sits between field data capture and decision-makers. Data flows in from the "
+        "FCHIP sits between field data capture and decision-makers. Data flows in from the "
         "community, is processed by intelligence modules (AI/ML, predictive analytics, GIS, "
         "clinical decision support), and returns as alerts, dashboards, and referrals to CHWs, "
         "health facilities, district offices, NGOs, and partners.",
@@ -459,14 +456,14 @@ def build_docx():
         [
             ["Data sources", "Who generates health signals in the community and at facilities"],
             ["Capture", "How those signals are entered and synced (mobile/offline + facility systems)"],
-            ["CHIP core", "How signals become predictions, maps, and clinical guidance"],
+            ["FCHIP core", "How signals become predictions, maps, and clinical guidance"],
             ["Consumers", "Who acts - CHWs (field), facilities (care), districts/partners (programmes)"],
         ],
         col_widths=[1.8, 4.6],
     )
     add_para(
         doc,
-        "CHIP becomes the digital nervous system for community healthcare - moving data from the "
+        "FCHIP becomes the digital nervous system for community healthcare - moving data from the "
         "last mile to decision-makers in near real time, and closing the loop with actionable "
         "alerts back to the field.",
         bold=True,
@@ -479,11 +476,11 @@ def build_docx():
     add_para(
         doc,
         "AWIEF 2026 requires ventures built on substantial research and engineering, not "
-        "lightweight digital services. CHIP meets this standard through an integrated deep-tech stack:",
+        "lightweight digital services. FCHIP meets this standard through an integrated deep-tech stack:",
     )
     add_table(
         doc,
-        ["Technology", "Function in CHIP"],
+        ["Technology", "Function in FCHIP"],
         [
             ["Artificial Intelligence", "Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring"],
             ["Machine Learning", "Pattern learning from historical community health data, seasonal trends, and outreach outcomes"],
@@ -506,7 +503,7 @@ def build_docx():
         "Disease surveillance - GIS hotspot early warning",
     )
     add_image(doc, photo("mobile"), width_in=5.8,
-              caption="Mobile-first field engagement - phones as last-mile data tools for CHIP")
+              caption="Mobile-first field engagement - phones as last-mile data tools for FCHIP")
 
     use_cases = [
         ("5.1 Disease surveillance",
@@ -561,7 +558,7 @@ def build_docx():
 
     # 7. Business model
     add_heading_custom(doc, "7. Business Model & Revenue Streams", 1)
-    add_para(doc, "CHIP is designed for a diversified, scalable revenue model:")
+    add_para(doc, "FCHIP is designed for a diversified, scalable revenue model:")
     add_bullets(doc, [
         "Subscription licences for clinics and hospitals",
         "District health office deployments (SaaS + implementation)",
@@ -580,7 +577,7 @@ def build_docx():
         photo("facility_sign"),
         photo("facility_entrance"),
         "FairBanks Medical Centre signage — brand identity in the community",
-        "Facility entrance — live operating foundation for CHIP validation",
+        "Facility entrance — live operating foundation for FCHIP validation",
         max_height_in=2.5,
     )
     add_image(doc, photo("outreach_hero"), width_in=6.4,
@@ -600,7 +597,7 @@ def build_docx():
     add_heading_custom(doc, "8.1.1 Evidence from the field", 3)
     add_para(
         doc,
-        "Real FairBanks operations already generate the community signals CHIP will turn into "
+        "Real FairBanks operations already generate the community signals FCHIP will turn into "
         "predictions - outreach screening, maternal programmes, pharmacy dispensing, facility "
         "encounters, and staff digital workflows.",
         space_after=6,
@@ -633,7 +630,7 @@ def build_docx():
         photo("training"),
         photo("pharmacy_digital"),
         "Staff training and product briefings for community programmes",
-        "Pharmacy digital workflow - stock and dispensing signals for CHIP",
+        "Pharmacy digital workflow - stock and dispensing signals for FCHIP",
     )
     add_two_images(
         doc,
@@ -684,7 +681,7 @@ def build_docx():
               caption="Impact focus: earlier intervention for mothers, children, and communities")
     add_para(
         doc,
-        "CHIP shifts primary healthcare from sick-care to predictive, community-centred "
+        "FCHIP shifts primary healthcare from sick-care to predictive, community-centred "
         "prevention - directly benefiting underserved populations who depend on CHWs, outreach, "
         "and under-resourced facilities.",
     )
@@ -698,7 +695,7 @@ def build_docx():
     ])
     add_table(
         doc,
-        ["SDG", "CHIP contribution"],
+        ["SDG", "FCHIP contribution"],
         [
             ["SDG 3 - Good Health and Well-Being", "Predictive community health, maternal/child/NCD focus"],
             ["SDG 5 - Gender Equality", "Women-led venture; maternal health intelligence"],
@@ -750,7 +747,7 @@ def build_docx():
     add_heading_custom(doc, "11. AWIEF Pitch n Grow 2026 Alignment", 1)
     add_table(
         doc,
-        ["AWIEF expectation", "FairBanks / CHIP response"],
+        ["AWIEF expectation", "FairBanks / FCHIP response"],
         [
             ["Deep knowledge of local context", "Years of outreach in named Kampala communities; CHW/VHT relationships"],
             ["Deep understanding of communities", "Platform designed around how African communities report, move, and access care"],
@@ -772,9 +769,9 @@ def build_docx():
     add_heading_custom(doc, "12.1 One-line pitch", 3)
     add_para(
         doc,
-        "FairBanks Community Intelligence Network (FCIN) is a deep-tech Community Health "
-        "Intelligence Platform that uses AI and predictive analytics to transform African primary "
-        "healthcare from reactive treatment to proactive, community-level prevention.",
+        "FairBanks Community Health Intelligence Platform (FCHIP) is a deep-tech platform that uses "
+        "AI and predictive analytics to transform African primary healthcare from reactive "
+        "treatment to proactive, community-level prevention.",
         italic=True,
     )
     add_heading_custom(doc, "12.2 Unique value proposition", 3)
@@ -807,7 +804,7 @@ def build_docx():
               caption="From community signals to life-saving predictions - rooted in FairBanks outreach")
     add_para(
         doc,
-        "FairBanks Community Intelligence Network represents a strategic evolution from community "
+        "FairBanks Community Health Intelligence Platform represents a strategic evolution from community "
         "medical practice to community health intelligence - a venture that matches AWIEF Pitch n "
         "Grow 2026's call for women-led, deep-technology solutions rooted in African reality.",
     )
@@ -815,7 +812,7 @@ def build_docx():
         doc,
         "With an operating medical centre, established outreach across Kampala communities, "
         "trusted CHW/VHT relationships, digital health foundations, and a clear AI-powered product "
-        "roadmap, FairBanks is ready to build, pilot, and scale CHIP as the platform that connects "
+        "roadmap, FairBanks is ready to build, pilot, and scale FCHIP as the platform that connects "
         "community-generated data to life-saving predictions.",
     )
     add_para(doc, "Next immediate steps:", bold=True, space_before=8)
@@ -1010,8 +1007,9 @@ def build_pdf():
     story.append(Paragraph("AWIEF Pitch n Grow 2026", styles["Meta"]))
     story.append(Paragraph("Grant &amp; Pitch Application Write-Up", styles["Meta"]))
     story.append(Spacer(1, 8))
-    story.append(Paragraph("FairBanks Community Intelligence Network", styles["CoverTitle"]))
-    story.append(Paragraph("Community Health Intelligence Platform (CHIP)", styles["CoverSub"]))
+    story.append(Paragraph(
+        "FairBanks Community Health Intelligence Platform (FCHIP)", styles["CoverTitle"]
+    ))
     story.append(Paragraph(
         '<font color="#C45C26"><b><i>Your health, our mission.</i></b></font>',
         styles["Meta"],
@@ -1047,16 +1045,16 @@ def build_pdf():
     h1("1. Executive Summary")
     body(
         "FairBanks is evolving from a community-rooted medical centre into Africa's leading "
-        "Community Health Intelligence Company. Through the FairBanks Community Intelligence "
-        "Network (FCIN), we are building the Community Health Intelligence Platform (CHIP) - a "
-        "deep-technology system that connects community health workers, clinics, outreach "
-        "programmes, and public-health decision-makers into one intelligent network."
+        "Community Health Intelligence Company. Through the FairBanks Community Health "
+        "Intelligence Platform (FCHIP), we are building a deep-technology system that connects "
+        "community health workers, clinics, outreach programmes, and public-health "
+        "decision-makers into one intelligent network."
     )
     body(
         "Today, primary healthcare in underserved African communities is largely reactive: "
         "facilities treat patients only after illness appears, with little visibility into what "
         "is happening in surrounding villages until outbreaks, complications, or stock-outs "
-        "occur. CHIP transforms this model by continuously ingesting community-generated health "
+        "occur. FCHIP transforms this model by continuously ingesting community-generated health "
         "data and using artificial intelligence, machine learning, predictive analytics, and GIS "
         "mapping to forecast disease risk, maternal complications, chronic-disease hotspots, "
         "child-health threats, and medicine demand before crises escalate."
@@ -1066,7 +1064,7 @@ def build_pdf():
         "across Kampala-area communities (Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya), "
         "working with VHTs and CHWs on maternal and child health, Gericare, chronic-disease "
         "screening, corporate and school programmes, digital health records, and research "
-        "partnerships. CHIP is the missing technology layer that unifies these activities."
+        "partnerships. FCHIP is the missing technology layer that unifies these activities."
     )
     body(
         "Vision: To build Africa's leading Community Health Intelligence Platform that harnesses "
@@ -1075,7 +1073,7 @@ def build_pdf():
         bold=True,
     )
     body(
-        "Funding ask (indicative): Support to develop and pilot CHIP MVP - mobile data collection "
+        "Funding ask (indicative): Support to develop and pilot FCHIP MVP - mobile data collection "
         "for CHWs/VHTs, cloud sync, predictive analytics engine, and facility/district dashboards "
         "- validated in FairBanks' live community health ecosystem before district and regional "
         "scale-up."
@@ -1118,8 +1116,8 @@ def build_pdf():
     )
 
     # 3
-    h1("3. Solution: FCIN / CHIP")
-    story.append(img("dashboard", caption="CHIP concept: facility and district intelligence dashboards"))
+    h1("3. Solution: FCHIP")
+    story.append(img("dashboard", caption="FCHIP concept: facility and district intelligence dashboards"))
     h2("3.1 Venture positioning")
     table(
         ["Instead of", "We present"],
@@ -1131,11 +1129,11 @@ def build_pdf():
         [page_w * 0.35, page_w * 0.65],
     )
     body(
-        "FCIN is the venture brand. CHIP is the core deep-technology platform - connecting "
-        "communities, healthcare providers, governments, and development partners."
+        "FCHIP is FairBanks' deep-technology platform - connecting communities, healthcare "
+        "providers, governments, and development partners."
     )
-    h2("3.2 What CHIP does")
-    body("CHIP continuously receives structured health information from:")
+    h2("3.2 What FCHIP does")
+    body("FCHIP continuously receives structured health information from:")
     bullets([
         "CHWs / VHTs (household visits, symptom checks, referrals)",
         "Patients and caregivers (mobile apps and self-reporting)",
@@ -1157,9 +1155,9 @@ def build_pdf():
     )
     h2("3.3 Platform architecture")
     story.append(img("architecture",
-                     caption="Data sources → Capture → CHIP intelligence → Action"))
+                     caption="Data sources → Capture → FCHIP intelligence → Action"))
     body(
-        "CHIP sits between field data capture and decision-makers. Intelligence modules (AI/ML, "
+        "FCHIP sits between field data capture and decision-makers. Intelligence modules (AI/ML, "
         "predictive analytics, GIS, clinical decision support) return alerts and dashboards to "
         "CHWs, facilities, districts, NGOs, and partners."
     )
@@ -1168,7 +1166,7 @@ def build_pdf():
         [
             ["Data sources", "Who generates health signals in the community and at facilities"],
             ["Capture", "How signals are entered and synced (mobile/offline + facility systems)"],
-            ["CHIP core", "How signals become predictions, maps, and clinical guidance"],
+            ["FCHIP core", "How signals become predictions, maps, and clinical guidance"],
             ["Consumers", "Who acts - CHWs, facilities, districts/partners"],
         ],
         [page_w * 0.28, page_w * 0.72],
@@ -1180,10 +1178,10 @@ def build_pdf():
                      caption="Integrated stack: AI, ML, GIS, mobile edge, cloud, NLP"))
     body(
         "AWIEF 2026 requires ventures built on substantial research and engineering, not "
-        "lightweight digital services. CHIP meets this standard through:"
+        "lightweight digital services. FCHIP meets this standard through:"
     )
     table(
-        ["Technology", "Function in CHIP"],
+        ["Technology", "Function in FCHIP"],
         [
             ["Artificial Intelligence", "Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring"],
             ["Machine Learning", "Pattern learning from community health data, seasonal trends, outreach outcomes"],
@@ -1205,7 +1203,7 @@ def build_pdf():
         "Disease surveillance - GIS hotspot early warning",
     )
     story.append(img("mobile", w=page_w * 0.9, max_h=2.8 * inch,
-                     caption="Mobile-first field engagement - phones as last-mile data tools for CHIP"))
+                     caption="Mobile-first field engagement - phones as last-mile data tools for FCHIP"))
     for title, text in [
         ("5.1 Disease surveillance",
          "Signal: Neighbouring villages report rising fever via VHT entries. Prediction: Possible "
@@ -1263,7 +1261,7 @@ def build_pdf():
     two_imgs(
         "facility_sign", "facility_entrance",
         "FairBanks Medical Centre signage — brand identity in the community",
-        "Facility entrance — live operating foundation for CHIP validation",
+        "Facility entrance — live operating foundation for FCHIP validation",
         max_h=2.2 * inch,
     )
     story.append(img("outreach_hero",
@@ -1281,7 +1279,7 @@ def build_pdf():
     ])
     h3("8.1.1 Evidence from the field")
     body(
-        "Real FairBanks operations already generate the community signals CHIP will turn into "
+        "Real FairBanks operations already generate the community signals FCHIP will turn into "
         "predictions - outreach screening, maternal programmes, pharmacy dispensing, facility "
         "encounters, and staff digital workflows."
     )
@@ -1305,7 +1303,7 @@ def build_pdf():
     two_imgs(
         "training", "pharmacy_digital",
         "Staff training and product briefings for community programmes",
-        "Pharmacy digital workflow - stock and dispensing signals for CHIP",
+        "Pharmacy digital workflow - stock and dispensing signals for FCHIP",
     )
     two_imgs(
         "mothers_wait", "gericare",
@@ -1344,7 +1342,7 @@ def build_pdf():
         img("impact", w=page_w * 0.55, max_h=3.2 * inch,
             caption="Earlier intervention for mothers, children, and communities"),
         Paragraph(
-            "CHIP shifts primary healthcare from sick-care to predictive, community-centred prevention.",
+            "FCHIP shifts primary healthcare from sick-care to predictive, community-centred prevention.",
             styles["BodyCustom"],
         ),
     ]
@@ -1358,7 +1356,7 @@ def build_pdf():
         "Evidence base for NGOs, donors, and governments",
     ])
     table(
-        ["SDG", "CHIP contribution"],
+        ["SDG", "FCHIP contribution"],
         [
             ["SDG 3 - Good Health and Well-Being", "Predictive community health; maternal/child/NCD focus"],
             ["SDG 5 - Gender Equality", "Women-led venture; maternal health intelligence"],
@@ -1405,7 +1403,7 @@ def build_pdf():
     # 11-14
     h1("11. AWIEF Pitch n Grow 2026 Alignment")
     table(
-        ["AWIEF expectation", "FairBanks / CHIP response"],
+        ["AWIEF expectation", "FairBanks / FCHIP response"],
         [
             ["Deep knowledge of local context", "Years of Kampala outreach; CHW/VHT relationships"],
             ["Deep understanding of communities", "Designed around how African communities access care"],
@@ -1424,9 +1422,9 @@ def build_pdf():
     h1("12. Application-Ready Pitch Lines")
     h3("One-line pitch")
     body(
-        "FairBanks Community Intelligence Network (FCIN) is a deep-tech Community Health "
-        "Intelligence Platform that uses AI and predictive analytics to transform African primary "
-        "healthcare from reactive treatment to proactive, community-level prevention."
+        "FairBanks Community Health Intelligence Platform (FCHIP) is a deep-tech platform that uses "
+        "AI and predictive analytics to transform African primary healthcare from reactive "
+        "treatment to proactive, community-level prevention."
     )
     h3("Unique value proposition")
     body(
@@ -1456,7 +1454,7 @@ def build_pdf():
         img("conclusion", max_h=2.9 * inch,
             caption="From community signals to life-saving predictions - rooted in FairBanks outreach"),
         Paragraph(
-            "FairBanks Community Intelligence Network represents a strategic evolution from community "
+            "FairBanks Community Health Intelligence Platform represents a strategic evolution from community "
             "medical practice to community health intelligence - matching AWIEF Pitch n Grow 2026's "
             "call for women-led, deep-technology solutions rooted in African reality.",
             styles["BodyCustom"],
@@ -1464,7 +1462,7 @@ def build_pdf():
         Paragraph(
             "With an operating medical centre, established Kampala outreach, trusted CHW/VHT "
             "relationships, digital health foundations, and a clear AI-powered roadmap, FairBanks is "
-            "ready to build, pilot, and scale CHIP.",
+            "ready to build, pilot, and scale FCHIP.",
             styles["BodyCustom"],
         ),
         Paragraph("Next immediate steps:", styles["BodyBold"]),
@@ -1491,7 +1489,7 @@ def build_pdf():
         canvas.setFillColor(muted)
         canvas.setFont("Helvetica", 8)
         canvas.drawString(0.8 * inch, 0.45 * inch,
-                          "FairBanks FCIN / CHIP  |  AWIEF Pitch n Grow 2026")
+                          "FairBanks FCHIP  |  AWIEF Pitch n Grow 2026")
         canvas.drawRightString(A4[0] - 0.8 * inch, 0.45 * inch, f"{doc_.page}")
         canvas.restoreState()
 
@@ -1505,8 +1503,8 @@ def build_pdf():
             rightMargin=0.8 * inch,
             topMargin=0.7 * inch,
             bottomMargin=0.7 * inch,
-            title="FairBanks FCIN / CHIP - AWIEF Pitch n Grow 2026",
-            author="FairBanks Community Intelligence Network",
+            title="FairBanks FCHIP - AWIEF Pitch n Grow 2026",
+            author="FairBanks Community Health Intelligence Platform",
         )
         doc.build(story, onFirstPage=add_page_number, onLaterPages=add_page_number)
 
