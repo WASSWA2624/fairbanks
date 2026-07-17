@@ -6,33 +6,33 @@ alwaysApply: false
 
 # WHS — source of truth
 
-All work for this pack must align with [World Health Summit 2026 Youth Group Opportunity (Berlin)](https://opportunitiesforyouth.org/2026/06/26/apply-now-world-health-summit-2025-stipend-program-for-global-health-changemakers/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+All work must align with [World Health Summit 2026 Youth Group Opportunity (Berlin)](https://opportunitiesforyouth.org/2026/06/26/apply-now-world-health-summit-2025-stipend-program-for-global-health-changemakers/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
 
 Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
 ## Mandatory checks
 
-1. Keep claims consistent with the live call (eligibility, geography, benefits, deadlines).
-2. Frame a clear **win-win**: value for FairBanks / FCHIP and value for the programme.
+1. Keep claims consistent with the live call (youth-led org, nominees aged 28 or under, group tickets).
+2. Emphasise delegation purpose, learning agenda, and post-summit briefing commitment.
 3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
 4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
 5. Before finalising, re-check the official programme page.
 
-## FairBanks deliverable set
+## Deliverable set
 
-| Role | Path |
+| Format | Path |
 |---|---|
-| Pitch deck | `applications/whs/documents/whs_ppt.pptx` |
 | PDF | `applications/whs/documents/whs_pdf.pdf` |
+| PowerPoint | `applications/whs/documents/whs_ppt.pptx` |
 | Word | `applications/whs/documents/whs_word.docx` |
 
-1. Treat these files as one synchronized content set.
+1. Treat these three files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Preserve established document layout and branding.
-4. Regenerate with `applications/whs/build_whs_docs.py`.
-5. Keep only the three official deliverables in `documents/`.
+3. Regenerate **only** with `applications/whs/build_whs_docs.py` — a project-specific generator. No shared document factory or imports from deleted `tools/application_docs`.
+4. Keep only the three official deliverables in `documents/`.
 
-## Branding
+## Cover & branding
 
-- Show **Your health, our mission.** on every cover/title page or slide.
-- Do not invent slogans or alter core claims without user direction.
+- Cover / first slide: programme name, document title, **Your health, our mission.**, hero image.
+- Do **not** put an application-details summary table on page 1. Note self-funded travel in the body, not the cover.
+- Youth delegation tone: learning agenda and community give-back, not investor pitch.

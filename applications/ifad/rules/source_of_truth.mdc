@@ -1,38 +1,42 @@
 ---
-description: IFAD Grant — Rural Sector Performance Assessment (up to US$1.2M) compliance and deliverable sync
+description: IFAD Rural Sector Performance Assessment grant (up to US$1.2M) compliance and deliverable sync
 globs: applications/ifad/**
 alwaysApply: false
 ---
 
 # IFAD — source of truth
 
-All work for this pack must align with [IFAD Grant — Rural Sector Performance Assessment (up to US$1.2M)](https://opportunitiesforyouth.org/2026/07/14/ifad-announces-us1-2-million-grant-call-for-proposals-to-strengthen-rural-development-policies-worldwide/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+All work must align with [IFAD Grant — Rural Sector Performance Assessment (up to US$1.2M)](https://opportunitiesforyouth.org/2026/07/14/ifad-announces-us1-2-million-grant-call-for-proposals-to-strengthen-rural-development-policies-worldwide/). That page wins on eligibility, theme, format, and deadlines.
 
-Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+Follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+
+## Call angle
+
+Careful EOI / concept note linking **health shocks to rural livelihoods** via FCHIP and the FairBanks cascade. Verify thematic fit before full proposal effort. State 20–25% counterpart (FairBanks in-kind ops). Optional EOI by 31 July 2026; full proposal by 4 September 2026 (12:00 CET). Partner with university / think tank for research design.
 
 ## Mandatory checks
 
-1. Keep claims consistent with the live call (eligibility, geography, benefits, deadlines).
-2. Frame a clear **win-win**: value for FairBanks / FCHIP and value for the programme.
-3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
-4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
-5. Before finalising, re-check the official programme page.
+1. Match live call facts (entity types, ceiling, counterpart, dates).
+2. Honest fit gate — EOI first; full proposal only if guidance confirms theme.
+3. Health–livelihood linkages rooted in community programmes, not invented rural claims.
+4. Simple human language. Only approved slogan: **Your health, our mission.**
+5. Re-check official page before finalising.
 
-## FairBanks deliverable set
+## Deliverables
 
-| Role | Path |
+| Format | Path |
 |---|---|
-| Pitch deck | `applications/ifad/documents/ifad_ppt.pptx` |
 | PDF | `applications/ifad/documents/ifad_pdf.pdf` |
+| PowerPoint | `applications/ifad/documents/ifad_ppt.pptx` |
 | Word | `applications/ifad/documents/ifad_word.docx` |
 
-1. Treat these files as one synchronized content set.
-2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Preserve established document layout and branding.
-4. Regenerate with `applications/ifad/build_ifad_docs.py`.
-5. Keep only the three official deliverables in `documents/`.
+One synced set. Regenerate only with `applications/ifad/build_ifad_docs.py` — **project-specific**; no shared factory.
 
-## Branding
+## Cover / branding
 
-- Show **Your health, our mission.** on every cover/title page or slide.
-- Do not invent slogans or alter core claims without user direction.
+- Programme name, document title, **Your health, our mission.**, hero image from `assets/`.
+- **Do not** put an application-details summary table on the first page unless the live call explicitly requires it.
+
+## Brand colours
+
+NAVY `0A1F2E` · TEAL `0D6E6E` · ACCENT `C45C26` · SLATE `1E2F38` · MUTED `3A4A54` · CREAM `F7F5F0`

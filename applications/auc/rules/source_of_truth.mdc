@@ -29,8 +29,9 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 1. Treat these files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
 3. Preserve established document layout and branding.
-4. Regenerate with `applications/auc/build_auc_docs.py`.
+4. Regenerate **only** with `applications/auc/build_auc_docs.py` — this project-specific script; no shared document factory or imports from deleted `tools/application_docs`.
 5. Keep only the three official deliverables in `documents/`.
+6. Cover/first page: programme name, document title, slogan, hero image. **Do not** add an application-details summary table (applicant, deadline, geography, ask) unless the live call explicitly requires it.
 
 ## Branding
 

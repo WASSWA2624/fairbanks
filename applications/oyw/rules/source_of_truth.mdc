@@ -6,33 +6,33 @@ alwaysApply: false
 
 # OYW — source of truth
 
-All work for this pack must align with [Brandtech Group AI for Good Scholarship 2026 (One Young World)](https://opportunitiesforyouth.org/2026/07/15/ai-for-good-scholarship-2025-empowering-young-innovators-to-address-global-challenges/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+All work must align with [Brandtech Group AI for Good Scholarship 2026 (One Young World)](https://opportunitiesforyouth.org/2026/07/15/ai-for-good-scholarship-2025-empowering-young-innovators-to-address-global-challenges/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
 
 Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
 ## Mandatory checks
 
-1. Keep claims consistent with the live call (eligibility, geography, benefits, deadlines).
-2. Frame a clear **win-win**: value for FairBanks / FCHIP and value for the programme.
+1. Keep claims consistent with the live call (African leaders aged 18–30, responsible AI, healthcare priority).
+2. Lead with nominee story and Cape Town summit contribution — not a generic FCHIP pitch.
 3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
 4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
 5. Before finalising, re-check the official programme page.
 
-## FairBanks deliverable set
+## Deliverable set
 
-| Role | Path |
+| Format | Path |
 |---|---|
-| Pitch deck | `applications/oyw/documents/oyw_ppt.pptx` |
 | PDF | `applications/oyw/documents/oyw_pdf.pdf` |
+| PowerPoint | `applications/oyw/documents/oyw_ppt.pptx` |
 | Word | `applications/oyw/documents/oyw_word.docx` |
 
-1. Treat these files as one synchronized content set.
+1. Treat these three files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Preserve established document layout and branding.
-4. Regenerate with `applications/oyw/build_oyw_docs.py`.
-5. Keep only the three official deliverables in `documents/`.
+3. Regenerate **only** with `applications/oyw/build_oyw_docs.py` — a project-specific generator. No shared document factory or imports from deleted `tools/application_docs`.
+4. Keep only the three official deliverables in `documents/`.
 
-## Branding
+## Cover & branding
 
-- Show **Your health, our mission.** on every cover/title page or slide.
-- Do not invent slogans or alter core claims without user direction.
+- Cover / first slide: programme name, document title, **Your health, our mission.**, hero image.
+- Do **not** put an application-details summary table on page 1 unless the live call explicitly requires it.
+- Personal nominee narrative plus responsible AI ethics and One Young World Cape Town contribution.

@@ -10,7 +10,7 @@ Every project under `applications/` uses this layout. Shared application rules l
 
 `applications/{project}/`
 
-1. **Project root** — build scripts and project-level config only (e.g. `build_*_docs.py`).
+1. **Project root** — **project-specific** build script(s) only (e.g. `build_{project}_docs.py`). Each project owns its own generator: unique content, section order, and layout choices for that call. Do **not** use a shared/generic application generator, shared SPECS module, or one script that stamps many projects. Do **not** keep `tools/application_docs/` or similar cross-project doc factories.
 2. **`documents/`** — exactly three synced deliverables:
    - `{project}_pdf.pdf`
    - `{project}_ppt.pptx`
