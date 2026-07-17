@@ -1,39 +1,55 @@
 ---
-description: U.S. Dept of State — Uganda Health System MOU (DFOP0017890) compliance and deliverable sync
+description: DFOP0017890 Addendum E Uganda — SOI compliance for dos-uganda deliverables
 globs: applications/dos-uganda/**
 alwaysApply: false
 ---
 
 # DOS-UGANDA — source of truth
 
-All work must align with [U.S. Dept of State — Uganda Health System MOU (DFOP0017890)](https://opportunitiesforyouth.org/2026/06/15/u-s-department-of-state-launches-up-to-60-million-funding-opportunity-to-strengthen-ugandas-health-system-through-the-health-foreign-assistance-mou-implementation-plan/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call. Cross-check [Grants.gov DFOP0017890](https://simpler.grants.gov/opportunity/44a573b8-d46a-4cec-8c84-f319cd1cc1b6) Addendum E (Uganda) when available.
+Synced `documents/` (Word, PDF, PPT) must comply with the Uganda call and **in-scope** official PDFs only. If anything conflicts, fix deliverables to match the official set. Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
-Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+## Authority stack (Uganda scope)
 
-## Mandatory checks
+1. [OFY summary](https://opportunitiesforyouth.org/2026/06/15/u-s-department-of-state-launches-up-to-60-million-funding-opportunity-to-strengthen-ugandas-health-system-through-the-health-foreign-assistance-mou-implementation-plan/) — public overview; not a substitute for PDFs.
+2. `rules/opportunity-DFOP0017890-attachments/` — **use only:**
+   - `DFOP0017890_GHSD_Advancing_Global_Health_APS_Amended_as_Highlighted_7-2-2026.pdf` (APS §D format, §B eligibility, §F review)
+   - `DFOP0017890_Advancing_Global_Health_APS_Addendum_E_Uganda.pdf` (Uganda tracks/objectives/principles)
+   - Round 1 + Round 2a Q&A PDFs (formatting clarifications; **Addendum E: Uganda** Q&A only)
+3. **Ignore** other-country Addenda (D/F/G/H/J) and Addendum I unless FairBanks later expands scope.
 
-1. Step 1 SOI only — objectives, approach, outcomes, capacity. Keep narrative concise (~5 pages). Deadline: 31 July 2026, 5:00 PM EDT.
-2. Focus Objective 4 (digital health). Frame interoperability with eCHIS, DHIS2, facility EMRs — not a standalone silo. Government ownership and transfer path must be visible.
-3. Win-win framing: Uganda/MoH, USG/GHSD, districts, communities/CHWs, and FairBanks each gain clearly.
-4. Stay rooted in the FairBanks community health cascade; FCHIP is the intelligence layer.
-5. Use simple, human language. Slogan only: **Your health, our mission.**
-6. Before finalising, re-check the official programme page and Addendum E.
+## FairBanks scope
 
-## Deliverable set
+- Phase 1 **SOI** for **Addendum E — Uganda**, Window 2a: due **31 July 2026, 5:00 PM EDT**.
+- Primary: **Track 2, Objective 4** (interoperable digital health → progressive **GOU ownership**). Name objective(s) clearly.
+- Bridge last-mile CHW/VHT data into national stack — not a parallel silo. Align with **NDHA / OpenHIE**, MoH authority, and named systems (eCHIS, EMRs e.g. eAfya/ClinicMaster, DHIS2/eIDSR, National Data Warehouse, iHRIS, LIS as relevant). Document staffing/recurrent-cost transition by close.
+- Root in FairBanks cascade; FCHIP = intelligence layer. Win-win for MoH/USG/districts/CHWs/FairBanks. Slogan only: **Your health, our mission.**
 
-| Format | Path |
+## APS Phase 1 SOI package (Word + PDF submission pack)
+
+Official upload is **one English PDF** (Grants.gov or MyGrants). Our Word/PDF must be submission-ready; PPT is a visual companion, same story.
+
+| Piece | Rule |
 |---|---|
-| PDF | `applications/dos-uganda/documents/dos-uganda_pdf.pdf` |
-| PowerPoint | `applications/dos-uganda/documents/dos-uganda_ppt.pptx` |
-| Word | `applications/dos-uganda/documents/dos-uganda_word.docx` |
+| Cover | **Required** Table of Critical Details (title, org, Addendum E, Uganda, federal share $, cost share if any, project length ≤5 yrs). Does **not** count toward 5 pages. |
+| Narrative | Issue/opportunity; solution/activities; outcomes/results (lives, systems, efficiency, self-reliance, U.S. interest); partners/roles if any; cost share note if any. ≤**5 pages / ~2500 words** excluding tables/charts/diagrams. |
+| Format | Letter **8½×11**; **1" margins**; **12-pt Times New Roman**; single-spaced; page numbers. Tables/charts/captions ≥10-pt OK. |
+| Annexes | ≤**4**, each ≤**1 page**; supplement only. |
+| File name | e.g. `FairBanks – SOI – Addendum E.pdf` |
 
-1. Treat these three files as one synchronized content set.
-2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Regenerate **only** with `applications/dos-uganda/build_dos-uganda_docs.py`.
-4. Keep only the three official deliverables in `documents/`.
+## Addendum E content checks
 
-## Cover & branding
+Integrate guiding principles: country ownership (no parallel/indefinite TA dependence); protect HIV/TB/malaria/MNCH/immunisation/outbreak continuity; data into GOU systems for action; integrated people-centred care; local GOU/FBO/CBO partners; evidence/context fit; MoH coordination; faith/service separation if FBOs involved.
 
-- **PowerPoint:** Elegant by default — balanced type, real pictures from `assets/`, light purposeful animations. Follow `.cursor/rules/documents.mdc`.
-- Cover: programme name, FairBanks/FCHIP, document title, **Your health, our mission.**, hero image. No application-details table on page 1.
-- Formal SOI structure (Roman-numeral sections) — not a pitch-deck clone.
+## Merit criteria (APS §F)
+
+Equal weight: quality of idea; organisational capacity; planning/ability to achieve objectives.
+
+## Deliverables
+
+| File | Role |
+|---|---|
+| `documents/dos-uganda_word.docx` | Editable SOI |
+| `documents/dos-uganda_pdf.pdf` | Submission-shaped SOI |
+| `documents/dos-uganda_ppt.pptx` | Elegant briefing deck (same claims; not the official upload format) |
+
+Regenerate only with `build_dos-uganda_docs.py`. Prefer newest edit; else this SoT + in-scope PDFs. Re-check Addendum E + APS §D before finalising.
