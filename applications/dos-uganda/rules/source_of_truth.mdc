@@ -6,17 +6,18 @@ alwaysApply: false
 
 # DOS-UGANDA — source of truth
 
-All work must align with [U.S. Dept of State — Uganda Health System MOU (DFOP0017890)](https://opportunitiesforyouth.org/2026/06/15/u-s-department-of-state-launches-up-to-60-million-funding-opportunity-to-strengthen-ugandas-health-system-through-the-health-foreign-assistance-mou-implementation-plan/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+All work must align with [U.S. Dept of State — Uganda Health System MOU (DFOP0017890)](https://opportunitiesforyouth.org/2026/06/15/u-s-department-of-state-launches-up-to-60-million-funding-opportunity-to-strengthen-ugandas-health-system-through-the-health-foreign-assistance-mou-implementation-plan/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call. Cross-check [Grants.gov DFOP0017890](https://simpler.grants.gov/opportunity/44a573b8-d46a-4cec-8c84-f319cd1cc1b6) Addendum E (Uganda) when available.
 
 Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
 ## Mandatory checks
 
-1. Keep claims consistent with the live call (Objective 4 digital health, two-step SOI process).
-2. Frame interoperability with eCHIS, DHIS2, and national systems — not a standalone silo.
-3. Stay rooted in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
-4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
-5. Before finalising, re-check the official programme page.
+1. Step 1 SOI only — objectives, approach, outcomes, capacity. Keep narrative concise (~5 pages). Deadline: 31 July 2026, 5:00 PM EDT.
+2. Focus Objective 4 (digital health). Frame interoperability with eCHIS, DHIS2, facility EMRs — not a standalone silo. Government ownership and transfer path must be visible.
+3. Win-win framing: Uganda/MoH, USG/GHSD, districts, communities/CHWs, and FairBanks each gain clearly.
+4. Stay rooted in the FairBanks community health cascade; FCHIP is the intelligence layer.
+5. Use simple, human language. Slogan only: **Your health, our mission.**
+6. Before finalising, re-check the official programme page and Addendum E.
 
 ## Deliverable set
 
@@ -28,12 +29,11 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 1. Treat these three files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Regenerate **only** with `applications/dos-uganda/build_dos-uganda_docs.py` — a project-specific generator. No shared document factory or cross-project generator.
+3. Regenerate **only** with `applications/dos-uganda/build_dos-uganda_docs.py`.
 4. Keep only the three official deliverables in `documents/`.
 
 ## Cover & branding
 
-- **PowerPoint (`dos-uganda_ppt.pptx`):** Elegant by default — balanced type beside photos, real pictures/diagrams from `assets/`, clean visual design, light purposeful animations, readability check. Follow the PowerPoint section in `.cursor/rules/documents.mdc`.
-- Cover / first slide: programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image.
-- Do **not** put an application-details summary table on page 1 unless the live call explicitly requires it.
-- Statement of Interest structure — not a pitch-deck clone. Roman-numeral sections, formal tone.
+- **PowerPoint:** Elegant by default — balanced type, real pictures from `assets/`, light purposeful animations. Follow `.cursor/rules/documents.mdc`.
+- Cover: programme name, FairBanks/FCHIP, document title, **Your health, our mission.**, hero image. No application-details table on page 1.
+- Formal SOI structure (Roman-numeral sections) — not a pitch-deck clone.
