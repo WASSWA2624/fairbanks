@@ -1,62 +1,90 @@
 ---
-description: How to find, filter, and track FairBanks/FCHIP opportunities (canonical; loaded via .cursor/rules/opportunities.mdc)
+alwaysApply: true
 ---
-
 # Opportunity Scan — Source of Truth
 
-Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing must be open to Ugandan organisations, founders, or team members.
+This rule guides how we find, check, and track opportunities for **FairBanks / FCHIP**. Every listed opportunity must be open to Ugandan organisations, founders, or team members.
 
-## Deliverables
+## Main Deliverables
 
-| What | Path |
-|---|---|
-| Tracker (Excel) | `opportunities/opportunities.xlsx` |
-| Build script | `opportunities/build_opportunities.py` |
-| This rule | `opportunities/rules/source_of_truth.mdc` |
+| What                      | Path                                      |
+|---------------------------|-------------------------------------------|
+| Opportunity tracker (Excel) | `opportunities/opportunities.xlsx`      |
+| Build script              | `opportunities/build_opportunities.py`    |
+| This rule                 | `opportunities/.cursor/rules/source_of_truth.mdc` |
 
-Keep one tracker: `opportunities.xlsx`. No draft or duplicate Excel files. Update via the build script.
+Keep just one tracker file: `opportunities.xlsx`. Never save duplicate or draft Excel files. Always use the build script when updating.
 
-## Excel layout
+## Excel Layout
 
-**Sheet 1 — Opportunities** (columns in this order; matches the build script):
+**Sheet 1: Opportunities** (columns must be in this order):
 
-| Column | Details |
-|---|---|
-| Project Title | Official or common programme name |
-| URL | Direct link to the call |
-| Brief Description | Plain English, max 100 words: goal, eligibility, FairBanks fit |
-| Application Deadline | Exact date (e.g. `31 July 2026`) or `Rolling`; timezone if shown |
-| Gender Category | One value from the list below |
+| Column                | Details                                                                                                 |
+|-----------------------|---------------------------------------------------------------------------------------------------------|
+| Project Title         | Official or common programme name                                                                       |
+| URL                   | Direct link to official opportunity/call                                                                |
+| Brief Description     | Clear English, max 100 words, explain goal, eligibility, and FairBanks fit                              |
+| Application Deadline  | Exact date (e.g. `31 July 2026`) or `Rolling`. Add timezone if shown                                   |
+| Gender Category       | Must use one of the options below                                                                      |
+| Application Status    | Are we planning, in-progress, submitted, or did not apply? Example: Drafting, Ready to Submit, Submitted |
+| Submission Status     | Was the application submitted, rejected, awarded, or unknown?                                           |
+| Submission Date       | The date the application was actually submitted (e.g. `20 May 2024`). Blank if not yet submitted.       |
 
-**Sheet 2 — Scan Notes:** sources, scan date, method, eligibility checks, exclusions, gender counts, priority-soon list, and a reminder to verify deadlines on official pages.
+**Sheet 2: Scan Notes** should record scan sources, date, scan approach, eligibility checks, reasons for exclusions, gender counts, a priority-soon list, and a reminder to double-check deadlines on official pages.
 
-**Sort:** gender-based first, then multi-gender; within each group, soonest deadline first. Unknown or rolling deadlines last.
+### Sorting
 
-## Gender category (use one only)
+- Put gender-based opportunities first, then multi-gender.
+- Within each group, sort by the soonest deadline.
+- Unknown or rolling deadlines go last.
 
-- **Gender-based (women/girls):** clearly for women, girls, or women-led groups (e.g. AWIEF Pitch n Grow).
-- **Multi-gender (all genders):** open to everyone, even if women are encouraged.
+## Gender Category — Use One Only
 
-Do not invent new labels unless asked.
+- **Gender-based (women/girls):** Only for opportunities that clearly target women, girls, or women-led groups (e.g., AWIEF Pitch n Grow).
+- **Multi-gender (all genders):** Open to everyone, even if women are encouraged.
 
-## Eligibility — Uganda focus
+Don’t create new category labels unless requested.
 
-**Include only if:**
+## Eligibility — Uganda Focus
 
-1. Still open (future deadline or officially rolling).
-2. Ugandans may apply (global, Africa-wide, East Africa, or Uganda-specific).
+**Only include** if:
 
-**Exclude and note why if:** wrong region, wrong sector for FairBanks, tenders/scholarships Ugandans cannot use, or a passed deadline (unless asked to archive).
+1. The opportunity is still open (future deadline or officially rolling).
+2. Ugandans are allowed to apply (global, Africa-wide, East Africa, or Uganda-specific).
 
-If unclear after checking the official site, leave it out and explain in Scan Notes.
+**Exclude and note why** if:
 
-## Good fit
+- The call is for countries/regions that skip Uganda.
+- Sectors aren’t a fit for FairBanks (e.g., only game studios, or only filmmakers).
+- Consultancies, business tenders, or scholarships where Ugandans can’t apply.
+- Deadlines have passed, unless making a historic archive (only if asked).
 
-Community health intelligence, CHW/VHT work, digital health, prediction, maternal/child health, women-led deep tech, health systems, NGO/social enterprise, AI-for-good, or GovTech that supports FCHIP.
+If unsure, check the official site. If it’s still vague, leave it out and explain in Scan Notes.
 
-## Scan these sites
+## How To Scan
 
-- https://opportunitiesforyouth.org (start here)
+For each site below, do a deep scan:
+
+1. Check homepage, category, and listing/filter pages (grants, competitions, Africa-specific, etc).
+2. Review details for any listing that might fit FairBanks (HealthTech, community health, AI for good, women-led tech, etc).
+3. Double-check eligibility and deadlines directly on listing and funder pages.
+
+If rate-limited, do targeted searches.
+
+## What’s a Good Fit?
+
+Best fits are:
+
+- Community health intelligence, CHW/VHT projects, digital health, disease prediction, maternal/child health.
+- Women-led deep tech (AWIEF: Deep Roots. Digital Futures).
+- Health systems, district health, NGO/social enterprise calls.
+- AI-for-good, GovTech, or calls that help FCHIP’s mission.
+
+Describe strong fits clearly. Don’t drop okay fits just because the link is indirect.
+
+## Scan These Sites
+
+- https://opportunitiesforyouth.org
 - https://www.fundsforngos.org
 - https://opportunitydesk.org
 - https://www.developmentaid.org
@@ -67,12 +95,14 @@ Community health intelligence, CHW/VHT work, digital health, prediction, materna
 - https://www.usaid.gov/work-usaid
 - https://grandchallenges.org
 
-Deep-scan each site: listings, filters, and detail pages. Confirm eligibility and deadlines on the official page.
+Start with **Opportunities for Youth**; check others to fill the scan.
 
-## Before finishing an update
+## Before Submitting an Update
 
-- Descriptions ≤ 100 words (script checks this).
-- Deadlines accurate; flag verify-on-site if unclear.
-- No closed or ineligible rows on Opportunities.
+- Every description is 100 words or less (script will check).
+- Deadlines are accurate; flag "verify on official site" if unclear.
+- No closed or ineligible calls in the Opportunities sheet.
 - Every row has a gender category.
-- File saves cleanly (close other Excel locks if needed).
+- File saves properly (if Excel says it’s locked, close other uses).
+
+A well-kept tracker makes it easy for the team to see which calls fit us, their deadlines, and if FairBanks qualifies.

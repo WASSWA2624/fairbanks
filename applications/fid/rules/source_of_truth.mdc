@@ -1,22 +1,11 @@
 ---
-description: FID 2026 call compliance for FairBanks proposal work (canonical; loaded via .cursor/rules/fid.mdc)
+alwaysApply: true
 ---
+All works and write-ups must align with the guidelines, objectives, and eligibility criteria detailed at: https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-apply-for-up-to-e4-million-to-scale-innovative-solutions-tackling-poverty-and-inequality-worldwide/
 
-# FID — source of truth
+- Ensure proposals explicitly address the FID focus areas: scalable solutions for poverty and inequality reduction, innovation potential, and measurable impact.
+- Submissions should meet all stated requirements for format, track, documentation, and organisational eligibility as listed on the call for proposals.
+- Reference the original FID documentation for definitions of innovation, scale, and impact; if requirements differ from internal conventions, prioritise the FID source.
+- Cite the above link for any claims or descriptions related to the call; avoid paraphrasing that risks deviating from the original intent and priorities.
+- Before finalising or publishing any work, cross-check against the live FID guidelines to ensure continued compliance.
 
-All FID work must align with the live call:
-https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-apply-for-up-to-e4-million-to-scale-innovative-solutions-tackling-poverty-and-inequality-worldwide/
-
-Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
-
-## Mandatory checks
-
-- Address FID focus: scalable solutions for poverty and inequality, innovation potential, and measurable impact.
-- Meet stated format, track, documentation, and organisational eligibility.
-- Use FID’s own definitions of innovation, scale, and impact; if they differ from internal habit, follow FID.
-- Cite the link above for call claims; do not paraphrase in ways that change intent.
-- Before finalising, re-check the live guidelines.
-
-## Deliverables
-
-Synced set in `applications/fid/documents/`: `fid_pdf.pdf`, `fid_ppt.pptx`, `fid_word.docx`. Regenerate with `applications/fid/build_fid_docs.py` when possible.

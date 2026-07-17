@@ -1,9 +1,0 @@
----
-description: Pointer — follow AWIEF call source of truth
-globs: applications/awief/**,refined_project_idea.md
-alwaysApply: false
----
-
-# AWIEF work
-
-Follow `applications/awief/rules/source_of_truth.mdc` for Pitch n Grow compliance and the pitch document set. Also use `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.

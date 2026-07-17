@@ -30,6 +30,5 @@ Examples: `awief_pdf.pdf`, `fid_ppt.pptx`, `awief_word.docx`.
 ## Project-specific sources of truth
 
 - Call rules live at `applications/{project}/rules/source_of_truth.mdc`.
-- Opportunity scan rules live at `opportunities/rules/source_of_truth.mdc`.
-- Call-specific narrative and compliance always win over internal habit when they conflict.
-- Keep one full SoT per project — no duplicate copies of the same rule.
+
+Call-specific narrative and compliance always win over internal habit when they conflict. Keep one rules tree per project — no duplicate copies of the same rule.

@@ -4,7 +4,7 @@ alwaysApply: true
 
 # Applications — folder structure
 
-Every project under `applications/` uses this layout. Shared rules live only in root `.cursor/rules/`. Do not keep parallel copies under `applications/rules/`, `applications/.cursor/`, or `applications/{project}/.cursor/`.
+Every project under `applications/` uses this layout. Shared application rules live only in root `.cursor/rules/`. Do not keep parallel copies under `applications/rules/`, `applications/.cursor/`, or `applications/{project}/.cursor/`.
 
 ## Required layout per project
 
@@ -16,19 +16,14 @@ Every project under `applications/` uses this layout. Shared rules live only in 
    - `{project}_ppt.pptx`
    - `{project}_word.docx`
    No drafts, duplicates, or legacy copies in this folder or elsewhere in the project.
-3. **`rules/`** — call-specific source of truth only (`source_of_truth.mdc`). One copy; never mirror the same full file under `.cursor/`.
+3. **`rules/`** — call-specific rules only (typically `source_of_truth.mdc`). One copy; never mirror the same file under `.cursor/`.
 
-## Opportunities (outside applications/)
-
-`opportunities/` keeps its tracker, build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`.
-
-## Shared rules (root)
+## Shared rules
 
 | File | Role |
 |---|---|
-| `folder_structure.mdc` | This layout |
-| `documents.mdc` | Cross-format document sync |
-| `awief.mdc` / `fid.mdc` / `opportunities.mdc` | Short pointers with globs → project SoT |
+| `.cursor/rules/folder_structure.mdc` | This layout |
+| `.cursor/rules/documents.mdc` | Cross-format document sync |
 
 ## Assets & temp
 
@@ -42,9 +37,6 @@ Every project under `applications/` uses this layout. Shared rules live only in 
 .cursor/rules/
   folder_structure.mdc
   documents.mdc
-  awief.mdc
-  fid.mdc
-  opportunities.mdc
 applications/
   {project}/
     build_{project}_docs.py
@@ -54,11 +46,6 @@ applications/
       {project}_pdf.pdf
       {project}_ppt.pptx
       {project}_word.docx
-opportunities/
-  build_opportunities.py
-  opportunities.xlsx
-  rules/
-    source_of_truth.mdc
 ```
 
-No duplicate deliverables and no duplicate full rule trees for the same content.
+Apply this to every `applications/` project. No duplicate deliverables and no duplicate rule trees for the same content.
