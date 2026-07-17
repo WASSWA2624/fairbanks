@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the canonical FairBanks opportunity tracker Excel.
 
-Writes projects/opportunities.xlsx per projects/.cursor/rules/source_of_truth.mdc.
+Writes opportunities/opportunities.xlsx per
+opportunities/.cursor/rules/source_of_truth.mdc.
 Curated from deep scans of Opportunities for Youth (and future target sites).
 Only Uganda-eligible, still-open opportunities; gender-tagged.
 """

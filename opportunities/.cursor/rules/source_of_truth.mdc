@@ -9,11 +9,11 @@ Canonical operating rule for discovering, filtering, and recording funding and p
 
 | Role | Path |
 |---|---|
-| Opportunity tracker (Excel) | `projects/opportunities.xlsx` |
-| Build script (regenerate when curated data changes) | `projects/build_opportunities.py` |
-| This rule | `projects/.cursor/rules/source_of_truth.mdc` |
+| Opportunity tracker (Excel) | `opportunities/opportunities.xlsx` |
+| Build script (regenerate when curated data changes) | `opportunities/build_opportunities.py` |
+| This rule | `opportunities/.cursor/rules/source_of_truth.mdc` |
 
-Prefer regenerating via `python build_opportunities.py` from `projects/`. Keep **one** master tracker (`opportunities.xlsx`). Do not keep `ofy_*`, `*_new`, or other duplicate Excel copies beside it.
+Prefer regenerating via `python build_opportunities.py` from `opportunities/`. Keep **one** master tracker (`opportunities.xlsx`). Do not keep `ofy_*`, `*_new`, or other duplicate Excel copies beside it.
 
 ## Excel structure
 

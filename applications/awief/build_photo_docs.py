@@ -23,10 +23,11 @@ from reportlab.platypus import (
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-ROOT = Path(__file__).resolve().parents[2]
-ASSETS = ROOT / "awief" / "assets"
-OUT_DOC = ROOT / "awief" / "doc" / "word_version.docx"
-OUT_PDF = ROOT / "awief" / "pdf" / "pdf_version.pdf"
+AWIEF = Path(__file__).resolve().parent
+REPO = AWIEF.parents[1]
+ASSETS = REPO / "assets"
+OUT_DOC = AWIEF / "documents" / "awief_word.docx"
+OUT_PDF = AWIEF / "documents" / "awief_pdf.pdf"
 
 NAVY = "0A1F2E"
 TEAL = "0D6E6E"
@@ -103,7 +104,7 @@ def optimized_image(path: Path, max_px: int = 1600) -> Path:
     """Downscale large photos for DOCX/PDF embedding; leave diagrams untouched if already small."""
     from PIL import Image as PILImage
 
-    cache_dir = ROOT / "tmp" / "doc_assets"
+    cache_dir = REPO / "tmp" / "doc_assets"
     cache_dir.mkdir(parents=True, exist_ok=True)
     out = cache_dir / f"{path.stem}_opt{path.suffix.lower()}"
     if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:

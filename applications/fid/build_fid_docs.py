@@ -2,15 +2,15 @@
 FID Call for Proposals 2026 — FairBanks / FCHIP proposal document set.
 
 Generates one synchronised content set in three formats:
-  - fid/documents/fid_word.docx   (full narrative)
-  - fid/documents/fid_pdf.pdf     (full narrative, print-ready)
-  - fid/documents/fid_ppt.pptx    (12-slide summary deck)
+  - applications/fid/documents/fid_word.docx   (full narrative)
+  - applications/fid/documents/fid_pdf.pdf     (full narrative, print-ready)
+  - applications/fid/documents/fid_ppt.pptx    (12-slide summary deck)
 
 Source of truth: https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-...
 Content aligns with FID evaluation criteria: (1) Evidence of Impact,
 (2) Cost & Cost-Effectiveness, (3) Scale & Financial Sustainability.
 
-Run:  python fid/build_fid_docs.py
+Run:  python applications/fid/build_fid_docs.py
 """
 
 from pathlib import Path
@@ -18,9 +18,10 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Paths & brand
 # ---------------------------------------------------------------------------
-ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "assets"
-OUT_DIR = ROOT / "fid" / "documents"
+FID = Path(__file__).resolve().parent
+REPO = FID.parents[1]
+ASSETS = REPO / "assets"
+OUT_DIR = FID / "documents"
 OUT_DOC = OUT_DIR / "fid_word.docx"
 OUT_PDF = OUT_DIR / "fid_pdf.pdf"
 OUT_PPT = OUT_DIR / "fid_ppt.pptx"
@@ -83,7 +84,7 @@ def embed(key_or_path, max_px: int = 1500) -> str:
     from PIL import Image as PILImage
 
     src = photo(key_or_path) if key_or_path in PHOTOS else Path(key_or_path)
-    cache = ROOT / "tmp" / "fid_assets"
+    cache = REPO / "tmp" / "fid_assets"
     cache.mkdir(parents=True, exist_ok=True)
     out = cache / f"{src.stem}_opt.jpg"
     if out.exists() and out.stat().st_mtime >= src.stat().st_mtime:

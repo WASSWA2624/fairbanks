@@ -1,19 +1,21 @@
 ---
 description: Keep FairBanks pitch docs in sync and compliant with AWIEF Pitch n Grow 2026
-globs: refined_project_idea.md,awief/pitch/ppt_version.pptx,awief/pdf/pdf_version.pdf,awief/doc/word_version.docx,awief/pitch/build_awief_deck.py,awief/doc/build_photo_docs.py
+globs: refined_project_idea.md,applications/awief/documents/awief_ppt.pptx,applications/awief/documents/awief_pdf.pdf,applications/awief/documents/awief_word.docx,applications/awief/build_awief_deck.py,applications/awief/build_photo_docs.py
 alwaysApply: true
 ---
 
-# FairBanks document sync
+# FairBanks document sync (AWIEF)
 
 These files are one content set. Edit any one → update the others in the same session.
+Also follow the shared applications sync policy in `applications/.cursor/rules/documents.mdc`
+and the folder layout in `applications/.cursor/rules/folder_structure.mdc`.
 
 | Role | Path |
 |------|------|
 | Canonical narrative | `refined_project_idea.md` |
-| Pitch deck | `awief/pitch/ppt_version.pptx` |
-| PDF | `awief/pdf/pdf_version.pdf` |
-| Word | `awief/doc/word_version.docx` |
+| Pitch deck | `applications/awief/documents/awief_ppt.pptx` |
+| PDF | `applications/awief/documents/awief_pdf.pdf` |
+| Word | `applications/awief/documents/awief_word.docx` |
 
 ## AWIEF Pitch n Grow 2026 compliance (mandatory)
 
@@ -32,9 +34,9 @@ When editing or regenerating any format, verify:
 1. Prefer `refined_project_idea.md` when resolving conflicts, unless the user edited another format on purpose.
 2. Preserve layout/branding in PPTX/PDF/DOCX; update content only.
 3. Prefer regenerating via build scripts when possible:
-   - Deck: `awief/pitch/build_awief_deck.py` → `ppt_version.pptx` only
-   - Docs: `awief/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf` only
-4. Keep `*_version.*` as the only deliverables. Never write `FairBanks_FCHIP_*` / long-name archive copies beside them.
+   - Deck: `applications/awief/build_awief_deck.py` → `documents/awief_ppt.pptx` only
+   - Docs: `applications/awief/build_photo_docs.py` → `documents/awief_word.docx` + `documents/awief_pdf.pdf` only
+4. Keep only the three official `{project}_*` deliverables in `documents/`. Never write `FairBanks_FCHIP_*` / long-name archive copies beside them.
 5. If a format cannot be updated, state what remains pending.
 6. Never ship a sync that breaks AWIEF compliance (slide count, theme, deep-tech positioning, or portal-stated submission constraints).
 

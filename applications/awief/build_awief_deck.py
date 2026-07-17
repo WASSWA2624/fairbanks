@@ -27,8 +27,10 @@ LIGHT = RGBColor(0xE8, 0xF0, 0xF0)
 SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
 
-ASSETS = Path(__file__).resolve().parents[1] / "assets"
-OUT_PPTX = Path(__file__).resolve().parent / "ppt_version.pptx"
+AWIEF = Path(__file__).resolve().parent
+REPO = AWIEF.parents[1]
+ASSETS = REPO / "assets"
+OUT_PPTX = AWIEF / "documents" / "awief_ppt.pptx"
 
 # Curated real-photo gallery placements (conceptual diagrams kept where they teach the product).
 PHOTOS = {
