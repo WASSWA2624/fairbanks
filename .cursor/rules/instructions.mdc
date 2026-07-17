@@ -2,5 +2,7 @@
 alwaysApply: true
 ---
 
-Always be human when writing text
-
+- Always be human when writing text.
+- Use lay money grammar and vocabularies.
+- Explain in the simplest possible way.
+- All `.mdc` files should be under 501 words.

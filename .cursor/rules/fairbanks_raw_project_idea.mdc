@@ -1,0 +1,54 @@
+---
+description: FCHIP product vision — FairBanks as a Community Health Intelligence Company
+alwaysApply: true
+---
+
+# FCHIP — product vision
+
+FairBanks is a **community health ecosystem**, not only a medical centre. **FCHIP** (FairBanks Community Health Intelligence Platform) is the technology layer that connects outreach, CHWs/VHTs, the medical centre, and partners into one intelligent system.
+
+**Positioning:** A Community Health Intelligence Company using AI, predictive analytics, and community-generated data to improve health outcomes in underserved African communities.
+
+**Vision:** Build Africa's leading Community Health Intelligence Platform that turns primary care from reactive treatment to proactive prevention.
+
+**Slogan:** Your health, our mission. (See also `.cursor/rules/fairbanks-community-reach.mdc` for the operating cascade.)
+
+## From reactive to predictive
+
+**Today:** Facilities wait for sickness; data stays local; stock-outs and complications arrive late.
+
+**Tomorrow:** Data flows from CHWs/VHTs, schools, churches, outreach, pharmacies, clinics, and patients. The platform predicts risk and guides action.
+
+## What FCHIP predicts (examples)
+
+- **Disease surveillance** — e.g. rising fever → possible malaria risk window
+- **Maternal health** — high-risk pregnancy, missed ANC, anaemia, pre-eclampsia alerts
+- **NCDs** — hypertension/diabetes hotspots and stroke risk
+- **Child health** — malnutrition, low immunisation, diarrhoea clusters
+- **Medicine demand** — trends, seasonality, history, outreach schedules → fewer stock-outs
+
+## Deep technology stack
+
+AI · machine learning · GIS maps · mobile data collection · cloud sync · live dashboards · local-language NLP where useful. Intelligence comes from combining these—not from a single simple app.
+
+## Platform layers
+
+Community members → CHWs/VHTs → mobile data → **FCHIP** (AI, analytics, GIS, decision support) → facility dashboard → district / NGO / partners.
+
+This sits on the Community Reach cascade: FCHIP is the **intelligence layer** on CHW data, programmes, medical centre records, and the data–feedback loop.
+
+## Users and revenue
+
+**Users:** medical centres, district health offices, NGOs, CHWs, insurers, ministries, development partners.
+
+**Revenue ideas:** clinic/hospital licences, district deployments, NGO M&E contracts, MoH implementations, custom analytics, research partnerships, APIs, CHW training.
+
+## FairBanks advantage
+
+Live medical centre, active outreach (e.g. Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya), VHT/CHW relationships, research-minded leadership, and primary-care experience—so we can pilot and prove FCHIP before scaling across Uganda and Africa.
+
+## How to use this rule
+
+- Pitch and product copy: FCHIP + community ecosystem, not “clinic only.”
+- Polished AWIEF narrative: `refined_project_idea.md` plus `applications/awief/rules/source_of_truth.mdc`.
+- Operating model names and cascade order: `fairbanks-community-reach.mdc`.

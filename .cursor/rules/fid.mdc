@@ -1,0 +1,9 @@
+---
+description: Pointer — follow FID call source of truth
+globs: applications/fid/**
+alwaysApply: false
+---
+
+# FID work
+
+Follow `applications/fid/rules/source_of_truth.mdc` for call compliance and deliverables. Also use `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.

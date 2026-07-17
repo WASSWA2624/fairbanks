@@ -1,0 +1,64 @@
+---
+alwaysApply: true
+---
+
+# Applications — folder structure
+
+Every project under `applications/` uses this layout. Shared rules live only in root `.cursor/rules/`. Do not keep parallel copies under `applications/rules/`, `applications/.cursor/`, or `applications/{project}/.cursor/`.
+
+## Required layout per project
+
+`applications/{project}/`
+
+1. **Project root** — build scripts and project-level config only (e.g. `build_*_docs.py`).
+2. **`documents/`** — exactly three synced deliverables:
+   - `{project}_pdf.pdf`
+   - `{project}_ppt.pptx`
+   - `{project}_word.docx`
+   No drafts, duplicates, or legacy copies in this folder or elsewhere in the project.
+3. **`rules/`** — call-specific source of truth only (`source_of_truth.mdc`). One copy; never mirror the same full file under `.cursor/`.
+
+## Opportunities (outside applications/)
+
+`opportunities/` keeps its tracker, build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`.
+
+## Shared rules (root)
+
+| File | Role |
+|---|---|
+| `folder_structure.mdc` | This layout |
+| `documents.mdc` | Cross-format document sync |
+| `awief.mdc` / `fid.mdc` / `opportunities.mdc` | Short pointers with globs → project SoT |
+
+## Assets & temp
+
+- Media may come from repo `assets/` or a project `assets/` subfolder.
+- Final edited docs live only in `documents/`.
+- Temporary and build artifacts go in repo `tmp/` (gitignored).
+
+## Example
+
+```
+.cursor/rules/
+  folder_structure.mdc
+  documents.mdc
+  awief.mdc
+  fid.mdc
+  opportunities.mdc
+applications/
+  {project}/
+    build_{project}_docs.py
+    rules/
+      source_of_truth.mdc
+    documents/
+      {project}_pdf.pdf
+      {project}_ppt.pptx
+      {project}_word.docx
+opportunities/
+  build_opportunities.py
+  opportunities.xlsx
+  rules/
+    source_of_truth.mdc
+```
+
+No duplicate deliverables and no duplicate full rule trees for the same content.

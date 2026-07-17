@@ -1,0 +1,9 @@
+---
+description: Pointer — follow opportunities scan source of truth
+globs: opportunities/**
+alwaysApply: false
+---
+
+# Opportunity scan work
+
+Follow `opportunities/rules/source_of_truth.mdc` for eligibility, Excel columns, and scan process.

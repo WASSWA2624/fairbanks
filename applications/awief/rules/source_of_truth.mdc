@@ -1,0 +1,38 @@
+---
+description: AWIEF Pitch n Grow 2026 compliance and FairBanks pitch doc set (canonical; loaded via .cursor/rules/awief.mdc)
+---
+
+# AWIEF — source of truth
+
+All AWIEF pitch work must align with [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026). That portal wins on eligibility, theme, tracks, format, and deadlines. If internal docs conflict, fix the docs.
+
+Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+
+## Mandatory checks
+
+1. **Theme:** **Deep Roots. Digital Futures.** (deep tech rooted in African context).
+2. **Track & sector:** Keep claims consistent with the chosen track (e.g. Startup / HealthTech) and deep-technology core.
+3. **Pitch deck:** Investor deck **10–12 slides**, suitable for **PDF upload**; technology, market, unit economics.
+4. **Audience fit:** Women-led / African-market narrative must stay accurate and submission-ready.
+5. **Portal sync:** Re-check the live Pitch n Grow page before major content changes.
+
+## FairBanks pitch set
+
+| Role | Path |
+|---|---|
+| Canonical narrative | `refined_project_idea.md` |
+| Pitch deck | `applications/awief/documents/awief_ppt.pptx` |
+| PDF | `applications/awief/documents/awief_pdf.pdf` |
+| Word | `applications/awief/documents/awief_word.docx` |
+
+1. Treat these as one synced content set.
+2. Resolve conflicts from `refined_project_idea.md` unless another format was edited first on purpose.
+3. Preserve layout and branding; regenerate when possible:
+   - Deck: `applications/awief/build_awief_deck.py`
+   - Word + PDF: `applications/awief/build_photo_docs.py`
+4. Keep only the three official files in `documents/`.
+
+## Branding
+
+- Show **Your health, our mission.** on every cover/title page or slide.
+- Do not invent slogans or change core claims without user direction or a narrative update.
