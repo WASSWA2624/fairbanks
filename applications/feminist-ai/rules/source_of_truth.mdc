@@ -1,0 +1,38 @@
+---
+description: Young Feminist AI School 2026 (UN Women) compliance and deliverable sync
+globs: applications/feminist-ai/**
+alwaysApply: false
+---
+
+# FEMINIST-AI — source of truth
+
+All work for this pack must align with [Young Feminist AI School 2026 (UN Women)](https://opportunitiesforyouth.org/2026/07/16/ai-for-gender-equality-un-women-ai-school-opens-for-changemakers/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+
+Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+
+## Mandatory checks
+
+1. Keep claims consistent with the live call (eligibility, geography, benefits, deadlines).
+2. Frame a clear **win-win**: value for FairBanks / FCHIP and value for the programme.
+3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
+4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
+5. Before finalising, re-check the official programme page.
+
+## FairBanks deliverable set
+
+| Role | Path |
+|---|---|
+| Pitch deck | `applications/feminist-ai/documents/feminist-ai_ppt.pptx` |
+| PDF | `applications/feminist-ai/documents/feminist-ai_pdf.pdf` |
+| Word | `applications/feminist-ai/documents/feminist-ai_word.docx` |
+
+1. Treat these files as one synchronized content set.
+2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
+3. Preserve established document layout and branding.
+4. Regenerate with `applications/feminist-ai/build_feminist-ai_docs.py`.
+5. Keep only the three official deliverables in `documents/`.
+
+## Branding
+
+- Show **Your health, our mission.** on every cover/title page or slide.
+- Do not invent slogans or alter core claims without user direction.

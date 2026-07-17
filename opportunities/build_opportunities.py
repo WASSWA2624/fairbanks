@@ -2,7 +2,7 @@
 """Build the canonical FairBanks opportunity tracker Excel.
 
 Writes opportunities/opportunities.xlsx per
-opportunities/.cursor/rules/source_of_truth.mdc.
+opportunities/rules/source_of_truth.mdc.
 Curated from deep scans of Opportunities for Youth (and future target sites).
 Only Uganda-eligible, still-open opportunities; gender-tagged.
 """
@@ -20,10 +20,12 @@ DEFAULT_OUT = ROOT / "opportunities.xlsx"
 GENDER_BASED = "Gender-based (women/girls)"
 MULTI_GENDER = "Multi-gender (all genders)"
 
+# app_slug maps to applications/{slug}/ win-win packs.
 OPPORTUNITIES = [
     {
         "title": "AWIEF Pitch n Grow 2026 — Women-Led Deep-Tech Startup Competition",
         "url": "https://opportunitiesforyouth.org/2026/06/25/awief-pitch-n-grow-2026-applications-open-for-africas-leading-women-led-deep-technology-startup-competition/",
+        "app_slug": "awief",
         "gender": GENDER_BASED,
         "description": (
             "Continent-wide competition for women-led ventures using deep "
@@ -42,6 +44,7 @@ OPPORTUNITIES = [
     {
         "title": "The Gadfly Project Custom Web Application Grant 2026",
         "url": "https://opportunitiesforyouth.org/2026/07/16/the-gadfly-project-custom-web-application-grant-2026-apply-for-in-kind-software-development-support-worth-up-to-us100000/",
+        "app_slug": "gadfly",
         "gender": MULTI_GENDER,
         "description": (
             "In-kind grant giving mission-driven organisations professional "
@@ -60,6 +63,7 @@ OPPORTUNITIES = [
     {
         "title": "AUC Venture Lab Women Innovation Fellowship 2026",
         "url": "https://opportunitiesforyouth.org/2026/07/16/auc-venture-lab-women-innovation-fellowship-empowering-women-entrepreneurs-in-egypt-and-beyond/",
+        "app_slug": "auc",
         "gender": GENDER_BASED,
         "description": (
             "American University in Cairo fellowship (1 Sep–31 Oct 2026, "
@@ -77,6 +81,7 @@ OPPORTUNITIES = [
     {
         "title": "Young Feminist AI School 2026 (UN Women)",
         "url": "https://opportunitiesforyouth.org/2026/07/16/ai-for-gender-equality-un-women-ai-school-opens-for-changemakers/",
+        "app_slug": "feminist-ai",
         "gender": GENDER_BASED,
         "description": (
             "Free, fully online 12-week UN Women programme (Aug–Oct 2026) "
@@ -93,6 +98,7 @@ OPPORTUNITIES = [
     {
         "title": "GirlCode Hackathon 2026 (includes Kampala, Uganda)",
         "url": "https://opportunitiesforyouth.org/2026/07/15/building-africas-next-generation-of-ai-powered-female-innovators-apply-for-the-2026-girlcode-hackathon-across-six-african-countries/",
+        "app_slug": "girlcode",
         "gender": GENDER_BASED,
         "description": (
             "Multi-country AI hackathon for female innovators across South "
@@ -109,6 +115,7 @@ OPPORTUNITIES = [
     {
         "title": "U.S. Dept of State — Uganda Health System MOU (up to $60M)",
         "url": "https://opportunitiesforyouth.org/2026/06/15/u-s-department-of-state-launches-up-to-60-million-funding-opportunity-to-strengthen-ugandas-health-system-through-the-health-foreign-assistance-mou-implementation-plan/",
+        "app_slug": "dos-uganda",
         "gender": MULTI_GENDER,
         "description": (
             "Major U.S. Department of State call (DFOP0017890) to strengthen "
@@ -127,6 +134,7 @@ OPPORTUNITIES = [
     {
         "title": "World Health Summit 2026 Youth Group Opportunity (Berlin)",
         "url": "https://opportunitiesforyouth.org/2026/06/26/apply-now-world-health-summit-2025-stipend-program-for-global-health-changemakers/",
+        "app_slug": "whs",
         "gender": MULTI_GENDER,
         "description": (
             "Complimentary group tickets (3–15 per organisation) for "
@@ -144,6 +152,7 @@ OPPORTUNITIES = [
     {
         "title": "African Union Youth SRH Ambassadors Initiative 2026 (AUDA-NEPAD)",
         "url": "https://opportunitiesforyouth.org/2026/06/13/african-union-youth-srh-ambassadors-initiative-2026-apply-to-become-an-auda-nepad-youth-srh-ambassador/",
+        "app_slug": "auda-srh",
         "gender": MULTI_GENDER,
         "description": (
             "African Union (AUDA-NEPAD) initiative recruiting young Africans "
@@ -162,6 +171,7 @@ OPPORTUNITIES = [
     {
         "title": "Brandtech Group AI for Good Scholarship 2026 (One Young World)",
         "url": "https://opportunitiesforyouth.org/2026/07/15/ai-for-good-scholarship-2025-empowering-young-innovators-to-address-global-challenges/",
+        "app_slug": "oyw",
         "gender": MULTI_GENDER,
         "description": (
             "Fully funded scholarship for five young African leaders (aged "
@@ -178,6 +188,7 @@ OPPORTUNITIES = [
     {
         "title": "Africa CDC African Epidemic Services (AES) Epidemiology Fellowship 2026–2028",
         "url": "https://opportunitiesforyouth.org/2026/07/16/africa-cdc-african-epidemic-services-aes-epidemiology-fellowship-2026-2028-fully-funded-apply-by-26-august-2026/",
+        "app_slug": "africa-cdc",
         "gender": MULTI_GENDER,
         "description": (
             "Fully funded two-year Africa CDC fellowship — three months' "
@@ -196,6 +207,7 @@ OPPORTUNITIES = [
     {
         "title": "IFAD Grant Call — Rural Sector Performance Assessment (up to US$1.2M)",
         "url": "https://opportunitiesforyouth.org/2026/07/14/ifad-announces-us1-2-million-grant-call-for-proposals-to-strengthen-rural-development-policies-worldwide/",
+        "app_slug": "ifad",
         "gender": MULTI_GENDER,
         "description": (
             "IFAD call for proposals worth up to US$1.2M to implement "
@@ -214,6 +226,7 @@ OPPORTUNITIES = [
     {
         "title": "World Bank GovTech Innovation Challenge 2026",
         "url": "https://opportunitiesforyouth.org/2026/07/10/world-bank-govtech-innovation-challenge-2026-global-call-for-proposals-to-build-digital-solutions-for-governments/",
+        "app_slug": "govtech",
         "gender": MULTI_GENDER,
         "description": (
             "Global World Bank / SECO / Trust Valley challenge connecting "
@@ -252,6 +265,10 @@ def main() -> None:
         "Brief Description",
         "Application Deadline",
         "Gender Category",
+        "Application Status",
+        "Submission Status",
+        "Submission Date",
+        "Application Folder",
     ]
     header_fill = PatternFill("solid", fgColor="0B3D2E")
     header_font = Font(bold=True, color="FFFFFF", name="Calibri", size=11)
@@ -278,7 +295,18 @@ def main() -> None:
     )
 
     for i, row in enumerate(rows, 2):
-        values = [row["title"], row["url"], row["description"], row["deadline"], row["gender"]]
+        slug = row.get("app_slug", "")
+        values = [
+            row["title"],
+            row["url"],
+            row["description"],
+            row["deadline"],
+            row["gender"],
+            "Drafting",
+            "unknown",
+            "",
+            f"applications/{slug}" if slug else "",
+        ]
         for col, val in enumerate(values, 1):
             cell = ws.cell(i, col, val)
             cell.alignment = Alignment(vertical="top", wrap_text=True)
@@ -297,8 +325,12 @@ def main() -> None:
     ws.column_dimensions["C"].width = 74
     ws.column_dimensions["D"].width = 34
     ws.column_dimensions["E"].width = 22
+    ws.column_dimensions["F"].width = 16
+    ws.column_dimensions["G"].width = 16
+    ws.column_dimensions["H"].width = 16
+    ws.column_dimensions["I"].width = 22
     ws.row_dimensions[1].height = 26
-    ws.auto_filter.ref = f"A1:E{len(rows) + 1}"
+    ws.auto_filter.ref = f"A1:I{len(rows) + 1}"
     ws.freeze_panes = "A2"
 
     # Scan notes / methodology sheet.
@@ -317,6 +349,7 @@ def main() -> None:
         ("Gender-based list", "AWIEF Pitch n Grow, AUC Venture Lab Women Innovation Fellowship, Young Feminist AI School (UN Women), GirlCode Hackathon."),
         ("Priority soon", "AUDA-NEPAD SRH Ambassadors (17 Jul, today), AWIEF (20 Jul), Gadfly grant (24 Jul), AUC Women Fellowship (25 Jul), Young Feminist AI School (28 Jul), US State Dept Uganda SOI / WHS Youth Group (31 Jul)."),
         ("Best fit for FairBanks", "US State Dept Uganda Health MOU, AWIEF Pitch n Grow, WHS Youth Group, Africa CDC AES Fellowship, Gadfly Web App Grant."),
+        ("Application packs", "Win-win packs (rules + Word/PDF/PPT) live under applications/{slug}/ for every Opportunities row. Status set to Drafting until submitted."),
         ("Important", "Deadlines and eligibility are quoted from Opportunities for Youth article text. ALWAYS confirm on the official programme page before applying — details can change."),
     ]
     meta["A1"] = "Field"
