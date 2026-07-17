@@ -33,6 +33,7 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 ## Cover & branding
 
+- **PowerPoint (`dos-uganda_ppt.pptx`):** Elegant by default — balanced type beside photos, real pictures/diagrams from `assets/`, clean visual design, light purposeful animations, readability check. Follow the PowerPoint section in `.cursor/rules/documents.mdc`.
 - Cover / first slide: programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image.
 - Do **not** put an application-details summary table on page 1 unless the live call explicitly requires it.
 - Statement of Interest structure — not a pitch-deck clone. Roman-numeral sections, formal tone.

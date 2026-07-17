@@ -9,3 +9,4 @@ alwaysApply: true
 - Never modify [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc).
 - Shared rules live only in root `.cursor/rules/`. Call SoTs live only under each project's `rules/` and must use globs, not `alwaysApply: true`.
 - Application packs: one **project-specific** generator per call. Do not auto-stamp many projects from one shared template or SPECS file.
+- Decks (`{project}_ppt.pptx`) must follow the elegant PowerPoint standard in [documents.mdc](documents.mdc): balanced type, pictures first, clean visual design, light purposeful animations.

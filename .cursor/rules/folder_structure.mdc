@@ -15,8 +15,8 @@ Every project under `applications/` uses this layout. Shared application rules l
    - `{project}_pdf.pdf`
    - `{project}_ppt.pptx`
    - `{project}_word.docx`
-   No drafts, duplicates, or legacy copies in this folder or elsewhere in the project.
-3. **`rules/`** — call-specific rules only (typically `source_of_truth.mdc`). One copy; never mirror the same file under `.cursor/`. Scope each SoT with globs for that project (`alwaysApply: false`).
+   No drafts, duplicates, or legacy copies. PowerPoint must meet the elegant deck standard in `.cursor/rules/documents.mdc` (balance, pictures, visual design, purposeful motion).
+3. **`rules/`** — call-specific rules only (typically `source_of_truth.mdc`). One copy; never mirror under `.cursor/`. Scope each SoT with globs (`alwaysApply: false`). Point deck quality back to `documents.mdc` rather than duplicating long PPT rules here.
 
 ## Opportunities (outside applications/)
 
@@ -29,14 +29,14 @@ These are the only shared rules. Do not copy them under `applications/` or `oppo
 | File | Role |
 |---|---|
 | `folder_structure.mdc` | This layout |
-| `documents.mdc` | Cross-format document sync |
-| `instructions.mdc` | Writing style and .mdc word limit |
+| `documents.mdc` | Sync + elegant PowerPoint / cover standards |
+| `instructions.mdc` | Writing style, .mdc word limit, deck quality pointer |
 | `fairbanks-community-reach.mdc` | Operating model / cascade |
 | `fairbanks_raw_project_idea.mdc` | FCHIP product vision (do not edit) |
 
 ## Assets & temp
 
-- Media may come from repo `assets/` or a project `assets/` subfolder.
+- Media may come from repo `assets/` or a project `assets/` subfolder — prefer real photos, diagrams, maps, and dashboards in decks.
 - Final edited docs live only in `documents/`.
 - Temporary and build artifacts go in repo `tmp/` (gitignored).
 

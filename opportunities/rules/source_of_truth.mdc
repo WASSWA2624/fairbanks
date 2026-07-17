@@ -81,3 +81,7 @@ Start with **Opportunities for Youth**, then the rest.
 - No closed or ineligible calls in the Opportunities sheet.
 - Every row has a gender category.
 - File saves properly (close Excel if locked).
+
+## Application packs
+
+When a scan becomes a full application under `applications/`, follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc` — including elegant PowerPoint standards for `{project}_ppt.pptx`.
