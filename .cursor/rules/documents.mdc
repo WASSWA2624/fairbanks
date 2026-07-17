@@ -26,8 +26,9 @@ Examples: `awief_pdf.pdf`, `fid_ppt.pptx`, `awief_word.docx`.
 4. Never leave the three files out of sync. Do not keep drafts, duplicates, or files with modified names alongside the official documents.
 5. Use images and visual assets from the main `assets/` repo (or a project’s own `assets/` subfolder) when regenerating. Keep layout, look, and brand identity consistent across formats.
 6. Before finishing updates for an external call, make sure that all synced files meet all eligibility, theme, format, and deadline rules.
-7. **PowerPoint slides ({project}_ppt.pptx):** Always make sure the text is sized and balanced properly on every slide for readability and design, taking into account available space, so that your slides look clear and attractive.
-8. **Cover / first page:** Include the programme or document title, FairBanks/FCHIP framing, and slogan (**Your health, our mission.**) plus visuals as needed. Only add a summary table with application details on the cover if the official guidelines specifically require it.
+7. Ensure proper line spacing in all deliverables (`{project}_word.docx`, `{project}_ppt.pptx`, and `{project}_pdf.pdf`) so that texts are clear and never overlap on any page or slide. Adjust spacing and layout as needed to keep all content readable.
+8. **PowerPoint slides ({project}_ppt.pptx):** Always make sure the text is sized and balanced properly on every slide for readability and design, taking into account available space, so that your slides look clear and attractive.
+9. **Cover / first page:** Include the programme or document title, FairBanks/FCHIP framing, and slogan (**Your health, our mission.**) plus visuals as needed. Only add a summary table with application details on the cover if the official guidelines specifically require it.
 
 ## Project-specific sources of truth
 
