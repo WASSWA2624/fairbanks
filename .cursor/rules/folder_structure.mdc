@@ -16,13 +16,15 @@ Every project under `applications/` uses this layout. Shared application rules l
    - `{project}_ppt.pptx`
    - `{project}_word.docx`
    No drafts, duplicates, or legacy copies in this folder or elsewhere in the project.
-3. **`rules/`** — call-specific rules only (typically `source_of_truth.mdc`). One copy; never mirror the same file under `.cursor/`.
+3. **`rules/`** — call-specific rules only (typically `source_of_truth.mdc`). One copy; never mirror the same file under `.cursor/`. Scope each SoT with globs for that project (`alwaysApply: false`).
 
 ## Opportunities (outside applications/)
 
-`opportunities/` keeps its tracker (`opportunities.xlsx`), build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`.
+`opportunities/` keeps its tracker (`opportunities.xlsx`), build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`. Scope with `globs: opportunities/**`.
 
 ## Shared rules (root `.cursor/rules/`)
+
+These are the only shared rules. Do not copy them under `applications/` or `opportunities/`.
 
 | File | Role |
 |---|---|
@@ -30,7 +32,7 @@ Every project under `applications/` uses this layout. Shared application rules l
 | `documents.mdc` | Cross-format document sync |
 | `instructions.mdc` | Writing style and .mdc word limit |
 | `fairbanks-community-reach.mdc` | Operating model / cascade |
-| `fairbanks_raw_project_idea.mdc` | FCHIP product vision |
+| `fairbanks_raw_project_idea.mdc` | FCHIP product vision (do not edit) |
 
 ## Assets & temp
 

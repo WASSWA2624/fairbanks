@@ -1,13 +1,38 @@
 ---
-alwaysApply: true
+description: FID 2026 call compliance and deliverable sync
+globs: applications/fid/**
+alwaysApply: false
 ---
+
 # FID — source of truth
 
-All FID application work and write-ups must align with the guidelines, objectives, and eligibility criteria detailed at: https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-apply-for-up-to-e4-million-to-scale-innovative-solutions-tackling-poverty-and-inequality-worldwide/
+All FID application work must align with the [FID Call for Proposals 2026](https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-apply-for-up-to-e4-million-to-scale-innovative-solutions-tackling-poverty-and-inequality-worldwide/). That page is the source of truth for eligibility, focus areas, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
 
-- Ensure proposals explicitly address the FID focus areas: scalable solutions for poverty and inequality reduction, innovation potential, and measurable impact.
-- Submissions should meet all stated requirements for format, track, documentation, and organisational eligibility as listed on the call for proposals.
-- Reference the original FID documentation for definitions of innovation, scale, and impact; if requirements differ from internal conventions, prioritise the FID source.
-- Cite the above link for any claims or descriptions related to the call; avoid paraphrasing that risks deviating from the original intent and priorities.
-- Before finalising or publishing any work, cross-check against the live FID guidelines to ensure continued compliance.
+Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
+## Mandatory checks
+
+1. Address FID focus areas: scalable solutions for poverty and inequality, innovation potential, and measurable impact.
+2. Meet stated requirements for format, track, documentation, and organisational eligibility.
+3. Use FID definitions of innovation, scale, and impact; prioritise the live call over internal habit.
+4. Cite the call link for claims about the programme; avoid paraphrasing that changes intent.
+5. Before finalising, re-check the live FID guidelines.
+
+## FairBanks FID set
+
+| Role | Path |
+|---|---|
+| Pitch deck | `applications/fid/documents/fid_ppt.pptx` |
+| PDF | `applications/fid/documents/fid_pdf.pdf` |
+| Word | `applications/fid/documents/fid_word.docx` |
+
+1. Treat these files as one synchronized content set.
+2. Prefer the most recently edited format; if unclear, follow this SoT and the live FID call.
+3. Preserve established document layout and branding.
+4. Regenerate with `applications/fid/build_fid_docs.py`.
+5. Keep only the three official deliverables in `documents/`; report any format that cannot be updated.
+
+## Branding
+
+- Show **Your health, our mission.** on every cover/title page or slide.
+- Do not invent slogans or alter core claims without user direction.

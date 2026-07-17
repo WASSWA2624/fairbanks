@@ -1,19 +1,21 @@
 ---
-alwaysApply: true
+description: Opportunity scan and tracker for FairBanks / FCHIP
+globs: opportunities/**
+alwaysApply: false
 ---
+
 # Opportunity Scan — Source of Truth
 
-Guides how we find, check, and track opportunities for **FairBanks / FCHIP**. Every listed opportunity must be open to Ugandans.
+Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing must be open to Ugandans.
 
 ## Main deliverables
 
 | What | Path |
 |---|---|
-| Opportunity tracker (Excel) | `opportunities/opportunities.xlsx` |
+| Tracker (Excel) | `opportunities/opportunities.xlsx` |
 | Build script | `opportunities/build_opportunities.py` |
-| This rule | `opportunities/rules/source_of_truth.mdc` |
 
-Keep one tracker file — no duplicate or draft Excel copies. Always update via the build script.
+Keep one tracker — no draft copies. Always update via the build script.
 
 ## Excel layout
 
@@ -24,38 +26,38 @@ Keep one tracker file — no duplicate or draft Excel copies. Always update via 
 | Project Title | Official or common programme name |
 | URL | Direct link to the official call |
 | Brief Description | Clear English, max 100 words: goal, eligibility, FairBanks fit |
-| Application Deadline | Exact date (e.g. `31 July 2026`) or `Rolling`; add timezone if shown |
+| Application Deadline | Exact date (e.g. `31 July 2026`) or `Rolling`; timezone if shown |
 | Gender Category | One of the options below |
 | Application Status | e.g. Drafting, Ready to Submit, Submitted |
 | Submission Status | Submitted, rejected, awarded, or unknown |
-| Submission Date | Date actually submitted; blank if not yet |
+| Submission Date | Date submitted; blank if not yet |
 
-**Sheet 2: Scan Notes** — scan sources, date, approach, eligibility checks, exclusion reasons, gender counts, and a priority-soon list.
+**Sheet 2: Scan Notes** — sources, date, approach, eligibility checks, exclusions, gender counts, priority-soon list.
 
 ### Sorting
 
-Gender-based first, then multi-gender. Within each group, soonest deadline first; unknown or rolling deadlines last.
+Gender-based first, then multi-gender. Within each group, soonest deadline first; unknown or rolling last.
 
 ## Gender category — use one only
 
-- **Gender-based (women/girls):** clearly targets women, girls, or women-led groups (e.g. AWIEF Pitch n Grow).
+- **Gender-based (women/girls):** targets women, girls, or women-led groups (e.g. AWIEF Pitch n Grow).
 - **Multi-gender (all genders):** open to everyone, even if women are encouraged.
 
 Don't create new labels unless asked.
 
 ## Eligibility — Uganda focus
 
-Include only if the call is still open (future deadline or officially rolling) and Ugandans can apply (global, Africa-wide, East Africa, or Uganda-specific).
+Include only if still open (future deadline or officially rolling) and Ugandans can apply (global, Africa-wide, East Africa, or Uganda-specific).
 
-Exclude — and note why — calls that skip Uganda, sectors that don't fit FairBanks, consultancies/tenders/scholarships Ugandans can't access, and passed deadlines (unless asked for an archive). If still unsure after checking the official site, leave it out and explain in Scan Notes.
+Exclude — and note why — calls that skip Uganda, unfit sectors, consultancies/tenders/scholarships Ugandans can't access, and passed deadlines (unless asked for an archive). If unsure after checking the official site, leave it out and explain in Scan Notes.
 
 ## How to scan
 
-For each site: check homepage, category, and listing/filter pages; review any listing that might fit FairBanks; verify eligibility and deadlines on the listing and funder pages. If rate-limited, do targeted searches.
+For each site: check homepage, category, and listing pages; review fits; verify eligibility and deadlines on listing and funder pages. If rate-limited, do targeted searches.
 
 ## What's a good fit?
 
-Community health intelligence, CHW/VHT projects, digital health, disease prediction, maternal/child health; women-led deep tech (AWIEF: Deep Roots. Digital Futures); health systems, NGO/social enterprise calls; AI-for-good and GovTech. Don't drop okay fits just because the link is indirect.
+Community health intelligence, CHW/VHT, digital health, disease prediction, maternal/child health; women-led deep tech (AWIEF: Deep Roots. Digital Futures); health systems, NGO/social enterprise; AI-for-good and GovTech. Keep okay fits even if the link is indirect.
 
 ## Scan these sites
 
@@ -78,4 +80,4 @@ Start with **Opportunities for Youth**, then the rest.
 - Deadlines accurate; flag "verify on official site" if unclear.
 - No closed or ineligible calls in the Opportunities sheet.
 - Every row has a gender category.
-- File saves properly (close other uses if Excel says it's locked).
+- File saves properly (close Excel if locked).

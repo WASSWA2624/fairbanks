@@ -22,7 +22,7 @@ Examples: `awief_pdf.pdf`, `fid_ppt.pptx`, `awief_word.docx`.
 
 1. When any one format is edited, update the other two in the same session so narrative, data, branding, and compliance stay aligned.
 2. Prefer regenerating via that project's build script(s) when available; otherwise edit carefully and mirror content across formats.
-3. Prefer the most recently edited source as canonical for the session. If unclear, use the source best aligned with the project's live submission requirements (`rules/source_of_truth.mdc` when present).
+3. Prefer the most recently edited source as canonical for the session. If the project SoT names a canonical narrative (e.g. AWIEF → `refined_project_idea.md`), use that unless another format was deliberately edited first. If still unclear, follow `rules/source_of_truth.mdc`.
 4. Never leave the three formats out of sync. Do not add draft, duplicate, or long-name copies beside the three official files.
 5. Use photos and visual assets from repo `assets/` (or a project `assets/` subfolder) when regenerating; keep layout fidelity and visual identity consistent across formats.
 6. Before finishing updates for an external call, confirm synced content still meets that call's eligibility, theme, format, and deadline rules.
@@ -32,4 +32,4 @@ Examples: `awief_pdf.pdf`, `fid_ppt.pptx`, `awief_word.docx`.
 - Call rules live at `applications/{project}/rules/source_of_truth.mdc`.
 - Opportunity scan rules live at `opportunities/rules/source_of_truth.mdc`.
 
-Call-specific narrative and compliance always win over internal habit when they conflict. Keep one rules tree per project — no duplicate copies of the same rule.
+Call-specific narrative and compliance always win over internal habit when they conflict. Keep one rules tree per project — no duplicate copies of the same rule. Project SoTs are scoped with globs (not always-on) so AWIEF, FID, and opportunities rules do not override each other.

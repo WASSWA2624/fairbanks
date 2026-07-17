@@ -3,7 +3,8 @@ alwaysApply: true
 ---
 
 - Always be human when writing text.
-- Use lay money grammar and vocabularies.
+- Use layman's grammar and vocabularies.
 - Explain in the simplest possible way.
-- all .mdc files, should be under 501 words except [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc)
-- never modify [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc)
+- All `.mdc` files should be under 501 words except [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc).
+- Never modify [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc).
+- Shared rules live only in root `.cursor/rules/`. Call SoTs live only under each project's `rules/` and must use globs, not `alwaysApply: true`.
