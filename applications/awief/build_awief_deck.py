@@ -128,8 +128,8 @@ def ensure_cover_hero(force: bool = False) -> str:
 H1 = 34
 H2 = 30
 H3 = 20
-BODY = 17
-BODY_SM = 15
+BODY = 20
+BODY_SM = 17
 CAPTION = 13
 FOOTER = 12
 

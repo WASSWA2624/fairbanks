@@ -897,7 +897,7 @@ def build_pptx():
         "Health shocks push poor families into catastrophic spending",
     ]
     bullets_box(s, Inches(6.5), CONTENT_TOP + Inches(0.15), Inches(6.3), CONTENT_H - Inches(0.3),
-                probs, max_size=17, min_size=13, lines_per=1)
+                probs, max_size=22, min_size=15, lines_per=1)
     footer(s, 2)
 
     # 3. Innovation
@@ -959,14 +959,14 @@ def build_pptx():
     band(s, "Evidence of impact", "Built to be measured and evaluated")
     pic_fit(s, "gis", Inches(0.45), CONTENT_TOP, Inches(5.5), CONTENT_H)
     bullets_box(s, Inches(6.3), CONTENT_TOP + Inches(0.1), Inches(6.5), CONTENT_H - Inches(0.2),
-                EVIDENCE_POINTS, max_size=14, min_size=11, lines_per=3)
+                EVIDENCE_POINTS, max_size=18, min_size=13, lines_per=3)
     footer(s, 6)
 
     # 7. Cost-effectiveness
     s = prs.slides.add_slide(blank)
     band(s, "Cost & cost-effectiveness", "Prevention costs less than late treatment")
     bullets_box(s, Inches(0.55), CONTENT_TOP + Inches(0.1), Inches(6.2), CONTENT_H - Inches(0.2),
-                COST_POINTS, max_size=15, min_size=12, lines_per=3)
+                COST_POINTS, max_size=18, min_size=13, lines_per=3)
     pic_fit(s, "outreach_bp", Inches(7.0), CONTENT_TOP, Inches(5.9), CONTENT_H)
     footer(s, 7)
 
@@ -975,7 +975,7 @@ def build_pptx():
     band(s, "Scale & sustainability", "A portable model with diversified revenue")
     pic_fit(s, "dashboard", Inches(0.45), CONTENT_TOP, Inches(5.9), CONTENT_H)
     bullets_box(s, Inches(6.7), CONTENT_TOP + Inches(0.1), Inches(6.2), CONTENT_H - Inches(0.2),
-                SCALE_POINTS, max_size=15, min_size=12, lines_per=3)
+                SCALE_POINTS, max_size=18, min_size=13, lines_per=3)
     footer(s, 8)
 
     # 9. Traction
@@ -983,7 +983,7 @@ def build_pptx():
     band(s, "Why FairBanks", "A live venture, ready to pilot")
     pic_fit(s, "outreach_hero", Inches(0.45), CONTENT_TOP, Inches(6.1), CONTENT_H)
     bullets_box(s, Inches(6.9), CONTENT_TOP + Inches(0.1), Inches(6.0), CONTENT_H - Inches(0.2),
-                TRACTION_POINTS, max_size=14, min_size=12, lines_per=2)
+                TRACTION_POINTS, max_size=18, min_size=13, lines_per=2)
     footer(s, 9)
 
     # 10. Roadmap & budget

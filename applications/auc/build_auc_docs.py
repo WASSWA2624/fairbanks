@@ -344,18 +344,60 @@ def build_pptx():
         return s
 
     def tb(sl, x, y, w, h, text, size=18, bold=False, color=SLATE, align=PP_ALIGN.LEFT, italic=False):
+        """Text box with balanced sizing for tall side-by-side photo panels."""
         box = sl.shapes.add_textbox(x, y, w, h)
         tf = box.text_frame
         tf.word_wrap = True
-        p = tf.paragraphs[0]
-        p.alignment = align
-        r = p.add_run()
-        r.text = text
-        r.font.size = Pt(size)
-        r.font.bold = bold
-        r.font.italic = italic
-        r.font.name = "Calibri"
-        r.font.color.rgb = C(color)
+        h_in = float(h) / 914400.0
+        w_in = float(w) / 914400.0
+        # Tall panels beside photos: grow type and vertically centre (not titles/footers)
+        body = h_in >= 4.0 and 13 <= size <= 22
+        if body:
+            try:
+                tf.anchor = MSO_ANCHOR.MIDDLE
+            except Exception:
+                pass
+        raw = str(text).replace("\r\n", "\n")
+        if "\n\n" in raw:
+            parts = [p.strip() for p in raw.split("\n\n") if p.strip()]
+        else:
+            parts = list(raw.split("\n"))
+        if not parts:
+            parts = [""]
+        cpl = max(18, int(w_in * 6.5))
+        est = 0.0
+        nonempty = 0
+        for part in parts:
+            if not str(part).strip():
+                est += 0.35
+                continue
+            nonempty += 1
+            est += max(1, (len(part) + cpl - 1) // cpl)
+        est = max(est, float(nonempty or 1))
+        use_size = size
+        if body and est > 0:
+            fitted = int((h_in * 0.82 * 72) / (est * 1.32))
+            # Grow into empty space; shrink slightly if denser than the requested size
+            use_size = max(15, min(26, fitted))
+            if fitted >= size:
+                use_size = max(size, use_size)
+        gap = max(10, int(use_size * 0.55)) if body else 3
+        for i, ln in enumerate(parts):
+            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+            p.alignment = align
+            p.space_before = Pt(0)
+            p.space_after = Pt(gap if body and i < len(parts) - 1 else 2)
+            try:
+                p.line_spacing = 1.28 if body else 1.15
+            except Exception:
+                pass
+            r = p.add_run()
+            r.text = ln
+            r.font.size = Pt(use_size)
+            r.font.bold = bold
+            r.font.italic = italic
+            r.font.color.rgb = C(color)
+            r.font.name = "Calibri"
         return box
 
     def pic_cover(sl, key):
@@ -415,7 +457,7 @@ def build_pptx():
        "HealthTech that serves Africa needs leadership training and cross-regional networks — not code alone.\n\n"
        "AUC Venture Lab is Africa’s top accelerator heritage (440+ startups). Cairo connects North and East Africa.\n\n"
        "I bring live community health operations from Uganda; I seek mentor access and investor-ready discipline.",
-       size=16, color=MUTED)
+       size=20, color=MUTED)
     pic_fit(s, "team", Inches(7.0), Inches(1.2), Inches(5.8), Inches(5.5))
     footer(s, 2)
 
@@ -438,7 +480,7 @@ def build_pptx():
     tb(s, Inches(7.9), Inches(1.2), Inches(5.0), Inches(5.5),
        "Offline capture → cloud intelligence → alerts to CHWs, clinics, districts.\n\n"
        "Predict outbreaks, maternal risk, NCD hotspots, child health gaps, stock-outs.",
-       size=15, color=MUTED)
+       size=19, color=MUTED)
     footer(s, 4)
 
     # 5 Fellowship unlocks
@@ -468,7 +510,7 @@ def build_pptx():
         y = Inches(1.25) + i * Inches(1.15)
         rect(s, Inches(0.5), y, Inches(12.2), Inches(1.0), "FFFFFF", LINE)
         rect(s, Inches(0.5), y, Inches(0.12), Inches(1.0), TEAL)
-        tb(s, Inches(0.75), y + Inches(0.15), Inches(11.5), Inches(0.7), g, size=15, color=SLATE)
+        tb(s, Inches(0.75), y + Inches(0.15), Inches(11.5), Inches(0.7), g, size=19, color=SLATE)
     footer(s, 7)
 
     # 8 Mutual lift
@@ -476,10 +518,10 @@ def build_pptx():
     band(s, "Shared outcome", slides[7][1])
     rect(s, Inches(0.5), Inches(1.3), Inches(5.9), Inches(5.2), "FFFFFF", LINE)
     tb(s, Inches(0.7), Inches(1.5), Inches(5.5), Inches(0.4), "FairBanks gains", size=16, bold=True, color=TEAL)
-    tb(s, Inches(0.7), Inches(2.0), Inches(5.5), Inches(4.0), MUTUAL_VALUE[0][1], size=14, color=MUTED)
+    tb(s, Inches(0.7), Inches(2.0), Inches(5.5), Inches(4.0), MUTUAL_VALUE[0][1], size=18, color=MUTED)
     rect(s, Inches(6.8), Inches(1.3), Inches(5.9), Inches(5.2), "FFFFFF", LINE)
     tb(s, Inches(7.0), Inches(1.5), Inches(5.5), Inches(0.4), "AUC Venture Lab gains", size=16, bold=True, color=TEAL)
-    tb(s, Inches(7.0), Inches(2.0), Inches(5.5), Inches(4.0), MUTUAL_VALUE[1][1], size=14, color=MUTED)
+    tb(s, Inches(7.0), Inches(2.0), Inches(5.5), Inches(4.0), MUTUAL_VALUE[1][1], size=18, color=MUTED)
     footer(s, 8)
 
     # 9 Close
