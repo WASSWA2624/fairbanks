@@ -220,7 +220,9 @@ def build_docx():
 
     para(META["programme"], size=12, bold=True, color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
     para(META["doc_title"], size=22, bold=True, color=NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
-    para(META["subtitle"], size=13, bold=True, color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, after=4, italic=True)
+    para("FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True,
+         color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, after=4, italic=True)
+    para(META["subtitle"], size=12, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, after=4, italic=True)
     para(SLOGAN, size=12, bold=True, color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, after=10, italic=True)
     image("cover", caption=TAGLINE)
     para(META["timeline"], size=10, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, after=2)
@@ -316,7 +318,10 @@ def build_pdf():
 
     story.append(Paragraph(META["programme"], st["Meta"]))
     story.append(Paragraph(META["doc_title"], st["CT"]))
-    story.append(Paragraph(f'<font color="#{ACCENT}"><b><i>{META["subtitle"]}</i></b></font>', st["Meta"]))
+    story.append(Paragraph(
+        f'<font color="#{ACCENT}"><b><i>FairBanks Community Health Intelligence Platform (FCHIP)</i></b></font>',
+        st["Meta"]))
+    story.append(Paragraph(f'<font color="#{MUTED}"><i>{META["subtitle"]}</i></font>', st["Meta"]))
     story.append(Paragraph(f'<font color="#{ACCENT}"><b><i>{SLOGAN}</i></b></font>', st["Meta"]))
     story.append(Spacer(1, 8))
     img("cover", cap=TAGLINE)
@@ -432,8 +437,10 @@ def build_pptx():
     pic_cover(s, "cover")
     rect(s, 0, SH - Inches(3.5), SW, Inches(3.5), NAVY)
     tb(s, Inches(0.6), SH - Inches(3.2), Inches(12), Inches(0.35), META["programme"], size=13, bold=True, color=TEAL_L)
-    tb(s, Inches(0.6), SH - Inches(2.7), Inches(12), Inches(0.65), META["doc_title"], size=24, bold=True, color="FFFFFF")
-    tb(s, Inches(0.6), SH - Inches(1.85), Inches(12), Inches(0.4), SLOGAN, size=14, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.7), Inches(12), Inches(0.55), META["doc_title"], size=22, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.15), Inches(12), Inches(0.3),
+       "FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True, italic=True, color="F2C79B")
+    tb(s, Inches(0.6), SH - Inches(1.75), Inches(12), Inches(0.35), SLOGAN, size=14, bold=True, color="FFFFFF")
     tb(s, Inches(0.6), SH - Inches(1.2), Inches(12), Inches(0.35), META["timeline"], size=12, color="D0E8E8")
 
     # 2 Fellowship at a glance

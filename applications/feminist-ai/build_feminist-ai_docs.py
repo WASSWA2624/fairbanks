@@ -251,7 +251,10 @@ def build_pdf():
 
     story.append(Paragraph(META["programme"], st["Meta"]))
     story.append(Paragraph(META["doc_title"], st["CT"]))
-    story.append(Paragraph(f'<font color="#{ACCENT}"><b><i>{META["subtitle"]}</i></b></font>', st["Meta"]))
+    story.append(Paragraph(
+        f'<font color="#{ACCENT}"><b><i>FairBanks Community Health Intelligence Platform (FCHIP)</i></b></font>',
+        st["Meta"]))
+    story.append(Paragraph(f'<font color="#{MUTED}"><i>{META["subtitle"]}</i></font>', st["Meta"]))
     story.append(Paragraph(f'<font color="#{ACCENT}"><b><i>{SLOGAN}</i></b></font>', st["Meta"]))
     img("cover")
     story.append(PageBreak())
@@ -370,8 +373,10 @@ def build_pptx():
     pic_cover(s, "cover")
     rect(s, 0, SH - Inches(3.2), SW, Inches(3.2), NAVY)
     tb(s, Inches(0.6), SH - Inches(2.9), Inches(12), Inches(0.35), META["programme"], size=13, bold=True, color=TEAL_L)
-    tb(s, Inches(0.6), SH - Inches(2.4), Inches(12), Inches(0.6), META["doc_title"], size=26, bold=True, color="FFFFFF")
-    tb(s, Inches(0.6), SH - Inches(1.55), Inches(12), Inches(0.35), SLOGAN, size=14, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.4), Inches(12), Inches(0.5), META["doc_title"], size=24, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(1.9), Inches(12), Inches(0.3),
+       "FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True, italic=True, color="F2C79B")
+    tb(s, Inches(0.6), SH - Inches(1.45), Inches(12), Inches(0.35), SLOGAN, size=14, bold=True, color="FFFFFF")
 
     # Learning objectives — card grid
     s = prs.slides.add_slide(blank)

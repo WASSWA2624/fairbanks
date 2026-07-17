@@ -14,7 +14,7 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 1. Keep claims consistent with the live call (in-kind software, users served, community impact).
 2. Frame a clear **win-win**: engineering value for Gadfly and product value for FairBanks / FCHIP.
-3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
+3. Stay rooted in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
 4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
 5. Before finalising, re-check the official programme page.
 
@@ -28,11 +28,11 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 1. Treat these three files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Regenerate **only** with `applications/gadfly/build_gadfly_docs.py` — a project-specific generator. No shared document factory or imports from deleted `tools/application_docs`.
+3. Regenerate **only** with `applications/gadfly/build_gadfly_docs.py` — a project-specific generator. No shared document factory or cross-project generator.
 4. Keep only the three official deliverables in `documents/`.
 
 ## Cover & branding
 
-- Cover / first slide: programme name, document title, **Your health, our mission.**, hero image.
+- Cover / first slide: programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image.
 - Do **not** put an application-details summary table (applicant, deadline, geography, ask) on page 1. Put practical details later in the body if needed.
 - Engineering proposal tone: product scope (CHW capture, sync, dashboards), users served, handover plan.

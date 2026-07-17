@@ -14,7 +14,7 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 1. Keep claims consistent with the live call (eligibility, geography, benefits, deadlines).
 2. Frame a clear **win-win**: value for FairBanks / FCHIP and value for the programme.
-3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
+3. Stay rooted in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
 4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
 5. Before finalising, re-check the official programme page.
 
@@ -29,9 +29,9 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 1. Treat these files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
 3. Preserve established document layout and branding.
-4. Regenerate **only** with `applications/auda-srh/build_auda-srh_docs.py` — this project-specific script; no shared document factory or imports from deleted `tools/application_docs`.
+4. Regenerate **only** with `applications/auda-srh/build_auda-srh_docs.py` — this project-specific script; no shared document factory or cross-project generator.
 5. Keep only the three official deliverables in `documents/`.
-6. Cover/first page: programme name, document title, slogan, hero image. **Do not** add an application-details summary table unless the live call explicitly requires it.
+6. Cover/first page: programme name, FairBanks/FCHIP framing, document title, slogan, hero image. **Do not** add an application-details summary table unless the live call explicitly requires it.
 
 ## Branding
 

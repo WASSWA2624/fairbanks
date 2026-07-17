@@ -157,7 +157,7 @@ def build_docx():
 
     para(META["programme"], size=12, bold=True, color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
     para(META["doc_title"], size=22, bold=True, color=NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
-    para("FairBanks Community Reach · FCHIP", size=13, bold=True,
+    para("FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True,
          color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, after=4, italic=True)
     para(SLOGAN, size=12, bold=True, color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, after=10, italic=True)
     image("cover", caption=META["subtitle"])
@@ -240,7 +240,10 @@ def build_pdf():
 
     story.append(Paragraph(META["programme"], st["Meta"]))
     story.append(Paragraph(META["doc_title"], st["CT"]))
-    story.append(Paragraph(f'<font color="#{ACCENT}"><b><i>{META["subtitle"]}</i></b></font>', st["Meta"]))
+    story.append(Paragraph(
+        f'<font color="#{ACCENT}"><b><i>FairBanks Community Health Intelligence Platform (FCHIP)</i></b></font>',
+        st["Meta"]))
+    story.append(Paragraph(f'<font color="#{MUTED}"><i>{META["subtitle"]}</i></font>', st["Meta"]))
     story.append(Paragraph(f'<font color="#{ACCENT}"><b><i>{SLOGAN}</i></b></font>', st["Meta"]))
     img("cover")
     story.append(Paragraph(f'<font color="#{ACCENT}"><b>{META["deadline"]}</b></font>', st["Meta"]))
@@ -353,8 +356,10 @@ def build_pptx():
     pic_cover(s, "cover")
     rect(s, 0, SH - Inches(3.4), SW, Inches(3.4), NAVY)
     tb(s, Inches(0.6), SH - Inches(3.1), Inches(12), Inches(0.35), META["programme"], size=13, bold=True, color=TEAL_L)
-    tb(s, Inches(0.6), SH - Inches(2.65), Inches(12), Inches(0.6), META["doc_title"], size=24, bold=True, color="FFFFFF")
-    tb(s, Inches(0.6), SH - Inches(1.75), Inches(12), Inches(0.35), SLOGAN, size=14, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.65), Inches(12), Inches(0.5), META["doc_title"], size=22, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.1), Inches(12), Inches(0.3),
+       "FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True, italic=True, color="F2C79B")
+    tb(s, Inches(0.6), SH - Inches(1.65), Inches(12), Inches(0.3), SLOGAN, size=14, bold=True, color="FFFFFF")
     tb(s, Inches(0.6), SH - Inches(1.15), Inches(12), Inches(0.35), META["deadline"], size=12, bold=True, color="F2C79B")
 
     # Nomination

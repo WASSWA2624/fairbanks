@@ -694,7 +694,6 @@ def build():
             "awief.untap.us/pitch-n-grow2026  ·  Cape Town 10–11 Nov 2026",
             size=CAPTION, bold=True, color=TEAL_LIGHT)
 
-    pitch_dir = Path(__file__).resolve().parent
     out = OUT_PPTX
     try:
         prs.save(str(out))

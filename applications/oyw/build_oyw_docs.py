@@ -215,7 +215,9 @@ def build_docx():
 
     para(PROGRAMME, size=12, bold=True, color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
     para(DOC_TITLE, size=22, bold=True, color=NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
-    para(SUBTITLE, size=13, color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, after=6)
+    para("FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True,
+         color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, after=4)
+    para(SUBTITLE, size=12, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, after=6)
     para(SLOGAN, size=12, bold=True, color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, after=12)
     image("cover", caption="AI for good means nothing without communities in the loop")
     doc.add_page_break()
@@ -315,7 +317,10 @@ def build_pdf():
 
     story.append(Paragraph(PROGRAMME, st["Meta"]))
     story.append(Paragraph(DOC_TITLE, st["CoverTitle"]))
-    story.append(Paragraph(f'<i><font color="#{ACCENT}">{SUBTITLE}</font></i>', st["Meta"]))
+    story.append(Paragraph(
+        f'<b><i><font color="#{ACCENT}">FairBanks Community Health Intelligence Platform (FCHIP)</font></i></b>',
+        st["Meta"]))
+    story.append(Paragraph(f'<i><font color="#{MUTED}">{SUBTITLE}</font></i>', st["Meta"]))
     story.append(Paragraph(f'<b><i><font color="#{ACCENT}">{SLOGAN}</font></i></b>', st["Meta"]))
     story.append(Spacer(1, 10))
     story.append(img("cover", cap="AI for good means nothing without communities in the loop"))
@@ -417,8 +422,10 @@ def build_pptx():
     pic(s, "mobile", 0, 0, SW, SH)
     rect(s, 0, SH - Inches(3.3), SW, Inches(3.3), NAVY)
     tb(s, Inches(0.55), SH - Inches(3.05), Inches(12), Inches(0.35), PROGRAMME, size=12, bold=True, color=TEAL)
-    tb(s, Inches(0.55), SH - Inches(2.5), Inches(12), Inches(0.75), DOC_TITLE, size=24, bold=True, color="FFFFFF")
-    tb(s, Inches(0.55), SH - Inches(1.55), Inches(12), Inches(0.45), SUBTITLE, size=14, italic=True, color="F2C79B")
+    tb(s, Inches(0.55), SH - Inches(2.5), Inches(12), Inches(0.6), DOC_TITLE, size=22, bold=True, color="FFFFFF")
+    tb(s, Inches(0.55), SH - Inches(1.9), Inches(12), Inches(0.35),
+       "FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True, italic=True, color="F2C79B")
+    tb(s, Inches(0.55), SH - Inches(1.45), Inches(12), Inches(0.35), SUBTITLE, size=12, italic=True, color="D0E8E8")
     tb(s, Inches(0.55), SH - Inches(0.95), Inches(12), Inches(0.35), SLOGAN, size=13, bold=True, color="FFFFFF")
 
     deck = [

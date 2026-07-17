@@ -402,8 +402,10 @@ def build_pptx():
     pic_cover(s, "cover")
     rect(s, 0, SH - Inches(3.5), SW, Inches(3.5), NAVY)
     tb(s, Inches(0.6), SH - Inches(3.2), Inches(12), Inches(0.35), META["programme"], size=13, bold=True, color=TEAL_L)
-    tb(s, Inches(0.6), SH - Inches(2.7), Inches(12), Inches(0.65), META["doc_title"], size=26, bold=True, color="FFFFFF")
-    tb(s, Inches(0.6), SH - Inches(1.85), Inches(12), Inches(0.4), SLOGAN, size=14, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.7), Inches(12), Inches(0.55), META["doc_title"], size=24, bold=True, color="FFFFFF")
+    tb(s, Inches(0.6), SH - Inches(2.15), Inches(12), Inches(0.3),
+       "FairBanks Community Health Intelligence Platform (FCHIP)", size=13, bold=True, italic=True, color="F2C79B")
+    tb(s, Inches(0.6), SH - Inches(1.75), Inches(12), Inches(0.35), SLOGAN, size=14, bold=True, color="FFFFFF")
     tb(s, Inches(0.6), SH - Inches(1.2), Inches(12), Inches(0.35), META["fellowship_dates"], size=12, color="D0E8E8")
 
     # 2 Why Cairo

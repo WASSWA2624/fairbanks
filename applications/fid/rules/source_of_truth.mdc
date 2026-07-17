@@ -6,33 +6,35 @@ alwaysApply: false
 
 # FID — source of truth
 
-All FID application work must align with the [FID Call for Proposals 2026](https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-apply-for-up-to-e4-million-to-scale-innovative-solutions-tackling-poverty-and-inequality-worldwide/). That page is the source of truth for eligibility, focus areas, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+All FID application work must align with the [FID Call for Proposals 2026](https://opportunitiesforyouth.org/2026/06/12/fid-call-for-proposals-2026-apply-for-up-to-e4-million-to-scale-innovative-solutions-tackling-poverty-and-inequality-worldwide/). That page wins on eligibility, focus areas, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
 
-Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+Follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
 ## Mandatory checks
 
 1. Address FID focus areas: scalable solutions for poverty and inequality, innovation potential, and measurable impact.
 2. Meet stated requirements for format, track, documentation, and organisational eligibility.
-3. Use FID definitions of innovation, scale, and impact; prioritise the live call over internal habit.
-4. Cite the call link for claims about the programme; avoid paraphrasing that changes intent.
-5. Before finalising, re-check the live FID guidelines.
+3. Stay rooted in the FairBanks community health cascade; frame FCHIP as the intelligence layer — link health gains to livelihoods and resilience.
+4. Use FID definitions of innovation, scale, and impact; prioritise the live call over internal habit.
+5. Simple human language. Only approved slogan: **Your health, our mission.**
+6. Before finalising, re-check the live FID guidelines.
 
-## FairBanks FID set
+## Deliverables
 
-| Role | Path |
+| Format | Path |
 |---|---|
-| Pitch deck | `applications/fid/documents/fid_ppt.pptx` |
 | PDF | `applications/fid/documents/fid_pdf.pdf` |
+| PowerPoint | `applications/fid/documents/fid_ppt.pptx` |
 | Word | `applications/fid/documents/fid_word.docx` |
 
-1. Treat these files as one synchronized content set.
-2. Prefer the most recently edited format; if unclear, follow this SoT and the live FID call.
-3. Preserve established document layout and branding.
-4. Regenerate with `applications/fid/build_fid_docs.py`.
-5. Keep only the three official deliverables in `documents/`; report any format that cannot be updated.
+One synced set. Prefer the most recently edited format; if unclear, follow this SoT and the live call. Regenerate only with `applications/fid/build_fid_docs.py` — **project-specific**; no shared document factory or cross-project generator. Keep only these three files in `documents/`.
 
-## Branding
+## Cover / branding
 
-- Show **Your health, our mission.** on every cover/title page or slide.
+- Programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image from `assets/`.
+- **Do not** put an application-details summary table on the first page unless the live call explicitly requires it.
 - Do not invent slogans or alter core claims without user direction.
+
+## Brand colours
+
+NAVY `0A1F2E` · TEAL `0D6E6E` · ACCENT `C45C26` · SLATE `1E2F38` · MUTED `3A4A54` · CREAM `F7F5F0`

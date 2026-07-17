@@ -34,7 +34,7 @@ One synced set. Regenerate only with `applications/govtech/build_govtech_docs.py
 
 ## Cover / branding
 
-- Programme name, document title, **Your health, our mission.**, hero image from `assets/`.
+- Programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image from `assets/`.
 - **Do not** put an application-details summary table on the first page unless the live call explicitly requires it.
 
 ## Brand colours

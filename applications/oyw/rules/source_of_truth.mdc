@@ -14,7 +14,7 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 1. Keep claims consistent with the live call (African leaders aged 18–30, responsible AI, healthcare priority).
 2. Lead with nominee story and Cape Town summit contribution — not a generic FCHIP pitch.
-3. Stay rooted in the FairBanks community health cascade and FCHIP vision.
+3. Stay rooted in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
 4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
 5. Before finalising, re-check the official programme page.
 
@@ -28,11 +28,11 @@ Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.md
 
 1. Treat these three files as one synchronized content set.
 2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Regenerate **only** with `applications/oyw/build_oyw_docs.py` — a project-specific generator. No shared document factory or imports from deleted `tools/application_docs`.
+3. Regenerate **only** with `applications/oyw/build_oyw_docs.py` — a project-specific generator. No shared document factory or cross-project generator.
 4. Keep only the three official deliverables in `documents/`.
 
 ## Cover & branding
 
-- Cover / first slide: programme name, document title, **Your health, our mission.**, hero image.
+- Cover / first slide: programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image.
 - Do **not** put an application-details summary table on page 1 unless the live call explicitly requires it.
 - Personal nominee narrative plus responsible AI ethics and One Young World Cape Town contribution.

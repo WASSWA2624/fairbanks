@@ -6,35 +6,37 @@ alwaysApply: false
 
 # AWIEF — source of truth
 
-All AWIEF pitch work must align with [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026). That portal is the source of truth for eligibility, theme, tracks, submission format, and deadlines. If internal docs conflict with the portal, fix the docs to match the portal.
+All AWIEF pitch work must align with [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026). That portal wins on eligibility, theme, tracks, format, and deadlines. If internal docs conflict with the portal, fix the docs to match the portal.
 
-Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+Follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
 ## Mandatory checks
 
-1. **Theme:** Align with **Deep Roots. Digital Futures.** (deep tech rooted in African context, not imported soft services).
-2. **Track & sector:** Keep claims consistent with the chosen track (e.g. Startup / HealthTech) and deep-technology core.
-3. **Pitch deck:** Investor deck is **10–12 slides**, suitable for **PDF upload**; highlight technology core, market, and unit economics.
-4. **Audience fit:** Women-led / African-market venture narrative must remain accurate and submission-ready.
-5. **Portal sync:** Before major content changes, re-check the live Pitch n Grow page.
+1. **Theme:** Align with **Deep Roots. Digital Futures.** (deep tech rooted in African context).
+2. **Track & sector:** Keep claims consistent with Startup / HealthTech and a deep-technology core.
+3. Root the pitch in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
+4. **Pitch deck:** Investor deck is **10–12 slides**, suitable for **PDF upload**; highlight technology, market, and unit economics.
+5. Women-led / African-market venture narrative must stay accurate and submission-ready.
+6. Simple human language. Only approved slogan: **Your health, our mission.**
+7. Before major edits, re-check the live Pitch n Grow page.
 
-## FairBanks pitch set
+## Deliverables
 
 | Role | Path |
 |---|---|
-| Canonical narrative | `refined_project_idea.md` |
+| Canonical narrative | `refined_project_idea.md` (narrative only — not a fourth deliverable) |
 | Pitch deck | `applications/awief/documents/awief_ppt.pptx` |
 | PDF | `applications/awief/documents/awief_pdf.pdf` |
 | Word | `applications/awief/documents/awief_word.docx` |
 
-1. Treat these files as one synchronized content set.
-2. Resolve discrepancies from `refined_project_idea.md` unless another format was deliberately edited first.
-3. Preserve established document layout and branding.
-4. Regenerate the deck with `applications/awief/build_awief_deck.py`.
-5. Regenerate Word and PDF with `applications/awief/build_photo_docs.py`.
-6. Keep only the three official deliverables in `documents/`; report any format that cannot be updated.
+One synced set of three files in `documents/`. Resolve story from `refined_project_idea.md` unless another format was edited first. Regenerate all three with `applications/awief/build_awief_docs.py` (runs deck + photo docs). Keep only the three official deliverables in `documents/`.
 
-## Branding
+## Cover / branding
 
-- Show **Your health, our mission.** on every cover/title page or slide.
+- Programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image from `assets/`.
+- **Do not** put an application-details summary table on the first page unless the portal explicitly requires it.
 - Do not invent slogans or alter core claims without user direction or a canonical narrative change.
+
+## Brand colours
+
+NAVY `0A1F2E` · TEAL `0D6E6E` · ACCENT `C45C26` · SLATE `1E2F38` · MUTED `3A4A54` · CREAM `F7F5F0`
