@@ -18,12 +18,19 @@ Every project under `applications/` uses this layout. Shared application rules l
    No drafts, duplicates, or legacy copies in this folder or elsewhere in the project.
 3. **`rules/`** — call-specific rules only (typically `source_of_truth.mdc`). One copy; never mirror the same file under `.cursor/`.
 
-## Shared rules
+## Opportunities (outside applications/)
+
+`opportunities/` keeps its tracker (`opportunities.xlsx`), build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`.
+
+## Shared rules (root `.cursor/rules/`)
 
 | File | Role |
 |---|---|
-| `.cursor/rules/folder_structure.mdc` | This layout |
-| `.cursor/rules/documents.mdc` | Cross-format document sync |
+| `folder_structure.mdc` | This layout |
+| `documents.mdc` | Cross-format document sync |
+| `instructions.mdc` | Writing style and .mdc word limit |
+| `fairbanks-community-reach.mdc` | Operating model / cascade |
+| `fairbanks_raw_project_idea.mdc` | FCHIP product vision |
 
 ## Assets & temp
 
@@ -37,6 +44,9 @@ Every project under `applications/` uses this layout. Shared application rules l
 .cursor/rules/
   folder_structure.mdc
   documents.mdc
+  instructions.mdc
+  fairbanks-community-reach.mdc
+  fairbanks_raw_project_idea.mdc
 applications/
   {project}/
     build_{project}_docs.py
@@ -46,6 +56,11 @@ applications/
       {project}_pdf.pdf
       {project}_ppt.pptx
       {project}_word.docx
+opportunities/
+  build_opportunities.py
+  opportunities.xlsx
+  rules/
+    source_of_truth.mdc
 ```
 
 Apply this to every `applications/` project. No duplicate deliverables and no duplicate rule trees for the same content.

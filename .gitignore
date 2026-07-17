@@ -7,3 +7,7 @@ tmp/
 # Excel / Office lock and temp files
 ~$*
 *.tmp
+
+# Python bytecode
+__pycache__/
+*.pyc
