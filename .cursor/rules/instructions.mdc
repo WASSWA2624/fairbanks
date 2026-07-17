@@ -6,3 +6,4 @@ alwaysApply: true
 - Use lay money grammar and vocabularies.
 - Explain in the simplest possible way.
 - all .mdc files, should be under 501 words except [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc)
+- never modify [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc)
