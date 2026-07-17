@@ -457,11 +457,6 @@ def build_docx():
 
     heading("Table Listing of Critical Details")
     table(["Item", "Detail"], CRITICAL_DETAILS, widths=[2.4, 4.1], head_size=10, body_size=10)
-    para(
-        "Opportunity: DFOP0017890  |  Window 2a SOI due 31 July 2026, 5:00 PM EDT  |  "
-        "This cover table does not count toward the 5-page narrative limit.",
-        size=10, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, after=6,
-    )
     doc.add_page_break()
 
     # ----- Narrative (APS §D) -----
@@ -613,11 +608,6 @@ def build_pdf():
     story.append(Paragraph(SLOGAN, st["Slogan"]))
     story.append(Paragraph("Table Listing of Critical Details", st["H1"]))
     tbl(["Item", "Detail"], CRITICAL_DETAILS, [pw * 0.32, pw * 0.68])
-    story.append(Paragraph(
-        "Opportunity: DFOP0017890  |  Window 2a SOI due 31 July 2026, 5:00 PM EDT  |  "
-        "This cover table does not count toward the 5-page narrative limit.",
-        st["Meta"],
-    ))
     story.append(PageBreak())
 
     story.append(Paragraph("1. Issue / Challenge / Opportunity", st["H1"]))
