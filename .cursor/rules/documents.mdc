@@ -4,35 +4,42 @@ alwaysApply: true
 
 # Applications — document sync
 
-For every project under `applications/`, final deliverables must live only in each project's `documents/` folder and stay fully in sync across formats. Folder layout is described in `.cursor/rules/folder_structure.mdc`.
+Final deliverables live only in each project's `documents/` folder and stay fully in sync. Layout: `.cursor/rules/folder_structure.mdc`.
 
 ## Sync set (per project)
 
-Each project keeps these three deliverables in `documents/`:
-
-| Format      | Filename pattern      |
-|-------------|----------------------|
-| PDF         | `{project}_pdf.pdf`  |
-| PowerPoint  | `{project}_ppt.pptx` |
-| Word        | `{project}_word.docx`|
+| Format | Filename pattern |
+|---|---|
+| PDF | `{project}_pdf.pdf` |
+| PowerPoint | `{project}_ppt.pptx` |
+| Word | `{project}_word.docx` |
 
 Examples: `awief_pdf.pdf`, `fid_ppt.pptx`, `awief_word.docx`.
 
 ## Sync rules
 
-1. If you edit any one of these formats, update the other two in the same session so that narrative, data, branding, and compliance stay fully aligned.
-2. Always use **that specific project's** build script(s) for regeneration. Each set must match the requirements of its call — never stamp out multiple projects from a generic template or factory.
-3. The most recently edited format should be the main reference for your session. If a project SoT gives a canonical narrative (like AWIEF → `refined_project_idea.md`), use that unless you've edited a different format first. If unsure, check `rules/source_of_truth.mdc`.
-4. Never leave the three files out of sync. Do not keep drafts, duplicates, or files with modified names alongside the official documents.
-5. Use images and visual assets from the main `assets/` repo (or a project’s own `assets/` subfolder) when regenerating. Keep layout, look, and brand identity consistent across formats.
-6. Before finishing updates for an external call, make sure that all synced files meet all eligibility, theme, format, and deadline rules.
-7. Ensure proper line spacing in all deliverables (`{project}_word.docx`, `{project}_ppt.pptx`, and `{project}_pdf.pdf`) so that texts are clear and never overlap on any page or slide. Adjust spacing and layout as needed to keep all content readable.
-8. **PowerPoint slides ({project}_ppt.pptx):** Always make sure the text is sized and balanced properly on every slide for readability and design, taking into account available space, so that your slides look clear and attractive.
-9. **Cover / first page:** Include the programme or document title, FairBanks/FCHIP framing, and slogan (**Your health, our mission.**) plus visuals as needed. Only add a summary table with application details on the cover if the official guidelines specifically require it.
+1. Edit one format → update the other two in the same session (story, data, branding, compliance).
+2. Regenerate only with **that project's** build script(s). Never stamp many projects from a shared factory.
+3. Prefer the most recently edited format; if unclear, follow the project SoT (e.g. AWIEF → `refined_project_idea.md`).
+4. Keep only the three official files in `documents/` — no drafts or renamed copies.
+5. Use images from `assets/` (or a project `assets/` folder). Keep brand look consistent across formats.
+6. Before an external submission, meet all eligibility, theme, format, and deadline rules.
+7. Keep line spacing clear in Word, PPT, and PDF — no overlapping text.
+8. **Cover / first page:** Programme or document title, FairBanks/FCHIP framing, slogan (**Your health, our mission.**), and visuals as needed. Add an application-details table on the cover only if the call requires it.
 
-## Project-specific sources of truth
+## PowerPoint — `{project}_ppt.pptx` (elegant by default)
+
+Treat every deck as a polished visual product, not a text dump. Slides should look intentional, attractive, and easy to follow live.
+
+1. **Balance & type:** Size text for the space. On photo+text slides, grow and centre body text so it matches the photo’s weight. No tiny type in empty space; no crowding or overlap.
+2. **Pictures first:** Prefer real photos, diagrams, maps, and dashboards from `assets/` over long paragraphs. One clear image idea per slide.
+3. **Visual design:** Brand colours, clean margins, consistent headers/footers, calm contrast. Vary layouts (full-bleed cover, split photo/text, cards, process flows) so the deck feels designed.
+4. **Motion with purpose:** Light, tasteful animations (fade, wipe, appear) on titles, key bullets, and photo entrances where they help. Subtle and consistent — never noisy.
+5. **Readability check:** Before finishing, scan every slide: clear hierarchy, even spacing, sharp images, readable at distance, elegant and on-brand.
+
+## Sources of truth
 
 - Call rules: `applications/{project}/rules/source_of_truth.mdc`
-- Opportunity scan rules: `opportunities/rules/source_of_truth.mdc`
+- Opportunities: `opportunities/rules/source_of_truth.mdc`
 
-When in doubt, always follow the narrative and compliance from the official call. Only keep one rules tree per project — no duplicate copies. Project sources of truth are set with globs (not always-on), so AWIEF, FID, and opportunities rules never override each other.
+Follow the official call when unsure. One rules tree per project (globs, not always-on).
