@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-"""Build Excel of Uganda-eligible Opportunities for Youth listings for FairBanks.
+"""Build the canonical FairBanks opportunity tracker Excel.
 
-Source: deep scan of https://opportunitiesforyouth.org/ (homepage + category
-pages + individual listing pages, each verified live). Only opportunities that
-are (a) still open as of the scan date and (b) eligible for Ugandan applicants
-are included. Each opportunity is tagged as Gender-based (women/girls focused)
-or Multi-gender (open to all genders).
+Writes projects/opportunities.xlsx per projects/.cursor/rules/source_of_truth.mdc.
+Curated from deep scans of Opportunities for Youth (and future target sites).
+Only Uganda-eligible, still-open opportunities; gender-tagged.
 """
 
 from datetime import datetime
+from pathlib import Path
+import os
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from openpyxl.utils import get_column_letter
+
+ROOT = Path(__file__).resolve().parent
+DEFAULT_OUT = ROOT / "opportunities.xlsx"
 
 GENDER_BASED = "Gender-based (women/girls)"
 MULTI_GENDER = "Multi-gender (all genders)"
@@ -241,7 +243,7 @@ def main() -> None:
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "OFY Opportunities"
+    ws.title = "Opportunities"
 
     headers = [
         "Project Title",
@@ -330,11 +332,7 @@ def main() -> None:
     meta.column_dimensions["A"].width = 20
     meta.column_dimensions["B"].width = 112
 
-    import os
-    out = os.environ.get(
-        "OFY_OUT",
-        r"d:\coding\apps\flutter\fairbanks\projects\ofy_opportunities.xlsx",
-    )
+    out = Path(os.environ.get("OPPORTUNITIES_OUT", str(DEFAULT_OUT)))
     wb.save(out)
     print(f"Wrote {len(rows)} opportunities to {out}")
     print(f"Gender-based: {gb} | Multi-gender: {mg}")

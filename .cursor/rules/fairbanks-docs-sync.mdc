@@ -1,6 +1,6 @@
 ---
 description: Keep FairBanks pitch docs in sync and compliant with AWIEF Pitch n Grow 2026
-globs: refined_project_idea.md,output/pitch/ppt_version.pptx,output/pdf/pdf_version.pdf,output/doc/word_version.docx,output/pitch/build_awief_deck.py,output/doc/build_photo_docs.py
+globs: refined_project_idea.md,awief/pitch/ppt_version.pptx,awief/pdf/pdf_version.pdf,awief/doc/word_version.docx,awief/pitch/build_awief_deck.py,awief/doc/build_photo_docs.py
 alwaysApply: true
 ---
 
@@ -11,9 +11,9 @@ These files are one content set. Edit any one → update the others in the same 
 | Role | Path |
 |------|------|
 | Canonical narrative | `refined_project_idea.md` |
-| Pitch deck | `output/pitch/ppt_version.pptx` |
-| PDF | `output/pdf/pdf_version.pdf` |
-| Word | `output/doc/word_version.docx` |
+| Pitch deck | `awief/pitch/ppt_version.pptx` |
+| PDF | `awief/pdf/pdf_version.pdf` |
+| Word | `awief/doc/word_version.docx` |
 
 ## AWIEF Pitch n Grow 2026 compliance (mandatory)
 
@@ -32,8 +32,8 @@ When editing or regenerating any format, verify:
 1. Prefer `refined_project_idea.md` when resolving conflicts, unless the user edited another format on purpose.
 2. Preserve layout/branding in PPTX/PDF/DOCX; update content only.
 3. Prefer regenerating via build scripts when possible:
-   - Deck: `output/pitch/build_awief_deck.py` → `ppt_version.pptx` only
-   - Docs: `output/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf` only
+   - Deck: `awief/pitch/build_awief_deck.py` → `ppt_version.pptx` only
+   - Docs: `awief/doc/build_photo_docs.py` → `word_version.docx` + `pdf_version.pdf` only
 4. Keep `*_version.*` as the only deliverables. Never write `FairBanks_FCHIP_*` / long-name archive copies beside them.
 5. If a format cannot be updated, state what remains pending.
 6. Never ship a sync that breaks AWIEF compliance (slide count, theme, deep-tech positioning, or portal-stated submission constraints).

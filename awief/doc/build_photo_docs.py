@@ -24,9 +24,9 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSETS = ROOT / "output" / "assets"
-OUT_DOC = ROOT / "output" / "doc" / "word_version.docx"
-OUT_PDF = ROOT / "output" / "pdf" / "pdf_version.pdf"
+ASSETS = ROOT / "awief" / "assets"
+OUT_DOC = ROOT / "awief" / "doc" / "word_version.docx"
+OUT_PDF = ROOT / "awief" / "pdf" / "pdf_version.pdf"
 
 NAVY = "0A1F2E"
 TEAL = "0D6E6E"

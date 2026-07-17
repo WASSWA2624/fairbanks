@@ -3,3 +3,7 @@ assets/
 
 # Build / render intermediates
 tmp/
+
+# Excel / Office lock and temp files
+~$*
+*.tmp

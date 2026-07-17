@@ -10,9 +10,10 @@ Canonical operating rule for discovering, filtering, and recording funding and p
 | Role | Path |
 |---|---|
 | Opportunity tracker (Excel) | `projects/opportunities.xlsx` |
-| OFY build script (regenerate when curated data changes) | `projects/build_ofy_excel.py` |
+| Build script (regenerate when curated data changes) | `projects/build_opportunities.py` |
+| This rule | `projects/.cursor/rules/source_of_truth.mdc` |
 
-Prefer regenerating the Excel via `build_ofy_excel.py` when the curated dataset is updated. Keep one master tracker; do not create duplicate long-name archive copies beside it.
+Prefer regenerating via `python build_opportunities.py` from `projects/`. Keep **one** master tracker (`opportunities.xlsx`). Do not keep `ofy_*`, `*_new`, or other duplicate Excel copies beside it.
 
 ## Excel structure
 
@@ -93,10 +94,10 @@ Start with **Opportunities for Youth** when refreshing; extend to other sites fo
 
 ## Before shipping an update
 
-1. Every description is **≤ 100 words** (enforced in `build_ofy_excel.py`).
+1. Every description is **≤ 100 words** (enforced in `build_opportunities.py`).
 2. Deadlines match listing text; flag “verify on official site” when OFY is the only source.
 3. No ineligible or closed calls in the main Opportunities sheet.
 4. Gender category is set on every row.
-5. Excel saves successfully (close open workbook if Windows reports permission denied).
+5. Excel saves successfully (close open workbook if Windows reports permission denied; Excel lock files `~$*` are disposable).
 
 The tracker should let the team quickly see **priority, fit, gender category, and deadlines** for proposal efforts.
