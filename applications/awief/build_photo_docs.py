@@ -836,7 +836,9 @@ def build_docx():
         print(f"DOCX: {OUT_DOC}")
         return OUT_DOC
     except PermissionError:
-        alt = OUT_DOC.with_name(OUT_DOC.stem + "_unlocked" + OUT_DOC.suffix)
+        alt_dir = REPO / "tmp"
+        alt_dir.mkdir(parents=True, exist_ok=True)
+        alt = alt_dir / (OUT_DOC.stem + "_unlocked" + OUT_DOC.suffix)
         doc.save(str(alt))
         print(f"DOCX locked; saved as: {alt}")
         return alt
@@ -1515,7 +1517,9 @@ def build_pdf():
         print(f"PDF: {OUT_PDF}")
         return OUT_PDF
     except PermissionError:
-        alt = OUT_PDF.with_name(OUT_PDF.stem + "_unlocked" + OUT_PDF.suffix)
+        alt_dir = REPO / "tmp"
+        alt_dir.mkdir(parents=True, exist_ok=True)
+        alt = alt_dir / (OUT_PDF.stem + "_unlocked" + OUT_PDF.suffix)
         write_pdf(alt)
         print(f"PDF locked; saved as: {alt}")
         return alt

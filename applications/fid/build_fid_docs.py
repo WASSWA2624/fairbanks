@@ -372,6 +372,12 @@ def build_docx():
     para(SLOGAN, size=12, bold=True, color=ACCENT, align=WD_ALIGN_PARAGRAPH.CENTER, after=12, italic=True)
     image(photo("cover"), width_in=6.2, max_h=3.0,
           caption="FairBanks Community Reach \u2014 " + TAGLINE)
+    para("Aligned with the Fund for Innovation in Development Call for Proposals 2026.",
+         size=9, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, after=2, italic=True)
+    para(FID_URL, size=8, color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, after=6)
+
+    doc.add_page_break()
+
     table(
         ["Item", "Detail"],
         [
@@ -382,11 +388,6 @@ def build_docx():
         ],
         widths=[1.7, 4.7],
     )
-    para("Aligned with the Fund for Innovation in Development Call for Proposals 2026.",
-         size=9, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, after=2, italic=True)
-    para(FID_URL, size=8, color=TEAL, align=WD_ALIGN_PARAGRAPH.CENTER, after=6)
-
-    doc.add_page_break()
 
     heading("1. Executive Summary", 1)
     for i, p in enumerate(EXEC_SUMMARY):
@@ -468,7 +469,9 @@ def build_docx():
         doc.save(str(OUT_DOC))
         print(f"DOCX: {OUT_DOC}")
     except PermissionError:
-        alt = OUT_DOC.with_name(OUT_DOC.stem + "_unlocked" + OUT_DOC.suffix)
+        alt_dir = REPO / "tmp"
+        alt_dir.mkdir(parents=True, exist_ok=True)
+        alt = alt_dir / (OUT_DOC.stem + "_unlocked" + OUT_DOC.suffix)
         doc.save(str(alt))
         print(f"DOCX locked; saved as: {alt}")
 
@@ -574,16 +577,16 @@ def build_pdf():
     story.append(Spacer(1, 10))
     story.append(img("cover", w=page_w * 0.92, max_h=2.7 * inch,
                      caption="FairBanks Community Reach \u2014 " + TAGLINE))
+    story.append(Paragraph(
+        f'Aligned with the FID Call for Proposals 2026. '
+        f'<link href="{FID_URL}"><font color="#{TEAL}">Source</font></link>', st["Meta"]))
+    story.append(PageBreak())
     table(["Item", "Detail"], [
         ["Applicant", META["applicant"]],
         ["Sectors", META["sectors"]],
         ["Geography", META["geography"]],
         ["Funding stage", META["stage"]],
     ], widths=[page_w * 0.24, page_w * 0.76])
-    story.append(Paragraph(
-        f'Aligned with the FID Call for Proposals 2026. '
-        f'<link href="{FID_URL}"><font color="#{TEAL}">Source</font></link>', st["Meta"]))
-    story.append(PageBreak())
 
     h1("1. Executive Summary")
     for i, p in enumerate(EXEC_SUMMARY):
@@ -689,7 +692,9 @@ def build_pdf():
         write(OUT_PDF)
         print(f"PDF: {OUT_PDF}")
     except PermissionError:
-        alt = OUT_PDF.with_name(OUT_PDF.stem + "_unlocked" + OUT_PDF.suffix)
+        alt_dir = REPO / "tmp"
+        alt_dir.mkdir(parents=True, exist_ok=True)
+        alt = alt_dir / (OUT_PDF.stem + "_unlocked" + OUT_PDF.suffix)
         write(alt)
         print(f"PDF locked; saved as: {alt}")
 
@@ -711,6 +716,56 @@ def build_pptx():
     prs.slide_width = Inches(13.333)
     prs.slide_height = Inches(7.5)
     SW, SH = prs.slide_width, prs.slide_height
+    def _add_entrance_anims(slide):
+        """Light fade-in on pictures and key text (documents.mdc motion)."""
+        from lxml import etree
+        NS_P = "http://schemas.openxmlformats.org/presentationml/2006/main"
+        spids = []
+        for shape in slide.shapes:
+            try:
+                st = int(shape.shape_type) if shape.shape_type is not None else -1
+            except Exception:
+                st = -1
+            has_text = bool(getattr(shape, "has_text_frame", False) and shape.has_text_frame)
+            if st == 13 or has_text:
+                spids.append(str(shape.shape_id))
+            if len(spids) >= 3:
+                break
+        if not spids:
+            return
+        sld = slide._element
+        for old in sld.findall(f"{{{NS_P}}}timing"):
+            sld.remove(old)
+        children = []
+        nid = 3
+        for i, spid in enumerate(spids):
+            delay = 0 if i == 0 else 200
+            children.append(
+                f'<p:par xmlns:p="{NS_P}">'
+                f'<p:cTn id="{nid}" presetID="10" presetClass="entr" presetSubtype="0" '
+                f'fill="hold" nodeType="withEffect">'
+                f'<p:stCondLst><p:cond delay="{delay}"/></p:stCondLst>'
+                f'<p:childTnLst>'
+                f'<p:animEffect transition="in" filter="fade">'
+                f'<p:cBhvr><p:cTn id="{nid + 1}" dur="450"/>'
+                f'<p:tgtEl><p:spTgt spid="{spid}"/></p:tgtEl></p:cBhvr>'
+                f'</p:animEffect></p:childTnLst></p:cTn></p:par>'
+            )
+            nid += 2
+        xml = (
+            f'<p:timing xmlns:p="{NS_P}">'
+            f'<p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot">'
+            f'<p:childTnLst><p:seq concurrent="true" nextAc="seek">'
+            f'<p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>'
+            f'<p:par><p:cTn id="{nid}" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst>'
+            f'<p:childTnLst>{"".join(children)}</p:childTnLst></p:cTn></p:par>'
+            f'</p:childTnLst></p:cTn>'
+            f'<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>'
+            f'<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst>'
+            f'</p:seq></p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>'
+        )
+        sld.append(etree.fromstring(xml))
+
     blank = prs.slide_layouts[6]
 
     def rect(slide, x, y, w, h, color, line_color=None):
@@ -1058,11 +1113,15 @@ def build_pptx():
             SLOGAN, size=14, bold=True, color="FFFFFF")
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for _sl in prs.slides:
+        _add_entrance_anims(_sl)
     try:
         prs.save(str(OUT_PPT))
         print(f"PPTX: {OUT_PPT}")
     except PermissionError:
-        alt = OUT_PPT.with_name(OUT_PPT.stem + "_unlocked" + OUT_PPT.suffix)
+        alt_dir = REPO / "tmp"
+        alt_dir.mkdir(parents=True, exist_ok=True)
+        alt = alt_dir / (OUT_PPT.stem + "_unlocked" + OUT_PPT.suffix)
         prs.save(str(alt))
         print(f"PPTX locked; saved as: {alt}")
 

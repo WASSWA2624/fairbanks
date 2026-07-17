@@ -392,6 +392,56 @@ def build_pptx():
     from pptx import Presentation
     from pptx.util import Inches, Pt
     from pptx.dml.color import RGBColor
+    def _add_entrance_anims(slide):
+        """Light fade-in on pictures and key text (documents.mdc motion)."""
+        from lxml import etree
+        NS_P = "http://schemas.openxmlformats.org/presentationml/2006/main"
+        spids = []
+        for shape in slide.shapes:
+            try:
+                st = int(shape.shape_type) if shape.shape_type is not None else -1
+            except Exception:
+                st = -1
+            has_text = bool(getattr(shape, "has_text_frame", False) and shape.has_text_frame)
+            if st == 13 or has_text:
+                spids.append(str(shape.shape_id))
+            if len(spids) >= 3:
+                break
+        if not spids:
+            return
+        sld = slide._element
+        for old in sld.findall(f"{{{NS_P}}}timing"):
+            sld.remove(old)
+        children = []
+        nid = 3
+        for i, spid in enumerate(spids):
+            delay = 0 if i == 0 else 200
+            children.append(
+                f'<p:par xmlns:p="{NS_P}">'
+                f'<p:cTn id="{nid}" presetID="10" presetClass="entr" presetSubtype="0" '
+                f'fill="hold" nodeType="withEffect">'
+                f'<p:stCondLst><p:cond delay="{delay}"/></p:stCondLst>'
+                f'<p:childTnLst>'
+                f'<p:animEffect transition="in" filter="fade">'
+                f'<p:cBhvr><p:cTn id="{nid + 1}" dur="450"/>'
+                f'<p:tgtEl><p:spTgt spid="{spid}"/></p:tgtEl></p:cBhvr>'
+                f'</p:animEffect></p:childTnLst></p:cTn></p:par>'
+            )
+            nid += 2
+        xml = (
+            f'<p:timing xmlns:p="{NS_P}">'
+            f'<p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot">'
+            f'<p:childTnLst><p:seq concurrent="true" nextAc="seek">'
+            f'<p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>'
+            f'<p:par><p:cTn id="{nid}" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst>'
+            f'<p:childTnLst>{"".join(children)}</p:childTnLst></p:cTn></p:par>'
+            f'</p:childTnLst></p:cTn>'
+            f'<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>'
+            f'<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst>'
+            f'</p:seq></p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>'
+        )
+        sld.append(etree.fromstring(xml))
+
     from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
     from pptx.enum.shapes import MSO_SHAPE
     from PIL import Image as PILImage
@@ -504,11 +554,15 @@ def build_pptx():
     sections = [
         ("I", "Statement of Interest", STATEMENT[0], None),
         ("II", "Organizational Capacity", "\n".join(f"• {c}" for c in CAPACITY[:4]), "facility"),
-        ("III", "Objective 4 Alignment", OBJ4_FIT[1][1], "architecture"),
-        ("IV", "Interoperability", "eCHIS household capture → DHIS2 aggregates → facility EMR referrals", "mobile"),
-        ("V", "Geographic Focus", GEO[0], "outreach"),
-        ("VI", "Sustainability", SUSTAIN[0], "pharmacy"),
-        ("VII", "Next Step", "Ready to develop full proposal with partners and MoH-aligned reviewers.", "gis"),
+        ("III", "Alignment with Objective 4", OBJ4_FIT[1][1], "architecture"),
+        ("IV", "Proposed Digital Health Activity", "\n".join(f"• {p}" for p in PROPOSED[:4]), "mobile"),
+        ("V", "Interoperability Approach",
+         "eCHIS household capture → DHIS2 aggregates → facility EMR referrals", "dashboard"),
+        ("VI", "Geographic Focus", GEO[0], "outreach"),
+        ("VII", "Sustainability & Local Ownership", "\n".join(f"• {s}" for s in SUSTAIN[:3]), "pharmacy"),
+        ("VIII", "Partnership Landscape", "\n".join(f"• {p}" for p in PARTNERS[:4]), "gis"),
+        ("IX", "Readiness for Full Proposal",
+         "Ready to develop a full Objective 4 proposal with partners and MoH-aligned reviewers.", None),
     ]
 
     for i, (roman, title, body, img_key) in enumerate(sections, start=2):
@@ -522,6 +576,8 @@ def build_pptx():
         footer(s, i)
 
     OUT.mkdir(parents=True, exist_ok=True)
+    for _sl in prs.slides:
+        _add_entrance_anims(_sl)
     prs.save(str(OUT_PPT))
     print(f"PPTX: {OUT_PPT}")
 

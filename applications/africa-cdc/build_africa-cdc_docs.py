@@ -379,6 +379,56 @@ def build_pptx():
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(13.333), Inches(7.5)
     SW, SH = prs.slide_width, prs.slide_height
+    def _add_entrance_anims(slide):
+        """Light fade-in on pictures and key text (documents.mdc motion)."""
+        from lxml import etree
+        NS_P = "http://schemas.openxmlformats.org/presentationml/2006/main"
+        spids = []
+        for shape in slide.shapes:
+            try:
+                st = int(shape.shape_type) if shape.shape_type is not None else -1
+            except Exception:
+                st = -1
+            has_text = bool(getattr(shape, "has_text_frame", False) and shape.has_text_frame)
+            if st == 13 or has_text:
+                spids.append(str(shape.shape_id))
+            if len(spids) >= 3:
+                break
+        if not spids:
+            return
+        sld = slide._element
+        for old in sld.findall(f"{{{NS_P}}}timing"):
+            sld.remove(old)
+        children = []
+        nid = 3
+        for i, spid in enumerate(spids):
+            delay = 0 if i == 0 else 200
+            children.append(
+                f'<p:par xmlns:p="{NS_P}">'
+                f'<p:cTn id="{nid}" presetID="10" presetClass="entr" presetSubtype="0" '
+                f'fill="hold" nodeType="withEffect">'
+                f'<p:stCondLst><p:cond delay="{delay}"/></p:stCondLst>'
+                f'<p:childTnLst>'
+                f'<p:animEffect transition="in" filter="fade">'
+                f'<p:cBhvr><p:cTn id="{nid + 1}" dur="450"/>'
+                f'<p:tgtEl><p:spTgt spid="{spid}"/></p:tgtEl></p:cBhvr>'
+                f'</p:animEffect></p:childTnLst></p:cTn></p:par>'
+            )
+            nid += 2
+        xml = (
+            f'<p:timing xmlns:p="{NS_P}">'
+            f'<p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot">'
+            f'<p:childTnLst><p:seq concurrent="true" nextAc="seek">'
+            f'<p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>'
+            f'<p:par><p:cTn id="{nid}" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst>'
+            f'<p:childTnLst>{"".join(children)}</p:childTnLst></p:cTn></p:par>'
+            f'</p:childTnLst></p:cTn>'
+            f'<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>'
+            f'<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst>'
+            f'</p:seq></p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>'
+        )
+        sld.append(etree.fromstring(xml))
+
     blank = prs.slide_layouts[6]
 
     def rect(sl, x, y, w, h, fill, line=None):
@@ -583,6 +633,8 @@ def build_pptx():
     tb(s, Inches(0.6), SH - Inches(0.9), Inches(12), Inches(0.3), META["deadline"], size=12, color="D0E8E8")
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for _sl in prs.slides:
+        _add_entrance_anims(_sl)
     prs.save(str(OUT_PPT))
     print(f"PPTX: {OUT_PPT}")
 

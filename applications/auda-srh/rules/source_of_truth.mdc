@@ -6,35 +6,34 @@ alwaysApply: false
 
 # AUDA-SRH — source of truth
 
-All work for this pack must align with [AUDA-NEPAD Youth SRH Ambassadors Initiative 2026](https://opportunitiesforyouth.org/2026/06/13/african-union-youth-srh-ambassadors-initiative-2026-apply-to-become-an-auda-nepad-youth-srh-ambassador/). That page is the source of truth for eligibility, theme, format, and deadlines. If internal docs conflict with the call, fix the docs to match the call.
+All work for this pack must align with [AUDA-NEPAD Youth SRH Ambassadors Initiative 2026](https://opportunitiesforyouth.org/2026/06/13/african-union-youth-srh-ambassadors-initiative-2026-apply-to-become-an-auda-nepad-youth-srh-ambassador/). That page wins on eligibility, theme, format, and deadlines.
 
 Also follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
+## Call angle
+
+Voluntary Youth SRH Ambassador role (ages **18–35**, Africans + diaspora). Deadline **17 July 2026**. Advocacy, digital engagement, community mobilisation — link adolescent/SRH outreach to FairBanks cascade and FCHIP data feedback.
+
 ## Mandatory checks
 
-1. Keep claims consistent with the live call (eligibility, geography, benefits, deadlines).
-2. Frame a clear **win-win**: value for FairBanks / FCHIP and value for the programme.
-3. Stay rooted in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
-4. Use simple, human language. Do not invent slogans beyond **Your health, our mission.**
-5. Before finalising, re-check the official programme page.
+1. Age 18–35; SRH advocacy + youth leadership; voluntary (no stipend) with training/visibility benefits.
+2. Clear win-win: ambassador + AUDA-NEPAD + FairBanks communities.
+3. Root in FairBanks cascade; FCHIP as intelligence layer on community SRH signals.
+4. Simple human language. Only approved slogan: **Your health, our mission.**
+5. Re-check official page before finalising.
 
-## FairBanks deliverable set
+## Deliverables
 
-| Role | Path |
+| Format | Path |
 |---|---|
-| Pitch deck | `applications/auda-srh/documents/auda-srh_ppt.pptx` |
 | PDF | `applications/auda-srh/documents/auda-srh_pdf.pdf` |
+| PowerPoint | `applications/auda-srh/documents/auda-srh_ppt.pptx` |
 | Word | `applications/auda-srh/documents/auda-srh_word.docx` |
 
-1. Treat these files as one synchronized content set.
-2. Prefer the most recently edited format; if unclear, follow this SoT and the live call.
-3. Preserve established document layout and branding.
-4. Regenerate **only** with `applications/auda-srh/build_auda-srh_docs.py` — this project-specific script; no shared document factory or cross-project generator.
-5. Keep only the three official deliverables in `documents/`.
-6. Cover/first page: programme name, FairBanks/FCHIP framing, document title, slogan, hero image. **Do not** add an application-details summary table unless the live call explicitly requires it.
+One synced set. Regenerate only with `applications/auda-srh/build_auda-srh_docs.py` — **project-specific**; no shared factory. Keep only these three files in `documents/`.
 
-## Branding
+## Cover / branding
 
-- **PowerPoint (`auda-srh_ppt.pptx`):** Elegant by default — balanced type beside photos, real pictures/diagrams from `assets/`, clean visual design, light purposeful animations, readability check. Follow the PowerPoint section in `.cursor/rules/documents.mdc`.
-- Show **Your health, our mission.** on every cover/title page or slide.
-- Do not invent slogans or alter core claims without user direction.
+- **PowerPoint (`auda-srh_ppt.pptx`):** Elegant by default — balanced type beside photos, real pictures from `assets/`, clean design, light purposeful animations. Follow `.cursor/rules/documents.mdc`.
+- Programme name, FairBanks/FCHIP framing, document title, **Your health, our mission.**, hero image.
+- **Do not** put an application-details summary table on the first page unless the live call requires it.
