@@ -38,8 +38,8 @@ PHOTOS = {
 # ---------------------------------------------------------------------------
 
 PROJECT_TITLE = (
-    "FCHIP Last-Mile Bridge: Interoperable Community Health Data into "
-    "Uganda's National Digital Health Architecture"
+    "Connecting Community Health Visits to Uganda's National Digital Health Systems "
+    "(FCHIP)"
 )
 ORG_NAME = "FairBanks Medical Centre"
 ADDENDUM = (
@@ -48,7 +48,7 @@ ADDENDUM = (
 )
 COUNTRY = "Uganda"
 FEDERAL_SHARE = "$1,850,000"
-COST_SHARE = "$0 (none proposed at SOI stage)"
+COST_SHARE = "$0 (none proposed at this stage)"
 PROJECT_LENGTH = "36 months"
 
 PROGRAMME = "U.S. Department of State / GHSD — Advancing Global Health (DFOP0017890)"
@@ -70,220 +70,234 @@ CRITICAL_DETAILS = [
 ]
 
 # ---------------------------------------------------------------------------
-# Narrative content — win-win SOI (APS §D Phase 1 structure)
+# Narrative content — win-win SOI (APS Phase 1 structure)
 # ---------------------------------------------------------------------------
 
 ISSUE = [
-    "Uganda's five-year health transition (April 2026-December 2030) asks facilities, "
-    "districts, and communities to keep HIV, TB, malaria, maternal and child health, "
-    "immunisation, and outbreak services strong while shifting toward government-led, "
-    "performance-based programming. That shift only works if decision-makers see what is "
-    "happening at the last mile - not weeks later in paper registers.",
-    "Community Health Workers and Village Health Teams already walk households and "
-    "refer patients. Too often their work never reaches eCHIS, facility EMRs, DHIS2/"
-    "eIDSR, or the National Data Warehouse in a usable form. National digital systems "
-    "then miss early fever clusters, missed antenatal visits, immunisation gaps, and "
-    "stock pressure. The result is reactive care, weak accountability, and higher risk "
-    "that transition gains reverse.",
-    "The opportunity is clear: bridge last-mile community data into Uganda's approved "
-    "National Digital Health Architecture (NDHA) so Ministry of Health (MoH) systems "
-    "become more complete, more actionable, and progressively owned by Government of "
-    "Uganda (GOU) institutions - without building a parallel silo.",
+    "Uganda is moving through a five-year health transition (April 2026 to December "
+    "2030). Clinics, districts, and communities must keep HIV, TB, malaria, maternal "
+    "and child health, immunisation, and outbreak services running well while more "
+    "work shifts to government-led programmes. That only works if leaders can see "
+    "what is happening in communities in time to act - not weeks later from paper books.",
+    "Community Health Workers and Village Health Teams already visit homes and send "
+    "people for care. Too often, what they record never reaches eCHIS, clinic records, "
+    "DHIS2/eIDSR, or the National Data Warehouse in a form people can use. Then "
+    "national systems miss rising fever cases, missed antenatal visits, gaps in "
+    "immunisation, and medicine pressure. Care stays reactive, follow-up is weak, and "
+    "hard-won gains can slip.",
+    "There is a clear chance to fix this: help community visit data flow into Uganda's "
+    "National Digital Health Architecture (NDHA) so Ministry of Health systems are "
+    "fuller and more useful, and so government can take over step by step - without "
+    "building a separate parallel system.",
 ]
 
 SOLUTION = [
-    "FairBanks Medical Centre and FairBanks Community Reach respectfully submit this "
-    "Statement of Interest under Track 2, Objective 4 of Addendum E: strengthen and "
-    "scale interoperable, fit-for-purpose digital health systems with progressive GOU "
-    "responsibility and sustainable operations.",
-    "We propose to pilot and then transfer a community-to-facility intelligence layer - "
-    "the FairBanks Community Health Intelligence Platform (FCHIP) - that captures "
-    "CHW/VHT household and visit data offline, syncs securely, maps indicators to "
-    "national reporting elements, and feeds facility and district action. FCHIP is not "
-    "a parallel national system. It is a bridge that makes Uganda's existing digital "
-    "stack more complete at community level and more useful for prevention.",
-    "Primary subsystem focus (permitted under Objective 4): eCHIS-aligned household/"
-    "visit capture; facility EMR encounter and referral handoff (eAfya/ClinicMaster "
-    "pathways as available in the catchment); DHIS2 aggregate reporting and eIDSR "
-    "surveillance signals; readiness feeds toward the National Data Warehouse; and "
-    "iHRIS-aware CHW/VHT workforce directories where schemas allow. Design aligns "
-    "with NDHA and OpenHIE-consistent interoperability (API-first, standards-aware "
-    "exports), under MoH digital health authority.",
+    "FairBanks Medical Centre and FairBanks Community Reach submit this Statement of "
+    "Interest under Track 2, Objective 4 of Addendum E: strengthen and scale digital "
+    "health systems that work together, fit Uganda's needs, and move toward government "
+    "ownership and steady day-to-day running.",
+    "We want to trial, then hand over, a practical tool - the FairBanks Community "
+    "Health Intelligence Platform (FCHIP) - that lets CHWs and VHTs record household "
+    "and visit information on phones even offline, sync it safely, match it to national "
+    "reporting needs, and help the clinic and district act. FCHIP is not meant to replace "
+    "Uganda's national systems. It is a bridge so community work shows up where it "
+    "should and helps prevent problems earlier.",
+    "We will focus on the links that matter most for our catchments: household and "
+    "visit data in line with eCHIS; referral and visit handoff into clinic systems "
+    "(such as eAfya or ClinicMaster where used); summary reporting into DHIS2 and "
+    "alerts that support eIDSR; readiness to feed the National Data Warehouse; and "
+    "CHW/VHT workforce lists that can align with iHRIS where the rules allow. We will "
+    "follow NDHA and OpenHIE-style sharing rules, under Ministry of Health guidance.",
 ]
 
 WIN_WIN_INTRO = (
-    "This partnership is designed as a durable win-win: each party gains something "
-    "lasting, and no party depends forever on a private tool outside GOU systems."
+    "We want every partner to gain something lasting. No one should depend forever "
+    "on a private tool that sits outside government systems."
 )
 
 WIN_WIN = [
     [
         "Uganda / Ministry of Health",
-        "Richer last-mile data into eCHIS, DHIS2/eIDSR, and related national platforms; "
-        "clearer referral closure; documented handoff of staffing and recurrent costs "
-        "toward GOU ownership by project close.",
+        "More complete community data in eCHIS, DHIS2/eIDSR, and related national "
+        "systems; clearer proof that referrals were closed; and a written plan to "
+        "hand over staff roles and running costs to government by the end of the project.",
     ],
     [
         "U.S. Department of State / GHSD",
-        "A Ugandan implementer with a live clinic and community network that protects "
-        "essential services while proving interoperable digital scale-up under the MOU - "
-        "accountable, measurable, and transferable - advancing U.S. interests in health "
-        "security and country self-reliance.",
+        "A Ugandan partner with a working clinic and community network that keeps "
+        "essential services going while showing digital systems can connect under the "
+        "MOU - in ways that can be measured and handed on, supporting U.S. goals around "
+        "health security and country self-reliance.",
     ],
     [
         "Districts & facilities",
-        "Dashboards for outreach targeting, referral follow-up, and programme "
-        "monitoring; GIS hotspot views that support planning before outbreaks arrive "
-        "at the ward.",
+        "Simple screens to plan outreach, follow referrals, and track programmes; "
+        "maps that show hotspots so teams can act before outbreaks hit the ward.",
     ],
     [
         "Communities & CHWs/VHTs",
-        "Simple offline tools, faster support from the medical centre, and care that "
-        "reaches mothers, children, older persons, and people with chronic conditions "
-        "before crises.",
+        "Easy tools that work offline, quicker support from the medical centre, and "
+        "care that reaches mothers, children, older people, and people with long-term "
+        "illness earlier.",
     ],
     [
         "FairBanks / FCHIP",
-        "Room to refine and document a production-grade interoperability model inside "
-        "a real catchment - then share specifications, training packages, and transfer "
-        "plans with MoH-aligned partners.",
+        "A real place to test and write down a working data-sharing approach, then "
+        "share the guides, training, and handoff plans with Ministry-aligned partners.",
     ],
 ]
 
 ACTIVITIES = [
-    "A1. Deploy offline-capable CHW/VHT capture aligned with eCHIS household and "
-    "visit concepts across FairBanks Community Reach catchments.",
-    "A2. Establish a secure sync and role-based access pipeline linking community "
-    "records to FairBanks Medical Centre workflows and authorised district viewers, "
-    "consistent with Uganda data-protection and cybersecurity expectations.",
-    "A3. Map community indicators to DHIS2 reporting elements and demonstrate "
-    "aggregate submission pathways for MNCH, immunisation, NCD screening, and "
-    "disease surveillance signals (including eIDSR-relevant alerts).",
-    "A4. Deliver facility and programme dashboards plus GIS hotspot views that "
-    "trigger outreach, referrals, and supply planning actions.",
-    "A5. Produce interoperability specifications, data-governance protocols, "
-    "training curricula, and a staged GOU-ownership transition plan (staffing and "
-    "recurrent operating costs) suitable for full-proposal detailed design.",
+    "A1. Put simple offline phone tools in the hands of CHWs and VHTs so household "
+    "and visit records match eCHIS ideas across FairBanks Community Reach areas.",
+    "A2. Set up safe syncing and clear access rules so community records reach "
+    "FairBanks Medical Centre work and authorised district viewers, in line with "
+    "Uganda's data protection and security expectations.",
+    "A3. Match community indicators to DHIS2 reports and show how summary data can "
+    "move for maternal and child health, immunisation, chronic disease screening, "
+    "and disease watch (including eIDSR-related alerts).",
+    "A4. Give clinics and programmes clear dashboards and hotspot maps that help "
+    "trigger outreach, referrals, and supply planning.",
+    "A5. Write the sharing rules, data-handling guides, training materials, and a "
+    "step-by-step government handoff plan (including staff roles and running costs) "
+    "ready for a full proposal if we are invited.",
 ]
 
 APPROACH = [
-    "Anchor in a live cascade: community members identify needs; CHWs/VHTs collect "
-    "and educate; FairBanks Community Reach runs outreach and home visits; "
-    "FairBanks Medical Centre provides clinical care, diagnostics, pharmacy, and "
-    "referrals; FCHIP is the intelligence layer that closes the data-and-feedback loop.",
-    "Build API-first, standards-aware exports - not a closed proprietary vault. "
-    "Prioritise interoperability with eCHIS, DHIS2/eIDSR, facility EMR pathways "
-    "(eAfya/ClinicMaster as applicable), and National Data Warehouse readiness when "
-    "schemas are confirmed.",
-    "Protect essential services during transition: structure community data around "
-    "HIV/TB/malaria flags where relevant, maternal and child pathways, immunisation "
-    "follow-up, and outbreak early warning so digital work reinforces - not distracts "
-    "from - service continuity.",
-    "Co-design forms and alerts with CHWs, facility staff, and local leaders; train "
-    "Ugandan data stewards and developers; document every interface for MoH review.",
-    "Start where FairBanks already operates (Bukoto, Kyebando, Kisaasi, Kamwokya, "
-    "Kikaaya and surrounding communities), then design for district replication "
-    "using Uganda's existing CHW/VHT architecture.",
+    "We start from how FairBanks already works: communities name needs; CHWs and "
+    "VHTs visit, teach, and refer; FairBanks Community Reach runs outreach and home "
+    "visits; FairBanks Medical Centre provides clinic care, tests, pharmacy, and "
+    "referrals; FCHIP helps the information move back and forth so teams can act.",
+    "We will build for sharing, not for locking data away. Priority links are eCHIS, "
+    "DHIS2/eIDSR, clinic record systems (eAfya or ClinicMaster where used), and the "
+    "National Data Warehouse when the national formats are confirmed.",
+    "Digital work must support, not distract from, life-saving care. Community forms "
+    "will include HIV, TB, and malaria flags where useful, plus maternal and child "
+    "pathways, immunisation follow-up, and early outbreak warning.",
+    "We will shape forms and alerts with CHWs, clinic staff, and local leaders; train "
+    "Ugandan staff who will keep the system going; and write every link clearly for "
+    "Ministry of Health review.",
+    "We start where FairBanks already works - Bukoto, Kyebando, Kisaasi, Kamwokya, "
+    "Kikaaya and nearby communities - and design so other districts with CHW/VHT "
+    "networks can copy the approach later.",
 ]
 
 OUTCOMES = [
     [
         "Save lives",
-        "Earlier alerts for missed ANC, immunisation gaps, fever clusters, and "
-        "referral drop-offs - linked to CHW follow-up and clinic action.",
+        "Earlier notice of missed antenatal visits, immunisation gaps, fever clusters, "
+        "and lost referrals - followed by CHW action and clinic support.",
     ],
     [
         "Strengthen systems",
-        "Working mappings and demo exports for eCHIS-aligned records and DHIS2/"
-        "eIDSR aggregates, with open documentation for MoH and partners.",
+        "Working links and sample exports for eCHIS-style records and DHIS2/eIDSR "
+        "summaries, with clear guides for the Ministry and partners.",
     ],
     [
-        "Enhance efficiency",
-        "Less double entry and paper lag; role-based dashboards that shorten the "
-        "path from community signal to facility or district response.",
+        "Work more efficiently",
+        "Less double entry and less waiting on paper; screens that help teams move "
+        "from a community signal to clinic or district action faster.",
     ],
     [
-        "Foster self-reliance",
-        "Handoff package: source documentation, SOPs, training, hosting options, "
-        "and a costed path to transfer recurrent operations toward domestic systems "
-        "by project close.",
+        "Build self-reliance",
+        "A handoff package with guides, standard procedures, training, hosting "
+        "options, and a costed path to move running costs onto domestic systems by "
+        "project close.",
     ],
     [
-        "Advance U.S. interest",
-        "Measurable contribution to MOU digital transition: interoperable last-mile "
-        "data under GOU authority, protecting prior U.S. health investments and "
-        "strengthening epidemic early warning.",
+        "Support U.S. interest",
+        "A clear contribution to the MOU digital shift: community data that connects "
+        "under government authority, protects past U.S. health investments, and "
+        "strengthens early warning for outbreaks.",
     ],
 ]
 
 CAPACITY = [
-    "Ugandan social enterprise with a functioning medical centre - clinical care, "
-    "diagnostics, pharmacy, and referral pathways already in daily use.",
-    "Active FairBanks Community Reach programmes: maternal and child health, "
-    "Gericare, chronic disease screening, school and corporate health outreach.",
-    "Established CHW/VHT relationships in Kampala-area communities named above - "
-    "real users, not a greenfield pilot.",
-    "Digital health records foundation and pharmacy dispensing data already "
-    "supporting facility operations.",
-    "Research orientation and partnership practice - evidence, ethics, and skills "
-    "development sit inside the FairBanks community health model.",
+    "We are a Ugandan organisation with a working medical centre - clinic care, "
+    "tests, pharmacy, and referrals already running every day.",
+    "FairBanks Community Reach is active in maternal and child health, Gericare, "
+    "chronic disease screening, and school and workplace outreach.",
+    "We already work with CHWs and VHTs in the Kampala-area communities named "
+    "above. This is not starting from zero.",
+    "We already keep digital clinic records and pharmacy dispensing data that support "
+    "day-to-day facility work.",
+    "Research, ethics, and skills training are part of how FairBanks works with "
+    "communities and partners.",
 ]
 
 INTEROP_ROWS = [
-    ["eCHIS", "Household registration, visit logs, referral flags via structured mobile capture"],
-    ["Facility EMR (eAfya / ClinicMaster)", "Referral handoff and encounter linkage at FairBanks Medical Centre"],
-    ["DHIS2 / eIDSR", "Aggregate exports and surveillance signals for MNCH, immunisation, outbreaks"],
-    ["National Data Warehouse", "Standardised JSON/API feeds when national schema is confirmed"],
-    ["iHRIS", "CHW/VHT workforce directory alignment where schemas allow"],
+    ["eCHIS", "Household lists, visit logs, and referral flags from phone tools that work offline"],
+    ["Clinic records (eAfya / ClinicMaster)", "Referral handoff and visit links at FairBanks Medical Centre"],
+    ["DHIS2 / eIDSR", "Summary reports and disease alerts for maternal/child health, immunisation, outbreaks"],
+    ["National Data Warehouse", "Standard data feeds when the national format is confirmed"],
+    ["iHRIS", "CHW/VHT worker lists aligned where the national rules allow"],
 ]
 
 PRINCIPLES = [
-    ["Sustainability & country ownership", "Design for MoH/NDHA alignment and staged transfer of operations"],
-    ["Protect essential services", "Digital workflows reinforce HIV, TB, malaria, MNCH, immunisation"],
-    ["Data for action & accountability", "Quality data into GOU systems - used for decisions, not parallel burden"],
-    ["Integrated, people-centred care", "One community-to-facility loop; less fragmentation"],
-    ["Local partnerships", "Government, CHWs/VHTs, CBOs, academic and NGO partners"],
-    ["Evidence-based & context fit", "Pilot in live catchments; measure; refine before scale"],
-    ["Oversight & coordination", "Align with MoH priorities and designated review platforms"],
+    ["Sustainability & country ownership", "Build with MoH/NDHA rules and plan a clear handoff over time"],
+    ["Protect essential services", "Digital tools support HIV, TB, malaria, maternal/child care, and immunisation"],
+    ["Data for action & accountability", "Good data into government systems that people actually use to decide"],
+    ["Integrated, people-centred care", "One community-to-clinic loop; less fragmented work"],
+    ["Local partnerships", "Government, CHWs/VHTs, community groups, schools, and NGO partners"],
+    ["Evidence-based & context fit", "Try in real communities; measure; improve before wider use"],
+    ["Oversight & coordination", "Stay aligned with Ministry priorities and joint review meetings"],
 ]
 
 PARTNERS = [
     [
         "Ministry of Health (digital health / community health)",
-        "Alignment with NDHA, eCHIS, and national reporting; review of interfaces and transfer plan",
+        "Align with NDHA, eCHIS, and national reporting; review links and the handoff plan",
     ],
     [
-        "District health teams (pilot geography)",
-        "Aggregate reporting validation, dashboard use, readiness dialogue",
+        "District health teams (pilot areas)",
+        "Check summary reports, use dashboards, and discuss readiness",
     ],
     [
         "CHWs, VHTs, and community leaders",
-        "Primary data partners; co-design of forms and alerts",
+        "Main partners for data; help shape forms and alerts",
     ],
     [
-        "Academic partners (to be confirmed at Phase 2)",
-        "Evaluation support and interoperability testing",
+        "Academic partners (to be confirmed later)",
+        "Help with learning and testing how systems share data",
     ],
     [
-        "NGOs / CBOs collaborating with FairBanks Community Reach",
-        "Outreach coordination and community engagement",
+        "NGOs / community groups working with FairBanks Community Reach",
+        "Help coordinate outreach and community work",
     ],
 ]
 
 COST_SHARE_NOTE = (
-    "No cost share is proposed at the SOI stage. FairBanks will continue operating "
-    "its medical centre and community outreach as complementary organisational "
-    "activity. Opportunities for in-kind or matching contributions can be discussed "
-    "during co-design or Phase 2 if invited."
+    "We are not proposing cost share at this stage. FairBanks will keep running its "
+    "medical centre and community outreach as normal. If invited to the next stage, "
+    "we can discuss any in-kind support or matching help then."
 )
 
 CLOSING = (
-    "This Statement of Interest confirms FairBanks' intent to advance Track 2, "
-    "Objective 4 with a community-rooted, interoperable, government-aligned digital "
-    "health proposal. We seek invitation to Phase 2 (full proposal) and/or "
-    "consultative program design, where we will detail workplans, budgets, M&E, "
-    "partnership letters, and a clear transition of staffing and recurrent costs "
-    "toward sustainable Ugandan ownership."
+    "With this Statement of Interest, FairBanks asks to move Track 2, Objective 4 "
+    "forward through a digital health approach rooted in community work, built to "
+    "connect with government systems, and designed for Ugandan ownership. We hope "
+    "to be invited to Phase 2 (full proposal) or joint programme design, where we "
+    "will set out workplans, budgets, monitoring, partner letters, and a clear plan "
+    "to hand over staffing and running costs."
+)
+
+OUTCOMES_INTRO = (
+    "Success means people get help earlier, government systems get stronger, work "
+    "runs with less waste, Uganda can carry more of the load, and U.S. health "
+    "investments stay protected:"
+)
+
+PARTNERS_INTRO = (
+    "The partners below are early ideas for this stage. Names, contacts, and any "
+    "shared budget amounts can change in Phase 2 or joint design if we are invited. "
+    "For this Statement of Interest, FairBanks Medical Centre is the lead applicant."
+)
+
+APPROACH_LABEL = "How we will work:"
+ACTIVITIES_LABEL = "What we will do:"
+FIGURE_CAPTION = (
+    "Figure 1. From community visits through FCHIP into national digital health systems "
+    "(chart; not counted in the page limit)."
 )
 
 
@@ -463,45 +477,31 @@ def build_docx():
     para(WIN_WIN_INTRO, italic=True, after=6)
     table(["Who gains", "What they gain"], WIN_WIN, widths=[2.0, 4.5], head_size=10, body_size=10)
 
-    para("Core activities:", bold=True, after=4)
+    para(ACTIVITIES_LABEL, bold=True, after=4)
     bullets(ACTIVITIES)
 
-    para("Project approach:", bold=True, after=4, before=6)
+    para(APPROACH_LABEL, bold=True, after=4, before=6)
     for p in APPROACH:
         para(p, after=5)
 
     heading("3. Anticipated Outcomes and Results")
-    para(
-        "Success means lives protected, systems strengthened, efficiency improved, "
-        "self-reliance advanced, and U.S. investments secured through GOU-owned "
-        "digital continuity:",
-        after=6,
-    )
-    table(["Outcome lens", "What success looks like"], OUTCOMES, widths=[1.6, 4.9], head_size=10, body_size=10)
+    para(OUTCOMES_INTRO, after=6)
+    table(["Outcome", "What success looks like"], OUTCOMES, widths=[1.6, 4.9], head_size=10, body_size=10)
 
     heading("4. Organizational Capacity")
     bullets(CAPACITY)
 
-    heading("5. Interoperability Pathway (chart)")
-    table(["Platform", "Integration pathway"], INTEROP_ROWS, widths=[2.2, 4.3], head_size=10, body_size=10)
-    image(
-        "architecture",
-        width_in=5.8,
-        caption="Figure 1. Community cascade to FCHIP to national digital health systems (chart; excluded from page limit).",
-    )
+    heading("5. How Systems Will Connect (chart)")
+    table(["System", "How we connect"], INTEROP_ROWS, widths=[2.2, 4.3], head_size=10, body_size=10)
+    image("architecture", width_in=5.8, caption=FIGURE_CAPTION)
 
     heading("6. Alignment with Addendum E Guiding Principles (chart)")
     table(["Principle", "How FairBanks responds"], PRINCIPLES, widths=[2.2, 4.3], head_size=10, body_size=10)
 
-    heading("7. List of Partner Roles and Responsibilities (preliminary)")
-    para(
-        "Partners below are preliminary characterisations for Phase 1. Roles, contacts, "
-        "and any subrecipient federal-share splits will be refined in Phase 2 / co-design "
-        "if invited. At SOI stage, FairBanks Medical Centre is proposed as prime applicant.",
-        size=12, after=6,
-    )
+    heading("7. Partner Roles (early list)")
+    para(PARTNERS_INTRO, size=12, after=6)
     table(
-        ["Partner", "Proposed role (summary)"],
+        ["Partner", "Proposed role"],
         PARTNERS,
         widths=[2.4, 4.1],
         head_size=10,
@@ -606,47 +606,32 @@ def build_pdf():
     story.append(Paragraph(WIN_WIN_INTRO, st["BodyItalic"]))
     tbl(["Who gains", "What they gain"], WIN_WIN, [pw * 0.28, pw * 0.72])
 
-    story.append(Paragraph("<b>Core activities:</b>", st["Body"]))
+    story.append(Paragraph(f"<b>{ACTIVITIES_LABEL}</b>", st["Body"]))
     for a in ACTIVITIES:
         story.append(Paragraph(f"• {a}", st["FBullet"]))
 
-    story.append(Paragraph("<b>Project approach:</b>", st["Body"]))
+    story.append(Paragraph(f"<b>{APPROACH_LABEL}</b>", st["Body"]))
     for p in APPROACH:
         story.append(Paragraph(p, st["Body"]))
 
     story.append(Paragraph("3. Anticipated Outcomes and Results", st["H1"]))
-    story.append(Paragraph(
-        "Success means lives protected, systems strengthened, efficiency improved, "
-        "self-reliance advanced, and U.S. investments secured through GOU-owned "
-        "digital continuity:",
-        st["Body"],
-    ))
-    tbl(["Outcome lens", "What success looks like"], OUTCOMES, [pw * 0.24, pw * 0.76])
+    story.append(Paragraph(OUTCOMES_INTRO, st["Body"]))
+    tbl(["Outcome", "What success looks like"], OUTCOMES, [pw * 0.24, pw * 0.76])
 
     story.append(Paragraph("4. Organizational Capacity", st["H1"]))
     for c in CAPACITY:
         story.append(Paragraph(f"• {c}", st["FBullet"]))
 
-    story.append(Paragraph("5. Interoperability Pathway (chart)", st["H1"]))
-    tbl(["Platform", "Integration pathway"], INTEROP_ROWS, [pw * 0.32, pw * 0.68])
-    img(
-        "architecture",
-        cap="Figure 1. Community cascade to FCHIP to national digital health systems "
-            "(chart; excluded from page limit).",
-        max_h=2.2 * inch,
-    )
+    story.append(Paragraph("5. How Systems Will Connect (chart)", st["H1"]))
+    tbl(["System", "How we connect"], INTEROP_ROWS, [pw * 0.32, pw * 0.68])
+    img("architecture", cap=FIGURE_CAPTION, max_h=2.2 * inch)
 
     story.append(Paragraph("6. Alignment with Addendum E Guiding Principles (chart)", st["H1"]))
     tbl(["Principle", "How FairBanks responds"], PRINCIPLES, [pw * 0.32, pw * 0.68])
 
-    story.append(Paragraph("7. List of Partner Roles and Responsibilities (preliminary)", st["H1"]))
-    story.append(Paragraph(
-        "Partners below are preliminary characterisations for Phase 1. Roles, contacts, "
-        "and any subrecipient federal-share splits will be refined in Phase 2 / co-design "
-        "if invited. At SOI stage, FairBanks Medical Centre is proposed as prime applicant.",
-        st["Body"],
-    ))
-    tbl(["Partner", "Proposed role (summary)"], PARTNERS, [pw * 0.34, pw * 0.66])
+    story.append(Paragraph("7. Partner Roles (early list)", st["H1"]))
+    story.append(Paragraph(PARTNERS_INTRO, st["Body"]))
+    tbl(["Partner", "Proposed role"], PARTNERS, [pw * 0.34, pw * 0.66])
 
     story.append(Paragraph("8. Resource Contributions and/or Cost Share", st["H1"]))
     story.append(Paragraph(COST_SHARE_NOTE, st["Body"]))
@@ -844,10 +829,10 @@ def build_pptx():
     tb(s, Inches(0.55), SH - Inches(2.2), Inches(12), Inches(0.35),
        ORG_LINE, size=13, bold=True, italic=True, color="F2C79B")
     tb(s, Inches(0.55), SH - Inches(1.7), Inches(12), Inches(0.45),
-       "Objective 4 — Last-mile bridge into eCHIS, EMR, DHIS2/eIDSR, and NDHA",
+       "Objective 4 — Helping community visit data reach eCHIS, clinic records, and DHIS2/eIDSR",
        size=12, italic=True, color="D0E8E8")
     tb(s, Inches(0.55), SH - Inches(1.1), Inches(12), Inches(0.3),
-       f"Win-win Phase 1 SOI  |  {FEDERAL_SHARE}  |  {PROJECT_LENGTH}  |  Due 31 July 2026",
+       f"Phase 1 Statement of Interest  |  {FEDERAL_SHARE}  |  {PROJECT_LENGTH}  |  Due 31 July 2026",
        size=12, color="FFFFFF")
     tb(s, Inches(0.55), SH - Inches(0.7), Inches(12), Inches(0.3), SLOGAN, size=13, bold=True, color="FFFFFF")
 
@@ -860,29 +845,30 @@ def build_pptx():
 
     sections = [
         ("I", "The Problem", ISSUE[0] + "\n\n" + ISSUE[1], "outreach"),
-        ("II", "Statement of Interest", SOLUTION[1], "architecture"),
-        ("III", "Win-Win Value", win_body, None),
-        ("IV", "Core Activities", act_body, "mobile"),
-        ("V", "Project Approach",
-         "Cascade-rooted capture → secure sync → eCHIS / EMR / DHIS2-eIDSR "
-         "interoperability → dashboards & GIS → MoH/NDHA-aligned transfer package.",
+        ("II", "What We Propose", SOLUTION[1], "architecture"),
+        ("III", "Who Gains What", win_body, None),
+        ("IV", "What We Will Do", act_body, "mobile"),
+        ("V", "How We Will Work",
+         "Community visits → safe sync → links to eCHIS, clinic records, and DHIS2/eIDSR "
+         "→ dashboards and maps → clear handoff plan for the Ministry of Health.",
          "dashboard"),
-        ("VI", "Expected Outcomes", out_body, "gis"),
-        ("VII", "Organizational Capacity",
+        ("VI", "What Success Looks Like", out_body, "gis"),
+        ("VII", "Our Capacity",
          "\n".join(f"• {c}" for c in CAPACITY[:4]), "facility"),
-        ("VIII", "Interoperability",
-         "eCHIS household capture → facility EMR (eAfya/ClinicMaster) → DHIS2/eIDSR → "
-         "National Data Warehouse readiness → iHRIS-aware workforce. Bridge layer — "
-         "not a replacement silo. Aligned with NDHA / OpenHIE.",
+        ("VIII", "How Systems Connect",
+         "Phone tools for eCHIS-style household visits → clinic records "
+         "(eAfya/ClinicMaster) → DHIS2/eIDSR summaries → National Data Warehouse "
+         "when ready → CHW/VHT lists that can align with iHRIS. A bridge — not a "
+         "replacement. Built to follow NDHA / OpenHIE sharing rules.",
          "pharmacy"),
-        ("IX", "Sustainability & Ownership",
-         "Documented transition of staffing and recurrent costs toward GOU ownership "
-         "by project close.\n\n"
-         "Train Ugandan developers, CHW supervisors, and data stewards.\n\n"
-         "Clinic and outreach continue as FairBanks operations — the grant accelerates "
-         "interoperable intelligence and transfer.",
+        ("IX", "Ownership Over Time",
+         "By project close, write down how staff roles and running costs move to "
+         "government ownership.\n\n"
+         "Train Ugandan developers, CHW supervisors, and data staff.\n\n"
+         "The clinic and outreach keep running as FairBanks work. The grant helps "
+         "connect the data and prepare the handoff.",
          None),
-        ("X", "Readiness for Phase 2", CLOSING, None),
+        ("X", "Ready for Phase 2", CLOSING, None),
     ]
 
     for i, (roman, title, body, img_key) in enumerate(sections, start=2):
