@@ -18,13 +18,6 @@ OUT_DOC = OUT / f"{SLUG}_word.docx"
 OUT_PDF = OUT / f"{SLUG}_pdf.pdf"
 OUT_PPT = OUT / f"{SLUG}_ppt.pptx"
 
-CALL_URL = (
-    "https://opportunitiesforyouth.org/2026/06/15/"
-    "u-s-department-of-state-launches-up-to-60-million-funding-opportunity-to-strengthen-"
-    "ugandas-health-system-through-the-health-foreign-assistance-mou-implementation-plan/"
-)
-GRANTS_URL = "https://simpler.grants.gov/opportunity/44a573b8-d46a-4cec-8c84-f319cd1cc1b6"
-
 NAVY, TEAL, ACCENT = "0A1F2E", "0D6E6E", "C45C26"
 SLATE, MUTED, CREAM, LINE = "1E2F38", "3A4A54", "F7F5F0", "D0DCDC"
 SLOGAN = "Your health, our mission."
@@ -520,14 +513,7 @@ def build_docx():
 
     heading("9. Readiness for Phase 2")
     para(CLOSING)
-    para(
-        f"References: DFOP0017890 APS (Phase 1 SOI format) and Addendum E (Uganda). "
-        f"Suggested upload name: FairBanks - SOI - Addendum E.pdf",
-        size=10, italic=True, after=4,
-    )
-    para(CALL_URL, size=10, after=2)
-    para(GRANTS_URL, size=10, after=8)
-    para(SLOGAN, size=12, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True)
+    para(SLOGAN, size=12, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, before=8)
 
     OUT.mkdir(parents=True, exist_ok=True)
     doc.save(str(OUT_DOC))
@@ -667,13 +653,6 @@ def build_pdf():
 
     story.append(Paragraph("9. Readiness for Phase 2", st["H1"]))
     story.append(Paragraph(CLOSING, st["Body"]))
-    story.append(Paragraph(
-        "References: DFOP0017890 APS (Phase 1 SOI format) and Addendum E (Uganda). "
-        "Suggested upload name: FairBanks - SOI - Addendum E.pdf",
-        st["Meta"],
-    ))
-    story.append(Paragraph(CALL_URL, st["Link"]))
-    story.append(Paragraph(GRANTS_URL, st["Link"]))
     story.append(Spacer(1, 10))
     story.append(Paragraph(SLOGAN, st["Slogan"]))
 
@@ -684,14 +663,25 @@ def build_pdf():
         canvas.restoreState()
 
     OUT.mkdir(parents=True, exist_ok=True)
+    tmp_pdf = REPO / "tmp" / SLUG / f"{SLUG}_pdf.build.pdf"
+    tmp_pdf.parent.mkdir(parents=True, exist_ok=True)
     SimpleDocTemplate(
-        str(OUT_PDF),
+        str(tmp_pdf),
         pagesize=letter,
         leftMargin=1 * inch,
         rightMargin=1 * inch,
         topMargin=1 * inch,
         bottomMargin=1 * inch,
     ).build(story, onFirstPage=_page, onLaterPages=_page)
+    try:
+        tmp_pdf.replace(OUT_PDF)
+    except OSError:
+        import shutil
+        try:
+            shutil.copy2(tmp_pdf, OUT_PDF)
+        except OSError as e:
+            print(f"PDF built at {tmp_pdf} (could not write {OUT_PDF}: {e})")
+            return
     print(f"PDF: {OUT_PDF}")
 
 
