@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+---
+@fid/documents/fid_pdf.pdf, @fid/documents/fid_ppt.pptx, and @fid/documents/fid_word.docx must always be synchronized as a single content set.
+
+- When any document is edited, update the other formats in the same session to preserve content alignment, branding, and compliance with all relevant guidelines.
+- Use appropriate photos and visual assets from @assets when updating or regenerating any of these files; maintain layout fidelity and consistent visual identity across formats.
+- Sync logic: Prefer the most recently edited source as the canonical version for the update session. If in doubt, resolve conflicts based on the source most aligned with live submission requirements.
+- Never introduce discrepancies between these three formats; they must always reflect the same narrative and data.
+- For proposals or documents governed by external calls (e.g., FID guidance), always check that synced content remains compliant with source-of-truth requirements before completing updates.
+
