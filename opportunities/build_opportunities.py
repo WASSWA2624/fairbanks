@@ -288,10 +288,10 @@ def main() -> None:
         cell.font = header_font
         cell.alignment = Alignment(vertical="center", wrap_text=True, horizontal="left")
 
-    # Group by gender category, then soonest deadline within each group.
+    # Soonest deadline first; unknown / rolling last.
     rows = sorted(
         OPPORTUNITIES,
-        key=lambda r: (0 if r["gender"] == GENDER_BASED else 1, r["deadline_sort"], r["title"]),
+        key=lambda r: (r["deadline_sort"], r["title"]),
     )
 
     for i, row in enumerate(rows, 2):

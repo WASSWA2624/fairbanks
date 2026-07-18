@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Build a NEW FairBanks peri-urban / FCHIP opportunity scan Excel.
+"""Build the merged FairBanks peri-urban / FCHIP / community-health funder Excel.
 
-Writes opportunities/opportunities_periurban_fchip_2026-07.xlsx.
-Does NOT replace or modify opportunities/opportunities.xlsx.
+Writes:
+  opportunities/opportunities_periurban_fchip_2026-07.xlsx
 
-Curated from a deep multi-source scan (18 July 2026) focused on:
-community health intelligence, CHW/VHT, digital health, disease prediction,
-maternal/child health, peri-urban / underserved African communities,
-Uganda-eligible open calls.
+Merged from the FCHIP peri-urban scan and the community-health deep scan
+(18 July 2026). Deduped by title/URL. Does NOT replace opportunities.xlsx.
+
+Focus: community health intelligence, CHW/VHT, digital health, disease
+prediction, family / maternal / child health, peri-urban and low-resource
+African communities, Uganda-eligible open calls.
 """
 
 from datetime import datetime
@@ -23,7 +25,7 @@ DEFAULT_OUT = ROOT / "opportunities_periurban_fchip_2026-07.xlsx"
 GENDER_BASED = "Gender-based (women/girls)"
 MULTI_GENDER = "Multi-gender (all genders)"
 
-# New scan only — intentionally excludes rows already in opportunities.xlsx.
+# Merged complementary scan — excludes rows already tracked in opportunities.xlsx.
 OPPORTUNITIES = [
     {
         "title": "UN Women — Spotlight Initiative Africa Regional Programme (SIARP) 2.0",
@@ -37,8 +39,8 @@ OPPORTUNITIES = [
             "fit if FairBanks joins a regional consortium linking peri-urban "
             "maternal/adolescent health, CHW outreach, and community "
             "accountability. Open to CSOs, women’s rights and youth-led "
-            "groups across Africa, so Ugandan organisations may apply — "
-            "confirm regional/multi-country scope on the call page."
+            "groups across Africa — Ugandan organisations may apply; confirm "
+            "regional/multi-country scope on the call page."
         ),
         "deadline": "27 July 2026 (5:00 PM East Africa Time)",
         "deadline_sort": "2026-07-27",
@@ -54,8 +56,8 @@ OPPORTUNITIES = [
             "woman-led FairBanks Community Reach or FCHIP pilot activity in "
             "peri-urban Kampala communities (outreach, maternal support, or "
             "CHW coordination). Confirm current application steps and "
-            "eligibility on the AFNet / African Women for Change Network "
-            "channel before applying; listing details can change."
+            "eligibility on the AFNet channel before applying; listing "
+            "details can change."
         ),
         "deadline": "Rolling",
         "deadline_sort": "9999-12-31",
@@ -166,6 +168,50 @@ OPPORTUNITIES = [
         ),
         "deadline": "Reopens 1 September 2026 — then rolling",
         "deadline_sort": "2026-09-01",
+    },
+    {
+        "title": (
+            "Global Health EDCTP3 — Enhancing integrated research and "
+            "healthcare in SSA through digital innovation and AI "
+            "(HORIZON-JU-GH-EDCTP3-2026-03-DIGIT-02)"
+        ),
+        "url": (
+            "https://ec.europa.eu/info/funding-tenders/opportunities/portal/"
+            "screen/opportunities/topic-details/"
+            "HORIZON-JU-GH-EDCTP3-2026-03-DIGIT-02"
+        ),
+        "gender": MULTI_GENDER,
+        "description": (
+            "EU Global Health EDCTP3 Coordination and Support Action "
+            "(about €18M topic budget; up to about €2.25M per project) to "
+            "scale and coordinate existing digital health and AI tools "
+            "across sub-Saharan Africa — interoperability, capacity, "
+            "epidemic preparedness, and decision support for health "
+            "workers. Not for building brand-new tech alone; best as an "
+            "Africa–Europe consortium partner bringing FCHIP / peri-urban "
+            "CHW data use-cases. Uganda/SSA organisations can join "
+            "eligible consortia. Deadline 2 September 2026, 17:00 Brussels."
+        ),
+        "deadline": "2 September 2026 (17:00 Brussels time)",
+        "deadline_sort": "2026-09-02",
+    },
+    {
+        "title": "Wellcome Snakebite Innovation Prize (Challenge Works)",
+        "url": "https://snakebiteprize.challenges.org/",
+        "gender": MULTI_GENDER,
+        "description": (
+            "£6.25 million challenge prize for solutions that strengthen "
+            "community responses, speed access to care, or improve "
+            "treatment delivery for snakebite in high-burden settings "
+            "(including sub-Saharan Africa). Launch track ~£75,000 and "
+            "Growth track ~£100,000 for finalists; larger awards later. "
+            "Open worldwide until 16 September 2026, 12:00 UTC. Indirect "
+            "fit if FairBanks adapts CHW alert/referral tools for "
+            "emergency community response in underserved areas — less "
+            "central to peri-urban Kampala NCDs/maternal work."
+        ),
+        "deadline": "16 September 2026 (12:00 UTC)",
+        "deadline_sort": "2026-09-16",
     },
     {
         "title": "DIV Fund (Development Innovation Ventures) — Open Innovation Grants",
@@ -296,44 +342,59 @@ def main() -> None:
     gb = sum(1 for r in rows if r["gender"] == GENDER_BASED)
     mg = len(rows) - gb
     notes = [
-        ("Document type", "NEW peri-urban / FCHIP funder scan. Does NOT replace opportunities/opportunities.xlsx."),
+        (
+            "Document type",
+            "MERGED peri-urban / FCHIP / family & community health scan "
+            "(combined opportunities_periurban_fchip_2026-07.xlsx and "
+            "opportunities_periurban_community_health_2026-07.xlsx; deduped by title/URL). "
+            "Does NOT replace opportunities/opportunities.xlsx.",
+        ),
         ("Scanned on", datetime.now().strftime("%Y-%m-%d %H:%M")),
         (
             "Applicant context",
             "FairBanks / FCHIP — Ugandan community health intelligence venture; peri-urban Kampala communities "
-            "(e.g. Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya); CHW/VHT cascade; maternal/child & NCD screening.",
+            "(e.g. Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya); CHW/VHT cascade; maternal/child & NCD screening; "
+            "family and community health in low-resource settings.",
         ),
         (
             "Fit filter",
-            "Community health intelligence, CHW/VHT tools, digital health, disease early warning, maternal/child "
-            "health, peri-urban / underserved African settings, AI-for-health, health systems / SRHR research.",
+            "Community health intelligence, CHW/VHT tools, digital health, disease early warning, maternal/child/"
+            "family health, peri-urban and underserved African settings, AI-for-health, health systems / SRHR research.",
         ),
         (
             "Sources scanned",
-            "Grand Challenges Canada (Nexa), Science for Africa Foundation, IDRC/CIHR/GAC (ANeSA), Africa Health "
-            "ExCon Accelerator, UN Women Africa (SIARP 2.0), DIV Fund, FID France, Opportunities for Youth, "
-            "fundsforNGOs, africanngos.org July–Aug 2026 roundup, Global Innovation Fund, GSMA Innovation Fund, "
-            "Villgro Africa, CARE SheConnects, reach52, Luena Foundation, la Caixa Child Survival, EVAH/J-PAL, "
-            "AJA Foundation, Echoing Green, AUDA-NEPAD HGS.",
+            "Opportunities for Youth; fundsforNGOs; DevelopmentAid; Grand Challenges Canada (Nexa); Global Grand "
+            "Challenges (Gates); Science for Africa Foundation; IDRC/CIHR/GAC (ANeSA); Africa Health ExCon Accelerator; "
+            "UN Women Africa (SIARP 2.0); DIV Fund; FID France; Global Health EDCTP3 / EU Funding & Tenders Portal; "
+            "Wellcome / Challenge Works Snakebite Prize; GSMA; Villgro Africa; CARE SheConnects; reach52; Luena; "
+            "la Caixa Child Survival; EVAH/J-PAL; AmplifyChange; Beginnings Fund; IFC scam-check; Reckitt Catalyst; "
+            "Mastercard Pathways to Scale; Africa Health Collaborative; GIF official apply page; Zindi/Mak-AI HASH; "
+            "africanngos.org roundups.",
         ),
         (
             "Eligibility filter",
             "Included only still-open (or reopening soon) opportunities open to Ugandan applicants "
-            "(global, pan-African, East Africa, or Uganda). Closed or country-restricted calls noted below.",
+            "(global, pan-African, East Africa, or Uganda). Closed, scam, or country-restricted calls noted below.",
         ),
         (
             "Excluded (closed / paused)",
-            "SheConnects CARE Digital Accelerator (8 Jul), Inclusive AI HAIDI (17 Jul), SAFEStart+ Uganda "
-            "(30 Jun), Luena Eneko Medical Grants (31 May), la Caixa Child Survival (26 May), UNICEF Climate "
-            "Ventures (17 May), AUDA-NEPAD HGS Accelerator (19 May), GSMA Green Transition (6 Apr), EVAH "
-            "Spring RFP (1 Apr), Gates Cost-Disruptive Diagnostics (28 Apr), reach52 Growth Partner Q1 "
-            "(31 Mar), Echoing Green 2026 Fellowship (closed), AJA Foundation new grants paused, GIF not "
-            "accepting applications.",
+            "Mak-AI/Zindi Multilingual Health QA (closed ~21 Jun / under code review); SheConnects CARE (8 Jul); "
+            "Inclusive AI HAIDI (17 Jul); SAFEStart+ Uganda (30 Jun); AmplifyChange Strengthening (16 Jun); "
+            "Luena Eneko (31 May); la Caixa Child Survival (26 May); UNICEF Climate Ventures (17 May); "
+            "AUDA-NEPAD HGS / Villgro HGS (19 May); GSMA Green Transition (6 Apr); EVAH Spring RFP (1 Apr); "
+            "Gates Cost-Disruptive Diagnostics (28 Apr); reach52 Growth Partner Q1 (31 Mar); ACT Foundation "
+            "(30 Jan); Echoing Green 2026 (closed); AJA Foundation paused; GIF not accepting applications "
+            "(official site); CDC Uganda health-security NOFO (~25 Jun estimated / closed); UNICEF Uganda "
+            "Health & HIV CFEI (closed on DevelopmentAid).",
         ),
         (
-            "Excluded (weak / wrong fit)",
-            "Darwin biodiversity, cultural heritage funds, country-only non-Uganda rights calls, pure "
-            "sport-for-development without health intelligence link, Nigeria/Ethiopia-only CSO funds.",
+            "Excluded (scam / ineligible / weak)",
+            "ifcgrants.org Healthcare Access Initiative — FAKE IFC grant site (World Bank/IFC scam warning); "
+            "Reckitt Catalyst 2026/27 — Uganda not in eligible markets; Mastercard Pathways to Scale — Ethiopia/"
+            "Ghana/Nigeria/Rwanda only; Africa Health Collaborative Research Fund — no Uganda member university; "
+            "Gates Pan-Orthoebolavirus Diagnostics — needs BSL-4/high-consequence pathogen diagnostics expertise; "
+            "Beginnings Fund & Mulago — no unsolicited proposals (monitor partnership/referral paths); Darwin "
+            "biodiversity; Nigeria/Ethiopia-only CSO funds.",
         ),
         (
             "Gender categories",
@@ -343,23 +404,31 @@ def main() -> None:
             "Priority soon (peri-urban / FCHIP)",
             "1) Africa Health-Tech Accelerator (20 Jul) 2) Nexa climate–health early warning (22 Jul) "
             "3) UN Women SIARP 2.0 if regional consortium ready (27 Jul) 4) IDRC ANeSA LoI (23 Aug) "
-            "5) DIV Fund rolling evidence pathway 6) FID portal reopen 1 Sep.",
+            "5) EDCTP3 digital/AI consortium path (2 Sep) 6) FID portal reopen 1 Sep 7) DIV rolling evidence pathway.",
         ),
         (
-            "Best peri-urban fits",
-            "Nexa (mosquito-borne early warning for dense peri-urban settlements), Africa Health-Tech "
-            "Accelerator (FCHIP digital health MVP), DIV/FID (scale path), ANeSA (peri-urban adolescent/"
-            "maternal SRHR research with university partner).",
+            "Best peri-urban / family-health fits",
+            "Nexa (mosquito-borne early warning for dense peri-urban settlements); Africa Health-Tech Accelerator "
+            "(FCHIP digital health MVP); EDCTP3 DIGIT-02 (scale/interop of existing CHW/digital tools via consortium); "
+            "ANeSA (peri-urban adolescent/maternal SRHR research with university partner); DIV/FID (evidence-to-scale); "
+            "SIARP 2.0 (women/girls SRHR + community accountability if consortium-ready).",
         ),
         (
             "Important",
-            "Deadlines and eligibility were checked against official or aggregator pages on the scan date. "
-            "ALWAYS re-confirm on the official programme page before applying — details change quickly.",
+            "Deadlines and eligibility were checked against official or high-quality aggregator pages on the scan "
+            "date. ALWAYS re-confirm on the official programme page before applying — details change quickly. "
+            "Never apply via sites that impersonate IFC/World Bank grant portals.",
         ),
         (
-            "Relation to main tracker",
-            "Keep opportunities.xlsx as the primary active tracker. This file is a complementary deep scan "
-            "focused on peri-urban + FCHIP funders discovered outside the first Opportunities for Youth pass.",
+            "Relation to other trackers",
+            "Keep opportunities.xlsx as the primary active tracker. This merged file is the single complementary "
+            "peri-urban / FCHIP / community-health scan. Rebuild with build_opportunities_periurban.py.",
+        ),
+        (
+            "Merge note",
+            "Union of the earlier FCHIP peri-urban file (10 rows) and the community-health deep scan (12 rows). "
+            "Unique adds from the deep scan: EDCTP3 DIGIT-02 and Wellcome Snakebite Innovation Prize. "
+            "Shared rows kept once.",
         ),
     ]
     meta["A1"] = "Field"
@@ -372,17 +441,17 @@ def main() -> None:
         meta.cell(i, 1, k).font = Font(bold=True)
         meta.cell(i, 1).alignment = Alignment(wrap_text=True, vertical="top")
         meta.cell(i, 2, v).alignment = Alignment(wrap_text=True, vertical="top")
-        meta.row_dimensions[i].height = 48
+        meta.row_dimensions[i].height = 56
     meta.column_dimensions["A"].width = 28
     meta.column_dimensions["B"].width = 118
 
     out = Path(os.environ.get("OPPORTUNITIES_PERIURBAN_OUT", str(DEFAULT_OUT)))
     wb.save(out)
-    print(f"Wrote {len(rows)} opportunities to {out}")
+    print(f"Wrote {len(rows)} merged opportunities to {out}")
     print(f"Gender-based: {gb} | Multi-gender: {mg}")
     print("NOTE: opportunities.xlsx was NOT modified.")
     for r in rows:
-        print(f"- [{r['gender'][:12]:12}] {r['deadline'][:34]:34} | {r['title'][:60]}")
+        print(f"- [{r['gender'][:12]:12}] {r['deadline'][:34]:34} | {r['title'][:70]}")
 
 
 if __name__ == "__main__":
