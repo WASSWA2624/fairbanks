@@ -52,7 +52,10 @@ SLOGAN = "Your health, our mission."
 TITLE = "FairBanks Community Health Intelligence Platform (FCHIP)"
 PROGRAMME = "Africa Health-Tech Accelerator 2026"
 DEADLINE = "20 July 2026 (extended deadline - recheck before submission)"
-STATUS = "Application draft - identity and commercial fields require confirmation"
+STATUS = (
+    "Application draft - FCHIP still appears pre-MVP in repo evidence; "
+    "identity, commercial, and MVP fields require confirmation"
+)
 
 ASSET_MAP = {
     "cover": "cover_hero_cinematic.jpg",
@@ -91,7 +94,9 @@ CALL_FACTS = [
 
 READINESS_GATES = [
     "Confirm at least two founders and list every founder with a role.",
-    "Confirm that a working FCHIP MVP exists and provide a demo or evidence.",
+    "Confirm a working FCHIP MVP with a demo or evidence. Repo materials "
+    "currently describe FCHIP as still being built/piloted, so do not select "
+    "MVP unless that is no longer true.",
     "Confirm the presenting founder can attend at least 80% of sessions.",
     "Replace every CONFIRM BEFORE SUBMISSION field with verified information.",
     "Upload the pitch deck to a public-access link and test it while signed out.",
@@ -171,8 +176,9 @@ APPLICATION_SECTIONS = [
             ("Startup Website*", "[CONFIRM BEFORE SUBMISSION]"),
             (
                 "Startup Stage*",
-                "[CONFIRM BEFORE SUBMISSION: select MVP only if a working "
-                "product can be demonstrated; the programme requires an MVP]",
+                "[CONFIRM BEFORE SUBMISSION. Repo evidence points to pre-MVP / "
+                "pilot preparation. Select MVP only if a working product can "
+                "be demonstrated - the programme requires an MVP.]",
             ),
             ("Country Headquarter*", "Uganda"),
             ("Primary African office if headquarters is outside Africa", "Not applicable"),
@@ -291,8 +297,12 @@ EVIDENCE_BASE = [
     "Functioning FairBanks Medical Centre with direct access to care workflows.",
     "Community Reach activity in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and nearby areas.",
     "CHW and VHT links for outreach, referral, follow-up, and community data collection.",
+    "Internal application materials cite 40+ CHWs and VHTs collecting field data weekly "
+    "(confirm the current number before using it in the portal).",
     "Existing maternal and child health, Gericare, NCD screening, school, and corporate health work.",
     "Digital health records and pharmacy workflows that can inform product integration.",
+    "FCHIP itself remains a planned / pre-MVP build in current repository materials "
+    "unless newer product evidence is supplied.",
 ]
 
 SIX_MONTH_PLAN = [
@@ -505,7 +515,7 @@ def build_docx() -> None:
         [
             ("Deadline", DEADLINE),
             ("Headquarters", "Uganda"),
-            ("Recommended stage", "MVP - only if demonstrable"),
+            ("Repo product stage", "Pre-MVP / pilot preparation unless a demo exists"),
             ("Document status", STATUS),
         ],
         widths=[1.8, 4.8],
@@ -525,9 +535,9 @@ def build_docx() -> None:
     heading("Submission readiness gate", 1)
     para(
         "The portal requires at least two founders and a minimum viable product. "
-        "The repository confirms strong field operations, but it does not verify "
-        "the founder, commercial, or FCHIP MVP facts below. Complete these items "
-        "before submission.",
+        "The repository confirms strong FairBanks field operations, but current "
+        "materials describe FCHIP as still being built for pilot. Do not claim "
+        "MVP stage, paying FCHIP customers, or AI performance without evidence.",
         bold=True,
         color=RED,
     )
@@ -537,7 +547,7 @@ def build_docx() -> None:
         [
             ("Founder identity and contacts", "CONFIRM BEFORE SUBMISSION"),
             ("Co-founders and roles", "CONFIRM BEFORE SUBMISSION"),
-            ("Working FCHIP MVP evidence", "CONFIRM BEFORE SUBMISSION"),
+            ("Working FCHIP MVP evidence", "CONFIRM BEFORE SUBMISSION - currently pre-MVP in repo"),
             ("Revenue and paying customers", "CONFIRM BEFORE SUBMISSION"),
             ("Funding raised and partner list", "CONFIRM BEFORE SUBMISSION"),
             ("Website and public pitch-deck link", "CONFIRM BEFORE SUBMISSION"),
@@ -735,6 +745,11 @@ def convert_docx_to_pdf() -> None:
             BitmapMissingFonts=True,
             UseISO19005_1=False,
         )
+    except Exception as exc:
+        raise RuntimeError(
+            "PDF export failed. Close the official Word/PDF files if they are "
+            "open in another app, then rebuild."
+        ) from exc
     finally:
         if document is not None:
             document.Close(False)
@@ -1063,12 +1078,17 @@ def build_pptx() -> None:
 
     # 11 Team/readiness
     s = add_slide()
-    top_band(s, "Team and readiness", "Strong operating base. Critical fields still open.", "Complete these facts before the application is submitted.")
+    top_band(
+        s,
+        "Team and readiness",
+        "Strong operating base. Product still looks pre-MVP.",
+        "Complete these facts before the application is submitted.",
+    )
     image_crop(s, asset("team"), 0.55, 1.9, 4.4, 4.75)
     missing = [
         "Founder name, gender, contacts, LinkedIn",
         "At least one co-founder and role",
-        "Working FCHIP MVP evidence",
+        "Working FCHIP MVP evidence (repo shows pre-MVP)",
         "Revenue and paying-customer range",
         "Funding history and current partners",
         "Startup website and public deck link",
@@ -1103,6 +1123,8 @@ def build_pptx() -> None:
 
 
 def validate_outputs() -> None:
+    from zipfile import ZipFile, BadZipFile
+
     import fitz
     from docx import Document
     from pptx import Presentation
@@ -1111,6 +1133,21 @@ def validate_outputs() -> None:
     for path in required:
         if not path.exists() or path.stat().st_size < 20_000:
             raise RuntimeError(f"Missing or unexpectedly small output: {path}")
+
+    for archive in (OUT_DOCX, OUT_PPTX):
+        try:
+            with ZipFile(archive) as zf:
+                bad = zf.testzip()
+                if bad is not None:
+                    raise RuntimeError(f"Corrupt archive member in {archive}: {bad}")
+        except BadZipFile as exc:
+            raise RuntimeError(f"Corrupt Office archive: {archive}") from exc
+
+    # Fail if any official deliverable is older than the generator source.
+    builder_mtime = Path(__file__).stat().st_mtime
+    for path in required:
+        if path.stat().st_mtime + 1 < builder_mtime:
+            raise RuntimeError(f"Stale official output: {path.name}")
 
     doc = Document(OUT_DOCX)
     paragraph_text = [p.text for p in doc.paragraphs]
@@ -1125,6 +1162,7 @@ def validate_outputs() -> None:
         "Submission readiness gate",
         "Section 6 of 6 - Final notes",
         "CONFIRM BEFORE SUBMISSION",
+        "Pre-MVP",
         OFFICIAL_APPLY,
     ):
         if phrase not in text_content:
@@ -1149,9 +1187,15 @@ def main() -> None:
     print(f"Building {PROGRAMME} application pack")
     print(f"Source check date: {datetime.now().strftime('%Y-%m-%d')}")
     OUT.mkdir(parents=True, exist_ok=True)
-    build_docx()
-    convert_docx_to_pdf()
-    build_pptx()
+    try:
+        build_docx()
+        convert_docx_to_pdf()
+        build_pptx()
+    except PermissionError as exc:
+        raise SystemExit(
+            "Build failed because an official deliverable is locked. "
+            "Close the Word, PDF, or PowerPoint files in documents/, then rebuild."
+        ) from exc
     validate_outputs()
     print("Application pack complete.")
 

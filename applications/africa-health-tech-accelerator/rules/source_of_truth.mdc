@@ -22,10 +22,12 @@ Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cu
 
 Do not invent or infer founder identity, contacts, co-founders, MVP status, revenue, paying customers, funding raised, partners, website, or pitch-deck URL. Keep these marked **CONFIRM BEFORE SUBMISSION** until the applicant supplies evidence.
 
+Repository evidence today supports FairBanks operations and a planned FCHIP build. It does **not** prove a deployed FCHIP MVP. Treat product stage as **pre-MVP / pilot preparation** unless the applicant can show a working demo.
+
 Do not submit unless FairBanks can truthfully confirm:
 
 1. A minimum of two founders.
-2. A working FCHIP MVP.
+2. A working FCHIP MVP (required by the portal).
 3. Attendance at 80% or more of sessions.
 4. Accurate revenue, customer, funding, and partner information.
 5. A public, accessible pitch-deck link.
