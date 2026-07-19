@@ -3,8 +3,10 @@
 
 Writes opportunities/opportunities.xlsx per
 opportunities/rules/source_of_truth.mdc.
-Curated from deep scans of Opportunities for Youth (and future target sites).
+
+Includes the former peri-urban / FCHIP complementary scan (merged July 2026).
 Only Uganda-eligible, still-open opportunities; gender-tagged.
+Row highlights (green/blue/red/black) mark peri-urban priority fits.
 """
 
 from datetime import datetime
@@ -242,6 +244,241 @@ OPPORTUNITIES = [
         "deadline": "Varies by challenge — check the specific challenge page",
         "deadline_sort": "9999-12-31",
     },
+    # --- Former peri-urban / FCHIP complementary scan (merged Jul 2026) ---
+    {
+        "title": "UN Women — Spotlight Initiative Africa Regional Programme (SIARP) 2.0",
+        "url": "https://africa.unwomen.org/en/programme-implementation/2026/06/call-for-proposals-for-civil-society-partnerships-for-implementation-of-the-spotlight-initiative-africa-regional-programme-siarp-20",
+        "gender": GENDER_BASED,
+        "highlight": "92D050",
+        "description": (
+            "UN Women call for African civil society partners under SIARP 2.0. "
+            "Grants of about US$110,000–548,000 for up to 27 months (from Oct "
+            "2026) on ending violence against women and girls, harmful "
+            "practices, SRHR, and women- and youth-led movements. Strongest "
+            "fit if FairBanks joins a regional consortium linking peri-urban "
+            "maternal/adolescent health, CHW outreach, and community "
+            "accountability. Open to CSOs, women’s rights and youth-led "
+            "groups across Africa — Ugandan organisations may apply; confirm "
+            "regional/multi-country scope on the call page."
+        ),
+        "deadline": "27 July 2026 (5:00 PM East Africa Time)",
+        "deadline_sort": "2026-07-27",
+    },
+    {
+        "title": "AFNet Flexible Grant (African Women for Change Network)",
+        "url": "https://afwcnet.org/women-grants",
+        "gender": GENDER_BASED,
+        "highlight": "92D050",
+        "description": (
+            "Small flexible grant (about US$5,000) for women leaders and "
+            "women-led organisations driving community change in Africa. "
+            "Reviewed on a rolling basis. Useful seed support for a "
+            "woman-led FairBanks Community Reach or FCHIP pilot activity in "
+            "peri-urban Kampala communities (outreach, maternal support, or "
+            "CHW coordination). Confirm current application steps and "
+            "eligibility on the AFNet channel before applying; listing "
+            "details can change."
+        ),
+        "deadline": "Rolling",
+        "deadline_sort": "9999-12-31",
+    },
+    {
+        "title": "Africa Health-Tech Accelerator 2026 (Africa Health Tech / Africa CDC / Health ExCon)",
+        "url": "https://accelerator.africahealthexcon.com/apply",
+        "gender": MULTI_GENDER,
+        "highlight": "00B0F0",
+        "description": (
+            "Six-month pan-African accelerator for early-stage health-tech "
+            "startups and SMEs. Tracks include digital healthcare, health "
+            "data and intelligent technologies, prevention/access services, "
+            "and related innovation. Benefits: structured training, "
+            "mentorship, seed-funding opportunities, investor Demo Day, and "
+            "continental visibility. Needs at least two founders, an MVP, "
+            "and a scale-across-Africa commitment. Excellent near-term fit "
+            "for FCHIP as a community health intelligence / digital health "
+            "venture. Deadline extended to 20 July 2026 — apply immediately."
+        ),
+        "deadline": "20 July 2026",
+        "deadline_sort": "2026-07-20",
+    },
+    {
+        "title": "Nexa Climate and Health Initiative (Grand Challenges Canada / Science for Africa Foundation)",
+        "url": "https://www.grandchallenges.ca/rfp-nexa/",
+        "gender": MULTI_GENDER,
+        "highlight": "00B0F0",
+        "description": (
+            "Major open competition for climate–health innovations in "
+            "Africa (and LAC for scale). Funds tools that turn climate "
+            "risk signals into timely health action on mosquito-borne "
+            "disease (e.g. malaria/dengue), extreme heat, and air "
+            "quality. Proof of Concept up to US$200,000; Transition to "
+            "Scale about US$250,000–2,000,000. PoC applicants must be "
+            "incorporated in an eligible African country (Uganda "
+            "included). Closest deep-tech match for FCHIP disease early "
+            "warning in peri-urban communities. Submit via Fluxx by "
+            "22 July 2026, 2:00 p.m. ET."
+        ),
+        "deadline": "22 July 2026 (2:00 p.m. ET / 6:00 p.m. UTC)",
+        "deadline_sort": "2026-07-22",
+    },
+    {
+        "title": "IDRC / GAC / CIHR — ANeSA Cohort 2 Letters of Interest (SRHR in sub-Saharan Africa)",
+        "url": "https://idrc-crdi.ca/en/funding/call-letters-interest-addressing-neglected-areas-sexual-and-reproductive-health-and-0",
+        "gender": MULTI_GENDER,
+        "description": (
+            "Open call for Letters of Interest under Addressing Neglected "
+            "Areas of SRHR in sub-Saharan Africa (ANeSA). Up to six grants "
+            "of up to CAD 1.2 million each (to 36 months) for "
+            "gender-transformative implementation research with "
+            "under-served populations. Priorities include family planning, "
+            "adolescent SRHR, SGBV services, and SRHR advocacy. Led by "
+            "SSA-based researchers; Uganda is an eligible country "
+            "(additional IDRC approval may apply). Strong research "
+            "partnership path for FairBanks peri-urban maternal and "
+            "adolescent community health work."
+        ),
+        "deadline": "23 August 2026 (23:59 ET)",
+        "deadline_sort": "2026-08-23",
+    },
+    {
+        "title": "Gilead Global Public Health Awards 2026",
+        "url": "https://opportunitiesforyouth.org/2026/05/25/gilead-global-public-health-awards-2026-100000-research-funding-for-early-career-investigators-in-hiv-and-viral-hepatitis/",
+        "gender": MULTI_GENDER,
+        "highlight": "FF0000",
+        "description": (
+            "Four awards of up to US$100,000 over two years for early-career "
+            "investigators in LMICs (including Africa) focused on HIV and "
+            "viral hepatitis public health / implementation science. "
+            "Applicants need a terminal degree within 10 years, an "
+            "in-country mentor, and about 50% research time. Best if a "
+            "FairBanks-linked clinician or researcher studies community "
+            "prevention, access, or peri-urban care pathways. Confirm on "
+            "the official Gilead awards portal before applying."
+        ),
+        "deadline": "28 August 2026 (11:59 PM CEST)",
+        "deadline_sort": "2026-08-28",
+    },
+    {
+        "title": "Social Shifters Global Innovation Challenge 2026",
+        "url": "https://www.socialshifters.co/global-innovation-challenge/",
+        "gender": MULTI_GENDER,
+        "highlight": "00B0F0",
+        "description": (
+            "Global challenge for youth-led projects and startups aligned "
+            "with at least one SDG, offering up to about US$15,000 in "
+            "support. Suitable for a young FairBanks / FCHIP team member "
+            "piloting a community health, digital CHW, or peri-urban "
+            "prevention idea. Lower funding than major grants but useful "
+            "for visibility and early traction. Deadline is 31 August 2026, "
+            "5pm UTC. Confirm age rules and award tracks on the Social "
+            "Shifters challenge page before investing proposal time."
+        ),
+        "deadline": "31 August 2026 (5:00 PM UTC)",
+        "deadline_sort": "2026-08-31",
+    },
+    {
+        "title": "Fund for Innovation in Development (FID) — France (platform reopens 1 Sep 2026)",
+        "url": "https://fundinnovation.dev/en/launch-project",
+        "gender": MULTI_GENDER,
+        "highlight": "000000",
+        "description": (
+            "French open innovation fund for solutions reducing poverty "
+            "and inequality in ODA-eligible countries (Uganda eligible). "
+            "Health is a priority sector alongside education, climate, and "
+            "gender. Staged grants from pilot to scale (historically up to "
+            "about €4 million at scale). Portal is closed for a technical "
+            "upgrade and reopens 1 September 2026 for most stages "
+            "(Preparation grants later). Strong longer-horizon fit for "
+            "evidence-backed FCHIP pilots in peri-urban communities."
+        ),
+        "deadline": "Reopens 1 September 2026 — then rolling",
+        "deadline_sort": "2026-09-01",
+    },
+    {
+        "title": (
+            "Global Health EDCTP3 — Enhancing integrated research and "
+            "healthcare in SSA through digital innovation and AI "
+            "(HORIZON-JU-GH-EDCTP3-2026-03-DIGIT-02)"
+        ),
+        "url": (
+            "https://ec.europa.eu/info/funding-tenders/opportunities/portal/"
+            "screen/opportunities/topic-details/"
+            "HORIZON-JU-GH-EDCTP3-2026-03-DIGIT-02"
+        ),
+        "gender": MULTI_GENDER,
+        "highlight": "00B0F0",
+        "description": (
+            "EU Global Health EDCTP3 Coordination and Support Action "
+            "(about €18M topic budget; up to about €2.25M per project) to "
+            "scale and coordinate existing digital health and AI tools "
+            "across sub-Saharan Africa — interoperability, capacity, "
+            "epidemic preparedness, and decision support for health "
+            "workers. Not for building brand-new tech alone; best as an "
+            "Africa–Europe consortium partner bringing FCHIP / peri-urban "
+            "CHW data use-cases. Uganda/SSA organisations can join "
+            "eligible consortia. Deadline 2 September 2026, 17:00 Brussels."
+        ),
+        "deadline": "2 September 2026 (17:00 Brussels time)",
+        "deadline_sort": "2026-09-02",
+    },
+    {
+        "title": "Wellcome Snakebite Innovation Prize (Challenge Works)",
+        "url": "https://snakebiteprize.challenges.org/",
+        "gender": MULTI_GENDER,
+        "highlight": "FF0000",
+        "description": (
+            "£6.25 million challenge prize for solutions that strengthen "
+            "community responses, speed access to care, or improve "
+            "treatment delivery for snakebite in high-burden settings "
+            "(including sub-Saharan Africa). Launch track ~£75,000 and "
+            "Growth track ~£100,000 for finalists; larger awards later. "
+            "Open worldwide until 16 September 2026, 12:00 UTC. Indirect "
+            "fit if FairBanks adapts CHW alert/referral tools for "
+            "emergency community response in underserved areas — less "
+            "central to peri-urban Kampala NCDs/maternal work."
+        ),
+        "deadline": "16 September 2026 (12:00 UTC)",
+        "deadline_sort": "2026-09-16",
+    },
+    {
+        "title": "DIV Fund (Development Innovation Ventures) — Open Innovation Grants",
+        "url": "https://www.div.fund/apply",
+        "gender": MULTI_GENDER,
+        "highlight": "00B0F0",
+        "description": (
+            "Evidence-driven open innovation fund accepting applications "
+            "year-round. Stages roughly: Pilot up to ~US$200,000; Testing "
+            "higher; Scale up to about US$1.5 million. Funds innovations "
+            "that can cost-effectively improve millions of lives in "
+            "low- and middle-income countries. Open to nonprofits, "
+            "startups, universities, and social enterprises — Ugandan "
+            "applicants eligible. Good medium-term pathway for FCHIP if "
+            "you can show a clear pilot plan, cost-effectiveness case, "
+            "and path to scale across peri-urban and district health "
+            "systems."
+        ),
+        "deadline": "Rolling (applications accepted year-round)",
+        "deadline_sort": "9999-12-30",
+    },
+    {
+        "title": "Draper Richards Kaplan Foundation — Early-Stage Social Enterprises",
+        "url": "https://www.drkfoundation.org/apply/",
+        "gender": MULTI_GENDER,
+        "highlight": "00B0F0",
+        "description": (
+            "Rolling philanthropic support (often cited up to about "
+            "US$300,000) for early-stage social impact organisations "
+            "solving urgent global problems with scalable models. "
+            "Relevant if FairBanks/FCHIP presents as a social enterprise "
+            "with a clear theory of change for community health "
+            "intelligence in underserved peri-urban African settings. "
+            "Highly selective; confirm current criteria and apply process "
+            "on the official DRK Foundation website before preparing a "
+            "full package."
+        ),
+        "deadline": "Rolling",
+        "deadline_sort": "9999-12-31",
+    },
 ]
 
 
@@ -296,13 +533,14 @@ def main() -> None:
 
     for i, row in enumerate(rows, 2):
         slug = row.get("app_slug", "")
+        highlight = row.get("highlight")
         values = [
             row["title"],
             row["url"],
             row["description"],
             row["deadline"],
             row["gender"],
-            "Drafting",
+            "Drafting" if slug else "Not started",
             "unknown",
             "",
             f"applications/{slug}" if slug else "",
@@ -312,11 +550,13 @@ def main() -> None:
             cell.alignment = Alignment(vertical="top", wrap_text=True)
             cell.border = thin
             cell.font = Font(name="Calibri", size=10)
-            if i % 2 == 0:
+            if highlight:
+                cell.fill = PatternFill("solid", fgColor=highlight)
+            elif i % 2 == 0:
                 cell.fill = alt_fill
-        # Colour-code the gender category cell so the two groups are obvious.
         gcell = ws.cell(i, 5)
-        gcell.fill = gender_fill if row["gender"] == GENDER_BASED else multi_fill
+        if not highlight:
+            gcell.fill = gender_fill if row["gender"] == GENDER_BASED else multi_fill
         gcell.font = Font(name="Calibri", size=10, bold=True)
         ws.row_dimensions[i].height = 92
 
@@ -338,19 +578,66 @@ def main() -> None:
     gb = sum(1 for r in rows if r["gender"] == GENDER_BASED)
     mg = len(rows) - gb
     notes = [
-        ("Source site", "https://opportunitiesforyouth.org/"),
         ("Scanned on", datetime.now().strftime("%Y-%m-%d %H:%M")),
-        ("Applicant context", "FairBanks / FCHIP — a Ugandan community health intelligence venture. We are Ugandans."),
-        ("Method", "Live deep scan of the homepage and category sections (Grants, Fellowship, Jobs, Conferences, Internships, Volunteering, Competition) plus each individual listing page, verified one by one."),
-        ("Eligibility filter", "Included ONLY opportunities that are (a) still open as of the scan date and (b) open to Ugandan applicants (global, pan-African / African Union, or Uganda-specific). Country-restricted calls that exclude Uganda were dropped."),
-        ("Excluded (country)", "Pathways to Scale (Ethiopia/Ghana/Nigeria/Rwanda only), SPARK Change-Makers (Ghana), ADB dengue/laundry challenges (Asia-Pacific pilots), Supercell grants (game-dev studios only)."),
-        ("Excluded (closed)", "Moonshot Awards (12 Jul), WHO Youth Council (30 Jun), AIMS SDG Challenge (1 Jun), A+ Alliance Gender & AI Cohort 2 (25 Apr) — deadlines already passed."),
-        ("Gender categories", f"Gender-based (women/girls): {gb}. Multi-gender (all genders): {mg}. Total: {len(rows)}."),
-        ("Gender-based list", "AWIEF Pitch n Grow, AUC Venture Lab Women Innovation Fellowship, Young Feminist AI School (UN Women), GirlCode Hackathon."),
-        ("Priority soon", "AUDA-NEPAD SRH Ambassadors (17 Jul, today), AWIEF (20 Jul), Gadfly grant (24 Jul), AUC Women Fellowship (25 Jul), Young Feminist AI School (28 Jul), US State Dept Uganda SOI / WHS Youth Group (31 Jul)."),
-        ("Best fit for FairBanks", "US State Dept Uganda Health MOU, AWIEF Pitch n Grow, WHS Youth Group, Africa CDC AES Fellowship, Gadfly Web App Grant."),
-        ("Application packs", "Win-win packs (rules + Word/PDF/PPT) live under applications/{slug}/ for every Opportunities row. Status set to Drafting until submitted."),
-        ("Important", "Deadlines and eligibility are quoted from Opportunities for Youth article text. ALWAYS confirm on the official programme page before applying — details can change."),
+        (
+            "Document type",
+            "Canonical merged tracker (OFY scan + former peri-urban / FCHIP "
+            "complementary scan). Sorted by earliest Application Deadline; "
+            "rolling/unknown last. Peri-urban highlight colours preserved.",
+        ),
+        (
+            "Applicant context",
+            "FairBanks / FCHIP — a Ugandan community health intelligence "
+            "venture (peri-urban Kampala communities; CHW/VHT cascade).",
+        ),
+        (
+            "Sources",
+            "Opportunities for Youth plus peri-urban / FCHIP sources "
+            "(Grand Challenges Nexa, IDRC ANeSA, Africa Health ExCon, UN Women "
+            "SIARP, DIV, FID, EDCTP3, Wellcome Snakebite, Social Shifters, "
+            "AFNet, Gilead, DRK, and related).",
+        ),
+        (
+            "Eligibility filter",
+            "Included ONLY opportunities that are (a) still open (or "
+            "reopening) and (b) open to Ugandan applicants (global, "
+            "pan-African / African Union, or Uganda-specific).",
+        ),
+        (
+            "Highlight legend",
+            "Green = peri-urban priority women/gender calls. Blue = strong "
+            "FCHIP / digital / innovation fits. Red = research awards with "
+            "narrower fit. Black = FID portal reopen watch.",
+        ),
+        (
+            "Gender categories",
+            f"Gender-based (women/girls): {gb}. Multi-gender (all genders): "
+            f"{mg}. Total: {len(rows)}.",
+        ),
+        (
+            "Priority soon",
+            "Africa Health-Tech Accelerator (20 Jul), Nexa (22 Jul), AWIEF "
+            "(20 Jul), Gadfly (24 Jul), SIARP 2.0 (27 Jul), US State Dept "
+            "Uganda SOI / WHS (31 Jul).",
+        ),
+        (
+            "Best fit for FairBanks",
+            "US State Dept Uganda Health MOU, Nexa, Africa Health-Tech "
+            "Accelerator, AWIEF Pitch n Grow, EDCTP3 DIGIT-02 (consortium), "
+            "DIV/FID evidence-to-scale.",
+        ),
+        (
+            "Application packs",
+            "Win-win packs (rules + Word/PDF/PPT) live under "
+            "applications/{slug}/ where an app_slug is set. Status Drafting "
+            "until submitted; peri-urban adds start as Not started.",
+        ),
+        (
+            "Important",
+            "ALWAYS confirm deadlines and eligibility on the official "
+            "programme page before applying. Never use sites that impersonate "
+            "IFC/World Bank grant portals.",
+        ),
     ]
     meta["A1"] = "Field"
     meta["B1"] = "Detail"
