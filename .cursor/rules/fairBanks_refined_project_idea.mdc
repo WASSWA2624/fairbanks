@@ -8,11 +8,9 @@ alwaysApply: true
 **Slogan:** Your health, our mission.
 
 **Grant & Pitch Application Write-Up**  
-**Programme:** [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026)  
-**Theme:** Deep Roots. Digital Futures.  
 **Sector:** HealthTech | Artificial Intelligence & Machine Learning  
 **Geography:** Uganda (pilot) → East Africa → Pan-African scale  
-**Application deadline:** 20 July 2026
+**Use:** Canonical narrative for grants, accelerators, investors, and development partners — adapt programme name, theme, and eligibility to each call.
 
 ---
 
@@ -59,7 +57,7 @@ Many digital health tools in Africa focus on single use cases—appointment book
 - **Climate API integration** (rainfall, temperature, extreme weather) linked to health outcomes
 - Real-time decision support for frontline workers and policy makers
 
-The result is fragmented data, delayed response, and missed opportunities for climate-aware prevention at the community level—exactly the challenge AWIEF's 2026 theme, **Deep Roots. Digital Futures.**, calls founders to address with technology rooted in local context.
+The result is fragmented data, delayed response, and missed opportunities for climate-aware prevention at the community level—exactly the gap FairBanks addresses with technology rooted in local context.
 
 ---
 
@@ -162,7 +160,7 @@ FCHIP becomes the **digital nervous system** for FairBanks community healthcare�
 
 ## 4. Deep Technology Core
 
-AWIEF 2026 requires ventures built on substantial research and engineering, not lightweight digital services. FairBanks meets this standard through FCHIP's integrated deep-tech stack:
+Funders looking for substantial research and engineering—not lightweight digital services—will find FairBanks meets that bar through FCHIP's integrated deep-tech stack:
 
 | Technology                      | Function in FCHIP (FairBanks component)                                                                |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -273,13 +271,13 @@ FairBanks is not a concept-stage idea disconnected from the field. Active progra
 
 FairBanks can **design, pilot, validate, and refine** FCHIP inside an operating community health ecosystem—de-risking product-market fit for district and national deployment.
 
-### 8.3 Recommended AWIEF track
+### 8.3 Venture stage (for funders)
 
-| Track                           | Fit assessment                                                                                                                                                    |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Idea Track**                  | Applicable if pitching FCHIP as pre-venture prototype (<18 months, early prototype)                                                                                |
-| **Startup Track (recommended)** | Strong fit: registered operating medical centre, revenue-generating services, active community programmes, building deep-tech platform on proven field operations |
-| **Scale-Up Track**              | Future state after multi-market expansion and institutional funding                                                                                               |
+| Stage | Fit assessment |
+| --- | --- |
+| **Early / idea** | Applicable if pitching FCHIP as a pre-venture prototype (<18 months, early build) |
+| **Startup (typical fit)** | Strong fit: registered operating medical centre, revenue-generating services, active community programmes, building deep-tech platform on proven field operations |
+| **Scale-up** | Future state after multi-market expansion and institutional funding |
 
 ---
 
@@ -339,30 +337,31 @@ Through FCHIP, FairBanks shifts primary healthcare from **sick-care** to **predi
 
 ---
 
-## 11. AWIEF Pitch n Grow 2026 Alignment
+## 11. Funding Fit Themes
 
-### 11.1 Theme: Deep Roots. Digital Futures.
+Use this section to map FairBanks to a specific call's theme or criteria.
 
-| AWIEF expectation                         | FairBanks / FCHIP response                                                                                         |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Deep knowledge of local context           | Years of community outreach in named Kampala communities; CHW/VHT relationships; primary care delivery experience |
-| Deep understanding of communities         | Platform designed around how African communities actually report, move, and access care                           |
-| Deep technology, not superficial digital  | AI + ML + GIS + climate APIs + mobile edge + cloud + NLP integrated as a FairBanks component                      |
-| African problems, African-built solutions | Technology developed from FairBanks' field operations, not imported without local validation                      |
+| Common funder priority | FairBanks / FCHIP response |
+| --- | --- |
+| Local context and community roots | Years of community outreach in named Kampala communities; CHW/VHT relationships; primary care delivery experience |
+| Deep understanding of communities | Platform designed around how African communities actually report, move, and access care |
+| Deep technology, not superficial digital | AI + ML + GIS + climate APIs + mobile edge + cloud + NLP integrated as a FairBanks component |
+| African problems, African-built solutions | Technology developed from FairBanks' field operations, not imported without local validation |
+| Climate–health nexus | Climate API fusion with community and facility signals for early detection |
+| Women-led / gender-responsive health | Women-led venture; maternal health intelligence; community reach for vulnerable groups |
 
-### 11.2 Sector & eligibility checklist
+### Sector snapshot (adapt per call)
 
-- **Sector:** HealthTech (priority innovation sector)
+- **Sector:** HealthTech / digital health / climate–health (as relevant)
 - **Deep-tech core:** Artificial Intelligence & Machine Learning (plus GIS and climate integration)
 - **Market focus:** African communities (Uganda pilot → continental scale)
-- **Founder eligibility:** Woman founder or co-founder (presenting founder must be female)
-- **Commitment:** Available for AWIEF 2026 Conference live finals, Cape Town, 10–11 November 2026
+- **Founder profile:** Women-led; present eligibility as required by each programme
 
 ---
 
 ## 12. Application-Ready Copy Blocks
 
-*Use the sections below when completing the [Untap application portal](https://awief.untap.us/pitch-n-grow2026).*
+*Use the sections below when completing grant, accelerator, or investor applications. Swap in the call name and word limits as needed.*
 
 ### 12.1 One-line pitch
 
@@ -425,17 +424,17 @@ Only venture combining a **live medical centre and community outreach engine** w
 
 ## 14. Conclusion
 
-FairBanks represents a strategic evolution from community medical practice to **community health intelligence**. FCHIP is the FairBanks platform component that matches AWIEF Pitch n Grow 2026's call for women-led, deep-technology solutions rooted in African reality.
+FairBanks represents a strategic evolution from community medical practice to **community health intelligence**. FCHIP is the FairBanks platform component that delivers women-led, deep-technology solutions rooted in African reality—ready to adapt to grants, accelerators, investors, and development partners.
 
 With an operating medical centre, established outreach across Kampala communities, trusted CHW/VHT relationships, school and clinic programmes, digital health foundations, and a clear AI-, GIS-, and climate-powered product roadmap, FairBanks is ready to build, pilot, and scale FCHIP as the component that connects multi-source community data and climatic change signals to life-saving predictions.
 
 **Next immediate steps:**
 
 1. Finalise MVP scope and AI priorities for Phase 1 (climate-aware surveillance, maternal risk, NCD hotspots) with GIS and climate API integration
-2. Complete AWIEF application and 10–12 slide pitch deck
-3. Record 3-minute technology demo video
+2. Tailor this narrative to each funding call (theme, eligibility, ask, and word limits)
+3. Prepare pitch deck and technology demo materials as required
 4. Launch FairBanks pilot with CHW/VHT cohort in primary catchment communities
 
 ---
 
-*Document prepared for AWIEF Pitch n Grow 2026 submission. Canonical path: `.cursor/rules/fairBanks_refined_project_idea.mdc`.*
+*Canonical FairBanks / FCHIP funding narrative. Path: `.cursor/rules/fairBanks_refined_project_idea.mdc`.*
