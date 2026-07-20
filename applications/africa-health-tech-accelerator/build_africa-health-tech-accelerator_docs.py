@@ -1113,7 +1113,18 @@ def build_pptx() -> None:
         text(s, timing, x + 0.08, 2.18, 1.92, 0.2, 11, WHITE, True, align=PP_ALIGN.CENTER)
         text(s, str(i + 1), x + 0.65, 2.9, 0.78, 0.65, 28, ORANGE, True, align=PP_ALIGN.CENTER)
         text(s, milestone, x + 0.2, 3.8, 1.68, 1.45, 11, SLATE, align=PP_ALIGN.CENTER)
-    text(s, "Beachhead: FairBanks catchment  ->  Kampala partners  ->  Uganda districts  ->  East Africa", 0.9, 6.25, 11.5, 0.45, 14, ORANGE, True, align=PP_ALIGN.CENTER)
+    text(
+        s,
+        "Outcome: usable evidence for buyers, partners, and Demo Day.",
+        0.9,
+        6.25,
+        11.5,
+        0.45,
+        14,
+        ORANGE,
+        True,
+        align=PP_ALIGN.CENTER,
+    )
     footer(s, 9)
 
     # 10 Scale
@@ -1144,11 +1155,11 @@ def build_pptx() -> None:
     image_crop(s, asset("team"), 0.55, 1.9, 4.4, 4.75)
     strengths = [
         "Working FCHIP MVP with demo-ready workflows",
-        "Live medical centre and Community Reach programmes",
-        "CHW/VHT links in named Kampala peri-urban communities",
         "Secure EMR/HMS data APIs for real-time clinical ingest",
         "Clear six-month product-market validation plan",
-        "Path from Uganda beachhead to East African scale",
+        "Accelerator fit: mentorship, networks, and Demo Day readiness",
+        "Buyer evidence path for clinics, districts, and NGO partners",
+        "Uganda beachhead ready to expand across East Africa",
     ]
     rect(s, 5.35, 1.95, 7.35, 4.75, WHITE, LINE, True)
     rect(s, 5.35, 1.95, 0.14, 4.75, TEAL)
