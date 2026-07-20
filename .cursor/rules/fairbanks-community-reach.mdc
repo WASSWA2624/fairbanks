@@ -5,52 +5,58 @@ alwaysApply: true
 
 # FairBanks Community Reach — How the Model Works
 
-Canonical operating model for FairBanks community work. Use this when writing copy, designing product flows, pitching FCHIP, or describing impact. Do not invent alternate programme names or reorder the cascade.
+Canonical FairBanks community model. Do not invent alternate programme names or reorder the cascade.
 
 **Mission:** Connecting Care, Empowering Communities, Creating Lasting Impact.  
 **Tagline:** Health for All — *Obulamu eri Bonna* · *Afya kwa Wote* · *Oburamu bwa Boona*  
-**Slogan (docs/decks):** Your health, our mission.
+**Slogan:** Your health, our mission.
 
 ## Principles
 
 - **Health for All** — Care reaches every community member who needs it.
 - **Communities First** — Communities identify needs, participate, and own solutions.
-- **Empowerment for Sustainable Change** — Health gains link to livelihoods and lasting resilience.
+- **Empowerment for Sustainable Change** — Health gains link to livelihoods and resilience.
 
 ## Core cascade (top → bottom)
 
 1. **Community members** — Identify needs; participate in and own solutions.
-2. **Community Health Workers (CHWs)** — Bridge communities to care: outreach, education, referrals, follow-up, data collection. (Include VHTs where Uganda context applies.)
-3. **FairBanks Community Reach Programmes** — Outreach, health education, screening, maternal & child health, adolescent health, chronic care, home visits.
-4. **FairBanks Medical Centre** — Clinical care, diagnostics, pharmacy, specialist support, referrals, quality assurance.
-5. **Research · Partnerships · Skills development** — Evidence, innovation, academic/institutional partners, training, capacity building.
-6. **Economic empowerment & sustainable communities** — Livelihoods, financial inclusion, IGAs, resilient families, healthy communities, sustainable development.
+2. **CHWs / VHTs** — Bridge to care: outreach, education, referrals, follow-up, data collection.
+3. **FairBanks Community Reach Programmes** — Outreach, education, screening, maternal & child, adolescent, chronic care, home visits.
+4. **FairBanks Medical Centre** — Clinical care, diagnostics, pharmacy, specialists, referrals, QA.
+5. **Research · Partnerships · Skills** — Evidence, innovation, partners, training, capacity building.
+6. **Economic empowerment** — Livelihoods, financial inclusion, **CHIS**, IGAs, resilient families, sustainable communities.
 
 ## Continuous loop
 
-**Community needs & priorities** flow down the cascade; **services & solutions** flow back to communities.  
-Loop actors: Communities · CHWs · FBCR Programmes · Medical Centre · Research · Empowerment — working together for lasting impact.
+Needs flow down; services flow back. Actors: Communities · CHWs · FBCR · Medical Centre · Research · Empowerment · Data & Feedback.
+
+## Canonical visuals
+
+| File | Audience |
+| --- | --- |
+| `.cursor/concept_improved.jpeg` | Partners / funders (full model, CHIS, indicators) |
+| `.cursor/concept_simple.jpeg` | Community-facing journey |
+| `.cursor/concept.jpeg` | Classic cascade + feedback loop |
 
 ## Needs & priorities (inputs)
 
 | Area | Includes |
 |------|----------|
-| **Preventive health** | Health promotion, immunisation, screening, early detection |
-| **Education & awareness** | Health literacy, school health, community dialogues, behaviour change |
-| **Vulnerable group support** | Women & mothers, children & adolescents, elderly, persons with disabilities, refugees, urban poor |
+| **Preventive health** | Promotion, immunisation, screening, early detection |
+| **Education & awareness** | Health literacy, school health, dialogues, behaviour change |
+| **Vulnerable groups** | Women & mothers, children & adolescents, elderly, disabilities, refugees, urban poor |
 
 ## Services & enablers (outputs)
 
 | Area | Includes |
 |------|----------|
-| **Livelihoods & enterprise** | IGAs, savings groups, entrepreneurship, skills for jobs |
+| **Livelihoods & enterprise** | CHIS, IGAs, savings groups, entrepreneurship, skills |
 | **Data & feedback** | Community data, monitoring, learning, continuous improvement |
-| **Partnerships & resources** | Government, NGOs & CBOs, academic institutions, donors & partners, private sector |
+| **Partnerships & resources** | Government, NGOs & CBOs, academia, donors, private sector |
 
-## How to use this rule
+## How to use
 
 - Frame FairBanks as a **community health ecosystem**, not only a clinic.
-- When describing FCHIP: it is a **FairBanks component** — the **intelligence layer** on this cascade—especially CHW/VHT, school, community, hospital, and clinic data; GIS and climate signals; programmes; medical centre records; and the data & feedback loop.
-- Keep vulnerable groups, livelihoods, and multi-stakeholder partners visible in problem/impact copy where relevant.
-- Prefer human language; preserve the cascade order if summarising the model.
-- In decks and docs, show the cascade with clear pictures and simple visuals when it helps — follow elegant PowerPoint guidance in `.cursor/rules/documents.mdc`.
+- FCHIP is a **FairBanks component** — the intelligence layer on this cascade (CHW/VHT, schools, communities, hospitals, clinics; GIS/climate; Data & Feedback).
+- Keep vulnerable groups, livelihoods/CHIS, and partners visible where relevant.
+- Prefer human language; keep cascade order; use concept visuals in decks (see `documents.mdc`).
