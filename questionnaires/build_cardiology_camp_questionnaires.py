@@ -41,7 +41,7 @@ PAGE_W, PAGE_H = A4
 MARGIN_L = 16 * mm
 MARGIN_R = 16 * mm
 MARGIN_T = 12 * mm
-MARGIN_B = 18 * mm
+MARGIN_B = 20 * mm
 CONTENT_W = PAGE_W - MARGIN_L - MARGIN_R
 
 SUBMIT_EMAIL = "info@fairbanksmedicalcentre.org"
@@ -217,13 +217,92 @@ def _add_field_line(doc: Document, label: str, width_hint: str = "_" * 48) -> No
     _set_run_font(r2, size=10.5, color=(90, 106, 106))
 
 
+def _add_date_field(doc: Document, label: str, *, optional_note: str = "") -> None:
+    """Printable DD / MM / YYYY date boxes."""
+    p = doc.add_paragraph()
+    p.paragraph_format.space_after = Pt(2)
+    r = p.add_run(label)
+    _set_run_font(r, size=10.5, bold=True)
+    if optional_note:
+        n = p.add_run(f"  {optional_note}")
+        _set_run_font(n, size=9, color=(90, 106, 106))
+
+    table = doc.add_table(rows=1, cols=5)
+    table.autofit = True
+    parts = [("DD", 3), ("/", 1), ("MM", 3), ("/", 1), ("YYYY", 5)]
+    for i, (text, _) in enumerate(parts):
+        cell = table.rows[0].cells[i]
+        cell.text = ""
+        p = cell.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        if text in ("/",):
+            run = p.add_run("/")
+            _set_run_font(run, size=14, bold=True, color=(0, 140, 69))
+        else:
+            run = p.add_run(f"  {text}  ")
+            _set_run_font(run, size=11, color=(90, 106, 106))
+            _set_cell_shading(cell, "F7FBFF")
+    hint = doc.add_paragraph()
+    hint.paragraph_format.space_after = Pt(8)
+    hr = hint.add_run("Format: day / month / year  (example: 18 / 07 / 2026)")
+    _set_run_font(hr, size=8.5, color=(90, 106, 106))
+
+
 def _add_check_options(doc: Document, options: list[str], per_row: int = 2) -> None:
-    row = []
-    for i, opt in enumerate(options, 1):
-        row.append(f"☐  {opt}")
-        if i % per_row == 0 or i == len(options):
-            _add_para(doc, "     ".join(row), size=10, space_after=3)
-            row = []
+    """Clear printable checkbox grid (not cramped inline text)."""
+    # Pad to full rows for a clean table
+    cells = list(options)
+    while len(cells) % per_row:
+        cells.append("")
+    rows = len(cells) // per_row
+    table = doc.add_table(rows=rows, cols=per_row)
+    table.autofit = True
+    for r in range(rows):
+        for c in range(per_row):
+            opt = cells[r * per_row + c]
+            cell = table.rows[r].cells[c]
+            cell.text = ""
+            p = cell.paragraphs[0]
+            p.paragraph_format.space_after = Pt(2)
+            p.paragraph_format.space_before = Pt(2)
+            if not opt:
+                continue
+            box = p.add_run("☐")
+            _set_run_font(box, size=14, color=(0, 140, 69))
+            gap = p.add_run("  ")
+            _set_run_font(gap, size=11)
+            label = p.add_run(opt)
+            _set_run_font(label, size=10.5, color=(28, 43, 42))
+            _set_cell_shading(cell, "F3FBF6")
+    doc.add_paragraph()
+
+
+def _add_radio_options(doc: Document, options: list[str], per_row: int = 3) -> None:
+    """Printable radio-style choices (circles, not squares)."""
+    cells = list(options)
+    while len(cells) % per_row:
+        cells.append("")
+    rows = max(1, len(cells) // per_row)
+    table = doc.add_table(rows=rows, cols=per_row)
+    table.autofit = True
+    for r in range(rows):
+        for c in range(per_row):
+            opt = cells[r * per_row + c]
+            cell = table.rows[r].cells[c]
+            cell.text = ""
+            p = cell.paragraphs[0]
+            p.paragraph_format.space_after = Pt(2)
+            p.paragraph_format.space_before = Pt(2)
+            if not opt:
+                continue
+            circle = p.add_run("☐")
+            _set_run_font(circle, size=14, color=(0, 140, 69))
+            gap = p.add_run("  ")
+            _set_run_font(gap, size=11)
+            label = p.add_run(opt)
+            _set_run_font(label, size=10.5, bold=True, color=(28, 43, 42))
+            _set_cell_shading(cell, "F3FBF6")
+    doc.add_paragraph()
 
 
 def _add_open_prompt(doc: Document, number: str, prompt: str, lines: int = 3) -> None:
@@ -260,7 +339,7 @@ def _add_rating_table(doc: Document, items: list[str]) -> None:
             p = row.cells[c].paragraphs[0]
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             rr = p.add_run("☐")
-            _set_run_font(rr, size=11)
+            _set_run_font(rr, size=14, color=(0, 140, 69))
             if r_idx % 2 == 0:
                 _set_cell_shading(row.cells[c], "E8F6EE")
 
@@ -339,12 +418,13 @@ def build_consultant_docx(path: Path) -> None:
     _add_section(doc, "SECTION A", "General information")
     _add_field_line(doc, "Name (optional):")
     _add_field_line(doc, "Institution / hospital:")
-    _add_field_line(doc, "Camp date(s):", "_" * 28)
+    _add_date_field(doc, "Camp date:")
     _add_field_line(doc, "Camp venue / community:", "_" * 36)
     _add_para(doc, "Designation (tick one):", size=10.5, bold=True, space_after=3)
     _add_check_options(doc, [d[0] for d in CONSULTANT_DESIGNATIONS], per_row=2)
     _add_field_line(doc, "If Other, please specify:")
     _add_field_line(doc, "Years of practice (optional):", "_" * 20)
+    _add_date_field(doc, "Date you completed this form:")
 
     _add_section(doc, "SECTION B", "Overall rating")
     _add_para(
@@ -401,7 +481,7 @@ def build_consultant_docx(path: Path) -> None:
 
     _add_section(doc, "SECTION F", "Future collaboration")
     _add_para(doc, "Would you be willing to join future FairBanks Reach Programmes?", size=10.5, bold=True, space_after=3)
-    _add_check_options(doc, ["Yes", "No", "Maybe"], per_row=3)
+    _add_radio_options(doc, ["Yes", "No", "Maybe"], per_row=3)
     _add_para(doc, "If yes or maybe, in what capacity? (tick all that apply)", size=10.5, bold=True, space_after=3)
     _add_check_options(doc, [c[0] for c in COLLAB_CAPACITY] + ["Other"], per_row=2)
     _add_field_line(doc, "If Other, please specify:")
@@ -459,13 +539,14 @@ def build_staff_docx(path: Path) -> None:
     _add_section(doc, "SECTION A", "About you and your role")
     _add_field_line(doc, "Name (optional):")
     _add_field_line(doc, "Department / unit:")
-    _add_field_line(doc, "Camp date(s):", "_" * 28)
+    _add_date_field(doc, "Camp date:")
     _add_field_line(doc, "Camp venue / community:", "_" * 36)
     _add_para(doc, "Main role during the camp (tick one):", size=10.5, bold=True, space_after=3)
     _add_check_options(doc, [r[0] for r in STAFF_ROLES], per_row=2)
     _add_field_line(doc, "If Other, please specify:")
     _add_para(doc, "Was this your first FairBanks community camp?", size=10.5, bold=True, space_after=3)
-    _add_check_options(doc, ["Yes", "No"], per_row=2)
+    _add_radio_options(doc, ["Yes", "No"], per_row=2)
+    _add_date_field(doc, "Date you completed this form:")
 
     _add_section(doc, "SECTION B", "Operations rating")
     _add_para(
@@ -512,7 +593,7 @@ def build_staff_docx(path: Path) -> None:
 
     _add_section(doc, "SECTION F", "Future camps")
     _add_para(doc, "Would you like to serve again at future FairBanks Reach camps?", size=10.5, bold=True, space_after=3)
-    _add_check_options(doc, ["Yes", "No", "Maybe"], per_row=3)
+    _add_radio_options(doc, ["Yes", "No", "Maybe"], per_row=3)
     _add_open_prompt(doc, "1.", "What training or tools would help you perform better at the next camp?")
     _add_open_prompt(doc, "2.", "One change that would most improve the next camp:")
 
@@ -540,17 +621,21 @@ def finalize_fillable_pdf(path: Path) -> None:
     if acro[0] == "xref":
         af_xref = int(acro[1].split()[0])
         doc.xref_set_key(af_xref, "NeedAppearances", "true")
-    elif acro[0] == "null":
-        # Should not happen for our forms; keep a minimal AcroForm if missing
-        pass
 
+    # Clear accidental default selections and ReadOnly flags without rewriting
+    # widget appearances (calling Widget.update() on radios can mark them On).
     for page in doc:
         for widget in page.widgets() or []:
-            # Clear ReadOnly (bit 0) so respondents can type and save
             flags = widget.field_flags or 0
-            if flags & 1:
+            if flags & 1:  # ReadOnly
                 widget.field_flags = flags & ~1
-            widget.update()
+            # Radios/checkboxes must start unchecked for a blank questionnaire
+            if widget.field_type_string in ("RadioButton", "CheckBox"):
+                try:
+                    if widget.field_value not in (None, "", "Off"):
+                        widget.field_value = "Off"
+                except Exception:
+                    pass
 
     tmp = path.with_suffix(".tmp.pdf")
     doc.save(tmp, garbage=3, deflate=True, clean=True)
@@ -666,7 +751,7 @@ class FormPDF:
         self.c.drawString(
             MARGIN_L + 3 * mm,
             self.y - 5.5 * mm,
-            "1) Click any blue-bordered field to type   2) Tick boxes / rating circles   3) File > Save As (keep as PDF)",
+            "1) Click any blue-bordered field to type   2) Tick boxes (a check appears)   3) File > Save As (keep as PDF)",
         )
         self.c.drawString(
             MARGIN_L + 3 * mm,
@@ -744,6 +829,79 @@ class FormPDF:
         )
         self.y -= 8 * mm
 
+    def date_field(self, label: str, prefix: str, *, hint: str = "") -> None:
+        """Proper DD / MM / YYYY fillable date input."""
+        self.ensure(16 * mm)
+        self.c.setFillColor(INK)
+        self.c.setFont("Helvetica-Bold", 8.5)
+        self.c.drawString(MARGIN_L, self.y, label)
+        if hint:
+            self.c.setFont("Helvetica", 7.5)
+            self.c.setFillColor(MUTED)
+            self.c.drawString(
+                MARGIN_L + self.c.stringWidth(label, "Helvetica-Bold", 8.5) + 2 * mm,
+                self.y,
+                hint,
+            )
+        self.y -= 2.5 * mm
+
+        plate_h = 11 * mm
+        plate_w = 82 * mm
+        plate_bottom = self.y - plate_h
+        self.c.setFillColor(HexColor("#F7FBFF"))
+        self.c.setStrokeColor(HexColor("#4AA3FF"))
+        self.c.setLineWidth(0.9)
+        self.c.roundRect(MARGIN_L, plate_bottom, plate_w, plate_h, 2.5, fill=1, stroke=1)
+
+        day_w = 15 * mm
+        mon_w = 15 * mm
+        year_w = 24 * mm
+        slash_w = 4 * mm
+        gap = 1.5 * mm
+        box_h = 6.5 * mm
+        x = MARGIN_L + 3.5 * mm
+        label_y = plate_bottom + plate_h - 3.2 * mm
+        box_y = plate_bottom + 1.8 * mm
+
+        parts = [
+            ("day", day_w, "DD", 2),
+            ("month", mon_w, "MM", 2),
+            ("year", year_w, "YYYY", 4),
+        ]
+        for i, (part, width, placeholder, maxlen) in enumerate(parts):
+            self.c.setFillColor(MUTED)
+            self.c.setFont("Helvetica-Bold", 6.5)
+            self.c.drawCentredString(x + width / 2, label_y, placeholder)
+            self.c.acroForm.textfield(
+                name=f"{prefix}_{part}",
+                tooltip=f"{label} ({placeholder})",
+                value="",
+                x=x,
+                y=box_y,
+                width=width,
+                height=box_h,
+                borderWidth=0.8,
+                borderColor=BRAND_DARK,
+                fillColor=white,
+                textColor=INK,
+                forceBorder=True,
+                fontSize=11,
+                fontName="Helvetica-Bold",
+                fieldFlags="",
+                maxlen=maxlen,
+            )
+            x += width
+            if i < len(parts) - 1:
+                self.c.setFillColor(BRAND)
+                self.c.setFont("Helvetica-Bold", 13)
+                self.c.drawCentredString(x + slash_w / 2, box_y + 1.5 * mm, "/")
+                x += slash_w + gap
+
+        self.c.setFillColor(MUTED)
+        self.c.setFont("Helvetica", 7)
+        self.c.drawString(MARGIN_L + plate_w + 3 * mm, box_y + 2 * mm, "Example: 18 / 07 / 2026")
+        self.y = plate_bottom - 3.5 * mm
+
     def multiline(self, prompt: str, name: str, height: float = 18 * mm) -> None:
         self.ensure(height + 8 * mm)
         self.c.setFillColor(INK)
@@ -771,108 +929,150 @@ class FormPDF:
         self.y -= height + 4 * mm
 
     def check_row(self, options: list[tuple[str, str]], cols: int = 2) -> None:
+        """Larger, easier-to-click checkboxes with clear labels."""
         col_w = CONTENT_W / cols
-        row_h = 6.5 * mm
+        box = 13  # points - easy tap/click target
+        row_h = 7.2 * mm
+        pad = 1.2 * mm
         for i, (label, name) in enumerate(options):
             if i % cols == 0:
                 self.ensure(row_h + 1 * mm)
                 row_y = self.y
             col = i % cols
             x = MARGIN_L + col * col_w
+            # Soft chip background so each option is easy to find
+            chip_w = col_w - 2 * mm
+            self.c.setFillColor(HexColor("#F3FBF6"))
+            self.c.setStrokeColor(HexColor("#B7DFC6"))
+            self.c.setLineWidth(0.7)
+            self.c.roundRect(x, row_y - 4.0 * mm, chip_w, 6.6 * mm, 2.2, fill=1, stroke=1)
             self.c.acroForm.checkbox(
                 name=name,
-                x=x,
-                y=row_y - 1 * mm,
-                size=9,
+                tooltip=f"Select: {label}",
+                x=x + pad,
+                y=row_y - 2.9 * mm,
+                size=box,
                 buttonStyle="check",
-                borderColor=BRAND,
-                fillColor=white,
-                textColor=BRAND,
+                shape="square",
+                borderWidth=1.4,
+                borderColor=BRAND_DARK,
+                fillColor=HexColor("#FFFFFF"),
+                textColor=BRAND_DARK,
                 forceBorder=True,
                 checked=False,
                 fieldFlags="",
             )
             self.c.setFillColor(INK)
-            self.c.setFont("Helvetica", 8)
-            self.c.drawString(x + 4.5 * mm, row_y, label)
+            self.c.setFont("Helvetica", 8.5)
+            # Vertically centre label with the checkbox
+            self.c.drawString(x + pad + box + 2.4 * mm, row_y - 0.5 * mm, label)
             if col == cols - 1 or i == len(options) - 1:
                 self.y = row_y - row_h
 
-    def radio_yes_no_maybe(self, group: str) -> None:
-        opts = [("Yes", "Yes"), ("No", "No"), ("Maybe", "Maybe")]
-        self.ensure(8 * mm)
+    def radio_choice_row(self, group: str, opts: list[tuple[str, str]]) -> None:
+        """Single-choice options drawn as square checkboxes (easy to see when ticked)."""
+        box = 14
+        self.ensure(10 * mm)
         x = MARGIN_L
+        gap = 3.5 * mm
+        usable = CONTENT_W - gap * (len(opts) - 1)
+        chip_w = usable / max(len(opts), 1)
         for label, val in opts:
-            self.c.acroForm.radio(
-                name=group,
-                value=val,
-                x=x,
-                y=self.y - 1 * mm,
-                size=9,
-                selected=False,
-                buttonStyle="circle",
-                borderColor=BRAND,
-                fillColor=white,
-                textColor=BRAND,
+            self.c.setFillColor(HexColor("#F3FBF6"))
+            self.c.setStrokeColor(HexColor("#8FCFAB"))
+            self.c.setLineWidth(0.9)
+            self.c.roundRect(x, self.y - 4.5 * mm, chip_w, 7.5 * mm, 3.2, fill=1, stroke=1)
+            rx = x + 2.4 * mm
+            ry = self.y - 3.1 * mm
+            # Checkbox look (not circle radios) so a green check is obvious when chosen
+            self.c.acroForm.checkbox(
+                name=f"{group}_{val}",
+                tooltip=f"Select {label} (tick one)",
+                x=rx,
+                y=ry,
+                size=box,
+                buttonStyle="check",
+                shape="square",
+                borderWidth=1.8,
+                borderColor=BRAND_DARK,
+                fillColor=HexColor("#FFFFFF"),
+                textColor=BRAND_DARK,
                 forceBorder=True,
-                fieldFlags="radio",
+                checked=False,
+                fieldFlags="",
             )
             self.c.setFillColor(INK)
-            self.c.setFont("Helvetica", 8.5)
-            self.c.drawString(x + 4.5 * mm, self.y, label)
-            x += 32 * mm
-        self.y -= 8 * mm
+            self.c.setFont("Helvetica-Bold", 9.5)
+            self.c.drawString(rx + box + 2.8 * mm, self.y - 0.6 * mm, label)
+            x += chip_w + gap
+        self.y -= 10.5 * mm
+
+    def radio_yes_no_maybe(self, group: str) -> None:
+        self.radio_choice_row(group, [("Yes", "Yes"), ("No", "No"), ("Maybe", "Maybe")])
 
     def rating_table(self, items: list[str], prefix: str) -> None:
         headers = ["Area", "5", "4", "3", "2", "1"]
-        col_area = CONTENT_W - 5 * 11 * mm
-        col_w = 11 * mm
-        row_h = 6.2 * mm
-        head_h = 7 * mm
+        col_w = 13 * mm
+        col_area = CONTENT_W - 5 * col_w
+        row_h = 8.0 * mm
+        head_h = 7.5 * mm
+        box = 13
 
         self.ensure(head_h + row_h * min(3, len(items)) + 4 * mm)
         self.c.setFillColor(MUTED)
         self.c.setFont("Helvetica", 7)
-        self.c.drawString(MARGIN_L, self.y, "Scale: 5 Excellent · 4 Very Good · 3 Good · 2 Fair · 1 Poor  (select one per row)")
+        self.c.drawString(
+            MARGIN_L,
+            self.y,
+            "Scale: 5 Excellent · 4 Very Good · 3 Good · 2 Fair · 1 Poor  "
+            "(tick one checkbox per row - a clear check appears when selected)",
+        )
         self.y -= 4 * mm
 
-        # header
         self.ensure(head_h + 2 * mm)
         self.c.setFillColor(BRAND)
         self.c.rect(MARGIN_L, self.y - head_h + 2 * mm, CONTENT_W, head_h, fill=1, stroke=0)
         self.c.setFillColor(white)
-        self.c.setFont("Helvetica-Bold", 7.5)
-        self.c.drawString(MARGIN_L + 2 * mm, self.y - 2.5 * mm, headers[0])
+        self.c.setFont("Helvetica-Bold", 8.5)
+        self.c.drawString(MARGIN_L + 2 * mm, self.y - 2.8 * mm, headers[0])
         for i, h in enumerate(headers[1:]):
             cx = MARGIN_L + col_area + i * col_w + col_w / 2
-            self.c.drawCentredString(cx, self.y - 2.5 * mm, h)
+            self.c.drawCentredString(cx, self.y - 2.8 * mm, h)
         self.y -= head_h
 
         for idx, item in enumerate(items):
             self.ensure(row_h + 1 * mm)
+            row_bottom = self.y - row_h + 2 * mm
             if idx % 2 == 0:
                 self.c.setFillColor(LIGHT)
-                self.c.rect(MARGIN_L, self.y - row_h + 2 * mm, CONTENT_W, row_h, fill=1, stroke=0)
+                self.c.rect(MARGIN_L, row_bottom, CONTENT_W, row_h, fill=1, stroke=0)
+            self.c.setStrokeColor(HexColor("#C9E6D5"))
+            self.c.setLineWidth(0.5)
+            for i in range(6):
+                gx = MARGIN_L + col_area + i * col_w
+                self.c.line(gx, row_bottom + 1.0, gx, row_bottom + row_h - 1.0)
             self.c.setFillColor(INK)
-            self.c.setFont("Helvetica", 7.5)
-            self.c.drawString(MARGIN_L + 2 * mm, self.y - 1.5 * mm, item)
-            group = f"{prefix}_r{idx}"
+            self.c.setFont("Helvetica", 8)
+            self.c.drawString(MARGIN_L + 2 * mm, self.y - 2.2 * mm, item)
             for score in range(5, 0, -1):
                 i = 5 - score
-                cx = MARGIN_L + col_area + i * col_w + col_w / 2 - 4
-                self.c.acroForm.radio(
-                    name=group,
-                    value=str(score),
+                cx = MARGIN_L + col_area + i * col_w + (col_w - box) / 2
+                cy = row_bottom + (row_h - box) / 2
+                self.c.acroForm.checkbox(
+                    name=f"{prefix}_r{idx}_{score}",
+                    tooltip=f"{item}: score {score} (tick one per row)",
                     x=cx,
-                    y=self.y - 2.2 * mm,
-                    size=8,
-                    selected=False,
-                    buttonStyle="circle",
-                    borderColor=BRAND,
-                    fillColor=white,
-                    textColor=BRAND,
+                    y=cy,
+                    size=box,
+                    buttonStyle="check",
+                    shape="square",
+                    borderWidth=1.8,
+                    borderColor=BRAND_DARK,
+                    fillColor=HexColor("#FFFFFF"),
+                    textColor=BRAND_DARK,
                     forceBorder=True,
-                    fieldFlags="radio",
+                    checked=False,
+                    fieldFlags="",
                 )
             self.y -= row_h
         self.y -= 2 * mm
@@ -902,46 +1102,47 @@ def build_consultant_pdf(path: Path) -> None:
     pdf.section("SECTION A", "General information")
     pdf.text_line("Name (optional):", "c_name")
     pdf.text_line("Institution / hospital:", "c_institution")
-    pdf.text_line("Camp date(s):", "c_date", field_w=55 * mm)
+    pdf.date_field("Camp date:", "c_camp")
     pdf.text_line("Camp venue / community:", "c_venue")
     pdf.label("Designation (select all that apply):")
     pdf.check_row(CONSULTANT_DESIGNATIONS, cols=2)
     pdf.text_line("If Other, specify:", "c_des_other")
     pdf.text_line("Years of practice (optional):", "c_years", field_w=30 * mm)
+    pdf.date_field("Date you completed this form:", "c_completed")
 
     pdf.section("SECTION B", "Overall rating")
     pdf.rating_table(CONSULTANT_RATINGS, "c")
 
     pdf.section("SECTION C", "Professional feedback")
-    pdf.multiline("1. How would you describe your overall experience at this camp?", "c_exp", height=16 * mm)
-    pdf.multiline("2. What impressed you most?", "c_highlights", height=16 * mm)
-    pdf.multiline("3. What challenges did you face?", "c_challenges", height=16 * mm)
-    pdf.multiline("4. What should we change for the next cardiology camp?", "c_recommend", height=16 * mm)
+    pdf.multiline("1. How would you describe your overall experience at this camp?", "c_exp", height=14 * mm)
+    pdf.multiline("2. What impressed you most?", "c_highlights", height=14 * mm)
+    pdf.multiline("3. What challenges did you face?", "c_challenges", height=14 * mm)
+    pdf.multiline("4. What should we change for the next cardiology camp?", "c_recommend", height=14 * mm)
     pdf.multiline(
         "5. Any clinical patterns or high-need findings to plan for next time?",
         "c_patterns",
-        height=14 * mm,
+        height=12 * mm,
     )
 
     pdf.section("SECTION D", "Patient follow-up and referral")
-    pdf.multiline("a) How can FairBanks improve post-camp follow-up for CVD / risk patients?", "c_fu_a", height=16 * mm)
-    pdf.multiline("b) How can we strengthen referral pathways for complex cardiac cases?", "c_fu_b", height=16 * mm)
-    pdf.multiline("c) How can we improve medication adherence and continuity of care?", "c_fu_c", height=16 * mm)
+    pdf.multiline("a) How can FairBanks improve post-camp follow-up for CVD / risk patients?", "c_fu_a", height=14 * mm)
+    pdf.multiline("b) How can we strengthen referral pathways for complex cardiac cases?", "c_fu_b", height=14 * mm)
+    pdf.multiline("c) How can we improve medication adherence and continuity of care?", "c_fu_c", height=14 * mm)
     pdf.multiline(
         "d) How can CHWs, VHTs and digital tools help monitor patients after the camp?",
         "c_fu_d",
-        height=16 * mm,
+        height=14 * mm,
     )
 
     pdf.section("SECTION E", "Programme sustainability")
-    pdf.multiline("1. Which strengths would appeal most to partners and sponsors?", "c_strengths", height=16 * mm)
+    pdf.multiline("1. Which strengths would appeal most to partners and sponsors?", "c_strengths", height=14 * mm)
     pdf.label("2. Priority services for future outreaches (select all that apply):")
     pdf.check_row(PRIORITY_SERVICES + [("Other", "svc_other")], cols=3)
     pdf.text_line("If Other, specify:", "c_svc_other_txt")
     pdf.multiline(
         "3. What would make a community cardiovascular programme sustainable over 2–3 years?",
         "c_sustain",
-        height=16 * mm,
+        height=14 * mm,
     )
 
     pdf.section("SECTION F", "Future collaboration")
@@ -988,7 +1189,7 @@ def build_staff_pdf(path: Path) -> None:
             "Dear Colleague, thank you for serving at the Community Cardiology Camp. Your work at "
             "registration, clinical stations, pharmacy, laboratory, logistics and community support "
             "made the outreach possible.",
-            "This internal form is for learning and planning — not individual performance appraisal. "
+            "This internal form is for learning and planning - not individual performance appraisal. "
             "Please be frank so we can improve the next FairBanks Reach Programme camp.",
         ]
     )
@@ -996,59 +1197,42 @@ def build_staff_pdf(path: Path) -> None:
     pdf.section("SECTION A", "About you and your role")
     pdf.text_line("Name (optional):", "s_name")
     pdf.text_line("Department / unit:", "s_dept")
-    pdf.text_line("Camp date(s):", "s_date", field_w=55 * mm)
+    pdf.date_field("Camp date:", "s_camp")
     pdf.text_line("Camp venue / community:", "s_venue")
     pdf.label("Main role during the camp (select one or more):")
     pdf.check_row(STAFF_ROLES, cols=2)
     pdf.text_line("If Other, specify:", "s_role_other")
     pdf.label("Was this your first FairBanks community camp?")
-    pdf.ensure(8 * mm)
-    x = MARGIN_L
-    for label, val in [("Yes", "Yes"), ("No", "No")]:
-        pdf.c.acroForm.radio(
-            name="s_first",
-            value=val,
-            x=x,
-            y=pdf.y - 1 * mm,
-            size=9,
-            selected=False,
-            buttonStyle="circle",
-            borderColor=BRAND,
-            fillColor=white,
-            textColor=BRAND,
-            forceBorder=True,
-            fieldFlags="radio",
-        )
-        pdf.c.setFillColor(INK)
-        pdf.c.setFont("Helvetica", 8.5)
-        pdf.c.drawString(x + 4.5 * mm, pdf.y, label)
-        x += 28 * mm
-    pdf.y -= 8 * mm
+    pdf.radio_choice_row("s_first", [("Yes", "Yes"), ("No", "No")])
+    pdf.date_field("Date you completed this form:", "s_completed")
 
     pdf.section("SECTION B", "Operations rating")
     pdf.rating_table(STAFF_RATINGS, "s")
 
     pdf.section("SECTION C", "What worked and what did not")
-    pdf.multiline("1. What worked well at your station or team?", "s_worked")
-    pdf.multiline("2. What caused delays, confusion or bottlenecks?", "s_delays")
-    pdf.multiline("3. Were supplies, forms, devices or medicines missing or short? List them.", "s_supplies")
-    pdf.multiline("4. How clear was briefing and task assignment before and during the camp?", "s_briefing")
-    pdf.multiline("5. How would you improve registration, triage and patient flow next time?", "s_flow")
+    h = 12 * mm
+    pdf.multiline("1. What worked well at your station or team?", "s_worked", height=h)
+    pdf.multiline("2. What caused delays, confusion or bottlenecks?", "s_delays", height=h)
+    pdf.multiline("3. Were supplies, forms, devices or medicines missing or short? List them.", "s_supplies", height=h)
+    pdf.multiline("4. How clear was briefing and task assignment before and during the camp?", "s_briefing", height=h)
+    pdf.multiline("5. How would you improve registration, triage and patient flow next time?", "s_flow", height=h)
 
     pdf.section("SECTION D", "Teamwork, welfare and safety")
-    pdf.multiline("1. How was teamwork between clinical, support and community teams?", "s_team")
-    pdf.multiline("2. Did you have enough staff at your station? If not, what was missing?", "s_staffing")
-    pdf.multiline("3. Any safety, infection-prevention or patient-privacy concerns?", "s_safety")
-    pdf.multiline("4. Comments on breaks, meals, transport or staff welfare:", "s_welfare")
+    pdf.multiline("1. How was teamwork between clinical, support and community teams?", "s_team", height=h)
+    pdf.multiline("2. Did you have enough staff at your station? If not, what was missing?", "s_staffing", height=h)
+    pdf.multiline("3. Any safety, infection-prevention or patient-privacy concerns?", "s_safety", height=h)
+    pdf.multiline("4. Comments on breaks, meals, transport or staff welfare:", "s_welfare", height=h)
 
     pdf.section("SECTION E", "Community and continuity")
     pdf.multiline(
         "1. What community needs or patient patterns stood out?",
         "s_patterns",
+        height=h,
     )
     pdf.multiline(
         "2. How can CHWs / VHTs and FairBanks better support follow-up after the camp?",
         "s_followup",
+        height=h,
     )
     pdf.label("3. Priority services for future camps (select all that apply):")
     pdf.check_row(PRIORITY_SERVICES + [("Other", "s_svc_other")], cols=3)
@@ -1057,14 +1241,14 @@ def build_staff_pdf(path: Path) -> None:
     pdf.section("SECTION F", "Future camps")
     pdf.label("Would you like to serve again at future FairBanks Reach camps?")
     pdf.radio_yes_no_maybe("s_future")
-    pdf.multiline("1. What training or tools would help you at the next camp?", "s_training")
-    pdf.multiline("2. One change that would most improve the next camp:", "s_one_change", height=18 * mm)
+    pdf.multiline("1. What training or tools would help you at the next camp?", "s_training", height=h)
+    pdf.multiline("2. One change that would most improve the next camp:", "s_one_change", height=h)
 
     pdf.section("SECTION G", "Closing remarks")
     pdf.multiline(
         "Any other comments for Management (logistics, partnerships, recognition, ideas):",
         "s_closing",
-        height=22 * mm,
+        height=18 * mm,
     )
 
     if pdf.y < MARGIN_B + 16 * mm:
