@@ -48,7 +48,7 @@ RED = "A3312D"
 
 PROGRAMME = "Nexa Climate and Health Initiative 2026"
 TITLE = "FCHIP Climate Health Early Action"
-SUBTITLE = "Turning rainfall, heat, and community health signals into timely care in Uganda"
+SUBTITLE = "Climate-informed early warning that drives timely health action in Uganda"
 SLOGAN = "Your health, our mission."
 DEADLINE = "22 July 2026, 2:00 p.m. ET / 6:00 p.m. UTC"
 TRACK = "Proof of Concept - climate-informed early warning and monitoring systems"
@@ -119,109 +119,127 @@ READINESS = [
 ]
 
 PROBLEM = (
-    "Climate change is making malaria risk less predictable in Kampala and surrounding "
-    "communities. Shifting rainfall, temperature, and humidity can change mosquito breeding "
-    "and transmission, while extreme heat adds risk for pregnant women and people living "
-    "with cardiovascular disease or diabetes. Yet local health actors mainly see separate, "
-    "late signals: CHW and VHT reports, outreach screening records, facility visits, medicine "
-    "use, and weather information. Clinical records often stay locked inside existing EMR or "
-    "hospital management systems, so community, climate, and facility intelligence rarely "
-    "fuse in real time. These signals are rarely combined into simple triggers that tell a "
-    "CHW, clinic, or programme when and where to act. Underserved households, including "
-    "pregnant women, children, older people, and residents of informal urban communities, "
-    "therefore face delayed prevention, testing, referral, follow-up, and stock preparation. "
-    "FairBanks needs a practical local system that turns climate-driven risk signals into "
-    "timely health service action, not another dashboard that stops at an alert."
+    "In Kampala peri-urban communities served by FairBanks Community Reach — including "
+    "Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya — climate change is shifting when "
+    "and where health risk rises. Changing rainfall, temperature, and humidity alter "
+    "mosquito breeding and malaria transmission, while extreme heat raises risk for "
+    "pregnant women and people living with cardiovascular disease or diabetes. Local "
+    "actors already collect pieces of the picture: CHW and VHT household reports, "
+    "outreach screening, facility visits, medicine use, and weather information. Clinical "
+    "records often stay locked inside existing EMR or hospital management systems, so "
+    "community, climate, and facility signals rarely fuse in real time. The gap is not "
+    "another stand-alone forecast. It is the missing end-to-end bridge from climate-driven "
+    "risk signals to timely health service action — named owners, protocols, referral, "
+    "follow-up, and supply readiness. Without that bridge, households face delayed "
+    "prevention, testing, and continuity of care, and local systems cannot adapt services "
+    "during rainfall or heat stress periods. FairBanks needs a practical climate-informed "
+    "early warning and monitoring workflow that builds local resilience through earlier, "
+    "targeted action — not a dashboard that stops at an alert."
 )
 
 INNOVATION = (
-    "FCHIP Climate Health Early Action is a climate-integrated FairBanks platform component "
-    "on the Community Reach Data and Feedback loop. It will combine approved rainfall, "
-    "temperature, humidity, and seasonal data with structured CHW/VHT reports, outreach "
-    "screening, facility trends, and medicine-use signals. FCHIP will also safely expose "
-    "authenticated data APIs to existing EMR and HMS systems so facilities can share "
-    "clinical data into the platform in real time without replacing the software they "
-    "already use. An offline-capable mobile workflow will help frontline workers collect "
-    "and review essential data. Explainable risk rules will first identify time-and-place "
-    "malaria risk and heat-sensitive risk for pregnancy, cardiovascular disease, and "
-    "diabetes. A GIS action board will show risk, data quality, and agreed response "
-    "triggers. Each trigger will connect to a named protocol: targeted health messages, "
-    "household follow-up, malaria testing/referral, outreach scheduling, clinician review, "
-    "or medicine and supply preparation. The Proof of Concept will test whether this "
-    "end-to-end loop is feasible, accepted, timely, and able to improve access to "
-    "climate-responsive care. Models will not diagnose or replace clinical judgement."
+    "FCHIP Climate Health Early Action is a climate-integrated FairBanks platform "
+    "component on the Community Reach Data and Feedback loop. It directly addresses "
+    "Nexa's climate-informed early warning and monitoring focus by integrating approved "
+    "rainfall, temperature, humidity, and seasonal data with structured CHW/VHT reports, "
+    "outreach screening, facility trends, medicine-use signals, and secure authenticated "
+    "data APIs to existing EMR/HMS systems so clinical feeds can enter in real time "
+    "without replacing software facilities already use. An offline-capable mobile "
+    "workflow supports frontline capture and review. Explainable rules first score "
+    "time-and-place malaria risk under changing mosquito ecology and heat-sensitive risk "
+    "for pregnancy hypertension/heat stress, cardiovascular disease, and diabetes. A GIS "
+    "action board shows risk, data quality, and agreed triggers. Each trigger links to a "
+    "named service protocol: targeted messages, household follow-up, malaria testing and "
+    "referral, outreach scheduling, clinician review, or medicine and supply preparation. "
+    "This Proof of Concept will test whether the full loop — sense, interpret, act, learn "
+    "— is feasible, accepted, timely, and able to improve access to climate-responsive "
+    "care. Models will not diagnose or replace clinical judgement."
 )
 
 POPULATION = (
-    "The pilot will focus on climate-vulnerable households in FairBanks Community Reach "
-    "areas in and around Kampala, with priority attention to pregnant women, children, older "
-    "people, and people living with cardiovascular disease or diabetes. These groups may be "
-    "more exposed to mosquito-borne infection, heat stress, disrupted care, and financial "
-    "barriers. CHWs and VHTs will help identify needs, test language and workflows, explain "
-    "consent, collect only necessary data, and connect households to services. Community "
-    "members will join design sessions, usability tests, feedback meetings, and review of "
-    "what actions followed alerts. Access will not depend on owning a smartphone: frontline "
-    "workers will use offline-capable tools and existing outreach channels. Participation "
-    "targets, locations, safeguarding steps, disability access, and gender-responsive "
-    "engagement must be confirmed with communities before submission and implementation."
+    "The pilot focuses on climate-vulnerable households in FairBanks Community Reach "
+    "catchments in and around Kampala, including underserved peri-urban and informal "
+    "settlement settings. Priority groups match Nexa's focus: pregnant women; children; "
+    "older people; and people living with cardiovascular disease or diabetes — groups more "
+    "exposed to malaria risk, heat stress, disrupted care, and financial barriers. CHWs "
+    "and VHTs will help identify needs, test language and workflows, explain consent, "
+    "collect only necessary data, and connect households to prevention, testing, referral, "
+    "and follow-up. Community members will join design sessions, usability tests, feedback "
+    "meetings, and review of what actions followed alerts, with gender-responsive and "
+    "disability-aware engagement. Access will not depend on owning a smartphone: frontline "
+    "workers will use offline-capable tools and existing outreach channels so care remains "
+    "reachable during heat, heavy rain, or poor connectivity. Exact participation targets, "
+    "sites, safeguarding steps, and compensation: " + CONFIRM + "."
 )
 
 INNOVATIVE = (
     "Current approaches often keep weather information, community reports, and clinical "
-    "records in separate systems — including EMR and hospital management platforms that "
-    "do not easily share data with community tools. Some early warning tools stop at "
-    "forecasting and leave local teams to decide what to do. FCHIP is designed around the "
-    "full early-action chain: community signal, climate signal, secure EMR/HMS clinical "
-    "feeds, explainable trigger, named actor, service response, and follow-up result. It "
-    "combines technological innovation (offline capture, secure EMR/HMS data APIs, secure "
-    "data integration, interpretable analytics, and GIS), social innovation (CHW/VHT-led "
-    "design and community feedback), and a delivery model rooted in a functioning medical "
-    "centre and Community Reach programmes. It is a better fit for a lower-resource setting "
-    "because it starts with simple validated rules, works with intermittent connectivity, "
-    "keeps clinicians responsible for care decisions, and does not require facilities to "
-    "replace existing EMR/HMS software. The pilot will compare timeliness, completion, "
-    "acceptability, and cost with current manual planning before adding any machine learning."
+    "records in separate systems — including EMR/HMS platforms that do not easily share "
+    "data with community tools. Many early warning products stop at forecasting and leave "
+    "local teams without a named action pathway. FCHIP is designed as an end-to-end "
+    "climate-informed early warning and monitoring system in Nexa's sense: monitoring and "
+    "prediction linked to communication, preparedness, and timely health service delivery "
+    "action. The core innovation is the climate-triggered action loop — climate plus "
+    "community and facility signals, explainable trigger, named actor, protocol, referral, "
+    "and follow-up result — not a weather layer bolted onto a health register. It combines "
+    "technological innovation (offline capture, secure EMR/HMS data APIs, interpretable "
+    "analytics, GIS), social innovation (CHW/VHT co-design and community feedback), and a "
+    "delivery model rooted in a functioning medical centre and Community Reach programmes. "
+    "It fits lower-resource and climate-stressed settings because it starts with simple "
+    "validated rules, works offline, keeps clinicians responsible for care decisions, and "
+    "does not require replacing existing EMR/HMS software. The pilot will compare "
+    "timeliness, completion, acceptability, and cost with current manual planning before "
+    "any machine learning is added."
 )
 
 OUTCOMES = (
-    "The primary aim is improved and more timely access to prevention, testing, referral, "
-    "monitoring, and treatment for climate-sensitive conditions. For malaria, rainfall and "
-    "community symptom signals should trigger earlier targeted communication, testing, "
-    "outreach, and supply preparation. For heat-sensitive pregnancy, cardiovascular disease, "
-    "and diabetes, heat thresholds should trigger follow-up, hydration and risk messages, "
-    "clinician review, and continuity-of-care checks. The pilot will test whether more "
-    "at-risk people receive a documented service action after a climate-informed alert, "
-    "whether response time falls, and whether referral and follow-up completion improve. "
-    "It will also track false alerts, missed events, equity of reach, service continuity, and "
-    "unintended harm. Final baseline values and realistic targets must be set from verified "
-    "FairBanks and partner data; technical alert accuracy alone will not count as health impact."
+    "This Proof of Concept aims to improve health access — especially timeliness — for "
+    "Nexa priority outcomes, not only alert accuracy. Primary pathways: (1) malaria — "
+    "rainfall and community symptom signals trigger earlier prevention messages, testing, "
+    "outreach, referral, and supply readiness; (2) pregnancy-related outcomes — heat "
+    "thresholds trigger follow-up for hypertension, gestational diabetes risk where "
+    "captured, and heat stress counselling; (3) climate-sensitive NCDs — heat triggers "
+    "continuity checks and clinician review for cardiovascular disease and diabetes. We "
+    "will measure whether more at-risk people receive a documented health service action "
+    "after a climate-informed alert; whether median time from trigger to action falls; and "
+    "whether referral and follow-up completion improve. Intermediary outcomes include "
+    "local actors' capacity to interpret climate-health signals, ability to adapt outreach "
+    "and surge during hazard periods, and continuity of essential services under rainfall "
+    "or heat stress. Climate adaptiveness will be assessed by comparing performance across "
+    "hazard and non-hazard periods. False alerts, missed events, equity of reach, and "
+    "safety events will be reported. Baseline values and numeric targets: " + CONFIRM + ". "
+    "Forecast accuracy alone will not count as success."
 )
 
 CLIMATE_DESIGN = (
-    "FCHIP began as a community health intelligence concept and is being fundamentally "
-    "re-engineered for this pilot as a climate-integrated health innovation under Nexa's "
-    "definition. Climate factors will shape its design through rainfall, temperature, "
-    "humidity, seasonality, and agreed hazard thresholds; its functioning through "
-    "climate-sensitive risk rules and alert timing; and its deployment through risk-based "
-    "outreach, staffing, follow-up, and supply preparation. The innovation will be tested "
-    "across changing climate-risk periods rather than as a static health register. The team "
-    "will document whether performance and service response change during heavy rainfall, "
-    "heat, poor connectivity, or service pressure. Exact climate data provider, geographic "
-    "resolution, historical coverage, update frequency, licences, and locally approved "
-    "thresholds: " + CONFIRM + "."
+    "Under Nexa's climate-innovation framework, FCHIP Climate Health Early Action is a "
+    "climate-integrated innovation: it began as community health intelligence and is being "
+    "fundamentally re-engineered so climate factors shape the core design, functioning, and "
+    "deployment. Design: rainfall, temperature, humidity, seasonality, GIS risk geography, "
+    "and locally agreed hazard thresholds become first-class inputs, not optional add-ons. "
+    "Function: explainable malaria and heat-risk rules, alert timing, and service protocols "
+    "respond to climate conditions and data quality. Deployment: outreach, staffing, "
+    "follow-up intensity, and supply preparation are scheduled by risk period and place, "
+    "including during heat, heavy rainfall, and intermittent connectivity. The pilot will "
+    "test climate integration in a real FairBanks catchment and document whether "
+    "performance and service response change across climate-risk periods. Exact climate "
+    "data provider, resolution, history, update frequency, licences, and thresholds: "
+    + CONFIRM + "."
 )
 
 TEAM_CONNECTION = (
-    "FairBanks operates a medical centre and Community Reach cascade serving Kampala-area "
-    "communities including Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya. The cascade "
-    "links community members, CHWs/VHTs, outreach programmes, clinical care, research and "
-    "skills, and economic empowerment including CHIS where relevant. This gives the project "
-    "a local service presence and a practical route for community design, referral, and "
-    "follow-up. The application must still name the Project Lead, technical and clinical "
-    "leads, CHW/VHT representatives, MEL support, data protection responsibility, and "
+    "FairBanks has an active local presence through its medical centre and Community Reach "
+    "cascade in Kampala-area communities including Bukoto, Kyebando, Kisaasi, Kamwokya, "
+    "and Kikaaya. The cascade links community members, CHWs/VHTs, outreach programmes, "
+    "clinical care, research and skills, and economic empowerment including CHIS where "
+    "relevant — giving a practical route for co-design, referral, and follow-up. Key local "
+    "roles include frontline CHW/VHT engagement, clinical review, outreach coordination, "
+    "and community feedback. The application must still name the Project Lead, clinical "
+    "and technical leads, CHW/VHT representatives, MEL and data-protection leads, and "
     "confirmed collaborators, with training, lived experience, location, role, and prior "
-    "partnership outcomes. Do not claim community-owned or community-led status until "
-    "leadership and residence evidence confirms it."
+    "partnership outcomes. Select the community connection category only from verified "
+    "evidence; do not claim community-owned or community-led status until leadership and "
+    "residence evidence confirms it. Names and evidence: " + CONFIRM + "."
 )
 
 OVERVIEW_QUESTIONS = [
@@ -237,102 +255,142 @@ OVERVIEW_QUESTIONS = [
 EXECUTION = [
     (
         "1. Execution plan [3,000]",
-        "Months 1-3: confirm governance, communities, users, climate data, baseline, protocols, "
-        "ethics and safeguarding; co-design workflows. Months 4-7: build and test offline forms, "
-        "secure EMR/HMS data APIs, data pipeline, explainable rules, GIS action board, and audit "
-        "trail. Months 8-10: train "
-        "users and run a small usability and data-quality test. Months 11-18: pilot agreed malaria "
-        "and heat-sensitive care workflows across selected sites and seasons, with monthly safety "
-        "and learning reviews. Months 19-21: analyse quantitative and qualitative results, refine "
-        "thresholds and workflows, and assess cost and sustainability. Months 22-24: validate "
-        "findings with communities and partners, publish a responsible evidence package, and make "
-        "a scale/no-scale decision. Exact sites, sample, milestones, owners, and duration: " + CONFIRM,
+        "Months 1-3 — Govern and co-design: confirm governance, communities, users, climate "
+        "data source and licence, baseline indicators, malaria and heat response protocols, "
+        "ethics and safeguarding; run design sessions with CHWs/VHTs, clinicians, and "
+        "community representatives. Months 4-7 — Build: offline forms, secure EMR/HMS data "
+        "APIs, data pipeline, explainable climate-health rules, GIS action board, audit "
+        "trail, and role-based access. Months 8-10 — Test: train users; run a small "
+        "usability and data-quality pilot; fix workflow friction before scale-up. Months "
+        "11-18 — Field pilot: operate malaria and heat-sensitive care workflows across "
+        "selected sites and seasons, with monthly safety, equity, and learning reviews; "
+        "refine thresholds using observed signals and service capacity. Months 19-21 — "
+        "Analyse: quantitative and qualitative results, cost and sustainability scenarios, "
+        "and climate-adaptiveness comparisons across hazard periods. Months 22-24 — Decide: "
+        "validate findings with communities and partners, publish a responsible evidence "
+        "package, and make a clear scale/no-scale decision. Learning and refinement are "
+        "built into every stage. Exact sites, sample, milestones, owners, and duration "
+        "(18/21/24 months): " + CONFIRM + ".",
     ),
     (
         "2. Community engagement [2,000]",
-        "Use paid or otherwise fairly supported CHW/VHT and community representation in design, "
-        "testing, interpretation, and governance. Hold separate listening sessions where needed "
-        "for pregnant women, older people, people with disabilities, and low-income residents. "
-        "Test language, consent, alert burden, referral barriers, and preferred communication. "
-        "Publish a feedback route and show what changed. Track participation by sex, age, "
-        "disability where appropriate, and location without collecting unnecessary personal data. "
-        "Community representatives, compensation, safeguarding route, and engagement targets: " + CONFIRM,
+        "Use a human-rights and gender-responsive approach so marginalized voices shape "
+        "design, testing, evaluation, and iteration. Fairly support CHW/VHT and community "
+        "representation in co-design, usability tests, interpretation workshops, and "
+        "governance reviews. Hold separate listening sessions where needed for pregnant "
+        "women, older people, people with disabilities, and low-income or informal-settlement "
+        "residents. Test language, consent, alert burden, referral barriers, preferred "
+        "communication channels, and disability access. Publish a feedback route and show "
+        "what changed after community input. Track participation by sex, age, disability "
+        "where appropriate, and location without collecting unnecessary personal data. "
+        "Safeguarding, complaints handling, and informed consent will be active throughout. "
+        "Community representatives, compensation, safeguarding route, and engagement "
+        "targets: " + CONFIRM + ".",
     ),
     (
         "3. Risks and mitigation [2,000]",
-        "Main risks are weak or biased data, false or missed alerts, alert fatigue, privacy harm, "
-        "poor connectivity, low adoption, exclusion, unsafe referrals, partner delay, climate-data "
-        "licensing, corruption, and supply constraints after an alert. Mitigation includes data "
-        "minimisation, consent, role access, encryption, audit logs, clinician oversight, threshold "
-        "validation, offline workflows, escalation protocols, safeguarding, complaints handling, "
-        "anti-fraud controls, partner agreements, and pause criteria. Applicable Uganda approvals, "
-        "ethics review, incident response, insurance, and organisational policies: " + CONFIRM,
+        "Key risks: weak or biased field data; false or missed alerts; alert fatigue; "
+        "privacy harm; poor connectivity; low adoption; exclusion of women, older people, "
+        "or people with disabilities; unsafe or incomplete referrals; partner delay; "
+        "climate-data licensing limits; corruption or misuse of funds; and supply "
+        "constraints after an alert. Mitigation: data minimisation and consent; "
+        "role-based access, encryption, and audit logs; clinician oversight and "
+        "conservative thresholds; offline workflows; named escalation and pause criteria; "
+        "safeguarding and complaints handling; anti-fraud and segregated duties; partner "
+        "agreements; and pre-agreed service capacity before triggering outreach. EMR/HMS "
+        "APIs will use authentication, consent, and least-privilege scopes. Applicable "
+        "Uganda approvals, ethics review, incident response, insurance, and organisational "
+        "policies: " + CONFIRM + ".",
     ),
     (
         "4. Expected impact [2,000]",
-        "Expected results are improved capacity to interpret climate-health signals; faster action "
-        "after risk triggers; more at-risk people reached with prevention, testing, referral, or "
-        "continuity-of-care support; improved referral completion; and better preparation of "
-        "outreach and supplies. The pilot will report reach and outcomes by vulnerable group and "
-        "location. It will not promise reductions in illness or hospitalisation without a powered "
-        "evaluation. Verified baseline, sample size, effect assumptions, targets, and attribution "
-        "approach: " + CONFIRM,
+        "Over the investment period we expect: improved local capacity to interpret "
+        "climate-health signals; faster documented action after malaria and heat triggers; "
+        "more at-risk people reached with prevention, testing, referral, or continuity-of-"
+        "care support; improved referral completion; and better preparation of outreach and "
+        "supplies during rainfall and heat periods. Reach and outcomes will be reported by "
+        "priority group and location. Early signals of health-access impact are the PoC "
+        "focus; we will not promise reductions in illness or hospitalisation without a "
+        "powered evaluation design. Key assumptions: climate and health data arrive on "
+        "time; service owners can act after alerts; communities accept the workflow; and "
+        "ethics approvals are secured. Verified baseline, sample size, effect assumptions, "
+        "targets, and attribution approach: " + CONFIRM + ".",
     ),
     (
         "5. Proof of Concept and objectives [2,000]",
-        "Establish that an end-to-end climate-informed workflow is technically feasible, acceptable, "
-        "safe, affordable enough to continue, and able to improve timely access to service actions. "
-        "Proposed objectives: (1) achieve an agreed completeness and timeliness level for core data; "
-        "(2) validate malaria and heat-risk triggers against observed data; (3) reduce median time "
-        "from trigger to documented action; (4) improve referral/follow-up completion; (5) reach "
-        "priority groups equitably without serious safety or privacy events; and (6) secure a "
-        "costed continuation decision from FairBanks and confirmed partners. Numeric targets: " + CONFIRM,
+        "Proof of Concept to establish: an end-to-end climate-informed early warning and "
+        "monitoring workflow is technically feasible, acceptable, safe, affordable enough "
+        "to continue, and able to improve timely access to named health service actions for "
+        "malaria and heat-sensitive pregnancy/NCD care in the FairBanks catchment. Proposed "
+        "measurable objectives: (1) achieve agreed completeness and timeliness for core "
+        "climate and health data; (2) validate malaria and heat-risk triggers against "
+        "observed local data with transparent false-positive/negative reporting; (3) reduce "
+        "median time from trigger to documented service action versus baseline; (4) improve "
+        "referral and follow-up completion for alerted cases; (5) reach priority groups "
+        "equitably without serious safety or privacy events; and (6) produce a costed "
+        "continuation decision from FairBanks and confirmed partners. Numeric targets and "
+        "success thresholds: " + CONFIRM + ".",
     ),
     (
         "6. Monitoring and evaluation [2,500]",
-        "Use a prospective mixed-methods pilot with a pre-defined theory of change. Compare baseline "
-        "and implementation periods and, if feasible, matched workflows or sites. Measure data "
-        "quality, alert performance, response time, service actions, referrals, continuity of care, "
-        "reach, equity, acceptability, adoption, cost per person reached, and safety events. Sources "
-        "include system logs, CHW forms, facility records (including approved EMR/HMS feeds), "
-        "referral registers, climate data, surveys, "
-        "interviews, and focus groups. Use confidence intervals and transparent missing-data analysis; "
-        "report false positives and negatives. An independent statistician or research partner, final "
-        "design, power/sample calculation, tools, approvals, and baseline: " + CONFIRM,
+        "Use a prospective mixed-methods pilot with a pre-defined theory of change linking "
+        "climate signals to intermediary system response and priority health-access "
+        "outcomes. Compare baseline and implementation periods and, if feasible, matched "
+        "workflows or sites. Measure data quality; alert performance; response time; "
+        "documented service actions; referrals; continuity of care; reach and equity; "
+        "acceptability; adoption; cost per person reached; and safety events. Assess "
+        "climate adaptiveness by comparing results across rainfall, heat, and service-"
+        "pressure periods. Sources: system logs, CHW forms, facility records including "
+        "approved EMR/HMS feeds, referral registers, climate data, surveys, interviews, "
+        "and focus groups. Use confidence intervals and transparent missing-data analysis; "
+        "report false positives and negatives. Limitations may include small sample, "
+        "seasonal confounding, and incomplete comparator data — these will be stated "
+        "openly. Independent statistician or research partner, final design, power/sample "
+        "calculation, tools, approvals, and baseline: " + CONFIRM + ".",
     ),
     (
         "7. Sustainability [2,000]",
-        "Build on existing FairBanks outreach and clinical workflows, use low-cost offline tools, "
-        "train local users, document protocols, and test willingness and ability to pay. Future "
-        "routes may include clinic subscriptions, programme implementation contracts, district or "
-        "NGO deployments, and approved integrations including secure EMR/HMS data APIs. "
-        "Sustainability depends on evidence, data cost, "
-        "maintenance, workforce time, public-system fit, and reliable service capacity after alerts. "
-        "The pilot will produce total-cost-of-ownership and financing scenarios, not assume grant-free "
-        "scale. Confirmed buyers, government pathway, partner commitments, and pricing evidence: " + CONFIRM,
+        "At this early stage, sustainability means designing for real operating cost and "
+        "local ownership, not assuming grant-free scale. Build on existing FairBanks "
+        "outreach and clinical workflows; use low-cost offline tools; train local users; "
+        "document protocols; and test willingness and ability to continue after the grant. "
+        "Future routes may include clinic subscriptions, programme implementation "
+        "contracts, district or NGO deployments, and approved integrations including "
+        "secure EMR/HMS data APIs. Barriers include climate-data cost, maintenance, "
+        "workforce time, public-system fit, and reliable service capacity after alerts. "
+        "The pilot will produce total-cost-of-ownership and financing scenarios and a "
+        "clear scale/no-scale decision. Confirmed buyers, government pathway, partner "
+        "commitments, and pricing evidence: " + CONFIRM + ".",
     ),
     (
         "8. Project team [1,500]",
-        "FairBanks contributes local primary-care delivery, outreach, CHW/VHT links, and community "
-        "follow-up. The project requires named leadership across clinical care, climate/epidemiology, "
-        "product engineering, data protection, MEL, community engagement, finance, safeguarding, and "
-        "partnerships. Attach roles and time commitments and close gaps through collaborators. Names, "
-        "qualifications, employment links, CV evidence, and collaborator commitments: " + CONFIRM,
+        "FairBanks contributes local primary-care delivery, Community Reach outreach, "
+        "CHW/VHT links, and community follow-up — the validation environment for this "
+        "Proof of Concept. The project requires named leadership across clinical care, "
+        "climate or epidemiology, product engineering, data protection, MEL, community "
+        "engagement, finance, safeguarding, and partnerships, with time commitments "
+        "matched to the workplan. Collaborators should close any skill gaps (for example "
+        "climate data science, independent MEL, or district liaison) under written roles. "
+        "Names, qualifications, employment links, CV evidence, and collaborator "
+        "commitments: " + CONFIRM + ".",
     ),
     (
         "9. Prior partnerships [1,500]",
-        "Describe only verified work with community groups, health facilities, government, academic, "
-        "private-sector, and development partners. State each partner, dates, role, activity, and "
-        "result. Repository material supports a community-health ecosystem but does not verify every "
-        "formal partnership. Evidence and approved wording: " + CONFIRM,
+        "Describe only verified work with community groups, health facilities, government, "
+        "academic, private-sector, and development partners. For each partner state dates, "
+        "role, activity, and result so reviewers can judge stakeholder engagement capacity. "
+        "Repository material supports an active community-health ecosystem but does not "
+        "verify every formal partnership or outcome. Evidence and approved wording: "
+        + CONFIRM + ".",
     ),
     (
         "10. Budget",
-        "Complete Fluxx categories: remuneration; subcontractor fees; travel; goods and supplies; "
-        "equipment; project administration; sub-grants; and indirect costs capped at 10% of direct "
-        "costs. Certify that the budget is complete and that most activities and expenses occur in "
-        "the eligible implementation country. Detailed amount, currency assumptions, quotations, "
-        "indirect-cost basis, and majority-spend confirmation: " + CONFIRM,
+        "Complete Fluxx categories: remuneration; subcontractor fees; travel; goods and "
+        "supplies; equipment; project administration; sub-grants; and indirect costs capped "
+        "at 10% of direct costs. Certify that the budget is complete and that most "
+        "activities and expenses occur in the eligible implementation country (Uganda). "
+        "Detailed amount (maximum USD 200,000), currency assumptions, quotations, "
+        "indirect-cost basis, and majority-spend confirmation: " + CONFIRM + ".",
     ),
 ]
 
@@ -373,6 +431,19 @@ RISKS = [
     ("Exclusion", "Offline CHW-mediated access; disability, gender, language, and poverty checks."),
     ("No capacity after alert", "Pre-agree service protocols, owners, supplies, referral routes, and escalation."),
     ("Financial misuse", "Segregated duties, procurement controls, declarations, audit trail, and reporting."),
+]
+
+SCREEN_WIN = [
+    "Area of focus named: climate-informed early warning and monitoring systems.",
+    "Hazards in scope: changing mosquito ecology (malaria) and extreme heat; air quality out unless data and workflow are confirmed.",
+    "Priority outcomes named: malaria; pregnancy hypertension / heat stress / GDM where captured; CVD and diabetes access.",
+    "Climate-integrated framing: design, function, and deployment all shaped by climate factors.",
+    "End-to-end loop: climate + health signals -> explainable trigger -> named actor -> service action -> follow-up.",
+    "Health access/timeliness is the success bar — not alert accuracy alone; include intermediary system-response outcomes.",
+    "Climate adaptiveness: compare performance across rainfall, heat, and service-pressure periods.",
+    "Community connection at least linked/partnered from verified evidence; CHW/VHT co-design visible.",
+    "PoC stage honest: working FairBanks field base; climate-health impact still to be proven — no TTS claims.",
+    "Every CONFIRM BEFORE SUBMISSION field replaced before Fluxx submit.",
 ]
 
 SOURCES = [
@@ -500,7 +571,7 @@ def build_docx() -> None:
     add_photo("cover", 6.7)
     para(SLOGAN, 12, True, TEAL, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(
-        "Proof-of-Concept application workbook | Uganda | Working draft",
+        "Proof-of-Concept Fluxx answer bank | Uganda | Confirm orange fields before submit",
         9, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER,
     )
     doc.add_page_break()
@@ -514,16 +585,26 @@ def build_docx() -> None:
     )
     table(["Critical item", "Current position"], READINESS, [2.8, 3.8])
 
+    heading("Innovation Screen win checklist")
+    para(
+        "Typically over 80% of applications are declined at the Innovation Screen, which "
+        "reviews only the seven Overview answers. Paste Overview text only after this "
+        "checklist is true.",
+        9, italic=True, color=MUTED,
+    )
+    bullets(SCREEN_WIN)
+
     heading("1. Official call brief")
     table(["Item", "Verified information"], CALL_FACTS, [1.8, 4.8])
-    heading("1.1 Why FCHIP can fit", 2)
+    heading("1.1 Why this write-up can win", 2)
     bullets([
         "Direct fit with climate-informed early warning and monitoring systems.",
-        "Climate-integrated design: climate shapes design, function, and deployment.",
-        "A clear path from climate and health signals to named service-delivery actions.",
-        "Existing medical centre, Community Reach cascade, and CHW/VHT links support field testing.",
-        "Uganda is eligible and the target groups match Nexa's climate-vulnerable priorities.",
-        "The proposal must prove climate integration, not simply add weather data to a health app.",
+        "Climate-integrated under Nexa's framework: climate shapes design, function, and deployment.",
+        "End-to-end loop from climate and health signals to named service-delivery actions.",
+        "Priority outcomes mapped: malaria; heat-sensitive pregnancy; CVD and diabetes access.",
+        "Live FairBanks medical centre, Community Reach cascade, and CHW/VHT links for real-world PoC testing.",
+        "Uganda is eligible; target groups match Nexa's climate-vulnerable priorities.",
+        "Honest PoC ask: prove climate-responsive access and adaptiveness — not decorative weather data.",
     ])
     heading("1.2 Relevant hazards and outcomes", 2)
     table(
@@ -811,14 +892,14 @@ def build_pptx() -> None:
     band(s, "Climate-health gap", "Local actors see the risk too late", "Climate and health signals remain separate from service action.")
     crop(s, photo("outreach"), 0.55, 1.95, 5.3, 4.85)
     bullets(s, [
-        "Rainfall and heat are changing when and where health risks rise.",
+        "Changing mosquito ecology and extreme heat raise malaria and heat-health risk.",
         "CHW, outreach, facility, medicine, and weather signals stay fragmented.",
         "Clinical data often stays locked inside existing EMR/HMS systems.",
-        "Pregnant women, children, older people, and people with NCDs face delayed care.",
+        "Pregnant women, children, older people, and people with CVD/diabetes face delayed care.",
         "Forecasts rarely name the local action, owner, referral, or follow-up.",
     ], 6.25, 2.05, 6.25, 4.0, 16)
     rect(s, 6.35, 6.05, 5.75, 0.55, PALE_ORANGE, ORANGE, True)
-    text(s, "The missing link is climate signal -> timely health service action.", 6.6, 6.18, 5.3, 0.22, 12, ORANGE, True)
+    text(s, "Nexa gap: climate signal -> timely health service action.", 6.6, 6.18, 5.3, 0.22, 12, ORANGE, True)
     footer(s, 2)
 
     s = slide()
@@ -838,13 +919,13 @@ def build_pptx() -> None:
     footer(s, 3)
 
     s = slide()
-    band(s, "Climate integration", "Climate shapes design, function, and deployment", "Not a health app with weather added later.")
+    band(s, "Climate integration", "Climate shapes design, function, and deployment", "Climate-integrated under Nexa: re-engineered, not weather bolted on.")
     crop(s, photo("gis"), 0.55, 1.9, 5.4, 4.9)
     bullets(s, [
-        "Design: rainfall, temperature, humidity, seasonality, and local thresholds.",
+        "Design: rainfall, temperature, humidity, seasonality, GIS, and local thresholds.",
         "Function: time-and-place malaria and heat-sensitive risk rules.",
         "Deployment: risk-based outreach, follow-up, staffing, and supply preparation.",
-        "Performance: tested across rainfall, heat, connectivity, and service-pressure periods.",
+        "Adaptiveness: compare performance across rainfall, heat, and service pressure.",
     ], 6.3, 2.0, 6.1, 4.2, 17)
     footer(s, 4)
 
@@ -852,9 +933,9 @@ def build_pptx() -> None:
     band(s, "Priority outcomes", "Alerts matter only when care improves", "Technical accuracy is necessary, but it is not the final outcome.")
     cards = [
         ("Malaria", "Earlier prevention, testing, referral, and supply readiness"),
-        ("Pregnancy", "Heat stress, hypertension, and gestational diabetes follow-up"),
+        ("Pregnancy", "Heat stress, hypertension, and GDM follow-up where captured"),
         ("NCD care", "Continuity for cardiovascular disease and diabetes during heat"),
-        ("System response", "Faster action, completed referrals, and resilient services"),
+        ("System response", "Faster action, completed referrals, climate-period adaptiveness"),
     ]
     for i, (a, b) in enumerate(cards):
         col, row = i % 2, i // 2
