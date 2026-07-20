@@ -106,7 +106,9 @@ PROBLEM_ANSWER = (
     "Primary healthcare in underserved African communities is still reactive. "
     "Facilities often see people only after illness has worsened, while useful "
     "signals from CHW and VHT visits, outreach screenings, maternal care, "
-    "pharmacy activity, and facility records remain fragmented. This delays "
+    "pharmacy activity, and facility records remain fragmented. Clinical data "
+    "often stays locked inside existing EMR or hospital management systems, so "
+    "community and facility intelligence cannot fuse in real time. This delays "
     "outbreak detection, high-risk pregnancy referral, NCD follow-up, and "
     "medicine planning. Clinics and district teams therefore lack a timely, "
     "community-level view of who is at risk, where health threats are growing, "
@@ -117,12 +119,15 @@ SOLUTION_ANSWER = (
     "FCHIP is an offline-capable community health intelligence platform. CHWs "
     "and VHTs capture structured household and outreach data through mobile "
     "tools; approved facility and programme data are synchronized securely; "
-    "and an analytics layer produces risk flags, GIS hotspot maps, referrals, "
-    "and dashboards. The first release focuses on three practical use cases: "
-    "maternal risk and missed-care alerts, hypertension and diabetes hotspot "
-    "detection, and community disease surveillance. FairBanks will validate "
-    "the product in its existing medical centre and Community Reach network "
-    "before expanding to partner clinics and districts."
+    "and FCHIP safely exposes authenticated data APIs to existing EMR and HMS "
+    "systems so clinics can share clinical records into the platform in real "
+    "time without replacing the software they already use. An analytics layer "
+    "produces risk flags, GIS hotspot maps, referrals, and dashboards. The "
+    "first release focuses on three practical use cases: maternal risk and "
+    "missed-care alerts, hypertension and diabetes hotspot detection, and "
+    "community disease surveillance. FairBanks will validate the product in "
+    "its existing medical centre and Community Reach network before expanding "
+    "to partner clinics and districts."
 )
 
 TARGET_CUSTOMERS = (
@@ -137,9 +142,10 @@ UNIQUE_ANSWER = (
     "live medical centre, active outreach programmes, CHW and VHT links, "
     "digital health workflows, and a product designed from real community "
     "care. This gives FCHIP a direct test environment and a trusted route to "
-    "users. The platform is not only an electronic register; it closes the "
-    "loop from community signal to risk insight, referral, targeted outreach, "
-    "and follow-up."
+    "users. Secure EMR/HMS data APIs let facilities plug clinical feeds into "
+    "FCHIP without ripping out existing systems. The platform is not only an "
+    "electronic register; it closes the loop from community and facility "
+    "signal to risk insight, referral, targeted outreach, and follow-up."
 )
 
 BOTTLENECK_ANSWER = (
@@ -287,6 +293,7 @@ APPLICATION_SECTIONS = [
 
 TECH_STACK = [
     ("Offline mobile capture", "Structured CHW/VHT visits, vitals, referrals, and follow-up"),
+    ("Secure EMR/HMS data APIs", "Authenticated, consent-aware APIs so existing EMR/HMS systems can share clinical data in real time"),
     ("Secure data pipeline", "Validation, consent, role-based access, and approved integrations"),
     ("Analytics and AI", "Start with interpretable rules; add validated ML as data quality grows"),
     ("GIS risk layer", "Community hotspots, coverage gaps, and outreach priorities"),
@@ -301,6 +308,8 @@ EVIDENCE_BASE = [
     "(confirm the current number before using it in the portal).",
     "Existing maternal and child health, Gericare, NCD screening, school, and corporate health work.",
     "Digital health records and pharmacy workflows that can inform product integration.",
+    "Planned secure EMR/HMS data APIs so existing facility systems can feed clinical "
+    "data into FCHIP in real time without replacement.",
     "FCHIP itself remains a planned / pre-MVP build in current repository materials "
     "unless newer product evidence is supplied.",
 ]
@@ -318,14 +327,15 @@ BUSINESS_MODEL = [
     ("Districts and ministries", "Deployment, implementation, and analytics contracts"),
     ("NGOs and programmes", "Monitoring, evaluation, workflow, and reporting contracts"),
     ("Research partners", "Ethical study tools and approved anonymised analytics"),
-    ("Digital health partners", "API and integration services"),
+    ("Digital health partners", "Secure EMR/HMS data APIs and other integration services"),
     ("CHW organisations", "Training and implementation support"),
 ]
 
 RISKS = [
     ("Eligibility", "Confirm two founders and demonstrable MVP before submission."),
     ("Data quality", "Use simple forms, validation rules, supervision, and data-quality dashboards."),
-    ("Privacy", "Consent, minimisation, role-based access, audit logs, and Uganda compliance."),
+    ("Privacy", "Consent, minimisation, role-based access, audit logs, and Uganda compliance; EMR/HMS APIs use authentication and least-privilege scopes."),
+    ("EMR/HMS friction", "Expose stable documented APIs; start with FairBanks systems; do not require replacing existing EMR/HMS."),
     ("AI accuracy", "Begin with interpretable rules and clinician review; validate before automation."),
     ("Adoption", "Co-design with CHWs, facilities, districts, and programme partners."),
     ("Commercial proof", "Test willingness to pay and buying pathways during the pilot."),
@@ -562,7 +572,7 @@ def build_docx() -> None:
         [
             "Digital health platform with health data and analytics at its core.",
             "AI-assisted risk insight, used only after validation and clinical oversight.",
-            "Preventive health, remote monitoring, EHR integration, and supply planning.",
+            "Preventive health, remote monitoring, secure EMR/HMS APIs, and supply planning.",
             "Africa-based product with a clear Uganda-to-East-Africa scale path.",
             "A live care and outreach environment for real-world product validation.",
         ]
@@ -670,7 +680,7 @@ def build_docx() -> None:
         ["Priority", "Why it matters now"],
         [
             ("Validation & Market Research", "Prove user need, buying pathway, and measurable outcomes."),
-            ("Product Development", "Improve offline UX, workflow fit, dashboards, and interoperability."),
+            ("Product Development", "Improve offline UX, workflow fit, dashboards, and secure EMR/HMS APIs."),
             ("Partnerships & Ecosystem Access", "Secure clinics, districts, programmes, and scale partners."),
         ],
         widths=[2.3, 4.3],
@@ -914,15 +924,16 @@ def build_pptx() -> None:
         s,
         [
             "Outreach, maternal, pharmacy, and facility signals remain fragmented.",
+            "Clinical records often stay locked inside existing EMR/HMS systems.",
             "High-risk pregnancies and chronic conditions are found late.",
             "Districts and clinics lack a live view of community risk.",
             "Medicine and outreach plans rely on delayed or incomplete data.",
         ],
         6.35,
-        2.15,
+        2.05,
         6.25,
-        3.9,
-        18,
+        4.0,
+        16,
     )
     rect(s, 6.4, 6.02, 5.7, 0.52, PALE_ORANGE, ORANGE, True)
     text(s, "The gap is not data collection alone. It is intelligence and follow-through.", 6.65, 6.12, 5.25, 0.25, 12, ORANGE, True)
@@ -933,7 +944,7 @@ def build_pptx() -> None:
     top_band(s, "The solution", "FCHIP turns signals into action", "An offline-capable intelligence layer for community primary care.")
     image_crop(s, asset("dashboard"), 6.4, 1.9, 6.35, 4.75)
     cards = [
-        ("1", "Capture", "CHW/VHT and facility workflows"),
+        ("1", "Capture", "CHW/VHT plus secure EMR/HMS APIs"),
         ("2", "Understand", "Risk rules, analytics, and GIS"),
         ("3", "Act", "Alerts, referrals, and outreach"),
     ]
@@ -952,9 +963,9 @@ def build_pptx() -> None:
     image_crop(s, asset("architecture"), 0.6, 1.95, 7.45, 4.75)
     stack = [
         ("Offline mobile", "Structured visits and referrals"),
+        ("EMR/HMS APIs", "Real-time clinical data, safely"),
         ("Secure pipeline", "Consent, validation, role access"),
-        ("AI + analytics", "Explainable risk insight first"),
-        ("GIS + dashboard", "Hotspots and action tracking"),
+        ("AI + GIS dashboards", "Explainable risk and action"),
     ]
     for i, (t, b) in enumerate(stack):
         y = 2.0 + i * 1.08
@@ -1007,7 +1018,7 @@ def build_pptx() -> None:
         ("Subscriptions", "Clinics and hospitals"),
         ("Deployments", "Districts and ministries"),
         ("Contracts", "NGO monitoring and reporting"),
-        ("Integrations", "APIs and digital-health partners"),
+        ("Integrations", "Secure EMR/HMS APIs and partners"),
         ("Training", "CHW onboarding and implementation"),
         ("Research", "Approved study and analytics support"),
     ]

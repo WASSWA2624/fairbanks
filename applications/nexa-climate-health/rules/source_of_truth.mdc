@@ -22,7 +22,7 @@ Follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-communi
 
 ## Funding fit (FairBanks / FCHIP)
 
-Lead with **climate-informed early warning and monitoring**. Frame FCHIP as a FairBanks component on the Community Reach **Data & Feedback** loop: climate API + GIS + CHW/VHT, schools, communities, hospitals/clinics fused into explainable triggers that drive **named health service action** (outreach, testing, referral, follow-up, stock prep). Secondary link: climate-responsive care for heat-sensitive pregnancy and NCD continuity.
+Lead with **climate-informed early warning and monitoring**. Frame FCHIP as a FairBanks component on the Community Reach **Data & Feedback** loop: climate API + GIS + CHW/VHT, schools, communities, hospitals/clinics — plus **secure data APIs to existing EMR/HMS** for real-time clinical ingest — fused into explainable triggers that drive **named health service action** (outreach, testing, referral, follow-up, stock prep). Secondary link: climate-responsive care for heat-sensitive pregnancy and NCD continuity.
 
 **Hazards in scope:** changing mosquito ecology (malaria/dengue), extreme heat, poor air quality. **Air quality** only if local data and a care workflow are confirmed.
 

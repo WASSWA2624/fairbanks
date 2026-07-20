@@ -124,28 +124,32 @@ PROBLEM = (
     "and transmission, while extreme heat adds risk for pregnant women and people living "
     "with cardiovascular disease or diabetes. Yet local health actors mainly see separate, "
     "late signals: CHW and VHT reports, outreach screening records, facility visits, medicine "
-    "use, and weather information. These signals are rarely combined into simple triggers "
-    "that tell a CHW, clinic, or programme when and where to act. Underserved households, "
-    "including pregnant women, children, older people, and residents of informal urban "
-    "communities, therefore face delayed prevention, testing, referral, follow-up, and stock "
-    "preparation. FairBanks needs a practical local system that turns climate-driven risk "
-    "signals into timely health service action, not another dashboard that stops at an alert."
+    "use, and weather information. Clinical records often stay locked inside existing EMR or "
+    "hospital management systems, so community, climate, and facility intelligence rarely "
+    "fuse in real time. These signals are rarely combined into simple triggers that tell a "
+    "CHW, clinic, or programme when and where to act. Underserved households, including "
+    "pregnant women, children, older people, and residents of informal urban communities, "
+    "therefore face delayed prevention, testing, referral, follow-up, and stock preparation. "
+    "FairBanks needs a practical local system that turns climate-driven risk signals into "
+    "timely health service action, not another dashboard that stops at an alert."
 )
 
 INNOVATION = (
     "FCHIP Climate Health Early Action is a climate-integrated FairBanks platform component "
     "on the Community Reach Data and Feedback loop. It will combine approved rainfall, "
     "temperature, humidity, and seasonal data with structured CHW/VHT reports, outreach "
-    "screening, facility trends, and medicine-use signals. An offline-capable mobile "
-    "workflow will help frontline workers collect and review essential data. Explainable "
-    "risk rules will first identify time-and-place malaria risk and heat-sensitive risk for "
-    "pregnancy, cardiovascular disease, and diabetes. A GIS action board will show risk, "
-    "data quality, and agreed response triggers. Each trigger will connect to a named "
-    "protocol: targeted health messages, household follow-up, malaria testing/referral, "
-    "outreach scheduling, clinician review, or medicine and supply preparation. The Proof "
-    "of Concept will test whether this end-to-end loop is feasible, accepted, timely, and "
-    "able to improve access to climate-responsive care. Models will not diagnose or replace "
-    "clinical judgement."
+    "screening, facility trends, and medicine-use signals. FCHIP will also safely expose "
+    "authenticated data APIs to existing EMR and HMS systems so facilities can share "
+    "clinical data into the platform in real time without replacing the software they "
+    "already use. An offline-capable mobile workflow will help frontline workers collect "
+    "and review essential data. Explainable risk rules will first identify time-and-place "
+    "malaria risk and heat-sensitive risk for pregnancy, cardiovascular disease, and "
+    "diabetes. A GIS action board will show risk, data quality, and agreed response "
+    "triggers. Each trigger will connect to a named protocol: targeted health messages, "
+    "household follow-up, malaria testing/referral, outreach scheduling, clinician review, "
+    "or medicine and supply preparation. The Proof of Concept will test whether this "
+    "end-to-end loop is feasible, accepted, timely, and able to improve access to "
+    "climate-responsive care. Models will not diagnose or replace clinical judgement."
 )
 
 POPULATION = (
@@ -164,15 +168,18 @@ POPULATION = (
 
 INNOVATIVE = (
     "Current approaches often keep weather information, community reports, and clinical "
-    "records in separate systems. Some early warning tools stop at forecasting and leave "
-    "local teams to decide what to do. FCHIP is designed around the full early-action chain: "
-    "community signal, climate signal, explainable trigger, named actor, service response, "
-    "and follow-up result. It combines technological innovation (offline capture, secure data "
-    "integration, interpretable analytics, and GIS), social innovation (CHW/VHT-led design "
-    "and community feedback), and a delivery model rooted in a functioning medical centre "
-    "and Community Reach programmes. It is a better fit for a lower-resource setting because "
-    "it starts with simple validated rules, works with intermittent connectivity, and keeps "
-    "clinicians responsible for care decisions. The pilot will compare timeliness, completion, "
+    "records in separate systems — including EMR and hospital management platforms that "
+    "do not easily share data with community tools. Some early warning tools stop at "
+    "forecasting and leave local teams to decide what to do. FCHIP is designed around the "
+    "full early-action chain: community signal, climate signal, secure EMR/HMS clinical "
+    "feeds, explainable trigger, named actor, service response, and follow-up result. It "
+    "combines technological innovation (offline capture, secure EMR/HMS data APIs, secure "
+    "data integration, interpretable analytics, and GIS), social innovation (CHW/VHT-led "
+    "design and community feedback), and a delivery model rooted in a functioning medical "
+    "centre and Community Reach programmes. It is a better fit for a lower-resource setting "
+    "because it starts with simple validated rules, works with intermittent connectivity, "
+    "keeps clinicians responsible for care decisions, and does not require facilities to "
+    "replace existing EMR/HMS software. The pilot will compare timeliness, completion, "
     "acceptability, and cost with current manual planning before adding any machine learning."
 )
 
@@ -232,7 +239,8 @@ EXECUTION = [
         "1. Execution plan [3,000]",
         "Months 1-3: confirm governance, communities, users, climate data, baseline, protocols, "
         "ethics and safeguarding; co-design workflows. Months 4-7: build and test offline forms, "
-        "data pipeline, explainable rules, GIS action board, and audit trail. Months 8-10: train "
+        "secure EMR/HMS data APIs, data pipeline, explainable rules, GIS action board, and audit "
+        "trail. Months 8-10: train "
         "users and run a small usability and data-quality test. Months 11-18: pilot agreed malaria "
         "and heat-sensitive care workflows across selected sites and seasons, with monthly safety "
         "and learning reviews. Months 19-21: analyse quantitative and qualitative results, refine "
@@ -286,7 +294,8 @@ EXECUTION = [
         "and implementation periods and, if feasible, matched workflows or sites. Measure data "
         "quality, alert performance, response time, service actions, referrals, continuity of care, "
         "reach, equity, acceptability, adoption, cost per person reached, and safety events. Sources "
-        "include system logs, CHW forms, facility records, referral registers, climate data, surveys, "
+        "include system logs, CHW forms, facility records (including approved EMR/HMS feeds), "
+        "referral registers, climate data, surveys, "
         "interviews, and focus groups. Use confidence intervals and transparent missing-data analysis; "
         "report false positives and negatives. An independent statistician or research partner, final "
         "design, power/sample calculation, tools, approvals, and baseline: " + CONFIRM,
@@ -296,7 +305,8 @@ EXECUTION = [
         "Build on existing FairBanks outreach and clinical workflows, use low-cost offline tools, "
         "train local users, document protocols, and test willingness and ability to pay. Future "
         "routes may include clinic subscriptions, programme implementation contracts, district or "
-        "NGO deployments, and approved integrations. Sustainability depends on evidence, data cost, "
+        "NGO deployments, and approved integrations including secure EMR/HMS data APIs. "
+        "Sustainability depends on evidence, data cost, "
         "maintenance, workforce time, public-system fit, and reliable service capacity after alerts. "
         "The pilot will produce total-cost-of-ownership and financing scenarios, not assume grant-free "
         "scale. Confirmed buyers, government pathway, partner commitments, and pricing evidence: " + CONFIRM,
@@ -328,7 +338,8 @@ EXECUTION = [
 
 TECH = [
     ("Climate inputs", "Rainfall, temperature, humidity, seasonality, and approved thresholds"),
-    ("Health inputs", "CHW/VHT reports, outreach screening, facility trends, and medicine use"),
+    ("Health inputs", "CHW/VHT reports, outreach screening, facility trends, medicine use, and secure EMR/HMS clinical feeds"),
+    ("Secure EMR/HMS APIs", "Authenticated, consent-aware APIs so existing facility systems share clinical data in real time"),
     ("Responsible analytics", "Explainable rules first; validation, monitoring, and clinician review"),
     ("Action layer", "GIS risk board, named response owner, protocol, referral, and follow-up"),
     ("Learning loop", "Response outcome, data quality, equity, safety, cost, and threshold refinement"),
@@ -348,7 +359,7 @@ CASCADE = [
     ("1. Community members", "Needs, participation, and household climate-health signals"),
     ("2. CHWs / VHTs", "Bridge: outreach, education, referral, offline data capture"),
     ("3. Community Reach programmes", "Screening, MCH, NCD, school/community education"),
-    ("4. FairBanks Medical Centre", "Clinical review, diagnostics, pharmacy, referral QA"),
+    ("4. FairBanks Medical Centre", "Clinical review, diagnostics, pharmacy, referral QA; secure EMR/HMS APIs for real-time clinical ingest"),
     ("5. Research · partnerships · skills", "Evidence, climate expertise, training, ethics"),
     ("6. Economic empowerment / CHIS", "Affordable access and resilient households where data exists"),
 ]
@@ -357,7 +368,8 @@ RISKS = [
     ("Overclaiming climate fit", "Make climate data and hazard-responsive action central, not decorative."),
     ("Weak evidence", "Set baseline, comparison logic, sample, tools, and analysis before launch."),
     ("Unsafe automation", "No diagnosis; clinician oversight, conservative thresholds, and pause rules."),
-    ("Privacy and ethics", "Minimise data, obtain consent/approval, control access, and log activity."),
+    ("Privacy and ethics", "Minimise data, obtain consent/approval, control access, and log activity; EMR/HMS APIs use authentication and least-privilege scopes."),
+    ("EMR/HMS friction", "Expose stable documented APIs; start with FairBanks systems; do not require replacing existing EMR/HMS."),
     ("Exclusion", "Offline CHW-mediated access; disability, gender, language, and poverty checks."),
     ("No capacity after alert", "Pre-agree service protocols, owners, supplies, referral routes, and escalation."),
     ("Financial misuse", "Segregated duties, procurement controls, declarations, audit trail, and reporting."),
@@ -801,9 +813,10 @@ def build_pptx() -> None:
     bullets(s, [
         "Rainfall and heat are changing when and where health risks rise.",
         "CHW, outreach, facility, medicine, and weather signals stay fragmented.",
+        "Clinical data often stays locked inside existing EMR/HMS systems.",
         "Pregnant women, children, older people, and people with NCDs face delayed care.",
         "Forecasts rarely name the local action, owner, referral, or follow-up.",
-    ], 6.25, 2.1, 6.25, 3.8, 17)
+    ], 6.25, 2.05, 6.25, 4.0, 16)
     rect(s, 6.35, 6.05, 5.75, 0.55, PALE_ORANGE, ORANGE, True)
     text(s, "The missing link is climate signal -> timely health service action.", 6.6, 6.18, 5.3, 0.22, 12, ORANGE, True)
     footer(s, 2)
@@ -812,7 +825,7 @@ def build_pptx() -> None:
     band(s, "The innovation", "FCHIP Climate Health Early Action", "An end-to-end climate-informed workflow built for low-connectivity care.")
     crop(s, photo("dashboard"), 6.55, 1.9, 6.15, 4.9)
     for i, (a, b) in enumerate([
-        ("Sense", "Climate + community + facility signals"),
+        ("Sense", "Climate + community + secure EMR/HMS feeds"),
         ("Interpret", "Explainable malaria and heat-risk triggers"),
         ("Act", "Outreach, testing, referral, follow-up, supplies"),
         ("Learn", "Outcome, safety, equity, cost, and refinement"),
@@ -886,7 +899,7 @@ def build_pptx() -> None:
     band(s, "Execution", "A staged 24-month learning plan", "Final duration, sites, sample, owners, and targets require confirmation.")
     stages = [
         ("1-3", "Govern", "Approvals, users, baseline, climate data, protocols"),
-        ("4-7", "Build", "Offline capture, pipeline, rules, GIS, audit trail"),
+        ("4-7", "Build", "Offline capture, EMR/HMS APIs, rules, GIS, audit"),
         ("8-10", "Test", "Training, usability, data quality, safety checks"),
         ("11-18", "Pilot", "Malaria and heat workflows across risk periods"),
         ("19-21", "Learn", "Outcomes, cost, equity, threshold refinement"),
