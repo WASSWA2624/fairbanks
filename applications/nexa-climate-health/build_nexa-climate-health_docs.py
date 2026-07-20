@@ -473,7 +473,8 @@ def build_docx() -> None:
     doc = Document()
     sec = doc.sections[0]
     sec.page_width, sec.page_height = Inches(8.27), Inches(11.69)
-    sec.top_margin = sec.bottom_margin = Inches(0.65)
+    sec.top_margin = Inches(0.65)
+    sec.bottom_margin = Inches(0.85)
     sec.left_margin = sec.right_margin = Inches(0.72)
     styles = doc.styles
     styles["Normal"].font.name = "Aptos"
@@ -546,9 +547,11 @@ def build_docx() -> None:
     def add_photo(key, width=6.6, caption=None):
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(2)
+        p.paragraph_format.space_after = Pt(4)
         p.add_run().add_picture(str(photo(key)), width=Inches(width))
         if caption:
-            para(caption, 8, color=MUTED, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER)
+            para(caption, 8, color=MUTED, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, after=8)
 
     hp = sec.header.paragraphs[0]
     hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
@@ -683,7 +686,7 @@ def build_docx() -> None:
     )
 
     heading("5. Product and action pathway")
-    add_photo("architecture", 6.4, "Illustrative FCHIP architecture; not evidence of a deployed climate-health product.")
+    add_photo("architecture", 6.0, "Illustrative FCHIP architecture; not evidence of a deployed climate-health product.")
     table(["Layer", "Proof-of-Concept role"], TECH, [1.8, 4.8])
     heading("5.1 Responsible AI and clinical safety", 2)
     bullets([
@@ -695,7 +698,7 @@ def build_docx() -> None:
     ])
 
     heading("6. Monitoring, evaluation, and learning")
-    add_photo("dashboard", 6.4, "Illustrative dashboard concept; measures and thresholds remain to be validated.")
+    add_photo("dashboard", 6.0, "Illustrative dashboard concept; measures and thresholds remain to be validated.")
     table(["Domain", "Measures"], MEL, [1.8, 4.8])
     para(
         "Nexa requires meaningful health access or health outcome evidence. Forecast accuracy alone is not enough.",
@@ -706,12 +709,15 @@ def build_docx() -> None:
     add_photo_path = concept("cascade")
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.add_run().add_picture(str(add_photo_path), width=Inches(6.4))
+    p.paragraph_format.space_after = Pt(4)
+    # Portrait cascade diagram — keep width modest so caption/table never collide with footer.
+    p.add_run().add_picture(str(add_photo_path), width=Inches(4.55))
     para(
         "Canonical FairBanks Community Reach model. FCHIP sits on the Data and Feedback loop.",
-        8, color=MUTED, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+        8, color=MUTED, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, after=8,
     )
     table(["Cascade layer", "Role in this Proof of Concept"], CASCADE, [2.4, 4.2], compact=True)
+    doc.add_page_break()
     bullets([
         "Community members identify needs and test usability, language, and fairness of workflows.",
         "CHWs and VHTs bridge households to prevention, screening, referral, and follow-up.",
@@ -850,6 +856,7 @@ def build_pptx() -> None:
         return box
 
     def crop(slide, path, x, y, w, h):
+        """Fill the frame (cover). Fine for photos; do not use for labelled diagrams."""
         with PILImage.open(path) as im:
             iw, ih = im.size
         pic = slide.shapes.add_picture(str(path), Inches(x), Inches(y), width=Inches(w), height=Inches(h))
@@ -862,6 +869,20 @@ def build_pptx() -> None:
             pic.crop_top = pic.crop_bottom = amount
         return pic
 
+    def fit(slide, path, x, y, max_w, max_h):
+        """Place the full image inside the box (contain). No content cropped."""
+        with PILImage.open(path) as im:
+            iw, ih = im.size
+        image_ratio = iw / ih
+        frame_ratio = max_w / max_h
+        if image_ratio > frame_ratio:
+            pw, ph = max_w, max_w / image_ratio
+            px, py = x, y + (max_h - ph) / 2
+        else:
+            ph, pw = max_h, max_h * image_ratio
+            px, py = x + (max_w - pw) / 2, y
+        return slide.shapes.add_picture(str(path), Inches(px), Inches(py), width=Inches(pw), height=Inches(ph))
+
     def slide():
         s = prs.slides.add_slide(blank)
         rect(s, 0, 0, 13.333, 7.5, CREAM)
@@ -870,14 +891,14 @@ def build_pptx() -> None:
 
     def band(s, kicker, title_value, subtitle=""):
         rect(s, 0, 0, 13.333, 0.12, TEAL)
-        text(s, kicker.upper(), 0.55, 0.35, 5.2, 0.3, 10, ORANGE, True)
-        text(s, title_value, 0.55, 0.72, 12.1, 0.65, 27, NAVY, True, font="Aptos Display")
+        text(s, kicker.upper(), 0.55, 0.28, 5.2, 0.28, 10, ORANGE, True)
+        text(s, title_value, 0.55, 0.58, 12.1, 0.55, 26, NAVY, True, font="Aptos Display")
         if subtitle:
-            text(s, subtitle, 0.58, 1.42, 11.8, 0.38, 12, MUTED)
+            text(s, subtitle, 0.58, 1.18, 11.8, 0.32, 12, MUTED)
 
     def footer(s, number):
-        text(s, "FairBanks | FCHIP Climate Health", 0.55, 7.12, 4.2, 0.2, 8, MUTED)
-        text(s, f"{number:02}", 12.2, 7.1, 0.5, 0.2, 8, MUTED, align=PP_ALIGN.RIGHT)
+        text(s, "FairBanks | FCHIP Climate Health", 0.55, 7.18, 4.2, 0.18, 8, MUTED)
+        text(s, f"{number:02}", 12.2, 7.16, 0.5, 0.18, 8, MUTED, align=PP_ALIGN.RIGHT)
 
     s = slide()
     crop(s, photo("cover"), 0, 0, 13.333, 7.5)
@@ -897,9 +918,10 @@ def build_pptx() -> None:
         "Clinical data often stays locked inside existing EMR/HMS systems.",
         "Pregnant women, children, older people, and people with CVD/diabetes face delayed care.",
         "Forecasts rarely name the local action, owner, referral, or follow-up.",
-    ], 6.25, 2.05, 6.25, 4.0, 16)
-    rect(s, 6.35, 6.05, 5.75, 0.55, PALE_ORANGE, ORANGE, True)
-    text(s, "Nexa gap: climate signal -> timely health service action.", 6.6, 6.18, 5.3, 0.22, 12, ORANGE, True)
+    ], 6.25, 1.85, 6.25, 3.9, 15)
+    # Keep callout clear of bullets and footer.
+    rect(s, 6.35, 6.15, 5.75, 0.48, PALE_ORANGE, ORANGE, True)
+    text(s, "Nexa gap: climate signal -> timely health service action.", 6.55, 6.26, 5.4, 0.28, 12, ORANGE, True)
     footer(s, 2)
 
     s = slide()
@@ -1008,14 +1030,20 @@ def build_pptx() -> None:
 
     s = slide()
     band(s, "How FairBanks works", "Community Reach cascade + FCHIP intelligence", "FCHIP is the Data and Feedback layer — not a clinic-only app.")
-    crop(s, concept("cascade"), 0.45, 1.85, 7.55, 5.0)
+    # Portrait cascade diagram must stay fully visible (no cover-crop clipping).
+    cascade_h = 5.2
+    cascade_w = cascade_h * 0.728
+    cascade_x = 0.45
+    cascade_y = 1.65
+    rect(s, cascade_x, cascade_y, cascade_w + 0.16, cascade_h + 0.16, WHITE, LINE, True)
+    fit(s, concept("cascade"), cascade_x + 0.08, cascade_y + 0.08, cascade_w, cascade_h)
     bullets(s, [
         "Communities -> CHWs/VHTs -> programmes",
         "Medical centre anchors clinical action",
         "Research, skills, and partners strengthen evidence",
         "CHIS and livelihoods support access",
         "Climate + GIS alerts close the loop",
-    ], 8.25, 2.05, 4.5, 4.4, 14)
+    ], cascade_x + cascade_w + 0.45, 2.0, 13.0 - (cascade_x + cascade_w + 0.7), 4.4, 15)
     footer(s, 10)
 
     s = slide()
