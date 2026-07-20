@@ -304,6 +304,7 @@ OPPORTUNITIES = [
     {
         "title": "Nexa Climate and Health Initiative (Grand Challenges Canada / Science for Africa Foundation)",
         "url": "https://www.grandchallenges.ca/rfp-nexa/",
+        "app_slug": "nexa-climate-health",
         "gender": MULTI_GENDER,
         "highlight": "00B0F0",
         "description": (

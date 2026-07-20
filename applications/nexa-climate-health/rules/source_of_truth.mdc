@@ -4,40 +4,40 @@ globs: applications/nexa-climate-health/**
 alwaysApply: false
 ---
 
-# Nexa Climate and Health 2026 - source of truth
+# Nexa Climate and Health 2026 — source of truth
 
-All work must follow the [official Nexa page](https://www.grandchallenges.ca/rfp-nexa/), [English Funding Opportunity](https://www.grandchallenges.ca/wp-content/uploads/2026/06/EN-Nexa-RFP-Jun-18-2026.pdf), [Proof-of-Concept questions](https://www.grandchallenges.ca/wp-content/uploads/2026/06/Nexa-POC-application_for-webpage.pdf), and [Fluxx portal](https://gcc.fluxx.io). Official sources win if internal material conflicts.
+Official sources win: [Nexa RFP page](https://www.grandchallenges.ca/rfp-nexa/), [EN Funding Opportunity](https://www.grandchallenges.ca/wp-content/uploads/2026/06/EN-Nexa-RFP-Jun-18-2026.pdf), [PoC questions](https://www.grandchallenges.ca/wp-content/uploads/2026/06/Nexa-POC-application_for-webpage.pdf), [TTS questions](https://www.grandchallenges.ca/wp-content/uploads/2026/06/Nexa-TTS-Stage-1-application_for-webpage.pdf), [Fluxx](https://gcc.fluxx.io), [nexaclimate.org](https://www.nexaclimate.org). Questions: OpenCompetitions@grandchallenges.ca.
 
-Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cursor/rules/fairbanks-community-reach.mdc`, `.cursor/rules/fairbanks_raw_project_idea.mdc`, and `.cursor/rules/fairBanks_refined_project_idea.mdc`.
+Follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, `fairbanks_raw_project_idea.mdc`, and `fairBanks_refined_project_idea.mdc`.
 
 ## Call facts
 
-- Deadline: **22 July 2026, 2:00 p.m. ET / 6:00 p.m. UTC**.
-- Recommended route: **Proof of Concept**, up to **USD 200,000** for **18, 21, or 24 months**.
-- Uganda is an eligible incorporation and implementation country.
-- Applicant must be incorporated or equivalent, active and in good standing, and able to receive and administer funds. Individuals and sole proprietorships are not eligible.
-- Project Lead must be formally affiliated, be a key team member, and lead only one application.
-- Application must be complete, in English or French, and submitted only through Fluxx.
-- The innovation must be at least **community linked**.
+- **Co-leads:** Grand Challenges Canada and Science for Africa Foundation (plus consortium partners).
+- **Deadline:** 22 July 2026, 2:00 p.m. ET / 6:00 p.m. UTC. Fluxx only. English or French. Complete answers required.
+- **Recommended route:** Proof of Concept — up to **USD 200,000**; duration **18, 21, or 24 months**. TTS ($250k–$2M) only with proven climate-health evidence.
+- **PoC eligibility:** Incorporated (or equivalent) in eligible Africa country or Brazil; Uganda eligible for incorporation and implementation. Not: individuals, sole proprietors, unincorporated trusts/partnerships, UN agencies.
+- **Project Lead:** Formally affiliated; key team member; one application only. Org may submit multiple apps with different leads.
+- **Community threshold:** At least **community linked** (partnered/led preferred if evidenced).
+- **Innovation Screen** reviews only the seven Innovation Overview answers; typically >80% declined there — climate fit must be unmistakable.
 
-## Funding fit
+## Funding fit (FairBanks / FCHIP)
 
-Lead with **climate-informed early warning and monitoring**. Frame FCHIP as a FairBanks component that is genuinely climate-integrated: GIS mapping plus climate API feeds combined with CHW/VHT, schools, communities, hospitals, clinics, outreach, malaria, pregnancy, cardiovascular, and diabetes data; produce clear risk triggers; and connect every alert to timely health service action.
+Lead with **climate-informed early warning and monitoring**. Frame FCHIP as a FairBanks component on the Community Reach **Data & Feedback** loop: climate API + GIS + CHW/VHT, schools, communities, hospitals/clinics fused into explainable triggers that drive **named health service action** (outreach, testing, referral, follow-up, stock prep). Secondary link: climate-responsive care for heat-sensitive pregnancy and NCD continuity.
 
-Use only Nexa hazards and outcomes: changing mosquito ecology affecting malaria or dengue, extreme heat, and poor air quality; malaria/dengue, cardiovascular disease, diabetes, chronic respiratory disease, chronic kidney disease, and pregnancy-related hypertension, gestational diabetes, or heat stress.
+**Hazards in scope:** changing mosquito ecology (malaria/dengue), extreme heat, poor air quality. **Air quality** only if local data and a care workflow are confirmed.
+
+**Priority outcomes only:** malaria/dengue; CVD, diabetes, chronic respiratory, CKD; pregnancy hypertension, gestational diabetes, heat stress. Alert accuracy alone is not enough — show health access/outcome and climate adaptiveness (performance under hazard periods). Must meet Nexa **climate-integrated** (or climate-centred) definition: climate shapes design, function, and deployment.
 
 ## Honesty gates
 
-Do not invent incorporation status, Project Lead, staff, collaborators, climate-data provider, government approval, ethics approval, baseline, targets, budget, prior GCC funding, IP rights, or measured results. Mark these **CONFIRM BEFORE SUBMISSION**.
-
-Do not claim Transition-to-Scale readiness, deployed AI, forecast accuracy, health impact, or signed partnerships without evidence. Current repository evidence supports FairBanks operations and community access, not validated climate-health performance.
+Do not invent incorporation, Project Lead, staff, collaborators, climate provider, approvals, ethics, baseline, targets, budget, prior GCC funding, IP, or measured results. Mark **CONFIRM BEFORE SUBMISSION**. No TTS claims, deployed AI accuracy, health impact, or signed partnerships without evidence.
 
 ## Deliverables
+
+Synced set only via `build_nexa-climate-health_docs.py`:
 
 - `documents/nexa-climate-health_word.docx`
 - `documents/nexa-climate-health_pdf.pdf`
 - `documents/nexa-climate-health_ppt.pptx`
 
-Regenerate all three only with `build_nexa-climate-health_docs.py`. Keep no drafts in `documents/`.
-
-Use simple human language and the approved slogan: **Your health, our mission.**
+Simple human language. Slogan: **Your health, our mission.** Cascade visuals: `.cursor/concept_improved.jpeg` (partners), `concept_simple.jpeg` (community), `concept.jpeg` (classic).

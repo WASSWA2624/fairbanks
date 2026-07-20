@@ -70,9 +70,22 @@ PHOTOS = {
     "team": "staff_team_reception.jpeg",
 }
 
+CONCEPT = {
+    "cascade": REPO / ".cursor" / "concept_improved.jpeg",
+    "simple": REPO / ".cursor" / "concept_simple.jpeg",
+    "classic": REPO / ".cursor" / "concept.jpeg",
+}
+
 
 def photo(key: str) -> Path:
     path = ASSETS / PHOTOS[key]
+    if not path.exists():
+        raise FileNotFoundError(path)
+    return path
+
+
+def concept(key: str = "cascade") -> Path:
+    path = CONCEPT[key]
     if not path.exists():
         raise FileNotFoundError(path)
     return path
@@ -89,6 +102,8 @@ CALL_FACTS = [
     ("Applicant", "Incorporated or equivalent in Africa or Brazil; Uganda is eligible"),
     ("Implementation", "Uganda is an eligible Proof-of-Concept implementation country"),
     ("Community threshold", "At least community linked"),
+    ("Climate bar", "Must be climate-integrated: climate shapes design, function, and deployment"),
+    ("Innovation Screen", "Only seven Overview answers reviewed first; typically over 80% declined there"),
 ]
 
 READINESS = [
@@ -118,18 +133,19 @@ PROBLEM = (
 )
 
 INNOVATION = (
-    "FCHIP Climate Health Early Action is a climate-integrated extension of the FairBanks "
-    "Community Health Intelligence Platform. It will combine approved rainfall, temperature, "
-    "humidity, and seasonal data with structured CHW/VHT reports, outreach screening, "
-    "facility trends, and medicine-use signals. An offline-capable mobile workflow will help "
-    "frontline workers collect and review essential data. Explainable risk rules will first "
-    "identify time-and-place malaria risk and heat-sensitive risk for pregnancy, "
-    "cardiovascular disease, and diabetes. A GIS action board will show risk, data quality, "
-    "and agreed response triggers. Each trigger will connect to a protocol: targeted health "
-    "messages, household follow-up, malaria testing/referral, outreach scheduling, clinician "
-    "review, or medicine and supply preparation. The Proof of Concept will test whether this "
-    "end-to-end loop is feasible, accepted, timely, and capable of improving access to "
-    "climate-responsive care. Models will not make diagnoses or replace clinical judgement."
+    "FCHIP Climate Health Early Action is a climate-integrated FairBanks platform component "
+    "on the Community Reach Data and Feedback loop. It will combine approved rainfall, "
+    "temperature, humidity, and seasonal data with structured CHW/VHT reports, outreach "
+    "screening, facility trends, and medicine-use signals. An offline-capable mobile "
+    "workflow will help frontline workers collect and review essential data. Explainable "
+    "risk rules will first identify time-and-place malaria risk and heat-sensitive risk for "
+    "pregnancy, cardiovascular disease, and diabetes. A GIS action board will show risk, "
+    "data quality, and agreed response triggers. Each trigger will connect to a named "
+    "protocol: targeted health messages, household follow-up, malaria testing/referral, "
+    "outreach scheduling, clinician review, or medicine and supply preparation. The Proof "
+    "of Concept will test whether this end-to-end loop is feasible, accepted, timely, and "
+    "able to improve access to climate-responsive care. Models will not diagnose or replace "
+    "clinical judgement."
 )
 
 POPULATION = (
@@ -176,27 +192,29 @@ OUTCOMES = (
 
 CLIMATE_DESIGN = (
     "FCHIP began as a community health intelligence concept and is being fundamentally "
-    "re-engineered for this pilot as a climate-integrated health innovation. Climate factors "
-    "will shape its design through rainfall, temperature, humidity, seasonality, and agreed "
-    "hazard thresholds; its functioning through climate-sensitive risk rules and alert "
-    "timing; and its deployment through risk-based outreach, staffing, follow-up, and supply "
-    "preparation. The innovation will be tested across changing climate-risk periods rather "
-    "than as a static health register. The team will document whether performance changes "
-    "during heavy rainfall, heat, poor connectivity, or service pressure. The exact climate "
-    "data provider, geographic resolution, historical coverage, update frequency, licences, "
-    "and locally approved thresholds must be confirmed before submission."
+    "re-engineered for this pilot as a climate-integrated health innovation under Nexa's "
+    "definition. Climate factors will shape its design through rainfall, temperature, "
+    "humidity, seasonality, and agreed hazard thresholds; its functioning through "
+    "climate-sensitive risk rules and alert timing; and its deployment through risk-based "
+    "outreach, staffing, follow-up, and supply preparation. The innovation will be tested "
+    "across changing climate-risk periods rather than as a static health register. The team "
+    "will document whether performance and service response change during heavy rainfall, "
+    "heat, poor connectivity, or service pressure. Exact climate data provider, geographic "
+    "resolution, historical coverage, update frequency, licences, and locally approved "
+    "thresholds: " + CONFIRM + "."
 )
 
 TEAM_CONNECTION = (
-    "FairBanks operates a medical centre and Community Reach activities serving Kampala-area "
-    "communities including Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya. Its model links "
-    "community members, CHWs and VHTs, outreach programmes, clinical care, research, and "
-    "skills development. This gives the project a local service presence and a practical "
-    "route for community design, referral, and follow-up. The application must still name the "
-    "Project Lead, technical and clinical leads, CHW/VHT representatives, MEL support, data "
-    "protection responsibility, and confirmed collaborators. It must describe each person's "
-    "training, lived experience, location, role, and prior partnership outcomes. Do not claim "
-    "community-owned or community-led status until leadership and residence evidence confirms it."
+    "FairBanks operates a medical centre and Community Reach cascade serving Kampala-area "
+    "communities including Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya. The cascade "
+    "links community members, CHWs/VHTs, outreach programmes, clinical care, research and "
+    "skills, and economic empowerment including CHIS where relevant. This gives the project "
+    "a local service presence and a practical route for community design, referral, and "
+    "follow-up. The application must still name the Project Lead, technical and clinical "
+    "leads, CHW/VHT representatives, MEL support, data protection responsibility, and "
+    "confirmed collaborators, with training, lived experience, location, role, and prior "
+    "partnership outcomes. Do not claim community-owned or community-led status until "
+    "leadership and residence evidence confirms it."
 )
 
 OVERVIEW_QUESTIONS = [
@@ -319,10 +337,20 @@ TECH = [
 MEL = [
     ("Data readiness", "Completeness, timeliness, missingness, geographic coverage"),
     ("Alert performance", "Sensitivity, specificity, false alerts, missed events, lead time"),
-    ("Health-system response", "Time to action, actions completed, referral and follow-up completion"),
-    ("Priority outcomes", "Timely prevention, testing, care access, continuity, complications where feasible"),
+    ("Intermediary response", "Local actor capacity to interpret signals; surge/outreach adaptation; service continuity"),
+    ("Priority outcomes", "Timely prevention, testing, care access, continuity; malaria and heat-sensitive care"),
+    ("Climate adaptiveness", "Performance compared across rainfall, heat, and service-pressure periods"),
     ("Equity and safety", "Reach by priority group, complaints, adverse events, privacy incidents"),
     ("Feasibility", "Adoption, acceptability, uptime, cost per person reached, staff burden"),
+]
+
+CASCADE = [
+    ("1. Community members", "Needs, participation, and household climate-health signals"),
+    ("2. CHWs / VHTs", "Bridge: outreach, education, referral, offline data capture"),
+    ("3. Community Reach programmes", "Screening, MCH, NCD, school/community education"),
+    ("4. FairBanks Medical Centre", "Clinical review, diagnostics, pharmacy, referral QA"),
+    ("5. Research · partnerships · skills", "Evidence, climate expertise, training, ethics"),
+    ("6. Economic empowerment / CHIS", "Affordable access and resilient households where data exists"),
 ]
 
 RISKS = [
@@ -341,6 +369,7 @@ SOURCES = [
     ("Proof-of-Concept questions", OFFICIAL_POC),
     ("Transition-to-Scale questions", OFFICIAL_TTS),
     ("Fluxx application portal", FLUXX),
+    ("Nexa initiative site", "https://www.nexaclimate.org"),
 ]
 
 
@@ -478,8 +507,9 @@ def build_docx() -> None:
     heading("1.1 Why FCHIP can fit", 2)
     bullets([
         "Direct fit with climate-informed early warning and monitoring systems.",
+        "Climate-integrated design: climate shapes design, function, and deployment.",
         "A clear path from climate and health signals to named service-delivery actions.",
-        "Existing medical centre, outreach activity, and CHW/VHT links support field testing.",
+        "Existing medical centre, Community Reach cascade, and CHW/VHT links support field testing.",
         "Uganda is eligible and the target groups match Nexa's climate-vulnerable priorities.",
         "The proposal must prove climate integration, not simply add weather data to a health app.",
     ])
@@ -579,14 +609,23 @@ def build_docx() -> None:
         10, True, ORANGE,
     )
 
-    heading("7. Community-led delivery")
-    add_photo("community", 6.4, "Community needs guide CHW/VHT workflows, service action, and learning.")
+    heading("7. Community Reach cascade and delivery")
+    add_photo_path = concept("cascade")
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.add_run().add_picture(str(add_photo_path), width=Inches(6.4))
+    para(
+        "Canonical FairBanks Community Reach model. FCHIP sits on the Data and Feedback loop.",
+        8, color=MUTED, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+    )
+    table(["Cascade layer", "Role in this Proof of Concept"], CASCADE, [2.4, 4.2], compact=True)
     bullets([
-        "Community members identify needs and test the usability, language, and fairness of workflows.",
+        "Community members identify needs and test usability, language, and fairness of workflows.",
         "CHWs and VHTs bridge households to prevention, screening, referral, and follow-up.",
         "Community Reach programmes coordinate outreach and health education.",
         "FairBanks Medical Centre provides clinical review, diagnostics, pharmacy, referral, and quality assurance.",
         "Research and partners support evidence, climate expertise, training, and ethical evaluation.",
+        "Economic empowerment and CHIS support affordable access where enrolment data exists.",
         "Learning returns to communities and strengthens resilience, not only project reporting.",
     ])
 
@@ -864,28 +903,25 @@ def build_pptx() -> None:
     footer(s, 8)
 
     s = slide()
-    band(s, "MEL", "Measure the whole path to health action", "Mixed methods, transparent limitations, and no unsupported impact claims.")
+    band(s, "MEL", "Measure the whole path to health action", "Mixed methods, climate adaptiveness, and no unsupported impact claims.")
     crop(s, photo("mobile"), 0.55, 1.9, 4.1, 4.9)
     for i, (a, b) in enumerate(MEL):
-        y = 1.9 + i * 0.8
-        text(s, a, 5.0, y, 1.65, 0.25, 12, TEAL, True)
-        text(s, b, 6.7, y, 5.6, 0.45, 11, SLATE)
-        rect(s, 5.0, y + 0.55, 7.0, 0.02, LINE)
+        y = 1.85 + i * 0.7
+        text(s, a, 5.0, y, 1.85, 0.22, 11, TEAL, True)
+        text(s, b, 6.9, y, 5.5, 0.4, 10, SLATE)
+        rect(s, 5.0, y + 0.48, 7.0, 0.015, LINE)
     footer(s, 9)
 
     s = slide()
-    band(s, "Why FairBanks", "A live environment for responsible field testing", "Community access and clinical follow-through reduce pilot friction.")
-    crop(s, photo("facility"), 0.55, 1.9, 4.1, 4.85)
-    crop(s, photo("community"), 4.85, 1.9, 3.35, 2.3)
-    crop(s, photo("team"), 4.85, 4.45, 3.35, 2.3)
+    band(s, "How FairBanks works", "Community Reach cascade + FCHIP intelligence", "FCHIP is the Data and Feedback layer — not a clinic-only app.")
+    crop(s, concept("cascade"), 0.45, 1.85, 7.55, 5.0)
     bullets(s, [
-        "Functioning medical centre",
-        "Community Reach programmes",
-        "CHW and VHT links",
-        "Maternal, NCD, geriatric, and outreach workflows",
-        "Clinical review, referral, pharmacy, and follow-up",
-        "Local evidence and partner roles still need verification",
-    ], 8.55, 2.0, 4.05, 4.55, 14)
+        "Communities -> CHWs/VHTs -> programmes",
+        "Medical centre anchors clinical action",
+        "Research, skills, and partners strengthen evidence",
+        "CHIS and livelihoods support access",
+        "Climate + GIS alerts close the loop",
+    ], 8.25, 2.05, 4.5, 4.4, 14)
     footer(s, 10)
 
     s = slide()
