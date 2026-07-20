@@ -14,6 +14,7 @@ from pathlib import Path
 
 import fitz
 from docx import Document
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -153,20 +154,40 @@ def _set_run_font(run, size=11, bold=False, color=None, name="Calibri") -> None:
 
 
 def _add_heading_block(doc: Document, title: str, subtitle: str) -> None:
+    """Logo left, camp metadata right — vertically centred as one branding row."""
+    table = doc.add_table(rows=1, cols=2)
+    table.autofit = True
+    left, right = table.rows[0].cells
+    left.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+    right.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+
+    left.text = ""
     if LOGO.exists():
-        p = doc.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.paragraph_format.space_after = Pt(4)
+        p = left.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_after = Pt(0)
         run = p.add_run()
-        run.add_picture(str(LOGO), width=Inches(2.5))
+        run.add_picture(str(LOGO), width=Inches(2.15))
+
+    right.text = ""
+    lines = [
+        ("Community Cardiology Camp", 12, True, (28, 43, 42)),
+        (SLOGAN, 9, False, (0, 140, 69)),
+        (CONTACT_LINE_2, 8.5, False, (90, 106, 106)),
+        (CONTACT_LINE_3, 8.5, False, (90, 106, 106)),
+        (CONTACT_LINE_1, 8, False, (90, 106, 106)),
+    ]
+    for i, (text, size, bold, color) in enumerate(lines):
+        p = right.paragraphs[0] if i == 0 else right.add_paragraph()
+        p.paragraph_format.space_after = Pt(1)
+        p.paragraph_format.space_before = Pt(0)
+        r = p.add_run(text)
+        _set_run_font(r, size=size, bold=bold, color=color)
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run("Community Cardiology Camp")
-    _set_run_font(r, size=13, bold=True, color=(28, 43, 42))
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before = Pt(10)
     r = p.add_run(title)
     _set_run_font(r, size=12, bold=True, color=(0, 107, 53))
 
@@ -174,19 +195,6 @@ def _add_heading_block(doc: Document, title: str, subtitle: str) -> None:
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run(subtitle)
     _set_run_font(r, size=10, color=(90, 106, 106))
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run(SLOGAN)
-    _set_run_font(r, size=9, color=(0, 140, 69))
-
-    for line in (CONTACT_LINE_1, CONTACT_LINE_2, CONTACT_LINE_3):
-        p = doc.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.paragraph_format.space_after = Pt(0)
-        p.paragraph_format.space_before = Pt(0)
-        r = p.add_run(line)
-        _set_run_font(r, size=8.5, color=(90, 106, 106))
     doc.add_paragraph()
 
 
@@ -693,43 +701,63 @@ class FormPDF:
         self.y = PAGE_H - 14 * mm
 
     def header_full(self, title: str, audience: str) -> None:
-        band_h = 36 * mm
-        self.c.setFillColor(BRAND)
-        self.c.rect(0, PAGE_H - band_h, PAGE_W, band_h, fill=1, stroke=0)
-        # Orange accent strip under brand band
-        self.c.setFillColor(ACCENT)
-        self.c.rect(0, PAGE_H - band_h - 1.5 * mm, PAGE_W, 1.5 * mm, fill=1, stroke=0)
+        """Brand band: logo and metadata vertically centred and left-aligned as one unit."""
+        band_h = 38 * mm
+        band_bottom = PAGE_H - band_h
 
-        logo_h = 16 * mm
+        self.c.setFillColor(BRAND)
+        self.c.rect(0, band_bottom, PAGE_W, band_h, fill=1, stroke=0)
+        self.c.setFillColor(ACCENT)
+        self.c.rect(0, band_bottom - 1.6 * mm, PAGE_W, 1.6 * mm, fill=1, stroke=0)
+
+        # Logo from true aspect ratio (269 x 101) — plate optically centred in band
+        logo_h = 17.5 * mm
+        logo_w = logo_h * (269 / 101)
+        plate_pad = 2.0 * mm
+        plate_w = logo_w + 2 * plate_pad
+        plate_h = logo_h + 2 * plate_pad
+        gap = 4.5 * mm
+
+        plate_x = MARGIN_L
+        # Slight downward nudge so the plate reads centred against the orange strip
+        plate_y = band_bottom + (band_h - plate_h) / 2 - 0.8 * mm
+        logo_x = plate_x + plate_pad
+        logo_y = plate_y + plate_pad
+
         if LOGO.exists():
-            # White plate behind logo for contrast on green band
             self.c.setFillColor(white)
-            self.c.roundRect(MARGIN_L - 1 * mm, PAGE_H - 22 * mm, 48 * mm, 18 * mm, 2, fill=1, stroke=0)
+            self.c.roundRect(plate_x, plate_y, plate_w, plate_h, 3, fill=1, stroke=0)
             self.c.drawImage(
                 str(LOGO),
-                MARGIN_L,
-                PAGE_H - 21 * mm,
-                width=46 * mm,
+                logo_x,
+                logo_y,
+                width=logo_w,
                 height=logo_h,
-                preserveAspectRatio=True,
+                preserveAspectRatio=False,
                 mask="auto",
             )
-            text_x = MARGIN_L + 50 * mm
+            text_x = plate_x + plate_w + gap
         else:
             text_x = MARGIN_L
 
-        self.c.setFillColor(white)
-        self.c.setFont("Helvetica-Bold", 12)
-        self.c.drawString(text_x, PAGE_H - 10 * mm, "Community Cardiology Camp")
-        self.c.setFont("Helvetica", 8.5)
-        self.c.drawString(text_x, PAGE_H - 15 * mm, SLOGAN)
-        self.c.setFont("Helvetica", 7)
-        self.c.drawString(text_x, PAGE_H - 20 * mm, CONTACT_LINE_2)
-        self.c.drawString(text_x, PAGE_H - 24 * mm, CONTACT_LINE_3)
-        self.c.setFont("Helvetica", 6.5)
-        self.c.drawString(text_x, PAGE_H - 28.5 * mm, CONTACT_LINE_1)
+        # Metadata shares the plate's top/bottom — lines evenly spaced between
+        meta_texts = [
+            ("Helvetica-Bold", 10.5, "Community Cardiology Camp"),
+            ("Helvetica-Oblique", 7.2, SLOGAN),
+            ("Helvetica", 6.5, CONTACT_LINE_2),
+            ("Helvetica", 6.5, CONTACT_LINE_3),
+            ("Helvetica", 6.1, CONTACT_LINE_1),
+        ]
+        first_y = plate_y + plate_h - 3.4 * mm
+        last_y = plate_y + 2.2 * mm
+        step = (first_y - last_y) / (len(meta_texts) - 1)
 
-        self.y = PAGE_H - band_h - 6 * mm
+        self.c.setFillColor(white)
+        for i, (font, size, text) in enumerate(meta_texts):
+            self.c.setFont(font, size)
+            self.c.drawString(text_x, first_y - i * step, text)
+
+        self.y = band_bottom - 1.6 * mm - 6 * mm
         self.c.setFillColor(BRAND_DARK)
         self.c.setFont("Helvetica-Bold", 11)
         self.c.drawCentredString(PAGE_W / 2, self.y, title)
