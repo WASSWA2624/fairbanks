@@ -52,8 +52,66 @@ SUBTITLE = "Climate-informed early warning that drives timely health action in U
 SLOGAN = "Your health, our mission."
 DEADLINE = "22 July 2026, 2:00 p.m. ET / 6:00 p.m. UTC"
 TRACK = "Proof of Concept - climate-informed early warning and monitoring systems"
-REQUEST = "Up to USD 200,000 for 18, 21, or 24 months"
+POC_MAX = 200_000
+AMOUNT_REQUESTED = 180_000  # 90% of PoC maximum
+REQUEST = f"USD {AMOUNT_REQUESTED:,} (90% of PoC maximum USD {POC_MAX:,}) for 18, 21, or 24 months"
 CONFIRM = "[CONFIRM BEFORE SUBMISSION]"
+
+# Direct USD 163,640 + indirect USD 16,360 (10% of direct, rounded under the cap) = 180,000
+BUDGET_ROWS = [
+    (
+        "Remuneration",
+        "74,000",
+        "Project Lead, clinical lead, product/data roles, MEL, community engagement, "
+        "and CHW/VHT stipends across the investment period",
+    ),
+    (
+        "Subcontractor fees",
+        "30,000",
+        "Climate/epidemiology support, independent MEL or statistician, and contracted "
+        "engineering for offline capture, secure EMR/HMS APIs, and GIS action board",
+    ),
+    (
+        "Travel costs",
+        "11,000",
+        "Community co-design and feedback visits, site supervision, partner and district "
+        "meetings within Uganda",
+    ),
+    (
+        "Goods and supplies",
+        "16,500",
+        "Pilot response supplies (e.g. malaria testing materials for alert follow-up), "
+        "outreach materials, airtime/data, printing, and consumables",
+    ),
+    (
+        "Equipment costs",
+        "13,500",
+        "Offline-capable phones/tablets for CHW/VHT capture, protective cases, and basic "
+        "field accessories",
+    ),
+    (
+        "Project administration costs",
+        "10,640",
+        "Finance coordination, banking fees, insurance allocation, and day-to-day project "
+        "administration in Uganda",
+    ),
+    (
+        "Sub-grants",
+        "8,000",
+        "Small community or VHT-linked implementation support for co-design, outreach, "
+        "and feedback activities",
+    ),
+    (
+        "Indirect costs",
+        "16,360",
+        "10% of direct costs (USD 163,640); within the 10% Fluxx cap",
+    ),
+    (
+        "Total",
+        "180,000",
+        "90% of PoC maximum (USD 200,000); majority spend in Uganda",
+    ),
+]
 
 PHOTOS = {
     "cover": "cover_hero_cinematic.jpg",
@@ -97,7 +155,7 @@ CALL_FACTS = [
     ("Deadline", DEADLINE),
     ("Submission", "Fluxx only; complete application in English or French"),
     ("Recommended stage", "Proof of Concept; current evidence does not support Transition to Scale"),
-    ("Amount", "Up to USD 200,000"),
+    ("Amount", f"Draft ask USD {AMOUNT_REQUESTED:,} (90% of PoC maximum USD {POC_MAX:,})"),
     ("Duration", "18, 21, or 24 months"),
     ("Applicant", "Incorporated or equivalent in Africa or Brazil; Uganda is eligible"),
     ("Implementation", "Uganda is an eligible Proof-of-Concept implementation country"),
@@ -110,11 +168,17 @@ READINESS = [
     ("Applicant legal name and entity type", CONFIRM),
     ("Incorporated, active, and in good standing in Uganda", CONFIRM),
     ("Project Lead identity, role, email, and one-application confirmation", CONFIRM),
-    ("Requested amount and 18/21/24-month duration", CONFIRM),
+    (
+        "Requested amount and 18/21/24-month duration",
+        f"Amount draft USD {AMOUNT_REQUESTED:,}; duration still " + CONFIRM,
+    ),
     ("Collaborators and written roles", CONFIRM),
     ("Climate/weather data source and permission or licence", CONFIRM),
     ("District, facility, community, ethics, and data approvals", CONFIRM),
-    ("Baseline values, sample, targets, and budget", CONFIRM),
+    (
+        "Baseline values, sample, targets, and budget",
+        f"Budget draft total USD {AMOUNT_REQUESTED:,}; baselines/targets still " + CONFIRM,
+    ),
     ("Prior GCC applications/awards and third-party IP", CONFIRM),
 ]
 
@@ -385,12 +449,15 @@ EXECUTION = [
     ),
     (
         "10. Budget",
-        "Complete Fluxx categories: remuneration; subcontractor fees; travel; goods and "
-        "supplies; equipment; project administration; sub-grants; and indirect costs capped "
-        "at 10% of direct costs. Certify that the budget is complete and that most "
-        "activities and expenses occur in the eligible implementation country (Uganda). "
-        "Detailed amount (maximum USD 200,000), currency assumptions, quotations, "
-        "indirect-cost basis, and majority-spend confirmation: " + CONFIRM + ".",
+        f"We request USD {AMOUNT_REQUESTED:,} — 90% of the Proof-of-Concept maximum "
+        f"(USD {POC_MAX:,}). Direct costs total USD 163,640 and indirect costs USD 16,360 "
+        "(10% of direct costs, within the Fluxx 10% cap). The draft allocation funds "
+        "remuneration for the core team and CHW/VHT stipends; subcontracted climate, MEL, "
+        "and engineering support; Uganda travel for co-design and supervision; goods for "
+        "alert-linked response and outreach; offline field equipment; project administration; "
+        "and small community/VHT sub-grants. Most activities and expenses will occur in "
+        "Uganda. Confirm salary scales, quotations, partner sub-grant agreements, currency "
+        "assumptions, and final category totals before Fluxx certification: " + CONFIRM + ".",
     ),
 ]
 
@@ -628,7 +695,7 @@ def build_docx() -> None:
             ("Applicant organisation", CONFIRM),
             ("Project Lead", CONFIRM + " - formally affiliated, key team member, one application only"),
             ("Project title (100 characters)", TITLE),
-            ("Amount requested", CONFIRM + " - maximum USD 200,000"),
+            ("Amount requested", f"USD {AMOUNT_REQUESTED:,} — 90% of PoC maximum USD {POC_MAX:,}"),
             ("Duration", CONFIRM + " - select 18, 21, or 24 months"),
             ("Collaborators", CONFIRM + " - list role and legal name"),
             ("Country of incorporation", "Uganda - confirm against incorporation documents"),
@@ -668,19 +735,14 @@ def build_docx() -> None:
         para(answer)
 
     heading("4.1 Budget workbook", 2)
+    para(
+        f"Draft Fluxx allocation totaling USD {AMOUNT_REQUESTED:,} (90% of the USD {POC_MAX:,} "
+        "PoC ceiling). Confirm salary scales, quotations, and sub-grant partners before certification.",
+        9, italic=True, color=MUTED,
+    )
     table(
         ["Fluxx category", "Amount (USD)", "Description / basis"],
-        [
-            ("Remuneration", CONFIRM, CONFIRM),
-            ("Subcontractor fees", CONFIRM, CONFIRM),
-            ("Travel costs", CONFIRM, CONFIRM),
-            ("Goods and supplies", CONFIRM, CONFIRM),
-            ("Equipment costs", CONFIRM, CONFIRM),
-            ("Project administration costs", CONFIRM, CONFIRM),
-            ("Sub-grants", CONFIRM, CONFIRM),
-            ("Indirect costs", CONFIRM, "Maximum 10% of direct costs - verify calculation"),
-            ("Total", CONFIRM, "Must not exceed USD 200,000"),
-        ],
+        BUDGET_ROWS,
         [2.0, 1.25, 3.35],
         compact=True,
     )
@@ -776,19 +838,42 @@ def build_docx() -> None:
 
 
 def convert_pdf() -> None:
+    import shutil
     import win32com.client
+
+    tmp_pdf = REPO / "tmp" / "nexa-climate-health_pdf_build.pdf"
+    tmp_pdf.parent.mkdir(parents=True, exist_ok=True)
+    if tmp_pdf.exists():
+        tmp_pdf.unlink()
+
     word = win32com.client.DispatchEx("Word.Application")
     word.Visible = False
     word.DisplayAlerts = 0
     document = None
     try:
         document = word.Documents.Open(str(DOCX.resolve()), ReadOnly=True)
-        document.ExportAsFixedFormat(str(PDF.resolve()), 17)
+        document.ExportAsFixedFormat(str(tmp_pdf.resolve()), 17)
     finally:
         if document is not None:
             document.Close(False)
         word.Quit()
+
+    try:
+        if PDF.exists():
+            PDF.unlink()
+        shutil.move(str(tmp_pdf), str(PDF))
+    except PermissionError as exc:
+        if tmp_pdf.exists():
+            tmp_pdf.unlink(missing_ok=True)
+        raise PermissionError(
+            f"Cannot update {PDF.name} because it is open/locked. "
+            "Close it in Foxit/Cursor and re-run the build."
+        ) from exc
     print(f"PDF:  {PDF}")
+
+
+def active_pdf() -> Path:
+    return PDF
 
 
 def _transition(slide) -> None:
@@ -1066,7 +1151,7 @@ def build_pptx() -> None:
     text(s, "THE PROOF-OF-CONCEPT ASK", 0.75, 0.75, 4.2, 0.35, 12, GOLD, True)
     text(s, "Help local health actors act before climate-driven risk becomes harm.", 0.75, 1.35, 8.6, 1.45, 30, WHITE, True, font="Aptos Display")
     bullets(s, [
-        "Up to USD 200,000",
+        f"USD {AMOUNT_REQUESTED:,} requested (90% of PoC maximum)",
         "18, 21, or 24 months",
         "Climate-informed early warning linked to timely care",
     ], 0.78, 3.35, 6.3, 2.0, 18, WHITE)
@@ -1108,9 +1193,22 @@ def validate() -> None:
         if len(answer) > limit:
             raise RuntimeError(f"Character limit exceeded: {question}")
 
-    pdf = fitz.open(PDF)
+    direct = sum(int(row[1].replace(",", "")) for row in BUDGET_ROWS[:-2])
+    indirect = int(BUDGET_ROWS[-2][1].replace(",", ""))
+    total = int(BUDGET_ROWS[-1][1].replace(",", ""))
+    if total != AMOUNT_REQUESTED:
+        raise RuntimeError(f"Budget total {total} != amount requested {AMOUNT_REQUESTED}")
+    if direct + indirect != total:
+        raise RuntimeError(f"Budget parts do not sum: {direct}+{indirect}!={total}")
+    if indirect > direct * 0.10 + 0.01:
+        raise RuntimeError(f"Indirect {indirect} exceeds 10% of direct {direct}")
+
+    pdf = fitz.open(active_pdf())
     if pdf.page_count < 10:
         raise RuntimeError(f"PDF has too few pages: {pdf.page_count}")
+    pdf_text = "\n".join(page.get_text() for page in pdf)
+    if f"{AMOUNT_REQUESTED:,}" not in pdf_text and str(AMOUNT_REQUESTED) not in pdf_text:
+        raise RuntimeError("PDF missing amount requested")
     for page in pdf:
         blocks = page.get_text("blocks")
         for block in blocks:
