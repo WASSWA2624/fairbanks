@@ -12,21 +12,26 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import fitz
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm, Pt, RGBColor
+from docx.shared import Cm, Inches, Pt, RGBColor
 from reportlab.lib.colors import HexColor, white
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 
 OUT_DIR = Path(__file__).resolve().parent
-BRAND = HexColor("#0B6E6B")
-BRAND_DARK = HexColor("#084E4C")
-ACCENT = HexColor("#1A8A86")
-LIGHT = HexColor("#E8F5F4")
+REPO = OUT_DIR.parent
+LOGO = REPO / "assets" / "fairbanks_logo.jpeg"
+
+# Brand aligned to FairBanks logo (green + orange)
+BRAND = HexColor("#008C45")
+BRAND_DARK = HexColor("#006B35")
+ACCENT = HexColor("#F58220")
+LIGHT = HexColor("#E8F6EE")
 MUTED = HexColor("#5A6A6A")
 LINE = HexColor("#C5D5D4")
 INK = HexColor("#1C2B2A")
@@ -35,12 +40,19 @@ WARN = HexColor("#FFF8E7")
 PAGE_W, PAGE_H = A4
 MARGIN_L = 16 * mm
 MARGIN_R = 16 * mm
-MARGIN_T = 14 * mm
-MARGIN_B = 16 * mm
+MARGIN_T = 12 * mm
+MARGIN_B = 18 * mm
 CONTENT_W = PAGE_W - MARGIN_L - MARGIN_R
 
 SUBMIT_EMAIL = "info@fairbanksmedicalcentre.org"
+WEBSITE = "www.fairbanksmedicalcentre.ug"
+PHONE = "0701 849258"
+WHATSAPP = "0777 462398"
+ADDRESS = "Tirupati Road, Kyebando-Kisalosalo (Opp. Northern Bypass Roundabout), Kampala"
 SLOGAN = "Your health, our mission."
+CONTACT_LINE_1 = ADDRESS
+CONTACT_LINE_2 = f"Tel: {PHONE}  |  WhatsApp: {WHATSAPP}"
+CONTACT_LINE_3 = f"Email: {SUBMIT_EMAIL}  |  Web: {WEBSITE}"
 
 
 # ---------------------------------------------------------------------------
@@ -141,10 +153,12 @@ def _set_run_font(run, size=11, bold=False, color=None, name="Calibri") -> None:
 
 
 def _add_heading_block(doc: Document, title: str, subtitle: str) -> None:
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run("FAIRBANKS MEDICAL CENTRE")
-    _set_run_font(r, size=16, bold=True, color=(11, 110, 107))
+    if LOGO.exists():
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_after = Pt(4)
+        run = p.add_run()
+        run.add_picture(str(LOGO), width=Inches(2.5))
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -154,7 +168,7 @@ def _add_heading_block(doc: Document, title: str, subtitle: str) -> None:
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run(title)
-    _set_run_font(r, size=12, bold=True, color=(8, 78, 76))
+    _set_run_font(r, size=12, bold=True, color=(0, 107, 53))
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -164,7 +178,16 @@ def _add_heading_block(doc: Document, title: str, subtitle: str) -> None:
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run(SLOGAN)
-    _set_run_font(r, size=9, color=(11, 110, 107))
+    _set_run_font(r, size=9, color=(0, 140, 69))
+
+    for line in (CONTACT_LINE_1, CONTACT_LINE_2, CONTACT_LINE_3):
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.space_before = Pt(0)
+        r = p.add_run(line)
+        _set_run_font(r, size=8.5, color=(90, 106, 106))
+    doc.add_paragraph()
 
 
 def _add_para(doc: Document, text: str, *, size=10.5, bold=False, color=(28, 43, 42),
@@ -182,7 +205,7 @@ def _add_section(doc: Document, code: str, title: str) -> None:
     p.paragraph_format.space_before = Pt(12)
     p.paragraph_format.space_after = Pt(6)
     r = p.add_run(f"{code}: {title}")
-    _set_run_font(r, size=11.5, bold=True, color=(11, 110, 107))
+    _set_run_font(r, size=11.5, bold=True, color=(0, 140, 69))
 
 
 def _add_field_line(doc: Document, label: str, width_hint: str = "_" * 48) -> None:
@@ -222,7 +245,7 @@ def _add_rating_table(doc: Document, items: list[str]) -> None:
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER if i else WD_ALIGN_PARAGRAPH.LEFT
         r = p.add_run(h)
         _set_run_font(r, size=8.5, bold=True, color=(255, 255, 255))
-        _set_cell_shading(cell, "0B6E6B")
+        _set_cell_shading(cell, "008C45")
 
     for r_idx, item in enumerate(items, 1):
         row = table.rows[r_idx]
@@ -231,7 +254,7 @@ def _add_rating_table(doc: Document, items: list[str]) -> None:
         r = p.add_run(item)
         _set_run_font(r, size=9)
         if r_idx % 2 == 0:
-            _set_cell_shading(row.cells[0], "E8F5F4")
+            _set_cell_shading(row.cells[0], "E8F6EE")
         for c in range(1, 6):
             row.cells[c].text = ""
             p = row.cells[c].paragraphs[0]
@@ -239,7 +262,7 @@ def _add_rating_table(doc: Document, items: list[str]) -> None:
             rr = p.add_run("☐")
             _set_run_font(rr, size=11)
             if r_idx % 2 == 0:
-                _set_cell_shading(row.cells[c], "E8F5F4")
+                _set_cell_shading(row.cells[c], "E8F6EE")
 
     doc.add_paragraph()
 
@@ -250,15 +273,20 @@ def _add_footer_block(doc: Document) -> None:
         doc,
         f"Please email your completed questionnaire to {SUBMIT_EMAIL}. "
         "You may type responses in this Word file, or print, fill by hand, and scan. "
+        "A fillable PDF is also available: type in the fields, save a filled copy, and email it back. "
         "Your feedback is confidential and used only for programme improvement, "
         "reporting, and partnership development.",
         size=10,
     )
+    _add_para(doc, "Contact FairBanks Medical Centre", size=10.5, bold=True, space_after=2)
+    _add_para(doc, CONTACT_LINE_1, size=9.5, color=(90, 106, 106), space_after=1)
+    _add_para(doc, CONTACT_LINE_2, size=9.5, color=(90, 106, 106), space_after=1)
+    _add_para(doc, CONTACT_LINE_3, size=9.5, color=(90, 106, 106), space_after=6)
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(14)
+    p.paragraph_format.space_before = Pt(10)
     r = p.add_run("Thank you for strengthening community cardiovascular care with FairBanks.")
-    _set_run_font(r, size=10, bold=True, color=(11, 110, 107))
+    _set_run_font(r, size=10, bold=True, color=(0, 140, 69))
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run(f"FairBanks Medical Centre  ·  {SLOGAN}")
@@ -504,15 +532,47 @@ def build_staff_docx(path: Path) -> None:
 # PDF helpers (fillable)
 # ---------------------------------------------------------------------------
 
+def finalize_fillable_pdf(path: Path) -> None:
+    """Ensure AcroForm fields stay typeable, visible, and saveable across viewers."""
+    doc = fitz.open(path)
+    cat = doc.pdf_catalog()
+    acro = doc.xref_get_key(cat, "AcroForm")
+    if acro[0] == "xref":
+        af_xref = int(acro[1].split()[0])
+        doc.xref_set_key(af_xref, "NeedAppearances", "true")
+    elif acro[0] == "null":
+        # Should not happen for our forms; keep a minimal AcroForm if missing
+        pass
+
+    for page in doc:
+        for widget in page.widgets() or []:
+            # Clear ReadOnly (bit 0) so respondents can type and save
+            flags = widget.field_flags or 0
+            if flags & 1:
+                widget.field_flags = flags & ~1
+            widget.update()
+
+    tmp = path.with_suffix(".tmp.pdf")
+    doc.save(tmp, garbage=3, deflate=True, clean=True)
+    doc.close()
+    tmp.replace(path)
+
+
 class FormPDF:
     def __init__(self, path: Path, doc_title: str):
         self.path = path
         self.c = canvas.Canvas(str(path), pagesize=A4)
         self.c.setTitle(doc_title)
         self.c.setAuthor("FairBanks Medical Centre")
+        self.c.setSubject("Fillable evaluation questionnaire - type, save, and email back")
         self.y = PAGE_H - MARGIN_T
         self.page = 1
         self._field_n = 0
+        # Help viewers regenerate field appearances when typing
+        try:
+            self.c.acroForm.needAppearances = True
+        except Exception:
+            pass
 
     def new_name(self, prefix: str) -> str:
         self._field_n += 1
@@ -529,10 +589,11 @@ class FormPDF:
     def footer(self) -> None:
         self.c.setStrokeColor(LINE)
         self.c.setLineWidth(0.4)
-        self.c.line(MARGIN_L, 11 * mm, PAGE_W - MARGIN_R, 11 * mm)
+        self.c.line(MARGIN_L, 14 * mm, PAGE_W - MARGIN_R, 14 * mm)
         self.c.setFillColor(MUTED)
-        self.c.setFont("Helvetica", 7.5)
-        self.c.drawString(MARGIN_L, 6.5 * mm, "FairBanks Medical Centre  ·  Confidential")
+        self.c.setFont("Helvetica", 6.5)
+        self.c.drawString(MARGIN_L, 10 * mm, f"{CONTACT_LINE_2}  |  {SUBMIT_EMAIL}")
+        self.c.drawString(MARGIN_L, 6.5 * mm, f"{WEBSITE}  ·  Confidential  ·  Type, Save As, then email filled copy")
         self.c.drawRightString(PAGE_W - MARGIN_R, 6.5 * mm, f"Page {self.page}")
 
     def header_mini(self) -> None:
@@ -541,20 +602,48 @@ class FormPDF:
         self.c.setFillColor(white)
         self.c.setFont("Helvetica-Bold", 8)
         self.c.drawString(MARGIN_L, PAGE_H - 5.5 * mm, "FairBanks  ·  Community Cardiology Camp Evaluation")
+        self.c.setFont("Helvetica", 7)
+        self.c.drawRightString(PAGE_W - MARGIN_R, PAGE_H - 5.5 * mm, SUBMIT_EMAIL)
         self.y = PAGE_H - 14 * mm
 
     def header_full(self, title: str, audience: str) -> None:
+        band_h = 36 * mm
         self.c.setFillColor(BRAND)
-        self.c.rect(0, PAGE_H - 28 * mm, PAGE_W, 28 * mm, fill=1, stroke=0)
-        self.c.setFillColor(white)
-        self.c.setFont("Helvetica-Bold", 14)
-        self.c.drawCentredString(PAGE_W / 2, PAGE_H - 10 * mm, "FAIRBANKS MEDICAL CENTRE")
-        self.c.setFont("Helvetica", 10)
-        self.c.drawCentredString(PAGE_W / 2, PAGE_H - 16 * mm, "Community Cardiology Camp")
-        self.c.setFont("Helvetica-Oblique", 8)
-        self.c.drawCentredString(PAGE_W / 2, PAGE_H - 22 * mm, SLOGAN)
+        self.c.rect(0, PAGE_H - band_h, PAGE_W, band_h, fill=1, stroke=0)
+        # Orange accent strip under brand band
+        self.c.setFillColor(ACCENT)
+        self.c.rect(0, PAGE_H - band_h - 1.5 * mm, PAGE_W, 1.5 * mm, fill=1, stroke=0)
 
-        self.y = PAGE_H - 34 * mm
+        logo_h = 16 * mm
+        if LOGO.exists():
+            # White plate behind logo for contrast on green band
+            self.c.setFillColor(white)
+            self.c.roundRect(MARGIN_L - 1 * mm, PAGE_H - 22 * mm, 48 * mm, 18 * mm, 2, fill=1, stroke=0)
+            self.c.drawImage(
+                str(LOGO),
+                MARGIN_L,
+                PAGE_H - 21 * mm,
+                width=46 * mm,
+                height=logo_h,
+                preserveAspectRatio=True,
+                mask="auto",
+            )
+            text_x = MARGIN_L + 50 * mm
+        else:
+            text_x = MARGIN_L
+
+        self.c.setFillColor(white)
+        self.c.setFont("Helvetica-Bold", 12)
+        self.c.drawString(text_x, PAGE_H - 10 * mm, "Community Cardiology Camp")
+        self.c.setFont("Helvetica", 8.5)
+        self.c.drawString(text_x, PAGE_H - 15 * mm, SLOGAN)
+        self.c.setFont("Helvetica", 7)
+        self.c.drawString(text_x, PAGE_H - 20 * mm, CONTACT_LINE_2)
+        self.c.drawString(text_x, PAGE_H - 24 * mm, CONTACT_LINE_3)
+        self.c.setFont("Helvetica", 6.5)
+        self.c.drawString(text_x, PAGE_H - 28.5 * mm, CONTACT_LINE_1)
+
+        self.y = PAGE_H - band_h - 6 * mm
         self.c.setFillColor(BRAND_DARK)
         self.c.setFont("Helvetica-Bold", 11)
         self.c.drawCentredString(PAGE_W / 2, self.y, title)
@@ -562,27 +651,27 @@ class FormPDF:
         self.c.setFillColor(MUTED)
         self.c.setFont("Helvetica", 8.5)
         self.c.drawCentredString(PAGE_W / 2, self.y, audience)
-        self.y -= 7 * mm
+        self.y -= 6 * mm
 
         # Soft-copy tip
-        self.ensure(14 * mm)
-        box_h = 12 * mm
+        box_h = 13 * mm
+        self.ensure(box_h + 4 * mm)
         self.c.setFillColor(WARN)
-        self.c.setStrokeColor(HexColor("#E0C070"))
+        self.c.setStrokeColor(ACCENT)
         self.c.roundRect(MARGIN_L, self.y - box_h + 2 * mm, CONTENT_W, box_h, 3, fill=1, stroke=1)
         self.c.setFillColor(INK)
         self.c.setFont("Helvetica-Bold", 8)
-        self.c.drawString(MARGIN_L + 3 * mm, self.y - 2 * mm, "Soft-copy friendly (fillable PDF)")
+        self.c.drawString(MARGIN_L + 3 * mm, self.y - 1.5 * mm, "Fillable soft copy - type, save, and send back")
         self.c.setFont("Helvetica", 7.5)
         self.c.drawString(
             MARGIN_L + 3 * mm,
-            self.y - 6 * mm,
-            "Click any field to type. Use checkboxes and rating circles to select. Save a copy before emailing.",
+            self.y - 5.5 * mm,
+            "1) Click any blue-bordered field to type   2) Tick boxes / rating circles   3) File > Save As (keep as PDF)",
         )
         self.c.drawString(
             MARGIN_L + 3 * mm,
             self.y - 9.5 * mm,
-            f"Submit to: {SUBMIT_EMAIL}   ·   Responses are confidential.",
+            f"4) Email the filled PDF to {SUBMIT_EMAIL}   ·   Works in Adobe Reader, Edge, Chrome, and Foxit",
         )
         self.y -= box_h + 3 * mm
 
@@ -638,16 +727,20 @@ class FormPDF:
         fw = field_w or (CONTENT_W - lw)
         self.c.acroForm.textfield(
             name=name,
+            tooltip=label,
             x=MARGIN_L + lw,
             y=self.y - 1.5 * mm,
             width=fw,
             height=5.5 * mm,
-            borderWidth=0.6,
-            borderColor=LINE,
-            fillColor=white,
+            borderWidth=0.8,
+            borderColor=HexColor("#4AA3FF"),
+            fillColor=HexColor("#F7FBFF"),
             textColor=INK,
             forceBorder=True,
-            fontSize=8,
+            fontSize=9,
+            fontName="Helvetica",
+            fieldFlags="",
+            maxlen=500,
         )
         self.y -= 8 * mm
 
@@ -665,13 +758,15 @@ class FormPDF:
             y=self.y - height,
             width=CONTENT_W,
             height=height,
-            borderWidth=0.6,
-            borderColor=LINE,
-            fillColor=HexColor("#FAFCFC"),
+            borderWidth=0.8,
+            borderColor=HexColor("#4AA3FF"),
+            fillColor=HexColor("#F7FBFF"),
             textColor=INK,
             forceBorder=True,
-            fontSize=8,
+            fontSize=9,
+            fontName="Helvetica",
             fieldFlags="multiline",
+            maxlen=4000,
         )
         self.y -= height + 4 * mm
 
@@ -785,6 +880,7 @@ class FormPDF:
     def save(self) -> None:
         self.footer()
         self.c.save()
+        finalize_fillable_pdf(self.path)
 
 
 def build_consultant_pdf(path: Path) -> None:
