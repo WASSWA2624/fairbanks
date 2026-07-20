@@ -32,7 +32,8 @@ These are the only shared rules. Do not copy them under `applications/` or `oppo
 | `documents.mdc` | Sync + elegant PowerPoint / cover standards |
 | `instructions.mdc` | Writing style, .mdc word limit, deck quality pointer |
 | `fairbanks-community-reach.mdc` | Operating model / cascade |
-| `fairbanks_raw_project_idea.mdc` | FCHIP product vision (do not edit) |
+| `fairbanks_raw_project_idea.mdc` | Original FCHIP vision (do not edit) |
+| `fairBanks_refined_project_idea.mdc` | Refined FairBanks narrative; FCHIP as FairBanks component |
 
 ## Assets & temp
 
@@ -49,6 +50,7 @@ These are the only shared rules. Do not copy them under `applications/` or `oppo
   instructions.mdc
   fairbanks-community-reach.mdc
   fairbanks_raw_project_idea.mdc
+  fairBanks_refined_project_idea.mdc
 applications/
   {project}/
     build_{project}_docs.py

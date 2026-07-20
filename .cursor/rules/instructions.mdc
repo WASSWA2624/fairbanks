@@ -5,7 +5,7 @@ alwaysApply: true
 - Always be human when writing text.
 - Use layman's grammar and vocabularies.
 - Explain in the simplest possible way.
-- All `.mdc` files should be under 501 words except [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc).
+- All `.mdc` files should be under 501 words except [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc) and [fairBanks_refined_project_idea.mdc](fairBanks_refined_project_idea.mdc).
 - Never modify [fairbanks_raw_project_idea.mdc](fairbanks_raw_project_idea.mdc).
 - Shared rules live only in root `.cursor/rules/`. Call SoTs live only under each project's `rules/` and must use globs, not `alwaysApply: true`.
 - Application packs: one **project-specific** generator per call. Do not auto-stamp many projects from one shared template or SPECS file.

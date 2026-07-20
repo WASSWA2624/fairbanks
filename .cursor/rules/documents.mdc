@@ -20,7 +20,7 @@ Examples: `awief_pdf.pdf`, `fid_ppt.pptx`, `awief_word.docx`.
 
 1. Edit one format → update the other two in the same session (story, data, branding, compliance).
 2. Regenerate only with **that project's** build script(s). Never stamp many projects from a shared factory.
-3. Prefer the most recently edited format; if unclear, follow the project SoT (e.g. AWIEF → `refined_project_idea.md`).
+3. Prefer the most recently edited format; if unclear, follow the project SoT (e.g. AWIEF → `.cursor/rules/fairBanks_refined_project_idea.mdc`).
 4. Keep only the three official files in `documents/` — no drafts or renamed copies.
 5. Use images from `assets/` (or a project `assets/` folder). Keep brand look consistent across formats.
 6. Before an external submission, meet all eligibility, theme, format, and deadline rules.

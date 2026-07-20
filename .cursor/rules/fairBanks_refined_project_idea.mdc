@@ -1,0 +1,441 @@
+---
+description: FairBanks refined product narrative — FCHIP as FairBanks component with GIS and climate intelligence
+alwaysApply: true
+---
+
+# FairBanks — with Community Health Intelligence Platform (FCHIP)
+
+**Slogan:** Your health, our mission.
+
+**Grant & Pitch Application Write-Up**  
+**Programme:** [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026)  
+**Theme:** Deep Roots. Digital Futures.  
+**Sector:** HealthTech | Artificial Intelligence & Machine Learning  
+**Geography:** Uganda (pilot) → East Africa → Pan-African scale  
+**Application deadline:** 20 July 2026
+
+---
+
+## 1. Executive Summary
+
+**FairBanks** is a community health ecosystem — medical centre, Community Reach programmes, CHWs/VHTs, partnerships, and livelihoods — evolving into **Africa's leading Community Health Intelligence Company**.
+
+**FCHIP** (FairBanks Community Health Intelligence Platform) is a **core FairBanks component**: the deep-technology intelligence layer that connects community health workers, schools, communities, hospitals, clinics, outreach programmes, and public-health decision-makers into one intelligent network.
+
+Today, primary healthcare in underserved African communities is largely **reactive**: facilities treat patients only after illness appears, with little visibility into what is happening in surrounding villages until outbreaks, complications, or stock-outs occur. Through FCHIP, FairBanks continuously analyses multi-source health data and combines it with **GIS mapping and climate APIs** to forecast disease risk, maternal complications, chronic-disease hotspots, child-health threats, climate-linked outbreaks, and medicine demand **before** crises escalate.
+
+FairBanks is uniquely positioned to build and validate this. We already operate a functioning medical centre, run active community outreach across Kampala-area communities (including Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya), work with Village Health Teams (VHTs) and community health workers (CHWs), and deliver maternal and child health, geriatric care (Gericare), chronic-disease screening, corporate and school health programmes, digital health records, and research partnerships. FCHIP is the FairBanks technology component that unifies these activities into a scalable, evidence-driven health intelligence system.
+
+**Vision:** To build Africa's leading Community Health Intelligence Company — FairBanks — whose FCHIP component harnesses artificial intelligence, community-generated data, GIS, climate signals, and predictive analytics to transform primary healthcare from reactive treatment to proactive prevention.
+
+**Funding ask (indicative):** Support to develop and pilot the FCHIP MVP within FairBanks—mobile data collection for CHWs/VHTs, cloud sync, GIS and climate API integration, predictive analytics engine, and facility/district dashboards—validated in FairBanks' live community health ecosystem before district and regional scale-up.
+
+---
+
+## 2. Problem Statement
+
+### 2.1 The reactive healthcare gap
+
+Across underserved African communities, health systems face a structural information gap:
+
+| Current reality                                         | Consequence                                               |
+| ------------------------------------------------------- | --------------------------------------------------------- |
+| Facilities wait for patients to become sick             | Late detection of outbreaks and complications             |
+| Care ends when the patient leaves the facility          | No continuous view of community-level health trends       |
+| Outreach data sits in paper registers or siloed systems | District offices and NGOs lack real-time intelligence     |
+| Medicine ordering is based on historical guesswork      | Stock-outs during seasonal disease surges                 |
+| High-risk pregnancies and NCDs are identified late      | Preventable maternal morbidity and stroke/diabetes burden |
+| Climate and weather signals stay separate from health data | Missed early warning when rainfall, heat, or floods raise disease risk |
+
+Health facilities, district health offices, NGOs, and ministries of health are forced to **react** to visible crises rather than **predict and prevent** them—despite having community health workers, outreach programmes, clinics, schools, and mobile connectivity on the ground.
+
+### 2.2 Why existing approaches fall short
+
+Many digital health tools in Africa focus on single use cases—appointment booking, EMR digitisation, or SMS reminders. These are valuable but do not constitute **deep technology** or population-level intelligence. They rarely combine:
+
+- Multi-source community and facility data (CHWs/VHTs, schools, communities, hospitals, clinics, pharmacies, outreach)
+- AI/ML-driven predictive modelling
+- **GIS mapping** of disease and risk geography
+- **Climate API integration** (rainfall, temperature, extreme weather) linked to health outcomes
+- Real-time decision support for frontline workers and policy makers
+
+The result is fragmented data, delayed response, and missed opportunities for climate-aware prevention at the community level—exactly the challenge AWIEF's 2026 theme, **Deep Roots. Digital Futures.**, calls founders to address with technology rooted in local context.
+
+---
+
+## 3. Solution: FairBanks, with FCHIP as the intelligence component
+
+### 3.1 Venture positioning
+
+| Instead of                 | We present                                                                                                                                                             |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "A private medical centre" | **FairBanks — a Community Health Intelligence Company** using AI, predictive analytics, GIS, climate data, and community-generated signals to improve health outcomes in underserved African communities |
+| "Just an app"              | **FCHIP as a FairBanks component** — the digital nervous system on the FairBanks cascade (communities → CHWs → programmes → medical centre → research → empowerment) |
+
+**FairBanks** is the operating company and community health ecosystem. **FCHIP** is FairBanks' deep-technology platform component—connecting communities, healthcare providers, governments, and development partners through one intelligent system.
+
+### 3.2 What FCHIP analyses (existing and planned data sources)
+
+FCHIP continuously receives and analyses structured health information from FairBanks and partner sources, including:
+
+- **Community Health Workers and Village Health Teams** (household visits, symptom checks, referrals)
+- **Schools** (school health programmes, screening camps, absenteeism and wellness signals)
+- **Communities** (outreach events, churches, mosques, community dialogues, self-reporting via mobile where used)
+- **Hospitals and clinics** (FairBanks Medical Centre and partner facilities: encounters, vitals, diagnoses, digital health records)
+- Patients and caregivers (via mobile applications and self-reporting)
+- Pharmacies, drug shops, and medicine outlets (dispensing patterns, stock levels, common complaints)
+- Maternal and child health touchpoints (ANC/PNC visits, immunisation posts, nutrition programmes)
+- Corporate and workplace wellness programmes (BP, BMI, glucose, occupational health checks)
+- Laboratories and point-of-care testing (malaria RDTs, HIV, Hb, glucose, and related results)
+- Geriatric / Gericare and chronic-disease follow-up cohorts (hypertension, diabetes, elderly care)
+- Public health and administrative systems (district HMIS/DHIS2 aggregates, where integration is approved)
+- Research partners and programme M&E teams (anonymised field datasets from NGO and academic collaborations)
+
+### 3.3 GIS mapping, climate API integration, and early detection
+
+A defining FairBanks / FCHIP capability is **combining place, climate, and community health signals** for earlier detection:
+
+| Capability | Role |
+| --- | --- |
+| **GIS mapping** | Maps disease distribution, risk hotspots, resource gaps, and alert geography by village/parish/facility catchment |
+| **Climate API integration** | Ingests weather and climate feeds (e.g. rainfall, temperature, humidity, extreme heat, flood-related signals) into the FCHIP pipeline |
+| **Climatic integration** | Links seasonal and short-term climate change patterns to known climate-sensitive conditions (e.g. malaria/fever clusters after rainfall, heat-related strain, diarrhoeal risk after floods) |
+| **FCHIP multi-source analysis** | Fuses climate and GIS layers with CHW/VHT, school, community, hospital, and clinic data to score risk and trigger early warnings |
+| **Early detection** | Surfaces explainable alerts to CHWs, facilities, and district partners *before* caseloads spike — not only after people present sick |
+
+**Example:** Rising fever reports from VHTs in three neighbouring villages + above-normal rainfall from the climate API + GIS clustering → FCHIP flags elevated malaria/outbreak risk within a defined window → FairBanks outreach, testing, and pharmacy pre-stocking deploy early.
+
+### 3.4 Platform architecture
+
+FCHIP sits between **field and climate capture** and **decision-makers**. Data flows in from the community and climate APIs, is processed by intelligence modules (including GIS), and returns as alerts, dashboards, and referrals.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     DATA SOURCES (last mile)                    │
+│  CHWs/VHTs · Schools · Communities · Hospitals · Clinics        │
+│  Patients (mobile) · Pharmacies · ANC/PNC · Corporate wellness  │
+│  Labs/PoC · Gericare / NCD · HMIS/DHIS2 (where approved)        │
+│  Research / NGO M&E · Climate API (rainfall, heat, extremes)    │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│         CAPTURE LAYER — Mobile, facility & climate feeds        │
+│    Offline-capable forms · facility sync · climate API ingest   │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│   FCHIP (FairBanks component) — COMMUNITY HEALTH INTELLIGENCE │
+│                                                                 │
+│  ┌────────┐ ┌────────────┐ ┌─────────┐ ┌──────────┐ ┌────────┐ │
+│  │ AI/ML  │ │ Predictive │ │ GIS     │ │ Climate  │ │ Clinical│ │
+│  │ Engine │ │ Analytics  │ │ Maps    │ │ Fusion   │ │ Support │ │
+│  └────────┘ └────────────┘ └─────────┘ └──────────┘ └────────┘ │
+│     Risk scores · climate-aware early warnings · hotspots       │
+└───────────┬─────────────────┬─────────────────┬─────────────────┘
+            │                 │                 │
+            ▼                 ▼                 ▼
+   ┌────────────────┐ ┌──────────────┐ ┌──────────────────────┐
+   │ CHW / VHT      │ │ Health       │ │ District Health      │
+   │ mobile alerts  │ │ Facility     │ │ Office · NGOs ·      │
+   │ & worklists    │ │ Dashboard    │ │ Partners             │
+   └───────┬────────┘ └──────┬───────┘ └──────────┬───────────┘
+           │                 │                    │
+           └─────────────────┴────────────────────┘
+                             │
+                             ▼
+                    Actions in the community
+         (referrals · outreach · stock · surveillance)
+```
+
+| Layer            | Role                                                                         |
+| ---------------- | ---------------------------------------------------------------------------- |
+| **Data sources** | CHWs/VHTs, schools, communities, hospitals, clinics, and related FairBanks signals |
+| **Capture**      | Mobile/offline + facility systems + **climate API** ingest                   |
+| **FCHIP core**   | AI/ML, predictive analytics, **GIS maps**, climate fusion, clinical guidance |
+| **Consumers**    | CHWs (field), facilities (care), districts/partners (programmes)             |
+
+FCHIP becomes the **digital nervous system** for FairBanks community healthcare—moving data from the last mile and climate feeds to decision-makers in near real time, and closing the loop with actionable alerts back to the field.
+
+---
+
+## 4. Deep Technology Core
+
+AWIEF 2026 requires ventures built on substantial research and engineering, not lightweight digital services. FairBanks meets this standard through FCHIP's integrated deep-tech stack:
+
+| Technology                      | Function in FCHIP (FairBanks component)                                                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Artificial Intelligence**     | Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring                       |
+| **Machine Learning**            | Pattern learning from historical community health data, seasonal/climate trends, and outreach outcomes |
+| **GIS Mapping**                 | Geospatial visualisation of disease distribution, climate-linked hotspots, and resource gaps         |
+| **Climate API integration**     | Live and forecast weather/climate feeds fused with health signals for early detection                |
+| **Mobile Data Collection**      | Offline-capable CHW/VHT apps for structured capture at household and community level                 |
+| **Cloud Computing**             | Secure synchronisation across facilities, partners, and administrative levels                        |
+| **Analytics Dashboard**         | Real-time trend and map monitoring for clinicians, programme managers, and district officials        |
+| **Natural Language Processing** | Local-language symptom reporting and summarisation where appropriate                                 |
+
+This combination—AI + ML + **GIS** + **climate APIs** + edge/mobile capture + cloud orchestration—is the **deep technology core** that distinguishes FairBanks' FCHIP component from a simple health app or consumer website.
+
+---
+
+## 5. Predictive Use Cases (Proof of Concept Scenarios)
+
+### 5.1 Disease surveillance (climate-aware)
+
+**Signal:** Three neighbouring villages report increasing fever cases via VHT mobile entries; climate API shows recent heavy rainfall; GIS maps a tight geographic cluster.  
+**Prediction:** Possible malaria outbreak within 14 days.  
+**Action:** District office and FairBanks outreach teams deploy targeted testing, bed-net distribution, and pharmacy pre-stocking.
+
+### 5.2 Maternal health
+
+**Signal:** Pregnant mothers' home-visit data (BP, haemoglobin proxies, visit adherence); heat extremes from climate API where relevant.  
+**Prediction:** High-risk pregnancy, missed antenatal care, anaemia risk, possible pre-eclampsia / heat-related strain.  
+**Action:** CHWs receive alerts; mothers are referred before complications occur.
+
+### 5.3 Non-communicable diseases (NCDs)
+
+**Signal:** Blood pressure readings from community screening, clinics, hospitals, and corporate/school programmes.  
+**Prediction:** Communities with rising hypertension, diabetes hotspots, elevated stroke risk.  
+**Action:** Targeted screening campaigns and lifestyle intervention planning.
+
+### 5.4 Child health
+
+**Signal:** Growth monitoring, immunisation records, diarrhoea incidence from CHWs, schools, and clinics; flood/sanitation-linked climate signals where available.  
+**Prediction:** Rising malnutrition, low immunisation coverage, diarrhoeal disease clusters.  
+**Action:** Community flags trigger nutrition support and immunisation drives.
+
+### 5.5 Medicine demand forecasting
+
+**Signal:** Disease trends, rainfall patterns (climate API), historical consumption, outreach schedules, hospital/clinic utilisation.  
+**Prediction:** Medicine demand by facility and community before stock-outs.  
+**Action:** Procurement and pharmacy replenishment aligned to forecasted need.
+
+---
+
+## 6. Target Market & Customers
+
+| Customer segment                    | Value delivered                                                       |
+| ----------------------------------- | --------------------------------------------------------------------- |
+| **Medical centres & clinics**       | Better follow-up, outreach planning, and population health visibility |
+| **District health offices**         | Population-level disease intelligence and early warning               |
+| **NGOs & development partners**     | Real-time M&E, impact evidence, programme optimisation                |
+| **Community health workers / VHTs** | Mobile tools, structured workflows, decision support                  |
+| **Insurance companies**             | Prevention-focused population health insights                         |
+| **Ministries of health**            | National and sub-national planning, outbreak preparedness             |
+| **Research institutions**           | Ethical, anonymised datasets for community health research            |
+
+**Primary market (Phase 1):** Uganda—starting with FairBanks' established community catchment and Kampala metropolitan outreach zones.  
+**Expansion markets (Phase 2–3):** East Africa, then additional African countries with similar primary healthcare and CHW/VHT infrastructure.
+
+---
+
+## 7. Business Model & Revenue Streams
+
+FairBanks monetises FCHIP through a diversified, scalable model:
+
+1. **Subscription licences** for clinics and hospitals
+2. **District health office** deployments (SaaS + implementation)
+3. **NGO programme monitoring** contracts
+4. **Ministry of Health** national/sub-national implementations
+5. **Custom analytics and reporting** for partners
+6. **Research collaborations** with universities
+7. **API integrations** for digital health and climate-data ecosystem partners
+8. **Training and certification** for community health workers on platform use
+
+This multi-channel model reduces dependence on a single revenue stream and aligns with B2G, B2B, and B2B2C pathways common in African HealthTech scale-up.
+
+---
+
+## 8. Traction, Foundation & Competitive Advantage
+
+### 8.1 Existing FairBanks ecosystem (live operational foundation)
+
+FairBanks is not a concept-stage idea disconnected from the field. Active programmes and assets include:
+
+- **FairBanks Community Reach Programme**
+- **CHW and VHT engagement** in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and surrounding communities
+- **Maternal and child health** initiatives
+- **Gericare** (geriatric care programme)
+- **Chronic disease screening**
+- **Corporate and school health programmes**
+- **Digital health records** (existing digitisation foundation)
+- **Research and community partnerships**
+- **Functioning medical centre** with direct patient and community access
+
+### 8.2 Why FairBanks wins
+
+| Typical startup                 | Typical health facility         | FairBanks                                                             |
+| ------------------------------- | ------------------------------- | --------------------------------------------------------------------- |
+| Technology without field access | Patients without technology     | **Both**: live healthcare operation + deep-tech build capability      |
+| Imported solutions              | Manual, reactive workflows      | **Context-rooted** AI built from African community health realities   |
+| Pilot without validation site   | Data without intelligence layer | **Design → pilot → validate → refine** in a real setting before scale |
+
+FairBanks can **design, pilot, validate, and refine** FCHIP inside an operating community health ecosystem—de-risking product-market fit for district and national deployment.
+
+### 8.3 Recommended AWIEF track
+
+| Track                           | Fit assessment                                                                                                                                                    |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Idea Track**                  | Applicable if pitching FCHIP as pre-venture prototype (<18 months, early prototype)                                                                                |
+| **Startup Track (recommended)** | Strong fit: registered operating medical centre, revenue-generating services, active community programmes, building deep-tech platform on proven field operations |
+| **Scale-Up Track**              | Future state after multi-market expansion and institutional funding                                                                                               |
+
+---
+
+## 9. Social Impact & Development Alignment
+
+### 9.1 Impact thesis
+
+Through FCHIP, FairBanks shifts primary healthcare from **sick-care** to **predictive, climate-aware, community-centred prevention**—directly benefiting underserved populations who depend on CHWs, outreach, schools, clinics, and under-resourced facilities.
+
+### 9.2 Expected outcomes
+
+- **Earlier outbreak detection** (including climate-linked risk) and reduced morbidity from communicable diseases
+- **Fewer maternal and neonatal complications** through risk-based alerting
+- **Reduced NCD burden** via hotspot-targeted screening
+- **Improved child nutrition and immunisation coverage** through community-level monitoring
+- **Reduced medicine stock-outs** and more efficient public-health resource allocation
+- **Evidence base** for NGOs, donors, and governments to invest in what works
+
+### 9.3 Sustainable Development Goal (SDG) alignment
+
+| SDG                                                 | FairBanks / FCHIP contribution                              |
+| --------------------------------------------------- | ----------------------------------------------------------- |
+| **SDG 3 – Good Health and Well-Being**              | Predictive community health, maternal/child/NCD focus       |
+| **SDG 5 – Gender Equality**                         | Women-led venture; maternal health intelligence             |
+| **SDG 9 – Industry, Innovation and Infrastructure** | Deep-tech health infrastructure for last-mile Africa        |
+| **SDG 10 – Reduced Inequalities**                   | Intelligence for underserved communities                    |
+| **SDG 13 – Climate Action**                         | Climate API + health fusion for early warning and response  |
+| **SDG 17 – Partnerships**                           | Multi-stakeholder health ecosystem integration              |
+
+---
+
+## 10. MVP Scope & Product Roadmap
+
+### 10.1 Minimum Viable Product (MVP)
+
+**Goal:** Prove predictive community health intelligence — with GIS and climate fusion — in FairBanks' live catchment.
+
+| MVP component                  | Description                                                                                                                            |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **CHW/VHT mobile app**         | Offline data capture: symptoms, vitals, maternal/child indicators, household visits                                                    |
+| **Multi-source ingest**        | Connect CHW/VHT, school, community, hospital, and clinic signals already in the FairBanks ecosystem                                    |
+| **Cloud sync & data pipeline** | Secure ingestion, validation, and storage from field and climate feeds to platform                                                     |
+| **Climate API integration**    | Rainfall, temperature, and extreme-weather feeds fused with health events                                                              |
+| **Analytics dashboard**        | Facility-level view of trends, alerts, maps, and outreach priorities                                                                   |
+| **AI Module v1**               | Rule-based + ML-assisted risk scoring for priority use cases (e.g. fever cluster + rainfall, maternal risk flags, BP trend alerts)     |
+| **GIS layer v1**               | Map visualisation of reported cases, climate overlays, and risk zones by village/parish                                                |
+| **Pilot integration**          | Connect existing FairBanks digital records and outreach workflows                                                                      |
+
+### 10.2 Roadmap
+
+| Phase                             | Timeline (indicative) | Milestones                                                                                                                                        |
+| --------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Phase 1 – Pilot**               | Months 0–12           | MVP with FairBanks CHWs/VHTs; GIS + climate API; validate 3 predictive use cases; measure alert accuracy and response time                        |
+| **Phase 2 – District scale**      | Months 12–24          | Expand to partner clinics/hospitals and Kampala district structures; NGO M&E modules; partner APIs                                                  |
+| **Phase 3 – National & regional** | Months 24–36          | Multi-district Uganda deployment; East Africa market entry; advanced ML and medicine demand forecasting                                           |
+| **Phase 4 – Platform expansion**  | Year 3+               | Clinical decision support, expanded NLP for local languages, research modules, optional future capabilities (e.g. workforce wellbeing analytics)  |
+
+---
+
+## 11. AWIEF Pitch n Grow 2026 Alignment
+
+### 11.1 Theme: Deep Roots. Digital Futures.
+
+| AWIEF expectation                         | FairBanks / FCHIP response                                                                                         |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Deep knowledge of local context           | Years of community outreach in named Kampala communities; CHW/VHT relationships; primary care delivery experience |
+| Deep understanding of communities         | Platform designed around how African communities actually report, move, and access care                           |
+| Deep technology, not superficial digital  | AI + ML + GIS + climate APIs + mobile edge + cloud + NLP integrated as a FairBanks component                      |
+| African problems, African-built solutions | Technology developed from FairBanks' field operations, not imported without local validation                      |
+
+### 11.2 Sector & eligibility checklist
+
+- **Sector:** HealthTech (priority innovation sector)
+- **Deep-tech core:** Artificial Intelligence & Machine Learning (plus GIS and climate integration)
+- **Market focus:** African communities (Uganda pilot → continental scale)
+- **Founder eligibility:** Woman founder or co-founder (presenting founder must be female)
+- **Commitment:** Available for AWIEF 2026 Conference live finals, Cape Town, 10–11 November 2026
+
+---
+
+## 12. Application-Ready Copy Blocks
+
+*Use the sections below when completing the [Untap application portal](https://awief.untap.us/pitch-n-grow2026).*
+
+### 12.1 One-line pitch
+
+FairBanks is a Community Health Intelligence Company; FCHIP — its core platform component — uses AI, GIS, and climate APIs with community and facility data to turn African primary healthcare from reactive treatment to proactive prevention.
+
+### 12.2 Problem (short form)
+
+Underserved African communities lack real-time health intelligence. Facilities treat sickness after it appears, while data from CHWs, schools, communities, hospitals, and clinics stays fragmented — and climate signals rarely join the picture — delaying outbreak response, maternal interventions, and medicine supply.
+
+### 12.3 Solution (short form)
+
+FairBanks' FCHIP component ingests multi-source health data (CHW/VHT, schools, communities, hospitals, clinics), fuses it with GIS maps and climate APIs, and delivers predictive alerts and dashboards so facilities, districts, and partners can act before crises escalate.
+
+### 12.4 Why now
+
+Mobile penetration, CHW networks, open climate data, and cloud infrastructure make community health intelligence deployable at scale — FairBanks already has the field operations; FCHIP completes the technology layer.
+
+### 12.5 Unique value proposition
+
+Only venture combining a **live medical centre and community outreach engine** with a **deep-tech predictive health platform** (GIS + climate + multi-source FCHIP analysis) — allowing real-world design, pilot, and validation before district and national scale.
+
+### 12.6 Technology demo narrative (3-minute video script outline)
+
+1. **Hook (0:00–0:20):** "Health facilities wait for patients to get sick. We predict what happens in the community — and the climate — before they arrive."
+2. **Problem (0:20–0:50):** Show reactive clinic flow vs. invisible community and climate-linked disease trends.
+3. **Solution (0:50–1:40):** CHW/clinic/school capture → climate API → FCHIP (AI + GIS) → facility dashboard → district map.
+4. **Use case (1:40–2:20):** Rainfall + fever cluster or maternal risk alert triggered and acted upon.
+5. **Traction (2:20–2:45):** FairBanks outreach communities, programmes, and validation environment.
+6. **Ask & vision (2:45–3:00):** MVP pilot funding; vision for Africa's leading community health intelligence company.
+
+### 12.7 Suggested pitch deck structure (10–12 slides)
+
+1. Title & one-line vision (FairBanks + FCHIP component)
+2. Problem: reactive healthcare in underserved communities
+3. Solution: FairBanks ecosystem + FCHIP overview
+4. Deep technology architecture (AI, GIS, climate API)
+5. How it works (data flow diagram)
+6. Use cases: surveillance, maternal, NCD, child health, pharmacy
+7. Market & customers
+8. Business model
+9. Traction & competitive advantage (FairBanks ecosystem)
+10. MVP & roadmap
+11. Impact & SDG alignment
+12. Team, ask, and contact
+
+---
+
+## 13. Risks & Mitigation (Grant Reviewer Section)
+
+| Risk                            | Mitigation                                                                                                       |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Data quality from field capture | Structured mobile forms, validation rules, CHW training and certification                                        |
+| Climate / GIS data gaps         | Start with proven public climate APIs and simple overlays; validate against FairBanks clinical outcomes          |
+| Low CHW digital literacy        | Simple UX, offline mode, local-language support, supervised rollout through existing VHT networks                |
+| Privacy and consent             | Ethical data governance, anonymisation for analytics, Protection compliance                                      |
+| Model accuracy in early phase   | Start with rule-based + limited ML scope; validate against FairBanks clinical outcomes before scaling algorithms |
+| Adoption by public sector       | Pilot evidence from FairBanks; NGO and district co-design; align with MoH community health strategy              |
+
+---
+
+## 14. Conclusion
+
+FairBanks represents a strategic evolution from community medical practice to **community health intelligence**. FCHIP is the FairBanks platform component that matches AWIEF Pitch n Grow 2026's call for women-led, deep-technology solutions rooted in African reality.
+
+With an operating medical centre, established outreach across Kampala communities, trusted CHW/VHT relationships, school and clinic programmes, digital health foundations, and a clear AI-, GIS-, and climate-powered product roadmap, FairBanks is ready to build, pilot, and scale FCHIP as the component that connects multi-source community data and climatic change signals to life-saving predictions.
+
+**Next immediate steps:**
+
+1. Finalise MVP scope and AI priorities for Phase 1 (climate-aware surveillance, maternal risk, NCD hotspots) with GIS and climate API integration
+2. Complete AWIEF application and 10–12 slide pitch deck
+3. Record 3-minute technology demo video
+4. Launch FairBanks pilot with CHW/VHT cohort in primary catchment communities
+
+---
+
+*Document prepared for AWIEF Pitch n Grow 2026 submission. Canonical path: `.cursor/rules/fairBanks_refined_project_idea.mdc`.*

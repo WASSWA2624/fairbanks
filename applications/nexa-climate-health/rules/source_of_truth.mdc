@@ -8,7 +8,7 @@ alwaysApply: false
 
 All work must follow the [official Nexa page](https://www.grandchallenges.ca/rfp-nexa/), [English Funding Opportunity](https://www.grandchallenges.ca/wp-content/uploads/2026/06/EN-Nexa-RFP-Jun-18-2026.pdf), [Proof-of-Concept questions](https://www.grandchallenges.ca/wp-content/uploads/2026/06/Nexa-POC-application_for-webpage.pdf), and [Fluxx portal](https://gcc.fluxx.io). Official sources win if internal material conflicts.
 
-Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cursor/rules/fairbanks-community-reach.mdc`, and `.cursor/rules/fairbanks_raw_project_idea.mdc`.
+Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cursor/rules/fairbanks-community-reach.mdc`, `.cursor/rules/fairbanks_raw_project_idea.mdc`, and `.cursor/rules/fairBanks_refined_project_idea.mdc`.
 
 ## Call facts
 
@@ -22,7 +22,7 @@ Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cu
 
 ## Funding fit
 
-Lead with **climate-informed early warning and monitoring**. FCHIP must be genuinely climate-integrated: combine weather and rainfall data with CHW/VHT, outreach, facility, malaria, pregnancy, cardiovascular, and diabetes data; produce clear risk triggers; and connect every alert to timely health service action.
+Lead with **climate-informed early warning and monitoring**. Frame FCHIP as a FairBanks component that is genuinely climate-integrated: GIS mapping plus climate API feeds combined with CHW/VHT, schools, communities, hospitals, clinics, outreach, malaria, pregnancy, cardiovascular, and diabetes data; produce clear risk triggers; and connect every alert to timely health service action.
 
 Use only Nexa hazards and outcomes: changing mosquito ecology affecting malaria or dengue, extreme heat, and poor air quality; malaria/dengue, cardiovascular disease, diabetes, chronic respiratory disease, chronic kidney disease, and pregnancy-related hypertension, gestational diabetes, or heat stress.
 

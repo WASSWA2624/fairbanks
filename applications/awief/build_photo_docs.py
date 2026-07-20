@@ -1,5 +1,5 @@
 """
-Photo-rich DOCX + PDF of refined_project_idea.md for AWIEF Pitch n Grow 2026.
+Photo-rich DOCX + PDF of fairBanks_refined_project_idea.mdc for AWIEF Pitch n Grow 2026.
 """
 
 from pathlib import Path
@@ -826,7 +826,7 @@ def build_docx():
     ])
     add_para(
         doc,
-        "Document prepared for AWIEF Pitch n Grow 2026 submission. Source: refined_project_idea.md",
+        "Document prepared for AWIEF Pitch n Grow 2026 submission. Source: .cursor/rules/fairBanks_refined_project_idea.mdc",
         size=9, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, space_before=18, italic=True,
     )
 
@@ -1480,7 +1480,7 @@ def build_pdf():
     ])
     story.append(Spacer(1, 12))
     story.append(Paragraph(
-        "Document prepared for AWIEF Pitch n Grow 2026 submission. Source: refined_project_idea.md",
+        "Document prepared for AWIEF Pitch n Grow 2026 submission. Source: .cursor/rules/fairBanks_refined_project_idea.mdc",
         styles["Meta"],
     ))
 

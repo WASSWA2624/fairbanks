@@ -8,7 +8,7 @@ alwaysApply: false
 
 All work must align with the [official programme site](https://accelerator.africahealthexcon.com/) and [application portal](https://accelerator.africahealthexcon.com/apply). Official pages win if internal documents conflict.
 
-Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cursor/rules/fairbanks-community-reach.mdc`, and `.cursor/rules/fairbanks_raw_project_idea.mdc`.
+Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cursor/rules/fairbanks-community-reach.mdc`, `.cursor/rules/fairbanks_raw_project_idea.mdc`, and `.cursor/rules/fairBanks_refined_project_idea.mdc`.
 
 ## Call facts
 
@@ -34,7 +34,7 @@ Do not submit unless FairBanks can truthfully confirm:
 
 ## Positioning
 
-Present FairBanks as a community health ecosystem and FCHIP as its intelligence layer. Lead with the real validation advantage: a functioning medical centre, active community outreach, CHW/VHT links, digital health workflows, and named Kampala communities. Do not claim measured product traction or AI performance before validation.
+Present FairBanks as a community health ecosystem and FCHIP as a FairBanks component — its intelligence layer (GIS, climate API, multi-source analysis). Lead with the real validation advantage: a functioning medical centre, active community outreach, CHW/VHT links, digital health workflows, and named Kampala communities. Do not claim measured product traction or AI performance before validation.
 
 ## Deliverables
 

@@ -1,6 +1,6 @@
 ---
 description: AWIEF Pitch n Grow 2026 compliance and deliverable sync
-globs: applications/awief/**,refined_project_idea.md
+globs: applications/awief/**,.cursor/rules/fairBanks_refined_project_idea.mdc
 alwaysApply: false
 ---
 
@@ -8,13 +8,13 @@ alwaysApply: false
 
 All AWIEF pitch work must align with [AWIEF Pitch n Grow 2026](https://awief.untap.us/pitch-n-grow2026). That portal wins on eligibility, theme, tracks, format, and deadlines. If internal docs conflict with the portal, fix the docs to match the portal.
 
-Follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
+Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, and `.cursor/rules/fairBanks_refined_project_idea.mdc`.
 
 ## Mandatory checks
 
 1. **Theme:** Align with **Deep Roots. Digital Futures.** (deep tech rooted in African context).
 2. **Track & sector:** Keep claims consistent with Startup / HealthTech and a deep-technology core.
-3. Root the pitch in the FairBanks community health cascade; frame FCHIP as the intelligence layer on that cascade.
+3. Root the pitch in the FairBanks community health cascade; frame FCHIP as a FairBanks component — the intelligence layer on that cascade (GIS, climate API, multi-source data).
 4. **Pitch deck:** Investor deck is **10–12 slides**, suitable for **PDF upload**; highlight technology, market, and unit economics.
 5. Women-led / African-market venture narrative must stay accurate and submission-ready.
 6. Simple human language. Only approved slogan: **Your health, our mission.**
@@ -24,12 +24,12 @@ Follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc`.
 
 | Role | Path |
 |---|---|
-| Canonical narrative | `refined_project_idea.md` (narrative only — not a fourth deliverable) |
+| Canonical narrative | `.cursor/rules/fairBanks_refined_project_idea.mdc` (narrative only — not a fourth deliverable) |
 | Pitch deck | `applications/awief/documents/awief_ppt.pptx` |
 | PDF | `applications/awief/documents/awief_pdf.pdf` |
 | Word | `applications/awief/documents/awief_word.docx` |
 
-One synced set of three files in `documents/`. Resolve story from `refined_project_idea.md` unless another format was edited first. Regenerate all three with `applications/awief/build_awief_docs.py` (runs deck + photo docs). Keep only the three official deliverables in `documents/`.
+One synced set of three files in `documents/`. Resolve story from `.cursor/rules/fairBanks_refined_project_idea.mdc` unless another format was edited first. Regenerate all three with `applications/awief/build_awief_docs.py` (runs deck + photo docs). Keep only the three official deliverables in `documents/`.
 
 ## Cover / branding
 
