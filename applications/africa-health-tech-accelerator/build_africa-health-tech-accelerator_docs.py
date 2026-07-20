@@ -131,10 +131,11 @@ SOLUTION_ANSWER = (
 )
 
 TARGET_CUSTOMERS = (
-    "Private and faith-based clinics, district health offices, NGOs and "
-    "development programmes, research partners, and health insurers that need "
-    "better community-level data, follow-up, early warning, and programme "
-    "monitoring. CHWs and VHTs are the core frontline users."
+    "Private and faith-based clinics, district health offices, the Ministry of "
+    "Health, Uganda health federations, NGOs and development programmes, "
+    "universities and other teaching and research institutions, and health "
+    "insurers that need better community-level data, follow-up, early warning, "
+    "and programme monitoring. CHWs and VHTs are the core frontline users."
 )
 
 UNIQUE_ANSWER = (
@@ -733,7 +734,14 @@ def build_docx() -> None:
 
 def convert_docx_to_pdf() -> None:
     """Use Microsoft Word so the PDF exactly mirrors the Word application pack."""
+    import shutil
     import win32com.client
+
+    # Export to tmp first so a locked official PDF does not block Word COM.
+    tmp_pdf = REPO / "tmp" / "africa-health-tech-accelerator_export.pdf"
+    tmp_pdf.parent.mkdir(parents=True, exist_ok=True)
+    if tmp_pdf.exists():
+        tmp_pdf.unlink()
 
     word = win32com.client.DispatchEx("Word.Application")
     word.Visible = False
@@ -742,7 +750,7 @@ def convert_docx_to_pdf() -> None:
     try:
         document = word.Documents.Open(str(OUT_DOCX.resolve()), ReadOnly=True)
         document.ExportAsFixedFormat(
-            OutputFileName=str(OUT_PDF.resolve()),
+            OutputFileName=str(tmp_pdf.resolve()),
             ExportFormat=17,  # wdExportFormatPDF
             OpenAfterExport=False,
             OptimizeFor=0,
@@ -764,6 +772,14 @@ def convert_docx_to_pdf() -> None:
         if document is not None:
             document.Close(False)
         word.Quit()
+
+    try:
+        shutil.copy2(tmp_pdf, OUT_PDF)
+    except PermissionError as exc:
+        raise RuntimeError(
+            "PDF was exported, but the official PDF is locked. Close "
+            f"{OUT_PDF.name} in your viewer, then rebuild."
+        ) from exc
     print(f"PDF:  {OUT_PDF}")
 
 
@@ -999,16 +1015,17 @@ def build_pptx() -> None:
     image_crop(s, asset("gis"), 7.55, 1.85, 5.2, 4.95)
     segments = [
         ("Clinics", "Follow-up, outreach, population visibility"),
-        ("Districts", "Early warning and resource planning"),
+        ("Districts & MoH", "Early warning, planning, and national oversight"),
+        ("Health federations", "Network coordination and shared standards"),
         ("NGOs", "Programme monitoring and evidence"),
-        ("Research", "Ethical study workflows and analytics"),
+        ("Universities", "Teaching, research, and ethical study analytics"),
         ("Insurers", "Prevention-focused population insight"),
     ]
     for i, (t, b) in enumerate(segments):
-        y = 1.95 + i * 0.92
-        text(s, t, 0.7, y, 1.4, 0.28, 14, TEAL, True)
-        text(s, b, 2.25, y, 4.75, 0.45, 12, SLATE)
-        rect(s, 0.7, y + 0.55, 6.2, 0.02, LINE)
+        y = 1.88 + i * 0.78
+        text(s, t, 0.7, y, 2.0, 0.28, 13, TEAL, True)
+        text(s, b, 2.85, y, 4.15, 0.4, 12, SLATE)
+        rect(s, 0.7, y + 0.48, 6.2, 0.02, LINE)
     footer(s, 6)
 
     # 7 Business model
