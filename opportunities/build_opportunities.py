@@ -295,8 +295,9 @@ OPPORTUNITIES = [
             "mentorship, seed-funding opportunities, investor Demo Day, and "
             "continental visibility. Needs at least two founders, an MVP, "
             "and a scale-across-Africa commitment. Excellent near-term fit "
-            "for FCHIP as a community health intelligence / digital health "
-            "venture. Deadline extended to 20 July 2026 — apply immediately."
+            "for FCHIP (working MVP) as a community health intelligence / "
+            "digital health venture. Deadline extended to 20 July 2026 — "
+            "apply immediately."
         ),
         "deadline": "20 July 2026",
         "deadline_sort": "2026-07-20",

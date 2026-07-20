@@ -20,28 +20,40 @@ Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cu
 
 ## Honesty gates
 
-Do not invent or infer founder identity, contacts, co-founders, MVP status, revenue, paying customers, funding raised, partners, website, or pitch-deck URL. Keep these marked **CONFIRM BEFORE SUBMISSION** until the applicant supplies evidence.
+**Product stage (applicant-confirmed):** FCHIP has a working **MVP**. Select **MVP** on the portal. Do not invent measured AI accuracy, paying FCHIP customers, revenue, or signed partners without evidence.
 
-Repository evidence today supports FairBanks operations and a planned FCHIP build. It does **not** prove a deployed FCHIP MVP. Treat product stage as **pre-MVP / pilot preparation** unless the applicant can show a working demo.
+Still mark **CONFIRM BEFORE SUBMISSION** for: founder identity/contacts, co-founders, revenue, paying customers, funding raised, partners, website, and the live pitch-deck URL after Google Drive upload.
 
 Do not submit unless FairBanks can truthfully confirm:
 
 1. A minimum of two founders.
-2. A working FCHIP MVP (required by the portal).
+2. A working FCHIP MVP (applicant-confirmed; required by the portal).
 3. Attendance at 80% or more of sessions.
 4. Accurate revenue, customer, funding, and partner information.
-5. A public, accessible pitch-deck link.
+5. A public, accessible pitch-deck link (PPT and/or PDF on Google Drive; test while signed out).
 
 ## Positioning
 
-Present FairBanks as a community health ecosystem and FCHIP as a FairBanks component — its intelligence layer (GIS, climate API, multi-source analysis, and **secure data APIs to existing EMR/HMS** for real-time clinical ingest). Lead with the real validation advantage: a functioning medical centre, active community outreach, CHW/VHT links, digital health workflows, and named Kampala communities. Do not claim measured product traction or AI performance before validation.
+Present FairBanks as a community health ecosystem and FCHIP as a FairBanks component — its intelligence layer (GIS, climate API, multi-source analysis, and **secure data APIs to existing EMR/HMS** for real-time clinical ingest). Lead with: live medical centre, Community Reach, CHW/VHT links, and a **working MVP** to validate in that environment. Do not claim measured product traction or AI performance before validation.
 
 ## Deliverables
 
-- `documents/africa-health-tech-accelerator_word.docx`
-- `documents/africa-health-tech-accelerator_pdf.pdf`
-- `documents/africa-health-tech-accelerator_ppt.pptx`
+**Application pack** (`documents/` — retain and keep synced):
 
-Regenerate all three only with `build_africa-health-tech-accelerator_docs.py`. Keep no drafts in `documents/`.
+- `documents/africa-health-tech-accelerator_word.docx` — portal answer bank
+- `documents/africa-health-tech-accelerator_pdf.pdf` — synced application pack PDF
+- `documents/africa-health-tech-accelerator_ppt.pptx` — synced deck copy
+
+**Pitch deck pack** (`pitch-deck/` — separate folder for the portal upload link):
+
+- `pitch-deck/FairBanks_FCHIP_Africa_Health_Tech_Accelerator_2026_Pitch.pptx`
+- `pitch-deck/FairBanks_FCHIP_Africa_Health_Tech_Accelerator_2026_Pitch.pdf`
+
+Google Drive: copy the pitch-deck pair into
+`Application Docs/FairBanks/Africa Health-Tech Accelerator 2026 - Pitch Deck/`.
+Keep the earlier Drive folder
+`Africa Health-Tech Accelerator 2026/` as previous copies (do not overwrite it).
+
+Regenerate with `build_africa-health-tech-accelerator_docs.py`. Keep no drafts in `documents/`.
 
 Use simple human language and the approved slogan: **Your health, our mission.**

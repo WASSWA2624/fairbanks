@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Build the Africa Health-Tech Accelerator 2026 application pack.
 
-Creates one synchronized set:
+Creates one synchronized application set in documents/:
   documents/africa-health-tech-accelerator_word.docx
   documents/africa-health-tech-accelerator_pdf.pdf
   documents/africa-health-tech-accelerator_ppt.pptx
 
-The Word/PDF file is a portal answer bank and submission workbook.
-The PowerPoint file is a 12-slide pitch deck for the portal upload link.
+Also creates a separate pitch-deck folder (does not replace documents/):
+  pitch-deck/FairBanks_FCHIP_Africa_Health_Tech_Accelerator_2026_Pitch.pptx
+  pitch-deck/FairBanks_FCHIP_Africa_Health_Tech_Accelerator_2026_Pitch.pdf
+
+The pitch-deck pair is copied to a dedicated Google Drive folder for the
+portal Pitch Deck (upload link) field.
 """
 
 from __future__ import annotations
@@ -23,7 +27,23 @@ OUT = HERE / "documents"
 OUT_DOCX = OUT / "africa-health-tech-accelerator_word.docx"
 OUT_PDF = OUT / "africa-health-tech-accelerator_pdf.pdf"
 OUT_PPTX = OUT / "africa-health-tech-accelerator_ppt.pptx"
+PITCH_DIR = HERE / "pitch-deck"
+PITCH_PPTX = (
+    PITCH_DIR / "FairBanks_FCHIP_Africa_Health_Tech_Accelerator_2026_Pitch.pptx"
+)
+PITCH_PDF = (
+    PITCH_DIR / "FairBanks_FCHIP_Africa_Health_Tech_Accelerator_2026_Pitch.pdf"
+)
 ASSETS = REPO / "assets"
+TMP = REPO / "tmp"
+# Previous Drive folder kept as-is; pitch uploads go to this new folder only.
+DRIVE_PREVIOUS_DIR = Path(
+    r"G:\My Drive\Application Docs\FairBanks\Africa Health-Tech Accelerator 2026"
+)
+DRIVE_DIR = Path(
+    r"G:\My Drive\Application Docs\FairBanks"
+    r"\Africa Health-Tech Accelerator 2026 - Pitch Deck"
+)
 
 OFFICIAL_HOME = "https://accelerator.africahealthexcon.com/"
 OFFICIAL_APPLY = "https://accelerator.africahealthexcon.com/apply"
@@ -53,8 +73,15 @@ TITLE = "FairBanks Community Health Intelligence Platform (FCHIP)"
 PROGRAMME = "Africa Health-Tech Accelerator 2026"
 DEADLINE = "20 July 2026 (extended deadline - recheck before submission)"
 STATUS = (
-    "Application draft - FCHIP still appears pre-MVP in repo evidence; "
-    "identity, commercial, and MVP fields require confirmation"
+    "Application draft - FCHIP MVP confirmed; founder identity, commercial "
+    "fields, and public Drive link still require confirmation"
+)
+PRODUCT_STAGE = "MVP (working product; validating in FairBanks Community Reach)"
+PITCH_DRIVE_NOTE = (
+    "Use files from the local pitch-deck/ folder (or the Drive folder "
+    f"{DRIVE_DIR.name}). Enable Anyone-with-the-link access, test while "
+    "signed out, then paste the share URL here. Leave the previous Drive "
+    "folder untouched."
 )
 
 ASSET_MAP = {
@@ -94,12 +121,12 @@ CALL_FACTS = [
 
 READINESS_GATES = [
     "Confirm at least two founders and list every founder with a role.",
-    "Confirm a working FCHIP MVP with a demo or evidence. Repo materials "
-    "currently describe FCHIP as still being built/piloted, so do not select "
-    "MVP unless that is no longer true.",
+    "FCHIP MVP is confirmed - keep a short demo or screenshots ready for "
+    "screening calls.",
     "Confirm the presenting founder can attend at least 80% of sessions.",
     "Replace every CONFIRM BEFORE SUBMISSION field with verified information.",
-    "Upload the pitch deck to a public-access link and test it while signed out.",
+    "Upload the pitch deck (PPT + PDF) to Google Drive with public access; "
+    "test the link while signed out.",
 ]
 
 PROBLEM_ANSWER = (
@@ -116,18 +143,18 @@ PROBLEM_ANSWER = (
 )
 
 SOLUTION_ANSWER = (
-    "FCHIP is an offline-capable community health intelligence platform. CHWs "
-    "and VHTs capture structured household and outreach data through mobile "
-    "tools; approved facility and programme data are synchronized securely; "
-    "and FCHIP safely exposes authenticated data APIs to existing EMR and HMS "
-    "systems so clinics can share clinical records into the platform in real "
-    "time without replacing the software they already use. An analytics layer "
-    "produces risk flags, GIS hotspot maps, referrals, and dashboards. The "
-    "first release focuses on three practical use cases: maternal risk and "
+    "FCHIP is an offline-capable community health intelligence platform with a "
+    "working MVP. CHWs and VHTs capture structured household and outreach data "
+    "through mobile tools; approved facility and programme data are synchronized "
+    "securely; and FCHIP safely exposes authenticated data APIs to existing EMR "
+    "and HMS systems so clinics can share clinical records into the platform in "
+    "real time without replacing the software they already use. An analytics "
+    "layer produces risk flags, GIS hotspot maps, referrals, and dashboards. "
+    "The first release focuses on three practical use cases: maternal risk and "
     "missed-care alerts, hypertension and diabetes hotspot detection, and "
-    "community disease surveillance. FairBanks will validate the product in "
-    "its existing medical centre and Community Reach network before expanding "
-    "to partner clinics and districts."
+    "community disease surveillance. FairBanks is validating the MVP in its "
+    "existing medical centre and Community Reach network before expanding to "
+    "partner clinics and districts."
 )
 
 TARGET_CUSTOMERS = (
@@ -141,33 +168,34 @@ TARGET_CUSTOMERS = (
 UNIQUE_ANSWER = (
     "FairBanks combines what many health-tech startups and facilities lack: a "
     "live medical centre, active outreach programmes, CHW and VHT links, "
-    "digital health workflows, and a product designed from real community "
-    "care. This gives FCHIP a direct test environment and a trusted route to "
-    "users. Secure EMR/HMS data APIs let facilities plug clinical feeds into "
-    "FCHIP without ripping out existing systems. The platform is not only an "
-    "electronic register; it closes the loop from community and facility "
-    "signal to risk insight, referral, targeted outreach, and follow-up."
+    "digital health workflows, and a working FCHIP MVP designed from real "
+    "community care. This gives the product a direct test environment and a "
+    "trusted route to users. Secure EMR/HMS data APIs let facilities plug "
+    "clinical feeds into FCHIP without ripping out existing systems. The "
+    "platform is not only an electronic register; it closes the loop from "
+    "community and facility signal to risk insight, referral, targeted "
+    "outreach, and follow-up."
 )
 
 BOTTLENECK_ANSWER = (
-    "Our biggest bottleneck is converting a strong real-world health delivery "
-    "foundation into a validated, investment-ready product. We need disciplined "
-    "MVP validation, user testing with CHWs and facility teams, a clear "
-    "product-market fit case, and partnerships that can support deployment "
-    "beyond one FairBanks catchment. We also need to strengthen our evidence, "
-    "data-governance, and fundraising package without overbuilding before the "
-    "highest-value workflows are proven."
+    "Our biggest bottleneck is converting a working MVP and a strong real-world "
+    "health delivery foundation into validated, investment-ready traction. We "
+    "need disciplined product-market fit evidence with CHWs and facility teams, "
+    "clearer buying pathways beyond one FairBanks catchment, and partnerships "
+    "that support deployment at district and programme scale. We also need to "
+    "strengthen our evidence, data-governance, and fundraising package without "
+    "overbuilding before the highest-value workflows are proven."
 )
 
 MOTIVATION_ANSWER = (
     "The accelerator directly matches FCHIP's next milestone: validate an "
-    "Africa-built digital health platform and prepare it for cross-border "
-    "scale. Mentorship can sharpen our product choices and business model; "
-    "healthcare and public-sector networks can open credible pilot and "
-    "integration pathways; and investor-readiness support can turn field "
-    "evidence into a financeable growth plan. We will contribute a practical "
-    "Ugandan perspective grounded in community outreach, primary care, CHW and "
-    "VHT workflows, and the daily realities of underserved urban communities."
+    "Africa-built digital health MVP and prepare it for cross-border scale. "
+    "Mentorship can sharpen our product choices and business model; healthcare "
+    "and public-sector networks can open credible pilot and integration "
+    "pathways; and investor-readiness support can turn field evidence into a "
+    "financeable growth plan. We will contribute a practical Ugandan "
+    "perspective grounded in community outreach, primary care, CHW and VHT "
+    "workflows, and the daily realities of underserved urban communities."
 )
 
 APPLICATION_SECTIONS = [
@@ -183,9 +211,8 @@ APPLICATION_SECTIONS = [
             ("Startup Website*", "[CONFIRM BEFORE SUBMISSION]"),
             (
                 "Startup Stage*",
-                "[CONFIRM BEFORE SUBMISSION. Repo evidence points to pre-MVP / "
-                "pilot preparation. Select MVP only if a working product can "
-                "be demonstrated - the programme requires an MVP.]",
+                "MVP - working FCHIP product ready for structured validation "
+                "in FairBanks Community Reach (applicant-confirmed).",
             ),
             ("Country Headquarter*", "Uganda"),
             ("Primary African office if headquarters is outside Africa", "Not applicable"),
@@ -210,8 +237,7 @@ APPLICATION_SECTIONS = [
             ("Which Countries Are You Operating In?*", "Uganda"),
             (
                 "Pitch Deck (upload link)*",
-                "[CONFIRM BEFORE SUBMISSION: upload the generated PPT/PDF to "
-                "Google Drive or another public link; test access while signed out]",
+                f"[CONFIRM AFTER UPLOAD] {PITCH_DRIVE_NOTE}",
             ),
         ],
     ),
@@ -255,8 +281,8 @@ APPLICATION_SECTIONS = [
             ("Other Partners", "[CONFIRM BEFORE SUBMISSION]"),
             (
                 "Next 6-Month Milestone*",
-                "Recommended if MVP is verified: Validate product-market fit. "
-                "Otherwise FairBanks is not yet eligible under the stated MVP rule.",
+                "Validate product-market fit for the working FCHIP MVP with "
+                "CHWs, facility teams, and partner pathways.",
             ),
         ],
     ),
@@ -266,7 +292,7 @@ APPLICATION_SECTIONS = [
             (
                 "Top 3 Priorities*",
                 "1. Validation & Market Research; 2. Product Development "
-                "(MVP, UX, iteration); 3. Partnerships & Ecosystem Access.",
+                "(UX iteration on the MVP); 3. Partnerships & Ecosystem Access.",
             ),
             (
                 "Alternative priority",
@@ -308,15 +334,15 @@ EVIDENCE_BASE = [
     "Internal application materials cite 40+ CHWs and VHTs collecting field data weekly "
     "(confirm the current number before using it in the portal).",
     "Existing maternal and child health, Gericare, NCD screening, school, and corporate health work.",
-    "Digital health records and pharmacy workflows that can inform product integration.",
-    "Planned secure EMR/HMS data APIs so existing facility systems can feed clinical "
+    "Digital health records and pharmacy workflows that inform product integration.",
+    "Secure EMR/HMS data APIs so existing facility systems can feed clinical "
     "data into FCHIP in real time without replacement.",
-    "FCHIP itself remains a planned / pre-MVP build in current repository materials "
-    "unless newer product evidence is supplied.",
+    "Working FCHIP MVP (applicant-confirmed) ready for structured validation "
+    "inside the live FairBanks cascade.",
 ]
 
 SIX_MONTH_PLAN = [
-    ("Month 1", "Confirm users, workflows, MVP evidence, governance, and baseline indicators."),
+    ("Month 1", "Lock users, workflows, governance, demo evidence, and baseline indicators."),
     ("Months 2-3", "Run CHW/facility usability testing; improve offline capture and dashboards."),
     ("Months 3-4", "Validate maternal, NCD, and surveillance workflows in FairBanks catchment."),
     ("Months 4-5", "Test willingness to pay and partnership model with clinics, NGOs, and districts."),
@@ -333,7 +359,7 @@ BUSINESS_MODEL = [
 ]
 
 RISKS = [
-    ("Eligibility", "Confirm two founders and demonstrable MVP before submission."),
+    ("Eligibility", "Confirm two founders before submission; MVP is already confirmed."),
     ("Data quality", "Use simple forms, validation rules, supervision, and data-quality dashboards."),
     ("Privacy", "Consent, minimisation, role-based access, audit logs, and Uganda compliance; EMR/HMS APIs use authentication and least-privilege scopes."),
     ("EMR/HMS friction", "Expose stable documented APIs; start with FairBanks systems; do not require replacing existing EMR/HMS."),
@@ -526,7 +552,7 @@ def build_docx() -> None:
         [
             ("Deadline", DEADLINE),
             ("Headquarters", "Uganda"),
-            ("Repo product stage", "Pre-MVP / pilot preparation unless a demo exists"),
+            ("Product stage", PRODUCT_STAGE),
             ("Document status", STATUS),
         ],
         widths=[1.8, 4.8],
@@ -534,7 +560,7 @@ def build_docx() -> None:
     )
     para(
         "Prepared from the live official programme site and all six sections of "
-        "the application portal on 19 July 2026.",
+        f"the application portal on {datetime.now().strftime('%d %B %Y')}.",
         size=8,
         italic=True,
         color=MUTED,
@@ -546,11 +572,11 @@ def build_docx() -> None:
     heading("Submission readiness gate", 1)
     para(
         "The portal requires at least two founders and a minimum viable product. "
-        "The repository confirms strong FairBanks field operations, but current "
-        "materials describe FCHIP as still being built for pilot. Do not claim "
-        "MVP stage, paying FCHIP customers, or AI performance without evidence.",
+        "FCHIP MVP status is confirmed. Do not invent paying FCHIP customers, "
+        "AI performance scores, or unsigned partners. Complete founder and "
+        "commercial CONFIRM fields before submission.",
         bold=True,
-        color=RED,
+        color=ORANGE,
     )
     bullets(READINESS_GATES)
     table(
@@ -558,10 +584,11 @@ def build_docx() -> None:
         [
             ("Founder identity and contacts", "CONFIRM BEFORE SUBMISSION"),
             ("Co-founders and roles", "CONFIRM BEFORE SUBMISSION"),
-            ("Working FCHIP MVP evidence", "CONFIRM BEFORE SUBMISSION - currently pre-MVP in repo"),
+            ("Working FCHIP MVP", "Confirmed - keep demo/screenshots ready"),
             ("Revenue and paying customers", "CONFIRM BEFORE SUBMISSION"),
             ("Funding raised and partner list", "CONFIRM BEFORE SUBMISSION"),
-            ("Website and public pitch-deck link", "CONFIRM BEFORE SUBMISSION"),
+            ("Website", "CONFIRM BEFORE SUBMISSION"),
+            ("Public pitch-deck Drive link", "CONFIRM AFTER UPLOAD (PPT + PDF)"),
         ],
         widths=[2.6, 4.0],
     )
@@ -698,12 +725,13 @@ def build_docx() -> None:
         "Verify the legal/startup name used in the form.",
         "Complete founder identity, contacts, gender, LinkedIn, and website.",
         "List at least one co-founder and verify total founders is two or more.",
-        "Attach evidence of a working FCHIP MVP.",
+        "Select Startup Stage = MVP; keep a short demo or screenshots ready.",
         "Choose only innovation areas included in the current product.",
         "Enter exact revenue, customer, fundraising, and funding figures.",
         "Name only confirmed current partners.",
         "Confirm 80% session attendance and in-person milestone availability.",
-        "Upload the pitch deck; enable public link access; test while signed out.",
+        "Upload PPT + pitch PDF to Google Drive; enable public link; test signed out.",
+        "Paste the Drive share URL into Pitch Deck (upload link).",
         "Proofread all answers against this pack and the official portal.",
         "Submit before the deadline and save the confirmation.",
     ]
@@ -721,7 +749,8 @@ def build_docx() -> None:
     ]
     table(["Source", "URL"], sources, widths=[2.1, 4.5], compact=True)
     para(
-        "Source check date: 19 July 2026. The official portal wins if any detail changes.",
+        "Source check date: "
+        f"{datetime.now().strftime('%d %B %Y')}. The official portal wins if any detail changes.",
         size=9,
         italic=True,
         color=MUTED,
@@ -920,17 +949,17 @@ def build_pptx() -> None:
     text(s, TITLE, 0.7, 1.25, 6.1, 1.9, 31, WHITE, True, font="Aptos Display")
     text(
         s,
-        "Community signals. Predictive insight. Timely action.",
+        "Working MVP. Community signals. Predictive insight. Timely action.",
         0.72,
         3.45,
         5.8,
         0.85,
-        19,
+        18,
         WHITE,
         True,
     )
     text(s, SLOGAN, 0.72, 5.85, 4.5, 0.35, 13, GOLD, True)
-    text(s, "Uganda | July 2026", 0.72, 6.35, 3.0, 0.3, 10, WHITE)
+    text(s, "Uganda | MVP | July 2026", 0.72, 6.35, 4.0, 0.3, 10, WHITE)
 
     # 2 Problem
     s = add_slide()
@@ -993,7 +1022,7 @@ def build_pptx() -> None:
 
     # 5 Use cases
     s = add_slide()
-    top_band(s, "Use cases", "Start focused. Prove value.", "Three MVP workflows with clear users and actions.")
+    top_band(s, "Use cases", "Start focused. Prove value.", "Three live MVP workflows with clear users and actions.")
     image_crop(s, asset("mobile"), 0.55, 1.95, 4.45, 4.8)
     use_cases = [
         ("Maternal risk", "Flag missed ANC, high BP, and referral urgency."),
@@ -1076,7 +1105,7 @@ def build_pptx() -> None:
 
     # 9 Six-month plan
     s = add_slide()
-    top_band(s, "Roadmap", "Six months to product-market evidence", "Recommended next milestone: validate product-market fit.")
+    top_band(s, "Roadmap", "Six months to product-market evidence", "Working MVP now. Next: validate fit, buyers, and partners.")
     for i, (timing, milestone) in enumerate(SIX_MONTH_PLAN):
         x = 0.75 + i * 2.48
         rect(s, x, 2.05, 2.08, 3.65, WHITE, LINE, True)
@@ -1084,7 +1113,7 @@ def build_pptx() -> None:
         text(s, timing, x + 0.08, 2.18, 1.92, 0.2, 11, WHITE, True, align=PP_ALIGN.CENTER)
         text(s, str(i + 1), x + 0.65, 2.9, 0.78, 0.65, 28, ORANGE, True, align=PP_ALIGN.CENTER)
         text(s, milestone, x + 0.2, 3.8, 1.68, 1.45, 11, SLATE, align=PP_ALIGN.CENTER)
-    text(s, "Gate: submit only if a working MVP and two founders can be verified.", 1.25, 6.25, 10.85, 0.45, 15, RED, True, align=PP_ALIGN.CENTER)
+    text(s, "Beachhead: FairBanks catchment  ->  Kampala partners  ->  Uganda districts  ->  East Africa", 0.9, 6.25, 11.5, 0.45, 14, ORANGE, True, align=PP_ALIGN.CENTER)
     footer(s, 9)
 
     # 10 Scale
@@ -1092,7 +1121,7 @@ def build_pptx() -> None:
     top_band(s, "Scale", "Built for pan-African adaptation", "Standard core; configurable workflows, language, and integrations.")
     image_crop(s, asset("concept"), 0.55, 1.85, 5.65, 4.95)
     scale_steps = [
-        ("1. Prove", "FairBanks catchment"),
+        ("1. Validate", "FairBanks catchment with working MVP"),
         ("2. Replicate", "Partner clinics and programmes"),
         ("3. Integrate", "District and national systems"),
         ("4. Expand", "East African CHW markets"),
@@ -1104,26 +1133,27 @@ def build_pptx() -> None:
         text(s, b, 8.55, y + 0.14, 3.45, 0.28, 13, SLATE)
     footer(s, 10)
 
-    # 11 Team/readiness
+    # 11 Why now
     s = add_slide()
     top_band(
         s,
-        "Team and readiness",
-        "Strong operating base. Product still looks pre-MVP.",
-        "Complete these facts before the application is submitted.",
+        "Why now",
+        "Operating care. Working MVP. Ready to validate at scale.",
+        "FairBanks already runs the cascade FCHIP is built to digitise.",
     )
     image_crop(s, asset("team"), 0.55, 1.9, 4.4, 4.75)
-    missing = [
-        "Founder name, gender, contacts, LinkedIn",
-        "At least one co-founder and role",
-        "Working FCHIP MVP evidence (repo shows pre-MVP)",
-        "Revenue and paying-customer range",
-        "Funding history and current partners",
-        "Startup website and public deck link",
+    strengths = [
+        "Working FCHIP MVP with demo-ready workflows",
+        "Live medical centre and Community Reach programmes",
+        "CHW/VHT links in named Kampala peri-urban communities",
+        "Secure EMR/HMS data APIs for real-time clinical ingest",
+        "Clear six-month product-market validation plan",
+        "Path from Uganda beachhead to East African scale",
     ]
-    rect(s, 5.35, 1.95, 7.35, 4.75, PALE_ORANGE, ORANGE, True)
-    text(s, "CONFIRM BEFORE SUBMISSION", 5.75, 2.25, 6.55, 0.4, 17, RED, True)
-    bullets(s, missing, 5.75, 2.95, 6.2, 3.25, 15, SLATE)
+    rect(s, 5.35, 1.95, 7.35, 4.75, WHITE, LINE, True)
+    rect(s, 5.35, 1.95, 0.14, 4.75, TEAL)
+    text(s, "VALIDATION ADVANTAGE", 5.75, 2.2, 6.55, 0.35, 14, TEAL, True)
+    bullets(s, strengths, 5.75, 2.75, 6.2, 3.5, 15, SLATE)
     footer(s, 11)
 
     # 12 Ask
@@ -1131,10 +1161,10 @@ def build_pptx() -> None:
     image_crop(s, asset("cover"), 0, 0, 13.333, 7.5)
     rect(s, 0, 0, 13.333, 7.5, NAVY)
     text(s, "THE ASK", 0.75, 0.75, 2.0, 0.35, 12, GOLD, True)
-    text(s, "Help FCHIP move from field access to validated scale.", 0.75, 1.35, 7.6, 1.35, 30, WHITE, True, font="Aptos Display")
+    text(s, "Help a working MVP become validated African scale.", 0.75, 1.35, 7.8, 1.35, 28, WHITE, True, font="Aptos Display")
     asks = [
         "Validation and market research",
-        "Product and UX iteration",
+        "Product and UX iteration on the MVP",
         "Partnerships and ecosystem access",
     ]
     for i, item in enumerate(asks):
@@ -1150,6 +1180,69 @@ def build_pptx() -> None:
     print(f"PPTX: {OUT_PPTX}")
 
 
+def publish_pitch_deck() -> tuple[Path, Path]:
+    """Write pitch PPT+PDF into pitch-deck/ and copy to the new Drive folder.
+
+    Leaves documents/ and the previous Drive folder unchanged for this step
+    (documents PPT is still produced by build_pptx as part of the sync set).
+    """
+    import shutil
+    import win32com.client
+
+    if not OUT_PPTX.exists():
+        raise RuntimeError(f"Missing source deck: {OUT_PPTX}")
+
+    PITCH_DIR.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(OUT_PPTX, PITCH_PPTX)
+
+    # Export PDF from the pitch-deck PPT copy so documents/ stays untouched.
+    if PITCH_PDF.exists():
+        try:
+            PITCH_PDF.unlink()
+        except PermissionError as exc:
+            raise RuntimeError(
+                f"Close {PITCH_PDF.name} if it is open, then rebuild."
+            ) from exc
+
+    powerpoint = win32com.client.DispatchEx("PowerPoint.Application")
+    powerpoint.Visible = 1
+    presentation = None
+    try:
+        presentation = powerpoint.Presentations.Open(
+            str(PITCH_PPTX.resolve()), WithWindow=False
+        )
+        presentation.SaveAs(str(PITCH_PDF.resolve()), 32)  # ppSaveAsPDF
+    except Exception as exc:
+        raise RuntimeError(
+            "Pitch PDF export failed. Close the PowerPoint file if it is open, then rebuild."
+        ) from exc
+    finally:
+        if presentation is not None:
+            presentation.Close()
+        powerpoint.Quit()
+
+    if not PITCH_PDF.exists() or PITCH_PDF.stat().st_size < 20_000:
+        raise RuntimeError("Pitch PDF export produced an empty or missing file.")
+
+    print(f"PITCH PPT: {PITCH_PPTX}")
+    print(f"PITCH PDF: {PITCH_PDF}")
+
+    if not DRIVE_DIR.parent.exists():
+        raise RuntimeError(
+            f"Google Drive path not found: {DRIVE_DIR.parent}. "
+            "Start Google Drive for desktop and rebuild."
+        )
+    DRIVE_DIR.mkdir(parents=True, exist_ok=True)
+    ppt_dest = DRIVE_DIR / PITCH_PPTX.name
+    pdf_dest = DRIVE_DIR / PITCH_PDF.name
+    shutil.copy2(PITCH_PPTX, ppt_dest)
+    shutil.copy2(PITCH_PDF, pdf_dest)
+    print(f"DRIVE PPT: {ppt_dest}")
+    print(f"DRIVE PDF: {pdf_dest}")
+    print(f"Previous Drive folder retained: {DRIVE_PREVIOUS_DIR}")
+    return ppt_dest, pdf_dest
+
+
 def validate_outputs() -> None:
     from zipfile import ZipFile, BadZipFile
 
@@ -1162,7 +1255,9 @@ def validate_outputs() -> None:
         if not path.exists() or path.stat().st_size < 20_000:
             raise RuntimeError(f"Missing or unexpectedly small output: {path}")
 
-    for archive in (OUT_DOCX, OUT_PPTX):
+    for archive in (OUT_DOCX, OUT_PPTX, PITCH_PPTX):
+        if not archive.exists():
+            raise RuntimeError(f"Missing pitch or documents archive: {archive}")
         try:
             with ZipFile(archive) as zf:
                 bad = zf.testzip()
@@ -1170,6 +1265,9 @@ def validate_outputs() -> None:
                     raise RuntimeError(f"Corrupt archive member in {archive}: {bad}")
         except BadZipFile as exc:
             raise RuntimeError(f"Corrupt Office archive: {archive}") from exc
+
+    if not PITCH_PDF.exists() or PITCH_PDF.stat().st_size < 20_000:
+        raise RuntimeError(f"Missing or small pitch PDF: {PITCH_PDF}")
 
     # Fail if any official deliverable is older than the generator source.
     builder_mtime = Path(__file__).stat().st_mtime
@@ -1190,7 +1288,8 @@ def validate_outputs() -> None:
         "Submission readiness gate",
         "Section 6 of 6 - Final notes",
         "CONFIRM BEFORE SUBMISSION",
-        "Pre-MVP",
+        "Working FCHIP MVP",
+        PRODUCT_STAGE,
         OFFICIAL_APPLY,
     ):
         if phrase not in text_content:
@@ -1204,11 +1303,25 @@ def validate_outputs() -> None:
     if len(ppt.slides) != 12:
         raise RuntimeError(f"Pitch deck should have 12 slides, found {len(ppt.slides)}")
 
+    pitch_ppt = Presentation(PITCH_PPTX)
+    if len(pitch_ppt.slides) != 12:
+        raise RuntimeError(
+            f"pitch-deck PPT should have 12 slides, found {len(pitch_ppt.slides)}"
+        )
+
+    pitch_pdf = fitz.open(PITCH_PDF)
+    if pitch_pdf.page_count != 12:
+        raise RuntimeError(
+            f"pitch-deck PDF should have 12 pages, found {pitch_pdf.page_count}"
+        )
+
     print(
         f"Validated: {len(doc.paragraphs)} DOCX paragraphs | "
-        f"{pdf.page_count} PDF pages | {len(ppt.slides)} PPT slides"
+        f"{pdf.page_count} PDF pages | {len(ppt.slides)} PPT slides | "
+        f"pitch-deck {len(pitch_ppt.slides)} slides / {pitch_pdf.page_count} pages"
     )
     pdf.close()
+    pitch_pdf.close()
 
 
 def main() -> None:
@@ -1219,6 +1332,7 @@ def main() -> None:
         build_docx()
         convert_docx_to_pdf()
         build_pptx()
+        publish_pitch_deck()
     except PermissionError as exc:
         raise SystemExit(
             "Build failed because an official deliverable is locked. "
@@ -1226,6 +1340,13 @@ def main() -> None:
         ) from exc
     validate_outputs()
     print("Application pack complete.")
+    print(f"Pitch deck folder: {PITCH_DIR}")
+    print(f"New Drive folder:  {DRIVE_DIR}")
+    print(f"Previous Drive folder retained: {DRIVE_PREVIOUS_DIR}")
+    print(
+        "Next: share the new Drive pitch PPT/PDF (Anyone with the link), "
+        "paste the URL into the portal Pitch Deck field, and test signed out."
+    )
 
 
 if __name__ == "__main__":

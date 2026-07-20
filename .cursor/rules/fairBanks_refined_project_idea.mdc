@@ -40,7 +40,7 @@ FairBanks is uniquely positioned to build and validate this. We already operate 
 
 **Vision:** To build Africa's leading Community Health Intelligence Company — FairBanks — whose FCHIP component harnesses artificial intelligence, community-generated data, GIS, climate signals, and predictive analytics to transform primary healthcare from reactive treatment to proactive prevention — while strengthening the Community Reach loop of care, learning, and empowerment.
 
-**Funding ask (indicative):** Support to develop and pilot the FCHIP MVP within FairBanks Community Reach—mobile data collection for CHWs/VHTs, cloud sync, secure EMR/HMS data APIs for real-time clinical ingest, GIS and climate API integration, predictive analytics engine, and facility/district dashboards—validated in FairBanks' live cascade (communities → CHWs → programmes → medical centre → research → empowerment) before district and regional scale-up.
+**Funding ask (indicative):** Support to validate and scale the working FCHIP MVP within FairBanks Community Reach—mobile data collection for CHWs/VHTs, cloud sync, secure EMR/HMS data APIs for real-time clinical ingest, GIS and climate API integration, predictive analytics engine, and facility/district dashboards—proven in FairBanks' live cascade (communities → CHWs → programmes → medical centre → research → empowerment) before district and regional scale-up.
 
 ---
 
@@ -375,8 +375,8 @@ FairBanks can **design, pilot, validate, and refine** FCHIP inside an operating 
 
 | Stage | Fit assessment |
 | --- | --- |
-| **Early / idea** | Applicable if pitching FCHIP as a pre-venture prototype (<18 months, early build) |
-| **Startup (typical fit)** | Strong fit: registered operating medical centre, revenue-generating services, active Community Reach (incl. CHIS/livelihoods), building deep-tech platform on proven field operations |
+| **Early / idea** | Less relevant now that a working FCHIP MVP exists |
+| **Startup (typical fit)** | Strong fit: registered operating medical centre, revenue-generating services, active Community Reach (incl. CHIS/livelihoods), working FCHIP MVP to validate and scale on proven field operations |
 | **Scale-up** | Future state after multi-market expansion and institutional funding |
 
 ---
@@ -416,7 +416,9 @@ Through FCHIP on the Community Reach cascade, FairBanks shifts primary healthcar
 
 ### 11.1 Minimum Viable Product (MVP)
 
-**Goal:** Prove predictive community health intelligence — with GIS and climate fusion — inside the live FairBanks Community Reach cascade.
+**Status:** Working MVP exists. Phase 1 focus is real-world validation, usability, and evidence inside the live FairBanks Community Reach cascade — not greenfield build.
+
+**Goal:** Prove predictive community health intelligence — with GIS and climate fusion — with CHWs/VHTs, facility teams, and partners.
 
 | MVP component                  | Description                                                                                                                            |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -435,7 +437,7 @@ Through FCHIP on the Community Reach cascade, FairBanks shifts primary healthcar
 
 | Phase                             | Timeline (indicative) | Milestones                                                                                                                                        |
 | --------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Phase 1 – Pilot**               | Months 0–12           | MVP with FairBanks CHWs/VHTs; GIS + climate API; secure EMR/HMS data APIs for real-time clinical ingest; validate 3 predictive use cases + cascade metrics; measure alert accuracy and response time |
+| **Phase 1 – Validate**            | Months 0–12           | Validate MVP with FairBanks CHWs/VHTs; GIS + climate API; secure EMR/HMS data APIs; prove 3 predictive use cases + cascade metrics; measure alert accuracy and response time |
 | **Phase 2 – District scale**      | Months 12–24          | Expand to partner clinics/hospitals and Kampala district structures; broader EMR/HMS API onboarding; NGO M&E; CHIS/livelihood dashboards; partner APIs |
 | **Phase 3 – National & regional** | Months 24–36          | Multi-district Uganda deployment; East Africa market entry; advanced ML and medicine demand forecasting                                           |
 | **Phase 4 – Platform expansion**  | Year 3+               | Clinical decision support, expanded NLP for local languages, research modules, optional future capabilities (e.g. workforce wellbeing analytics)  |
@@ -498,7 +500,7 @@ Only venture combining a **live medical centre, Community Reach cascade (incl. C
 4. **Solution (1:10–1:50):** CHW/clinic/school capture + secure EMR/HMS APIs → climate API → FCHIP (AI + GIS) → facility dashboard → district map.
 5. **Use case (1:50–2:25):** Rainfall + fever cluster or maternal risk alert triggered and acted upon.
 6. **Traction (2:25–2:45):** FairBanks communities, CHIS/livelihoods, programmes, validation environment.
-7. **Ask & vision (2:45–3:00):** MVP pilot funding; vision for Africa's leading community health intelligence company.
+7. **Ask & vision (2:45–3:00):** Validation and scale support for the working MVP; vision for Africa's leading community health intelligence company.
 
 ### 13.7 Suggested pitch deck structure (10–12 slides)
 
@@ -538,14 +540,14 @@ Only venture combining a **live medical centre, Community Reach cascade (incl. C
 
 FairBanks represents a strategic evolution from community medical practice to **community health intelligence**, grounded in the Community Reach operating model shown in `.cursor/concept.jpeg`, `.cursor/concept_improved.jpeg`, and `.cursor/concept_simple.jpeg`. FCHIP is the FairBanks platform component that delivers women-led, deep-technology solutions rooted in African reality—ready to adapt to grants, accelerators, investors, and development partners.
 
-With an operating medical centre, established Community Reach across Kampala peri-urban communities, trusted CHW/VHT relationships, school and clinic programmes, CHIS and livelihood pathways, digital health foundations, and a clear AI-, GIS-, and climate-powered product roadmap, FairBanks is ready to build, pilot, and scale FCHIP as the component that connects multi-source community data and climatic change signals to life-saving predictions — and closes the continuous loop: **learn, improve, and serve again**.
+With an operating medical centre, established Community Reach across Kampala peri-urban communities, trusted CHW/VHT relationships, school and clinic programmes, CHIS and livelihood pathways, digital health foundations, and a **working FCHIP MVP**, FairBanks is ready to validate, refine, and scale the component that connects multi-source community data and climatic change signals to life-saving predictions — and closes the continuous loop: **learn, improve, and serve again**.
 
 **Next immediate steps:**
 
-1. Finalise MVP scope and AI priorities for Phase 1 (climate-aware surveillance, maternal risk, NCD hotspots, cascade metrics) with GIS, climate API, and secure EMR/HMS data API integration
+1. Validate the working MVP on Phase 1 priorities (climate-aware surveillance, maternal risk, NCD hotspots, cascade metrics) with GIS, climate API, and secure EMR/HMS data API integration in the live catchment
 2. Tailor this narrative to each funding call (theme, eligibility, ask, and word limits); use the right concept visual for the audience
-3. Prepare pitch deck and technology demo materials as required (include Community Reach cascade slide)
-4. Launch FairBanks pilot with CHW/VHT cohort in primary catchment communities
+3. Keep pitch deck and technology demo materials current (include Community Reach cascade slide)
+4. Run structured CHW/VHT and facility validation cohorts in primary catchment communities
 
 ---
 
