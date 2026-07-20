@@ -1,0 +1,43 @@
+---
+description: Nexa Climate and Health 2026 application compliance
+globs: applications/nexa-climate-health/**
+alwaysApply: false
+---
+
+# Nexa Climate and Health 2026 - source of truth
+
+All work must follow the [official Nexa page](https://www.grandchallenges.ca/rfp-nexa/), [English Funding Opportunity](https://www.grandchallenges.ca/wp-content/uploads/2026/06/EN-Nexa-RFP-Jun-18-2026.pdf), [Proof-of-Concept questions](https://www.grandchallenges.ca/wp-content/uploads/2026/06/Nexa-POC-application_for-webpage.pdf), and [Fluxx portal](https://gcc.fluxx.io). Official sources win if internal material conflicts.
+
+Follow `.cursor/rules/documents.mdc`, `.cursor/rules/folder_structure.mdc`, `.cursor/rules/fairbanks-community-reach.mdc`, and `.cursor/rules/fairbanks_raw_project_idea.mdc`.
+
+## Call facts
+
+- Deadline: **22 July 2026, 2:00 p.m. ET / 6:00 p.m. UTC**.
+- Recommended route: **Proof of Concept**, up to **USD 200,000** for **18, 21, or 24 months**.
+- Uganda is an eligible incorporation and implementation country.
+- Applicant must be incorporated or equivalent, active and in good standing, and able to receive and administer funds. Individuals and sole proprietorships are not eligible.
+- Project Lead must be formally affiliated, be a key team member, and lead only one application.
+- Application must be complete, in English or French, and submitted only through Fluxx.
+- The innovation must be at least **community linked**.
+
+## Funding fit
+
+Lead with **climate-informed early warning and monitoring**. FCHIP must be genuinely climate-integrated: combine weather and rainfall data with CHW/VHT, outreach, facility, malaria, pregnancy, cardiovascular, and diabetes data; produce clear risk triggers; and connect every alert to timely health service action.
+
+Use only Nexa hazards and outcomes: changing mosquito ecology affecting malaria or dengue, extreme heat, and poor air quality; malaria/dengue, cardiovascular disease, diabetes, chronic respiratory disease, chronic kidney disease, and pregnancy-related hypertension, gestational diabetes, or heat stress.
+
+## Honesty gates
+
+Do not invent incorporation status, Project Lead, staff, collaborators, climate-data provider, government approval, ethics approval, baseline, targets, budget, prior GCC funding, IP rights, or measured results. Mark these **CONFIRM BEFORE SUBMISSION**.
+
+Do not claim Transition-to-Scale readiness, deployed AI, forecast accuracy, health impact, or signed partnerships without evidence. Current repository evidence supports FairBanks operations and community access, not validated climate-health performance.
+
+## Deliverables
+
+- `documents/nexa-climate-health_word.docx`
+- `documents/nexa-climate-health_pdf.pdf`
+- `documents/nexa-climate-health_ppt.pptx`
+
+Regenerate all three only with `build_nexa-climate-health_docs.py`. Keep no drafts in `documents/`.
+
+Use simple human language and the approved slogan: **Your health, our mission.**
