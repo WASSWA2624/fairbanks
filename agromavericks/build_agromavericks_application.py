@@ -185,12 +185,12 @@ EDUCATION = [
 ]
 
 REFEREES = [
+    "Racheal Nabukeera - Director and Founder, FairBanks Medical Centre - "
+    "nracheal017@gmail.com / +256 772 849 258",
     "Eng. Richard Ssejongo - Biomedical Engineer, St. Francis Hospital Nsambya - "
     "+256 753 818 754 / +256 777 132 489",
     "Dr. Annet Khingi - Senior Radiologist and Administrator, Mengo Hospital - "
     "+256 772 592 771 / +256 701 592 771",
-    "Dr. Mamello Muhanuuzi - Former Medical Director, International Hospital Kampala - "
-    "+256 702 811 008",
 ]
 
 
