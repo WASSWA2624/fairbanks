@@ -86,10 +86,11 @@ Do **not** invent employers, degrees, dates, or project links. If a live demo, G
 
 ## Output location
 
-Write final CV and application letter into this `agromavericks/` folder with clear names, e.g.:
+Write final CV and application letter into `agromavericks/application/` with clear names, e.g.:
 
-- `Wasswa_Wilson_CV_AgroMavericks.docx` (+ PDF if generated)
-- `Wasswa_Wilson_Application_AgroMavericks.docx` (or a short `application_answers.md` for the web form)
+- `application/Wasswa_Wilson_CV_AgroMavericks.docx` (+ PDF if generated)
+- `application/Wasswa_Wilson_Application_AgroMavericks.docx`
+- `application/application_answers.md` (web form copy-paste)
 
 ---
 
