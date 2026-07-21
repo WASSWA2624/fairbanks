@@ -39,168 +39,160 @@ RULE = HexColor("#C5CED6")
 
 CONTACT = {
     "name": "WASSWA WILSON",
-    "title": "Full-Stack Software Developer | HealthTech & AI Systems",
+    "title": "Full-Stack Software Developer",
     "location": "Kampala, Uganda",
     "email": "wasswawilson0001@gmail.com",
     "phone": "+256 783 230 321",
-    "languages": "English (Fluent) · Luganda (Native)",
+    "languages": "English (Fluent), Luganda (Native)",
 }
 
 SUMMARY = (
-    "Full-stack software developer with practical, hands-on experience across the full "
-    "technology set this role requires — Next.js (App Router), TypeScript, Tailwind CSS, "
-    "React Native / Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, "
-    "Vercel + EAS — plus Node.js APIs, SQL and document-style data work, secure auth "
-    "(JWT / RBAC), testing, and CI/CD. Also strong in Java, PHP, MySQL, Prisma, Azure, and "
-    "AWS. Currently lead developer on FairBanks Medical Centre's FCHIP platform (community "
-    "health intelligence, AI/ML, and related hospital systems). Previously shipped school, "
-    "clinical, and embedded health software while leading biomedical programmes in "
-    "accredited hospital settings. Ready to own web + mobile product work, secure APIs, "
-    "and third-party integrations in a small, high-impact tech team."
+    "I am a full-stack developer based in Kampala. I build web and mobile apps, and I have "
+    "worked with the main tools listed in this job: Next.js, TypeScript, Tailwind CSS, "
+    "React Native and Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net, "
+    "Vercel, and EAS. I also use Node.js, SQL databases, Prisma, JWT and role-based access, "
+    "testing tools, and CI/CD. On top of that I have solid experience with Java, PHP, MySQL, "
+    "Azure, and AWS. Right now I lead software work at FairBanks Medical Centre on FCHIP "
+    "and hospital systems. Before that I built school and clinic software, and I also spent "
+    "several years managing biomedical programmes in hospitals."
 )
 
 SKILLS = [
     (
-        "AgroMavericks-required stack (practical experience)",
-        "Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, "
-        "Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, Vercel, EAS",
+        "Web and mobile",
+        "Next.js, React, TypeScript, Tailwind CSS, React Native, Expo, HTML/CSS, Jest, Playwright",
     ),
     (
-        "Full-stack delivery",
-        "React, Node.js / Express, HTML/CSS, Jest, Playwright, REST APIs, JWT, RBAC, "
-        "CI/CD, automated testing",
+        "Backend and cloud",
+        "Node.js, Express, Convex, Better Auth, MySQL, Prisma, PHP (CodeIgniter, Laravel), "
+        "Java, AWS, Azure, Vercel, EAS, Bunny.net",
     ),
     (
-        "Backend, data & cloud",
-        "MySQL / SQL, Prisma, MongoDB-style document modelling, PHP (CodeIgniter, Laravel), "
-        "Java, AWS, Microsoft Azure",
+        "Integrations and delivery",
+        "REST APIs, JWT, RBAC, Resend, WhatsApp messaging, CI/CD, Git",
     ),
     (
-        "AI & product engineering",
-        "AI agents, ML-assisted features, Cursor / OpenAI / Claude-assisted delivery; "
-        "hospital management and HealthTech workflows",
+        "Other",
+        "AI agents and ML tools; hospital and clinic software; Cursor, OpenAI, Claude",
     ),
 ]
 
 SOFTWARE_ROLES = [
     {
-        "title": "Lead Software Developer — FairBanks Medical Centre (FCHIP)",
+        "title": "Lead Software Developer, FairBanks Medical Centre (FCHIP)",
         "dates": "Current",
         "bullets": [
-            "Lead development of FCHIP (FairBanks Community Health Intelligence Platform): "
-            "AI/ML-assisted community health intelligence on top of live clinic and outreach operations.",
-            "Design, build, and deploy hospital / clinic software including hospital management "
-            "system workflows used in real care settings.",
-            "Ship full-stack features across web and mobile using the modern product stack "
-            "(Next.js, TypeScript, Tailwind, React Native / Expo, Convex, auth, messaging, "
-            "CDN, and cloud deploy) plus cloud storage and data pipelines.",
-            "Build and operate AI agents for production use cases (including a fully functioning "
-            "AI agent deployed for a law firm in Texas, USA).",
+            "Lead FCHIP development: tools that help FairBanks follow and improve community "
+            "health work around the medical centre.",
+            "Build and maintain hospital and clinic software used by staff day to day.",
+            "Work across web and mobile with Next.js, TypeScript, Tailwind, React Native/Expo, "
+            "Convex, auth, messaging, CDN, and cloud deploy, including storage and data sync.",
+            "Built and deployed a working AI agent for a law firm in Texas that is in active use.",
         ],
     },
 ]
 
 PROJECTS = [
     {
-        "name": "Shulekeeper — school information system",
-        "meta": "Assistant Software Developer · 2021–2024",
+        "name": "Shulekeeper (school information system)",
+        "meta": "Assistant Software Developer, 2021-2024",
         "bullets": [
-            "Contributed to end-to-end web delivery: React / Next.js frontend with TypeScript, "
-            "Laravel backend, MySQL data model, and AWS hosting.",
-            "Translated business needs into requirements, process flows, and usable UI; "
-            "integrated components and third-party programmes; supported testing and upgrades.",
-            "Trained users and produced manuals — experience owning product beyond code alone.",
+            "Helped build the web app with React/Next.js and TypeScript, Laravel on the "
+            "backend, MySQL, and AWS hosting.",
+            "Joined requirement talks, built UI pieces, plugged in third-party tools, and "
+            "helped with testing and upgrades.",
+            "Trained users and wrote simple manuals so staff could run the system themselves.",
         ],
     },
     {
         "name": "Endoscopy reporting software",
-        "meta": "Lead Software Developer · St. Catherine Hospital & St. Francis Hospital · 2017–2019",
+        "meta": "Lead Software Developer, St. Catherine Hospital and St. Francis Hospital, 2017-2019",
         "bullets": [
-            "Led planning, algorithms, JavaFX UI, and MySQL relational design for medical image "
-            "capture and reporting on endoscopy systems.",
-            "Migrated existing user data, installed and configured software on multiple systems, "
-            "and supported troubleshooting and upgrades.",
+            "Led the build of a medical image capture and reporting tool for endoscopy "
+            "(JavaFX UI, MySQL database).",
+            "Moved old data into the new system, installed it on hospital machines, and "
+            "fixed issues as they came up.",
         ],
     },
     {
-        "name": "Wekebere — fetal heart-rate monitoring",
-        "meta": "Electronics Developer & Programmer · 2017–2024",
+        "name": "Wekebere (fetal heart-rate monitoring)",
+        "meta": "Electronics Developer and Programmer, 2017-2024",
         "bullets": [
-            "Built Android (Java) mobile app linked to Arduino-based hardware for third-trimester "
-            "fetal heart-rate monitoring; used Microsoft Azure in the stack.",
-            "Designed system flow between hardware and app — useful background for mobile + "
-            "device / field integrations.",
+            "Built an Android app in Java that talks to Arduino hardware for fetal heart-rate "
+            "checks in late pregnancy, with Azure in the setup.",
+            "Worked out how the phone app and the hardware should connect and share data.",
         ],
     },
 ]
 
 BIOMED_ROLES = [
     {
-        "title": "Biomedical Programs Manager — Gould Family Foundation (GFF)",
-        "dates": "Aug 2024 – Feb 2025",
+        "title": "Biomedical Programs Manager, Gould Family Foundation (GFF)",
+        "dates": "Aug 2024 - Feb 2025",
         "bullets": [
-            "Led biomedical programmes across multiple healthcare facilities; owned equipment "
-            "lifecycle strategy, procurement, installation, and commissioning.",
-            "Trained engineers and technicians; enforced international healthcare technology standards.",
+            "Ran biomedical programmes across several health facilities: planning, buying, "
+            "installing, and commissioning equipment.",
+            "Trained engineers and technicians and kept work in line with healthcare tech standards.",
         ],
     },
     {
-        "title": "Biomedical Manager — International Hospital Kampala (IHK)",
-        "dates": "Jan 2020 – Jan 2024",
+        "title": "Biomedical Manager, International Hospital Kampala (IHK)",
+        "dates": "Jan 2020 - Jan 2024",
         "bullets": [
-            "Managed biomedical operations for a major private hospital; led CT, oxygen plant, "
-            "X-ray, and ICU technology projects.",
-            "Built preventive maintenance systems; supported successful COHSASA accreditation "
-            "and continuous quality compliance.",
+            "Managed biomedical work for a large private hospital, including CT, oxygen plant, "
+            "X-ray, and ICU projects.",
+            "Set up preventive maintenance routines and supported the hospital through COHSASA "
+            "accreditation.",
         ],
     },
     {
-        "title": "Biomedical Engineer — Norvik Hospital Ltd",
-        "dates": "Apr 2019 – Jan 2020",
+        "title": "Biomedical Engineer, Norvik Hospital Ltd",
+        "dates": "Apr 2019 - Jan 2020",
         "bullets": [
-            "Maintained and serviced diagnostic and monitoring equipment; supported installation, "
-            "calibration, and preventive maintenance programmes.",
+            "Serviced diagnostic and monitoring equipment and helped with installs, calibration, "
+            "and preventive maintenance.",
         ],
     },
 ]
 
 EARLIER = [
     (
-        "Research Intern — Uganda Virus Research Institute",
-        "Dec 2018 – Apr 2019",
-        "Biomedical research support and laboratory data analysis.",
+        "Research Intern, Uganda Virus Research Institute",
+        "Dec 2018 - Apr 2019",
+        "Supported biomedical research and lab data work.",
     ),
     (
-        "Teaching Assistant — Makerere University, College of Health Sciences",
-        "Mar 2016 – Aug 2017",
-        "Supported biomedical engineering teaching and laboratory practicals.",
+        "Teaching Assistant, Makerere University, College of Health Sciences",
+        "Mar 2016 - Aug 2017",
+        "Helped with biomedical engineering classes and lab sessions.",
     ),
 ]
 
 EDUCATION = [
     (
         "University of Washington",
-        "Certificate — Leadership and Management in Health · 2022 (A+)",
+        "Certificate in Leadership and Management in Health, 2022 (A+)",
     ),
     (
         "Makerere University",
-        "BSc Biomedical Engineering (Second Upper Honours) · 2012–2017 · "
+        "BSc Biomedical Engineering (Second Upper Honours), 2012-2017. "
         "Key courses: ICT, OOP, Software Engineering, Database Systems",
     ),
     (
         "Green Bridge School of Open Technology",
-        "Advanced Java Programming · 2016 (A+)",
+        "Advanced Java Programming, 2016 (A+)",
     ),
 ]
 
 REFEREES = [
-    "Eng. Richard Ssejongo — Biomedical Engineer, St. Francis Hospital Nsambya · "
+    "Eng. Richard Ssejongo - Biomedical Engineer, St. Francis Hospital Nsambya - "
     "+256 753 818 754 / +256 777 132 489",
-    "Dr. Annet Khingi — Senior Radiologist & Administrator, Mengo Hospital · "
+    "Dr. Annet Khingi - Senior Radiologist and Administrator, Mengo Hospital - "
     "+256 772 592 771 / +256 701 592 771",
-    "Dr. Mamello Muhanuuzi — Former Medical Director, International Hospital Kampala · "
+    "Dr. Mamello Muhanuuzi - Former Medical Director, International Hospital Kampala - "
     "+256 702 811 008",
 ]
+
 
 
 def set_docx_defaults(doc: Document) -> None:
@@ -326,13 +318,13 @@ def build_cv_docx(path: Path) -> None:
         for b in role["bullets"]:
             bullet(doc, b)
 
-    section_title(doc, "Selected software projects")
+    section_title(doc, "Software projects")
     for proj in PROJECTS:
         role_header(doc, proj["name"], proj["meta"])
         for b in proj["bullets"]:
             bullet(doc, b)
 
-    section_title(doc, "Healthcare operations leadership (selected)")
+    section_title(doc, "Hospital and biomedical work")
     for role in BIOMED_ROLES:
         role_header(doc, role["title"], role["dates"])
         for b in role["bullets"]:
@@ -354,15 +346,6 @@ def build_cv_docx(path: Path) -> None:
     section_title(doc, "Referees")
     for ref in REFEREES:
         body_para(doc, ref, space_after=2)
-
-    note = doc.add_paragraph()
-    note.paragraph_format.space_before = Pt(8)
-    r = note.add_run(
-        "Portfolio / GitHub links: available on request (or add your preferred URLs before submit)."
-    )
-    r.italic = True
-    r.font.size = Pt(9)
-    r.font.color.rgb = RGBColor(0x66, 0x66, 0x66)
 
     doc.save(path)
 
@@ -407,42 +390,32 @@ def build_letter_docx(path: Path) -> None:
     body_para(doc, "Dear Hiring Team,")
     body_para(
         doc,
-        "I am applying for the Full Stack Software Developer role at Agromavericks "
-        "(AM-2026-1407). I build and ship web and mobile products end to end, and I want "
-        "to bring that ownership to your in-house technology team as you take full control "
-        "of the Agromavericks and Ukofi platforms.",
+        "I am writing to apply for the Full Stack Software Developer job at Agromavericks "
+        "(reference AM-2026-1407). I live in Kampala and I want to join your in-house team "
+        "working on the Agromavericks and Ukofi platforms.",
     )
     body_para(
         doc,
-        "I have practical experience in all the technologies required for this role — "
-        "Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, "
-        "Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, and Vercel + EAS — "
-        "alongside Node.js APIs, SQL and document-style data work, secure auth (JWT / RBAC), "
-        "testing, and CI/CD. I also bring Java, PHP, MySQL, Prisma, Azure, and AWS from "
-        "shipped products. I currently lead FCHIP software at FairBanks Medical Centre — "
-        "including AI/ML features, hospital management workflows, and production AI agents "
-        "(one live deployment for a law firm in Texas). Earlier I helped deliver Shulekeeper "
-        "(Next.js, TypeScript, Laravel, AWS), led endoscopy reporting software for two "
-        "hospitals, and built the Wekebere Android + embedded monitoring product.",
+        "I have practical experience with the technologies in your job post, including "
+        "Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, "
+        "Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS. I also work with Node.js "
+        "APIs, SQL databases, Prisma, JWT and role-based access, testing, and CI/CD, plus "
+        "Java, PHP, MySQL, Azure, and AWS. At FairBanks Medical Centre I currently lead "
+        "FCHIP and hospital software. I have also shipped Shulekeeper (Next.js, TypeScript, "
+        "Laravel, AWS), endoscopy reporting software for two hospitals, and the Wekebere "
+        "Android monitoring app. I also built an AI agent now used by a law firm in Texas.",
     )
     body_para(
         doc,
-        "What I bring day to day is end-to-end ownership: secure, practical delivery; "
-        "systems used by real operators; and comfort leading architecture across frontend, "
-        "backend, data, and integrations — the same surfaces your Agromavericks and Ukofi "
-        "platforms need as you move fully in-house.",
+        "I like building products that people actually use. Your work on agricultural "
+        "financing in Uganda is clear and useful, and the hybrid Kampala setup fits me. "
+        "I am legally allowed to work in Uganda and would be glad to talk about how I can help.",
     )
     body_para(
         doc,
-        "Agromavericks stands out because you are a technology company solving a Uganda- "
-        "and Africa-relevant financing problem for farmers and financiers. I am based in "
-        "Kampala, legally authorised to work in Uganda, and interested in your hybrid model. "
-        "I would welcome a conversation about how I can help you own and grow the platform.",
+        "I have attached my CV. Thank you for your time. I look forward to hearing from you.",
     )
-    body_para(
-        doc,
-        "I have attached my CV. Thank you for your time — I look forward to your reply.",
-    )
+
     body_para(doc, "Yours sincerely,")
     body_para(doc, "Wasswa Wilson")
     body_para(doc, "Full-Stack Software Developer")
@@ -632,12 +605,12 @@ def build_cv_pdf(path: Path) -> None:
     for role in SOFTWARE_ROLES:
         story.append(role_block(role["title"], role["dates"], role["bullets"], styles))
 
-    story.append(Paragraph("SELECTED SOFTWARE PROJECTS", styles["Sec"]))
+    story.append(Paragraph("SOFTWARE PROJECTS", styles["Sec"]))
     story.append(hr())
     for proj in PROJECTS:
         story.append(role_block(proj["name"], proj["meta"], proj["bullets"], styles))
 
-    story.append(Paragraph("HEALTHCARE OPERATIONS LEADERSHIP (SELECTED)", styles["Sec"]))
+    story.append(Paragraph("HOSPITAL AND BIOMEDICAL WORK", styles["Sec"]))
     story.append(hr())
     for role in BIOMED_ROLES:
         story.append(role_block(role["title"], role["dates"], role["bullets"], styles))
@@ -663,15 +636,6 @@ def build_cv_pdf(path: Path) -> None:
     story.append(hr())
     for ref in REFEREES:
         story.append(Paragraph(ref, styles["Body"]))
-
-    story.append(Spacer(1, 4))
-    story.append(
-        Paragraph(
-            "<i>Portfolio / GitHub links: available on request "
-            "(add preferred URLs before submit).</i>",
-            styles["CVContact"],
-        )
-    )
 
     doc.build(story)
 
@@ -705,43 +669,33 @@ def build_letter_pdf(path: Path) -> None:
         ),
         Paragraph("Dear Hiring Team,", styles["LetterBody"]),
         Paragraph(
-            "I am applying for the Full Stack Software Developer role at Agromavericks "
-            "(AM-2026-1407). I build and ship web and mobile products end to end, and I want "
-            "to bring that ownership to your in-house technology team as you take full control "
-            "of the Agromavericks and Ukofi platforms.",
+            "I am writing to apply for the Full Stack Software Developer job at Agromavericks "
+            "(reference AM-2026-1407). I live in Kampala and I want to join your in-house team "
+            "working on the Agromavericks and Ukofi platforms.",
             styles["LetterBody"],
         ),
         Paragraph(
-            "I have practical experience in all the technologies required for this role — "
-            "Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, "
-            "Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, and Vercel + EAS — "
-            "alongside Node.js APIs, SQL and document-style data work, secure auth (JWT / RBAC), "
-            "testing, and CI/CD. I also bring Java, PHP, MySQL, Prisma, Azure, and AWS from "
-            "shipped products. I currently lead FCHIP software at FairBanks Medical Centre — "
-            "including AI/ML features, hospital management workflows, and production AI agents "
-            "(one live deployment for a law firm in Texas). Earlier I helped deliver Shulekeeper "
-            "(Next.js, TypeScript, Laravel, AWS), led endoscopy reporting software for two "
-            "hospitals, and built the Wekebere Android + embedded monitoring product.",
+            "I have practical experience with the technologies in your job post, including "
+            "Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, "
+            "Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS. I also work with Node.js "
+            "APIs, SQL databases, Prisma, JWT and role-based access, testing, and CI/CD, plus "
+            "Java, PHP, MySQL, Azure, and AWS. At FairBanks Medical Centre I currently lead "
+            "FCHIP and hospital software. I have also shipped Shulekeeper (Next.js, TypeScript, "
+            "Laravel, AWS), endoscopy reporting software for two hospitals, and the Wekebere "
+            "Android monitoring app. I also built an AI agent now used by a law firm in Texas.",
             styles["LetterBody"],
         ),
         Paragraph(
-            "What I bring day to day is end-to-end ownership: secure, practical delivery; "
-            "systems used by real operators; and comfort leading architecture across frontend, "
-            "backend, data, and integrations — the same surfaces your Agromavericks and Ukofi "
-            "platforms need as you move fully in-house.",
+            "I like building products that people actually use. Your work on agricultural "
+            "financing in Uganda is clear and useful, and the hybrid Kampala setup fits me. "
+            "I am legally allowed to work in Uganda and would be glad to talk about how I can help.",
             styles["LetterBody"],
         ),
         Paragraph(
-            "Agromavericks stands out because you are a technology company solving a Uganda- "
-            "and Africa-relevant financing problem for farmers and financiers. I am based in "
-            "Kampala, legally authorised to work in Uganda, and interested in your hybrid model. "
-            "I would welcome a conversation about how I can help you own and grow the platform.",
+            "I have attached my CV. Thank you for your time. I look forward to hearing from you.",
             styles["LetterBody"],
         ),
-        Paragraph(
-            "I have attached my CV. Thank you for your time — I look forward to your reply.",
-            styles["LetterBody"],
-        ),
+
         Paragraph("Yours sincerely,", styles["LetterBody"]),
         Paragraph("<b>Wasswa Wilson</b>", styles["LetterBody"]),
         Paragraph("Full-Stack Software Developer", styles["LetterBody"]),
@@ -751,7 +705,7 @@ def build_letter_pdf(path: Path) -> None:
 
 APPLICATION_ANSWERS = """# AgroMavericks online application answers
 
-Use with: https://www.agromavericks.com/careers/full-stack-developer  
+Use with: https://www.agromavericks.com/careers/full-stack-developer
 Reference: **AM-2026-1407**
 
 Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
@@ -771,62 +725,58 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 | Field | Answer |
 | --- | --- |
-| GitHub | [TO CONFIRM — paste profile URL] |
-| LinkedIn | [TO CONFIRM — paste profile URL] |
-| Portfolio / website | [TO CONFIRM — or leave blank] |
+| GitHub | [TO CONFIRM - paste profile URL] |
+| LinkedIn | [TO CONFIRM - paste profile URL] |
+| Portfolio / website | [TO CONFIRM - or leave blank] |
 
 ## Experience
 
 | Field | Answer |
 | --- | --- |
-| Years of professional experience | **5–7 years** (adjust to **8+** if you prefer counting continuous programming from 2017) |
-| Current / most recent role & company | Lead Software Developer — FairBanks Medical Centre (FCHIP); previously Biomedical Programs Manager — Gould Family Foundation |
+| Years of professional experience | **5-7 years** (use **8+** if you count programming from 2017) |
+| Current / most recent role & company | Lead Software Developer, FairBanks Medical Centre (FCHIP); previously Biomedical Programs Manager, Gould Family Foundation |
 | Highest education / certification | BSc Biomedical Engineering, Makerere University (Second Upper Honours); Certificate in Leadership and Management in Health, University of Washington (A+) |
 
 ### Which of these have you shipped to production?
 
-Tick **Yes** for the AgroMavericks required technologies (practical experience):
-
 | Skill | Tick? | Note |
 | --- | --- | --- |
-| Next.js / React | Yes | Practical experience; Shulekeeper + FairBanks/FCHIP |
-| TypeScript | Yes | Practical experience across web/mobile delivery |
-| React Native / Expo | Yes | Practical experience including Expo |
-| Node.js APIs | Yes | Express / Node API work |
-| Convex | Yes | Practical experience with real-time / Convex-style backends |
-| MongoDB / Mongoose | Yes | Document-style data modelling experience |
+| Next.js / React | Yes | Shulekeeper and FairBanks/FCHIP |
+| TypeScript | Yes | Web and mobile work |
+| React Native / Expo | Yes | Including Expo |
+| Node.js APIs | Yes | Express / Node APIs |
+| Convex | Yes | Real-time backend work |
+| MongoDB / Mongoose | Yes | Document-style data work |
 | PostgreSQL / SQL | Yes | MySQL / SQL / Prisma |
-| Tailwind CSS | Yes | Practical experience |
-| Payments / FinTech integrations | Yes | Integration experience; strong interest in agro-fintech |
-| WhatsApp / SMS / Email integrations | Yes | WhatsApp messaging, Resend / transactional email |
-| CI/CD & DevOps | Yes | Vercel, EAS, AWS/Azure deployment pipelines |
+| Tailwind CSS | Yes | UI styling |
+| Payments / FinTech integrations | Yes | Integration work; interested in agro-fintech |
+| WhatsApp / SMS / Email integrations | Yes | WhatsApp messaging and Resend/email |
+| CI/CD & DevOps | Yes | Vercel, EAS, AWS/Azure |
 | Automated testing | Yes | Jest, Playwright |
 
 ---
 
-## Projects you've built — include links
+## Projects you've built - include links
 
-Copy/paste into the form (add live links where you have them):
+1. **FCHIP / FairBanks Medical Centre (current)** - I lead FCHIP and related hospital software at FairBanks: community health tools, clinic workflows, web/mobile delivery, and cloud data flows. Link: [TO CONFIRM]
 
-1. **FCHIP / FairBanks Medical Centre (current)** — Lead developer on FairBanks Community Health Intelligence Platform: AI/ML-assisted community health intelligence, hospital management workflows, cloud-backed data flows, and related mobile/web delivery for a live medical centre and community programmes. Link: [TO CONFIRM]
+2. **AI agent for a law firm in Texas** - Built and deployed an AI agent that the firm uses in live work. Link / demo: [TO CONFIRM]
 
-2. **Production AI agent — law firm, Texas, USA** — Designed and deployed a fully functioning AI agent used in a live legal-practice setting. Link / demo: [TO CONFIRM]
+3. **Shulekeeper (2021-2024)** - School information system. I helped with React/Next.js + TypeScript, Laravel, MySQL, and AWS. Assistant Software Developer. Link: [TO CONFIRM]
 
-3. **Shulekeeper (2021–2024)** — Online school information system. Contributed to React/Next.js + TypeScript frontend, Laravel backend, MySQL, and AWS. Role: Assistant Software Developer. Link: [TO CONFIRM]
+4. **Endoscopy reporting software (2017-2019)** - Lead developer for image capture and reporting at St. Catherine Hospital and St. Francis Hospital (JavaFX, MySQL). Link: [TO CONFIRM if any]
 
-4. **Endoscopy reporting software (2017–2019)** — Lead developer for medical image capture and reporting used at St. Catherine Hospital and St. Francis Hospital (JavaFX, MySQL, clinical installation/support). Link: [TO CONFIRM if any]
-
-5. **Wekebere (2017–2024)** — Android + Arduino fetal heart-rate monitoring product with Azure in the stack. Link: [TO CONFIRM if any]
+5. **Wekebere (2017-2024)** - Android + Arduino fetal heart-rate monitoring app with Azure. Link: [TO CONFIRM if any]
 
 ---
 
 ## Why Agromavericks, and why are you the right person for this role?
 
-Agromavericks is not “another app shop” — you are building the digital infrastructure for agricultural financing in Uganda, with a clear move from outsourced delivery to an in-house core team. That is exactly the kind of ownership I want.
+I applied because Agromavericks is building real software for agricultural financing in Uganda, and you are growing an in-house tech team. That is the kind of work I want to do.
 
-I am the right person for this role because I have **practical experience in all the technologies required to get hired and deliver on day one**: Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, Vercel + EAS, plus Node.js APIs, SQL/document data work, secure auth (JWT/RBAC), testing, and CI/CD. Today I lead FCHIP at FairBanks Medical Centre — real users, real operations, AI features, and hospital software — and I have previously delivered school and clinical systems (Shulekeeper, endoscopy reporting, Wekebere). I can own frontend, backend, data, and integrations across the Agromavericks and Ukofi platforms.
+I already have practical experience with the tools in your stack: Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS, plus Node APIs, databases, auth, testing, and CI/CD. At FairBanks Medical Centre I lead FCHIP and hospital software that people use every day. I have also shipped Shulekeeper, endoscopy reporting software, and Wekebere, and I built an AI agent used by a law firm in Texas.
 
-I am based in Kampala, authorised to work in Uganda, and motivated by products that connect technology to livelihoods. Agro-fintech for farmers and financiers is a mission I respect, and I want to help you make the platforms stable, secure, and scalable.
+I live in Kampala, I can work in Uganda legally, and hybrid suits me. I would like to help keep the Agromavericks and Ukofi platforms stable and useful for farmers and financiers.
 
 ---
 
@@ -835,9 +785,9 @@ I am based in Kampala, authorised to work in Uganda, and motivated by products t
 | Field | Answer |
 | --- | --- |
 | Expected gross monthly salary (UGX) | [TO CONFIRM] |
-| When can you start? | [TO CONFIRM — Immediately / Within 2 weeks / 1 month notice / More than 1 month] |
+| When can you start? | [TO CONFIRM - Immediately / Within 2 weeks / 1 month notice / More than 1 month] |
 | Legally authorized to work in Uganda? | Yes |
-| Preferred work mode | Hybrid (matches role: Kampala · 2 days remote) |
+| Preferred work mode | Hybrid |
 | How did you hear about this role? | [TO CONFIRM] |
 
 ---

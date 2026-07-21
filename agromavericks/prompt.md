@@ -82,7 +82,7 @@ Do **not** invent employers, degrees, dates, or project links. If a live demo, G
    - Production checklist alignment: Next.js/React, TypeScript, React Native/Expo, Node APIs, SQL, Tailwind, payments/fintech if any, WhatsApp/SMS/email if any, CI/CD, testing
    - Practical logistics fields may be left as `[TO CONFIRM]` if unknown: salary expectation (UGX), start date, work mode preference
 
-3. **Tone:** Clear, confident, human. No fluff. No overclaiming. Kampala / Uganda context is a plus (hybrid role).
+3. **Tone:** Plain and human. Short sentences. No buzzwords, no “AI essay” style, no fake polish. Still clear and confident. Kampala / Uganda context is a plus (hybrid role).
 
 ---
 
