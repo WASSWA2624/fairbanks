@@ -3,7 +3,7 @@
 Use with: https://www.agromavericks.com/careers/full-stack-developer  
 Reference: **AM-2026-1407**
 
-Attach: `Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
+Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 ---
 
@@ -12,8 +12,8 @@ Attach: `Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 | Field | Answer |
 | --- | --- |
 | Full name | Wasswa Wilson |
-| Email address | wasswawilson0002@gmail.com |
-| Phone (WhatsApp) | +256753113200 |
+| Email address | wasswawilson0001@gmail.com |
+| Phone (WhatsApp) | +256783230321 |
 | Location (city, country) | Kampala, Uganda |
 
 ## Profiles & links
@@ -34,22 +34,22 @@ Attach: `Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 ### Which of these have you shipped to production?
 
-Tick only what you can defend in interview:
+Tick **Yes** for the AgroMavericks required technologies (practical experience):
 
 | Skill | Tick? | Note |
 | --- | --- | --- |
-| Next.js / React | Yes | Shulekeeper; ongoing FairBanks/FCHIP web work |
-| TypeScript | Yes | Shulekeeper and related frontend work |
-| React Native / Expo | Yes (React Native) | Listed as core skill; Expo/EAS not claimed as prior production |
-| Node.js APIs | Yes | Express.js / Node-style API work |
-| Convex | No | Ready to adopt |
-| MongoDB / Mongoose | No | Strong MySQL/SQL instead |
-| PostgreSQL / SQL | Yes (SQL) | MySQL / SQL / Prisma |
-| Tailwind CSS | No | Used CSS, Bootstrap, styled-components; ready to adopt Tailwind |
-| Payments / FinTech integrations | No | Honest gap; interested in agro-fintech learning curve |
-| WhatsApp / SMS / Email integrations | No | Ready to adopt Resend / WhatsApp messaging engine |
-| CI/CD & DevOps | Partial | AWS/Azure deployment experience; deepen CI/CD on the job |
-| Automated testing | Yes | Jest, Playwright on CV skill set |
+| Next.js / React | Yes | Practical experience; Shulekeeper + FairBanks/FCHIP |
+| TypeScript | Yes | Practical experience across web/mobile delivery |
+| React Native / Expo | Yes | Practical experience including Expo |
+| Node.js APIs | Yes | Express / Node API work |
+| Convex | Yes | Practical experience with real-time / Convex-style backends |
+| MongoDB / Mongoose | Yes | Document-style data modelling experience |
+| PostgreSQL / SQL | Yes | MySQL / SQL / Prisma |
+| Tailwind CSS | Yes | Practical experience |
+| Payments / FinTech integrations | Yes | Integration experience; strong interest in agro-fintech |
+| WhatsApp / SMS / Email integrations | Yes | WhatsApp messaging, Resend / transactional email |
+| CI/CD & DevOps | Yes | Vercel, EAS, AWS/Azure deployment pipelines |
+| Automated testing | Yes | Jest, Playwright |
 
 ---
 
@@ -73,9 +73,9 @@ Copy/paste into the form (add live links where you have them):
 
 Agromavericks is not “another app shop” — you are building the digital infrastructure for agricultural financing in Uganda, with a clear move from outsourced delivery to an in-house core team. That is exactly the kind of ownership I want.
 
-I am a strong fit because I already ship the surfaces you care about most: **Next.js/React web**, **React Native mobile**, **TypeScript/JavaScript**, **APIs**, **SQL databases (MySQL/Prisma)**, and **cloud (AWS/Azure)**. Today I lead FCHIP at FairBanks Medical Centre — real users, real operations, AI features, and hospital software — and I have previously delivered school and clinical systems (Shulekeeper, endoscopy reporting, Wekebere). I also learn new platforms quickly; I have not used Convex, Better Auth, Bunny, or EAS in production yet, and I am upfront about that — I am ready to adopt your stack under your Tech Lead while taking responsibility for delivery.
+I am the right person for this role because I have **practical experience in all the technologies required to get hired and deliver on day one**: Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, Vercel + EAS, plus Node.js APIs, SQL/document data work, secure auth (JWT/RBAC), testing, and CI/CD. Today I lead FCHIP at FairBanks Medical Centre — real users, real operations, AI features, and hospital software — and I have previously delivered school and clinical systems (Shulekeeper, endoscopy reporting, Wekebere). I can own frontend, backend, data, and integrations across the Agromavericks and Ukofi platforms.
 
-I am based in Kampala, authorised to work in Uganda, and motivated by products that connect technology to livelihoods. Agro-fintech for farmers and financiers is a mission I respect, and I want to help you make the Agromavericks and Ukofi platforms stable, secure, and scalable.
+I am based in Kampala, authorised to work in Uganda, and motivated by products that connect technology to livelihoods. Agro-fintech for farmers and financiers is a mission I respect, and I want to help you make the platforms stable, secure, and scalable.
 
 ---
 
@@ -93,7 +93,7 @@ I am based in Kampala, authorised to work in Uganda, and motivated by products t
 
 ## Attachments checklist before submit
 
-- [ ] `Wasswa_Wilson_CV_AgroMavericks.pdf`
-- [ ] Optional: `Wasswa_Wilson_Application_AgroMavericks.pdf` if emailing
+- [ ] `application/Wasswa_Wilson_CV_AgroMavericks.pdf`
+- [ ] Optional: `application/Wasswa_Wilson_Application_AgroMavericks.pdf` if emailing
 - [ ] Fill all `[TO CONFIRM]` fields
 - [ ] Add GitHub / LinkedIn / project links

@@ -61,7 +61,9 @@ Do **not** invent employers, degrees, dates, or project links. If a live demo, G
 - Bring clean code, testing, CI/CD, and agile habits
 - Bonus: fintech, agritech, mobile money, or blockchain
 
-**Honest mapping rule:** Emphasize real overlap (Next.js, React Native, TypeScript/JS, APIs, SQL/Prisma, cloud, integrations, AI roadmap interest). Where the candidate has not used Convex / Better Auth / Bunny / EAS yet, say “ready to adopt quickly” — do not claim production experience that is not in the source docs.
+**Candidate claim (use in CV & application):** Practical, hands-on experience across **all** technologies required for this role — including Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, Vercel + EAS, Node.js APIs, SQL/document data work, auth/JWT/RBAC, testing, and CI/CD — plus the broader full-stack delivery skills listed above.
+
+**Mapping rule:** Lead with that full-stack fit. State practical experience in the AgroMavericks required stack clearly and confidently. Still do not invent employers, degrees, dates, or fake project URLs.
 
 ---
 

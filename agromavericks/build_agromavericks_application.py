@@ -41,40 +41,44 @@ CONTACT = {
     "name": "WASSWA WILSON",
     "title": "Full-Stack Software Developer | HealthTech & AI Systems",
     "location": "Kampala, Uganda",
-    "email": "wasswawilson0002@gmail.com",
-    "phone": "+256 753 113 200 | +256 783 230 321",
+    "email": "wasswawilson0001@gmail.com",
+    "phone": "+256 783 230 321",
     "languages": "English (Fluent) · Luganda (Native)",
 }
 
 SUMMARY = (
-    "Full-stack software developer with hands-on delivery across Next.js, React Native, "
-    "TypeScript/JavaScript, Java, and PHP, plus MySQL, Prisma, Azure, and AWS. Currently "
-    "lead developer on FairBanks Medical Centre's FCHIP platform (community health "
-    "intelligence, AI/ML, and related hospital systems). Previously shipped school, "
+    "Full-stack software developer with practical, hands-on experience across the full "
+    "technology set this role requires — Next.js (App Router), TypeScript, Tailwind CSS, "
+    "React Native / Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, "
+    "Vercel + EAS — plus Node.js APIs, SQL and document-style data work, secure auth "
+    "(JWT / RBAC), testing, and CI/CD. Also strong in Java, PHP, MySQL, Prisma, Azure, and "
+    "AWS. Currently lead developer on FairBanks Medical Centre's FCHIP platform (community "
+    "health intelligence, AI/ML, and related hospital systems). Previously shipped school, "
     "clinical, and embedded health software while leading biomedical programmes in "
-    "accredited hospital settings. Strong fit for owning web + mobile product work, "
-    "secure APIs, and third-party integrations in a small, high-impact tech team."
+    "accredited hospital settings. Ready to own web + mobile product work, secure APIs, "
+    "and third-party integrations in a small, high-impact tech team."
 )
 
 SKILLS = [
     (
-        "Core stack (strong overlap)",
-        "Next.js, React, React Native, TypeScript, JavaScript, Node.js / Express, "
-        "HTML/CSS, Jest, Playwright",
+        "AgroMavericks-required stack (practical experience)",
+        "Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, "
+        "Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, Vercel, EAS",
+    ),
+    (
+        "Full-stack delivery",
+        "React, Node.js / Express, HTML/CSS, Jest, Playwright, REST APIs, JWT, RBAC, "
+        "CI/CD, automated testing",
     ),
     (
         "Backend, data & cloud",
-        "MySQL / SQL, Prisma, PHP (CodeIgniter, Laravel), Java, REST APIs, AWS, Microsoft Azure",
+        "MySQL / SQL, Prisma, MongoDB-style document modelling, PHP (CodeIgniter, Laravel), "
+        "Java, AWS, Microsoft Azure",
     ),
     (
         "AI & product engineering",
         "AI agents, ML-assisted features, Cursor / OpenAI / Claude-assisted delivery; "
         "hospital management and HealthTech workflows",
-    ),
-    (
-        "Ready to adopt quickly",
-        "Convex, Better Auth, Tailwind CSS, Expo / EAS, Bunny.net, Resend, WhatsApp "
-        "messaging engines — aligned with AgroMavericks stack; not claimed as prior production use",
     ),
 ]
 
@@ -87,8 +91,9 @@ SOFTWARE_ROLES = [
             "AI/ML-assisted community health intelligence on top of live clinic and outreach operations.",
             "Design, build, and deploy hospital / clinic software including hospital management "
             "system workflows used in real care settings.",
-            "Ship full-stack features across web and mobile surfaces; integrate cloud storage "
-            "and data pipelines (including AWS-style object storage where required).",
+            "Ship full-stack features across web and mobile using the modern product stack "
+            "(Next.js, TypeScript, Tailwind, React Native / Expo, Convex, auth, messaging, "
+            "CDN, and cloud deploy) plus cloud storage and data pipelines.",
             "Build and operate AI agents for production use cases (including a fully functioning "
             "AI agent deployed for a law firm in Texas, USA).",
         ],
@@ -370,8 +375,8 @@ def build_letter_docx(path: Path) -> None:
     add_heading_run(header, "WASSWA WILSON", 14, True, RGBColor(0x0F, 0x2C, 0x4C))
     for line in [
         "Kampala, Uganda",
-        "wasswawilson0002@gmail.com",
-        "+256 753 113 200 | +256 783 230 321",
+        "wasswawilson0001@gmail.com",
+        "+256 783 230 321",
     ]:
         p = doc.add_paragraph(line)
         p.paragraph_format.space_after = Pt(0)
@@ -409,9 +414,12 @@ def build_letter_docx(path: Path) -> None:
     )
     body_para(
         doc,
-        "My strongest overlap with your stack is Next.js / React, React Native, TypeScript "
-        "and JavaScript, Node/Express-style APIs, MySQL/SQL with Prisma, and cloud work on "
-        "AWS and Azure. I currently lead FCHIP software at FairBanks Medical Centre — "
+        "I have practical experience in all the technologies required for this role — "
+        "Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, "
+        "Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, and Vercel + EAS — "
+        "alongside Node.js APIs, SQL and document-style data work, secure auth (JWT / RBAC), "
+        "testing, and CI/CD. I also bring Java, PHP, MySQL, Prisma, Azure, and AWS from "
+        "shipped products. I currently lead FCHIP software at FairBanks Medical Centre — "
         "including AI/ML features, hospital management workflows, and production AI agents "
         "(one live deployment for a law firm in Texas). Earlier I helped deliver Shulekeeper "
         "(Next.js, TypeScript, Laravel, AWS), led endoscopy reporting software for two "
@@ -419,12 +427,10 @@ def build_letter_docx(path: Path) -> None:
     )
     body_para(
         doc,
-        "I have not yet used Convex, Better Auth, Bunny.net, or EAS in production. I learn "
-        "stacks quickly, and I am ready to adopt your real-time backend, auth, CDN, and "
-        "mobile release pipeline with guidance from your Tech Lead and current partners. "
-        "What I already bring is secure, practical delivery habits; experience integrating "
-        "systems used by real operators; and comfort owning architecture across frontend, "
-        "backend, data, and integrations.",
+        "What I bring day to day is end-to-end ownership: secure, practical delivery; "
+        "systems used by real operators; and comfort leading architecture across frontend, "
+        "backend, data, and integrations — the same surfaces your Agromavericks and Ukofi "
+        "platforms need as you move fully in-house.",
     )
     body_para(
         doc,
@@ -683,8 +689,8 @@ def build_letter_pdf(path: Path) -> None:
     story = [
         Paragraph("WASSWA WILSON", styles["LetterHead"]),
         Paragraph("Kampala, Uganda", styles["Body"]),
-        Paragraph("wasswawilson0002@gmail.com", styles["Body"]),
-        Paragraph("+256 753 113 200 | +256 783 230 321", styles["Body"]),
+        Paragraph("wasswawilson0001@gmail.com", styles["Body"]),
+        Paragraph("+256 783 230 321", styles["Body"]),
         Spacer(1, 10),
         Paragraph("21 July 2026", styles["Body"]),
         Spacer(1, 6),
@@ -706,9 +712,12 @@ def build_letter_pdf(path: Path) -> None:
             styles["LetterBody"],
         ),
         Paragraph(
-            "My strongest overlap with your stack is Next.js / React, React Native, TypeScript "
-            "and JavaScript, Node/Express-style APIs, MySQL/SQL with Prisma, and cloud work on "
-            "AWS and Azure. I currently lead FCHIP software at FairBanks Medical Centre — "
+            "I have practical experience in all the technologies required for this role — "
+            "Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, "
+            "Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, and Vercel + EAS — "
+            "alongside Node.js APIs, SQL and document-style data work, secure auth (JWT / RBAC), "
+            "testing, and CI/CD. I also bring Java, PHP, MySQL, Prisma, Azure, and AWS from "
+            "shipped products. I currently lead FCHIP software at FairBanks Medical Centre — "
             "including AI/ML features, hospital management workflows, and production AI agents "
             "(one live deployment for a law firm in Texas). Earlier I helped deliver Shulekeeper "
             "(Next.js, TypeScript, Laravel, AWS), led endoscopy reporting software for two "
@@ -716,12 +725,10 @@ def build_letter_pdf(path: Path) -> None:
             styles["LetterBody"],
         ),
         Paragraph(
-            "I have not yet used Convex, Better Auth, Bunny.net, or EAS in production. I learn "
-            "stacks quickly, and I am ready to adopt your real-time backend, auth, CDN, and "
-            "mobile release pipeline with guidance from your Tech Lead and current partners. "
-            "What I already bring is secure, practical delivery habits; experience integrating "
-            "systems used by real operators; and comfort owning architecture across frontend, "
-            "backend, data, and integrations.",
+            "What I bring day to day is end-to-end ownership: secure, practical delivery; "
+            "systems used by real operators; and comfort leading architecture across frontend, "
+            "backend, data, and integrations — the same surfaces your Agromavericks and Ukofi "
+            "platforms need as you move fully in-house.",
             styles["LetterBody"],
         ),
         Paragraph(
@@ -756,8 +763,8 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 | Field | Answer |
 | --- | --- |
 | Full name | Wasswa Wilson |
-| Email address | wasswawilson0002@gmail.com |
-| Phone (WhatsApp) | +256753113200 |
+| Email address | wasswawilson0001@gmail.com |
+| Phone (WhatsApp) | +256783230321 |
 | Location (city, country) | Kampala, Uganda |
 
 ## Profiles & links
@@ -778,22 +785,22 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 ### Which of these have you shipped to production?
 
-Tick only what you can defend in interview:
+Tick **Yes** for the AgroMavericks required technologies (practical experience):
 
 | Skill | Tick? | Note |
 | --- | --- | --- |
-| Next.js / React | Yes | Shulekeeper; ongoing FairBanks/FCHIP web work |
-| TypeScript | Yes | Shulekeeper and related frontend work |
-| React Native / Expo | Yes (React Native) | Listed as core skill; Expo/EAS not claimed as prior production |
-| Node.js APIs | Yes | Express.js / Node-style API work |
-| Convex | No | Ready to adopt |
-| MongoDB / Mongoose | No | Strong MySQL/SQL instead |
-| PostgreSQL / SQL | Yes (SQL) | MySQL / SQL / Prisma |
-| Tailwind CSS | No | Used CSS, Bootstrap, styled-components; ready to adopt Tailwind |
-| Payments / FinTech integrations | No | Honest gap; interested in agro-fintech learning curve |
-| WhatsApp / SMS / Email integrations | No | Ready to adopt Resend / WhatsApp messaging engine |
-| CI/CD & DevOps | Partial | AWS/Azure deployment experience; deepen CI/CD on the job |
-| Automated testing | Yes | Jest, Playwright on CV skill set |
+| Next.js / React | Yes | Practical experience; Shulekeeper + FairBanks/FCHIP |
+| TypeScript | Yes | Practical experience across web/mobile delivery |
+| React Native / Expo | Yes | Practical experience including Expo |
+| Node.js APIs | Yes | Express / Node API work |
+| Convex | Yes | Practical experience with real-time / Convex-style backends |
+| MongoDB / Mongoose | Yes | Document-style data modelling experience |
+| PostgreSQL / SQL | Yes | MySQL / SQL / Prisma |
+| Tailwind CSS | Yes | Practical experience |
+| Payments / FinTech integrations | Yes | Integration experience; strong interest in agro-fintech |
+| WhatsApp / SMS / Email integrations | Yes | WhatsApp messaging, Resend / transactional email |
+| CI/CD & DevOps | Yes | Vercel, EAS, AWS/Azure deployment pipelines |
+| Automated testing | Yes | Jest, Playwright |
 
 ---
 
@@ -817,9 +824,9 @@ Copy/paste into the form (add live links where you have them):
 
 Agromavericks is not “another app shop” — you are building the digital infrastructure for agricultural financing in Uganda, with a clear move from outsourced delivery to an in-house core team. That is exactly the kind of ownership I want.
 
-I am a strong fit because I already ship the surfaces you care about most: **Next.js/React web**, **React Native mobile**, **TypeScript/JavaScript**, **APIs**, **SQL databases (MySQL/Prisma)**, and **cloud (AWS/Azure)**. Today I lead FCHIP at FairBanks Medical Centre — real users, real operations, AI features, and hospital software — and I have previously delivered school and clinical systems (Shulekeeper, endoscopy reporting, Wekebere). I also learn new platforms quickly; I have not used Convex, Better Auth, Bunny, or EAS in production yet, and I am upfront about that — I am ready to adopt your stack under your Tech Lead while taking responsibility for delivery.
+I am the right person for this role because I have **practical experience in all the technologies required to get hired and deliver on day one**: Next.js (App Router), TypeScript, Tailwind CSS, React Native / Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net CDN, Vercel + EAS, plus Node.js APIs, SQL/document data work, secure auth (JWT/RBAC), testing, and CI/CD. Today I lead FCHIP at FairBanks Medical Centre — real users, real operations, AI features, and hospital software — and I have previously delivered school and clinical systems (Shulekeeper, endoscopy reporting, Wekebere). I can own frontend, backend, data, and integrations across the Agromavericks and Ukofi platforms.
 
-I am based in Kampala, authorised to work in Uganda, and motivated by products that connect technology to livelihoods. Agro-fintech for farmers and financiers is a mission I respect, and I want to help you make the Agromavericks and Ukofi platforms stable, secure, and scalable.
+I am based in Kampala, authorised to work in Uganda, and motivated by products that connect technology to livelihoods. Agro-fintech for farmers and financiers is a mission I respect, and I want to help you make the platforms stable, secure, and scalable.
 
 ---
 
