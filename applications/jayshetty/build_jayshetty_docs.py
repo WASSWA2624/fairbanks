@@ -55,9 +55,9 @@ COVER_HEADLINE = "Community health rooted in Uganda"
 COVER_SUMMARY = (
     "FairBanks Medical Centre & Pharmacy is a community health organisation in Kampala. "
     "We combine clinical care, Community Reach, and FCHIP - our community health intelligence "
-    "platform - to help families get care earlier and closer to home. This brief invites a "
-    "conversation with the Jay Shetty ecosystem about shared goals around wellbeing, compassion, "
-    "and practical impact."
+    "platform. We are developing an FCHIP MVP to help families get care earlier and closer to "
+    "home. This brief invites a conversation with the Jay Shetty ecosystem about shared goals "
+    "around wellbeing, compassion, and practical impact."
 )
 LOGO = ASSETS / "fairbanks_logo.jpeg"
 
@@ -458,12 +458,12 @@ def build_docx() -> None:
         spacer.paragraph_format.space_after = Pt(4)
 
 # ---- Cover ----
-    # FairBanks branding strip with logo
+    # FairBanks brand header: logo + organisation + slogan
     brand = doc.add_table(rows=1, cols=2)
     brand.autofit = False
     brand.allow_autofit = False
-    brand.columns[0].width = Inches(1.15)
-    brand.columns[1].width = Inches(5.7)
+    brand.columns[0].width = Inches(1.2)
+    brand.columns[1].width = Inches(5.65)
     left_c, right_c = brand.rows[0].cells
     shade_cell(left_c, NAVY)
     shade_cell(right_c, NAVY)
@@ -472,18 +472,59 @@ def build_docx() -> None:
     left_c.text = ""
     lp = left_c.paragraphs[0]
     lp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    lp.paragraph_format.space_before = Pt(6)
+    lp.paragraph_format.space_after = Pt(6)
     if LOGO.exists():
         run = lp.add_run()
-        run.add_picture(str(LOGO), height=Inches(0.55))
+        run.add_picture(str(LOGO), height=Inches(0.62))
     right_c.text = ""
     rp = right_c.paragraphs[0]
     rp.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    rr = rp.add_run(f"{ORG}\n{PROGRAMME}  |  {SLOGAN}")
-    rr.bold = True
-    rr.font.size = Pt(11)
-    rr.font.color.rgb = RGBColor.from_string(GOLD)
-    rr.font.name = "Calibri"
+    rp.paragraph_format.space_before = Pt(8)
+    rp.paragraph_format.space_after = Pt(0)
+    r1 = rp.add_run(ORG)
+    r1.bold = True
+    r1.font.size = Pt(13)
+    r1.font.color.rgb = RGBColor.from_string(GOLD)
+    r1.font.name = "Calibri"
+    rp2 = right_c.add_paragraph()
+    rp2.paragraph_format.space_before = Pt(2)
+    rp2.paragraph_format.space_after = Pt(0)
+    r2 = rp2.add_run(SLOGAN)
+    r2.italic = True
+    r2.font.size = Pt(10)
+    r2.font.color.rgb = RGBColor.from_string(WHITE)
+    r2.font.name = "Calibri"
+    rp3 = right_c.add_paragraph()
+    rp3.paragraph_format.space_before = Pt(2)
+    rp3.paragraph_format.space_after = Pt(6)
+    r3 = rp3.add_run(PROGRAMME)
+    r3.bold = True
+    r3.font.size = Pt(9)
+    r3.font.color.rgb = RGBColor.from_string(GOLD)
+    r3.font.name = "Calibri"
 
+    # Contact + location strip under branding
+    contact_bar = doc.add_table(rows=1, cols=1)
+    contact_bar.autofit = True
+    cc = contact_bar.rows[0].cells[0]
+    shade_cell(cc, PALE_TEAL)
+    set_cell_border(cc, TEAL)
+    cc.text = ""
+    cp = cc.paragraphs[0]
+    cp.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    cp.paragraph_format.space_before = Pt(4)
+    cp.paragraph_format.space_after = Pt(2)
+    cr = cp.add_run(
+        f"{CONTACT_NAME}  ·  {CONTACT_TITLE}\n"
+        f"{LOCATION}  ·  {PHONE}  ·  {EMAIL}\n"
+        f"{WEBSITE}"
+    )
+    cr.font.size = Pt(9)
+    cr.font.color.rgb = RGBColor.from_string(NAVY)
+    cr.font.name = "Calibri"
+
+    doc.add_paragraph()
     add_para(TITLE, bold=True, size=22, color=NAVY, space_after=4)
     add_para(COVER_HEADLINE, bold=True, size=15, color=TEAL, space_after=4)
     add_para(SUBTITLE, size=12, color=MUTED, space_after=8)
@@ -493,8 +534,8 @@ def build_docx() -> None:
         "facility_branded",
         "Community Reach outreach session",
         "FairBanks Medical Centre, Kampala",
-        width=3.3,
-        height=2.2,
+        width=3.2,
+        height=2.0,
     )
 
     add_para(COVER_SUMMARY, size=11, color=SLATE, space_after=10)
@@ -518,7 +559,7 @@ def build_docx() -> None:
             [
                 "Help telling our story to a wider audience",
                 "Advice and introductions within the impact and wellbeing space",
-                "Support as we validate and grow FCHIP carefully",
+                "Support as we develop the FCHIP MVP",
             ],
             PALE_TEAL,
         ),
@@ -534,7 +575,7 @@ def build_docx() -> None:
     ]
     for i, (title, points, fill) in enumerate(value_cols):
         cell = value.rows[0].cells[i]
-        cell.width = Inches(2.25)
+        cell.width = Inches(2.28)
         shade_cell(cell, fill)
         set_cell_border(cell, LINE)
         cell.text = ""
@@ -569,34 +610,15 @@ def build_docx() -> None:
     ar.font.color.rgb = RGBColor.from_string(WHITE)
     ar.font.name = "Calibri"
 
-    doc.add_paragraph()
-    pairs = [
-        ("Organisation", ORG),
-        ("Location", LOCATION),
-        ("Contact", f"{CONTACT_NAME}, {CONTACT_TITLE}"),
-        ("Proposed next step", "Introductory call"),
-    ]
-    facts = doc.add_table(rows=4, cols=2)
-    facts.style = "Table Grid"
-    for i, (k, v) in enumerate(pairs):
-        facts.rows[i].cells[0].text = k
-        facts.rows[i].cells[1].text = v
-        shade_cell(facts.rows[i].cells[0], PALE_TEAL)
-        for cell in facts.rows[i].cells:
-            for p in cell.paragraphs:
-                for r in p.runs:
-                    r.font.size = Pt(9)
-                    r.font.name = "Calibri"
-                    r.font.color.rgb = RGBColor.from_string(SLATE)
-
     # ---- Project summary ----
     doc.add_page_break()
     add_para("Project summary", style="Heading 1", bold=True, size=18, color=NAVY)
     add_para(
         "FairBanks is asking to explore a partnership with the Jay Shetty ecosystem. "
-        "We already run a medical centre, Community Reach programmes, and a working FCHIP "
-        "platform in Kampala peri-urban communities. We are looking for collaborators who "
-        "care about wellbeing in practice - not only as a message, but as better access to care.",
+        "We already run a medical centre and Community Reach programmes in Kampala peri-urban "
+        "communities, and we are developing an FCHIP MVP - our community health intelligence "
+        "platform. We are looking for collaborators who care about wellbeing in practice - "
+        "not only as a message, but as better access to care.",
         size=11,
         color=SLATE,
         space_after=10,
@@ -607,7 +629,7 @@ def build_docx() -> None:
         [
             "FairBanks Medical Centre and Pharmacy - clinical care in Kampala",
             "Community Reach - CHWs/VHTs, outreach, school health, CHIS, and livelihoods",
-            "FCHIP - tools that help teams see risk earlier using community, facility, GIS, and climate data",
+            "FCHIP MVP in development - tools that help teams see risk earlier using community, facility, GIS, and climate data",
             "A partnership focused on shared purpose: storytelling, field delivery, and prevention",
         ]
     )
@@ -618,7 +640,7 @@ def build_docx() -> None:
     summary_rows = [
         ("Area", "Detail"),
         ("Jay Shetty ecosystem", "Platform, storytelling reach, and connections in wellbeing and impact"),
-        ("FairBanks", "Operating clinic, Community Reach work, FCHIP MVP, and local relationships"),
+        ("FairBanks", "Operating clinic, Community Reach work, FCHIP MVP in development, and local relationships"),
         ("Shared aim", "Stronger community health outcomes linked to compassion and practical care"),
         ("Next step", "A brief introductory conversation with partnerships or impact"),
     ]
@@ -686,7 +708,7 @@ def build_docx() -> None:
         ),
         (
             "FCHIP (Community Health Intelligence Platform)",
-            "A platform that brings together community, facility, map, and climate signals so teams can act earlier.",
+            "An MVP in development - a platform that brings together community, facility, map, and climate signals so teams can act earlier.",
         ),
     ]
     for title, body in pillars:
@@ -798,7 +820,7 @@ def build_docx() -> None:
             "Active Community Reach across Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and surrounding communities",
             "CHW/VHT engagement, maternal and child health, Gericare, chronic-disease screening, school and corporate health",
             "CHIS and livelihood pathways linked to affordable access",
-            "Working FCHIP MVP ready for structured field validation and evidence building",
+            "FCHIP MVP currently in development for structured field use and evidence building",
         ]
     )
     add_photo_row(
@@ -816,7 +838,7 @@ def build_docx() -> None:
         ("Community healthcare model established", "Completed"),
         ("FairBanks Medical Centre operational", "Completed"),
         ("Community Reach platform operational", "Completed"),
-        ("FCHIP working MVP", "Completed - validating"),
+        ("FCHIP MVP", "In development"),
         ("Structured pilot evidence & partner onboarding", "Next phase"),
         ("District and regional expansion", "Future vision"),
     ]
@@ -878,7 +900,7 @@ def build_docx() -> None:
         [
             "An operating community medical facility in Kampala",
             "Community Reach work shaped by local needs and relationships",
-            "FCHIP - a working MVP ready for careful validation",
+            "FCHIP - an MVP we are developing for careful field validation",
             "Healthcare leadership and trusted community relationships",
             "A team focused on careful, lasting community health work",
         ]
@@ -887,7 +909,7 @@ def build_docx() -> None:
     add_para("Closing", style="Heading 2", bold=True, size=13, color=TEAL)
     add_para(
         "We would welcome a conversation about how the Jay Shetty ecosystem and FairBanks can "
-        "work together on community health and wellbeing. As we validate FCHIP, we are looking "
+        "work together on community health and wellbeing. As we develop the FCHIP MVP, we are looking "
         "for partners who can help share the story, offer advice, and open useful introductions.",
     )
     add_para(
@@ -910,8 +932,9 @@ def build_docx() -> None:
         "Reception documenting care with care",
     )
     add_para(f"{CONTACT_NAME}  |  {CONTACT_TITLE}", bold=True, size=11, color=NAVY, space_after=2)
-    add_para(f"{ORG}  |  {LOCATION}", size=10, color=MUTED, space_after=2)
-    add_para(f"{WEBSITE}  |  {EMAIL}  |  {PHONE}", size=10, color=MUTED, space_after=12)
+    add_para(f"{ORG}", size=10, color=MUTED, space_after=2)
+    add_para(f"{LOCATION}  |  {PHONE}  |  {EMAIL}", size=10, color=MUTED, space_after=2)
+    add_para(WEBSITE, size=10, color=MUTED, space_after=12)
 
     OUT.mkdir(parents=True, exist_ok=True)
     doc.save(DOCX)
@@ -1126,7 +1149,7 @@ def build_pptx() -> None:
             text(s, subtitle, 0.58, 1.15, 11.8, 0.32, 13, MUTED)
 
     def footer(s, number):
-        text(s, "FairBanks | Strategic Partnership Brief", 0.55, 7.18, 6.0, 0.18, 9, MUTED)
+        text(s, f"FairBanks Medical Centre & Pharmacy  |  {LOCATION}", 0.55, 7.18, 8.5, 0.18, 9, MUTED)
         text(s, f"{number:02}", 12.2, 7.16, 0.5, 0.18, 9, MUTED, align=PP_ALIGN.RIGHT)
 
     def photo_pair(s, left_key, right_key, left_cap, right_cap, x=0.55, y=1.7, w=6.0, h=4.5):
@@ -1156,16 +1179,19 @@ def build_pptx() -> None:
     crop(s, photo("cover"), 0, 0, 13.333, 7.5)
     rect(s, 0, 0, 7.6, 7.5, NAVY)
     try:
-        s.shapes.add_picture(str(photo("logo")), Inches(0.65), Inches(0.35), height=Inches(0.5))
+        s.shapes.add_picture(str(photo("logo")), Inches(0.65), Inches(0.32), height=Inches(0.55))
     except Exception:
         pass
-    text(s, "STRATEGIC PARTNERSHIP BRIEF", 0.65, 1.1, 6.4, 0.3, 12, GOLD, True)
-    text(s, "FairBanks", 0.65, 1.55, 6.5, 0.7, 36, WHITE, True)
-    text(s, COVER_HEADLINE, 0.68, 2.4, 6.2, 0.4, 18, GOLD, True)
-    text(s, SUBTITLE, 0.68, 2.95, 6.2, 0.9, 15, WHITE)
-    text(s, SLOGAN, 0.68, 5.7, 5.0, 0.35, 14, GOLD, True)
-    text(s, "Proposed next step: a short introductory call", 0.68, 6.25, 6.0, 0.3, 12, WHITE)
-    text(s, f"{LOCATION}  |  Community health partnership proposal", 0.68, 6.7, 6.0, 0.28, 11, WHITE)
+    text(s, "STRATEGIC PARTNERSHIP BRIEF", 0.65, 1.0, 6.4, 0.28, 12, GOLD, True)
+    text(s, "FairBanks", 0.65, 1.4, 6.5, 0.55, 34, WHITE, True)
+    text(s, "Medical Centre & Pharmacy", 0.68, 1.95, 6.2, 0.35, 16, GOLD, True)
+    text(s, COVER_HEADLINE, 0.68, 2.45, 6.2, 0.35, 16, WHITE, True)
+    text(s, SUBTITLE, 0.68, 2.9, 6.2, 0.7, 14, WHITE)
+    text(s, SLOGAN, 0.68, 4.55, 5.5, 0.3, 14, GOLD, True)
+    text(s, f"{CONTACT_NAME}  ·  {CONTACT_TITLE}", 0.68, 5.15, 6.2, 0.28, 13, WHITE, True)
+    text(s, f"{LOCATION}  ·  {PHONE}", 0.68, 5.5, 6.2, 0.28, 12, WHITE)
+    text(s, f"{EMAIL}  ·  {WEBSITE}", 0.68, 5.85, 6.4, 0.28, 12, WHITE)
+    text(s, "Proposed next step: a short introductory call", 0.68, 6.45, 6.2, 0.3, 12, GOLD)
 
     # 2 Project summary
     s = slide()
@@ -1193,7 +1219,7 @@ def build_pptx() -> None:
             [
                 "Help sharing our work more widely",
                 "Advice and useful introductions",
-                "Support validating FCHIP carefully",
+                "Support as we develop the FCHIP MVP",
             ],
         ),
         (
@@ -1397,7 +1423,7 @@ def build_pptx() -> None:
 
     # 9 Traction
     s = slide()
-    band(s, "Traction", "Work already underway in Kampala communities", "Clinic, outreach, and a working FCHIP MVP.")
+    band(s, "Traction", "Work already underway in Kampala communities", "Clinic, outreach, and an FCHIP MVP in development.")
     photo_pair(
         s,
         "community",
@@ -1416,7 +1442,7 @@ def build_pptx() -> None:
             "Named Kampala peri-urban communities",
             "CHW/VHT, MCH, school health",
             "CHIS and livelihood pathways",
-            "Working FCHIP MVP in validation",
+            "FCHIP MVP currently in development",
         ],
         8.8,
         2.0,
@@ -1428,10 +1454,10 @@ def build_pptx() -> None:
 
     # 10 Roadmap
     s = slide()
-    band(s, "Roadmap", "Near-term validation, then careful growth", "Validate first. Grow when the evidence is clear.")
+    band(s, "Roadmap", "Near-term MVP development, then careful growth", "Develop the MVP first. Grow when the evidence is clear.")
     stages = [
         ("Done", "Model + centre", "Community Reach and medical centre live"),
-        ("Done", "FCHIP MVP", "Working platform ready for evidence"),
+        ("Now", "FCHIP MVP", "MVP in development for field use"),
         ("Next", "Validate", "Structured CHW/facility cohorts + proof cases"),
         ("Next", "Partner", "Storytelling, mentorship, impact introductions"),
         ("Future", "District", "Partner clinics and district structures"),
@@ -1441,7 +1467,7 @@ def build_pptx() -> None:
         col, row = i % 3, i // 3
         x, y = 0.55 + col * 4.2, 1.85 + row * 2.35
         rect(s, x, y, 3.95, 2.05, WHITE, LINE, True)
-        fill = TEAL if tag == "Done" else (ORANGE if tag == "Next" else GREEN)
+        fill = TEAL if tag == "Done" else (ORANGE if tag in ("Next", "Now") else GREEN)
         rect(s, x, y, 3.95, 0.42, fill)
         text(s, tag.upper(), x + 0.2, y + 0.08, 2.0, 0.28, 11, WHITE, True)
         text(s, title, x + 0.2, y + 0.6, 3.5, 0.35, 16, NAVY, True)
@@ -1511,7 +1537,7 @@ def build_pptx() -> None:
         [
             "Operating clinic and Community Reach programmes",
             "Trusted CHW/VHT and community relationships",
-            "Working FCHIP MVP ready to validate",
+            "FCHIP MVP currently in development",
             "A Uganda-first model that can grow carefully",
             "Leadership focused on practical community health results",
         ],
@@ -1560,15 +1586,17 @@ def build_pptx() -> None:
         16,
         WHITE,
     )
-    text(s, SLOGAN, 0.82, 5.5, 4.0, 0.35, 14, GOLD, True)
+    text(s, SLOGAN, 0.82, 5.2, 4.0, 0.3, 14, GOLD, True)
     text(
         s,
-        f"{CONTACT_NAME}  -  {CONTACT_TITLE}\n{EMAIL}  -  {PHONE}  -  {WEBSITE}",
+        f"{CONTACT_NAME}  ·  {CONTACT_TITLE}\n"
+        f"{ORG}  ·  {LOCATION}\n"
+        f"{EMAIL}  ·  {PHONE}  ·  {WEBSITE}",
         0.82,
-        6.05,
-        8.0,
-        0.7,
-        12,
+        5.7,
+        10.5,
+        1.1,
+        13,
         WHITE,
     )
 

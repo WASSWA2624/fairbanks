@@ -19,7 +19,7 @@ I am writing from FairBanks Medical Centre & Pharmacy, a community health organi
 
 ## About FairBanks
 
-We work through three connected parts: our medical centre and pharmacy, FairBanks Community Reach (outreach, health education, prevention, CHIS, and livelihoods), and FCHIP - the FairBanks Community Health Intelligence Platform. FCHIP helps community and facility teams see risk earlier using field data, facility records, maps, and climate signals. We already run clinical and community programmes in Kampala peri-urban areas, and we are validating a working FCHIP MVP.
+We work through three connected parts: our medical centre and pharmacy, FairBanks Community Reach (outreach, health education, prevention, CHIS, and livelihoods), and FCHIP - the FairBanks Community Health Intelligence Platform. FCHIP helps community and facility teams see risk earlier using field data, facility records, maps, and climate signals. We already run clinical and community programmes in Kampala peri-urban areas, and we are developing an FCHIP MVP for careful field use.
 
 ## Why we reached out
 
@@ -39,7 +39,7 @@ We would welcome a conversation about:
 
 - An operating community medical facility in Kampala
 - Active Community Reach work with CHWs/VHTs, school and community programmes, and livelihood pathways including CHIS
-- A working FCHIP MVP ready for careful validation
+- An FCHIP MVP currently in development
 - Local relationships and a leadership team focused on lasting community health results
 
 I have attached a short partnership brief and deck with more detail on our model, work to date, and partnership options.
