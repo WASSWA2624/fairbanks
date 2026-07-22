@@ -121,13 +121,13 @@ def fit_width(path: Path, max_width_in: float, max_height_in: float = 3.4) -> fl
 
 
 def concept_print_width(path: Path) -> Path:
-    """Crop empty side gutters so the Community Reach model fills printable width."""
+    """Prep Community Reach model for print: keep full diagram, trim black footer only."""
     from PIL import Image as PILImage
 
     cache = TMP / "balanced"
     cache.mkdir(parents=True, exist_ok=True)
     # Bump suffix when crop logic changes.
-    out = cache / f"{path.stem}_print_width_v4.jpg"
+    out = cache / f"{path.stem}_print_width_v5.jpg"
     if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:
         return out
 
@@ -136,36 +136,13 @@ def concept_print_width(path: Path) -> Path:
         w, h = im.size
         px = im.load()
 
-        def is_diagram(rgb) -> bool:
-            r, g, b = rgb
-            chroma = max(r, g, b) - min(r, g, b)
-            # Coloured step cards, icons, arrows - not cream paper / white padding.
-            return chroma > 28 and (r < 245 or g < 245 or b < 240)
-
-        lefts, rights = [], []
-        # Focus on the cascade body (skip extreme header/footer noise).
-        for y in range(int(h * 0.14), int(h * 0.82), 8):
-            xs = [x for x in range(0, w, 2) if is_diagram(px[x, y])]
-            if len(xs) >= 8:
-                lefts.append(xs[0])
-                rights.append(xs[-1])
-        if not lefts:
-            im.save(out, format="JPEG", quality=92, optimize=True)
-            return out
-
-        lefts.sort()
-        rights.sort()
-        # Percentiles ignore rare edge flares that would leave wide cream gutters.
-        left = max(0, lefts[len(lefts) // 5] - 18)
-        right = min(w, rights[(4 * len(rights)) // 5] + 18)
-
-        # Trim the solid black footer strip baked into concept_simple.jpeg.
-        top = 0
+        # Do not side-crop: earlier crops cut the return-loop arrow on the right.
+        # Only remove the solid black strip at the bottom of concept_simple.jpeg.
         bottom = h
         for y in range(h - 1, max(h // 2, 0), -1):
             row_black = 0
             samples = 0
-            for x in range(left, right, 12):
+            for x in range(0, w, 12):
                 samples += 1
                 if sum(px[x, y]) < 40:
                     row_black += 1
@@ -173,9 +150,9 @@ def concept_print_width(path: Path) -> Path:
                 bottom = y
             else:
                 break
-        bottom = max(bottom, top + 100)
+        bottom = max(bottom, 100)
 
-        cropped = im.crop((left, top, right, bottom))
+        cropped = im.crop((0, 0, w, bottom))
         cropped.save(out, format="JPEG", quality=92, optimize=True)
     return out
 
@@ -712,11 +689,12 @@ def build_docx() -> None:
         "the Data & Feedback layer - the part of the model that helps us learn from the field and improve how we serve.",
     )
     if CONCEPT.exists():
-        # Directly under the section intro (no forced page break before/after).
+        # Own page after the intro so the full diagram fits without cropping.
         tight = concept_print_width(CONCEPT)
         iw, ih = _pil_size(tight)
-        # Fit remaining page height after heading + intro; Word will flow if needed.
-        max_h = 8.5
+        doc.add_page_break()
+        # Full printable height for one A4 content page (margins already set).
+        max_h = 9.6
         fit_w = min(6.85, max_h * (iw / float(ih)))
         add_image(
             tight,
@@ -724,6 +702,7 @@ def build_docx() -> None:
             max_h + 0.05,
             caption="Community Reach - how the work connects",
         )
+        doc.add_page_break()
 
     add_bullets(
         [
