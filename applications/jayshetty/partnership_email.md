@@ -1,60 +1,43 @@
-# Jay Shetty — send-ready partnership email
+# Send-ready email — Jay Shetty partnerships
 
-Copy into your email client. Attach:
+**Attach only:** `applications/jayshetty/documents/jayshetty_pdf.pdf`
 
-- `documents/jayshetty_pdf.pdf`
-- `documents/jayshetty_ppt.pptx`
-
-Keep the subject line. Add a short personal note only if you have a warm introduction.
+Copy everything below the line into your email client. Keep the subject. Add one personal line at the top only if you have a warm introduction.
 
 ---
 
-**Subject:** Partnership proposal: FairBanks Community Health and the Jay Shetty ecosystem
+**Subject:** Partnership proposal from FairBanks Medical Centre, Kampala
 
 Dear Partnerships Team,
 
 I hope you are well.
 
-I am writing from FairBanks Medical Centre & Pharmacy, a community health organisation in Kampala, Uganda. We would like to explore a partnership with the Jay Shetty ecosystem around community wellbeing, preventive care, and practical support for families who often reach clinics only after illness has already taken hold.
+My name is Racheal Nabukeera, Managing Director of FairBanks Medical Centre & Pharmacy in Kampala, Uganda. I am writing to explore a possible partnership with the Jay Shetty ecosystem around community wellbeing, preventive care, and practical support for families who often reach clinics only after they are already sick.
 
-## About FairBanks
+FairBanks runs three connected parts of work: our medical centre and pharmacy, FairBanks Community Reach (outreach, health education, prevention, CHIS, and livelihoods), and FCHIP — the FairBanks Community Health Intelligence Platform. We are developing an FCHIP MVP so community and facility teams can see health risks earlier and act sooner.
 
-We work through three connected parts: our medical centre and pharmacy, FairBanks Community Reach (outreach, health education, prevention, CHIS, and livelihoods), and FCHIP - the FairBanks Community Health Intelligence Platform. FCHIP helps community and facility teams see risk earlier using field data, facility records, maps, and climate signals. We already run clinical and community programmes in Kampala peri-urban areas, and we are developing an FCHIP MVP for careful field use.
-
-## Why we reached out
-
-Jay Shetty's work speaks to wellbeing, compassion, and stronger communities. Those themes match what we try to practise every day - through primary care, outreach, and tools that help people get help sooner.
-
-## Possible areas of collaboration
-
-We would welcome a conversation about:
+Jay Shetty’s public work on wellbeing, compassion, and stronger communities aligns closely with what we practise every day through primary care and community programmes. We would welcome a conversation about areas such as:
 
 - Community health and wellness initiatives
 - Preventive healthcare and mental wellbeing programmes
-- AI for social impact and digital health
 - Storytelling and advocacy for fairer access to care
-- Social enterprise growth support and introductions to aligned partners
+- Social enterprise growth support and useful introductions
 
-## What FairBanks offers
+I have attached a short partnership brief (PDF) with more detail on our model, current work, and how a collaboration might look.
 
-- An operating community medical facility in Kampala
-- Active Community Reach work with CHWs/VHTs, school and community programmes, and livelihood pathways including CHIS
-- An FCHIP MVP currently in development
-- Local relationships and a leadership team focused on lasting community health results
+If this feels relevant, we would be glad to schedule a brief introductory call of about 10 minutes with your partnerships or impact team.
 
-I have attached a short partnership brief and deck with more detail on our model, work to date, and partnership options.
-
-If useful, we would be glad to schedule a brief introductory call (about 10 minutes) with your partnerships or impact team.
-
-Thank you for considering this. We admire the work Jay Shetty and his team continue to do.
+Thank you for your time and consideration.
 
 Warm regards,
 
-Racheal Nabukeera Sekagiri  
+Racheal Nabukeera  
 Managing Director  
 FairBanks Medical Centre & Pharmacy  
 Kampala, Uganda  
 
 Website: https://fairbanksmedicalcentre.org  
 Email: info@fairbanksmedicalcentre.org  
-Tel: +256 777 462 398
+Tel: +256 777 462 398  
+
+Your health, our mission.
