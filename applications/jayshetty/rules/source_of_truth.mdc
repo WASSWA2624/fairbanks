@@ -1,0 +1,50 @@
+---
+description: Jay Shetty strategic partnership outreach
+globs: applications/jayshetty/**
+alwaysApply: false
+---
+
+# Jay Shetty — partnership source of truth
+
+Follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, and `fairBanks_refined_project_idea.mdc`. Chat notes that shaped this pack live in `jayshetty/rules/jayshetty.mdc` (archive only).
+
+## Positioning
+
+This is a **strategic partnership pitch**, not a sponsorship or donation ask. Lead with value exchange. Do not open with funding.
+
+**FairBanks** is a community health ecosystem with three pillars:
+
+1. **FairBanks Medical Centre & Pharmacy** — clinical delivery hub
+2. **FairBanks Community Reach / Social Enterprise** — outreach, education, prevention, CHIS, livelihoods
+3. **FCHIP** (FairBanks Community Health Intelligence Platform) — AI/GIS/climate intelligence on the Data & Feedback loop
+
+Use **FCHIP** (canonical), not CHIP.
+
+## Alignment themes (Jay Shetty)
+
+Community wellbeing · preventive healthcare · family health · mental wellness · compassion-driven leadership · sustainable social impact · purposeful living
+
+## Ask menu (invite, do not demand)
+
+Strategic impact partnership · community wellness / mental wellbeing programmes · global storytelling & advocacy · social enterprise growth · introductions to impact investors or philanthropic partners · mentorship during MVP validation — **not** “please fund our clinic.”
+
+## Narrative spine
+
+- Live Community Reach cascade in Kampala peri-urban communities
+- Medical centre as real-world lab for FCHIP
+- Working FCHIP MVP → validate → scale
+- Inspiration → measurable health outcomes
+
+## Deliverables
+
+Synced set only via `build_jayshetty_docs.py`:
+
+- `documents/jayshetty_word.docx`
+- `documents/jayshetty_pdf.pdf`
+- `documents/jayshetty_ppt.pptx`
+
+Include the send-ready email inside Word/PDF. Slogan: **Your health, our mission.** Prefer `.cursor/concept_improved.jpeg` for partners; real photos from `assets/`.
+
+## Honesty
+
+No invented patient counts, revenue, signed Jay Shetty links, or impact metrics. Prefer “thousands reached through outreach” only if confirmed; otherwise qualitative traction language.

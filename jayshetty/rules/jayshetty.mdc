@@ -1,6 +1,16 @@
 ---
-alwaysApply: true
+description: Archive chat notes for Jay Shetty outreach (not the live SoT)
+globs: jayshetty/**
+alwaysApply: false
 ---
+
+# Archive — Jay Shetty outreach chat
+
+Live pack and source of truth: `applications/jayshetty/` (`rules/source_of_truth.mdc`, `build_jayshetty_docs.py`, `documents/`).
+Use **FCHIP** (canonical). This file keeps the original conversation only.
+
+---
+
 Do you understand this ?        Subject: Partnership Pitch: [Your Project Name] × Jay Shetty EcosystemHi Partnerships Team,I am reaching out from [Your Company/Project Name] because we have built a system that directly aligns with Jay’s mission of [mention specific focus, e.g., mental wellness infrastructure / accessible wisdom / community growth].The Project: [1–2 punchy sentences explaining what your project does and its current market traction].The Alignment: We notice Jay has deeply invested in [e.g., creator scaling via House of 1212 / everyday wellness via Juni]. Our project scales this exact impact by [explain how you complement his current ecosystem].The Ask & Exchange: We are looking for [specify: strategic project support / a joint venture partnership], and in return, we bring [specify: a built-in audience of X, unique tech infrastructure, proprietary data, etc.].I have attached a brief, 3-page executive deck detailing our systems, growth metrics, and partnership models. We would love to book a brief 10-minute discovery call with your venture team.Best regards,[Your Name][Your Title & Hyperlink to Website]
 
 Yes. I understand it well.
