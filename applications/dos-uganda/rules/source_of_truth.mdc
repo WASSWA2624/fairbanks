@@ -20,8 +20,9 @@ Synced `documents/` (Word, PDF, PPT) must comply with the Uganda call and **in-s
 ## FairBanks scope
 
 - Phase 1 **SOI** for **Addendum E — Uganda**, Window 2a: due **31 July 2026, 5:00 PM EDT**.
-- Primary: **Track 2, Objective 4** (interoperable digital health → progressive **GOU ownership**). Name objective(s) clearly.
-- Bridge last-mile CHW/VHT data into national stack — not a parallel silo. Align with **NDHA / OpenHIE**, MoH authority, and named systems (eCHIS, EMRs e.g. eAfya/ClinicMaster, DHIS2/eIDSR, National Data Warehouse, iHRIS, LIS as relevant). Document staffing/recurrent-cost transition by close.
+- Primary: **Track 2, Objective 4** (interoperable digital health → progressive **GOU ownership**). Name objective(s) clearly. Focused eCHIS/EMR/DHIS2/eIDSR/NDW/iHRIS subset is allowed (Round 2a Q&A); do not claim ownership of LIS/warehouse systems.
+- Bridge last-mile CHW/VHT data into national stack — not a parallel silo; **complement** existing USG digital health investments. Align with **NDHA / OpenHIE**, MoH authority, and named systems. Document staffing/recurrent-cost transition to MoH by close.
+- Partner table: Phase 1 **coordination partners only** (not subrecipients) unless real subawards are proposed with APS-required POC/share fields.
 - Root in FairBanks cascade; FCHIP = FairBanks component / intelligence layer. Win-win for MoH/USG/districts/CHWs/FairBanks. Slogan only: **Your health, our mission.**
 - Current Step-1 ask (provisional): **$1,850,000** federal share; **$0** cost share; **36 months**. Adjust before final upload if scope changes.
 

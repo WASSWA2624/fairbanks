@@ -100,14 +100,17 @@ SOLUTION = [
     "Health Intelligence Platform (FCHIP) - that lets CHWs and VHTs record household "
     "and visit information on phones even offline, sync it safely, match it to national "
     "reporting needs, and help the clinic and district act. FCHIP is not meant to replace "
-    "Uganda's national systems. It is a bridge so community work shows up where it "
-    "should and helps prevent problems earlier.",
-    "We will focus on the links that matter most for our catchments: household and "
-    "visit data in line with eCHIS; referral and visit handoff into clinic systems "
-    "(such as eAfya or ClinicMaster where used); summary reporting into DHIS2 and "
-    "alerts that support eIDSR; readiness to feed the National Data Warehouse; and "
-    "CHW/VHT workforce lists that can align with iHRIS where the rules allow. We will "
-    "follow NDHA and OpenHIE-style sharing rules, under Ministry of Health guidance.",
+    "Uganda's national systems or duplicate existing U.S.-supported digital health work. "
+    "It is a complementary bridge so community work shows up where it should and helps "
+    "prevent problems earlier - without creating a parallel silo.",
+    "We deliberately focus on a feasible subset of Objective 4 systems for our "
+    "catchments: household and visit data in line with eCHIS; referral and visit handoff "
+    "into clinic systems (such as eAfya or ClinicMaster where used); summary reporting "
+    "into DHIS2 and alerts that support eIDSR; readiness to feed the National Data "
+    "Warehouse; and CHW/VHT workforce lists that can align with iHRIS where the rules "
+    "allow. Laboratory, warehouse, and other named national systems stay under Ministry "
+    "and partner lead; we coordinate rather than rebuild them. We will follow NDHA and "
+    "OpenHIE-style sharing rules, under Ministry of Health guidance.",
 ]
 
 WIN_WIN_INTRO = (
@@ -119,8 +122,8 @@ WIN_WIN = [
     [
         "Uganda / Ministry of Health",
         "More complete community data in eCHIS, DHIS2/eIDSR, and related national "
-        "systems; clearer proof that referrals were closed; and a written plan to "
-        "hand over staff roles and running costs to government by the end of the project.",
+        "systems; clearer proof that referrals were closed; and documented transition "
+        "of staffing and recurrent operating costs to MoH by project close.",
     ],
     [
         "U.S. Department of State / GHSD",
@@ -159,8 +162,8 @@ ACTIVITIES = [
     "A4. Give clinics and programmes clear dashboards and hotspot maps that help "
     "trigger outreach, referrals, and supply planning.",
     "A5. Write the sharing rules, data-handling guides, training materials, and a "
-    "step-by-step government handoff plan (including staff roles and running costs) "
-    "ready for a full proposal if we are invited.",
+    "documented transition plan for staffing and recurrent operating costs to the "
+    "Ministry of Health by project close - ready for a full proposal if we are invited.",
 ]
 
 APPROACH = [
@@ -170,13 +173,16 @@ APPROACH = [
     "referrals; FCHIP helps the information move back and forth so teams can act.",
     "We will build for sharing, not for locking data away. Priority links are eCHIS, "
     "DHIS2/eIDSR, clinic record systems (eAfya or ClinicMaster where used), and the "
-    "National Data Warehouse when the national formats are confirmed.",
+    "National Data Warehouse when the national formats are confirmed. We will "
+    "coordinate with incumbent digital health investments so FCHIP feeds government "
+    "systems rather than competing with them.",
     "Digital work must support, not distract from, life-saving care. Community forms "
     "will include HIV, TB, and malaria flags where useful, plus maternal and child "
     "pathways, immunisation follow-up, and early outbreak warning.",
     "We will shape forms and alerts with CHWs, clinic staff, and local leaders; train "
     "Ugandan staff who will keep the system going; and write every link clearly for "
-    "Ministry of Health review.",
+    "Ministry of Health review, including how progressive GOU responsibility, staffing, "
+    "and recurrent costs move off the award by close.",
     "We start where FairBanks already works - Bukoto, Kyebando, Kisaasi, Kamwokya, "
     "Kikaaya and nearby communities - and design so other districts with CHW/VHT "
     "networks can copy the approach later.",
@@ -200,9 +206,9 @@ OUTCOMES = [
     ],
     [
         "Build self-reliance",
-        "A handoff package with guides, standard procedures, training, hosting "
-        "options, and a costed path to move running costs onto domestic systems by "
-        "project close.",
+        "Documented transition of staffing and recurrent operating costs to the "
+        "Ministry of Health by project close, with guides, training, and hosting "
+        "options that Ugandan teams can run.",
     ],
     [
         "Support U.S. interest",
@@ -221,6 +227,9 @@ CAPACITY = [
     "above. This is not starting from zero.",
     "We already keep digital clinic records and pharmacy dispensing data that support "
     "day-to-day facility work.",
+    "Community Health Insurance (CHIS) and livelihood links already run inside "
+    "FairBanks Community Reach - useful context for sustainable community financing, "
+    "though this SOI asks only for Objective 4 digital interoperability work.",
     "Research, ethics, and skills training are part of how FairBanks works with "
     "communities and partners.",
 ]
@@ -282,15 +291,18 @@ CLOSING = (
 )
 
 OUTCOMES_INTRO = (
-    "Success means people get help earlier, government systems get stronger, work "
-    "runs with less waste, Uganda can carry more of the load, and U.S. health "
-    "investments stay protected:"
+    "Success advances the Department of State America First Global Health Strategy: "
+    "save lives, strengthen health systems, enhance efficiency, foster self-reliance, "
+    "and protect U.S. health investments that support American safety, strength, and "
+    "prosperity:"
 )
 
 PARTNERS_INTRO = (
-    "The partners below are early ideas for this stage. Names, contacts, and any "
-    "shared budget amounts can change in Phase 2 or joint design if we are invited. "
-    "For this Statement of Interest, FairBanks Medical Centre is the lead applicant."
+    "The partners below are coordination partners for Phase 1, not proposed "
+    "subrecipients. FairBanks Medical Centre is the sole lead applicant; no federal "
+    "share is allocated to partners at this stage. If Phase 2 or joint design proposes "
+    "subawards, we will provide organisation names, points of contact (phone and "
+    "email), federal share, cost share, and refined roles then."
 )
 
 APPROACH_LABEL = "How we will work:"
@@ -314,11 +326,13 @@ def photo(key: str) -> Path:
 
 def embed(key_or_path, max_px: int = 1500) -> str:
     from PIL import Image as PILImage
+    from PIL import ImageDraw, ImageFont
 
     src = photo(key_or_path) if key_or_path in PHOTOS else Path(key_or_path)
     cache = REPO / "tmp" / f"{SLUG}_assets"
     cache.mkdir(parents=True, exist_ok=True)
-    out = cache / f"{src.stem}_opt.jpg"
+    suffix = "_fchip" if key_or_path == "architecture" else ""
+    out = cache / f"{src.stem}_opt{suffix}.jpg"
     if out.exists() and out.stat().st_mtime >= src.stat().st_mtime:
         return str(out)
     with PILImage.open(src) as im:
@@ -327,6 +341,31 @@ def embed(key_or_path, max_px: int = 1500) -> str:
         scale = min(1.0, max_px / float(max(iw, ih)))
         if scale < 1.0:
             im = im.resize((int(iw * scale), int(ih * scale)), PILImage.Resampling.LANCZOS)
+        # Shared asset labels the hub "CHIP"; FairBanks branding is FCHIP.
+        if key_or_path == "architecture":
+            draw = ImageDraw.Draw(im)
+            w, h = im.size
+            # White label badge under the hub (approx. full-image coords).
+            band = (int(w * 0.430), int(h * 0.518), int(w * 0.570), int(h * 0.558))
+            draw.rounded_rectangle(band, radius=max(4, int(h * 0.008)), fill=(255, 255, 255))
+            # Also blank any remnant of the original CHIP text just below.
+            draw.rectangle(
+                (int(w * 0.445), int(h * 0.548), int(w * 0.555), int(h * 0.568)),
+                fill=(232, 245, 245),
+            )
+            try:
+                font = ImageFont.truetype("arialbd.ttf", max(16, int(h * 0.028)))
+            except OSError:
+                try:
+                    font = ImageFont.truetype("arial.ttf", max(16, int(h * 0.028)))
+                except OSError:
+                    font = ImageFont.load_default()
+            label = "FCHIP"
+            bbox = draw.textbbox((0, 0), label, font=font)
+            tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+            tx = (band[0] + band[2] - tw) // 2
+            ty = (band[1] + band[3] - th) // 2 - 1
+            draw.text((tx, ty), label, fill=(13, 110, 110), font=font)
         im.save(out, format="JPEG", quality=82, optimize=True)
     return str(out)
 
@@ -829,7 +868,7 @@ def build_pptx():
     tb(s, Inches(0.55), SH - Inches(2.2), Inches(12), Inches(0.35),
        ORG_LINE, size=13, bold=True, italic=True, color="F2C79B")
     tb(s, Inches(0.55), SH - Inches(1.7), Inches(12), Inches(0.45),
-       "Objective 4 — Helping community visit data reach eCHIS, clinic records, and DHIS2/eIDSR",
+       "Objective 4 - Helping community visit data reach eCHIS, clinic records, and DHIS2/eIDSR",
        size=12, italic=True, color="D0E8E8")
     tb(s, Inches(0.55), SH - Inches(1.1), Inches(12), Inches(0.3),
        f"Phase 1 Statement of Interest  |  {FEDERAL_SHARE}  |  {PROJECT_LENGTH}  |  Due 31 July 2026",
