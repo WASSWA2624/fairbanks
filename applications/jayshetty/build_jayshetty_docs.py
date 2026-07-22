@@ -41,8 +41,8 @@ WHITE = "FFFFFF"
 
 SLOGAN = "Your health, our mission."
 PROGRAMME = "Strategic Partnership Brief"
-TITLE = "FairBanks and Jay Shetty"
-SUBTITLE = "A partnership proposal for community health and wellbeing"
+TITLE = "Partnership proposal"
+SUBTITLE = "Prepared for the Jay Shetty partnerships and impact team"
 ORG = "FairBanks Medical Centre & Pharmacy"
 CONTACT_NAME = "Racheal Nabukeera Sekagiri"
 CONTACT_TITLE = "Managing Director"
@@ -55,10 +55,11 @@ COVER_HEADLINE = "Community health rooted in Uganda"
 COVER_SUMMARY = (
     "FairBanks Medical Centre & Pharmacy is a community health organisation in Kampala. "
     "We combine clinical care, Community Reach, and FCHIP - our community health intelligence "
-    "platform - to help families get care earlier and closer to home. This brief explores how "
-    "we might work with the Jay Shetty ecosystem on shared goals around wellbeing, compassion, "
+    "platform - to help families get care earlier and closer to home. This brief invites a "
+    "conversation with the Jay Shetty ecosystem about shared goals around wellbeing, compassion, "
     "and practical impact."
 )
+LOGO = ASSETS / "fairbanks_logo.jpeg"
 
 PHOTOS = {
     "cover": "outreach_facilitator_canopy_01.jpg",
@@ -117,6 +118,138 @@ def fit_width(path: Path, max_width_in: float, max_height_in: float = 3.4) -> fl
     if h > max_height_in:
         w = max_height_in / aspect
     return w
+
+
+def concept_print_width(path: Path) -> Path:
+    """Crop empty side gutters so the Community Reach model fills printable width."""
+    from PIL import Image as PILImage
+
+    cache = TMP / "balanced"
+    cache.mkdir(parents=True, exist_ok=True)
+    # Bump suffix when crop logic changes.
+    out = cache / f"{path.stem}_print_width_v4.jpg"
+    if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:
+        return out
+
+    with PILImage.open(path) as im:
+        im = im.convert("RGB")
+        w, h = im.size
+        px = im.load()
+
+        def is_diagram(rgb) -> bool:
+            r, g, b = rgb
+            chroma = max(r, g, b) - min(r, g, b)
+            # Coloured step cards, icons, arrows - not cream paper / white padding.
+            return chroma > 28 and (r < 245 or g < 245 or b < 240)
+
+        lefts, rights = [], []
+        # Focus on the cascade body (skip extreme header/footer noise).
+        for y in range(int(h * 0.14), int(h * 0.82), 8):
+            xs = [x for x in range(0, w, 2) if is_diagram(px[x, y])]
+            if len(xs) >= 8:
+                lefts.append(xs[0])
+                rights.append(xs[-1])
+        if not lefts:
+            im.save(out, format="JPEG", quality=92, optimize=True)
+            return out
+
+        lefts.sort()
+        rights.sort()
+        # Percentiles ignore rare edge flares that would leave wide cream gutters.
+        left = max(0, lefts[len(lefts) // 5] - 18)
+        right = min(w, rights[(4 * len(rights)) // 5] + 18)
+
+        # Trim the solid black footer strip baked into concept_simple.jpeg.
+        top = 0
+        bottom = h
+        for y in range(h - 1, max(h // 2, 0), -1):
+            row_black = 0
+            samples = 0
+            for x in range(left, right, 12):
+                samples += 1
+                if sum(px[x, y]) < 40:
+                    row_black += 1
+            if samples and row_black / samples > 0.85:
+                bottom = y
+            else:
+                break
+        bottom = max(bottom, top + 100)
+
+        cropped = im.crop((left, top, right, bottom))
+        cropped.save(out, format="JPEG", quality=92, optimize=True)
+    return out
+
+
+def concept_print_slices(
+    path: Path,
+    *,
+    width_in: float = 6.85,
+    page_height_in: float = 9.6,
+) -> list[Path]:
+    """
+    Full printable-width slices cut on cream gutters between steps.
+    Keeps each page's diagram fully readable (no mid-box cut-off).
+    """
+    from PIL import Image as PILImage
+
+    tight = concept_print_width(path)
+    cache = TMP / "balanced"
+    cache.mkdir(parents=True, exist_ok=True)
+
+    with PILImage.open(tight) as im:
+        im = im.convert("RGB")
+        iw, ih = im.size
+        px = im.load()
+
+        def row_cream(y: int) -> float:
+            cream = n = 0
+            for x in range(int(iw * 0.15), int(iw * 0.75), 4):
+                r, g, b = px[x, y]
+                n += 1
+                if r >= 235 and g >= 230 and b >= 220:
+                    cream += 1
+            return cream / max(n, 1)
+
+        # Prefer natural breaks in cream space between cascade steps.
+        bands = [y for y in range(0, ih, 20) if row_cream(y) > 0.85]
+        midpoints: list[int] = []
+        start = prev = None
+        for y in bands:
+            if start is None:
+                start = prev = y
+            elif y - prev <= 40:
+                prev = y
+            else:
+                midpoints.append((start + prev) // 2)
+                start = prev = y
+        if start is not None:
+            midpoints.append((start + prev) // 2)
+
+        max_slice_h = max(1, int(round(iw * (page_height_in / width_in))))
+        cuts: list[int] = []
+        y = 0
+        while y + max_slice_h < ih:
+            window = [m for m in midpoints if y + int(max_slice_h * 0.45) <= m <= y + max_slice_h - 40]
+            if window:
+                # Cut at the cream band closest to a comfortable page fill.
+                target = y + int(max_slice_h * 0.88)
+                cut = min(window, key=lambda m: abs(m - target))
+            else:
+                cut = y + max_slice_h
+            cuts.append(cut)
+            y = cut
+        cuts.append(ih)
+
+        slices: list[Path] = []
+        y0 = 0
+        for idx, y1 in enumerate(cuts, start=1):
+            box = (0, y0, iw, y1)
+            out = cache / f"{path.stem}_slice_v4_{idx:02d}_w{int(width_in * 100)}.jpg"
+            if not (out.exists() and out.stat().st_mtime >= tight.stat().st_mtime):
+                im.crop(box).save(out, format="JPEG", quality=92, optimize=True)
+            slices.append(out)
+            y0 = y1
+        return slices
 
 
 def cover_crop(
@@ -325,20 +458,33 @@ def build_docx() -> None:
         spacer.paragraph_format.space_after = Pt(4)
 
 # ---- Cover ----
-    brand = doc.add_table(rows=1, cols=1)
-    brand.autofit = True
-    bc = brand.rows[0].cells[0]
-    shade_cell(bc, NAVY)
-    bc.text = ""
-    bp = bc.paragraphs[0]
-    bp.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    br = bp.add_run(f"{PROGRAMME}  |  {SLOGAN}")
-    br.bold = True
-    br.font.size = Pt(11)
-    br.font.color.rgb = RGBColor.from_string(GOLD)
-    br.font.name = "Calibri"
+    # FairBanks branding strip with logo
+    brand = doc.add_table(rows=1, cols=2)
+    brand.autofit = False
+    brand.allow_autofit = False
+    brand.columns[0].width = Inches(1.15)
+    brand.columns[1].width = Inches(5.7)
+    left_c, right_c = brand.rows[0].cells
+    shade_cell(left_c, NAVY)
+    shade_cell(right_c, NAVY)
+    set_cell_border(left_c, NAVY)
+    set_cell_border(right_c, NAVY)
+    left_c.text = ""
+    lp = left_c.paragraphs[0]
+    lp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    if LOGO.exists():
+        run = lp.add_run()
+        run.add_picture(str(LOGO), height=Inches(0.55))
+    right_c.text = ""
+    rp = right_c.paragraphs[0]
+    rp.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    rr = rp.add_run(f"{ORG}\n{PROGRAMME}  |  {SLOGAN}")
+    rr.bold = True
+    rr.font.size = Pt(11)
+    rr.font.color.rgb = RGBColor.from_string(GOLD)
+    rr.font.name = "Calibri"
 
-    add_para(TITLE, bold=True, size=28, color=NAVY, space_after=4)
+    add_para(TITLE, bold=True, size=22, color=NAVY, space_after=4)
     add_para(COVER_HEADLINE, bold=True, size=15, color=TEAL, space_after=4)
     add_para(SUBTITLE, size=12, color=MUTED, space_after=8)
 
@@ -561,14 +707,19 @@ def build_docx() -> None:
         "the Data & Feedback layer - the part of the model that helps us learn from the field and improve how we serve.",
     )
     if CONCEPT.exists():
-        # Full printable width (A4 content: 8.27 - 0.7 - 0.7 ≈ 6.87").
-        # Tall portrait - allow height so width is not shrunk by the cap.
+        # Directly under the section intro (no forced page break before/after).
+        tight = concept_print_width(CONCEPT)
+        iw, ih = _pil_size(tight)
+        # Fit remaining page height after heading + intro; Word will flow if needed.
+        max_h = 8.5
+        fit_w = min(6.85, max_h * (iw / float(ih)))
         add_image(
-            CONCEPT,
-            6.85,
-            13.0,
+            tight,
+            fit_w,
+            max_h + 0.05,
             caption="Community Reach - how the work connects",
         )
+
     add_bullets(
         [
             "Community members identify needs and own solutions",
@@ -1009,12 +1160,12 @@ def build_pptx() -> None:
     except Exception:
         pass
     text(s, "STRATEGIC PARTNERSHIP BRIEF", 0.65, 1.1, 6.4, 0.3, 12, GOLD, True)
-    text(s, "FairBanks &\nJay Shetty", 0.65, 1.55, 6.5, 1.4, 34, WHITE, True)
-    text(s, COVER_HEADLINE, 0.68, 3.2, 6.2, 0.4, 18, GOLD, True)
-    text(s, SUBTITLE, 0.68, 3.75, 6.2, 0.9, 15, WHITE)
+    text(s, "FairBanks", 0.65, 1.55, 6.5, 0.7, 36, WHITE, True)
+    text(s, COVER_HEADLINE, 0.68, 2.4, 6.2, 0.4, 18, GOLD, True)
+    text(s, SUBTITLE, 0.68, 2.95, 6.2, 0.9, 15, WHITE)
     text(s, SLOGAN, 0.68, 5.7, 5.0, 0.35, 14, GOLD, True)
     text(s, "Proposed next step: a short introductory call", 0.68, 6.25, 6.0, 0.3, 12, WHITE)
-    text(s, f"{LOCATION}  |  Community health partnership", 0.68, 6.7, 6.0, 0.28, 11, WHITE)
+    text(s, f"{LOCATION}  |  Community health partnership proposal", 0.68, 6.7, 6.0, 0.28, 11, WHITE)
 
     # 2 Project summary
     s = slide()
@@ -1119,34 +1270,31 @@ def build_pptx() -> None:
     rect(s, 0, 0, 13.333, 0.12, TEAL)
     text(s, "HOW WE CARE", 0.45, 0.22, 4.0, 0.25, 11, ORANGE, True)
     text(s, "Community Reach - summarized model", 0.45, 0.45, 9.0, 0.4, 24, NAVY, True)
-    iw, ih = _pil_size(CONCEPT) if CONCEPT.exists() else (4800, 8936)
+    model_img = concept_print_width(CONCEPT) if CONCEPT.exists() else CONCEPT
+    iw, ih = _pil_size(model_img) if model_img.exists() else (4120, 8936)
     aspect = iw / float(ih)
-    cascade_h = 6.15
-    cascade_w = cascade_h * aspect
-    cascade_x = 0.45
+    # Span nearly the full slide width; height follows aspect.
+    cascade_w = 12.4
+    cascade_h = cascade_w / aspect
+    if cascade_h > 5.55:
+        cascade_h = 5.55
+        cascade_w = cascade_h * aspect
+    cascade_x = (13.333 - cascade_w) / 2
     cascade_y = 0.95
     rect(s, cascade_x, cascade_y, cascade_w + 0.16, cascade_h + 0.16, WHITE, LINE, True)
-    if CONCEPT.exists():
-        fit(s, CONCEPT, cascade_x + 0.08, cascade_y + 0.08, cascade_w, cascade_h)
-    text(s, "Key points", cascade_x + cascade_w + 0.45, 1.15, 4.5, 0.35, 16, TEAL, True)
-    bullets(
+    if model_img.exists():
+        fit(s, model_img, cascade_x + 0.08, cascade_y + 0.08, cascade_w, cascade_h)
+    text(
         s,
-        [
-            "It starts with the community",
-            "CHWs / VHTs are the bridge",
-            "Care and education close to home",
-            "Medical centre treats and supports",
-            "We learn and improve together",
-            "Families grow stronger (CHIS / livelihoods)",
-            "And it all comes back to you",
-        ],
-        cascade_x + cascade_w + 0.4,
-        1.65,
-        13.1 - (cascade_x + cascade_w + 0.55),
-        5.2,
-        16,
+        "FCHIP supports learning from field data  ·  It starts with the community  ·  CHWs bridge care  ·  Families grow stronger",
+        0.55,
+        6.85,
+        12.2,
+        0.35,
+        12,
+        MUTED,
+        align=PP_ALIGN.CENTER,
     )
-    text(s, "FCHIP supports learning from field data.", cascade_x + cascade_w + 0.45, 6.55, 4.8, 0.35, 13, ORANGE, True)
     footer(s, 5)
 
     # 6 Problem
