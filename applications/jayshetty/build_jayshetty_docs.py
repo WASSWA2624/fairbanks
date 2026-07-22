@@ -54,17 +54,27 @@ PHOTOS = {
     "cover": "outreach_facilitator_canopy_01.jpg",
     "logo": "fairbanks_logo.jpeg",
     "facility": "facility_exterior_entrance_01.jpg",
-    "pharmacy": "pharmacy_exterior_01.jpg",
+    "facility_branded": "facility_exterior_branded_entrance_01.jpeg",
+    "facility_street": "facility_exterior_street_view_01.jpg",
+    "pharmacy": "pharmacy_storefront_01.jpeg",
+    "pharmacy_alt": "pharmacy_exterior_01.jpg",
     "outreach": "outreach_bp_screening.jpeg",
+    "outreach_camp": "outreach_medical_camp_01.jpg",
     "community": "outreach_audience_full_group_01.jpg",
+    "audience": "outreach_audience_attentive_01.jpg",
     "mobile": "outreach_mobile_phone_demo_01.jpg",
     "dashboard": "dashboard_demo.png",
     "architecture": "data_flow_iso_labeled.png",
     "gis": "gis_hotspots.png",
     "maternal": "bloom_maternal_health_participant_01.jpg",
-    "gericare": "gericare_wheelchair_assist.jpeg",
+    "gericare": "gericare_wheelchair_assist_02.jpg",
+    "doctor_hands": "clinic_doctor_patient_hands_01.jpg",
+    "lab": "clinic_lab_fingerprick_01.jpg",
+    "compassion": "clinic_consult_compassion_01.jpg",
+    "reception": "reception_wheelchair_checkin_01.jpg",
+    "reception_staff": "reception_staff_documents_01.jpg",
     "team": "staff_team_reception.jpeg",
-    "training": "indoor_training_staff_presenting_01.jpg",
+    "training": "indoor_training_audience_02.jpg",
     "mission": "reception_mission_wall.jpeg",
     "mothers": "waiting_room_mothers_01.jpeg",
     "canopy": "outreach_facilitator_group_01.jpg",
@@ -147,8 +157,8 @@ def fit_width(path: Path, max_width_in: float, max_height_in: float = 3.4) -> fl
 def build_docx() -> None:
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH
-    from docx.oxml import OxmlElement
-    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement, parse_xml
+    from docx.oxml.ns import nsdecls, qn
     from docx.shared import Inches, Pt, RGBColor
 
     doc = Document()
@@ -205,19 +215,90 @@ def build_docx() -> None:
             run.font.color.rgb = RGBColor.from_string(SLATE)
             run.font.name = "Calibri"
 
-    def add_image(path: Path, width: float = 6.6, height_cap: float = 3.2):
+    def set_cell_border(cell, color=LINE, sz="4") -> None:
+        tc = cell._tc
+        tc_pr = tc.get_or_add_tcPr()
+        borders = parse_xml(
+            f'<w:tcBorders {nsdecls("w")}>'
+            f'<w:top w:val="nil"/>'
+            f'<w:left w:val="nil"/>'
+            f'<w:bottom w:val="nil"/>'
+            f'<w:right w:val="nil"/>'
+            f"</w:tcBorders>"
+        )
+        tc_pr.append(borders)
+
+    def add_caption(text: str) -> None:
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(2)
+        p.paragraph_format.space_after = Pt(10)
+        run = p.add_run(text)
+        run.italic = True
+        run.font.size = Pt(9)
+        run.font.color.rgb = RGBColor.from_string(MUTED)
+        run.font.name = "Calibri"
+
+    def add_image(path: Path, width: float = 6.6, height_cap: float = 3.2, caption: str = ""):
         w = fit_width(path, width, height_cap)
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.paragraph_format.space_after = Pt(10)
+        p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_after = Pt(2 if caption else 10)
         p.add_run().add_picture(str(path), width=Inches(w))
+        if caption:
+            add_caption(caption)
+
+    def add_photo_row(
+        left_key: str,
+        right_key: str,
+        left_caption: str,
+        right_caption: str,
+        *,
+        width: float = 3.2,
+        height_cap: float = 2.35,
+    ) -> None:
+        """Two related photos side by side, each with its own caption."""
+        left_path, right_path = photo(left_key), photo(right_key)
+        table = doc.add_table(rows=2, cols=2)
+        table.autofit = True
+        for col, (path, cap) in enumerate(
+            [(left_path, left_caption), (right_path, right_caption)]
+        ):
+            img_cell = table.rows[0].cells[col]
+            cap_cell = table.rows[1].cells[col]
+            set_cell_border(img_cell)
+            set_cell_border(cap_cell)
+            img_cell.text = ""
+            p = img_cell.paragraphs[0]
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p.paragraph_format.space_after = Pt(0)
+            w = fit_width(path, width, height_cap)
+            p.add_run().add_picture(str(path), width=Inches(w))
+            cap_cell.text = ""
+            cp = cap_cell.paragraphs[0]
+            cp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            cp.paragraph_format.space_before = Pt(2)
+            cp.paragraph_format.space_after = Pt(6)
+            run = cp.add_run(cap)
+            run.italic = True
+            run.font.size = Pt(9)
+            run.font.color.rgb = RGBColor.from_string(MUTED)
+            run.font.name = "Calibri"
+        spacer = doc.add_paragraph()
+        spacer.paragraph_format.space_after = Pt(6)
 
     # ---- Cover ----
     add_para(PROGRAMME.upper(), bold=True, size=11, color=ORANGE, space_after=4)
     add_para(TITLE, style="Title", bold=True, size=26, color=NAVY, space_after=6)
     add_para(SUBTITLE, size=13, color=MUTED, space_after=4)
     add_para(SLOGAN, bold=True, size=12, color=TEAL, space_after=10)
-    add_image(photo("cover"), 6.8, 2.8)
+    add_photo_row(
+        "cover",
+        "facility_branded",
+        "Community Reach under the canopy - education and care close to home",
+        "FairBanks Medical Centre - Your health, our mission.",
+    )
 
     table = doc.add_table(rows=4, cols=2)
     table.style = "Table Grid"
@@ -249,7 +330,12 @@ def build_docx() -> None:
 
     # ---- Vision ----
     add_para("1. Building the future of community health", style="Heading 1", bold=True, size=16, color=NAVY)
-    add_image(photo("facility"), 6.6, 2.6)
+    add_photo_row(
+        "facility_street",
+        "pharmacy",
+        "Clinical anchor: FairBanks Medical Centre in Kampala",
+        "Pharmacy storefront - affordable medicines beside the clinic",
+    )
     add_para(
         "FairBanks is a community health social enterprise dedicated to transforming family "
         "and community health through accessible primary care, preventive medicine, community "
@@ -281,6 +367,13 @@ def build_docx() -> None:
         add_para(title, bold=True, size=11, color=NAVY, space_after=2)
         add_para(body, size=11, color=SLATE, space_after=8)
 
+    add_photo_row(
+        "reception",
+        "gericare",
+        "Reception and triage - dignity at every first contact",
+        "Gericare in action - compassionate support for older patients",
+    )
+
     # ---- How we work ----
     add_para("2. How FairBanks works - Community Reach", style="Heading 1", bold=True, size=16, color=NAVY)
     add_para(
@@ -288,7 +381,12 @@ def build_docx() -> None:
         "the Data & Feedback layer - the digital nervous system that helps the model learn and improve.",
     )
     if CONCEPT.exists():
-        add_image(CONCEPT, 5.2, 5.0)
+        add_image(
+            CONCEPT,
+            5.0,
+            4.8,
+            caption="Community Reach cascade - communities, CHWs/VHTs, programmes, medical centre, research, empowerment",
+        )
     add_bullets(
         [
             "Community members identify needs and own solutions",
@@ -299,10 +397,21 @@ def build_docx() -> None:
             "Economic empowerment (including CHIS and IGAs) supports resilient families",
         ]
     )
+    add_photo_row(
+        "audience",
+        "community",
+        "Community members listening at an outreach session",
+        "Full Community Reach gathering - participation at the centre",
+    )
 
     # ---- Problem / FCHIP ----
     add_para("3. The gap - and the FCHIP answer", style="Heading 1", bold=True, size=16, color=NAVY)
-    add_image(photo("outreach"), 6.6, 2.7)
+    add_photo_row(
+        "outreach",
+        "outreach_camp",
+        "Blood-pressure screening during community outreach",
+        "Medical camp consultations - care beyond clinic walls",
+    )
     add_para(
         "Primary healthcare in underserved communities is still largely reactive. Facilities "
         "often see people only after illness appears. Data from CHWs, schools, outreach, clinics, "
@@ -317,7 +426,12 @@ def build_docx() -> None:
         "to surface explainable early warnings and dashboards.",
         space_after=8,
     )
-    add_image(photo("architecture"), 6.6, 3.0)
+    add_image(
+        photo("architecture"),
+        6.4,
+        2.9,
+        caption="FCHIP flow: community and facility capture - intelligence - action for facilities and districts",
+    )
     add_para("Deep technology core", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
@@ -329,10 +443,21 @@ def build_docx() -> None:
             "Cloud sync and analytics dashboards for facilities and partners",
         ]
     )
+    add_photo_row(
+        "mobile",
+        "dashboard",
+        "Mobile tools for last-mile capture with CHWs and VHTs",
+        "Facility and programme dashboards for timely decisions",
+    )
 
     # ---- Traction / roadmap ----
     add_para("4. Traction and innovation roadmap", style="Heading 1", bold=True, size=16, color=NAVY)
-    add_image(photo("community"), 6.6, 2.7)
+    add_photo_row(
+        "training",
+        "maternal",
+        "Community health education and training in progress",
+        "Maternal and family health - earlier support for mothers",
+    )
     add_para("What is already live", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
@@ -342,6 +467,12 @@ def build_docx() -> None:
             "CHIS and livelihood pathways linked to affordable access",
             "Working FCHIP MVP ready for structured field validation and evidence building",
         ]
+    )
+    add_photo_row(
+        "doctor_hands",
+        "lab",
+        "Compassionate clinical care - listening before treating",
+        "Point-of-care testing that keeps diagnosis close to the patient",
     )
 
     add_para("Innovation roadmap", style="Heading 2", bold=True, size=13, color=TEAL)
@@ -385,7 +516,12 @@ def build_docx() -> None:
 
     # ---- Partnership ----
     add_para("5. Partnership opportunity", style="Heading 1", bold=True, size=16, color=NAVY)
-    add_image(photo("maternal"), 6.6, 2.6)
+    add_photo_row(
+        "compassion",
+        "mothers",
+        "Clinical compassion - the human face of FairBanks care",
+        "Mothers and families waiting with trust in the clinic",
+    )
     add_para(
         "Jay Shetty inspires millions to live healthier, more purposeful lives through "
         "compassion, mindfulness, and service. FairBanks converts that inspiration into "
@@ -436,7 +572,12 @@ def build_docx() -> None:
         bold=True,
     )
 
-    add_image(photo("team"), 6.6, 2.5)
+    add_photo_row(
+        "team",
+        "reception_staff",
+        "FairBanks team - ready to serve and partner",
+        "Reception team documenting care with care",
+    )
     add_para(f"{CONTACT_NAME}  |  {CONTACT_TITLE}", bold=True, size=11, color=NAVY, space_after=2)
     add_para(f"{ORG}  |  {LOCATION}", size=10, color=MUTED, space_after=2)
     add_para(f"{WEBSITE}  |  {EMAIL}  |  {PHONE}", size=10, color=MUTED, space_after=12)
@@ -670,6 +811,26 @@ def build_pptx() -> None:
         text(s, "FairBanks | Strategic Partnership Brief", 0.55, 7.18, 6.0, 0.18, 9, MUTED)
         text(s, f"{number:02}", 12.2, 7.16, 0.5, 0.18, 9, MUTED, align=PP_ALIGN.RIGHT)
 
+    def photo_pair(s, left_key, right_key, left_cap, right_cap, x=0.55, y=1.7, w=6.0, h=4.5):
+        """Two related photos on one row, each with a caption underneath."""
+        gap = 0.25
+        pw = (w - gap) / 2
+        ph = h - 0.55
+        crop(s, photo(left_key), x, y, pw, ph)
+        crop(s, photo(right_key), x + pw + gap, y, pw, ph)
+        text(s, left_cap, x, y + ph + 0.08, pw, 0.4, 11, MUTED, align=PP_ALIGN.CENTER)
+        text(
+            s,
+            right_cap,
+            x + pw + gap,
+            y + ph + 0.08,
+            pw,
+            0.4,
+            11,
+            MUTED,
+            align=PP_ALIGN.CENTER,
+        )
+
     # 1 Cover
     s = slide()
     crop(s, photo("cover"), 0, 0, 13.333, 7.5)
@@ -687,21 +848,31 @@ def build_pptx() -> None:
     # 2 Who we are
     s = slide()
     band(s, "Who we are", "A community health enterprise with a scalable model", "Care + Community Reach + Intelligence")
-    crop(s, photo("facility"), 0.55, 1.75, 5.4, 5.0)
+    photo_pair(
+        s,
+        "facility_street",
+        "pharmacy",
+        "Medical Centre - clinical anchor",
+        "Pharmacy - care beside the clinic",
+        x=0.5,
+        y=1.7,
+        w=7.0,
+        h=5.0,
+    )
     bullets(
         s,
         [
-            "Ugandan social enterprise rooted in Kampala peri-urban communities",
+            "Ugandan social enterprise in Kampala peri-urban communities",
             "Medical centre and pharmacy as the clinical anchor",
-            "Community Reach for prevention, education, and livelihoods",
-            "FCHIP as the intelligence layer that closes the feedback loop",
-            "Designed for Uganda first - built for African scale",
+            "Community Reach for prevention, education, livelihoods",
+            "FCHIP closes the Data & Feedback loop",
+            "Uganda first - designed for African scale",
         ],
-        6.3,
+        7.8,
         2.0,
-        6.3,
+        5.0,
         4.5,
-        16,
+        14,
     )
     footer(s, 2)
 
@@ -709,7 +880,7 @@ def build_pptx() -> None:
     s = slide()
     band(s, "The FairBanks model", "Three pillars. One mission.", SLOGAN)
     cards = [
-        ("Medical Centre", "Family and community primary care, diagnostics, pharmacy, referrals", photo("pharmacy")),
+        ("Medical Centre", "Family and community primary care, diagnostics, pharmacy, referrals", photo("facility_branded")),
         ("Community Reach", "CHWs/VHTs, outreach, school health, CHIS, livelihoods", photo("canopy")),
         ("FCHIP", "AI, GIS, climate fusion, secure EMR/HMS APIs, early warning", photo("dashboard")),
     ]
@@ -756,21 +927,31 @@ def build_pptx() -> None:
     # 5 Problem
     s = slide()
     band(s, "The gap", "Healthcare still waits for people to get sick", "Fragmented data. Late detection. Missed prevention.")
-    crop(s, photo("outreach"), 0.55, 1.8, 5.5, 4.9)
+    photo_pair(
+        s,
+        "outreach",
+        "outreach_camp",
+        "Community BP screening",
+        "Medical camp consultations",
+        x=0.5,
+        y=1.7,
+        w=6.8,
+        h=5.0,
+    )
     bullets(
         s,
         [
             "Facilities react after illness appears",
-            "CHW, school, clinic, and pharmacy signals stay siloed",
+            "CHW, school, clinic, pharmacy signals stay siloed",
             "Climate risk rarely joins health decisions",
-            "Clinical records often lock inside EMR/HMS systems",
-            "The Community Reach loop cannot learn in real time",
+            "Clinical records often lock inside EMR/HMS",
+            "The feedback loop cannot learn in real time",
         ],
-        6.4,
+        7.6,
         2.0,
-        6.2,
+        5.2,
         4.5,
-        16,
+        14,
     )
     footer(s, 5)
 
@@ -782,26 +963,47 @@ def build_pptx() -> None:
         "FCHIP - FairBanks Community Health Intelligence Platform",
         "From reactive treatment to proactive, climate-aware prevention.",
     )
-    crop(s, photo("mobile"), 0.55, 1.85, 4.3, 4.85)
+    photo_pair(
+        s,
+        "mobile",
+        "dashboard",
+        "Mobile capture for CHWs / VHTs",
+        "Dashboards for timely action",
+        x=0.5,
+        y=1.7,
+        w=6.5,
+        h=5.0,
+    )
     for i, (a, b) in enumerate(
         [
-            ("Capture", "CHWs/VHTs, schools, communities, clinics - offline-ready"),
-            ("Connect", "Secure APIs to existing EMR/HMS - no rip-and-replace"),
-            ("Fuse", "GIS maps + climate APIs + community health signals"),
-            ("Act", "Alerts, dashboards, referrals, outreach priorities"),
+            ("Capture", "Field, school, clinic signals"),
+            ("Connect", "Secure EMR/HMS APIs"),
+            ("Fuse", "GIS + climate + community"),
+            ("Act", "Alerts, referrals, outreach"),
         ]
     ):
-        y = 1.9 + i * 1.1
-        rect(s, 5.2, y, 7.5, 0.95, WHITE, LINE, True)
-        rect(s, 5.2, y, 0.14, 0.95, TEAL)
-        text(s, a, 5.55, y + 0.18, 1.6, 0.3, 16, NAVY, True)
-        text(s, b, 7.3, y + 0.18, 5.1, 0.55, 14, MUTED)
+        y = 1.85 + i * 1.15
+        rect(s, 7.3, y, 5.4, 1.0, WHITE, LINE, True)
+        rect(s, 7.3, y, 0.14, 1.0, TEAL)
+        text(s, a, 7.6, y + 0.18, 1.5, 0.3, 15, NAVY, True)
+        text(s, b, 9.2, y + 0.18, 3.2, 0.55, 13, MUTED)
     footer(s, 6)
 
     # 7 Deep tech
     s = slide()
     band(s, "Deep technology", "Built for last-mile Africa - not a simple app", "AI - ML - GIS - Climate - Secure APIs - Mobile - Cloud")
-    crop(s, photo("architecture"), 6.4, 1.8, 6.3, 4.9)
+    crop(s, photo("architecture"), 6.4, 1.8, 6.3, 4.55)
+    text(
+        s,
+        "FCHIP architecture: capture to intelligence to action",
+        6.4,
+        6.45,
+        6.3,
+        0.35,
+        11,
+        MUTED,
+        align=PP_ALIGN.CENTER,
+    )
     bullets(
         s,
         [
@@ -816,35 +1018,44 @@ def build_pptx() -> None:
         1.95,
         5.4,
         4.8,
-        15,
+        14,
     )
     footer(s, 7)
 
-    # 8 Impact / traction
+    # 8 Traction
     s = slide()
     band(s, "Traction", "A live ecosystem ready to validate and scale", "Technology with field access - field access with technology.")
-    crop(s, photo("community"), 0.55, 1.8, 4.8, 4.9)
-    crop(s, photo("gericare"), 5.55, 1.8, 3.2, 4.9)
+    photo_pair(
+        s,
+        "community",
+        "gericare",
+        "Community Reach gatherings",
+        "Gericare - dignity in ageing",
+        x=0.5,
+        y=1.7,
+        w=8.0,
+        h=5.0,
+    )
     bullets(
         s,
         [
             "Live medical centre and pharmacy",
-            "Community Reach in named Kampala communities",
-            "CHW/VHT, MCH, Gericare, school health",
+            "Named Kampala peri-urban communities",
+            "CHW/VHT, MCH, school health",
             "CHIS and livelihood pathways",
             "Working FCHIP MVP in validation",
         ],
-        9.0,
+        8.8,
         2.0,
-        3.9,
+        4.0,
         4.5,
-        14,
+        13,
     )
     footer(s, 8)
 
     # 9 Roadmap
     s = slide()
-    band(s, "Roadmap", "From working MVP to continental community health intelligence", "Validate → district scale → regional expansion")
+    band(s, "Roadmap", "From working MVP to continental community health intelligence", "Validate -> district scale -> regional expansion")
     stages = [
         ("Done", "Model + centre", "Community Reach and medical centre live"),
         ("Done", "FCHIP MVP", "Working platform ready for evidence"),
@@ -872,29 +1083,39 @@ def build_pptx() -> None:
         "Inspiration becomes impact when communities can act",
         "Wellbeing - compassion - purposeful living - stronger communities",
     )
-    crop(s, photo("maternal"), 0.55, 1.8, 5.3, 4.9)
+    photo_pair(
+        s,
+        "doctor_hands",
+        "maternal",
+        "Compassion in the consulting room",
+        "Maternal and family health support",
+        x=0.5,
+        y=1.7,
+        w=7.0,
+        h=5.0,
+    )
     bullets(
         s,
         [
-            "Jay Shetty champions healthier, more purposeful lives",
-            "FairBanks turns that vision into access, prevention, and care",
-            "FCHIP helps communities see risk earlier and respond sooner",
-            "Together: global storytelling + local health delivery",
-            "A partnership of mission - not a one-way funding ask",
+            "Jay Shetty champions healthier, purposeful lives",
+            "FairBanks turns vision into access and prevention",
+            "FCHIP helps communities see risk earlier",
+            "Global storytelling + local health delivery",
+            "A partnership of mission - not a one-way ask",
         ],
-        6.2,
-        2.05,
-        6.4,
+        7.8,
+        2.0,
+        5.0,
         4.5,
-        16,
+        14,
     )
     footer(s, 10)
 
     # 11 Partnership menu
     s = slide()
     band(s, "Partnership menu", "What we invite - and what we bring", "Two-way value. Clear exchange.")
-    rect(s, 0.55, 1.75, 5.9, 5.0, WHITE, LINE, True)
-    text(s, "Collaboration areas", 0.8, 1.95, 5.3, 0.35, 16, TEAL, True)
+    rect(s, 0.55, 1.65, 5.9, 3.35, WHITE, LINE, True)
+    text(s, "Collaboration areas", 0.8, 1.8, 5.3, 0.35, 16, TEAL, True)
     bullets(
         s,
         [
@@ -905,13 +1126,13 @@ def build_pptx() -> None:
             "Introductions to aligned impact partners",
         ],
         0.8,
-        2.5,
+        2.25,
         5.3,
-        3.8,
-        14,
+        2.5,
+        13,
     )
-    rect(s, 6.8, 1.75, 5.9, 5.0, PALE_TEAL, TEAL, True)
-    text(s, "FairBanks brings", 7.05, 1.95, 5.3, 0.35, 16, NAVY, True)
+    rect(s, 6.8, 1.65, 5.9, 3.35, PALE_TEAL, TEAL, True)
+    text(s, "FairBanks brings", 7.05, 1.8, 5.3, 0.35, 16, NAVY, True)
     bullets(
         s,
         [
@@ -922,10 +1143,21 @@ def build_pptx() -> None:
             "Leadership committed to measurable impact",
         ],
         7.05,
-        2.5,
+        2.25,
         5.3,
-        3.8,
-        14,
+        2.5,
+        13,
+    )
+    photo_pair(
+        s,
+        "compassion",
+        "reception",
+        "Human-centred clinical care",
+        "Welcoming reception and triage",
+        x=0.55,
+        y=5.15,
+        w=12.2,
+        h=1.85,
     )
     footer(s, 11)
 
@@ -973,7 +1205,6 @@ def build_pptx() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     prs.save(PPTX)
     print(f"PPTX: {PPTX}")
-
 
 def validate() -> None:
     from zipfile import BadZipFile, ZipFile
