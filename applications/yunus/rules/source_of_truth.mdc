@@ -1,0 +1,55 @@
+---
+description: Yunus Centre social business partnership outreach
+globs: applications/yunus/**
+alwaysApply: false
+---
+
+# Yunus Centre — partnership source of truth
+
+Follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, and `fairBanks_refined_project_idea.mdc`. Audience reference: [Yunus Centre](https://www.muhammadyunus.org/).
+
+## Positioning
+
+This is a **social business partnership exploration**, not a donation ask and not a claim of existing affiliation. Show how FairBanks fits Professor Yunus’s social business idea: solve a social problem through a sustainable business method.
+
+**FairBanks** is a community health ecosystem with three pillars:
+
+1. **FairBanks Medical Centre** — clinical delivery hub
+2. **FairBanks Community Reach / Social Enterprise** — outreach, education, prevention, CHIS, livelihoods
+3. **FCHIP** (FairBanks Community Health Intelligence Platform) — AI/GIS/climate intelligence on the Data & Feedback loop
+
+Use **FCHIP** (canonical), not CHIP.
+
+## Alignment themes (Yunus Centre)
+
+Social business · health access for underserved communities · financial inclusion (CHIS) · livelihoods · gender-responsive care · poverty reduction · sustainable community enterprise · digital health for last-mile care · learning and evidence
+
+## Social business frame (from Yunus Centre)
+
+A social business aims to solve a social problem through business methods; profits serve the social objective. Health, financial services for the poor, and nutrition are named example domains on [muhammadyunus.org](https://www.muhammadyunus.org/). FairBanks presents itself as a Uganda-based social enterprise building that kind of model in community health.
+
+## Ask menu (invite, do not demand)
+
+Learning exchange on social business practice · introductions within the Grameen / Yunus social business network · advice while developing the FCHIP MVP · possible visibility at Social Business Day / YSBC channels · partnership exploration on community health + livelihoods — **not** “please fund our clinic.”
+
+## Narrative spine
+
+- Page 1: mutual value for Yunus Centre network, FairBanks, and communities
+- Live Community Reach work in Kampala peri-urban communities
+- CHIS and livelihoods as social-business-aligned financial protection
+- FCHIP MVP in development as a health-intelligence layer for underserved communities
+- Honest Uganda pilot → careful scale story
+
+## Deliverables
+
+Synced set only via `build_yunus_docs.py`:
+
+- `documents/yunus_word.docx`
+- `documents/yunus_pdf.pdf`
+- `documents/yunus_ppt.pptx`
+
+Send-ready outreach email lives in `partnership_email.md`. Attach `documents/yunus_pdf.pdf`. Official Yunus Centre contact on their site: **info@yunuscentre.org**. Slogan: **Your health, our mission.** Prefer `.cursor/concept_simple.jpeg`. Real photos from `assets/`.
+
+## Honesty
+
+No invented patient counts, revenue, signed Yunus/Grameen links, or impact metrics. Do not imply Professor Yunus or Yunus Centre already endorse FairBanks.
