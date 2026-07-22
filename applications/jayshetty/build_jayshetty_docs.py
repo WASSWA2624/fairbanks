@@ -154,8 +154,49 @@ def fit_width(path: Path, max_width_in: float, max_height_in: float = 3.4) -> fl
     return w
 
 
+def cover_crop(
+    path: Path,
+    *,
+    frame_w: int = 1200,
+    frame_h: int = 900,
+    focus: str = "center",
+) -> Path:
+    """Center-crop (cover) an image into a fixed frame so paired photos match."""
+    from PIL import Image as PILImage
+
+    cache = TMP / "balanced"
+    cache.mkdir(parents=True, exist_ok=True)
+    out = cache / f"{path.stem}_{frame_w}x{frame_h}_{focus}.jpg"
+    if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:
+        return out
+
+    with PILImage.open(path) as im:
+        im = im.convert("RGB")
+        iw, ih = im.size
+        target_ratio = frame_w / float(frame_h)
+        src_ratio = iw / float(ih)
+        if src_ratio > target_ratio:
+            # too wide - crop sides
+            new_w = int(ih * target_ratio)
+            left = (iw - new_w) // 2
+            box = (left, 0, left + new_w, ih)
+        else:
+            # too tall - crop top/bottom (bias slightly upward for faces)
+            new_h = int(iw / target_ratio)
+            if focus == "top":
+                top = int((ih - new_h) * 0.18)
+            else:
+                top = (ih - new_h) // 2
+            top = max(0, min(top, ih - new_h))
+            box = (0, top, iw, top + new_h)
+        cropped = im.crop(box).resize((frame_w, frame_h), PILImage.Resampling.LANCZOS)
+        cropped.save(out, format="JPEG", quality=88, optimize=True)
+    return out
+
+
 def build_docx() -> None:
     from docx import Document
+    from docx.enum.table import WD_TABLE_ALIGNMENT
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.oxml import OxmlElement, parse_xml
     from docx.oxml.ns import nsdecls, qn
@@ -239,13 +280,29 @@ def build_docx() -> None:
         run.font.color.rgb = RGBColor.from_string(MUTED)
         run.font.name = "Calibri"
 
-    def add_image(path: Path, width: float = 6.6, height_cap: float = 3.2, caption: str = ""):
-        w = fit_width(path, width, height_cap)
+    def add_image(
+        path: Path,
+        width: float = 6.6,
+        height_cap: float = 3.2,
+        caption: str = "",
+        *,
+        balance: bool = False,
+    ):
+        if balance:
+            # Wide banner frame so single images also feel even.
+            path = cover_crop(path, frame_w=1600, frame_h=900, focus="top")
+            display_w = width
+        else:
+            display_w = fit_width(path, width, height_cap)
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_before = Pt(4)
         p.paragraph_format.space_after = Pt(2 if caption else 10)
-        p.add_run().add_picture(str(path), width=Inches(w))
+        run = p.add_run()
+        if balance:
+            run.add_picture(str(path), width=Inches(display_w), height=Inches(display_w * 900 / 1600))
+        else:
+            run.add_picture(str(path), width=Inches(display_w))
         if caption:
             add_caption(caption)
 
@@ -255,28 +312,41 @@ def build_docx() -> None:
         left_caption: str,
         right_caption: str,
         *,
-        width: float = 3.2,
-        height_cap: float = 2.35,
+        width: float = 3.25,
+        height: float = 2.44,
+        focus: str = "top",
     ) -> None:
-        """Two related photos side by side, each with its own caption."""
-        left_path, right_path = photo(left_key), photo(right_key)
-        table = doc.add_table(rows=2, cols=2)
-        table.autofit = True
+        """Two related photos in equal frames, each with a caption kept in-cell."""
+        # 4:3 frame keeps landscape and portrait sources visually even.
+        frame_w, frame_h = 1200, 900
+        left_path = cover_crop(photo(left_key), frame_w=frame_w, frame_h=frame_h, focus=focus)
+        right_path = cover_crop(photo(right_key), frame_w=frame_w, frame_h=frame_h, focus=focus)
+
+        table = doc.add_table(rows=1, cols=2)
+        table.alignment = WD_TABLE_ALIGNMENT.CENTER
+        table.autofit = False
+        # Keep the whole photo pair on one page (no orphan captions).
+        tr = table.rows[0]._tr
+        tr_pr = tr.get_or_add_trPr()
+        cant = OxmlElement("w:cantSplit")
+        tr_pr.append(cant)
+        col_w = Inches(width + 0.12)
         for col, (path, cap) in enumerate(
             [(left_path, left_caption), (right_path, right_caption)]
         ):
-            img_cell = table.rows[0].cells[col]
-            cap_cell = table.rows[1].cells[col]
-            set_cell_border(img_cell)
-            set_cell_border(cap_cell)
-            img_cell.text = ""
-            p = img_cell.paragraphs[0]
+            cell = table.rows[0].cells[col]
+            cell.width = col_w
+            set_cell_border(cell)
+            cell.text = ""
+            # Image
+            p = cell.paragraphs[0]
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            p.paragraph_format.space_after = Pt(0)
-            w = fit_width(path, width, height_cap)
-            p.add_run().add_picture(str(path), width=Inches(w))
-            cap_cell.text = ""
-            cp = cap_cell.paragraphs[0]
+            p.paragraph_format.space_before = Pt(0)
+            p.paragraph_format.space_after = Pt(2)
+            p.paragraph_format.keep_with_next = True
+            p.add_run().add_picture(str(path), width=Inches(width), height=Inches(height))
+            # Caption stays with the image (same cell = no page-split orphan)
+            cp = cell.add_paragraph()
             cp.alignment = WD_ALIGN_PARAGRAPH.CENTER
             cp.paragraph_format.space_before = Pt(2)
             cp.paragraph_format.space_after = Pt(6)
@@ -285,8 +355,9 @@ def build_docx() -> None:
             run.font.size = Pt(9)
             run.font.color.rgb = RGBColor.from_string(MUTED)
             run.font.name = "Calibri"
+
         spacer = doc.add_paragraph()
-        spacer.paragraph_format.space_after = Pt(6)
+        spacer.paragraph_format.space_after = Pt(4)
 
     # ---- Cover ----
     add_para(PROGRAMME.upper(), bold=True, size=11, color=ORANGE, space_after=4)
@@ -296,8 +367,8 @@ def build_docx() -> None:
     add_photo_row(
         "cover",
         "facility_branded",
-        "Community Reach under the canopy - education and care close to home",
-        "FairBanks Medical Centre - Your health, our mission.",
+        "Community Reach under the canopy",
+        "FairBanks Medical Centre entrance",
     )
 
     table = doc.add_table(rows=4, cols=2)
@@ -333,8 +404,8 @@ def build_docx() -> None:
     add_photo_row(
         "facility_street",
         "pharmacy",
-        "Clinical anchor: FairBanks Medical Centre in Kampala",
-        "Pharmacy storefront - affordable medicines beside the clinic",
+        "Medical Centre - clinical anchor in Kampala",
+        "Pharmacy - medicines beside the clinic",
     )
     add_para(
         "FairBanks is a community health social enterprise dedicated to transforming family "
@@ -370,8 +441,8 @@ def build_docx() -> None:
     add_photo_row(
         "reception",
         "gericare",
-        "Reception and triage - dignity at every first contact",
-        "Gericare in action - compassionate support for older patients",
+        "Reception and triage with dignity",
+        "Gericare - support for older patients",
     )
 
     # ---- How we work ----
@@ -400,8 +471,8 @@ def build_docx() -> None:
     add_photo_row(
         "audience",
         "community",
-        "Community members listening at an outreach session",
-        "Full Community Reach gathering - participation at the centre",
+        "Listening at a community outreach session",
+        "Community Reach gathering in full",
     )
 
     # ---- Problem / FCHIP ----
@@ -409,8 +480,8 @@ def build_docx() -> None:
     add_photo_row(
         "outreach",
         "outreach_camp",
-        "Blood-pressure screening during community outreach",
-        "Medical camp consultations - care beyond clinic walls",
+        "Blood-pressure screening in the community",
+        "Medical camp care beyond clinic walls",
     )
     add_para(
         "Primary healthcare in underserved communities is still largely reactive. Facilities "
@@ -446,8 +517,8 @@ def build_docx() -> None:
     add_photo_row(
         "mobile",
         "dashboard",
-        "Mobile tools for last-mile capture with CHWs and VHTs",
-        "Facility and programme dashboards for timely decisions",
+        "Mobile tools for CHWs and VHTs",
+        "Dashboards for timely decisions",
     )
 
     # ---- Traction / roadmap ----
@@ -455,8 +526,8 @@ def build_docx() -> None:
     add_photo_row(
         "training",
         "maternal",
-        "Community health education and training in progress",
-        "Maternal and family health - earlier support for mothers",
+        "Community health education in progress",
+        "Maternal and family health support",
     )
     add_para("What is already live", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
@@ -471,8 +542,8 @@ def build_docx() -> None:
     add_photo_row(
         "doctor_hands",
         "lab",
-        "Compassionate clinical care - listening before treating",
-        "Point-of-care testing that keeps diagnosis close to the patient",
+        "Listening before treating",
+        "Point-of-care testing close to patients",
     )
 
     add_para("Innovation roadmap", style="Heading 2", bold=True, size=13, color=TEAL)
@@ -519,8 +590,8 @@ def build_docx() -> None:
     add_photo_row(
         "compassion",
         "mothers",
-        "Clinical compassion - the human face of FairBanks care",
-        "Mothers and families waiting with trust in the clinic",
+        "Compassion in the consulting room",
+        "Mothers and families in the clinic",
     )
     add_para(
         "Jay Shetty inspires millions to live healthier, more purposeful lives through "
@@ -575,8 +646,8 @@ def build_docx() -> None:
     add_photo_row(
         "team",
         "reception_staff",
-        "FairBanks team - ready to serve and partner",
-        "Reception team documenting care with care",
+        "FairBanks team ready to partner",
+        "Reception documenting care with care",
     )
     add_para(f"{CONTACT_NAME}  |  {CONTACT_TITLE}", bold=True, size=11, color=NAVY, space_after=2)
     add_para(f"{ORG}  |  {LOCATION}", size=10, color=MUTED, space_after=2)
@@ -812,20 +883,22 @@ def build_pptx() -> None:
         text(s, f"{number:02}", 12.2, 7.16, 0.5, 0.18, 9, MUTED, align=PP_ALIGN.RIGHT)
 
     def photo_pair(s, left_key, right_key, left_cap, right_cap, x=0.55, y=1.7, w=6.0, h=4.5):
-        """Two related photos on one row, each with a caption underneath."""
-        gap = 0.25
+        """Two related photos in equal cropped frames, with matched caption bands."""
+        gap = 0.22
         pw = (w - gap) / 2
-        ph = h - 0.55
+        cap_h = 0.48
+        ph = h - cap_h
         crop(s, photo(left_key), x, y, pw, ph)
         crop(s, photo(right_key), x + pw + gap, y, pw, ph)
-        text(s, left_cap, x, y + ph + 0.08, pw, 0.4, 11, MUTED, align=PP_ALIGN.CENTER)
+        # Equal caption bands under both frames
+        text(s, left_cap, x, y + ph + 0.06, pw, cap_h - 0.06, 11, MUTED, align=PP_ALIGN.CENTER)
         text(
             s,
             right_cap,
             x + pw + gap,
-            y + ph + 0.08,
+            y + ph + 0.06,
             pw,
-            0.4,
+            cap_h - 0.06,
             11,
             MUTED,
             align=PP_ALIGN.CENTER,
