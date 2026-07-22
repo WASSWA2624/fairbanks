@@ -7,7 +7,7 @@ Creates one synchronized set:
   documents/jayshetty_ppt.pptx
 
 Send-ready email lives in partnership_email.md (not in Word/PDF).
-Narrative: strategic partnership (not a donation ask). Three pillars + FCHIP.
+Narrative: strategic partnership brief. Three pillars + FCHIP. Human tone; no AI buzzwords.
 """
 
 from __future__ import annotations
@@ -41,7 +41,7 @@ WHITE = "FFFFFF"
 
 SLOGAN = "Your health, our mission."
 PROGRAMME = "Strategic Partnership Brief"
-TITLE = "FairBanks x Jay Shetty"
+TITLE = "FairBanks and Jay Shetty"
 SUBTITLE = "A partnership proposal for community health and wellbeing"
 ORG = "FairBanks Medical Centre & Pharmacy"
 CONTACT_NAME = "Racheal Nabukeera Sekagiri"
@@ -324,8 +324,7 @@ def build_docx() -> None:
         spacer = doc.add_paragraph()
         spacer.paragraph_format.space_after = Pt(4)
 
-    # ---- Cover: eye-catching win-win first page ----
-    # Top brand strip
+# ---- Cover ----
     brand = doc.add_table(rows=1, cols=1)
     brand.autofit = True
     bc = brand.rows[0].cells[0]
@@ -333,61 +332,62 @@ def build_docx() -> None:
     bc.text = ""
     bp = bc.paragraphs[0]
     bp.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    br = bp.add_run(f"{PROGRAMME.upper()}  ·  {SLOGAN}")
+    br = bp.add_run(f"{PROGRAMME}  |  {SLOGAN}")
     br.bold = True
     br.font.size = Pt(11)
     br.font.color.rgb = RGBColor.from_string(GOLD)
     br.font.name = "Calibri"
 
     add_para(TITLE, bold=True, size=28, color=NAVY, space_after=4)
-    add_para(WIN_HEADLINE, bold=True, size=16, color=TEAL, space_after=4)
+    add_para(COVER_HEADLINE, bold=True, size=15, color=TEAL, space_after=4)
     add_para(SUBTITLE, size=12, color=MUTED, space_after=8)
 
     add_photo_row(
         "cover",
         "facility_branded",
-        "Community Reach in action",
-        "FairBanks Medical Centre - Kampala",
+        "Community Reach outreach session",
+        "FairBanks Medical Centre, Kampala",
         width=3.3,
         height=2.2,
     )
 
-    # Win-win three-column exchange
-    add_para("THE WIN-WIN", bold=True, size=12, color=ORANGE, space_after=6)
-    wins = doc.add_table(rows=1, cols=3)
-    wins.alignment = WD_TABLE_ALIGNMENT.CENTER
-    wins.autofit = False
-    win_cols = [
+    add_para(COVER_SUMMARY, size=11, color=SLATE, space_after=10)
+
+    add_para("Why this partnership matters", bold=True, size=12, color=ORANGE, space_after=6)
+    value = doc.add_table(rows=1, cols=3)
+    value.alignment = WD_TABLE_ALIGNMENT.CENTER
+    value.autofit = False
+    value_cols = [
         (
-            "Jay Shetty ecosystem gains",
+            "For Jay Shetty's team",
             [
-                "Authentic African impact story from a live clinic and community network",
-                "A real channel to turn wellbeing inspiration into measurable health outcomes",
-                "Credible partnership narrative for impact and purpose audiences",
+                "A grounded story from a working clinic and community programmes in Uganda",
+                "A practical partner for wellbeing themes - care, prevention, and family health",
+                "A clear route from message to community work you can point to",
             ],
             PALE_ORANGE,
         ),
         (
-            "FairBanks gains",
+            "For FairBanks",
             [
-                "Global storytelling and visibility for Community Reach and FCHIP",
-                "Strategic mentorship and introductions in the impact ecosystem",
-                "Acceleration for MVP validation and responsible scale",
+                "Help telling our story to a wider audience",
+                "Advice and introductions within the impact and wellbeing space",
+                "Support as we validate and grow FCHIP carefully",
             ],
             PALE_TEAL,
         ),
         (
-            "Communities gain",
+            "For communities we serve",
             [
-                "Earlier prevention and stronger CHW / VHT support",
-                "Care closer to home, with CHIS and livelihood pathways",
-                "Intelligence that helps act before crises escalate",
+                "Stronger outreach and CHW / VHT support",
+                "Care nearer home, including CHIS where families need it",
+                "Earlier help when health risks start to rise",
             ],
             PALE_GREEN,
         ),
     ]
-    for i, (title, points, fill) in enumerate(win_cols):
-        cell = wins.rows[0].cells[i]
+    for i, (title, points, fill) in enumerate(value_cols):
+        cell = value.rows[0].cells[i]
         cell.width = Inches(2.25)
         shade_cell(cell, fill)
         set_cell_border(cell, LINE)
@@ -409,7 +409,6 @@ def build_docx() -> None:
 
     doc.add_paragraph()
 
-    # Ask strip
     ask = doc.add_table(rows=1, cols=1)
     ac = ask.rows[0].cells[0]
     shade_cell(ac, TEAL)
@@ -417,8 +416,7 @@ def build_docx() -> None:
     ap = ac.paragraphs[0]
     ap.alignment = WD_ALIGN_PARAGRAPH.CENTER
     ar = ap.add_run(
-        "The ask: a 10-minute discovery call with partnerships / impact  ·  "
-        "Not a sponsorship request  ·  A strategic collaboration invitation"
+        "Request: a short introductory call (about 10 minutes) with your partnerships or impact team"
     )
     ar.bold = True
     ar.font.size = Pt(10)
@@ -430,7 +428,7 @@ def build_docx() -> None:
         ("Organisation", ORG),
         ("Location", LOCATION),
         ("Contact", f"{CONTACT_NAME}, {CONTACT_TITLE}"),
-        ("Next step", "10-minute discovery call"),
+        ("Proposed next step", "Introductory call"),
     ]
     facts = doc.add_table(rows=4, cols=2)
     facts.style = "Table Grid"
@@ -445,30 +443,38 @@ def build_docx() -> None:
                     r.font.name = "Calibri"
                     r.font.color.rgb = RGBColor.from_string(SLATE)
 
-    # ---- Win-win project summary (page 2 opener) ----
+    # ---- Project summary ----
     doc.add_page_break()
-    add_para("Win-win project summary", style="Heading 1", bold=True, size=18, color=NAVY)
-    add_para(WIN_SUMMARY, size=11, color=SLATE, space_after=10)
+    add_para("Project summary", style="Heading 1", bold=True, size=18, color=NAVY)
+    add_para(
+        "FairBanks is asking to explore a partnership with the Jay Shetty ecosystem. "
+        "We already run a medical centre, Community Reach programmes, and a working FCHIP "
+        "platform in Kampala peri-urban communities. We are looking for collaborators who "
+        "care about wellbeing in practice - not only as a message, but as better access to care.",
+        size=11,
+        color=SLATE,
+        space_after=10,
+    )
 
-    add_para("What we are building together", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("What FairBanks is building", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
-            "A live FairBanks Medical Centre and Pharmacy as the clinical anchor",
-            "FairBanks Community Reach - CHWs/VHTs, outreach, school health, CHIS, livelihoods",
-            "FCHIP - AI, GIS, climate fusion, and secure EMR/HMS data APIs for earlier action",
-            "A partnership of mission: storytelling + field delivery + intelligent prevention",
+            "FairBanks Medical Centre and Pharmacy - clinical care in Kampala",
+            "Community Reach - CHWs/VHTs, outreach, school health, CHIS, and livelihoods",
+            "FCHIP - tools that help teams see risk earlier using community, facility, GIS, and climate data",
+            "A partnership focused on shared purpose: storytelling, field delivery, and prevention",
         ]
     )
 
-    add_para("Exchange at a glance", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("How we see the collaboration", style="Heading 2", bold=True, size=13, color=TEAL)
     summary = doc.add_table(rows=5, cols=2)
     summary.style = "Table Grid"
     summary_rows = [
-        ("Side", "Value"),
-        ("Jay Shetty ecosystem", "Purpose platform, global storytelling, impact network, mentorship"),
-        ("FairBanks", "Operating clinic, Community Reach cascade, working FCHIP MVP, local trust"),
-        ("Shared outcome", "Inspiration converted into earlier care and stronger community wellbeing"),
-        ("Immediate next step", "10-minute introductory conversation with partnerships or impact"),
+        ("Area", "Detail"),
+        ("Jay Shetty ecosystem", "Platform, storytelling reach, and connections in wellbeing and impact"),
+        ("FairBanks", "Operating clinic, Community Reach work, FCHIP MVP, and local relationships"),
+        ("Shared aim", "Stronger community health outcomes linked to compassion and practical care"),
+        ("Next step", "A brief introductory conversation with partnerships or impact"),
     ]
     for i, (a, b) in enumerate(summary_rows):
         summary.rows[i].cells[0].text = a
@@ -487,7 +493,9 @@ def build_docx() -> None:
                         r.bold = True
                         r.font.color.rgb = RGBColor.from_string(WHITE)
                     else:
-                        r.font.color.rgb = RGBColor.from_string(NAVY if cell is summary.rows[i].cells[0] else SLATE)
+                        r.font.color.rgb = RGBColor.from_string(
+                            NAVY if cell is summary.rows[i].cells[0] else SLATE
+                        )
                         if cell is summary.rows[i].cells[0]:
                             r.bold = True
 
@@ -495,14 +503,14 @@ def build_docx() -> None:
     add_photo_row(
         "doctor_hands",
         "audience",
-        "Compassion in care",
-        "Communities ready to participate",
+        "Care at the medical centre",
+        "Community members at an outreach session",
         width=3.3,
         height=2.2,
     )
 
     # ---- Vision ----
-    add_para("1. Building the future of community health", style="Heading 1", bold=True, size=16, color=NAVY)
+    add_para("1. Who FairBanks is", style="Heading 1", bold=True, size=16, color=NAVY)
     add_photo_row(
         "facility_street",
         "pharmacy",
@@ -510,18 +518,17 @@ def build_docx() -> None:
         "Pharmacy - medicines beside the clinic",
     )
     add_para(
-        "FairBanks is a community health social enterprise dedicated to transforming family "
-        "and community health through accessible primary care, preventive medicine, community "
-        "outreach, and technology-driven innovation. We believe quality healthcare should not "
-        "depend on geography or income.",
+        "FairBanks is a community health organisation in Kampala. We provide primary care, "
+        "run Community Reach programmes, and build FCHIP so families can get help earlier and "
+        "closer to home. We believe good care should not depend on where someone lives or what "
+        "they earn.",
     )
     add_para(
-        "Our medical centre is the real-world laboratory where clinical care, Community Reach, "
-        "and digital innovation come together - so solutions are designed, tested, and refined "
-        "with real families before wider deployment.",
+        "Our medical centre is where clinical care, outreach, and FCHIP meet. We test and "
+        "improve ideas with the families we already serve before we ask others to use them.",
     )
 
-    add_para("Three complementary pillars", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("Our three parts of work", style="Heading 2", bold=True, size=13, color=TEAL)
     pillars = [
         (
             "FairBanks Medical Centre & Pharmacy",
@@ -533,7 +540,7 @@ def build_docx() -> None:
         ),
         (
             "FCHIP (Community Health Intelligence Platform)",
-            "AI-enabled intelligence that fuses community, facility, GIS, and climate signals to support earlier, smarter action.",
+            "A platform that brings together community, facility, map, and climate signals so teams can act earlier.",
         ),
     ]
     for title, body in pillars:
@@ -551,15 +558,16 @@ def build_docx() -> None:
     add_para("2. How FairBanks works - Community Reach", style="Heading 1", bold=True, size=16, color=NAVY)
     add_para(
         "FairBanks operates a six-step cascade with a continuous feedback loop. FCHIP sits on "
-        "the Data & Feedback layer - the digital nervous system that helps the model learn and improve.",
+        "the Data & Feedback layer - the part of the model that helps us learn from the field and improve how we serve.",
     )
     if CONCEPT.exists():
-        # Summarized model - tall portrait; size for readable labels on one page.
+        # Full printable width (A4 content: 8.27 - 0.7 - 0.7 ≈ 6.87").
+        # Tall portrait - allow height so width is not shrunk by the cap.
         add_image(
             CONCEPT,
-            5.4,
-            9.0,
-            caption="How we care for your community - summarized Community Reach model",
+            6.85,
+            13.0,
+            caption="Community Reach - how the work connects",
         )
     add_bullets(
         [
@@ -579,7 +587,7 @@ def build_docx() -> None:
     )
 
     # ---- Problem / FCHIP ----
-    add_para("3. The gap - and the FCHIP answer", style="Heading 1", bold=True, size=16, color=NAVY)
+    add_para("3. The problem FCHIP helps address", style="Heading 1", bold=True, size=16, color=NAVY)
     add_photo_row(
         "outreach",
         "outreach_camp",
@@ -594,7 +602,7 @@ def build_docx() -> None:
         "cannot learn fast enough to prevent outbreaks, maternal complications, or stock-outs.",
     )
     add_para(
-        "FCHIP is FairBanks' deep-technology component. It connects community members, CHWs/VHTs, "
+        "FCHIP is FairBanks' technology platform. It connects community members, CHWs/VHTs, "
         "schools, communities, hospitals, and clinics; safely exposes data APIs to existing EMR/HMS "
         "systems for real-time clinical ingest; and fuses signals with GIS mapping and climate APIs "
         "to surface explainable early warnings and dashboards.",
@@ -606,7 +614,7 @@ def build_docx() -> None:
         2.9,
         caption="FCHIP flow: community and facility capture - intelligence - action for facilities and districts",
     )
-    add_para("Deep technology core", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("What FCHIP includes", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
             "Artificial intelligence and machine learning for risk scoring and early warning",
@@ -625,14 +633,14 @@ def build_docx() -> None:
     )
 
     # ---- Traction / roadmap ----
-    add_para("4. Traction and innovation roadmap", style="Heading 1", bold=True, size=16, color=NAVY)
+    add_para("4. Where we are now", style="Heading 1", bold=True, size=16, color=NAVY)
     add_photo_row(
         "training",
         "maternal",
         "Community health education in progress",
         "Maternal and family health support",
     )
-    add_para("What is already live", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("What is already in place", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
             "Operational FairBanks Medical Centre & Pharmacy in Kampala",
@@ -649,7 +657,7 @@ def build_docx() -> None:
         "Point-of-care testing close to patients",
     )
 
-    add_para("Innovation roadmap", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("Next steps on the roadmap", style="Heading 2", bold=True, size=13, color=TEAL)
     roadmap = doc.add_table(rows=7, cols=2)
     roadmap.style = "Table Grid"
     rows = [
@@ -683,13 +691,13 @@ def build_docx() -> None:
 
     doc.add_paragraph()
     add_para(
-        "Long-term ambition: build one of Africa's leading community health intelligence "
-        "ecosystems - combining primary care delivery with intelligent digital technologies "
-        "that empower communities, providers, and partners.",
+        "Longer term, we want FairBanks to be known across Africa for community health "
+        "intelligence that sits beside real clinics and community programmes - not as software "
+        "alone.",
     )
 
     # ---- Partnership ----
-    add_para("5. Partnership opportunity", style="Heading 1", bold=True, size=16, color=NAVY)
+    add_para("5. Possible ways to work together", style="Heading 1", bold=True, size=16, color=NAVY)
     add_photo_row(
         "compassion",
         "mothers",
@@ -697,12 +705,11 @@ def build_docx() -> None:
         "Mothers and families in the clinic",
     )
     add_para(
-        "Jay Shetty inspires millions to live healthier, more purposeful lives through "
-        "compassion, mindfulness, and service. FairBanks converts that inspiration into "
-        "measurable community health outcomes - care close to home, earlier prevention, "
-        "and intelligent tools for last-mile Africa.",
+        "Jay Shetty's public work centres on wellbeing, compassion, and stronger communities. "
+        "FairBanks works on the same themes through clinics, outreach, and tools that help "
+        "people get care earlier and closer to home.",
     )
-    add_para("Potential collaboration areas", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("Areas we would like to explore", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
             "Community health and wellness programmes",
@@ -712,30 +719,29 @@ def build_docx() -> None:
             "Digital health innovation and research exchange",
             "Global advocacy and storytelling",
             "Impact investment and philanthropic introductions",
-            "Social enterprise growth and ecosystem mentorship",
+            "Social enterprise growth and mentorship",
         ]
     )
-    add_para("What FairBanks brings", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("What FairBanks offers", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
-            "An operational community facility as a live innovation and implementation hub",
-            "A scalable Community Reach model rooted in local needs",
-            "FCHIP - a working MVP moving into structured validation and scale",
-            "Experienced healthcare leadership and trusted community relationships",
-            "A commitment to measurable, sustainable, and scalable impact",
+            "An operating community medical facility in Kampala",
+            "Community Reach work shaped by local needs and relationships",
+            "FCHIP - a working MVP ready for careful validation",
+            "Healthcare leadership and trusted community relationships",
+            "A team focused on careful, lasting community health work",
         ]
     )
 
-    add_para("Our invitation", style="Heading 2", bold=True, size=13, color=TEAL)
+    add_para("Closing", style="Heading 2", bold=True, size=13, color=TEAL)
     add_para(
-        "We would be honoured to explore how the Jay Shetty ecosystem and FairBanks can "
-        "work together to improve health, wellbeing, and opportunity for underserved "
-        "communities. As FairBanks validates and scales FCHIP, we seek strategic "
-        "collaborators who can help accelerate innovation, expand reach, and maximise impact.",
+        "We would welcome a conversation about how the Jay Shetty ecosystem and FairBanks can "
+        "work together on community health and wellbeing. As we validate FCHIP, we are looking "
+        "for partners who can help share the story, offer advice, and open useful introductions.",
     )
     add_para(
-        "Together, we can transform community healthcare into an intelligent, preventive, "
-        "and compassionate system that empowers every family and every community to thrive.",
+        "If this feels aligned, we would be glad to start with a short call and see where a "
+        "practical collaboration might fit.",
         bold=True,
         color=NAVY,
     )
@@ -994,7 +1000,7 @@ def build_pptx() -> None:
             align=PP_ALIGN.CENTER,
         )
 
-    # 1 Cover - win-win, eye-catching
+    # 1 Cover
     s = slide()
     crop(s, photo("cover"), 0, 0, 13.333, 7.5)
     rect(s, 0, 0, 7.6, 7.5, NAVY)
@@ -1002,52 +1008,51 @@ def build_pptx() -> None:
         s.shapes.add_picture(str(photo("logo")), Inches(0.65), Inches(0.35), height=Inches(0.5))
     except Exception:
         pass
-    text(s, "STRATEGIC PARTNERSHIP  ·  WIN-WIN", 0.65, 1.1, 6.4, 0.3, 12, GOLD, True)
-    text(s, "FairBanks x\nJay Shetty", 0.65, 1.55, 6.5, 1.4, 34, WHITE, True)
-    text(s, WIN_HEADLINE, 0.68, 3.2, 6.2, 0.4, 18, GOLD, True)
+    text(s, "STRATEGIC PARTNERSHIP BRIEF", 0.65, 1.1, 6.4, 0.3, 12, GOLD, True)
+    text(s, "FairBanks &\nJay Shetty", 0.65, 1.55, 6.5, 1.4, 34, WHITE, True)
+    text(s, COVER_HEADLINE, 0.68, 3.2, 6.2, 0.4, 18, GOLD, True)
     text(s, SUBTITLE, 0.68, 3.75, 6.2, 0.9, 15, WHITE)
     text(s, SLOGAN, 0.68, 5.7, 5.0, 0.35, 14, GOLD, True)
-    text(s, "10-minute discovery call  ·  Not a donation ask", 0.68, 6.25, 6.0, 0.3, 12, WHITE)
-    text(s, f"{LOCATION}  |  Community Health Intelligence", 0.68, 6.7, 6.0, 0.28, 11, WHITE)
+    text(s, "Proposed next step: a short introductory call", 0.68, 6.25, 6.0, 0.3, 12, WHITE)
+    text(s, f"{LOCATION}  |  Community health partnership", 0.68, 6.7, 6.0, 0.28, 11, WHITE)
 
-    # 2 Win-win project summary
+    # 2 Project summary
     s = slide()
     band(
         s,
-        "Win-win project summary",
-        "What each side gains - and what we build together",
-        "Strategic collaboration, not a donation ask.",
+        "Project summary",
+        "Why a partnership with FairBanks makes sense",
+        "Shared purpose in community health and wellbeing.",
     )
-    # Three win cards
     cards = [
         (
-            "Jay Shetty ecosystem",
+            "For Jay Shetty's team",
             ORANGE,
             PALE_ORANGE,
             [
-                "Authentic African impact story",
-                "Inspiration -> measurable outcomes",
-                "Credible purpose partnership",
+                "A real clinic and community story",
+                "Wellbeing themes linked to real care",
+                "A partner grounded in daily health work",
             ],
         ),
         (
-            "FairBanks",
+            "For FairBanks",
             TEAL,
             PALE_TEAL,
             [
-                "Global storytelling & visibility",
-                "Mentorship & introductions",
-                "FCHIP validation acceleration",
+                "Help sharing our work more widely",
+                "Advice and useful introductions",
+                "Support validating FCHIP carefully",
             ],
         ),
         (
-            "Communities",
+            "For communities",
             GREEN,
             PALE_GREEN,
             [
-                "Earlier prevention & CHW support",
-                "Care close to home + CHIS",
-                "Action before crises escalate",
+                "Stronger prevention and CHW support",
+                "Care closer to home, including CHIS",
+                "Earlier action when risks rise",
             ],
         ),
     ]
@@ -1064,7 +1069,7 @@ def build_pptx() -> None:
 
     # 3 Who we are
     s = slide()
-    band(s, "Who we are", "A community health enterprise with a scalable model", "Care + Community Reach + Intelligence")
+    band(s, "Who we are", "Clinic, community programmes, and health intelligence", "Care + Community Reach + Intelligence")
     photo_pair(
         s,
         "facility_street",
@@ -1095,7 +1100,7 @@ def build_pptx() -> None:
 
     # 4 Three pillars
     s = slide()
-    band(s, "The FairBanks model", "Three pillars. One mission.", SLOGAN)
+    band(s, "The FairBanks model", "Three parts of the same organisation", SLOGAN)
     cards = [
         ("Medical Centre", "Family and community primary care, diagnostics, pharmacy, referrals", photo("facility_branded")),
         ("Community Reach", "CHWs/VHTs, outreach, school health, CHIS, livelihoods", photo("canopy")),
@@ -1123,7 +1128,7 @@ def build_pptx() -> None:
     rect(s, cascade_x, cascade_y, cascade_w + 0.16, cascade_h + 0.16, WHITE, LINE, True)
     if CONCEPT.exists():
         fit(s, CONCEPT, cascade_x + 0.08, cascade_y + 0.08, cascade_w, cascade_h)
-    text(s, "At a glance", cascade_x + cascade_w + 0.45, 1.15, 4.5, 0.35, 16, TEAL, True)
+    text(s, "Key points", cascade_x + cascade_w + 0.45, 1.15, 4.5, 0.35, 16, TEAL, True)
     bullets(
         s,
         [
@@ -1141,12 +1146,12 @@ def build_pptx() -> None:
         5.2,
         16,
     )
-    text(s, "FCHIP powers Data & Feedback.", cascade_x + cascade_w + 0.45, 6.55, 4.8, 0.35, 13, ORANGE, True)
+    text(s, "FCHIP supports learning from field data.", cascade_x + cascade_w + 0.45, 6.55, 4.8, 0.35, 13, ORANGE, True)
     footer(s, 5)
 
     # 6 Problem
     s = slide()
-    band(s, "The gap", "Healthcare still waits for people to get sick", "Fragmented data. Late detection. Missed prevention.")
+    band(s, "The gap", "Care is still mostly reactive", "Too often, care starts only after someone is already sick.")
     photo_pair(
         s,
         "outreach",
@@ -1181,7 +1186,7 @@ def build_pptx() -> None:
         s,
         "The intelligence layer",
         "FCHIP - FairBanks Community Health Intelligence Platform",
-        "From reactive treatment to proactive, climate-aware prevention.",
+        "Helping teams act earlier, using community and climate signals.",
     )
     photo_pair(
         s,
@@ -1211,7 +1216,7 @@ def build_pptx() -> None:
 
     # 8 Deep tech
     s = slide()
-    band(s, "Deep technology", "Built for last-mile Africa - not a simple app", "AI - ML - GIS - Climate - Secure APIs - Mobile - Cloud")
+    band(s, "Technology stack", "Built for community health work in Uganda and beyond", "AI - ML - GIS - Climate - Secure APIs - Mobile - Cloud")
     crop(s, photo("architecture"), 6.4, 1.8, 6.3, 4.55)
     text(
         s,
@@ -1244,7 +1249,7 @@ def build_pptx() -> None:
 
     # 9 Traction
     s = slide()
-    band(s, "Traction", "A live ecosystem ready to validate and scale", "Technology with field access - field access with technology.")
+    band(s, "Traction", "Work already underway in Kampala communities", "Clinic, outreach, and a working FCHIP MVP.")
     photo_pair(
         s,
         "community",
@@ -1275,7 +1280,7 @@ def build_pptx() -> None:
 
     # 10 Roadmap
     s = slide()
-    band(s, "Roadmap", "From working MVP to continental community health intelligence", "Validate -> district scale -> regional expansion")
+    band(s, "Roadmap", "Near-term validation, then careful growth", "Validate first. Grow when the evidence is clear.")
     stages = [
         ("Done", "Model + centre", "Community Reach and medical centre live"),
         ("Done", "FCHIP MVP", "Working platform ready for evidence"),
@@ -1300,8 +1305,8 @@ def build_pptx() -> None:
     band(
         s,
         "Why Jay Shetty",
-        "Inspiration becomes impact when communities can act",
-        "Wellbeing - compassion - purposeful living - stronger communities",
+        "From wellbeing message to community action",
+        "Wellbeing, compassion, and stronger communities",
     )
     photo_pair(
         s,
@@ -1321,7 +1326,7 @@ def build_pptx() -> None:
             "FairBanks turns vision into access and prevention",
             "FCHIP helps communities see risk earlier",
             "Global storytelling + local health delivery",
-            "A partnership of mission - not a one-way ask",
+            "A practical partnership, not a one-way request",
         ],
         7.8,
         2.0,
@@ -1331,11 +1336,11 @@ def build_pptx() -> None:
     )
     footer(s, 11)
 
-    # 12 Partnership menu
+    # 12 Partnership options
     s = slide()
-    band(s, "Partnership menu", "What we invite - and what we bring", "Two-way value. Clear exchange.")
+    band(s, "Partnership options", "How we might work together", "Clear mutual value.")
     rect(s, 0.55, 1.65, 5.9, 3.35, WHITE, LINE, True)
-    text(s, "Collaboration areas", 0.8, 1.8, 5.3, 0.35, 16, TEAL, True)
+    text(s, "Areas to explore", 0.8, 1.8, 5.3, 0.35, 16, TEAL, True)
     bullets(
         s,
         [
@@ -1356,11 +1361,11 @@ def build_pptx() -> None:
     bullets(
         s,
         [
-            "Live clinical and community laboratory",
+            "Operating clinic and Community Reach programmes",
             "Trusted CHW/VHT and community relationships",
             "Working FCHIP MVP ready to validate",
-            "Scalable East Africa community health model",
-            "Leadership committed to measurable impact",
+            "A Uganda-first model that can grow carefully",
+            "Leadership focused on practical community health results",
         ],
         7.05,
         2.25,
@@ -1385,10 +1390,10 @@ def build_pptx() -> None:
     s = slide()
     crop(s, photo("close"), 0, 0, 13.333, 7.5)
     rect(s, 0, 0, 13.333, 7.5, NAVY)
-    text(s, "OUR INVITATION", 0.8, 1.1, 4.0, 0.35, 13, GOLD, True)
+    text(s, "NEXT STEP", 0.8, 1.1, 4.0, 0.35, 13, GOLD, True)
     text(
         s,
-        "Partner with us to turn compassion into earlier care for underserved communities.",
+        "We would welcome a conversation about working together on community health.",
         0.8,
         1.7,
         10.5,

@@ -9,44 +9,44 @@ Keep the subject line. Add a short personal note only if you have a warm introdu
 
 ---
 
-**Subject:** Win-Win Partnership: FairBanks Community Health x Jay Shetty Ecosystem
+**Subject:** Partnership proposal: FairBanks Community Health and the Jay Shetty ecosystem
 
 Dear Partnerships Team,
 
-I hope this message finds you well.
+I hope you are well.
 
-I am writing on behalf of FairBanks Medical Centre & Pharmacy, a community health social enterprise in Kampala, Uganda. We are proposing a **win-win strategic collaboration** - not a sponsorship request - that turns compassion and wellbeing into practical primary care, community outreach, and intelligent prevention for underserved families.
+I am writing from FairBanks Medical Centre & Pharmacy, a community health organisation in Kampala, Uganda. We would like to explore a partnership with the Jay Shetty ecosystem around community wellbeing, preventive care, and practical support for families who often reach clinics only after illness has already taken hold.
 
-## The Opportunity
+## About FairBanks
 
-At FairBanks we integrate three pillars: our medical centre and pharmacy, FairBanks Community Reach (outreach, education, prevention, CHIS, and livelihoods), and FCHIP - the FairBanks Community Health Intelligence Platform. FCHIP is our AI-enabled layer that helps communities and care teams see risk earlier and act before crises escalate. We already operate a live clinical and community environment in Kampala peri-urban communities, and we are validating a working FCHIP MVP for the next phase of scale.
+We work through three connected parts: our medical centre and pharmacy, FairBanks Community Reach (outreach, health education, prevention, CHIS, and livelihoods), and FCHIP - the FairBanks Community Health Intelligence Platform. FCHIP helps community and facility teams see risk earlier using field data, facility records, maps, and climate signals. We already run clinical and community programmes in Kampala peri-urban areas, and we are validating a working FCHIP MVP.
 
-## Why Jay Shetty?
+## Why we reached out
 
-Jay Shetty has consistently championed wellbeing, compassion, purposeful living, and stronger communities. FairBanks shares that commitment - and converts it into tangible healthcare access, preventive education, and community health intelligence on the ground.
+Jay Shetty's work speaks to wellbeing, compassion, and stronger communities. Those themes match what we try to practise every day - through primary care, outreach, and tools that help people get help sooner.
 
-## The Partnership
+## Possible areas of collaboration
 
-We would welcome a strategic partnership with the Jay Shetty ecosystem in areas such as:
+We would welcome a conversation about:
 
 - Community health and wellness initiatives
 - Preventive healthcare and mental wellbeing programmes
-- AI for social impact and digital health innovation
-- Global storytelling and advocacy for equitable healthcare access
-- Social enterprise growth support and introductions to aligned impact partners
+- AI for social impact and digital health
+- Storytelling and advocacy for fairer access to care
+- Social enterprise growth support and introductions to aligned partners
 
-## What We Bring
+## What FairBanks offers
 
-- An operational community-centred medical facility serving as a real-world innovation hub
-- An active Community Reach cascade with CHWs/VHTs, school and community programmes, and livelihood pathways including CHIS
-- A working FCHIP MVP ready for structured validation and scale
-- Deep local relationships and a leadership team committed to measurable, sustainable impact
+- An operating community medical facility in Kampala
+- Active Community Reach work with CHWs/VHTs, school and community programmes, and livelihood pathways including CHIS
+- A working FCHIP MVP ready for careful validation
+- Local relationships and a leadership team focused on lasting community health results
 
-I have attached a concise executive partnership brief and deck outlining our vision, model, innovation roadmap, and partnership options.
+I have attached a short partnership brief and deck with more detail on our model, work to date, and partnership options.
 
-We would be honoured to schedule a brief 10-minute introductory conversation with your partnerships or impact team to explore how we might work together to improve community health and wellbeing.
+If useful, we would be glad to schedule a brief introductory call (about 10 minutes) with your partnerships or impact team.
 
-Thank you for your time and consideration. We deeply appreciate the meaningful work Jay Shetty and his team continue to do in inspiring positive change around the world.
+Thank you for considering this. We admire the work Jay Shetty and his team continue to do.
 
 Warm regards,
 
