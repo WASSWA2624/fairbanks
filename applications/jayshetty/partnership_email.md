@@ -36,8 +36,8 @@ Managing Director
 FairBanks Medical Centre  
 Kampala, Uganda  
 
-Website: https://fairbanksmedicalcentre.org  
-Email: info@fairbanksmedicalcentre.org  
-Tel: +256 777 462 398  
+Website: [https://fairbanksmedicalcentre.org](https://fairbanksmedicalcentre.org)  
+Email: [info@fairbanksmedicalcentre.org](mailto:info@fairbanksmedicalcentre.org)  
+Tel: +256 772 849 258  
 
 Your health, our mission.
