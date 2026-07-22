@@ -42,7 +42,7 @@ WHITE = "FFFFFF"
 SLOGAN = "Your health, our mission."
 PROGRAMME = "Strategic Partnership Brief"
 TITLE = "FairBanks x Jay Shetty"
-SUBTITLE = "A win-win partnership that turns inspiration into healthier communities"
+SUBTITLE = "A partnership proposal for community health and wellbeing"
 ORG = "FairBanks Medical Centre & Pharmacy"
 CONTACT_NAME = "Racheal Nabukeera Sekagiri"
 CONTACT_TITLE = "Managing Director"
@@ -51,11 +51,13 @@ EMAIL = "info@fairbanksmedicalcentre.org"
 PHONE = "+256 777 462 398"
 LOCATION = "Kampala, Uganda"
 EMAIL_MD = HERE / "partnership_email.md"
-WIN_HEADLINE = "Inspiration meets last-mile care"
-WIN_SUMMARY = (
-    "FairBanks invites the Jay Shetty ecosystem into a strategic collaboration - not a donation ask. "
-    "Together we convert compassion and wellbeing into practical primary care, Community Reach, "
-    "and FCHIP intelligence for underserved families in Uganda - with a clear path to East African scale."
+COVER_HEADLINE = "Community health rooted in Uganda"
+COVER_SUMMARY = (
+    "FairBanks Medical Centre & Pharmacy is a community health organisation in Kampala. "
+    "We combine clinical care, Community Reach, and FCHIP - our community health intelligence "
+    "platform - to help families get care earlier and closer to home. This brief explores how "
+    "we might work with the Jay Shetty ecosystem on shared goals around wellbeing, compassion, "
+    "and practical impact."
 )
 
 PHOTOS = {
