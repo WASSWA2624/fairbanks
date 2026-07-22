@@ -30,6 +30,7 @@ Strategic impact partnership · community wellness / mental wellbeing programmes
 
 ## Narrative spine
 
+- Lead with **win-win** on page 1: Jay Shetty ecosystem · FairBanks · communities
 - Live Community Reach cascade in Kampala peri-urban communities
 - Medical centre as real-world lab for FCHIP
 - Working FCHIP MVP → validate → scale
@@ -43,7 +44,7 @@ Synced set only via `build_jayshetty_docs.py`:
 - `documents/jayshetty_pdf.pdf`
 - `documents/jayshetty_ppt.pptx`
 
-Include the send-ready email inside Word/PDF. Slogan: **Your health, our mission.** Prefer `.cursor/concept_improved.jpeg` for partners; real photos from `assets/`.
+Send-ready outreach email lives separately in `partnership_email.md` (not inside Word/PDF). Slogan: **Your health, our mission.** Prefer the summarized Community Reach visual `.cursor/concept_simple.jpeg` in this pack; use `.cursor/concept_improved.jpeg` only when a full partner/funder cascade is needed. Real photos from `assets/`.
 
 ## Honesty
 
