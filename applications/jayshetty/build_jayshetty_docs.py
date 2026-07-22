@@ -43,7 +43,7 @@ SLOGAN = "Your health, our mission."
 PROGRAMME = "Strategic Partnership Brief"
 TITLE = "Partnership proposal"
 SUBTITLE = "Prepared for the Jay Shetty partnerships and impact team"
-ORG = "FairBanks Medical Centre & Pharmacy"
+ORG = "FairBanks Medical Centre"
 CONTACT_NAME = "Racheal Nabukeera"
 CONTACT_TITLE = "Managing Director"
 WEBSITE = "https://fairbanksmedicalcentre.org"
@@ -53,7 +53,7 @@ LOCATION = "Kampala, Uganda"
 EMAIL_MD = HERE / "partnership_email.md"
 COVER_HEADLINE = "Community health rooted in Uganda"
 COVER_SUMMARY = (
-    "FairBanks Medical Centre & Pharmacy is a community health organisation in Kampala. "
+    "FairBanks Medical Centre is a community health organisation in Kampala. "
     "We combine clinical care, Community Reach, and FCHIP - our community health intelligence "
     "platform. We are developing an FCHIP MVP to help families get care earlier and closer to "
     "home. This brief invites a conversation with the Jay Shetty ecosystem about shared goals "
@@ -627,7 +627,7 @@ def build_docx() -> None:
     add_para("What FairBanks is building", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
-            "FairBanks Medical Centre and Pharmacy - clinical care in Kampala",
+            "FairBanks Medical Centre - clinical care in Kampala",
             "Community Reach - CHWs/VHTs, outreach, school health, CHIS, and livelihoods",
             "FCHIP MVP in development - tools that help teams see risk earlier using community, facility, GIS, and climate data",
             "A partnership focused on shared purpose: storytelling, field delivery, and prevention",
@@ -699,7 +699,7 @@ def build_docx() -> None:
     add_para("Our three parts of work", style="Heading 2", bold=True, size=13, color=TEAL)
     pillars = [
         (
-            "FairBanks Medical Centre & Pharmacy",
+            "FairBanks Medical Centre",
             "Quality family and community primary healthcare, diagnostics, pharmacy, and referrals.",
         ),
         (
@@ -816,7 +816,7 @@ def build_docx() -> None:
     add_para("What is already in place", style="Heading 2", bold=True, size=13, color=TEAL)
     add_bullets(
         [
-            "Operational FairBanks Medical Centre & Pharmacy in Kampala",
+            "Operational FairBanks Medical Centre in Kampala",
             "Active Community Reach across Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and surrounding communities",
             "CHW/VHT engagement, maternal and child health, Gericare, chronic-disease screening, school and corporate health",
             "CHIS and livelihood pathways linked to affordable access",
@@ -1149,7 +1149,7 @@ def build_pptx() -> None:
             text(s, subtitle, 0.58, 1.15, 11.8, 0.32, 13, MUTED)
 
     def footer(s, number):
-        text(s, f"FairBanks Medical Centre & Pharmacy  |  {LOCATION}", 0.55, 7.18, 8.5, 0.18, 9, MUTED)
+        text(s, f"FairBanks Medical Centre  |  {LOCATION}", 0.55, 7.18, 8.5, 0.18, 9, MUTED)
         text(s, f"{number:02}", 12.2, 7.16, 0.5, 0.18, 9, MUTED, align=PP_ALIGN.RIGHT)
 
     def photo_pair(s, left_key, right_key, left_cap, right_cap, x=0.55, y=1.7, w=6.0, h=4.5):
@@ -1184,7 +1184,7 @@ def build_pptx() -> None:
         pass
     text(s, "STRATEGIC PARTNERSHIP BRIEF", 0.65, 1.0, 6.4, 0.28, 12, GOLD, True)
     text(s, "FairBanks", 0.65, 1.4, 6.5, 0.55, 34, WHITE, True)
-    text(s, "Medical Centre & Pharmacy", 0.68, 1.95, 6.2, 0.35, 16, GOLD, True)
+    text(s, "Medical Centre", 0.68, 1.95, 6.2, 0.35, 16, GOLD, True)
     text(s, COVER_HEADLINE, 0.68, 2.45, 6.2, 0.35, 16, WHITE, True)
     text(s, SUBTITLE, 0.68, 2.9, 6.2, 0.7, 14, WHITE)
     text(s, SLOGAN, 0.68, 4.55, 5.5, 0.3, 14, GOLD, True)
@@ -1262,7 +1262,7 @@ def build_pptx() -> None:
         s,
         [
             "Ugandan social enterprise in Kampala peri-urban communities",
-            "Medical centre and pharmacy as the clinical anchor",
+            "Medical centre as the clinical anchor",
             "Community Reach for prevention, education, livelihoods",
             "FCHIP closes the Data & Feedback loop",
             "Uganda first - designed for African scale",
@@ -1438,7 +1438,7 @@ def build_pptx() -> None:
     bullets(
         s,
         [
-            "Live medical centre and pharmacy",
+            "Live medical centre",
             "Named Kampala peri-urban communities",
             "CHW/VHT, MCH, school health",
             "CHIS and livelihood pathways",
