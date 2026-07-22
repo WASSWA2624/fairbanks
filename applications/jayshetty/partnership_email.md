@@ -25,8 +25,6 @@ Jay Shetty’s public work on wellbeing, compassion, and stronger communities al
 
 I have attached a short partnership brief (PDF) with more detail on our model, current work, and how a collaboration might look.
 
-If this feels relevant, we would be glad to schedule a brief introductory call of about 10 minutes with your partnerships or impact team.
-
 Thank you for your time and consideration.
 
 Warm regards,

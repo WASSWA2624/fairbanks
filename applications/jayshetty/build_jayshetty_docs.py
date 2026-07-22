@@ -594,22 +594,6 @@ def build_docx() -> None:
             pr.font.color.rgb = RGBColor.from_string(SLATE)
             pr.font.name = "Calibri"
 
-    doc.add_paragraph()
-
-    ask = doc.add_table(rows=1, cols=1)
-    ac = ask.rows[0].cells[0]
-    shade_cell(ac, TEAL)
-    ac.text = ""
-    ap = ac.paragraphs[0]
-    ap.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    ar = ap.add_run(
-        "Request: a short introductory call (about 10 minutes) with your partnerships or impact team"
-    )
-    ar.bold = True
-    ar.font.size = Pt(10)
-    ar.font.color.rgb = RGBColor.from_string(WHITE)
-    ar.font.name = "Calibri"
-
     # ---- Project summary ----
     doc.add_page_break()
     add_para("Project summary", style="Heading 1", bold=True, size=18, color=NAVY)
@@ -635,14 +619,13 @@ def build_docx() -> None:
     )
 
     add_para("How we see the collaboration", style="Heading 2", bold=True, size=13, color=TEAL)
-    summary = doc.add_table(rows=5, cols=2)
+    summary = doc.add_table(rows=4, cols=2)
     summary.style = "Table Grid"
     summary_rows = [
         ("Area", "Detail"),
         ("Jay Shetty ecosystem", "Platform, storytelling reach, and connections in wellbeing and impact"),
         ("FairBanks", "Operating clinic, Community Reach work, FCHIP MVP in development, and local relationships"),
         ("Shared aim", "Stronger community health outcomes linked to compassion and practical care"),
-        ("Next step", "A brief introductory conversation with partnerships or impact"),
     ]
     for i, (a, b) in enumerate(summary_rows):
         summary.rows[i].cells[0].text = a
@@ -912,18 +895,6 @@ def build_docx() -> None:
         "work together on community health and wellbeing. As we develop the FCHIP MVP, we are looking "
         "for partners who can help share the story, offer advice, and open useful introductions.",
     )
-    add_para(
-        "If this feels aligned, we would be glad to start with a short call and see where a "
-        "practical collaboration might fit.",
-        bold=True,
-        color=NAVY,
-    )
-    add_para(
-        "Next step: a brief 10-minute introductory conversation with your partnerships or impact team.",
-        size=11,
-        color=ORANGE,
-        bold=True,
-    )
 
     add_photo_row(
         "team",
@@ -1191,7 +1162,6 @@ def build_pptx() -> None:
     text(s, f"{CONTACT_NAME}  ·  {CONTACT_TITLE}", 0.68, 5.15, 6.2, 0.28, 13, WHITE, True)
     text(s, f"{LOCATION}  ·  {PHONE}", 0.68, 5.5, 6.2, 0.28, 12, WHITE)
     text(s, f"{EMAIL}  ·  {WEBSITE}", 0.68, 5.85, 6.4, 0.28, 12, WHITE)
-    text(s, "Proposed next step: a short introductory call", 0.68, 6.45, 6.2, 0.3, 12, GOLD)
 
     # 2 Project summary
     s = slide()
@@ -1564,7 +1534,7 @@ def build_pptx() -> None:
     s = slide()
     crop(s, photo("close"), 0, 0, 13.333, 7.5)
     rect(s, 0, 0, 13.333, 7.5, NAVY)
-    text(s, "NEXT STEP", 0.8, 1.1, 4.0, 0.35, 13, GOLD, True)
+    text(s, "THANK YOU", 0.8, 1.1, 4.0, 0.35, 13, GOLD, True)
     text(
         s,
         "We would welcome a conversation about working together on community health.",
@@ -1576,24 +1546,14 @@ def build_pptx() -> None:
         WHITE,
         True,
     )
-    text(
-        s,
-        "Next step: a brief 10-minute conversation with your partnerships or impact team.",
-        0.82,
-        3.5,
-        10.0,
-        0.6,
-        16,
-        WHITE,
-    )
-    text(s, SLOGAN, 0.82, 5.2, 4.0, 0.3, 14, GOLD, True)
+    text(s, SLOGAN, 0.82, 4.0, 4.0, 0.3, 14, GOLD, True)
     text(
         s,
         f"{CONTACT_NAME}  ·  {CONTACT_TITLE}\n"
         f"{ORG}  ·  {LOCATION}\n"
         f"{EMAIL}  ·  {PHONE}  ·  {WEBSITE}",
         0.82,
-        5.7,
+        4.6,
         10.5,
         1.1,
         13,
