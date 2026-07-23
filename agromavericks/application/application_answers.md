@@ -55,7 +55,7 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 1. **FCHIP / FairBanks Medical Centre (current)** - I lead FCHIP and related hospital software at FairBanks: community health tools, clinic workflows, web/mobile delivery, and cloud data flows. Link: [TO CONFIRM]
 
-2. **AI agent for a law firm in Texas** - Built and deployed an AI agent that the firm uses in live work. Link / demo: [TO CONFIRM]
+2. **AI reception agent for a law firm in Texas (USA)** - Built and deployed an AI reception agent the firm uses in live work. It answers incoming calls, manages appointments, and follows up with clients. Link / demo: [TO CONFIRM]
 
 3. **Shulekeeper (2021-2024)** - School information system. I helped with React/Next.js + TypeScript, Laravel, MySQL, and AWS. Assistant Software Developer. Link: [TO CONFIRM]
 
@@ -69,7 +69,7 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 I applied because Agromavericks is building real software for agricultural financing in Uganda, and you are growing an in-house tech team. That is the kind of work I want to do.
 
-I already have practical experience with the tools in your stack: Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS, plus Node APIs, databases, auth, testing, and CI/CD. At FairBanks Medical Centre I lead FCHIP and hospital software that people use every day. I have also shipped Shulekeeper, endoscopy reporting software, and Wekebere, and I built an AI agent used by a law firm in Texas.
+I already have practical experience with the tools in your stack: Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS, plus Node APIs, databases, auth, testing, and CI/CD. At FairBanks Medical Centre I lead FCHIP and hospital software that people use every day. I have also shipped Shulekeeper, endoscopy reporting software, and Wekebere. Separately, I built and deployed an AI reception agent for a law firm in Texas that answers calls, manages appointments, and follows up with clients.
 
 I live in Kampala, I can work in Uganda legally, and hybrid suits me. I would like to help keep the Agromavericks and Ukofi platforms stable and useful for farmers and financiers.
 

@@ -53,8 +53,10 @@ SUMMARY = (
     "Vercel, and EAS. I also use Node.js, SQL databases, Prisma, JWT and role-based access, "
     "testing tools, and CI/CD. On top of that I have solid experience with Java, PHP, MySQL, "
     "Azure, and AWS. Right now I lead software work at FairBanks Medical Centre on FCHIP "
-    "and hospital systems. Before that I built school and clinic software, and I also spent "
-    "several years managing biomedical programmes in hospitals."
+    "and hospital systems. I have also built and deployed an AI reception agent for a law "
+    "firm in Texas that answers calls, manages appointments, and follows up with clients. "
+    "Before that I built school and clinic software, and I also spent several years managing "
+    "biomedical programmes in hospitals."
 )
 
 SKILLS = [
@@ -87,12 +89,23 @@ SOFTWARE_ROLES = [
             "Build and maintain hospital and clinic software used by staff day to day.",
             "Work across web and mobile with Next.js, TypeScript, Tailwind, React Native/Expo, "
             "Convex, auth, messaging, CDN, and cloud deploy, including storage and data sync.",
-            "Built and deployed a working AI agent for a law firm in Texas that is in active use.",
         ],
     },
 ]
 
 PROJECTS = [
+    {
+        "name": "AI reception agent (law firm, Texas, USA)",
+        "meta": "Built and deployed; in active use",
+        "bullets": [
+            "Built and deployed an AI reception agent for a law firm in Texas that handles "
+            "incoming client calls in live use.",
+            "The agent manages appointments (book, reschedule, and related scheduling) so "
+            "staff spend less time on the phone.",
+            "It also follows up with clients after contact, helping the firm stay on top of "
+            "leads and ongoing matters.",
+        ],
+    },
     {
         "name": "Shulekeeper (school information system)",
         "meta": "Assistant Software Developer, 2021-2024",
@@ -403,7 +416,9 @@ def build_letter_docx(path: Path) -> None:
         "Java, PHP, MySQL, Azure, and AWS. At FairBanks Medical Centre I currently lead "
         "FCHIP and hospital software. I have also shipped Shulekeeper (Next.js, TypeScript, "
         "Laravel, AWS), endoscopy reporting software for two hospitals, and the Wekebere "
-        "Android monitoring app. I also built an AI agent now used by a law firm in Texas.",
+        "Android monitoring app. Separately, I built and deployed an AI reception agent for "
+        "a law firm in Texas that answers calls, manages appointments, and follows up with "
+        "clients - and it is in active use.",
     )
     body_para(
         doc,
@@ -682,7 +697,9 @@ def build_letter_pdf(path: Path) -> None:
             "Java, PHP, MySQL, Azure, and AWS. At FairBanks Medical Centre I currently lead "
             "FCHIP and hospital software. I have also shipped Shulekeeper (Next.js, TypeScript, "
             "Laravel, AWS), endoscopy reporting software for two hospitals, and the Wekebere "
-            "Android monitoring app. I also built an AI agent now used by a law firm in Texas.",
+            "Android monitoring app. Separately, I built and deployed an AI reception agent for "
+            "a law firm in Texas that answers calls, manages appointments, and follows up with "
+            "clients - and it is in active use.",
             styles["LetterBody"],
         ),
         Paragraph(
@@ -760,7 +777,7 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 1. **FCHIP / FairBanks Medical Centre (current)** - I lead FCHIP and related hospital software at FairBanks: community health tools, clinic workflows, web/mobile delivery, and cloud data flows. Link: [TO CONFIRM]
 
-2. **AI agent for a law firm in Texas** - Built and deployed an AI agent that the firm uses in live work. Link / demo: [TO CONFIRM]
+2. **AI reception agent for a law firm in Texas (USA)** - Built and deployed an AI reception agent the firm uses in live work. It answers incoming calls, manages appointments, and follows up with clients. Link / demo: [TO CONFIRM]
 
 3. **Shulekeeper (2021-2024)** - School information system. I helped with React/Next.js + TypeScript, Laravel, MySQL, and AWS. Assistant Software Developer. Link: [TO CONFIRM]
 
@@ -774,7 +791,7 @@ Attach: `application/Wasswa_Wilson_CV_AgroMavericks.pdf` (or `.docx`)
 
 I applied because Agromavericks is building real software for agricultural financing in Uganda, and you are growing an in-house tech team. That is the kind of work I want to do.
 
-I already have practical experience with the tools in your stack: Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS, plus Node APIs, databases, auth, testing, and CI/CD. At FairBanks Medical Centre I lead FCHIP and hospital software that people use every day. I have also shipped Shulekeeper, endoscopy reporting software, and Wekebere, and I built an AI agent used by a law firm in Texas.
+I already have practical experience with the tools in your stack: Next.js, TypeScript, Tailwind CSS, React Native and Expo, Convex, Better Auth, Resend, WhatsApp messaging, Bunny.net, Vercel, and EAS, plus Node APIs, databases, auth, testing, and CI/CD. At FairBanks Medical Centre I lead FCHIP and hospital software that people use every day. I have also shipped Shulekeeper, endoscopy reporting software, and Wekebere. Separately, I built and deployed an AI reception agent for a law firm in Texas that answers calls, manages appointments, and follows up with clients.
 
 I live in Kampala, I can work in Uganda legally, and hybrid suits me. I would like to help keep the Agromavericks and Ukofi platforms stable and useful for farmers and financiers.
 
