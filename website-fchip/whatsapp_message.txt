@@ -1,0 +1,30 @@
+Good evening — FCHIP-specific website pack is ready.
+
+Please update https://www.fairbanksmedicalcentre.org/ as follows:
+
+1) New page: /fchip/ (menu: FCHIP next to FairBanks Reach)
+   - Copy: website-fchip/pages/fchip.md
+   - Features: website-fchip/pages/fchip_features.md
+   - FAQ: website-fchip/pages/fchip_faq.md
+   - Optional HTML: website-fchip/pages/fchip_snippets.html
+
+2) Upload FCHIP images from website-fchip/assets/
+   - fchip_hero.png (hero)
+   - fchip_how_it_works.png
+   - fchip_architecture.png
+   - fchip_use_cases.png
+   - fchip_early_warning_example.png
+   - fchip_icon_tile.png
+   Guide: website-fchip/assets/ASSET_GUIDE.md
+
+3) Update FairBanks Reach with website-fchip/pages/fairbanks-reach-update.md
+   (image: concept_simple.jpeg)
+
+4) Optional Home teaser: website-fchip/pages/home-teaser.md
+
+One-line meaning:
+FCHIP = FairBanks Community Health Intelligence Platform — earlier health warnings from community + facility data, maps, and climate.
+
+Slogan: Your health, our mission.
+
+Folder: website-fchip/
