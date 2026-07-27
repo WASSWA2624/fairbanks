@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Racheal Nabukeera Sekagiri professional CV (PDF + Word)."""
+"""Build Racheal Nabukeera professional CV (PDF + Word)."""
 
 from __future__ import annotations
 
@@ -32,8 +32,8 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parent
 PHOTO_SRC = ROOT / "WhatsApp Image 2026-07-27 at 14.23.53.jpeg"
 PHOTO_CIRCLE = ROOT / "tmp" / "racheal_photo_circle.png"
-OUT_PDF = ROOT / "racheal_nabukeera_sekagiri_cv.pdf"
-OUT_DOCX = ROOT / "racheal_nabukeera_sekagiri_cv.docx"
+OUT_PDF = ROOT / "racheal_nabukeera_cv.pdf"
+OUT_DOCX = ROOT / "racheal_nabukeera_cv.docx"
 
 NAVY = HexColor("#0B3D5C")
 TEAL = HexColor("#1A6B7A")
@@ -491,14 +491,14 @@ def build_pdf() -> None:
         rightMargin=14 * mm,
         topMargin=12 * mm,
         bottomMargin=12 * mm,
-        title="Racheal Nabukeera Sekagiri - Curriculum Vitae",
-        author="Racheal Nabukeera Sekagiri",
+        title="Racheal Nabukeera - Curriculum Vitae",
+        author="Racheal Nabukeera",
     )
     width = A4[0] - 28 * mm
     story = []
 
     name_block = [
-        Paragraph("RACHEAL NABUKEERA SEKAGIRI", styles["Name"]),
+        Paragraph("RACHEAL NABUKEERA", styles["Name"]),
         Paragraph(
             "Senior Human Resource Executive | Human Capital Strategist<br/>"
             "Organisational Development &amp; Executive Leadership",
@@ -767,7 +767,7 @@ def build_pdf() -> None:
         canvas.line(14 * mm, 8 * mm, A4[0] - 14 * mm, 8 * mm)
         canvas.setFont("Helvetica", 7.2)
         canvas.setFillColor(MUTED)
-        canvas.drawString(14 * mm, 4.5 * mm, "Racheal Nabukeera Sekagiri | Curriculum Vitae")
+        canvas.drawString(14 * mm, 4.5 * mm, "Racheal Nabukeera | Curriculum Vitae")
         canvas.drawRightString(A4[0] - 14 * mm, 4.5 * mm, f"Page {doc_.page}")
         canvas.restoreState()
 
@@ -869,7 +869,7 @@ def build_docx() -> None:
     right.width = Cm(3.8)
 
     p = left.paragraphs[0]
-    r = p.add_run("RACHEAL NABUKEERA SEKAGIRI")
+    r = p.add_run("RACHEAL NABUKEERA")
     set_run_font(r, size=18, bold=True, color=DOCX_NAVY)
 
     p2 = left.add_paragraph()
@@ -1084,7 +1084,7 @@ def build_docx() -> None:
     footer = doc.sections[0].footer
     fp = footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = fp.add_run("Racheal Nabukeera Sekagiri | Curriculum Vitae")
+    run = fp.add_run("Racheal Nabukeera | Curriculum Vitae")
     set_run_font(run, size=8, color=DOCX_MUTED)
 
     doc.save(str(OUT_DOCX))

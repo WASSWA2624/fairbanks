@@ -1,4 +1,4 @@
-# **RACHEAL NABUKEERA SEKAGIRI**
+# **RACHEAL NABUKEERA**
 
 **Senior Human Resource Executive | Human Capital Strategist | Organisational Development & Executive Leadership**
 

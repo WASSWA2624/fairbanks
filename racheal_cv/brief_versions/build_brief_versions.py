@@ -40,7 +40,7 @@ PHOTO_SQUARE = PHOTO_DIR / "photo_square.png"
 PHOTO_PORTRAIT = PHOTO_DIR / "photo_portrait.png"
 PREVIEW = ROOT / "_preview"
 
-NAME = "RACHEAL NABUKEERA SEKAGIRI"
+NAME = "RACHEAL NABUKEERA"
 TITLE = "Senior Human Resource Executive  ·  Human Capital Strategist  ·  Organisational Development"
 LOCATION = "Kampala, Uganda"
 PHONE1 = "+256 772 849258"
