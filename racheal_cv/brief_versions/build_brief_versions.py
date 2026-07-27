@@ -62,31 +62,24 @@ PROFILE2 = (
 )
 
 HIGHLIGHTS = [
-    "30 years progressive HR & executive management",
-    "18+ years executive Human Resource leadership",
-    "Strategic HR for 2,000+ employees / 50+ units",
+    "Nearly 30 years in HR and executive management",
+    "18+ years in executive Human Resource leadership",
+    "Strategic HR leadership for 2,000+ employees across 50+ units",
     "Founder & MD, FairBanks Medical Centre Ltd",
     "Social enterprise reach: 10,000+ beneficiaries",
-    "PhD Candidate — HR analytics, AI & organisational behaviour",
-    "Executive advisor on change & organisational effectiveness",
-    "Workforce planning, talent & performance leadership",
 ]
 
 SKILLS = [
     "HR Strategy",
-    "Human Capital Management",
     "Organisational Development",
     "Talent Management",
     "Workforce Planning",
-    "Succession Planning",
     "Change Management",
     "Performance Management",
     "Employee Relations",
-    "Labour Law Compliance",
     "Corporate Governance",
     "Leadership Development",
     "HR Analytics / HRIS",
-    "Stakeholder Engagement",
 ]
 
 ROLES = [
@@ -97,7 +90,6 @@ ROLES = [
         "points": [
             "Lead strategy, governance, HR systems and institutional growth.",
             "Founded FairBanks Social Enterprise Initiative (10,000+ beneficiaries).",
-            "Build partnerships with government, insurers and development partners.",
         ],
     },
     {
@@ -107,7 +99,6 @@ ROLES = [
         "points": [
             "Directed Group HR strategy for 2,000+ employees across 50+ units.",
             "Led workforce planning, restructuring, succession and leadership development.",
-            "Strengthened HR governance, performance systems and staff retention.",
         ],
     },
     {
@@ -115,8 +106,7 @@ ROLES = [
         "org": "Norvik Hospital Ltd",
         "dates": "Sep 2013 - 2016",
         "points": [
-            "Led recruitment, employee relations, appraisals and staff welfare.",
-            "Improved HR policy implementation and operational efficiency.",
+            "Led recruitment, employee relations, performance systems and HR policy.",
         ],
     },
     {
@@ -124,8 +114,7 @@ ROLES = [
         "org": "St. Catherine's Hospital",
         "dates": "2007 - 2010",
         "points": [
-            "Managed HR operations, welfare programmes and labour compliance.",
-            "Strengthened recruitment, retention and employee engagement.",
+            "Managed HR operations, welfare, labour compliance and staff engagement.",
         ],
     },
 ]
@@ -144,12 +133,11 @@ EDUCATION = [
 
 TECH = (
     "Microsoft Office  ·  HRIS  ·  ERP  ·  HR Analytics  ·  Performance systems  ·  "
-    "Payroll systems  ·  Executive reporting  ·  AI applications in HR"
+    "Executive reporting  ·  AI applications in HR"
 )
 RESEARCH = (
-    "Human Resource Analytics  ·  Artificial Intelligence  ·  Machine Learning  ·  "
-    "Organisational Behaviour  ·  Occupational Burnout  ·  Employee Wellbeing  ·  "
-    "Healthcare Management"
+    "Human Resource Analytics  ·  Artificial Intelligence  ·  Organisational Behaviour  ·  "
+    "Occupational Burnout  ·  Employee Wellbeing"
 )
 MORE = (
     "Member, Federation of Uganda Employers (FUE)  ·  English (Fluent)  ·  "
@@ -356,12 +344,12 @@ def build_v01_pdf(out: Path):
     add_style(styles, "T", fontName="Helvetica", fontSize=9.2, leading=12, textColor=TEAL, spaceAfter=4)
     add_style(styles, "C", fontName="Helvetica", fontSize=8.5, leading=11, textColor=MUTED)
     add_style(styles, "H", fontName="Helvetica-Bold", fontSize=10, leading=12, textColor=NAVY, spaceBefore=7, spaceAfter=2)
-    add_style(styles, "B", fontName="Helvetica", fontSize=9, leading=12, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9.2, leading=11.5, textColor=NAVY, spaceBefore=4, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=8.5, leading=10.5, textColor=TEAL, spaceAfter=1)
-    add_style(styles, "L", fontName="Helvetica", fontSize=8.5, leading=10.8, textColor=INK, leftIndent=6, spaceAfter=0.5)
-    add_style(styles, "M", fontName="Helvetica", fontSize=8, leading=10.2, textColor=MUTED, spaceAfter=1.5)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.3, leading=10.5, textColor=INK, spaceAfter=1)
+    add_style(styles, "B", fontName="Helvetica", fontSize=9.5, leading=12.8, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=4)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9.8, leading=12, textColor=NAVY, spaceBefore=5, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=9, leading=11, textColor=TEAL, spaceAfter=1.5)
+    add_style(styles, "L", fontName="Helvetica", fontSize=9, leading=11.5, textColor=INK, leftIndent=6, spaceAfter=1)
+    add_style(styles, "M", fontName="Helvetica", fontSize=8.5, leading=10.8, textColor=MUTED, spaceAfter=2)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=9, leading=11.3, textColor=INK, spaceAfter=1.5)
     add_style(styles, "E", fontName="Helvetica-Bold", fontSize=8.5, leading=10.5, textColor=NAVY, spaceBefore=1, spaceAfter=0)
     add_style(styles, "Em", fontName="Helvetica", fontSize=7.8, leading=9.8, textColor=MUTED, spaceAfter=1.5)
 
@@ -643,12 +631,12 @@ def build_v03_pdf(out: Path):
     add_style(styles, "T", fontName="Helvetica", fontSize=9, leading=11.5, textColor=FOREST, spaceAfter=2)
     add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED)
     add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.5, leading=11.5, textColor=FOREST, spaceBefore=7, spaceAfter=2)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8.8, leading=11.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9, leading=11, textColor=CHARCOAL, spaceBefore=4, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=8.2, leading=10, textColor=FOREST, spaceAfter=0.5)
-    add_style(styles, "L", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=INK, leftIndent=5, spaceAfter=0.5)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.6, leading=9.8, textColor=MUTED, spaceAfter=1)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.1, leading=10.3, textColor=INK, spaceAfter=0.8)
+    add_style(styles, "B", fontName="Helvetica", fontSize=9.5, leading=12.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=4)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9.8, leading=12, textColor=CHARCOAL, spaceBefore=5, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=9, leading=11, textColor=FOREST, spaceAfter=1)
+    add_style(styles, "L", fontName="Helvetica", fontSize=9, leading=11.3, textColor=INK, leftIndent=5, spaceAfter=1)
+    add_style(styles, "M", fontName="Helvetica", fontSize=8.3, leading=10.5, textColor=MUTED, spaceAfter=1.5)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=9, leading=11.2, textColor=INK, spaceAfter=1.2)
     add_style(styles, "E", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=CHARCOAL, spaceAfter=0)
     add_style(styles, "Em", fontName="Helvetica", fontSize=7.6, leading=9.6, textColor=MUTED, spaceAfter=1)
 
@@ -733,13 +721,13 @@ def build_v04_pdf(out: Path):
     add_style(styles, "T", fontName="Helvetica", fontSize=9.2, leading=11.5, textColor=TEAL, alignment=TA_CENTER, spaceAfter=2)
     add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED, alignment=TA_CENTER, spaceAfter=4)
     add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.5, leading=11.5, textColor=SLATE, alignment=TA_CENTER, spaceBefore=7, spaceAfter=2)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8.8, leading=11.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=4)
+    add_style(styles, "B", fontName="Helvetica", fontSize=9.5, leading=12.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=5)
     add_style(styles, "D", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=TEAL, alignment=TA_RIGHT)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.8, leading=10.8, textColor=SLATE)
-    add_style(styles, "O", fontName="Helvetica", fontSize=8, leading=10, textColor=MUTED, spaceAfter=1)
-    add_style(styles, "L", fontName="Helvetica", fontSize=8, leading=10.2, textColor=INK, leftIndent=4, spaceAfter=0.5)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.8, leading=10, textColor=MUTED, alignment=TA_CENTER, spaceAfter=2)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=8, leading=10.2, textColor=INK, spaceAfter=0.8)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9.5, leading=11.5, textColor=SLATE)
+    add_style(styles, "O", fontName="Helvetica", fontSize=8.8, leading=10.8, textColor=MUTED, spaceAfter=1)
+    add_style(styles, "L", fontName="Helvetica", fontSize=8.8, leading=11, textColor=INK, leftIndent=4, spaceAfter=0.8)
+    add_style(styles, "M", fontName="Helvetica", fontSize=8.5, leading=10.8, textColor=MUTED, alignment=TA_CENTER, spaceAfter=2)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.8, leading=11, textColor=INK, spaceAfter=1)
 
     doc = SimpleDocTemplate(str(out), pagesize=A4,
                             leftMargin=11 * mm, rightMargin=11 * mm,
@@ -853,13 +841,13 @@ def build_v05_pdf(out: Path):
     add_style(styles, "T", fontName="Helvetica", fontSize=9, leading=11, textColor=TEAL, spaceAfter=3)
     add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED)
     add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.2, leading=11, textColor=NAVY, spaceBefore=3, spaceAfter=2)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8.6, leading=11.2, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.7, leading=10.8, textColor=NAVY, spaceBefore=4, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=8, leading=10, textColor=TEAL, spaceAfter=0.5)
-    add_style(styles, "L", fontName="Helvetica", fontSize=8, leading=10.2, textColor=INK, leftIndent=4, spaceAfter=0.5)
-    add_style(styles, "S", fontName="Helvetica", fontSize=8, leading=10.3, textColor=INK, spaceAfter=1)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.8, leading=10, textColor=MUTED, spaceAfter=1.5)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.9, leading=10.2, textColor=INK, spaceAfter=1)
+    add_style(styles, "B", fontName="Helvetica", fontSize=9.3, leading=12.2, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=4)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9.4, leading=11.5, textColor=NAVY, spaceBefore=5, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=8.7, leading=10.8, textColor=TEAL, spaceAfter=1)
+    add_style(styles, "L", fontName="Helvetica", fontSize=8.8, leading=11, textColor=INK, leftIndent=4, spaceAfter=1)
+    add_style(styles, "S", fontName="Helvetica", fontSize=8.8, leading=11, textColor=INK, spaceAfter=1.5)
+    add_style(styles, "M", fontName="Helvetica", fontSize=8.5, leading=10.8, textColor=MUTED, spaceAfter=2)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.7, leading=11, textColor=INK, spaceAfter=1.5)
     add_style(styles, "E", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=NAVY, spaceAfter=0)
 
     doc = SimpleDocTemplate(str(out), pagesize=A4,
