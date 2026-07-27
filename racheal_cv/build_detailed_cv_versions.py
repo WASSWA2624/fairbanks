@@ -273,7 +273,7 @@ class SignatureBlock(Flowable):
 
 def signature_flowables(theme: Theme, signer_name: str) -> list:
     """Proper signing block kept on the final content page."""
-    return [Spacer(1, 6), SignatureBlock(theme, signer_name)]
+    return [Spacer(1, 4), SignatureBlock(theme, signer_name)]
 
 
 class SectionBand(Flowable):
@@ -820,6 +820,10 @@ def verify_source_coverage(files: list[Path], blocks: list[tuple[str, str]]):
         "Health Management Systems Administrator",
         "Firminus Mugumya",
         "firminus.mugumya@mak.ac.ug",
+        "John Mulindwa Kitayimbwa",
+        "Jkitayimbwa@ucu.ac.ug",
+        "Twalib Aliku",
+        "info@fairbanksmedicalcentre.com",
     ]
     for path in files:
         if path.suffix == ".pdf":

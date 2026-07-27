@@ -318,13 +318,9 @@ Research Topic:
 
 # REFEREES
 
-**Firminus Mugumya, PhD**
-Assoc. Professor of Developmental Social Work (Community Systems Governance)
-Dept. of Social Work & Social Administration
-School of Social Sciences
-College of Humanities and Social Sciences (CHUSS)
-Makerere University, Kampala
+**Firminus Mugumya, PhD** — Assoc. Professor of Developmental Social Work (Community Systems Governance), Dept. of Social Work & Social Administration, School of Social Sciences, College of Humanities and Social Sciences (CHUSS), Makerere University, Kampala. Email: firminus.mugumya@mak.ac.ug | mugufirm@gmail.com | firmlib@yahoo.co.uk. Mobile: +256 782 351 444.
 
-**Email:** firminus.mugumya@mak.ac.ug | mugufirm@gmail.com | firmlib@yahoo.co.uk
-**Mobile:** +256 782 351 444
+**Rev. Prof. John Mulindwa Kitayimbwa** — Deputy Vice-Chancellor (Academic Affairs), Uganda Christian University. Email: Jkitayimbwa@ucu.ac.ug. Mobile: +256 701 962511.
+
+**Dr. Twalib Aliku** — Senior Consultant Paediatrician/Cardiologist, FairBanks Medical Centre, Kyebando - Kisalosala, P.O. Box 111907, Kampala, Uganda. Email: info@fairbanksmedicalcentre.com. Mobile: +256 751 207566 | +256 777 462398.
 
