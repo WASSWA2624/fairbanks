@@ -146,6 +146,11 @@ TECH = (
     "Microsoft Office  ·  HRIS  ·  ERP  ·  HR Analytics  ·  Performance systems  ·  "
     "Payroll systems  ·  Executive reporting  ·  AI applications in HR"
 )
+RESEARCH = (
+    "Human Resource Analytics  ·  Artificial Intelligence  ·  Machine Learning  ·  "
+    "Organisational Behaviour  ·  Occupational Burnout  ·  Employee Wellbeing  ·  "
+    "Healthcare Management"
+)
 MORE = (
     "Member, Federation of Uganda Employers (FUE)  ·  English (Fluent)  ·  "
     "Luganda (Fluent)  ·  References available on request"
@@ -347,37 +352,37 @@ def edu_block(styles_edu, styles_meta):
 # ---------------------------------------------------------------------------
 def build_v01_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=15.5, leading=18, textColor=NAVY, spaceAfter=1)
-    add_style(styles, "T", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=TEAL, spaceAfter=3)
-    add_style(styles, "C", fontName="Helvetica", fontSize=7.6, leading=10, textColor=MUTED)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8.8, leading=11, textColor=NAVY, spaceBefore=5, spaceAfter=1)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8, leading=10.6, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=2)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.3, leading=10.5, textColor=NAVY, spaceBefore=3, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=7.6, leading=9.5, textColor=TEAL, spaceAfter=0.5)
-    add_style(styles, "L", fontName="Helvetica", fontSize=7.6, leading=9.8, textColor=INK, leftIndent=6, spaceAfter=0.5)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.2, leading=9.5, textColor=MUTED, spaceAfter=1.5)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.5, leading=9.8, textColor=INK, spaceAfter=0.8)
-    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=7.8, leading=10, textColor=NAVY, spaceBefore=1, spaceAfter=0)
-    add_style(styles, "Em", fontName="Helvetica", fontSize=7.2, leading=9.2, textColor=MUTED, spaceAfter=1.5)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=17, leading=20, textColor=NAVY, spaceAfter=2)
+    add_style(styles, "T", fontName="Helvetica", fontSize=9.2, leading=12, textColor=TEAL, spaceAfter=4)
+    add_style(styles, "C", fontName="Helvetica", fontSize=8.5, leading=11, textColor=MUTED)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=10, leading=12, textColor=NAVY, spaceBefore=7, spaceAfter=2)
+    add_style(styles, "B", fontName="Helvetica", fontSize=9, leading=12, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9.2, leading=11.5, textColor=NAVY, spaceBefore=4, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=8.5, leading=10.5, textColor=TEAL, spaceAfter=1)
+    add_style(styles, "L", fontName="Helvetica", fontSize=8.5, leading=10.8, textColor=INK, leftIndent=6, spaceAfter=0.5)
+    add_style(styles, "M", fontName="Helvetica", fontSize=8, leading=10.2, textColor=MUTED, spaceAfter=1.5)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.3, leading=10.5, textColor=INK, spaceAfter=1)
+    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=8.5, leading=10.5, textColor=NAVY, spaceBefore=1, spaceAfter=0)
+    add_style(styles, "Em", fontName="Helvetica", fontSize=7.8, leading=9.8, textColor=MUTED, spaceAfter=1.5)
 
     doc = SimpleDocTemplate(str(out), pagesize=A4,
                             leftMargin=12 * mm, rightMargin=12 * mm,
-                            topMargin=8 * mm, bottomMargin=10 * mm,
+        topMargin=7 * mm, bottomMargin=9 * mm,
                             title=f"{NAME} - Classic Airy")
     w = A4[0] - 24 * mm
     # Portrait photo — complete like original
-    photo = RLImage(str(PHOTO_PORTRAIT), width=32 * mm, height=48 * mm)
+    photo = RLImage(str(PHOTO_PORTRAIT), width=34 * mm, height=51 * mm)
     head = Table([[
         [Paragraph(NAME, styles["N"]), Paragraph(TITLE, styles["T"]),
          Paragraph(f"{LOCATION}<br/>{MOBILE}<br/>{EMAIL}  ·  {WEB}", styles["C"])],
         photo,
-    ]], colWidths=[w - 36 * mm, 36 * mm])
+    ]], colWidths=[w - 38 * mm, 38 * mm])
     head.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("ALIGN", (1, 0), (1, 0), "RIGHT"),
         ("BACKGROUND", (0, 0), (-1, -1), CREAM),
-        ("TOPPADDING", (0, 0), (-1, -1), 7),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+        ("TOPPADDING", (0, 0), (-1, -1), 8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
         ("LEFTPADDING", (0, 0), (0, 0), 8),
         ("RIGHTPADDING", (1, 0), (1, 0), 7),
         ("LEFTPADDING", (1, 0), (1, 0), 0),
@@ -391,22 +396,8 @@ def build_v01_pdf(out: Path):
         Paragraph("PROFILE", styles["H"]), GoldRule(30 * mm),
         Paragraph(PROFILE, styles["B"]),
         Paragraph(PROFILE2, styles["B"]),
-        Paragraph("HIGHLIGHTS", styles["H"]), GoldRule(30 * mm),
     ]
-    left_h = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[:4]]
-    right_h = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[4:]]
-    story.append(Table([[left_h, right_h]], colWidths=[w / 2, w / 2], style=TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 3),
-        ("BACKGROUND", (0, 0), (-1, -1), SOFT),
-        ("BOX", (0, 0), (-1, -1), 0.3, LINE),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
-        ("LEFTPADDING", (0, 0), (-1, -1), 5),
-    ])))
     story += [
-        Spacer(1, 2),
         Paragraph("CORE COMPETENCIES", styles["H"]), GoldRule(30 * mm),
         skill_chips(SKILLS, w, cols=7),
         Spacer(1, 2),
@@ -485,30 +476,30 @@ def build_v02_pdf(out: Path):
 
     y = side_h("CONTACT", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 6.9)
+    c.setFont("Helvetica", 7.8)
     for line in [LOCATION, PHONE1, PHONE2, "info@fairbanks", "medicalcentre.org", "www.fairbanks", "medicalcentre.org"]:
         c.drawString(6 * mm, y, line)
-        y -= 3.3 * mm
+        y -= 3.7 * mm
 
     y -= 2 * mm
     y = side_h("STRENGTHS", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 6.8)
+    c.setFont("Helvetica", 7.6)
     for sk in SKILLS[:10]:
         c.drawString(6 * mm, y, f"• {sk}")
-        y -= 3.4 * mm
+        y -= 3.8 * mm
 
     y -= 2 * mm
     y = side_h("LANGUAGES", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 6.9)
+    c.setFont("Helvetica", 7.8)
     c.drawString(6 * mm, y, "English — Fluent")
-    y -= 3.3 * mm
+    y -= 3.8 * mm
     c.drawString(6 * mm, y, "Luganda — Fluent")
     y -= 4 * mm
     y = side_h("MEMBERSHIP", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 6.9)
+    c.setFont("Helvetica", 7.8)
     c.drawString(6 * mm, y, "FUE Member")
 
     c.setFillColor(HexColor("#8FA3B5"))
@@ -520,52 +511,55 @@ def build_v02_pdf(out: Path):
     y = height - 12 * mm
 
     c.setFillColor(NAVY)
-    c.setFont("Helvetica-Bold", 11.5)
-    for line in _wrap(c, NAME, max_w, "Helvetica-Bold", 11.5):
+    c.setFont("Helvetica-Bold", 15)
+    for line in _wrap(c, NAME, max_w, "Helvetica-Bold", 15):
         c.drawString(x, y, line)
-        y -= 4.6 * mm
+        y -= 5.8 * mm
     c.setFillColor(TEAL)
-    c.setFont("Helvetica", 7.6)
-    for line in _wrap(c, "Senior HR Executive | Human Capital Strategist | OD", max_w, "Helvetica", 7.6):
+    c.setFont("Helvetica", 9.2)
+    for line in _wrap(c, "Senior HR Executive | Human Capital Strategist | OD", max_w, "Helvetica", 9.2):
         c.drawString(x, y, line)
-        y -= 3.6 * mm
+        y -= 4.5 * mm
 
     y -= 2 * mm
     y = _sec(c, x, y, "PROFILE")
-    y = _text(c, x, y, max_w, PROFILE.replace("<b>", "").replace("</b>", ""), 7.8, 10)
-    y = _text(c, x, y, max_w, PROFILE2.replace("<b>", "").replace("</b>", ""), 7.8, 10)
-    y -= 1.5
+    y = _text(c, x, y, max_w, PROFILE.replace("<b>", "").replace("</b>", ""), 9.2, 12)
+    y = _text(c, x, y, max_w, PROFILE2.replace("<b>", "").replace("</b>", ""), 9.2, 12)
+    y -= 3
     y = _sec(c, x, y, "HIGHLIGHTS")
-    for h in HIGHLIGHTS[:6]:
-        y = _text(c, x, y, max_w, f"•  {h}", 7.4, 9.6)
-    y -= 1.5
+    for h in HIGHLIGHTS:
+        y = _text(c, x, y, max_w, f"•  {h}", 8.6, 11)
+    y -= 3
     y = _sec(c, x, y, "EXPERIENCE")
     for role in ROLES:
         c.setFillColor(NAVY)
-        c.setFont("Helvetica-Bold", 7.8)
-        for line in _wrap(c, role["title"], max_w, "Helvetica-Bold", 7.8):
+        c.setFont("Helvetica-Bold", 9.2)
+        for line in _wrap(c, role["title"], max_w, "Helvetica-Bold", 9.2):
             c.drawString(x, y, line)
-            y -= 3.2 * mm
+            y -= 3.8 * mm
         c.setFillColor(TEAL)
-        c.setFont("Helvetica", 7.2)
+        c.setFont("Helvetica", 8.3)
         c.drawString(x, y, f"{role['org']}  |  {role['dates']}")
-        y -= 3.2 * mm
-        for pt in role["points"][:2]:
-            y = _text(c, x, y, max_w, f"•  {pt}", 7.2, 9.3)
-        y -= 1.2
-    y = _text(c, x, y, max_w, EARLIER, 6.8, 8.8, MUTED)
-    y -= 1.5
+        y -= 3.6 * mm
+        for pt in role["points"]:
+            y = _text(c, x, y, max_w, f"•  {pt}", 8.2, 10.5)
+        y -= 2
+    y = _text(c, x, y, max_w, EARLIER, 7.7, 9.8, MUTED)
+    y -= 3
     y = _sec(c, x, y, "EDUCATION")
     for deg, uni, note in EDUCATION:
         c.setFillColor(NAVY)
-        c.setFont("Helvetica-Bold", 7.4)
+        c.setFont("Helvetica-Bold", 8.7)
         c.drawString(x, y, deg)
-        y -= 3.0 * mm
-        y = _text(c, x, y, max_w, uni if not note else f"{uni} — {note}", 6.9, 8.8, MUTED)
+        y -= 3.5 * mm
+        y = _text(c, x, y, max_w, uni if not note else f"{uni} — {note}", 7.8, 10, MUTED)
     y -= 1
     y = _sec(c, x, y, "TECHNICAL & MORE")
-    y = _text(c, x, y, max_w, TECH, 6.9, 8.8)
-    y = _text(c, x, y, max_w, MORE, 6.9, 8.8, MUTED)
+    y = _text(c, x, y, max_w, TECH, 8, 10.2)
+    y = _text(c, x, y, max_w, MORE, 8, 10.2, MUTED)
+    y -= 3
+    y = _sec(c, x, y, "RESEARCH FOCUS")
+    y = _text(c, x, y, max_w, RESEARCH, 8.2, 10.5)
     c.save()
 
 
@@ -615,7 +609,7 @@ def build_v02_docx(out: Path):
     _p_in(main, PROFILE.replace("<b>", "").replace("</b>", ""), size=8)
     _p_in(main, PROFILE2.replace("<b>", "").replace("</b>", ""), size=8)
     _h(doc, "HIGHLIGHTS", cell=main, size=8.5)
-    for h in HIGHLIGHTS[:6]:
+    for h in HIGHLIGHTS:
         _b_in(main, h, size=7.5)
     _h(doc, "EXPERIENCE", cell=main, size=8.5)
     for role in ROLES:
@@ -635,6 +629,8 @@ def build_v02_docx(out: Path):
     _h(doc, "TECHNICAL & MORE", cell=main, size=8.5)
     _p_in(main, TECH, size=7.5)
     _p_in(main, MORE, muted=True, size=7.5)
+    _h(doc, "RESEARCH FOCUS", cell=main, size=8.5)
+    _p_in(main, RESEARCH, size=7.5)
     doc.save(str(out))
 
 
@@ -643,30 +639,30 @@ def build_v02_docx(out: Path):
 # ---------------------------------------------------------------------------
 def build_v03_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=13.5, leading=15.5, textColor=CHARCOAL, spaceAfter=1)
-    add_style(styles, "T", fontName="Helvetica", fontSize=7.6, leading=9.5, textColor=FOREST, spaceAfter=1)
-    add_style(styles, "C", fontName="Helvetica", fontSize=7.2, leading=9.2, textColor=MUTED)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=7.8, leading=9.5, textColor=FOREST, spaceBefore=4, spaceAfter=1)
-    add_style(styles, "B", fontName="Helvetica", fontSize=7.4, leading=9.6, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=2)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=7.6, leading=9.5, textColor=CHARCOAL, spaceBefore=2, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=7.1, leading=9, textColor=FOREST, spaceAfter=0.3)
-    add_style(styles, "L", fontName="Helvetica", fontSize=7.1, leading=9.2, textColor=INK, leftIndent=5, spaceAfter=0.3)
-    add_style(styles, "M", fontName="Helvetica", fontSize=6.8, leading=8.8, textColor=MUTED, spaceAfter=1)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.1, leading=9.2, textColor=INK, spaceAfter=0.5)
-    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=7.2, leading=9, textColor=CHARCOAL, spaceAfter=0)
-    add_style(styles, "Em", fontName="Helvetica", fontSize=6.8, leading=8.6, textColor=MUTED, spaceAfter=1)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=17, leading=20, textColor=CHARCOAL, spaceAfter=2)
+    add_style(styles, "T", fontName="Helvetica", fontSize=9, leading=11.5, textColor=FOREST, spaceAfter=2)
+    add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.5, leading=11.5, textColor=FOREST, spaceBefore=7, spaceAfter=2)
+    add_style(styles, "B", fontName="Helvetica", fontSize=8.8, leading=11.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9, leading=11, textColor=CHARCOAL, spaceBefore=4, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=8.2, leading=10, textColor=FOREST, spaceAfter=0.5)
+    add_style(styles, "L", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=INK, leftIndent=5, spaceAfter=0.5)
+    add_style(styles, "M", fontName="Helvetica", fontSize=7.6, leading=9.8, textColor=MUTED, spaceAfter=1)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.1, leading=10.3, textColor=INK, spaceAfter=0.8)
+    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=CHARCOAL, spaceAfter=0)
+    add_style(styles, "Em", fontName="Helvetica", fontSize=7.6, leading=9.6, textColor=MUTED, spaceAfter=1)
 
     doc = SimpleDocTemplate(str(out), pagesize=A4,
                             leftMargin=10 * mm, rightMargin=10 * mm,
-                            topMargin=7 * mm, bottomMargin=9 * mm,
+        topMargin=8 * mm, bottomMargin=9 * mm,
                             title=f"{NAME} - One Page")
     w = A4[0] - 20 * mm
-    photo = RLImage(str(PHOTO_SQUARE), width=26 * mm, height=26 * mm)
+    photo = RLImage(str(PHOTO_SQUARE), width=32 * mm, height=32 * mm)
     head = Table([[
         [Paragraph(NAME, styles["N"]), Paragraph(TITLE, styles["T"]),
          Paragraph(f"{LOCATION}  ·  {MOBILE}  ·  {EMAIL}  ·  {WEB}", styles["C"])],
         photo,
-    ]], colWidths=[w - 30 * mm, 30 * mm])
+    ]], colWidths=[w - 36 * mm, 36 * mm])
     head.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("ALIGN", (1, 0), (1, 0), "RIGHT"),
@@ -696,7 +692,7 @@ def build_v03_pdf(out: Path):
     for role in ROLES:
         story.append(Paragraph(role["title"], styles["J"]))
         story.append(Paragraph(f"{role['org']}  |  {role['dates']}", styles["O"]))
-        for pt in role["points"][:2]:
+        for pt in role["points"]:
             story.append(Paragraph(f"•  {pt}", styles["L"]))
     story += [
         Paragraph(EARLIER, styles["M"]),
@@ -707,6 +703,8 @@ def build_v03_pdf(out: Path):
     more = [
         Paragraph("<b>Technical</b>", styles["E"]),
         Paragraph(TECH, styles["Em"]),
+        Paragraph("<b>Research focus</b>", styles["E"]),
+        Paragraph(RESEARCH, styles["Em"]),
         Paragraph("<b>Membership & languages</b>", styles["E"]),
         Paragraph(MORE, styles["Em"]),
     ]
@@ -731,24 +729,24 @@ def build_v03_docx(out: Path):
 # ---------------------------------------------------------------------------
 def build_v04_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=14.5, leading=17, textColor=SLATE, alignment=TA_CENTER, spaceAfter=1)
-    add_style(styles, "T", fontName="Helvetica", fontSize=8, leading=10, textColor=TEAL, alignment=TA_CENTER, spaceAfter=1)
-    add_style(styles, "C", fontName="Helvetica", fontSize=7.3, leading=9.5, textColor=MUTED, alignment=TA_CENTER, spaceAfter=3)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=SLATE, alignment=TA_CENTER, spaceBefore=4, spaceAfter=2)
-    add_style(styles, "B", fontName="Helvetica", fontSize=7.6, leading=10, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
-    add_style(styles, "D", fontName="Helvetica-Bold", fontSize=7.2, leading=9, textColor=TEAL, alignment=TA_RIGHT)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=7.8, leading=9.8, textColor=SLATE)
-    add_style(styles, "O", fontName="Helvetica", fontSize=7.2, leading=9, textColor=MUTED, spaceAfter=0.5)
-    add_style(styles, "L", fontName="Helvetica", fontSize=7.2, leading=9.2, textColor=INK, leftIndent=4, spaceAfter=0.3)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7, leading=9, textColor=MUTED, alignment=TA_CENTER, spaceAfter=2)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.1, leading=9.2, textColor=INK, spaceAfter=0.5)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=17, leading=20, textColor=SLATE, alignment=TA_CENTER, spaceAfter=2)
+    add_style(styles, "T", fontName="Helvetica", fontSize=9.2, leading=11.5, textColor=TEAL, alignment=TA_CENTER, spaceAfter=2)
+    add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED, alignment=TA_CENTER, spaceAfter=4)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.5, leading=11.5, textColor=SLATE, alignment=TA_CENTER, spaceBefore=7, spaceAfter=2)
+    add_style(styles, "B", fontName="Helvetica", fontSize=8.8, leading=11.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=4)
+    add_style(styles, "D", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=TEAL, alignment=TA_RIGHT)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.8, leading=10.8, textColor=SLATE)
+    add_style(styles, "O", fontName="Helvetica", fontSize=8, leading=10, textColor=MUTED, spaceAfter=1)
+    add_style(styles, "L", fontName="Helvetica", fontSize=8, leading=10.2, textColor=INK, leftIndent=4, spaceAfter=0.5)
+    add_style(styles, "M", fontName="Helvetica", fontSize=7.8, leading=10, textColor=MUTED, alignment=TA_CENTER, spaceAfter=2)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=8, leading=10.2, textColor=INK, spaceAfter=0.8)
 
     doc = SimpleDocTemplate(str(out), pagesize=A4,
                             leftMargin=11 * mm, rightMargin=11 * mm,
                             topMargin=7 * mm, bottomMargin=9 * mm,
                             title=f"{NAME} - Timeline")
     w = A4[0] - 22 * mm
-    photo = RLImage(str(PHOTO_CIRCLE), width=30 * mm, height=30 * mm)
+    photo = RLImage(str(PHOTO_CIRCLE), width=38 * mm, height=38 * mm)
     ph = Table([[photo]], colWidths=[w])
     ph.setStyle(TableStyle([("ALIGN", (0, 0), (-1, -1), "CENTER")]))
 
@@ -776,8 +774,8 @@ def build_v04_pdf(out: Path):
             ("RIGHTPADDING", (0, 0), (0, 0), 5),
             ("LEFTPADDING", (1, 0), (1, 0), 7),
             ("RIGHTPADDING", (1, 0), (1, 0), 5),
-            ("TOPPADDING", (0, 0), (-1, -1), 3.5),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5),
+            ("TOPPADDING", (0, 0), (-1, -1), 6),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
         ]))
         story.append(row)
         story.append(Spacer(1, 2))
@@ -804,6 +802,9 @@ def build_v04_pdf(out: Path):
             + TECH + "<br/>" + MORE,
             styles["M"],
         ),
+        Spacer(1, 3),
+        Paragraph("RESEARCH FOCUS", styles["H"]), GoldRule(28 * mm),
+        Paragraph(RESEARCH, styles["M"]),
     ]
     doc.build(story, onFirstPage=footer_fn("Timeline"), onLaterPages=footer_fn("Timeline"))
 
@@ -847,26 +848,26 @@ def build_v04_docx(out: Path):
 # ---------------------------------------------------------------------------
 def build_v05_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "Tag", fontName="Helvetica-Bold", fontSize=7, leading=8.5, textColor=GOLD, spaceAfter=2)
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=14, leading=16.5, textColor=NAVY, spaceAfter=1)
-    add_style(styles, "T", fontName="Helvetica", fontSize=7.8, leading=10, textColor=TEAL, spaceAfter=2)
-    add_style(styles, "C", fontName="Helvetica", fontSize=7.2, leading=9.5, textColor=MUTED)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8, leading=10, textColor=NAVY, spaceBefore=1, spaceAfter=1.5)
-    add_style(styles, "B", fontName="Helvetica", fontSize=7.5, leading=9.8, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=2)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=7.6, leading=9.5, textColor=NAVY, spaceBefore=2.5, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=7, leading=8.8, textColor=TEAL, spaceAfter=0.3)
-    add_style(styles, "L", fontName="Helvetica", fontSize=7.1, leading=9, textColor=INK, leftIndent=4, spaceAfter=0.3)
-    add_style(styles, "S", fontName="Helvetica", fontSize=7, leading=9.2, textColor=INK, spaceAfter=0.6)
-    add_style(styles, "M", fontName="Helvetica", fontSize=6.9, leading=8.8, textColor=MUTED, spaceAfter=1.2)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7, leading=9.1, textColor=INK, spaceAfter=0.7)
-    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=7.2, leading=9, textColor=NAVY, spaceAfter=0)
+    add_style(styles, "Tag", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=GOLD, spaceAfter=3)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=17, leading=20, textColor=NAVY, spaceAfter=2)
+    add_style(styles, "T", fontName="Helvetica", fontSize=9, leading=11, textColor=TEAL, spaceAfter=3)
+    add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.2, leading=11, textColor=NAVY, spaceBefore=3, spaceAfter=2)
+    add_style(styles, "B", fontName="Helvetica", fontSize=8.6, leading=11.2, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.7, leading=10.8, textColor=NAVY, spaceBefore=4, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=8, leading=10, textColor=TEAL, spaceAfter=0.5)
+    add_style(styles, "L", fontName="Helvetica", fontSize=8, leading=10.2, textColor=INK, leftIndent=4, spaceAfter=0.5)
+    add_style(styles, "S", fontName="Helvetica", fontSize=8, leading=10.3, textColor=INK, spaceAfter=1)
+    add_style(styles, "M", fontName="Helvetica", fontSize=7.8, leading=10, textColor=MUTED, spaceAfter=1.5)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.9, leading=10.2, textColor=INK, spaceAfter=1)
+    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=NAVY, spaceAfter=0)
 
     doc = SimpleDocTemplate(str(out), pagesize=A4,
                             leftMargin=9 * mm, rightMargin=9 * mm,
                             topMargin=7 * mm, bottomMargin=9 * mm,
                             title=f"{NAME} - Editorial Split")
     w = A4[0] - 18 * mm
-    photo = RLImage(str(PHOTO_PORTRAIT), width=30 * mm, height=45 * mm)
+    photo = RLImage(str(PHOTO_PORTRAIT), width=36 * mm, height=54 * mm)
     banner = Table([[
         [
             Paragraph("CURRICULUM VITAE", styles["Tag"]),
@@ -875,15 +876,15 @@ def build_v05_pdf(out: Path):
             Paragraph(f"{LOCATION}  ·  {MOBILE}<br/>{EMAIL}  ·  {WEB}", styles["C"]),
         ],
         photo,
-    ]], colWidths=[w - 36 * mm, 36 * mm])
+    ]], colWidths=[w - 42 * mm, 42 * mm])
     banner.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), CREAM),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("ALIGN", (1, 0), (1, 0), "RIGHT"),
         ("LEFTPADDING", (0, 0), (-1, -1), 8),
         ("RIGHTPADDING", (0, 0), (-1, -1), 8),
-        ("TOPPADDING", (0, 0), (-1, -1), 6),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        ("TOPPADDING", (0, 0), (-1, -1), 8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
     ]))
 
     left = [Paragraph("AT A GLANCE", styles["H"]), GoldRule(80)]
@@ -918,6 +919,19 @@ def build_v05_pdf(out: Path):
         for pt in role["points"]:
             right.append(Paragraph(f"•  {pt}", styles["L"]))
     right.append(Paragraph(EARLIER, styles["M"]))
+    right += [
+        Spacer(1, 5),
+        Paragraph("EXECUTIVE VALUE", styles["H"]),
+        GoldRule(80),
+        Paragraph("•  Executive advisor on Human Capital Strategy, organisational effectiveness and change.", styles["L"]),
+        Paragraph("•  Builder of HR governance, workforce planning and performance systems.", styles["L"]),
+        Paragraph("•  Healthcare leader combining people strategy, digital systems and institutional growth.", styles["L"]),
+        Paragraph("•  Partnership builder across government, insurers and development organisations.", styles["L"]),
+        Spacer(1, 4),
+        Paragraph("RESEARCH FOCUS", styles["H"]),
+        GoldRule(80),
+        Paragraph(RESEARCH, styles["B"]),
+    ]
 
     split = Table([[left, right]], colWidths=[w * 0.36, w * 0.64])
     split.setStyle(TableStyle([
@@ -932,7 +946,7 @@ def build_v05_pdf(out: Path):
         ("TOPPADDING", (1, 0), (1, 0), 1),
         ("LINEAFTER", (0, 0), (0, 0), 0.5, LINE),
     ]))
-    doc.build([banner, Spacer(1, 4), split],
+    doc.build([banner, Spacer(1, 8), split],
               onFirstPage=footer_fn("Editorial Split"),
               onLaterPages=footer_fn("Editorial Split"))
 
@@ -1000,6 +1014,20 @@ def build_v05_docx(out: Path):
         for pt in role["points"][:2]:
             _b_in(right, pt, size=7.5)
     _p_in(right, EARLIER, muted=True, size=7)
+    p = right.add_paragraph()
+    r = p.add_run("EXECUTIVE VALUE")
+    _run(r, 8.5, True, DOCX_NAVY)
+    for item in [
+        "Executive advisor on Human Capital Strategy and change.",
+        "Builder of HR governance, workforce and performance systems.",
+        "Healthcare leader connecting people strategy and institutional growth.",
+        "Partnership builder across government, insurers and development organisations.",
+    ]:
+        _b_in(right, item, size=7.5)
+    p = right.add_paragraph()
+    r = p.add_run("RESEARCH FOCUS")
+    _run(r, 8.5, True, DOCX_NAVY)
+    _p_in(right, RESEARCH, size=7.5)
     doc.save(str(out))
 
 
@@ -1051,6 +1079,7 @@ def _docx_standard(out: Path, photo: Path, photo_w=1.1, portrait=False, compact=
         _p(doc, f"{deg} — {uni}" + (f". {note}" if note else ""), size=8)
     _h(doc, "TECHNICAL & ADDITIONAL", size=9)
     _p(doc, TECH, size=8)
+    _p(doc, RESEARCH, size=8)
     _p(doc, MORE, muted=True, size=8)
     doc.save(str(out))
 
