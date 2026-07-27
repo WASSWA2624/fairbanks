@@ -259,56 +259,74 @@ class NumberedCanvas(pdf_canvas.Canvas):
         self.restoreState()
 
 
-class SignatureAtBottom(Flowable):
-    """Draw the e-signature near the bottom of the final page."""
+class SignatureBlock(Flowable):
+    """Compact proper signing block that always stays on the current page."""
 
-    def __init__(self, theme: Theme):
+    def __init__(self, theme: Theme, signer_name: str):
         super().__init__()
         with PILImage.open(SIGNATURE) as img:
             width_px, height_px = img.size
-        self.sig_w = 38 * mm
-        self.sig_h = self.sig_w * (height_px / max(width_px, 1))
-        self.label_h = 11
-        self.gap = 2
-        self.needed = self.sig_h + self.label_h + self.gap + 6
+        self.aspect = height_px / max(width_px, 1)
         self.theme = theme
-        self._page_height = 0
+        self.signer_name = signer_name
+        # Compact target size so the block fits on page 5 with content.
+        self.sig_w = 30 * mm
+        self.sig_h = self.sig_w * self.aspect
+        self.block_h = self.sig_h + 22  # label + image + printed name
 
     def wrap(self, avail_width, avail_height):
         self.width = avail_width
-        # Not enough room: ask for more than remains so Platypus moves us to
-        # the next page, then pin to the bottom of that page.
-        if avail_height < self.needed:
-            self.height = self.needed
-            self._page_height = self.needed
-            return self.width, self.height
-        self.height = avail_height
-        self._page_height = avail_height
+        # Stay on this page always. Use leftover space to sit at the bottom;
+        # shrink if the leftover strip is shorter than the ideal block.
+        min_h = 18 * mm
+        self.height = max(avail_height, 1)
+        if avail_height >= self.block_h:
+            self.draw_sig_w = self.sig_w
+            self.draw_sig_h = self.sig_h
+        else:
+            usable = max(10 * mm, min(avail_height, self.block_h) - 18)
+            self.draw_sig_w = min(self.sig_w, usable / max(self.aspect, 0.01))
+            self.draw_sig_h = self.draw_sig_w * self.aspect
+            if avail_height < min_h:
+                self.draw_sig_w = 16 * mm
+                self.draw_sig_h = self.draw_sig_w * self.aspect
         return self.width, self.height
 
     def draw(self):
         muted = HexColor("#607080")
-        y_img = 4
-        y_label = y_img + self.sig_h + self.gap
-        self.canv.setFillColor(muted)
-        self.canv.setFont(self.theme.body_font, 8)
-        label = "Signature"
-        label_w = self.canv.stringWidth(label, self.theme.body_font, 8)
-        self.canv.drawString(self.width - label_w, y_label, label)
+        primary = HexColor(self.theme.primary)
+        right = self.width
+        # Flowable y=0 is the bottom of the remaining page space.
+        y_name = 2
+        y_img = y_name + 10
+        y_label = y_img + self.draw_sig_h + 3
+
+        self.canv.setFillColor(primary)
+        self.canv.setFont(self.theme.heading_font, 8)
+        name_w = self.canv.stringWidth(self.signer_name, self.theme.heading_font, 8)
+        self.canv.drawString(right - name_w, y_name, self.signer_name)
+
         self.canv.drawImage(
             str(SIGNATURE),
-            self.width - self.sig_w,
+            right - self.draw_sig_w,
             y_img,
-            width=self.sig_w,
-            height=self.sig_h,
+            width=self.draw_sig_w,
+            height=self.draw_sig_h,
             mask="auto",
             preserveAspectRatio=True,
         )
 
+        self.canv.setFillColor(muted)
+        self.canv.setFont(self.theme.body_font, 7.5)
+        self.canv.drawString(right - self.draw_sig_w, y_label, "Signed")
+        self.canv.setStrokeColor(HexColor(self.theme.accent))
+        self.canv.setLineWidth(0.8)
+        self.canv.line(right - self.draw_sig_w, y_label - 1.5, right, y_label - 1.5)
 
-def signature_flowables(theme: Theme) -> list:
-    """E-signature pinned to the bottom of the last page."""
-    return [SignatureAtBottom(theme)]
+
+def signature_flowables(theme: Theme, signer_name: str) -> list:
+    """Proper signing block kept on the final content page."""
+    return [Spacer(1, 6), SignatureBlock(theme, signer_name)]
 
 
 class SectionBand(Flowable):
@@ -399,36 +417,36 @@ def pdf_styles(theme: Theme):
     add(
         "CvBody",
         fontName=theme.body_font,
-        fontSize=9.4,
-        leading=13.2,
+        fontSize=9.3,
+        leading=12.8,
         textColor=ink,
         alignment=TA_JUSTIFY,
-        spaceAfter=6,
+        spaceAfter=4.5,
     )
     add(
         "CvBullet",
         fontName=theme.body_font,
-        fontSize=9.2,
-        leading=12.5,
+        fontSize=9.1,
+        leading=12.2,
         textColor=ink,
         leftIndent=13,
         firstLineIndent=-8,
-        spaceAfter=2.5,
+        spaceAfter=1.8,
     )
     add(
         "CvRole",
         fontName=theme.heading_font,
-        fontSize=11,
-        leading=13.5,
+        fontSize=10.8,
+        leading=13.2,
         textColor=primary,
-        spaceBefore=7,
-        spaceAfter=2,
+        spaceBefore=5,
+        spaceAfter=1.5,
     )
     add(
         "CvSub",
         fontName=theme.heading_font,
-        fontSize=9.5,
-        leading=12,
+        fontSize=9.4,
+        leading=11.5,
         textColor=secondary,
         spaceBefore=4,
         spaceAfter=3,
@@ -505,8 +523,8 @@ def build_pdf(
     )
     story = [
         pdf_header(header, theme, styles),
-        Spacer(1, 8),
-        HRFlowable(width="100%", thickness=1.5, color=primary, spaceAfter=5),
+        Spacer(1, 6),
+        HRFlowable(width="100%", thickness=1.5, color=primary, spaceAfter=4),
     ]
 
     in_experience = False
@@ -523,10 +541,10 @@ def build_pdf(
     for kind, text in blocks:
         if kind == "separator":
             if pending_section is None:
-                story.append(Spacer(1, 3))
+                story.append(Spacer(1, 2))
         elif kind == "section":
             in_experience = text.upper() == "PROFESSIONAL EXPERIENCE"
-            pending_section = [Spacer(1, 6), SectionBand(text, theme), Spacer(1, 3)]
+            pending_section = [Spacer(1, 4), SectionBand(text, theme), Spacer(1, 2)]
         elif kind == "role":
             if theme.layout == "timeline" and in_experience:
                 role = Table(
@@ -556,7 +574,7 @@ def build_pdf(
             # Degree/institution lines are naturally compact; narrative stays justified.
             append_content(Paragraph(text, styles["CvBody"]))
 
-    story.extend(signature_flowables(theme))
+    story.extend(signature_flowables(theme, header["name"].title()))
 
     def canvas_maker(*args, **kwargs):
         return NumberedCanvas(
@@ -567,7 +585,65 @@ def build_pdf(
         )
 
     doc.build(story, canvasmaker=canvas_maker)
+    ensure_signature_on_final_content_page(output, max_pages=5)
     return output
+
+
+def ensure_signature_on_final_content_page(pdf_path: Path, max_pages: int = 5):
+    """If a blank signature-only trailing page appears, drop it after stamping page 5."""
+    import fitz
+
+    doc = fitz.open(str(pdf_path))
+    if doc.page_count <= max_pages:
+        # Confirm signature exists on the last page; if not, stamp it.
+        last = doc[-1]
+        if not last.get_images():
+            _stamp_signature(last)
+            doc.saveIncr()
+        doc.close()
+        return
+
+    # Extra blank page(s): stamp signature onto page 5 and remove trailing pages.
+    target = doc[max_pages - 1]
+    if not target.get_images():
+        _stamp_signature(target)
+    while doc.page_count > max_pages:
+        doc.delete_page(doc.page_count - 1)
+    tmp = pdf_path.with_suffix(".tmp.pdf")
+    doc.save(str(tmp))
+    doc.close()
+    tmp.replace(pdf_path)
+
+
+def _stamp_signature(page) -> None:
+    """Stamp a compact signing block at the bottom-right of a PDF page."""
+    import fitz
+
+    rect = page.rect
+    sig_w = 95
+    with PILImage.open(SIGNATURE) as img:
+        sig_h = sig_w * (img.size[1] / max(img.size[0], 1))
+    x1 = rect.width - 48 - sig_w
+    y1 = rect.height - 48 - sig_h - 18
+    page.insert_image(
+        fitz.Rect(x1, y1, x1 + sig_w, y1 + sig_h),
+        filename=str(SIGNATURE),
+        keep_proportion=True,
+    )
+    page.insert_text(
+        (x1, y1 - 8),
+        "Signed",
+        fontsize=7.5,
+        color=(0.38, 0.44, 0.50),
+        fontname="helv",
+    )
+    page.insert_text(
+        (x1, y1 + sig_h + 12),
+        "Racheal Nabukeera",
+        fontsize=8,
+        color=(0.04, 0.23, 0.32),
+        fontname="helv",
+    )
 
 
 def rgb(hex_value: str) -> RGBColor:
@@ -731,13 +807,17 @@ def build_docx(
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    p.paragraph_format.space_before = Pt(14)
-    p.paragraph_format.space_after = Pt(2)
-    set_run(p.add_run("Signature"), "Arial", 8, muted)
+    p.paragraph_format.space_before = Pt(10)
+    p.paragraph_format.space_after = Pt(1)
+    set_run(p.add_run("Signed"), "Arial", 8, muted)
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.paragraph_format.space_after = Pt(1)
+    p.add_run().add_picture(str(SIGNATURE), width=Inches(1.15))
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     p.paragraph_format.space_after = Pt(0)
-    p.add_run().add_picture(str(SIGNATURE), width=Inches(1.4))
+    set_run(p.add_run(header["name"].title()), "Arial", 9, primary, True)
 
     footer = section.footer
     p = footer.paragraphs[0]
