@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Build five elegant, balanced, one-page CV designs for Racheal Nabukeera Sekagiri."""
+"""Build five clear, eye-catching, information-rich one-page CVs.
+
+Photos match the original waist-up portrait (full figure in frame).
+"""
 
 from __future__ import annotations
 
@@ -10,23 +13,23 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Inches, Pt, RGBColor
-from PIL import Image, ImageDraw, ImageFilter
-from reportlab.lib.colors import HexColor, white, Color
+from PIL import Image, ImageDraw
+from reportlab.lib.colors import HexColor, white
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT, TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas as pdfcanvas
 from reportlab.platypus import (
+    Flowable,
+    HRFlowable,
     KeepTogether,
     Paragraph,
     SimpleDocTemplate,
     Spacer,
     Table,
     TableStyle,
-    HRFlowable,
     Image as RLImage,
-    Flowable,
 )
 
 ROOT = Path(__file__).resolve().parent
@@ -34,42 +37,56 @@ PHOTO_SRC = ROOT.parent / "WhatsApp Image 2026-07-27 at 14.23.53.jpeg"
 PHOTO_DIR = ROOT / "_assets"
 PHOTO_CIRCLE = PHOTO_DIR / "photo_circle.png"
 PHOTO_SQUARE = PHOTO_DIR / "photo_square.png"
+PHOTO_PORTRAIT = PHOTO_DIR / "photo_portrait.png"
 PREVIEW = ROOT / "_preview"
 
 NAME = "RACHEAL NABUKEERA SEKAGIRI"
-TITLE = "Senior Human Resource Executive  ·  Human Capital Strategist"
+TITLE = "Senior Human Resource Executive  ·  Human Capital Strategist  ·  Organisational Development"
 LOCATION = "Kampala, Uganda"
-MOBILE = "+256 772 849258  ·  +256 701 849258"
+PHONE1 = "+256 772 849258"
+PHONE2 = "+256 701 849258"
+MOBILE = f"{PHONE1}  ·  {PHONE2}"
 EMAIL = "info@fairbanksmedicalcentre.org"
 WEB = "www.fairbanksmedicalcentre.org"
 
 PROFILE = (
-    "Strategic HR executive with nearly <b>30 years</b> of experience and over "
-    "<b>18 years</b> in executive leadership. Aligns people strategy with "
-    "organisational performance. Founder & Managing Director, FairBanks Medical "
-    "Centre Ltd. Formerly led Group HR for <b>2,000+ employees</b> across "
-    "<b>50+ units</b>. PhD Candidate researching AI prediction of occupational burnout."
+    "Strategic HR executive with nearly <b>30 years</b> of progressive experience and over "
+    "<b>18 years</b> in executive Human Resource leadership. Aligns people, performance and "
+    "organisational goals across complex institutions."
+)
+PROFILE2 = (
+    "Founder & Managing Director, FairBanks Medical Centre Ltd. Formerly directed Group HR for "
+    "<b>2,000+ employees</b> across <b>50+ departments</b>. PhD Candidate (Management) researching "
+    "AI/ML prediction of occupational burnout among medical practitioners. Member, Federation of "
+    "Uganda Employers (FUE)."
 )
 
 HIGHLIGHTS = [
     "30 years progressive HR & executive management",
     "18+ years executive Human Resource leadership",
-    "HR leadership for 2,000+ staff across 50+ units",
+    "Strategic HR for 2,000+ employees / 50+ units",
     "Founder & MD, FairBanks Medical Centre Ltd",
     "Social enterprise reach: 10,000+ beneficiaries",
+    "PhD Candidate — HR analytics, AI & organisational behaviour",
+    "Executive advisor on change & organisational effectiveness",
+    "Workforce planning, talent & performance leadership",
 ]
 
 SKILLS = [
     "HR Strategy",
+    "Human Capital Management",
     "Organisational Development",
     "Talent Management",
     "Workforce Planning",
+    "Succession Planning",
     "Change Management",
     "Performance Management",
     "Employee Relations",
+    "Labour Law Compliance",
     "Corporate Governance",
     "Leadership Development",
     "HR Analytics / HRIS",
+    "Stakeholder Engagement",
 ]
 
 ROLES = [
@@ -77,43 +94,63 @@ ROLES = [
         "title": "Founder, Managing Director & Executive HR Leader",
         "org": "FairBanks Medical Centre Ltd",
         "dates": "2025 - Present",
-        "line": "Strategy, governance, HR and growth; founded social enterprise (10,000+ beneficiaries).",
+        "points": [
+            "Lead strategy, governance, HR systems and institutional growth.",
+            "Founded FairBanks Social Enterprise Initiative (10,000+ beneficiaries).",
+            "Build partnerships with government, insurers and development partners.",
+        ],
     },
     {
         "title": "Group Human Resource & Administration Manager",
         "org": "Norvik Group",
         "dates": "Jul 2016 - Feb 2026",
-        "line": "Directed Group HR for 2,000+ employees; led workforce planning and leadership development.",
+        "points": [
+            "Directed Group HR strategy for 2,000+ employees across 50+ units.",
+            "Led workforce planning, restructuring, succession and leadership development.",
+            "Strengthened HR governance, performance systems and staff retention.",
+        ],
     },
     {
         "title": "Human Resource & Administration Manager",
         "org": "Norvik Hospital Ltd",
         "dates": "Sep 2013 - 2016",
-        "line": "Led recruitment, employee relations, performance systems and HR policy.",
+        "points": [
+            "Led recruitment, employee relations, appraisals and staff welfare.",
+            "Improved HR policy implementation and operational efficiency.",
+        ],
     },
     {
         "title": "Human Resource Manager",
         "org": "St. Catherine's Hospital",
         "dates": "2007 - 2010",
-        "line": "Managed HR operations, welfare and labour compliance.",
+        "points": [
+            "Managed HR operations, welfare programmes and labour compliance.",
+            "Strengthened recruitment, retention and employee engagement.",
+        ],
     },
 ]
+
 EARLIER = (
-    "Earlier: Health Systems Administrator, St. Catherine's (2010-2013); "
-    "HR Assistant, E Power Limited (1997-2000)."
+    "Earlier roles: Health Management Systems Administrator, St. Catherine's Hospital "
+    "(2010-2013); Human Resource Assistant, E Power Limited (1997-2000)."
 )
 
-EDU_LINE = (
-    "<b>PhD Management</b> (Ongoing), Uganda Christian University  ·  "
-    "<b>MSSPM</b>, Makerere University  ·  "
-    "<b>BA Social Sciences</b>, Makerere University"
+EDUCATION = [
+    ("PhD in Management (Ongoing)", "Uganda Christian University",
+     "Research: Machine learning prediction of occupational burnout among medical practitioners"),
+    ("Master of Social Sector Planning and Management", "Makerere University", None),
+    ("Bachelor of Arts in Social Sciences", "Makerere University", None),
+]
+
+TECH = (
+    "Microsoft Office  ·  HRIS  ·  ERP  ·  HR Analytics  ·  Performance systems  ·  "
+    "Payroll systems  ·  Executive reporting  ·  AI applications in HR"
 )
-MORE_LINE = (
-    "Member, Federation of Uganda Employers (FUE)  ·  "
-    "English & Luganda (Fluent)  ·  References on request"
+MORE = (
+    "Member, Federation of Uganda Employers (FUE)  ·  English (Fluent)  ·  "
+    "Luganda (Fluent)  ·  References available on request"
 )
 
-# Elegant palette
 NAVY = HexColor("#0A3A52")
 TEAL = HexColor("#1F6F78")
 GOLD = HexColor("#B8953E")
@@ -143,13 +180,11 @@ VERSION_SLUGS = [
 
 
 class GoldRule(Flowable):
-    """Short elegant gold accent under section titles."""
-
-    def __init__(self, width=36 * mm, thickness=1.3):
+    def __init__(self, width=34 * mm, thickness=1.2):
         super().__init__()
         self._w = width
         self._t = thickness
-        self.height = 6
+        self.height = 5
 
     def wrap(self, availWidth, availHeight):
         return availWidth, self.height
@@ -158,7 +193,7 @@ class GoldRule(Flowable):
         self.canv.setStrokeColor(GOLD)
         self.canv.setLineWidth(self._t)
         self.canv.setLineCap(1)
-        self.canv.line(0, 3, self._w, 3)
+        self.canv.line(0, 2.5, self._w, 2.5)
 
 
 def ensure_dirs():
@@ -168,94 +203,78 @@ def ensure_dirs():
         (ROOT / slug).mkdir(parents=True, exist_ok=True)
 
 
-def face_crop(img: Image.Image) -> Image.Image:
-    """Full head-and-shoulders crop: complete face, full hair, upper blazer.
-
-    Matches the original portrait framing (not an extreme close-up).
-    Source is a tall waist-up shot (approx 2:3).
-    """
-    w, h = img.size
-    # Use nearly full width so face and shoulders stay complete
-    side = min(w, int(h * 0.68))
-    # Start near the top so hair is never clipped; keep gentle headroom
-    top = max(0, int(h * 0.02))
-    if top + side > h:
-        top = h - side
-    left = max(0, (w - side) // 2)
-    return img.crop((left, top, left + side, top + side))
-
-
 def prepare_photos():
-    """Build circle + rounded-square assets with full face and elegant rings."""
+    """Create CV photo assets that preserve the original complete waist-up portrait."""
     img = Image.open(PHOTO_SRC).convert("RGBA")
-    crop = face_crop(img)
+    w, h = img.size  # ~1066 x 1600
 
-    # --- Circle: photo inset so rings never cover hair/chin ---
-    size = 720
-    inset = int(size * 0.07)  # generous ring band; full face stays clear
+    # Full portrait: nearly the original (tiny trim only) — complete like source
+    mx, mt, mb = int(w * 0.015), int(h * 0.008), int(h * 0.008)
+    full = img.crop((mx, mt, w - mx, h - mb))
+    pw = 560
+    ph = int(pw * full.size[1] / full.size[0])
+    portrait = full.resize((pw, ph), Image.Resampling.LANCZOS)
+
+    # Rounded portrait with elegant navy/gold frame
+    rad = 28
+    mask = Image.new("L", (pw, ph), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, pw - 1, ph - 1), radius=rad, fill=255)
+    framed = Image.new("RGBA", (pw, ph), (0, 0, 0, 0))
+    framed.paste(portrait, (0, 0))
+    framed.putalpha(mask)
+    edge = Image.new("RGBA", (pw, ph), (0, 0, 0, 0))
+    ed = ImageDraw.Draw(edge)
+    ed.rounded_rectangle((2, 2, pw - 3, ph - 3), radius=rad, outline=(10, 58, 82, 255), width=5)
+    ed.rounded_rectangle((9, 9, pw - 10, ph - 10), radius=rad - 4, outline=(184, 149, 62, 240), width=2)
+    Image.alpha_composite(framed, edge).save(PHOTO_PORTRAIT)
+
+    # Square / circle from TOP of original so arms-crossed pose stays in frame
+    # (original is waist-up; top square ≈ head through folded arms)
+    side = w
+    top = 0
+    sq = img.crop((0, top, side, top + side)).resize((700, 700), Image.Resampling.LANCZOS)
+
+    # Circle with inset rings so hair/face/arms are not covered
+    size = 700
+    inset = int(size * 0.045)
     inner = size - 2 * inset
-    photo = crop.resize((inner, inner), Image.Resampling.LANCZOS)
-    mask = Image.new("L", (inner, inner), 0)
-    ImageDraw.Draw(mask).ellipse((0, 0, inner - 1, inner - 1), fill=255)
-    photo.putalpha(mask)
-
-    out = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    out.paste(photo, (inset, inset), photo)
-
-    ring = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    rd = ImageDraw.Draw(ring)
-    # Outer soft navy
-    rd.ellipse((4, 4, size - 5, size - 5), outline=(10, 58, 82, 255), width=6)
-    # Inner gold accent (sits in the inset band)
-    rd.ellipse(
-        (inset - 2, inset - 2, size - inset + 1, size - inset + 1),
+    circ_photo = sq.resize((inner, inner), Image.Resampling.LANCZOS)
+    cmask = Image.new("L", (inner, inner), 0)
+    ImageDraw.Draw(cmask).ellipse((0, 0, inner - 1, inner - 1), fill=255)
+    circ_photo.putalpha(cmask)
+    cout = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    cout.paste(circ_photo, (inset, inset), circ_photo)
+    cring = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(cring)
+    cd.ellipse((3, 3, size - 4, size - 4), outline=(10, 58, 82, 255), width=6)
+    cd.ellipse(
+        (inset - 1, inset - 1, size - inset, size - inset),
         outline=(184, 149, 62, 255),
         width=2,
     )
-    Image.alpha_composite(out, ring).save(PHOTO_CIRCLE)
+    Image.alpha_composite(cout, cring).save(PHOTO_CIRCLE)
 
-    # --- Rounded square: same generous crop ---
+    # Rounded square from same complete crop
     size2 = 680
-    inset2 = 10
+    inset2 = 8
     inner2 = size2 - 2 * inset2
-    rad = 48
-    s = crop.resize((inner2, inner2), Image.Resampling.LANCZOS)
-    mask2 = Image.new("L", (inner2, inner2), 0)
-    ImageDraw.Draw(mask2).rounded_rectangle(
-        (0, 0, inner2 - 1, inner2 - 1), radius=rad, fill=255
-    )
-    s.putalpha(mask2)
-    out2 = Image.new("RGBA", (size2, size2), (0, 0, 0, 0))
-    out2.paste(s, (inset2, inset2), s)
-    edge = Image.new("RGBA", (size2, size2), (0, 0, 0, 0))
-    ed = ImageDraw.Draw(edge)
-    ed.rounded_rectangle(
-        (2, 2, size2 - 3, size2 - 3),
-        radius=rad + 4,
-        outline=(10, 58, 82, 255),
-        width=6,
-    )
-    ed.rounded_rectangle(
-        (inset2 - 1, inset2 - 1, size2 - inset2, size2 - inset2),
-        radius=rad,
+    rad2 = 40
+    s = sq.resize((inner2, inner2), Image.Resampling.LANCZOS)
+    smask = Image.new("L", (inner2, inner2), 0)
+    ImageDraw.Draw(smask).rounded_rectangle((0, 0, inner2 - 1, inner2 - 1), radius=rad2, fill=255)
+    s.putalpha(smask)
+    sout = Image.new("RGBA", (size2, size2), (0, 0, 0, 0))
+    sout.paste(s, (inset2, inset2), s)
+    sedge = Image.new("RGBA", (size2, size2), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(sedge)
+    sd.rounded_rectangle((2, 2, size2 - 3, size2 - 3), radius=rad2 + 4, outline=(10, 58, 82, 255), width=5)
+    sd.rounded_rectangle(
+        (inset2, inset2, size2 - inset2 - 1, size2 - inset2 - 1),
+        radius=rad2,
         outline=(184, 149, 62, 230),
         width=2,
     )
-    Image.alpha_composite(out2, edge).save(PHOTO_SQUARE)
-
-    # Also keep a clean rectangular portrait for reference (full face)
-    portrait = PHOTO_DIR / "photo_portrait.png"
-    # Keep original aspect, trim only tiny margins
-    pw, ph = img.size
-    margin_x = int(pw * 0.04)
-    margin_top = int(ph * 0.015)
-    margin_bot = int(ph * 0.28)  # drop lower torso; keep head+shoulders+arms
-    rect = img.crop((margin_x, margin_top, pw - margin_x, ph - margin_bot))
-    rect = rect.resize((520, int(520 * rect.size[1] / rect.size[0])), Image.Resampling.LANCZOS)
-    rect.save(portrait)
-
-    for old in PHOTO_DIR.glob("cand_*.png"):
-        old.unlink(missing_ok=True)
+    Image.alpha_composite(sout, sedge).save(PHOTO_SQUARE)
 
 
 def styles_base():
@@ -264,7 +283,6 @@ def styles_base():
 
 def add_style(styles, name, **kw):
     if name in styles.byName:
-        # overwrite safely
         styles.byName[name] = ParagraphStyle(name, **kw)
         return styles.byName[name]
     styles.add(ParagraphStyle(name, **kw))
@@ -280,343 +298,306 @@ def footer_fn(label: str):
         canv.saveState()
         canv.setStrokeColor(LINE)
         canv.setLineWidth(0.5)
-        y = 9 * mm
+        y = 8.5 * mm
         canv.line(doc.leftMargin, y, A4[0] - doc.rightMargin, y)
         canv.setFillColor(GOLD)
-        canv.circle(doc.leftMargin + 1.2 * mm, y, 1.1, fill=1, stroke=0)
+        canv.circle(doc.leftMargin + 1.2 * mm, y, 1.0, fill=1, stroke=0)
         canv.setFillColor(MUTED)
-        canv.setFont("Helvetica", 7.2)
-        canv.drawString(doc.leftMargin + 5 * mm, 5.2 * mm, label)
-        canv.drawRightString(A4[0] - doc.rightMargin, 5.2 * mm, "One page")
+        canv.setFont("Helvetica", 7)
+        canv.drawString(doc.leftMargin + 4.5 * mm, 4.8 * mm, label)
+        canv.drawRightString(A4[0] - doc.rightMargin, 4.8 * mm, "One page")
         canv.restoreState()
 
     return _draw
 
 
-def skill_chips_table(skills, width, cols=5):
+def skill_chips(skills, width, cols=7):
     styles = styles_base()
-    add_style(
-        styles,
-        "Chip",
-        fontName="Helvetica",
-        fontSize=7.6,
-        leading=9,
-        textColor=NAVY,
-        alignment=TA_CENTER,
-    )
+    add_style(styles, "Chip", fontName="Helvetica", fontSize=7.2, leading=9,
+              textColor=NAVY, alignment=TA_CENTER)
     cells = [Paragraph(s, styles["Chip"]) for s in skills]
     while len(cells) % cols:
         cells.append(Paragraph("", styles["Chip"]))
-    rows = [cells[i : i + cols] for i in range(0, len(cells), cols)]
+    rows = [cells[i:i + cols] for i in range(0, len(cells), cols)]
     t = Table(rows, colWidths=[width / cols] * cols)
-    t.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, -1), SOFT),
-                ("BOX", (0, 0), (-1, -1), 0.4, LINE),
-                ("INNERGRID", (0, 0), (-1, -1), 0.3, LINE),
-                ("TOPPADDING", (0, 0), (-1, -1), 5),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
-                ("LEFTPADDING", (0, 0), (-1, -1), 3),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 3),
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ]
-        )
-    )
+    t.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), SOFT),
+        ("BOX", (0, 0), (-1, -1), 0.35, LINE),
+        ("INNERGRID", (0, 0), (-1, -1), 0.25, LINE),
+        ("TOPPADDING", (0, 0), (-1, -1), 3.5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5),
+        ("LEFTPADDING", (0, 0), (-1, -1), 2),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 2),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
     return t
 
 
+def edu_block(styles_edu, styles_meta):
+    bits = []
+    for deg, uni, note in EDUCATION:
+        bits.append(Paragraph(deg, styles_edu))
+        meta = uni if not note else f"{uni} — {note}"
+        bits.append(Paragraph(meta, styles_meta))
+    return bits
+
+
 # ---------------------------------------------------------------------------
-# 01 Classic Airy
+# 01 Classic Airy — cream header, portrait photo, dense clear body
 # ---------------------------------------------------------------------------
 def build_v01_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=17, leading=20, textColor=NAVY, spaceAfter=2)
-    add_style(styles, "T", fontName="Helvetica", fontSize=9, leading=12, textColor=TEAL, spaceAfter=5)
-    add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=11, textColor=MUTED)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.5, leading=12, textColor=NAVY, spaceBefore=8, spaceAfter=1)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8.8, leading=12.2, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=4)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9, leading=11.5, textColor=NAVY, spaceBefore=5, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=TEAL, spaceAfter=1)
-    add_style(styles, "L", fontName="Helvetica", fontSize=8.4, leading=11.2, textColor=INK, spaceAfter=1)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.8, leading=10.5, textColor=MUTED, spaceAfter=2)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=8.3, leading=11.2, textColor=INK, leftIndent=2, spaceAfter=1.5)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=15.5, leading=18, textColor=NAVY, spaceAfter=1)
+    add_style(styles, "T", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=TEAL, spaceAfter=3)
+    add_style(styles, "C", fontName="Helvetica", fontSize=7.6, leading=10, textColor=MUTED)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8.8, leading=11, textColor=NAVY, spaceBefore=5, spaceAfter=1)
+    add_style(styles, "B", fontName="Helvetica", fontSize=8, leading=10.6, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=2)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.3, leading=10.5, textColor=NAVY, spaceBefore=3, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=7.6, leading=9.5, textColor=TEAL, spaceAfter=0.5)
+    add_style(styles, "L", fontName="Helvetica", fontSize=7.6, leading=9.8, textColor=INK, leftIndent=6, spaceAfter=0.5)
+    add_style(styles, "M", fontName="Helvetica", fontSize=7.2, leading=9.5, textColor=MUTED, spaceAfter=1.5)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.5, leading=9.8, textColor=INK, spaceAfter=0.8)
+    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=7.8, leading=10, textColor=NAVY, spaceBefore=1, spaceAfter=0)
+    add_style(styles, "Em", fontName="Helvetica", fontSize=7.2, leading=9.2, textColor=MUTED, spaceAfter=1.5)
 
-    doc = SimpleDocTemplate(
-        str(out), pagesize=A4,
-        leftMargin=15 * mm, rightMargin=15 * mm,
-        topMargin=11 * mm, bottomMargin=12 * mm,
-        title=f"{NAME} - Classic Airy",
-    )
-    w = A4[0] - 30 * mm
-    photo = RLImage(str(PHOTO_CIRCLE), width=32 * mm, height=32 * mm)
-    head = Table(
-        [[
-            [Paragraph(NAME, styles["N"]), Paragraph(TITLE, styles["T"]),
-             Paragraph(f"{LOCATION}<br/>{MOBILE}<br/>{EMAIL}  ·  {WEB}", styles["C"])],
-            photo,
-        ]],
-        colWidths=[w - 38 * mm, 38 * mm],
-    )
+    doc = SimpleDocTemplate(str(out), pagesize=A4,
+                            leftMargin=12 * mm, rightMargin=12 * mm,
+                            topMargin=8 * mm, bottomMargin=10 * mm,
+                            title=f"{NAME} - Classic Airy")
+    w = A4[0] - 24 * mm
+    # Portrait photo — complete like original
+    photo = RLImage(str(PHOTO_PORTRAIT), width=32 * mm, height=48 * mm)
+    head = Table([[
+        [Paragraph(NAME, styles["N"]), Paragraph(TITLE, styles["T"]),
+         Paragraph(f"{LOCATION}<br/>{MOBILE}<br/>{EMAIL}  ·  {WEB}", styles["C"])],
+        photo,
+    ]], colWidths=[w - 36 * mm, 36 * mm])
     head.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("ALIGN", (1, 0), (1, 0), "RIGHT"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
         ("BACKGROUND", (0, 0), (-1, -1), CREAM),
-        ("TOPPADDING", (0, 0), (-1, -1), 8),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+        ("TOPPADDING", (0, 0), (-1, -1), 7),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
         ("LEFTPADDING", (0, 0), (0, 0), 8),
-        ("RIGHTPADDING", (1, 0), (1, 0), 8),
+        ("RIGHTPADDING", (1, 0), (1, 0), 7),
+        ("LEFTPADDING", (1, 0), (1, 0), 0),
+        ("RIGHTPADDING", (0, 0), (0, 0), 4),
     ]))
 
     story = [
-        head,
-        Spacer(1, 4),
-        HRFlowable(width="100%", thickness=1.8, color=NAVY, spaceAfter=0.5),
-        HRFlowable(width="28%", thickness=1.1, color=GOLD, spaceAfter=6),
-        Paragraph("PROFILE", styles["H"]),
-        GoldRule(32 * mm),
+        head, Spacer(1, 3),
+        HRFlowable(width="100%", thickness=1.6, color=NAVY, spaceAfter=0.4),
+        HRFlowable(width="26%", thickness=1.0, color=GOLD, spaceAfter=3),
+        Paragraph("PROFILE", styles["H"]), GoldRule(30 * mm),
         Paragraph(PROFILE, styles["B"]),
-        Paragraph("HIGHLIGHTS", styles["H"]),
-        GoldRule(32 * mm),
+        Paragraph(PROFILE2, styles["B"]),
+        Paragraph("HIGHLIGHTS", styles["H"]), GoldRule(30 * mm),
     ]
-    left_h = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[:3]]
-    right_h = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[3:]]
+    left_h = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[:4]]
+    right_h = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[4:]]
     story.append(Table([[left_h, right_h]], colWidths=[w / 2, w / 2], style=TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+        ("BACKGROUND", (0, 0), (-1, -1), SOFT),
+        ("BOX", (0, 0), (-1, -1), 0.3, LINE),
+        ("TOPPADDING", (0, 0), (-1, -1), 4),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
     ])))
     story += [
-        Spacer(1, 3),
-        Paragraph("CORE COMPETENCIES", styles["H"]),
-        GoldRule(32 * mm),
-        skill_chips_table(SKILLS, w, cols=5),
-        Spacer(1, 3),
-        Paragraph("EXPERIENCE", styles["H"]),
-        GoldRule(32 * mm),
+        Spacer(1, 2),
+        Paragraph("CORE COMPETENCIES", styles["H"]), GoldRule(30 * mm),
+        skill_chips(SKILLS, w, cols=7),
+        Spacer(1, 2),
+        Paragraph("EXPERIENCE", styles["H"]), GoldRule(30 * mm),
     ]
     for role in ROLES:
-        story.append(KeepTogether([
+        block = [
             Paragraph(role["title"], styles["J"]),
             Paragraph(f"{role['org']}   |   {role['dates']}", styles["O"]),
-            Paragraph(role["line"], styles["L"]),
-        ]))
-    story += [
-        Paragraph(EARLIER, styles["M"]),
-        Spacer(1, 2),
-        Paragraph("EDUCATION", styles["H"]),
-        GoldRule(32 * mm),
-        Paragraph(EDU_LINE, styles["L"]),
-        Spacer(1, 4),
-        Paragraph("ADDITIONAL", styles["H"]),
-        GoldRule(32 * mm),
-        Paragraph(MORE_LINE, styles["M"]),
+        ]
+        for p in role["points"]:
+            block.append(Paragraph(f"•  {p}", styles["L"]))
+        story.append(KeepTogether(block))
+    story.append(Paragraph(EARLIER, styles["M"]))
+
+    # Bottom: education | more+tech in two cols to fill page
+    story += [Spacer(1, 2), Paragraph("EDUCATION  ·  TECHNICAL  ·  ADDITIONAL", styles["H"]), GoldRule(50 * mm)]
+    edu_bits = edu_block(styles["E"], styles["Em"])
+    right_bits = [
+        Paragraph("<b>Technical</b>", styles["E"]),
+        Paragraph(TECH, styles["Em"]),
+        Paragraph("<b>Membership & languages</b>", styles["E"]),
+        Paragraph(MORE, styles["Em"]),
     ]
+    story.append(Table([[edu_bits, right_bits]], colWidths=[w * 0.52, w * 0.48], style=TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("BACKGROUND", (0, 0), (-1, -1), CREAM),
+        ("BOX", (0, 0), (-1, -1), 0.3, LINE),
+        ("LEFTPADDING", (0, 0), (-1, -1), 6),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+        ("TOPPADDING", (0, 0), (-1, -1), 5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+    ])))
     doc.build(story, onFirstPage=footer_fn("Classic Airy"), onLaterPages=footer_fn("Classic Airy"))
 
 
 def build_v01_docx(out: Path):
-    doc = Document()
-    _page(doc, 1.4, 1.4, 1.5, 1.5)
-    t = doc.add_table(rows=1, cols=2)
-    L, R = t.rows[0].cells
-    _shade(L, "F8F5F0")
-    _shade(R, "F8F5F0")
-    p = L.paragraphs[0]
-    r = p.add_run(NAME)
-    _run(r, 15, True, DOCX_NAVY)
-    p = L.add_paragraph()
-    r = p.add_run(TITLE)
-    _run(r, 9, False, DOCX_TEAL)
-    for line in (LOCATION, MOBILE, f"{EMAIL}  ·  {WEB}"):
-        p = L.add_paragraph()
-        p.paragraph_format.space_after = Pt(0)
-        r = p.add_run(line)
-        _run(r, 8.5, False, DOCX_MUTED)
-    R.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    R.paragraphs[0].add_run().add_picture(str(PHOTO_CIRCLE), width=Inches(1.25))
-    _h(doc, "PROFILE")
-    _p(doc, PROFILE.replace("<b>", "").replace("</b>", ""))
-    _h(doc, "HIGHLIGHTS")
-    for h in HIGHLIGHTS:
-        _b(doc, h)
-    _h(doc, "CORE COMPETENCIES")
-    _p(doc, "  ·  ".join(SKILLS))
-    _h(doc, "EXPERIENCE")
-    for role in ROLES:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_before = Pt(4)
-        r = p.add_run(role["title"])
-        _run(r, 9.5, True, DOCX_NAVY)
-        p = doc.add_paragraph()
-        r = p.add_run(f"{role['org']}  |  {role['dates']}")
-        _run(r, 8.5, False, DOCX_TEAL)
-        _p(doc, role["line"], size=9)
-    _p(doc, EARLIER, muted=True, size=8)
-    _h(doc, "EDUCATION")
-    _p(doc, EDU_LINE.replace("<b>", "").replace("</b>", ""))
-    _h(doc, "ADDITIONAL")
-    _p(doc, MORE_LINE, muted=True, size=8.5)
-    doc.save(str(out))
+    _docx_standard(out, PHOTO_PORTRAIT, photo_w=1.15, portrait=True)
 
 
 # ---------------------------------------------------------------------------
-# 02 Sidebar Modern
+# 02 Sidebar — full-height portrait photo
 # ---------------------------------------------------------------------------
 def build_v02_pdf(out: Path):
     width, height = A4
-    side_w = 64 * mm
-    margin = 10 * mm
+    side_w = 58 * mm
+    margin = 8 * mm
     c = pdfcanvas.Canvas(str(out), pagesize=A4)
 
-    # Sidebar
     c.setFillColor(SIDEBAR)
     c.rect(0, 0, side_w, height, fill=1, stroke=0)
-    c.setFillColor(HexColor("#082F43"))
-    c.rect(0, height - 68 * mm, side_w, 68 * mm, fill=1, stroke=0)
 
-    photo_s = 40 * mm
+    # Full portrait in sidebar (complete waist-up)
+    photo_w = 46 * mm
+    photo_h = 69 * mm
     c.drawImage(
-        str(PHOTO_CIRCLE),
-        (side_w - photo_s) / 2,
-        height - 56 * mm,
-        width=photo_s,
-        height=photo_s,
+        str(PHOTO_PORTRAIT),
+        (side_w - photo_w) / 2,
+        height - photo_h - 8 * mm,
+        width=photo_w,
+        height=photo_h,
         mask="auto",
+        preserveAspectRatio=True,
     )
 
-    y = height - 72 * mm
+    y = height - photo_h - 14 * mm
 
     def side_h(label, y0):
         c.setFillColor(GOLD)
-        c.setFont("Helvetica-Bold", 7.8)
-        c.drawString(8 * mm, y0, label)
+        c.setFont("Helvetica-Bold", 7.5)
+        c.drawString(6 * mm, y0, label)
         c.setStrokeColor(GOLD)
-        c.setLineWidth(0.9)
-        c.line(8 * mm, y0 - 2 * mm, side_w - 8 * mm, y0 - 2 * mm)
-        return y0 - 6 * mm
+        c.setLineWidth(0.8)
+        c.line(6 * mm, y0 - 1.8 * mm, side_w - 6 * mm, y0 - 1.8 * mm)
+        return y0 - 5.2 * mm
 
     y = side_h("CONTACT", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 7.3)
-    for line in [LOCATION, "+256 772 849258", "+256 701 849258", EMAIL, WEB]:
-        # wrap long lines
-        if c.stringWidth(line, "Helvetica", 7.3) > side_w - 16 * mm:
-            # split at @ or .
-            if "@" in line:
-                a, b = line.split("@", 1)
-                c.drawString(8 * mm, y, a + "@")
-                y -= 3.4 * mm
-                c.drawString(8 * mm, y, b)
-            else:
-                mid = len(line) // 2
-                c.drawString(8 * mm, y, line[:mid])
-                y -= 3.4 * mm
-                c.drawString(8 * mm, y, line[mid:])
-        else:
-            c.drawString(8 * mm, y, line)
-        y -= 3.8 * mm
+    c.setFont("Helvetica", 6.9)
+    for line in [LOCATION, PHONE1, PHONE2, "info@fairbanks", "medicalcentre.org", "www.fairbanks", "medicalcentre.org"]:
+        c.drawString(6 * mm, y, line)
+        y -= 3.3 * mm
 
-    y -= 3 * mm
+    y -= 2 * mm
     y = side_h("STRENGTHS", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 7.4)
-    for sk in SKILLS:
-        c.drawString(8 * mm, y, f"•  {sk}")
-        y -= 4.0 * mm
+    c.setFont("Helvetica", 6.8)
+    for sk in SKILLS[:10]:
+        c.drawString(6 * mm, y, f"• {sk}")
+        y -= 3.4 * mm
 
-    y -= 3 * mm
+    y -= 2 * mm
     y = side_h("LANGUAGES", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 7.4)
-    c.drawString(8 * mm, y, "English  —  Fluent")
-    y -= 3.8 * mm
-    c.drawString(8 * mm, y, "Luganda  —  Fluent")
-
-    y -= 5 * mm
+    c.setFont("Helvetica", 6.9)
+    c.drawString(6 * mm, y, "English — Fluent")
+    y -= 3.3 * mm
+    c.drawString(6 * mm, y, "Luganda — Fluent")
+    y -= 4 * mm
     y = side_h("MEMBERSHIP", y)
     c.setFillColor(white)
-    c.setFont("Helvetica", 7.4)
-    c.drawString(8 * mm, y, "FUE Member")
+    c.setFont("Helvetica", 6.9)
+    c.drawString(6 * mm, y, "FUE Member")
 
     c.setFillColor(HexColor("#8FA3B5"))
-    c.setFont("Helvetica", 6.8)
-    c.drawString(8 * mm, 8 * mm, "Sidebar Modern  ·  One page")
+    c.setFont("Helvetica", 6.5)
+    c.drawString(6 * mm, 7 * mm, "Sidebar Modern · One page")
 
-    # Main
     x = side_w + margin
-    max_w = width - side_w - 2 * margin
-    y = height - 16 * mm
+    max_w = width - side_w - margin - 9 * mm
+    y = height - 12 * mm
 
     c.setFillColor(NAVY)
-    c.setFont("Helvetica-Bold", 13)
-    for line in _wrap(c, NAME, max_w, "Helvetica-Bold", 13):
+    c.setFont("Helvetica-Bold", 11.5)
+    for line in _wrap(c, NAME, max_w, "Helvetica-Bold", 11.5):
         c.drawString(x, y, line)
-        y -= 5.2 * mm
+        y -= 4.6 * mm
     c.setFillColor(TEAL)
-    c.setFont("Helvetica", 8.3)
-    for line in _wrap(c, TITLE.replace("  ·  ", " | "), max_w, "Helvetica", 8.3):
+    c.setFont("Helvetica", 7.6)
+    for line in _wrap(c, "Senior HR Executive | Human Capital Strategist | OD", max_w, "Helvetica", 7.6):
         c.drawString(x, y, line)
-        y -= 4 * mm
+        y -= 3.6 * mm
 
-    y -= 3 * mm
-    y = _sec(c, x, y, "PROFILE")
-    y = _text(c, x, y, max_w, PROFILE.replace("<b>", "").replace("</b>", ""), 8.5, 11.2)
     y -= 2 * mm
+    y = _sec(c, x, y, "PROFILE")
+    y = _text(c, x, y, max_w, PROFILE.replace("<b>", "").replace("</b>", ""), 7.8, 10)
+    y = _text(c, x, y, max_w, PROFILE2.replace("<b>", "").replace("</b>", ""), 7.8, 10)
+    y -= 1.5
+    y = _sec(c, x, y, "HIGHLIGHTS")
+    for h in HIGHLIGHTS[:6]:
+        y = _text(c, x, y, max_w, f"•  {h}", 7.4, 9.6)
+    y -= 1.5
     y = _sec(c, x, y, "EXPERIENCE")
     for role in ROLES:
         c.setFillColor(NAVY)
-        c.setFont("Helvetica-Bold", 8.5)
-        for line in _wrap(c, role["title"], max_w, "Helvetica-Bold", 8.5):
+        c.setFont("Helvetica-Bold", 7.8)
+        for line in _wrap(c, role["title"], max_w, "Helvetica-Bold", 7.8):
             c.drawString(x, y, line)
-            y -= 3.5 * mm
+            y -= 3.2 * mm
         c.setFillColor(TEAL)
-        c.setFont("Helvetica", 7.8)
+        c.setFont("Helvetica", 7.2)
         c.drawString(x, y, f"{role['org']}  |  {role['dates']}")
-        y -= 3.6 * mm
-        y = _text(c, x, y, max_w, role["line"], 8, 10.5)
-        y -= 2.2 * mm
-    y = _text(c, x, y, max_w, EARLIER, 7.4, 9.8, MUTED)
-    y -= 3 * mm
+        y -= 3.2 * mm
+        for pt in role["points"][:2]:
+            y = _text(c, x, y, max_w, f"•  {pt}", 7.2, 9.3)
+        y -= 1.2
+    y = _text(c, x, y, max_w, EARLIER, 6.8, 8.8, MUTED)
+    y -= 1.5
     y = _sec(c, x, y, "EDUCATION")
-    y = _text(c, x, y, max_w, EDU_LINE.replace("<b>", "").replace("</b>", ""), 8, 10.5)
-    y -= 3 * mm
-    y = _sec(c, x, y, "ADDITIONAL")
-    y = _text(c, x, y, max_w, MORE_LINE, 7.6, 10, MUTED)
+    for deg, uni, note in EDUCATION:
+        c.setFillColor(NAVY)
+        c.setFont("Helvetica-Bold", 7.4)
+        c.drawString(x, y, deg)
+        y -= 3.0 * mm
+        y = _text(c, x, y, max_w, uni if not note else f"{uni} — {note}", 6.9, 8.8, MUTED)
+    y -= 1
+    y = _sec(c, x, y, "TECHNICAL & MORE")
+    y = _text(c, x, y, max_w, TECH, 6.9, 8.8)
+    y = _text(c, x, y, max_w, MORE, 6.9, 8.8, MUTED)
     c.save()
 
 
 def build_v02_docx(out: Path):
     doc = Document()
-    _page(doc, 1.0, 1.0, 1.0, 1.0)
+    _page(doc, 0.9, 0.9, 0.9, 0.9)
     table = doc.add_table(rows=1, cols=2)
     side, main = table.rows[0].cells
-    side.width = Cm(5.6)
-    main.width = Cm(13.8)
+    side.width = Cm(5.4)
+    main.width = Cm(14)
     _shade(side, "0A3A52")
     sp = side.paragraphs[0]
     sp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    sp.add_run().add_picture(str(PHOTO_CIRCLE), width=Inches(1.25))
+    sp.add_run().add_picture(str(PHOTO_PORTRAIT), width=Inches(1.55))
 
     def sh(text):
         p = side.add_paragraph()
-        p.paragraph_format.space_before = Pt(8)
+        p.paragraph_format.space_before = Pt(6)
         r = p.add_run(text)
-        _run(r, 8.5, True, DOCX_GOLD)
+        _run(r, 8, True, DOCX_GOLD)
 
     def st(text):
         p = side.add_paragraph()
-        p.paragraph_format.space_after = Pt(1)
+        p.paragraph_format.space_after = Pt(0)
         r = p.add_run(text)
-        _run(r, 8, False, RGBColor(255, 255, 255))
+        _run(r, 7.5, False, RGBColor(255, 255, 255))
 
     sh("CONTACT")
     for line in [LOCATION, MOBILE, EMAIL, WEB]:
         st(line)
     sh("STRENGTHS")
-    for sk in SKILLS:
+    for sk in SKILLS[:10]:
         st(f"• {sk}")
     sh("LANGUAGES")
     st("English — Fluent")
@@ -626,60 +607,66 @@ def build_v02_docx(out: Path):
 
     p = main.paragraphs[0]
     r = p.add_run(NAME)
-    _run(r, 13, True, DOCX_NAVY)
+    _run(r, 12, True, DOCX_NAVY)
     p = main.add_paragraph()
     r = p.add_run(TITLE)
-    _run(r, 9, False, DOCX_TEAL)
-    _h(doc, "PROFILE", cell=main, size=9)
-    _p_in(main, PROFILE.replace("<b>", "").replace("</b>", ""))
-    _h(doc, "HIGHLIGHTS", cell=main, size=9)
-    for h in HIGHLIGHTS:
-        _b_in(main, h, size=8.5)
-    _h(doc, "EXPERIENCE", cell=main, size=9)
+    _run(r, 8.5, False, DOCX_TEAL)
+    _h(doc, "PROFILE", cell=main, size=8.5)
+    _p_in(main, PROFILE.replace("<b>", "").replace("</b>", ""), size=8)
+    _p_in(main, PROFILE2.replace("<b>", "").replace("</b>", ""), size=8)
+    _h(doc, "HIGHLIGHTS", cell=main, size=8.5)
+    for h in HIGHLIGHTS[:6]:
+        _b_in(main, h, size=7.5)
+    _h(doc, "EXPERIENCE", cell=main, size=8.5)
     for role in ROLES:
         p = main.add_paragraph()
-        p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_before = Pt(3)
         r = p.add_run(role["title"])
-        _run(r, 9, True, DOCX_NAVY)
+        _run(r, 8.5, True, DOCX_NAVY)
         p = main.add_paragraph()
         r = p.add_run(f"{role['org']} | {role['dates']}")
-        _run(r, 8, False, DOCX_TEAL)
-        _p_in(main, role["line"], size=8.5)
-    _p_in(main, EARLIER, muted=True, size=8)
-    _h(doc, "EDUCATION", cell=main, size=9)
-    _p_in(main, EDU_LINE.replace("<b>", "").replace("</b>", ""), size=8.5)
+        _run(r, 7.5, False, DOCX_TEAL)
+        for pt in role["points"][:2]:
+            _b_in(main, pt, size=7.5)
+    _p_in(main, EARLIER, muted=True, size=7)
+    _h(doc, "EDUCATION", cell=main, size=8.5)
+    for deg, uni, note in EDUCATION:
+        _p_in(main, f"{deg} — {uni}" + (f" ({note})" if note else ""), size=7.5)
+    _h(doc, "TECHNICAL & MORE", cell=main, size=8.5)
+    _p_in(main, TECH, size=7.5)
+    _p_in(main, MORE, muted=True, size=7.5)
     doc.save(str(out))
 
 
 # ---------------------------------------------------------------------------
-# 03 One Page Compact Elegant
+# 03 Compact one-page — square photo, max information density
 # ---------------------------------------------------------------------------
 def build_v03_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=14.5, leading=17, textColor=CHARCOAL, spaceAfter=1)
-    add_style(styles, "T", fontName="Helvetica", fontSize=8.3, leading=11, textColor=FOREST, spaceAfter=2)
-    add_style(styles, "C", fontName="Helvetica", fontSize=7.6, leading=10, textColor=MUTED)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=FOREST, spaceBefore=6, spaceAfter=1)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8, leading=10.8, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.2, leading=10.5, textColor=CHARCOAL, spaceBefore=3, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=7.6, leading=9.8, textColor=FOREST, spaceAfter=0.5)
-    add_style(styles, "L", fontName="Helvetica", fontSize=7.8, leading=10.2, textColor=INK, spaceAfter=1)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.3, leading=9.5, textColor=MUTED, spaceAfter=1)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.6, leading=10, textColor=INK, spaceAfter=1)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=13.5, leading=15.5, textColor=CHARCOAL, spaceAfter=1)
+    add_style(styles, "T", fontName="Helvetica", fontSize=7.6, leading=9.5, textColor=FOREST, spaceAfter=1)
+    add_style(styles, "C", fontName="Helvetica", fontSize=7.2, leading=9.2, textColor=MUTED)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=7.8, leading=9.5, textColor=FOREST, spaceBefore=4, spaceAfter=1)
+    add_style(styles, "B", fontName="Helvetica", fontSize=7.4, leading=9.6, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=2)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=7.6, leading=9.5, textColor=CHARCOAL, spaceBefore=2, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=7.1, leading=9, textColor=FOREST, spaceAfter=0.3)
+    add_style(styles, "L", fontName="Helvetica", fontSize=7.1, leading=9.2, textColor=INK, leftIndent=5, spaceAfter=0.3)
+    add_style(styles, "M", fontName="Helvetica", fontSize=6.8, leading=8.8, textColor=MUTED, spaceAfter=1)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.1, leading=9.2, textColor=INK, spaceAfter=0.5)
+    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=7.2, leading=9, textColor=CHARCOAL, spaceAfter=0)
+    add_style(styles, "Em", fontName="Helvetica", fontSize=6.8, leading=8.6, textColor=MUTED, spaceAfter=1)
 
-    doc = SimpleDocTemplate(
-        str(out), pagesize=A4,
-        leftMargin=13 * mm, rightMargin=13 * mm,
-        topMargin=10 * mm, bottomMargin=10 * mm,
-        title=f"{NAME} - One Page",
-    )
-    w = A4[0] - 26 * mm
-    photo = RLImage(str(PHOTO_SQUARE), width=28 * mm, height=28 * mm)
+    doc = SimpleDocTemplate(str(out), pagesize=A4,
+                            leftMargin=10 * mm, rightMargin=10 * mm,
+                            topMargin=7 * mm, bottomMargin=9 * mm,
+                            title=f"{NAME} - One Page")
+    w = A4[0] - 20 * mm
+    photo = RLImage(str(PHOTO_SQUARE), width=26 * mm, height=26 * mm)
     head = Table([[
         [Paragraph(NAME, styles["N"]), Paragraph(TITLE, styles["T"]),
-         Paragraph(f"{LOCATION}   ·   {MOBILE}   ·   {EMAIL}", styles["C"])],
+         Paragraph(f"{LOCATION}  ·  {MOBILE}  ·  {EMAIL}  ·  {WEB}", styles["C"])],
         photo,
-    ]], colWidths=[w - 32 * mm, 32 * mm])
+    ]], colWidths=[w - 30 * mm, 30 * mm])
     head.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("ALIGN", (1, 0), (1, 0), "RIGHT"),
@@ -687,107 +674,81 @@ def build_v03_pdf(out: Path):
         ("RIGHTPADDING", (0, 0), (-1, -1), 0),
     ]))
     story = [
-        head,
-        Spacer(1, 3),
-        HRFlowable(width="100%", thickness=1.4, color=FOREST, spaceAfter=1),
-        HRFlowable(width="22%", thickness=0.9, color=GOLD, spaceAfter=4),
-        Paragraph("PROFILE", styles["H"]),
-        GoldRule(28 * mm, 1.1),
-        Paragraph(PROFILE, styles["B"]),
-        Paragraph("HIGHLIGHTS & SKILLS", styles["H"]),
-        GoldRule(28 * mm, 1.1),
+        head, Spacer(1, 2),
+        HRFlowable(width="100%", thickness=1.3, color=FOREST, spaceAfter=0.4),
+        HRFlowable(width="20%", thickness=0.8, color=GOLD, spaceAfter=2),
+        Paragraph("PROFILE", styles["H"]), GoldRule(26 * mm, 1.0),
+        Paragraph(PROFILE + " " + PROFILE2, styles["B"]),
+        Paragraph("HIGHLIGHTS & COMPETENCIES", styles["H"]), GoldRule(40 * mm, 1.0),
     ]
     left = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS]
     right = [Paragraph(f"•  {s}", styles["Bu"]) for s in SKILLS]
-    story.append(Table([[left, right]], colWidths=[w * 0.52, w * 0.48], style=TableStyle([
+    story.append(Table([[left, right]], colWidths=[w * 0.5, w * 0.5], style=TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("BACKGROUND", (0, 0), (-1, -1), SOFT),
-        ("BOX", (0, 0), (-1, -1), 0.35, LINE),
-        ("LEFTPADDING", (0, 0), (-1, -1), 6),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-        ("TOPPADDING", (0, 0), (-1, -1), 5),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+        ("BOX", (0, 0), (-1, -1), 0.3, LINE),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
     ])))
-    story += [Spacer(1, 3), Paragraph("EXPERIENCE", styles["H"]), GoldRule(28 * mm, 1.1)]
+    story += [Spacer(1, 2), Paragraph("EXPERIENCE", styles["H"]), GoldRule(26 * mm, 1.0)]
     for role in ROLES:
         story.append(Paragraph(role["title"], styles["J"]))
         story.append(Paragraph(f"{role['org']}  |  {role['dates']}", styles["O"]))
-        story.append(Paragraph(role["line"], styles["L"]))
+        for pt in role["points"][:2]:
+            story.append(Paragraph(f"•  {pt}", styles["L"]))
     story += [
         Paragraph(EARLIER, styles["M"]),
-        Spacer(1, 2),
-        Paragraph("EDUCATION & MORE", styles["H"]),
-        GoldRule(28 * mm, 1.1),
-        Paragraph(EDU_LINE, styles["L"]),
-        Paragraph(MORE_LINE, styles["M"]),
+        Spacer(1, 1),
+        Paragraph("EDUCATION · TECHNICAL · MORE", styles["H"]), GoldRule(40 * mm, 1.0),
     ]
+    edu = edu_block(styles["E"], styles["Em"])
+    more = [
+        Paragraph("<b>Technical</b>", styles["E"]),
+        Paragraph(TECH, styles["Em"]),
+        Paragraph("<b>Membership & languages</b>", styles["E"]),
+        Paragraph(MORE, styles["Em"]),
+    ]
+    story.append(Table([[edu, more]], colWidths=[w * 0.5, w * 0.5], style=TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("BACKGROUND", (0, 0), (-1, -1), CREAM),
+        ("BOX", (0, 0), (-1, -1), 0.3, LINE),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+    ])))
     doc.build(story, onFirstPage=footer_fn("One Page"), onLaterPages=footer_fn("One Page"))
 
 
 def build_v03_docx(out: Path):
-    doc = Document()
-    _page(doc, 1.1, 1.1, 1.3, 1.3)
-    t = doc.add_table(rows=1, cols=2)
-    L, R = t.rows[0].cells
-    p = L.paragraphs[0]
-    r = p.add_run(NAME)
-    _run(r, 13, True, RGBColor(0x18, 0x21, 0x2B))
-    p = L.add_paragraph()
-    r = p.add_run(TITLE)
-    _run(r, 8.5, False, RGBColor(0x1E, 0x4D, 0x52))
-    p = L.add_paragraph()
-    r = p.add_run(f"{LOCATION}  ·  {MOBILE}  ·  {EMAIL}")
-    _run(r, 8, False, DOCX_MUTED)
-    R.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    R.paragraphs[0].add_run().add_picture(str(PHOTO_SQUARE), width=Inches(1.1))
-    _h(doc, "PROFILE", size=9)
-    _p(doc, PROFILE.replace("<b>", "").replace("</b>", ""), size=9)
-    _h(doc, "HIGHLIGHTS", size=9)
-    for h in HIGHLIGHTS:
-        _b(doc, h, size=8.5)
-    _h(doc, "SKILLS", size=9)
-    _p(doc, "  ·  ".join(SKILLS), size=8.5)
-    _h(doc, "EXPERIENCE", size=9)
-    for role in ROLES:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_before = Pt(3)
-        r = p.add_run(role["title"])
-        _run(r, 9, True, DOCX_INK)
-        p = doc.add_paragraph()
-        r = p.add_run(f"{role['org']} | {role['dates']}")
-        _run(r, 8, False, RGBColor(0x1E, 0x4D, 0x52))
-        _p(doc, role["line"], size=8.5)
-    _p(doc, EARLIER, muted=True, size=8)
-    _h(doc, "EDUCATION & MORE", size=9)
-    _p(doc, EDU_LINE.replace("<b>", "").replace("</b>", ""), size=8.5)
-    _p(doc, MORE_LINE, muted=True, size=8)
-    doc.save(str(out))
+    _docx_standard(out, PHOTO_SQUARE, photo_w=1.0, portrait=False, compact=True)
 
 
 # ---------------------------------------------------------------------------
-# 04 Timeline
+# 04 Timeline — circle photo from complete crop, packed timeline
 # ---------------------------------------------------------------------------
 def build_v04_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=17, leading=20, textColor=SLATE, alignment=TA_CENTER, spaceAfter=3)
-    add_style(styles, "T", fontName="Helvetica", fontSize=9.5, leading=12, textColor=TEAL, alignment=TA_CENTER, spaceAfter=3)
-    add_style(styles, "C", fontName="Helvetica", fontSize=8.2, leading=11, textColor=MUTED, alignment=TA_CENTER, spaceAfter=6)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=9.5, leading=12, textColor=SLATE, alignment=TA_CENTER, spaceBefore=8, spaceAfter=3)
-    add_style(styles, "B", fontName="Helvetica", fontSize=9, leading=12.5, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=6)
-    add_style(styles, "D", fontName="Helvetica-Bold", fontSize=8, leading=10.5, textColor=TEAL, alignment=TA_RIGHT)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=9, leading=11.5, textColor=SLATE)
-    add_style(styles, "O", fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=MUTED, spaceAfter=2)
-    add_style(styles, "L", fontName="Helvetica", fontSize=8.4, leading=11.5, textColor=INK, spaceAfter=1)
-    add_style(styles, "M", fontName="Helvetica", fontSize=8, leading=11, textColor=MUTED, alignment=TA_CENTER, spaceAfter=3)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=14.5, leading=17, textColor=SLATE, alignment=TA_CENTER, spaceAfter=1)
+    add_style(styles, "T", fontName="Helvetica", fontSize=8, leading=10, textColor=TEAL, alignment=TA_CENTER, spaceAfter=1)
+    add_style(styles, "C", fontName="Helvetica", fontSize=7.3, leading=9.5, textColor=MUTED, alignment=TA_CENTER, spaceAfter=3)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8.2, leading=10, textColor=SLATE, alignment=TA_CENTER, spaceBefore=4, spaceAfter=2)
+    add_style(styles, "B", fontName="Helvetica", fontSize=7.6, leading=10, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
+    add_style(styles, "D", fontName="Helvetica-Bold", fontSize=7.2, leading=9, textColor=TEAL, alignment=TA_RIGHT)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=7.8, leading=9.8, textColor=SLATE)
+    add_style(styles, "O", fontName="Helvetica", fontSize=7.2, leading=9, textColor=MUTED, spaceAfter=0.5)
+    add_style(styles, "L", fontName="Helvetica", fontSize=7.2, leading=9.2, textColor=INK, leftIndent=4, spaceAfter=0.3)
+    add_style(styles, "M", fontName="Helvetica", fontSize=7, leading=9, textColor=MUTED, alignment=TA_CENTER, spaceAfter=2)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.1, leading=9.2, textColor=INK, spaceAfter=0.5)
 
-    doc = SimpleDocTemplate(
-        str(out), pagesize=A4,
-        leftMargin=15 * mm, rightMargin=15 * mm,
-        topMargin=11 * mm, bottomMargin=12 * mm,
-        title=f"{NAME} - Timeline",
-    )
-    w = A4[0] - 30 * mm
-    photo = RLImage(str(PHOTO_CIRCLE), width=36 * mm, height=36 * mm)
+    doc = SimpleDocTemplate(str(out), pagesize=A4,
+                            leftMargin=11 * mm, rightMargin=11 * mm,
+                            topMargin=7 * mm, bottomMargin=9 * mm,
+                            title=f"{NAME} - Timeline")
+    w = A4[0] - 22 * mm
+    photo = RLImage(str(PHOTO_CIRCLE), width=30 * mm, height=30 * mm)
     ph = Table([[photo]], colWidths=[w])
     ph.setStyle(TableStyle([("ALIGN", (0, 0), (-1, -1), "CENTER")]))
 
@@ -795,79 +756,64 @@ def build_v04_pdf(out: Path):
         Paragraph(NAME, styles["N"]),
         Paragraph(TITLE, styles["T"]),
         Paragraph(f"{LOCATION}  ·  {MOBILE}  ·  {EMAIL}", styles["C"]),
-        ph,
-        Spacer(1, 5),
-        HRFlowable(width="26%", thickness=1.2, color=GOLD, spaceAfter=6),
-        Paragraph("PROFILE", styles["H"]),
-        GoldRule(30 * mm),
-        Paragraph(PROFILE, styles["B"]),
-        Paragraph("CAREER TIMELINE", styles["H"]),
-        GoldRule(30 * mm),
-        Spacer(1, 2),
+        ph, Spacer(1, 2),
+        HRFlowable(width="22%", thickness=1.0, color=GOLD, spaceAfter=3),
+        Paragraph("PROFILE", styles["H"]), GoldRule(28 * mm),
+        Paragraph(PROFILE + " " + PROFILE2, styles["B"]),
+        Paragraph("CAREER TIMELINE", styles["H"]), GoldRule(28 * mm),
     ]
     for role in ROLES:
         left = Paragraph(role["dates"].replace(" - ", "<br/>"), styles["D"])
-        right = [
-            Paragraph(role["title"], styles["J"]),
-            Paragraph(role["org"], styles["O"]),
-            Paragraph(role["line"], styles["L"]),
-        ]
-        row = Table([[left, right]], colWidths=[28 * mm, w - 28 * mm])
+        right = [Paragraph(role["title"], styles["J"]), Paragraph(role["org"], styles["O"])]
+        for pt in role["points"][:2]:
+            right.append(Paragraph(f"•  {pt}", styles["L"]))
+        row = Table([[left, right]], colWidths=[24 * mm, w - 24 * mm])
         row.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ("BACKGROUND", (1, 0), (1, 0), SOFT),
-            ("LINEBEFORE", (1, 0), (1, 0), 2, TEAL),
+            ("LINEBEFORE", (1, 0), (1, 0), 1.8, TEAL),
             ("LEFTPADDING", (0, 0), (0, 0), 0),
-            ("RIGHTPADDING", (0, 0), (0, 0), 8),
-            ("LEFTPADDING", (1, 0), (1, 0), 10),
-            ("RIGHTPADDING", (1, 0), (1, 0), 8),
-            ("TOPPADDING", (0, 0), (-1, -1), 7),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+            ("RIGHTPADDING", (0, 0), (0, 0), 5),
+            ("LEFTPADDING", (1, 0), (1, 0), 7),
+            ("RIGHTPADDING", (1, 0), (1, 0), 5),
+            ("TOPPADDING", (0, 0), (-1, -1), 3.5),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5),
         ]))
         story.append(row)
-        story.append(Spacer(1, 3.5))
-    story += [
-        Paragraph(EARLIER, styles["M"]),
-        Spacer(1, 6),
-        Paragraph("SKILLS", styles["H"]),
-        GoldRule(30 * mm),
-        skill_chips_table(SKILLS, w, cols=5),
-        Spacer(1, 8),
-        Paragraph("EDUCATION & MORE", styles["H"]),
-        GoldRule(30 * mm),
-    ]
-    edu_box = Table(
-        [[
-            Paragraph(EDU_LINE, styles["M"]),
-            Paragraph(MORE_LINE, styles["M"]),
-        ]],
-        colWidths=[w],
-    )
-    # Single cell cream panel for balance at page end
-    edu_panel = Table(
-        [[
-            Paragraph(EDU_LINE + "<br/><br/>" + MORE_LINE, styles["M"]),
-        ]],
-        colWidths=[w],
-    )
-    edu_panel.setStyle(TableStyle([
+        story.append(Spacer(1, 2))
+    story.append(Paragraph(EARLIER, styles["M"]))
+
+    # Highlights + skills fill remaining space
+    story += [Paragraph("HIGHLIGHTS & SKILLS", styles["H"]), GoldRule(36 * mm)]
+    hl = [bullet(h, styles["Bu"]) for h in HIGHLIGHTS[:6]]
+    sk = [Paragraph(f"•  {s}", styles["Bu"]) for s in SKILLS[:10]]
+    story.append(Table([[hl, sk]], colWidths=[w / 2, w / 2], style=TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("BACKGROUND", (0, 0), (-1, -1), CREAM),
-        ("BOX", (0, 0), (-1, -1), 0.4, LINE),
-        ("TOPPADDING", (0, 0), (-1, -1), 10),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
-        ("LEFTPADDING", (0, 0), (-1, -1), 12),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 12),
-    ]))
-    story.append(edu_panel)
+        ("BOX", (0, 0), (-1, -1), 0.3, LINE),
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+    ])))
+    story += [
+        Spacer(1, 2),
+        Paragraph("EDUCATION · TECHNICAL · MORE", styles["H"]), GoldRule(40 * mm),
+        Paragraph(
+            "PhD Management (Ongoing), Uganda Christian University — AI/ML burnout research  ·  "
+            "MSSPM, Makerere  ·  BA Social Sciences, Makerere<br/>"
+            + TECH + "<br/>" + MORE,
+            styles["M"],
+        ),
+    ]
     doc.build(story, onFirstPage=footer_fn("Timeline"), onLaterPages=footer_fn("Timeline"))
 
 
 def build_v04_docx(out: Path):
     doc = Document()
-    _page(doc, 1.2, 1.2, 1.4, 1.4)
+    _page(doc, 1.0, 1.0, 1.2, 1.2)
     for text, size, bold, color in [
-        (NAME, 14, True, RGBColor(0x2F, 0x44, 0x58)),
-        (TITLE, 9, False, DOCX_TEAL),
+        (NAME, 13, True, RGBColor(0x2F, 0x44, 0x58)),
+        (TITLE, 8.5, False, DOCX_TEAL),
         (f"{LOCATION}  ·  {MOBILE}  ·  {EMAIL}", 8, False, DOCX_MUTED),
     ]:
         p = doc.add_paragraph()
@@ -877,57 +823,50 @@ def build_v04_docx(out: Path):
         _run(r, size, bold, color)
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.add_run().add_picture(str(PHOTO_CIRCLE), width=Inches(1.2))
-    _h(doc, "PROFILE", center=True, size=9)
-    _p(doc, PROFILE.replace("<b>", "").replace("</b>", ""), size=9)
-    _h(doc, "CAREER TIMELINE", center=True, size=9)
+    p.add_run().add_picture(str(PHOTO_CIRCLE), width=Inches(1.15))
+    _h(doc, "PROFILE", center=True, size=8.5)
+    _p(doc, (PROFILE + " " + PROFILE2).replace("<b>", "").replace("</b>", ""), size=8)
+    _h(doc, "CAREER TIMELINE", center=True, size=8.5)
     for role in ROLES:
-        t = doc.add_table(rows=1, cols=2)
-        d, body = t.rows[0].cells
-        d.width = Cm(3)
-        p = d.paragraphs[0]
-        r = p.add_run(role["dates"])
-        _run(r, 8, True, DOCX_TEAL)
-        p = body.paragraphs[0]
-        r = p.add_run(role["title"])
-        _run(r, 9, True, RGBColor(0x2F, 0x44, 0x58))
-        p = body.add_paragraph()
-        r = p.add_run(f"{role['org']} — {role['line']}")
-        _run(r, 8.5, False, DOCX_INK)
-        doc.add_paragraph()
-    _p(doc, EARLIER, muted=True, size=8)
-    _h(doc, "EDUCATION & MORE", center=True, size=9)
-    _p(doc, EDU_LINE.replace("<b>", "").replace("</b>", ""), size=8.5)
-    _p(doc, MORE_LINE, muted=True, size=8)
+        p = doc.add_paragraph()
+        r = p.add_run(f"{role['dates']}  |  {role['title']}")
+        _run(r, 8.5, True, DOCX_NAVY)
+        p = doc.add_paragraph()
+        r = p.add_run(role["org"])
+        _run(r, 8, False, DOCX_TEAL)
+        for pt in role["points"][:2]:
+            _b(doc, pt, size=7.5)
+    _p(doc, EARLIER, muted=True, size=7.5)
+    _h(doc, "EDUCATION · MORE", center=True, size=8.5)
+    _p(doc, MORE + "  ·  " + TECH, size=7.5)
     doc.save(str(out))
 
 
 # ---------------------------------------------------------------------------
-# 05 Editorial Split
+# 05 Editorial split — portrait in cream banner
 # ---------------------------------------------------------------------------
 def build_v05_pdf(out: Path):
     styles = styles_base()
-    add_style(styles, "Tag", fontName="Helvetica-Bold", fontSize=7.5, leading=9, textColor=GOLD, spaceAfter=3)
-    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=16.5, leading=19, textColor=NAVY, spaceAfter=2)
-    add_style(styles, "T", fontName="Helvetica", fontSize=8.5, leading=11, textColor=TEAL, spaceAfter=3)
-    add_style(styles, "C", fontName="Helvetica", fontSize=7.6, leading=10, textColor=MUTED)
-    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8.5, leading=10.5, textColor=NAVY, spaceBefore=1, spaceAfter=2)
-    add_style(styles, "B", fontName="Helvetica", fontSize=8.2, leading=11, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=3)
-    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=8.3, leading=10.5, textColor=NAVY, spaceBefore=3, spaceAfter=0)
-    add_style(styles, "O", fontName="Helvetica", fontSize=7.5, leading=9.5, textColor=TEAL, spaceAfter=0.5)
-    add_style(styles, "L", fontName="Helvetica", fontSize=7.8, leading=10.2, textColor=INK, spaceAfter=1)
-    add_style(styles, "S", fontName="Helvetica", fontSize=7.5, leading=10, textColor=INK, spaceAfter=1)
-    add_style(styles, "M", fontName="Helvetica", fontSize=7.3, leading=9.5, textColor=MUTED, spaceAfter=2)
-    add_style(styles, "Bu", fontName="Helvetica", fontSize=7.5, leading=10, textColor=INK, spaceAfter=1.2)
+    add_style(styles, "Tag", fontName="Helvetica-Bold", fontSize=7, leading=8.5, textColor=GOLD, spaceAfter=2)
+    add_style(styles, "N", fontName="Helvetica-Bold", fontSize=14, leading=16.5, textColor=NAVY, spaceAfter=1)
+    add_style(styles, "T", fontName="Helvetica", fontSize=7.8, leading=10, textColor=TEAL, spaceAfter=2)
+    add_style(styles, "C", fontName="Helvetica", fontSize=7.2, leading=9.5, textColor=MUTED)
+    add_style(styles, "H", fontName="Helvetica-Bold", fontSize=8, leading=10, textColor=NAVY, spaceBefore=1, spaceAfter=1.5)
+    add_style(styles, "B", fontName="Helvetica", fontSize=7.5, leading=9.8, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=2)
+    add_style(styles, "J", fontName="Helvetica-Bold", fontSize=7.6, leading=9.5, textColor=NAVY, spaceBefore=2.5, spaceAfter=0)
+    add_style(styles, "O", fontName="Helvetica", fontSize=7, leading=8.8, textColor=TEAL, spaceAfter=0.3)
+    add_style(styles, "L", fontName="Helvetica", fontSize=7.1, leading=9, textColor=INK, leftIndent=4, spaceAfter=0.3)
+    add_style(styles, "S", fontName="Helvetica", fontSize=7, leading=9.2, textColor=INK, spaceAfter=0.6)
+    add_style(styles, "M", fontName="Helvetica", fontSize=6.9, leading=8.8, textColor=MUTED, spaceAfter=1.2)
+    add_style(styles, "Bu", fontName="Helvetica", fontSize=7, leading=9.1, textColor=INK, spaceAfter=0.7)
+    add_style(styles, "E", fontName="Helvetica-Bold", fontSize=7.2, leading=9, textColor=NAVY, spaceAfter=0)
 
-    doc = SimpleDocTemplate(
-        str(out), pagesize=A4,
-        leftMargin=12 * mm, rightMargin=12 * mm,
-        topMargin=10 * mm, bottomMargin=11 * mm,
-        title=f"{NAME} - Editorial Split",
-    )
-    w = A4[0] - 24 * mm
-    photo = RLImage(str(PHOTO_CIRCLE), width=34 * mm, height=34 * mm)
+    doc = SimpleDocTemplate(str(out), pagesize=A4,
+                            leftMargin=9 * mm, rightMargin=9 * mm,
+                            topMargin=7 * mm, bottomMargin=9 * mm,
+                            title=f"{NAME} - Editorial Split")
+    w = A4[0] - 18 * mm
+    photo = RLImage(str(PHOTO_PORTRAIT), width=30 * mm, height=45 * mm)
     banner = Table([[
         [
             Paragraph("CURRICULUM VITAE", styles["Tag"]),
@@ -936,149 +875,188 @@ def build_v05_pdf(out: Path):
             Paragraph(f"{LOCATION}  ·  {MOBILE}<br/>{EMAIL}  ·  {WEB}", styles["C"]),
         ],
         photo,
-    ]], colWidths=[w - 40 * mm, 40 * mm])
+    ]], colWidths=[w - 36 * mm, 36 * mm])
     banner.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), CREAM),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("ALIGN", (1, 0), (1, 0), "RIGHT"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 10),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 10),
-        ("TOPPADDING", (0, 0), (-1, -1), 9),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
+        ("LEFTPADDING", (0, 0), (-1, -1), 8),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
     ]))
 
-    left = [
-        Paragraph("AT A GLANCE", styles["H"]),
-        GoldRule(100),
-    ]
+    left = [Paragraph("AT A GLANCE", styles["H"]), GoldRule(80)]
     for h in HIGHLIGHTS:
         left.append(bullet(h, styles["Bu"]))
-    left += [
-        Spacer(1, 6),
-        Paragraph("SKILLS", styles["H"]),
-        GoldRule(100),
-    ]
+    left += [Spacer(1, 4), Paragraph("SKILLS", styles["H"]), GoldRule(80)]
     for sk in SKILLS:
         left.append(Paragraph(f"•  {sk}", styles["S"]))
     left += [
-        Spacer(1, 6),
-        Paragraph("EDUCATION", styles["H"]),
-        GoldRule(100),
-        Paragraph("<b>PhD Management</b> (Ongoing)<br/>Uganda Christian University", styles["M"]),
-        Paragraph("<b>MSSPM</b><br/>Makerere University", styles["M"]),
-        Paragraph("<b>BA Social Sciences</b><br/>Makerere University", styles["M"]),
-        Spacer(1, 5),
-        Paragraph("MORE", styles["H"]),
-        GoldRule(100),
+        Spacer(1, 4), Paragraph("EDUCATION", styles["H"]), GoldRule(80),
+        Paragraph("<b>PhD Management</b> (Ongoing)<br/>Uganda Christian University<br/>AI/ML burnout research", styles["M"]),
+        Paragraph("<b>MSSPM</b> — Makerere University", styles["M"]),
+        Paragraph("<b>BA Social Sciences</b> — Makerere", styles["M"]),
+        Spacer(1, 3), Paragraph("MORE", styles["H"]), GoldRule(80),
         Paragraph("FUE Member<br/>English & Luganda — Fluent<br/>References on request", styles["M"]),
+        Spacer(1, 2), Paragraph("TECHNICAL", styles["H"]), GoldRule(80),
+        Paragraph(TECH, styles["M"]),
     ]
 
     right = [
-        Paragraph("PROFILE", styles["H"]),
-        GoldRule(100),
+        Paragraph("PROFILE", styles["H"]), GoldRule(80),
         Paragraph(PROFILE, styles["B"]),
-        Spacer(1, 3),
-        Paragraph("EXPERIENCE", styles["H"]),
-        GoldRule(100),
+        Paragraph(PROFILE2, styles["B"]),
+        Spacer(1, 2),
+        Paragraph("EXPERIENCE", styles["H"]), GoldRule(80),
     ]
     for role in ROLES:
         right += [
             Paragraph(role["title"], styles["J"]),
             Paragraph(f"{role['org']}  |  {role['dates']}", styles["O"]),
-            Paragraph(role["line"], styles["L"]),
         ]
+        for pt in role["points"]:
+            right.append(Paragraph(f"•  {pt}", styles["L"]))
     right.append(Paragraph(EARLIER, styles["M"]))
 
-    split = Table([[left, right]], colWidths=[w * 0.34, w * 0.66])
+    split = Table([[left, right]], colWidths=[w * 0.36, w * 0.64])
     split.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("BACKGROUND", (0, 0), (0, 0), SOFT),
-        ("LEFTPADDING", (0, 0), (0, 0), 8),
-        ("RIGHTPADDING", (0, 0), (0, 0), 8),
-        ("TOPPADDING", (0, 0), (0, 0), 8),
-        ("BOTTOMPADDING", (0, 0), (0, 0), 8),
-        ("LEFTPADDING", (1, 0), (1, 0), 10),
+        ("LEFTPADDING", (0, 0), (0, 0), 6),
+        ("RIGHTPADDING", (0, 0), (0, 0), 6),
+        ("TOPPADDING", (0, 0), (0, 0), 6),
+        ("BOTTOMPADDING", (0, 0), (0, 0), 6),
+        ("LEFTPADDING", (1, 0), (1, 0), 8),
         ("RIGHTPADDING", (1, 0), (1, 0), 2),
-        ("TOPPADDING", (1, 0), (1, 0), 2),
-        ("LINEAFTER", (0, 0), (0, 0), 0.6, LINE),
+        ("TOPPADDING", (1, 0), (1, 0), 1),
+        ("LINEAFTER", (0, 0), (0, 0), 0.5, LINE),
     ]))
-
-    story = [banner, Spacer(1, 7), split]
-    doc.build(story, onFirstPage=footer_fn("Editorial Split"), onLaterPages=footer_fn("Editorial Split"))
+    doc.build([banner, Spacer(1, 4), split],
+              onFirstPage=footer_fn("Editorial Split"),
+              onLaterPages=footer_fn("Editorial Split"))
 
 
 def build_v05_docx(out: Path):
     doc = Document()
-    _page(doc, 1.1, 1.1, 1.2, 1.2)
+    _page(doc, 0.9, 0.9, 1.0, 1.0)
     head = doc.add_table(rows=1, cols=2)
     L, R = head.rows[0].cells
     _shade(L, "F8F5F0")
     _shade(R, "F8F5F0")
     p = L.paragraphs[0]
     r = p.add_run("CURRICULUM VITAE")
-    _run(r, 8, True, DOCX_GOLD)
+    _run(r, 7.5, True, DOCX_GOLD)
     p = L.add_paragraph()
     r = p.add_run(NAME)
-    _run(r, 14, True, DOCX_NAVY)
+    _run(r, 13, True, DOCX_NAVY)
     p = L.add_paragraph()
     r = p.add_run(TITLE)
-    _run(r, 9, False, DOCX_TEAL)
+    _run(r, 8, False, DOCX_TEAL)
     p = L.add_paragraph()
     r = p.add_run(f"{LOCATION} · {MOBILE} · {EMAIL}")
-    _run(r, 8, False, DOCX_MUTED)
+    _run(r, 7.5, False, DOCX_MUTED)
     R.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    R.paragraphs[0].add_run().add_picture(str(PHOTO_CIRCLE), width=Inches(1.25))
-    doc.add_paragraph()
+    R.paragraphs[0].add_run().add_picture(str(PHOTO_PORTRAIT), width=Inches(1.1))
+
     body = doc.add_table(rows=1, cols=2)
     left, right = body.rows[0].cells
-    left.width = Cm(6)
-    right.width = Cm(12.5)
     _shade(left, "F4F7FA")
     left.paragraphs[0].clear()
     p = left.paragraphs[0]
     r = p.add_run("AT A GLANCE")
-    _run(r, 9, True, DOCX_NAVY)
+    _run(r, 8.5, True, DOCX_NAVY)
     for h in HIGHLIGHTS:
-        _b_in(left, h, size=8)
+        _b_in(left, h, size=7.5)
     p = left.add_paragraph()
     r = p.add_run("SKILLS")
-    _run(r, 9, True, DOCX_NAVY)
+    _run(r, 8.5, True, DOCX_NAVY)
     for sk in SKILLS:
-        _b_in(left, sk, size=8)
+        _b_in(left, sk, size=7.5)
     p = left.add_paragraph()
-    r = p.add_run("EDUCATION")
-    _run(r, 9, True, DOCX_NAVY)
-    _p_in(left, "PhD Management (Ongoing) - Uganda Christian University", size=8)
-    _p_in(left, "MSSPM - Makerere University", size=8)
-    _p_in(left, "BA Social Sciences - Makerere University", size=8)
-    p = left.add_paragraph()
-    r = p.add_run("MORE")
-    _run(r, 9, True, DOCX_NAVY)
-    _p_in(left, "FUE Member · English & Luganda · References on request", size=8)
+    r = p.add_run("EDUCATION & MORE")
+    _run(r, 8.5, True, DOCX_NAVY)
+    for deg, uni, note in EDUCATION:
+        _p_in(left, f"{deg} — {uni}", size=7.5)
+    _p_in(left, MORE, size=7.5)
 
     right.paragraphs[0].clear()
     p = right.paragraphs[0]
     r = p.add_run("PROFILE")
-    _run(r, 9, True, DOCX_NAVY)
-    _p_in(right, PROFILE.replace("<b>", "").replace("</b>", ""))
+    _run(r, 8.5, True, DOCX_NAVY)
+    _p_in(right, PROFILE.replace("<b>", "").replace("</b>", ""), size=8)
+    _p_in(right, PROFILE2.replace("<b>", "").replace("</b>", ""), size=8)
     p = right.add_paragraph()
     r = p.add_run("EXPERIENCE")
-    _run(r, 9, True, DOCX_NAVY)
+    _run(r, 8.5, True, DOCX_NAVY)
     for role in ROLES:
         p = right.add_paragraph()
-        p.paragraph_format.space_before = Pt(3)
+        p.paragraph_format.space_before = Pt(2)
         r = p.add_run(role["title"])
-        _run(r, 9, True, DOCX_NAVY)
+        _run(r, 8.5, True, DOCX_NAVY)
         p = right.add_paragraph()
         r = p.add_run(f"{role['org']} | {role['dates']}")
-        _run(r, 8, False, DOCX_TEAL)
-        _p_in(right, role["line"], size=8.5)
-    _p_in(right, EARLIER, muted=True, size=8)
+        _run(r, 7.5, False, DOCX_TEAL)
+        for pt in role["points"][:2]:
+            _b_in(right, pt, size=7.5)
+    _p_in(right, EARLIER, muted=True, size=7)
     doc.save(str(out))
 
 
 # ---------------------------------------------------------------------------
-# Canvas helpers
+# Shared DOCX helper for classic/compact
+# ---------------------------------------------------------------------------
+def _docx_standard(out: Path, photo: Path, photo_w=1.1, portrait=False, compact=False):
+    doc = Document()
+    _page(doc, 1.0, 1.0, 1.2, 1.2)
+    t = doc.add_table(rows=1, cols=2)
+    L, R = t.rows[0].cells
+    _shade(L, "F8F5F0")
+    _shade(R, "F8F5F0")
+    p = L.paragraphs[0]
+    r = p.add_run(NAME)
+    _run(r, 13 if compact else 14, True, DOCX_NAVY)
+    p = L.add_paragraph()
+    r = p.add_run(TITLE)
+    _run(r, 8, False, DOCX_TEAL)
+    for line in (LOCATION, MOBILE, f"{EMAIL}  ·  {WEB}"):
+        p = L.add_paragraph()
+        p.paragraph_format.space_after = Pt(0)
+        r = p.add_run(line)
+        _run(r, 8, False, DOCX_MUTED)
+    R.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    R.paragraphs[0].add_run().add_picture(str(photo), width=Inches(photo_w))
+    _h(doc, "PROFILE", size=9)
+    _p(doc, PROFILE.replace("<b>", "").replace("</b>", ""), size=8.5)
+    _p(doc, PROFILE2.replace("<b>", "").replace("</b>", ""), size=8.5)
+    _h(doc, "HIGHLIGHTS", size=9)
+    for h in HIGHLIGHTS:
+        _b(doc, h, size=8)
+    _h(doc, "COMPETENCIES", size=9)
+    _p(doc, "  ·  ".join(SKILLS), size=8)
+    _h(doc, "EXPERIENCE", size=9)
+    for role in ROLES:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before = Pt(3)
+        r = p.add_run(role["title"])
+        _run(r, 9, True, DOCX_NAVY)
+        p = doc.add_paragraph()
+        r = p.add_run(f"{role['org']}  |  {role['dates']}")
+        _run(r, 8, False, DOCX_TEAL)
+        for pt in role["points"][:2]:
+            _b(doc, pt, size=8)
+    _p(doc, EARLIER, muted=True, size=7.5)
+    _h(doc, "EDUCATION", size=9)
+    for deg, uni, note in EDUCATION:
+        _p(doc, f"{deg} — {uni}" + (f". {note}" if note else ""), size=8)
+    _h(doc, "TECHNICAL & ADDITIONAL", size=9)
+    _p(doc, TECH, size=8)
+    _p(doc, MORE, muted=True, size=8)
+    doc.save(str(out))
+
+
+# ---------------------------------------------------------------------------
+# Helpers
 # ---------------------------------------------------------------------------
 def _wrap(c, text, max_w, font, size):
     c.setFont(font, size)
@@ -1099,13 +1077,13 @@ def _wrap(c, text, max_w, font, size):
 
 def _sec(c, x, y, title):
     c.setFillColor(NAVY)
-    c.setFont("Helvetica-Bold", 9)
+    c.setFont("Helvetica-Bold", 8.2)
     c.drawString(x, y, title)
-    y -= 2.2 * mm
+    y -= 2 * mm
     c.setStrokeColor(GOLD)
-    c.setLineWidth(1.2)
-    c.line(x, y, x + 26 * mm, y)
-    return y - 4 * mm
+    c.setLineWidth(1.1)
+    c.line(x, y, x + 24 * mm, y)
+    return y - 3.5 * mm
 
 
 def _text(c, x, y, max_w, text, size, leading, color=INK):
@@ -1114,12 +1092,9 @@ def _text(c, x, y, max_w, text, size, leading, color=INK):
     for line in _wrap(c, text, max_w, "Helvetica", size):
         c.drawString(x, y, line)
         y -= leading
-    return y - 1.5
+    return y - 1.2
 
 
-# ---------------------------------------------------------------------------
-# DOCX helpers
-# ---------------------------------------------------------------------------
 def _page(doc, top, bottom, left, right):
     for sec in doc.sections:
         sec.top_margin = Cm(top)
@@ -1146,58 +1121,55 @@ def _shade(cell, hex_color: str):
     tcPr.append(shd)
 
 
-def _h(doc, text, size=10, center=False, cell=None):
+def _h(doc, text, size=9, center=False, cell=None):
     target = cell if cell is not None else doc
     p = target.add_paragraph()
     if center:
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(8)
-    p.paragraph_format.space_after = Pt(3)
+    p.paragraph_format.space_before = Pt(6)
+    p.paragraph_format.space_after = Pt(2)
     r = p.add_run(text)
     _run(r, size, True, DOCX_NAVY)
     pPr = p._p.get_or_add_pPr()
     pBdr = OxmlElement("w:pBdr")
     bottom = OxmlElement("w:bottom")
     bottom.set(qn("w:val"), "single")
-    bottom.set(qn("w:sz"), "10")
+    bottom.set(qn("w:sz"), "8")
     bottom.set(qn("w:space"), "1")
     bottom.set(qn("w:color"), "B8953E")
     pBdr.append(bottom)
     pPr.append(pBdr)
 
 
-def _p(doc, text, muted=False, size=9.5):
+def _p(doc, text, muted=False, size=9):
     p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(3)
+    p.paragraph_format.space_after = Pt(2)
     p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     r = p.add_run(text)
     _run(r, size, False, DOCX_MUTED if muted else DOCX_INK)
 
 
-def _b(doc, text, size=9):
+def _b(doc, text, size=8.5):
     p = doc.add_paragraph(style="List Bullet")
-    p.paragraph_format.space_after = Pt(1)
+    p.paragraph_format.space_after = Pt(0)
     r = p.add_run(text)
     _run(r, size, False, DOCX_INK)
 
 
-def _p_in(cell, text, muted=False, size=9):
+def _p_in(cell, text, muted=False, size=8.5):
     p = cell.add_paragraph()
-    p.paragraph_format.space_after = Pt(2)
+    p.paragraph_format.space_after = Pt(1)
     r = p.add_run(text)
     _run(r, size, False, DOCX_MUTED if muted else DOCX_INK)
 
 
-def _b_in(cell, text, size=8.5):
+def _b_in(cell, text, size=8):
     p = cell.add_paragraph(style="List Bullet")
-    p.paragraph_format.space_after = Pt(1)
+    p.paragraph_format.space_after = Pt(0)
     r = p.add_run(text)
     _run(r, size, False, DOCX_INK)
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 def assert_one_page(pdf_path: Path):
     import fitz
     doc = fitz.open(str(pdf_path))
@@ -1242,7 +1214,7 @@ def main():
         pdf_fn(pdf_path)
         docx_fn(docx_path)
         assert_one_page(pdf_path)
-        print(f"  OK -> pdf + docx (1 page)")
+        print("  OK -> pdf + docx (1 page)")
     print("Rendering previews...")
     render_previews()
     print("Done.")
