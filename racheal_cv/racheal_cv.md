@@ -6,7 +6,7 @@ Kampala, Uganda
 
 **Mobile:** +256 772 849258 | +256 701 849258
 
-**Email:** [info@fairbanksmedicalcentre.org](mailto:info@fairbanksmedicalcentre.org)
+**Email:** [info@fairbanksmedicalcentre.org](mailto:info@fairbanksmedicalcentre.org) | [nracheal017@gmail.com](mailto:nracheal017@gmail.com)
 
 **Website:** [www.fairbanksmedicalcentre.org](http://www.fairbanksmedicalcentre.org)
 

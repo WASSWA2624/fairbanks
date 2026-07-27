@@ -46,7 +46,7 @@ LOCATION = "Kampala, Uganda"
 PHONE1 = "+256 772 849258"
 PHONE2 = "+256 701 849258"
 MOBILE = f"{PHONE1}  ·  {PHONE2}"
-EMAIL = "info@fairbanksmedicalcentre.org"
+EMAIL = "info@fairbanksmedicalcentre.org | nracheal017@gmail.com"
 WEB = "www.fairbanksmedicalcentre.org"
 
 PROFILE = (

@@ -17,17 +17,18 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Inches, Pt, RGBColor
-from reportlab.lib.colors import Color, HexColor, white
-from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT
+from PIL import Image as PILImage
+from reportlab.lib.colors import HexColor, white
+from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from reportlab.pdfgen import canvas as pdf_canvas
 from reportlab.platypus import (
     Flowable,
     HRFlowable,
     Image as RLImage,
     KeepTogether,
-    PageBreak,
     Paragraph,
     SimpleDocTemplate,
     Spacer,
@@ -39,7 +40,9 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "racheal_cv.md"
 PHOTO = ROOT / "brief_versions" / "_assets" / "photo_portrait.png"
+SIGNATURE = ROOT / "signature.jpeg"
 OUTPUT = ROOT / "detailed_versions"
+BUILD_TMP = ROOT.parent / "tmp" / "detailed_cv_build"
 PREVIEW = ROOT.parent / "tmp" / "detailed_cv_previews"
 APPLICANT = "racheal_nabukeera"
 
@@ -170,6 +173,142 @@ def parse_source() -> tuple[dict[str, str], list[tuple[str, str]]]:
         else:
             blocks.append(("paragraph", clean_inline(line)))
     return header, blocks
+
+
+def extract_section(
+    blocks: list[tuple[str, str]], section_name: str
+) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
+    """Split out one top-level section; leave remaining blocks unchanged."""
+    target = section_name.upper()
+    section: list[tuple[str, str]] = []
+    remainder: list[tuple[str, str]] = []
+    capturing = False
+    for kind, text in blocks:
+        if kind == "section":
+            if text.upper() == target:
+                capturing = True
+                section.append((kind, text))
+                continue
+            if capturing:
+                capturing = False
+        if capturing:
+            section.append((kind, text))
+        else:
+            remainder.append((kind, text))
+    return section, remainder
+
+
+def languages_above_summary(blocks: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """Place Languages immediately above Executive Profile; keep other order."""
+    languages, remainder = extract_section(blocks, "LANGUAGES")
+    if not languages:
+        return blocks
+
+    # Drop a trailing separator that belonged only to Languages.
+    while remainder and remainder[-1][0] == "separator":
+        remainder.pop()
+
+    rebuilt: list[tuple[str, str]] = []
+    inserted = False
+    for kind, text in remainder:
+        if kind == "section" and text.upper() == "EXECUTIVE PROFILE" and not inserted:
+            rebuilt.extend(languages)
+            if rebuilt and rebuilt[-1][0] != "separator":
+                rebuilt.append(("separator", ""))
+            inserted = True
+        rebuilt.append((kind, text))
+    if not inserted:
+        rebuilt = languages + [("separator", "")] + remainder
+    return rebuilt
+
+
+class NumberedCanvas(pdf_canvas.Canvas):
+    """Defer page drawing so footer can show Page X of Y."""
+
+    def __init__(self, *args, name_label: str = "", primary: str = "#0A3A52", **kwargs):
+        super().__init__(*args, **kwargs)
+        self._saved_page_states: list[dict] = []
+        self.name_label = name_label
+        self.primary = primary
+
+    def showPage(self):
+        self._saved_page_states.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self):
+        page_count = len(self._saved_page_states)
+        for state in self._saved_page_states:
+            self.__dict__.update(state)
+            self._draw_footer(page_count)
+            super().showPage()
+        super().save()
+
+    def _draw_footer(self, page_count: int):
+        self.saveState()
+        self.setStrokeColor(HexColor(self.primary))
+        self.setLineWidth(0.5)
+        self.line(14 * mm, 9 * mm, A4[0] - 14 * mm, 9 * mm)
+        self.setFillColor(HexColor("#6B7785"))
+        self.setFont("Helvetica", 7.3)
+        self.drawString(14 * mm, 5.2 * mm, self.name_label)
+        self.drawRightString(
+            A4[0] - 14 * mm,
+            5.2 * mm,
+            f"Page {self._pageNumber} of {page_count}",
+        )
+        self.restoreState()
+
+
+class SignatureAtBottom(Flowable):
+    """Draw the e-signature near the bottom of the final page."""
+
+    def __init__(self, theme: Theme):
+        super().__init__()
+        with PILImage.open(SIGNATURE) as img:
+            width_px, height_px = img.size
+        self.sig_w = 38 * mm
+        self.sig_h = self.sig_w * (height_px / max(width_px, 1))
+        self.label_h = 11
+        self.gap = 2
+        self.needed = self.sig_h + self.label_h + self.gap + 6
+        self.theme = theme
+        self._page_height = 0
+
+    def wrap(self, avail_width, avail_height):
+        self.width = avail_width
+        # Not enough room: ask for more than remains so Platypus moves us to
+        # the next page, then pin to the bottom of that page.
+        if avail_height < self.needed:
+            self.height = self.needed
+            self._page_height = self.needed
+            return self.width, self.height
+        self.height = avail_height
+        self._page_height = avail_height
+        return self.width, self.height
+
+    def draw(self):
+        muted = HexColor("#607080")
+        y_img = 4
+        y_label = y_img + self.sig_h + self.gap
+        self.canv.setFillColor(muted)
+        self.canv.setFont(self.theme.body_font, 8)
+        label = "Signature"
+        label_w = self.canv.stringWidth(label, self.theme.body_font, 8)
+        self.canv.drawString(self.width - label_w, y_label, label)
+        self.canv.drawImage(
+            str(SIGNATURE),
+            self.width - self.sig_w,
+            y_img,
+            width=self.sig_w,
+            height=self.sig_h,
+            mask="auto",
+            preserveAspectRatio=True,
+        )
+
+
+def signature_flowables(theme: Theme) -> list:
+    """E-signature pinned to the bottom of the last page."""
+    return [SignatureAtBottom(theme)]
 
 
 class SectionBand(Flowable):
@@ -341,8 +480,14 @@ def pdf_header(header: dict[str, str], theme: Theme, styles):
     return table
 
 
-def build_pdf(theme: Theme, header: dict[str, str], blocks: list[tuple[str, str]]):
-    output = OUTPUT / f"{APPLICANT}_{theme.slug}_pdf.pdf"
+def build_pdf(
+    theme: Theme,
+    header: dict[str, str],
+    blocks: list[tuple[str, str]],
+    output_dir: Path | None = None,
+):
+    out_dir = output_dir or OUTPUT
+    output = out_dir / f"{APPLICANT}_{theme.slug}_pdf.pdf"
     styles = pdf_styles(theme)
     primary = HexColor(theme.primary)
     soft = HexColor(theme.soft)
@@ -411,18 +556,17 @@ def build_pdf(theme: Theme, header: dict[str, str], blocks: list[tuple[str, str]
             # Degree/institution lines are naturally compact; narrative stays justified.
             append_content(Paragraph(text, styles["CvBody"]))
 
-    def footer(canvas, document):
-        canvas.saveState()
-        canvas.setStrokeColor(HexColor(theme.primary))
-        canvas.setLineWidth(0.5)
-        canvas.line(14 * mm, 9 * mm, A4[0] - 14 * mm, 9 * mm)
-        canvas.setFillColor(HexColor("#6B7785"))
-        canvas.setFont("Helvetica", 7.3)
-        canvas.drawString(14 * mm, 5.2 * mm, f'{header["name"]} | {theme.label}')
-        canvas.drawRightString(A4[0] - 14 * mm, 5.2 * mm, f"Page {document.page}")
-        canvas.restoreState()
+    story.extend(signature_flowables(theme))
 
-    doc.build(story, onFirstPage=footer, onLaterPages=footer)
+    def canvas_maker(*args, **kwargs):
+        return NumberedCanvas(
+            *args,
+            name_label=f'{header["name"]} | {theme.label}',
+            primary=theme.primary,
+            **kwargs,
+        )
+
+    doc.build(story, canvasmaker=canvas_maker)
     return output
 
 
@@ -454,16 +598,18 @@ def set_cell_margins(cell, top=90, start=90, bottom=90, end=90):
         node.set(qn("w:type"), "dxa")
 
 
-def add_page_field(paragraph):
+def add_field(paragraph, instruction: str):
     run = paragraph.add_run()
     begin = OxmlElement("w:fldChar")
     begin.set(qn("w:fldCharType"), "begin")
     instr = OxmlElement("w:instrText")
     instr.set(qn("xml:space"), "preserve")
-    instr.text = " PAGE "
+    instr.text = instruction
+    separate = OxmlElement("w:fldChar")
+    separate.set(qn("w:fldCharType"), "separate")
     end = OxmlElement("w:fldChar")
     end.set(qn("w:fldCharType"), "end")
-    run._r.extend([begin, instr, end])
+    run._r.extend([begin, instr, separate, end])
 
 
 def set_run(run, font: str, size: float, color: RGBColor, bold=False):
@@ -474,8 +620,14 @@ def set_run(run, font: str, size: float, color: RGBColor, bold=False):
     run.bold = bold
 
 
-def build_docx(theme: Theme, header: dict[str, str], blocks: list[tuple[str, str]]):
-    output = OUTPUT / f"{APPLICANT}_{theme.slug}_word.docx"
+def build_docx(
+    theme: Theme,
+    header: dict[str, str],
+    blocks: list[tuple[str, str]],
+    output_dir: Path | None = None,
+):
+    out_dir = output_dir or OUTPUT
+    output = out_dir / f"{APPLICANT}_{theme.slug}_word.docx"
     doc = Document()
     section = doc.sections[0]
     section.top_margin = Cm(1.2)
@@ -577,11 +729,23 @@ def build_docx(theme: Theme, header: dict[str, str], blocks: list[tuple[str, str
             p.paragraph_format.line_spacing = 1.08
             set_run(p.add_run(text), body_font, 9.5, ink)
 
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.paragraph_format.space_before = Pt(14)
+    p.paragraph_format.space_after = Pt(2)
+    set_run(p.add_run("Signature"), "Arial", 8, muted)
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.paragraph_format.space_after = Pt(0)
+    p.add_run().add_picture(str(SIGNATURE), width=Inches(1.4))
+
     footer = section.footer
     p = footer.paragraphs[0]
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     set_run(p.add_run(f'{header["name"]} | {theme.label} | Page '), "Arial", 8, muted)
-    add_page_field(p)
+    add_field(p, " PAGE ")
+    set_run(p.add_run(" of "), "Arial", 8, muted)
+    add_field(p, " NUMPAGES ")
 
     doc.save(str(output))
     return output
@@ -639,21 +803,72 @@ def main():
         raise SystemExit(f"Missing source of truth: {SOURCE}")
     if not PHOTO.exists():
         raise SystemExit(f"Missing portrait: {PHOTO}")
+    if not SIGNATURE.exists():
+        raise SystemExit(f"Missing signature: {SIGNATURE}")
+    import shutil
+
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    for old in OUTPUT.iterdir():
-        if old.is_file():
-            old.unlink()
+    if BUILD_TMP.exists():
+        shutil.rmtree(BUILD_TMP)
+    BUILD_TMP.mkdir(parents=True, exist_ok=True)
 
     header, blocks = parse_source()
-    generated: list[Path] = []
-    pdf_paths: list[Path] = []
+    blocks = languages_above_summary(blocks)
+    built: list[Path] = []
     for theme in THEMES:
-        pdf = build_pdf(theme, header, blocks)
-        docx = build_docx(theme, header, blocks)
-        generated.extend([pdf, docx])
-        pdf_paths.append(pdf)
-    verify_source_coverage(generated, blocks)
+        pdf = build_pdf(theme, header, blocks, BUILD_TMP)
+        docx = build_docx(theme, header, blocks, BUILD_TMP)
+        built.extend([pdf, docx])
+
+    import time
+
+    generated: list[Path] = []
+    pending = list(built)
+    for attempt in range(6):
+        still_pending: list[Path] = []
+        for src in pending:
+            dest = OUTPUT / src.name
+            try:
+                shutil.copy2(src, dest)
+                if dest not in generated:
+                    generated.append(dest)
+            except PermissionError:
+                still_pending.append(src)
+        pending = still_pending
+        if not pending:
+            break
+        time.sleep(1.0)
+    locked = [src.name for src in pending]
+    for name in locked:
+        print(f"Locked (close viewer and rebuild): {name}")
+
+    keep = {path.name for path in built}
+    for old in OUTPUT.iterdir():
+        if old.is_file() and old.name not in keep:
+            try:
+                old.unlink()
+            except PermissionError:
+                print(f"Skipped locked obsolete file: {old.name}")
+
+    # Always verify/render from the freshly built temp copies.
+    pdf_paths = [path for path in built if path.suffix == ".pdf"]
+    verify_source_coverage(built, blocks)
     render_previews(pdf_paths)
+
+    ready = ROOT / "detailed_versions_ready"
+    if ready.exists():
+        shutil.rmtree(ready)
+    if locked:
+        ready.mkdir(parents=True, exist_ok=True)
+        for src in built:
+            shutil.copy2(src, ready / src.name)
+        print(
+            f"Word files updated in {OUTPUT}. "
+            f"PDFs are locked by an open viewer; full set saved to {ready}. "
+            "Close the PDF tabs, then rerun this script to refresh detailed_versions."
+        )
+        raise SystemExit(1)
+
     print(f"Generated {len(generated)} detailed CV files in {OUTPUT}")
 
 

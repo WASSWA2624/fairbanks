@@ -507,7 +507,7 @@ def build_pdf() -> None:
         Paragraph(
             "Kampala, Uganda<br/>"
             "Mobile: +256 772 849258 | +256 701 849258<br/>"
-            "Email: info@fairbanksmedicalcentre.org<br/>"
+            "Email: info@fairbanksmedicalcentre.org | nracheal017@gmail.com<br/>"
             "Website: www.fairbanksmedicalcentre.org",
             styles["Contact"],
         ),
@@ -879,7 +879,7 @@ def build_docx() -> None:
     for line in [
         "Kampala, Uganda",
         "Mobile: +256 772 849258 | +256 701 849258",
-        "Email: info@fairbanksmedicalcentre.org",
+        "Email: info@fairbanksmedicalcentre.org | nracheal017@gmail.com",
         "Website: www.fairbanksmedicalcentre.org",
     ]:
         cp = left.add_paragraph()
