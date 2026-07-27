@@ -39,7 +39,7 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "racheal_cv.md"
-PHOTO = ROOT / "brief_versions" / "_assets" / "photo_portrait.png"
+PHOTO = ROOT / "_assets" / "photo_portrait.png"
 SIGNATURE = ROOT / "signature.jpeg"
 OUTPUT = ROOT / "detailed_versions"
 BUILD_TMP = ROOT.parent / "tmp" / "detailed_cv_build"
@@ -64,19 +64,6 @@ class Theme:
 
 THEMES = [
     Theme(
-        "classic_executive",
-        "Classic Executive",
-        "#0A3A52",
-        "#1F6F78",
-        "#B8953E",
-        "#F5F7FA",
-        "#F8F5F0",
-        True,
-        "Helvetica",
-        "Helvetica-Bold",
-        "classic",
-    ),
-    Theme(
         "modern_navy",
         "Modern Navy",
         "#0B2942",
@@ -88,45 +75,6 @@ THEMES = [
         "Helvetica",
         "Helvetica-Bold",
         "modern",
-    ),
-    Theme(
-        "academic_leadership",
-        "Academic Leadership",
-        "#5B2434",
-        "#7A4B58",
-        "#C39B58",
-        "#F8F3F4",
-        "#F8F3F4",
-        True,
-        "Times-Roman",
-        "Times-Bold",
-        "academic",
-    ),
-    Theme(
-        "career_timeline",
-        "Career Timeline",
-        "#234E52",
-        "#2C7A7B",
-        "#C39B58",
-        "#EFF6F6",
-        "#EFF6F6",
-        True,
-        "Helvetica",
-        "Helvetica-Bold",
-        "timeline",
-    ),
-    Theme(
-        "editorial_profile",
-        "Editorial Profile",
-        "#252B34",
-        "#4B6070",
-        "#B8953E",
-        "#F3F4F6",
-        "#F7F3ED",
-        True,
-        "Helvetica",
-        "Helvetica-Bold",
-        "editorial",
     ),
 ]
 
@@ -295,7 +243,7 @@ class SignatureBlock(Flowable):
     def draw(self):
         muted = HexColor("#607080")
         primary = HexColor(self.theme.primary)
-        right = self.width
+        left = 0
         # Flowable y=0 is the bottom of the remaining page space.
         y_name = 2
         y_img = y_name + 10
@@ -303,12 +251,11 @@ class SignatureBlock(Flowable):
 
         self.canv.setFillColor(primary)
         self.canv.setFont(self.theme.heading_font, 8)
-        name_w = self.canv.stringWidth(self.signer_name, self.theme.heading_font, 8)
-        self.canv.drawString(right - name_w, y_name, self.signer_name)
+        self.canv.drawString(left, y_name, self.signer_name)
 
         self.canv.drawImage(
             str(SIGNATURE),
-            right - self.draw_sig_w,
+            left,
             y_img,
             width=self.draw_sig_w,
             height=self.draw_sig_h,
@@ -318,10 +265,10 @@ class SignatureBlock(Flowable):
 
         self.canv.setFillColor(muted)
         self.canv.setFont(self.theme.body_font, 7.5)
-        self.canv.drawString(right - self.draw_sig_w, y_label, "Signed")
+        self.canv.drawString(left, y_label, "Signed")
         self.canv.setStrokeColor(HexColor(self.theme.accent))
         self.canv.setLineWidth(0.8)
-        self.canv.line(right - self.draw_sig_w, y_label - 1.5, right, y_label - 1.5)
+        self.canv.line(left, y_label - 1.5, left + self.draw_sig_w, y_label - 1.5)
 
 
 def signature_flowables(theme: Theme, signer_name: str) -> list:
@@ -585,30 +532,43 @@ def build_pdf(
         )
 
     doc.build(story, canvasmaker=canvas_maker)
-    ensure_signature_on_final_content_page(output, max_pages=5)
+    ensure_signature_on_final_content_page(output)
     return output
 
 
-def ensure_signature_on_final_content_page(pdf_path: Path, max_pages: int = 5):
-    """If a blank signature-only trailing page appears, drop it after stamping page 5."""
+def ensure_signature_on_final_content_page(pdf_path: Path, max_pages: int | None = None):
+    """Drop a trailing blank signature-only page; never delete real content pages."""
     import fitz
 
     doc = fitz.open(str(pdf_path))
-    if doc.page_count <= max_pages:
-        # Confirm signature exists on the last page; if not, stamp it.
+    # Remove trailing nearly-empty pages that only carry the signature spillover.
+    while doc.page_count > 1:
         last = doc[-1]
-        if not last.get_images():
-            _stamp_signature(last)
-            doc.saveIncr()
-        doc.close()
-        return
-
-    # Extra blank page(s): stamp signature onto page 5 and remove trailing pages.
-    target = doc[max_pages - 1]
-    if not target.get_images():
-        _stamp_signature(target)
-    while doc.page_count > max_pages:
+        text = last.get_text().strip()
+        content_lines = [
+            line
+            for line in text.splitlines()
+            if line.strip()
+            and not line.startswith("Page ")
+            and "NABUKEERA" not in line
+            and line.strip() not in {"Signed", "Racheal Nabukeera"}
+        ]
+        if content_lines or not last.get_images():
+            break
+        # Signature-only leftover page: stamp onto previous page if needed, then drop.
+        prev = doc[-2]
+        if not prev.get_images():
+            _stamp_signature(prev)
         doc.delete_page(doc.page_count - 1)
+
+    if max_pages is not None and doc.page_count > max_pages:
+        # Soft preference only when the overflow page is empty-ish.
+        pass
+
+    last = doc[-1]
+    if not last.get_images():
+        _stamp_signature(last)
+
     tmp = pdf_path.with_suffix(".tmp.pdf")
     doc.save(str(tmp))
     doc.close()
@@ -616,14 +576,14 @@ def ensure_signature_on_final_content_page(pdf_path: Path, max_pages: int = 5):
 
 
 def _stamp_signature(page) -> None:
-    """Stamp a compact signing block at the bottom-right of a PDF page."""
+    """Stamp a compact signing block at the bottom-left of a PDF page."""
     import fitz
 
     rect = page.rect
     sig_w = 95
     with PILImage.open(SIGNATURE) as img:
         sig_h = sig_w * (img.size[1] / max(img.size[0], 1))
-    x1 = rect.width - 48 - sig_w
+    x1 = 48
     y1 = rect.height - 48 - sig_h - 18
     page.insert_image(
         fitz.Rect(x1, y1, x1 + sig_w, y1 + sig_h),
@@ -806,16 +766,16 @@ def build_docx(
             set_run(p.add_run(text), body_font, 9.5, ink)
 
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.paragraph_format.space_before = Pt(10)
     p.paragraph_format.space_after = Pt(1)
     set_run(p.add_run("Signed"), "Arial", 8, muted)
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.paragraph_format.space_after = Pt(1)
     p.add_run().add_picture(str(SIGNATURE), width=Inches(1.15))
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.paragraph_format.space_after = Pt(0)
     set_run(p.add_run(header["name"].title()), "Arial", 9, primary, True)
 
@@ -858,6 +818,8 @@ def verify_source_coverage(files: list[Path], blocks: list[tuple[str, str]]):
         "Federation of Uganda Employers",
         "Human Resource Assistant",
         "Health Management Systems Administrator",
+        "Firminus Mugumya",
+        "firminus.mugumya@mak.ac.ug",
     ]
     for path in files:
         if path.suffix == ".pdf":
