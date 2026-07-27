@@ -322,5 +322,7 @@ Research Topic:
 
 **Rev. Prof. John Mulindwa Kitayimbwa** — Deputy Vice-Chancellor (Academic Affairs), Uganda Christian University. Email: Jkitayimbwa@ucu.ac.ug. Mobile: +256 701 962511.
 
-**Dr. Twalib Aliku** — Senior Consultant Paediatrician/Cardiologist, FairBanks Medical Centre, Kyebando - Kisalosala, P.O. Box 111907, Kampala, Uganda. Email: info@fairbanksmedicalcentre.com. Mobile: +256 751 207566 | +256 777 462398.
+**Dr. Twalib Aliku** — Senior Consultant Paediatrician/Cardiologist, FairBanks Medical Centre, Kyebando - Kisalosala, P.O. Box 111907, Kampala, Uganda. Email: twalib90@gmail.com. Mobile: +256 751 207566 | +256 777 462398.
+
+**Dr. Katumba Peter** — Paediatrician, Managing Director, The Royal Children's Medical Centre Ltd. Email: peterkatumba@gmail.com.
 

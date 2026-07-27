@@ -452,7 +452,7 @@ def build_pdf(
     output_dir: Path | None = None,
 ):
     out_dir = output_dir or OUTPUT
-    output = out_dir / f"{APPLICANT}_{theme.slug}_pdf.pdf"
+    output = out_dir / f"{APPLICANT}.pdf"
     styles = pdf_styles(theme)
     primary = HexColor(theme.primary)
     soft = HexColor(theme.soft)
@@ -663,7 +663,7 @@ def build_docx(
     output_dir: Path | None = None,
 ):
     out_dir = output_dir or OUTPUT
-    output = out_dir / f"{APPLICANT}_{theme.slug}_word.docx"
+    output = out_dir / f"{APPLICANT}.docx"
     doc = Document()
     section = doc.sections[0]
     section.top_margin = Cm(1.2)
@@ -823,7 +823,9 @@ def verify_source_coverage(files: list[Path], blocks: list[tuple[str, str]]):
         "John Mulindwa Kitayimbwa",
         "Jkitayimbwa@ucu.ac.ug",
         "Twalib Aliku",
-        "info@fairbanksmedicalcentre.com",
+        "twalib90@gmail.com",
+        "Katumba Peter",
+        "peterkatumba@gmail.com",
     ]
     for path in files:
         if path.suffix == ".pdf":
@@ -870,7 +872,7 @@ def main():
 
     generated: list[Path] = []
     pending = list(built)
-    for attempt in range(6):
+    for attempt in range(8):
         still_pending: list[Path] = []
         for src in pending:
             dest = OUTPUT / src.name
@@ -884,10 +886,8 @@ def main():
         if not pending:
             break
         time.sleep(1.0)
-    locked = [src.name for src in pending]
-    for name in locked:
-        print(f"Locked (close viewer and rebuild): {name}")
 
+    # Remove obsolete filenames and the temporary ready folder.
     keep = {path.name for path in built}
     for old in OUTPUT.iterdir():
         if old.is_file() and old.name not in keep:
@@ -896,26 +896,28 @@ def main():
             except PermissionError:
                 print(f"Skipped locked obsolete file: {old.name}")
 
-    # Always verify/render from the freshly built temp copies.
-    pdf_paths = [path for path in built if path.suffix == ".pdf"]
-    verify_source_coverage(built, blocks)
-    render_previews(pdf_paths)
-
     ready = ROOT / "detailed_versions_ready"
     if ready.exists():
-        shutil.rmtree(ready)
-    if locked:
-        ready.mkdir(parents=True, exist_ok=True)
-        for src in built:
-            shutil.copy2(src, ready / src.name)
-        print(
-            f"Word files updated in {OUTPUT}. "
-            f"PDFs are locked by an open viewer; full set saved to {ready}. "
-            "Close the PDF tabs, then rerun this script to refresh detailed_versions."
-        )
-        raise SystemExit(1)
+        try:
+            shutil.rmtree(ready)
+        except PermissionError:
+            print(f"Could not remove {ready} while a file is open. Close it and rebuild.")
 
-    print(f"Generated {len(generated)} detailed CV files in {OUTPUT}")
+    # Verify/render from temp builds (always fresh), then from OUTPUT when available.
+    verify_sources = generated if not pending else built
+    pdf_paths = [path for path in verify_sources if path.suffix == ".pdf"]
+    verify_source_coverage(verify_sources, blocks)
+    render_previews(pdf_paths)
+
+    if pending:
+        raise SystemExit(
+            "Could not write into detailed_versions because files are open. "
+            "Close PDF/Word tabs for that folder and rerun the build."
+        )
+
+    print(f"Generated {len(generated)} CV files in {OUTPUT}")
+    for path in generated:
+        print(f"  {path.name}")
 
 
 if __name__ == "__main__":
