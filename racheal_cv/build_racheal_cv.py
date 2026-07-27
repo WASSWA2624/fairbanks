@@ -752,10 +752,6 @@ def build_pdf() -> None:
                 Spacer(1, 5),
                 bullet("English - Fluent", styles["CvBullet"]),
                 bullet("Luganda - Fluent", styles["CvBullet"]),
-                Spacer(1, 5),
-                SectionHeader("References", width),
-                Spacer(1, 5),
-                Paragraph("Available upon request.", styles["BodyJust"]),
             ]
         )
     )
@@ -1076,9 +1072,6 @@ def build_docx() -> None:
     add_section_heading(doc, "Languages")
     add_bullet(doc, "English - Fluent")
     add_bullet(doc, "Luganda - Fluent")
-
-    add_section_heading(doc, "References")
-    add_body(doc, "Available upon request.", justify=False)
 
     # Footer with page numbers
     footer = doc.sections[0].footer

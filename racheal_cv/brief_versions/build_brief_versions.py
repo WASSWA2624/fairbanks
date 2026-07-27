@@ -141,7 +141,7 @@ RESEARCH = (
 )
 MORE = (
     "Member, Federation of Uganda Employers (FUE)  ·  English (Fluent)  ·  "
-    "Luganda (Fluent)  ·  References available on request"
+    "Luganda (Fluent)"
 )
 
 NAVY = HexColor("#0A3A52")
@@ -887,7 +887,7 @@ def build_v05_pdf(out: Path):
         Paragraph("<b>MSSPM</b> — Makerere University", styles["M"]),
         Paragraph("<b>BA Social Sciences</b> — Makerere", styles["M"]),
         Spacer(1, 3), Paragraph("MORE", styles["H"]), GoldRule(80),
-        Paragraph("FUE Member<br/>English & Luganda — Fluent<br/>References on request", styles["M"]),
+        Paragraph("FUE Member<br/>English & Luganda — Fluent", styles["M"]),
         Spacer(1, 2), Paragraph("TECHNICAL", styles["H"]), GoldRule(80),
         Paragraph(TECH, styles["M"]),
     ]

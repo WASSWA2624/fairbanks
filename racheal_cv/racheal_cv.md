@@ -313,9 +313,3 @@ Research Topic:
 
 * English – Fluent
 * Luganda – Fluent
-
----
-
-# REFERENCES
-
-Available upon request.

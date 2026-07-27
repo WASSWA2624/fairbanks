@@ -41,6 +41,7 @@ SOURCE = ROOT / "racheal_cv.md"
 PHOTO = ROOT / "brief_versions" / "_assets" / "photo_portrait.png"
 OUTPUT = ROOT / "detailed_versions"
 PREVIEW = ROOT.parent / "tmp" / "detailed_cv_previews"
+APPLICANT = "racheal_nabukeera"
 
 
 @dataclass(frozen=True)
@@ -60,7 +61,7 @@ class Theme:
 
 THEMES = [
     Theme(
-        "01_classic_executive",
+        "classic_executive",
         "Classic Executive",
         "#0A3A52",
         "#1F6F78",
@@ -73,7 +74,7 @@ THEMES = [
         "classic",
     ),
     Theme(
-        "02_modern_navy",
+        "modern_navy",
         "Modern Navy",
         "#0B2942",
         "#2F7185",
@@ -86,7 +87,7 @@ THEMES = [
         "modern",
     ),
     Theme(
-        "03_academic_leadership",
+        "academic_leadership",
         "Academic Leadership",
         "#5B2434",
         "#7A4B58",
@@ -99,7 +100,7 @@ THEMES = [
         "academic",
     ),
     Theme(
-        "04_career_timeline",
+        "career_timeline",
         "Career Timeline",
         "#234E52",
         "#2C7A7B",
@@ -112,7 +113,7 @@ THEMES = [
         "timeline",
     ),
     Theme(
-        "05_editorial_profile",
+        "editorial_profile",
         "Editorial Profile",
         "#252B34",
         "#4B6070",
@@ -341,7 +342,7 @@ def pdf_header(header: dict[str, str], theme: Theme, styles):
 
 
 def build_pdf(theme: Theme, header: dict[str, str], blocks: list[tuple[str, str]]):
-    output = OUTPUT / f"{theme.slug}.pdf"
+    output = OUTPUT / f"{APPLICANT}_{theme.slug}_pdf.pdf"
     styles = pdf_styles(theme)
     primary = HexColor(theme.primary)
     soft = HexColor(theme.soft)
@@ -474,7 +475,7 @@ def set_run(run, font: str, size: float, color: RGBColor, bold=False):
 
 
 def build_docx(theme: Theme, header: dict[str, str], blocks: list[tuple[str, str]]):
-    output = OUTPUT / f"{theme.slug}.docx"
+    output = OUTPUT / f"{APPLICANT}_{theme.slug}_word.docx"
     doc = Document()
     section = doc.sections[0]
     section.top_margin = Cm(1.2)
