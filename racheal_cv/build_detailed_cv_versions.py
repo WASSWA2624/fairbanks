@@ -826,6 +826,7 @@ def verify_source_coverage(files: list[Path], blocks: list[tuple[str, str]]):
         "twalib90@gmail.com",
         "Katumba Peter",
         "peterkatumba@gmail.com",
+        "772 452561",
     ]
     for path in files:
         if path.suffix == ".pdf":

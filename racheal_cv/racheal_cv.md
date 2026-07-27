@@ -324,5 +324,5 @@ Research Topic:
 
 **Dr. Twalib Aliku** — Senior Consultant Paediatrician/Cardiologist, FairBanks Medical Centre, Kyebando - Kisalosala, P.O. Box 111907, Kampala, Uganda. Email: twalib90@gmail.com. Mobile: +256 751 207566 | +256 777 462398.
 
-**Dr. Katumba Peter** — Paediatrician, Managing Director, The Royal Children's Medical Centre Ltd. Email: peterkatumba@gmail.com.
+**Dr. Katumba Peter** — Paediatrician, Managing Director, The Royal Children's Medical Centre Ltd. Email: peterkatumba@gmail.com. Mobile: +256 772 452561.
 
