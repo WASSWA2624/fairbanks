@@ -12,8 +12,11 @@
 | `Wasswa_Wilson_CV_Medequip_Biomedical_Engineer.docx` / `.pdf` | Updated CV |
 | `Wasswa_Wilson_Cover_Letter_Medequip_Biomedical_Engineer.docx` / `.pdf` | Cover letter |
 | `build_medequip_application.py` | Regenerates the docs |
+| `HOW_TO_APPLY.md` | How to apply + sample answers to likely questions |
 
 ## How to submit
+
+Full steps, email draft, and interview answers: see **[HOW_TO_APPLY.md](HOW_TO_APPLY.md)**.
 
 Email:
 
