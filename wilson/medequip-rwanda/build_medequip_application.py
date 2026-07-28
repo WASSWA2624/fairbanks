@@ -23,6 +23,8 @@ from reportlab.platypus import (
     Paragraph,
     SimpleDocTemplate,
     Spacer,
+    Table,
+    TableStyle,
 )
 
 OUT = Path(__file__).resolve().parent
@@ -36,45 +38,71 @@ MUTED = HexColor("#5A5A5A")
 
 
 def prepare_signature() -> Path:
-    """Crop scan shadows and place dark ink on a clean white background."""
-    from PIL import Image, ImageOps
+    """Clean signature: keep main ink only, white background, flush left crop."""
+    from collections import deque
+    from PIL import Image, ImageFilter, ImageOps
 
     if not SIGNATURE_SRC.exists():
         raise FileNotFoundError(f"Missing signature file: {SIGNATURE_SRC}")
 
     im = Image.open(SIGNATURE_SRC).convert("RGB")
     w, h = im.size
-    # Drop the dark scan strip often present at the top of the photo
-    im = im.crop((int(w * 0.03), int(h * 0.14), int(w * 0.97), int(h * 0.92)))
+    im = im.crop((int(w * 0.04), int(h * 0.18), int(w * 0.96), int(h * 0.88)))
+    im = im.filter(ImageFilter.MedianFilter(size=3))
     gray = ImageOps.grayscale(im)
+
     samples = [
         gray.getpixel((x, y))
-        for y in range(gray.height // 3, 2 * gray.height // 3, 6)
-        for x in range(gray.width // 3, 2 * gray.width // 3, 6)
+        for y in range(gray.height // 3, 2 * gray.height // 3, 5)
+        for x in range(gray.width // 3, 2 * gray.width // 3, 5)
     ]
     samples.sort()
-    paper = samples[int(len(samples) * 0.7)]
-    thresh = max(0, paper - 38)
+    paper = samples[int(len(samples) * 0.75)]
+    thresh = max(0, paper - 45)
+
+    gp = gray.load()
+    ink_set = {
+        (x, y)
+        for y in range(im.height)
+        for x in range(im.width)
+        if gp[x, y] < thresh
+    }
+
+    # Keep only the largest connected ink component (drops scan speckles)
+    visited = set()
+    best = []
+    for seed in list(ink_set):
+        if seed in visited:
+            continue
+        q = deque([seed])
+        visited.add(seed)
+        comp = [seed]
+        while q:
+            x, y = q.popleft()
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    nxt = (x + dx, y + dy)
+                    if nxt in ink_set and nxt not in visited:
+                        visited.add(nxt)
+                        q.append(nxt)
+                        comp.append(nxt)
+        if len(comp) > len(best):
+            best = comp
 
     out = Image.new("RGB", im.size, (255, 255, 255))
-    gp = gray.load()
     op = out.load()
-    ink = []
-    for y in range(im.height):
-        for x in range(im.width):
-            if gp[x, y] < thresh:
-                op[x, y] = (18, 18, 18)
-                ink.append((x, y))
+    for x, y in best:
+        op[x, y] = (10, 10, 10)
 
-    if ink:
-        xs = [p[0] for p in ink]
-        ys = [p[1] for p in ink]
-        pad = 16
+    if best:
+        xs = [p[0] for p in best]
+        ys = [p[1] for p in best]
+        # Flush left (2px), modest top/right/bottom padding
         box = (
-            max(0, min(xs) - pad),
-            max(0, min(ys) - pad),
-            min(im.width, max(xs) + pad),
-            min(im.height, max(ys) + pad),
+            max(0, min(xs) - 2),
+            max(0, min(ys) - 6),
+            min(im.width, max(xs) + 8),
+            min(im.height, max(ys) + 6),
         )
         out = out.crop(box)
 
@@ -82,14 +110,59 @@ def prepare_signature() -> Path:
     return SIGNATURE
 
 
-def signature_flowable(width_mm: float = 48):
+def signature_flowable(width_mm: float = 40):
     from PIL import Image as PILImage
 
     prepare_signature()
     with PILImage.open(SIGNATURE) as im:
         w, h = im.size
     height_mm = width_mm * (h / w)
-    return RLImage(str(SIGNATURE), width=width_mm * mm, height=height_mm * mm)
+    img = RLImage(str(SIGNATURE), width=width_mm * mm, height=height_mm * mm)
+    img.hAlign = "LEFT"
+    return img
+
+
+def add_signature_docx(doc: Document, width_in: float = 1.55) -> None:
+    """Insert left-aligned signature tightly above the typed name."""
+    prepare_signature()
+    sig = doc.add_paragraph()
+    sig.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    sig.paragraph_format.space_before = Pt(1)
+    sig.paragraph_format.space_after = Pt(0)
+    sig.paragraph_format.left_indent = Inches(0)
+    sig.paragraph_format.first_line_indent = Inches(0)
+    run = sig.add_run()
+    run.add_picture(str(SIGNATURE), width=Inches(width_in))
+
+
+def signature_block_pdf(styles, name_style: str, title_style: str, width_mm: float = 38):
+    """Signature flush-left above typed name and title."""
+    img = signature_flowable(width_mm)
+    data = [
+        [img],
+        [Paragraph("Wasswa Wilson", styles[name_style])],
+        [Paragraph("Biomedical Engineer", styles[title_style])],
+    ]
+    table = Table(data, colWidths=[max(70 * mm, width_mm * mm + 5 * mm)])
+    table.setStyle(
+        TableStyle(
+            [
+                ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                ("TOPPADDING", (0, 0), (0, 0), 0),
+                ("BOTTOMPADDING", (0, 0), (0, 0), 1),
+                ("TOPPADDING", (0, 1), (0, 1), 2),
+                ("BOTTOMPADDING", (0, 1), (0, 1), 0),
+                ("TOPPADDING", (0, 2), (0, 2), 0),
+                ("BOTTOMPADDING", (0, 2), (0, 2), 0),
+            ]
+        )
+    )
+    table.hAlign = "LEFT"
+    return table
+
 
 CONTACT = {
     "name": "WASSWA WILSON",
@@ -468,15 +541,20 @@ def build_cv_docx(path: Path) -> None:
         body_para(doc, ref, space_after=3)
 
     if SIGNATURE_SRC.exists():
-        prepare_signature()
         section_title(doc, "Signature")
-        sig = doc.add_paragraph()
-        sig.paragraph_format.space_before = Pt(2)
-        sig.paragraph_format.space_after = Pt(2)
-        run = sig.add_run()
-        run.add_picture(str(SIGNATURE), width=Inches(1.7))
-        body_para(doc, "Wasswa Wilson", space_after=1)
-        body_para(doc, "Biomedical Engineer", space_after=0)
+        add_signature_docx(doc, width_in=1.55)
+        name_p = doc.add_paragraph()
+        name_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        name_p.paragraph_format.space_before = Pt(2)
+        name_p.paragraph_format.space_after = Pt(1)
+        add_heading_run(name_p, "Wasswa Wilson", 10.5, True)
+        title_p = doc.add_paragraph()
+        title_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        title_p.paragraph_format.space_before = Pt(0)
+        title_p.paragraph_format.space_after = Pt(0)
+        r = title_p.add_run("Biomedical Engineer")
+        r.font.size = Pt(10)
+        r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
     doc.save(path)
 
@@ -559,14 +637,19 @@ def build_letter_docx(path: Path) -> None:
 
     body_para(doc, "Yours sincerely,", space_after=2)
     if SIGNATURE_SRC.exists():
-        prepare_signature()
-        sig = doc.add_paragraph()
-        sig.paragraph_format.space_before = Pt(2)
-        sig.paragraph_format.space_after = Pt(2)
-        run = sig.add_run()
-        run.add_picture(str(SIGNATURE), width=Inches(1.8))
-    body_para(doc, "Wasswa Wilson", space_after=1)
-    body_para(doc, "Biomedical Engineer", space_after=0)
+        add_signature_docx(doc, width_in=1.65)
+    name_p = doc.add_paragraph()
+    name_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    name_p.paragraph_format.space_before = Pt(2)
+    name_p.paragraph_format.space_after = Pt(1)
+    add_heading_run(name_p, "Wasswa Wilson", 10.5, True)
+    title_p = doc.add_paragraph()
+    title_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    title_p.paragraph_format.space_before = Pt(0)
+    title_p.paragraph_format.space_after = Pt(0)
+    r = title_p.add_run("Biomedical Engineer")
+    r.font.size = Pt(10)
+    r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
     doc.save(path)
 
@@ -720,6 +803,54 @@ def pdf_styles():
             spaceAfter=5,
         )
     )
+    styles.add(
+        ParagraphStyle(
+            name="CVSignName",
+            fontName="Helvetica-Bold",
+            fontSize=10,
+            textColor=GRAY,
+            alignment=TA_LEFT,
+            spaceBefore=0,
+            spaceAfter=1,
+            leading=12,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="CVSignTitle",
+            fontName="Helvetica",
+            fontSize=9,
+            textColor=MUTED,
+            alignment=TA_LEFT,
+            spaceBefore=0,
+            spaceAfter=2,
+            leading=11,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="LetterSignName",
+            fontName="Helvetica-Bold",
+            fontSize=10.5,
+            textColor=GRAY,
+            alignment=TA_LEFT,
+            spaceBefore=0,
+            spaceAfter=1,
+            leading=13,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="LetterSignTitle",
+            fontName="Helvetica",
+            fontSize=10,
+            textColor=MUTED,
+            alignment=TA_LEFT,
+            spaceBefore=0,
+            spaceAfter=2,
+            leading=12,
+        )
+    )
     return styles
 
 
@@ -820,9 +951,9 @@ def build_cv_pdf(path: Path) -> None:
     if SIGNATURE_SRC.exists():
         story += [Paragraph("SIGNATURE", styles["CVSection"]), hr()]
         story.append(Spacer(1, 2))
-        story.append(signature_flowable(42))
-        story.append(Paragraph("Wasswa Wilson", styles["CVLabel"]))
-        story.append(Paragraph("Biomedical Engineer", styles["CVLabel"]))
+        story.append(
+            signature_block_pdf(styles, "CVSignName", "CVSignTitle", width_mm=36)
+        )
 
     doc.build(story)
 
@@ -877,11 +1008,15 @@ def build_letter_pdf(path: Path) -> None:
 
     story.append(Paragraph("Yours sincerely,", styles["LetterLeft"]))
     if SIGNATURE_SRC.exists():
-        story.append(Spacer(1, 4))
-        story.append(signature_flowable(48))
         story.append(Spacer(1, 2))
-    story.append(Paragraph("Wasswa Wilson", styles["LetterLeft"]))
-    story.append(Paragraph("Biomedical Engineer", styles["LetterLeft"]))
+        story.append(
+            signature_block_pdf(
+                styles, "LetterSignName", "LetterSignTitle", width_mm=38
+            )
+        )
+    else:
+        story.append(Paragraph("Wasswa Wilson", styles["LetterSignName"]))
+        story.append(Paragraph("Biomedical Engineer", styles["LetterSignTitle"]))
     doc.build(story)
 
 
