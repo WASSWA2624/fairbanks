@@ -248,16 +248,22 @@ CONTACT = {
 }
 
 SUMMARY = (
-    "I am a biomedical engineer with over 7 years installing, commissioning, "
-    "maintaining, and training users on hospital equipment across Uganda, "
-    "Congo, Kenya, Tanzania, and Somaliland. At International Hospital Kampala "
-    "I led equipment installs across laboratory, theatre, ICU, and radiology - "
-    "including haematology, chemistry, and blood bank machines. Since early "
-    "2025 I have also worked on personal contracts, including Congo installs "
-    "at the hospital serving Kibali Gold Mine. I travel for service jobs, work "
-    "independently on site, write clear service notes, and train clinical "
-    "staff. I want to bring that field experience to Medequip's clients across "
-    "Rwanda and beyond."
+    "I am a biomedical engineer with over 7 years of hands-on hospital "
+    "experience: installing, commissioning, calibrating, maintaining, and "
+    "training users on medical equipment. I have carried out this work in "
+    "Uganda, the Democratic Republic of Congo, Kenya, Tanzania, and "
+    "Somaliland. At International Hospital Kampala I led equipment "
+    "installation across the laboratory, theatre, ICU, and radiology "
+    "departments - covering haematology analysers, chemistry analysers, blood "
+    "bank machines, CT, X-ray, oxygen plant, and critical-care systems. Since "
+    "March 2025 I have also worked on personal contracts for hospitals that "
+    "call me in for installs and service, including lab, theatre, and "
+    "radiology work in Congo (among them the hospital that serves the Kibali "
+    "Gold Mine). I am used to travelling for field jobs, working independently "
+    "on site, writing clear service and maintenance notes, and handing over "
+    "equipment with trained clinical staff. I want to bring that regional "
+    "field experience to Medequip's technical team and clients across Rwanda "
+    "and beyond."
 )
 
 SKILLS = [
@@ -272,6 +278,11 @@ SKILLS = [
         "(ventilators, monitors, infusion pumps, theatre systems); "
         "laboratory (haematology analysers, chemistry analysers, blood bank "
         "machines); support plant (RO water, oxygen)",
+    ),
+    (
+        "Countries worked",
+        "Uganda, Democratic Republic of Congo, Kenya, Tanzania, and "
+        "Somaliland - field installs, maintenance, and user training",
     ),
     (
         "Client support",
@@ -291,37 +302,49 @@ ROLES = [
         "dates": "Mar 2025 - Present",
         "bullets": [
             "Install and maintain medical equipment for hospitals on a "
-            "personal-contract basis after leaving GFF, including field work "
-            "in Uganda, Congo, Kenya, Tanzania, and Somaliland.",
+            "personal-contract basis after leaving GFF.",
+            "Complete field assignments in Uganda, Congo, Kenya, Tanzania, "
+            "and Somaliland - travel to site, install or repair, train users, "
+            "and report back to the client.",
             "Completed lab, theatre, and radiology installations at several "
-            "hospitals in Congo, including the hospital that serves the "
-            "Kibali Gold Mine.",
-            "Lab installs and support cover haematology analysers, chemistry "
-            "analysers, and blood bank machines, plus user handover.",
+            "hospitals in the Democratic Republic of Congo, including the "
+            "hospital that serves the Kibali Gold Mine.",
+            "Lab installs and support cover haematology analysers, clinical "
+            "chemistry analysers, and blood bank machines, with user handover "
+            "after commissioning.",
             "Handle preventive and corrective maintenance, on-site "
-            "troubleshooting, and clear client reporting after each job.",
+            "troubleshooting, and clear service documentation after each job.",
         ],
     },
     {
         "title": "Biomedical Programs Manager, Gould Family Foundation (GFF)",
         "dates": "Aug 2024 - Feb 2025",
         "bullets": [
-            "Ran biomedical programmes across several health facilities.",
-            "Supported buying, installing, and commissioning medical equipment.",
-            "Trained engineers and technicians, and kept work in line with "
-            "healthcare technology standards.",
+            "Ran biomedical programmes across several health facilities, from "
+            "planning through to equipment readiness.",
+            "Supported buying, installing, and commissioning of medical "
+            "technologies for partner sites.",
+            "Trained engineers and technicians on correct use and care of "
+            "equipment.",
+            "Kept work in line with healthcare technology and quality "
+            "standards, including documentation for programme review.",
         ],
     },
     {
         "title": "Biomedical Manager, International Hospital Kampala (IHK)",
         "dates": "Jan 2020 - Jan 2024",
         "bullets": [
-            "Managed biomedical engineering for a major private hospital for "
-            "four years.",
-            "Led installation and commissioning across IHK laboratory, "
-            "theatre, ICU, and radiology - including haematology, chemistry, "
-            "and blood bank machines, plus CT, X-ray, and oxygen plant.",
-            "Ran preventive maintenance, procurement support, service records, "
+            "Managed day-to-day biomedical engineering for a major private "
+            "hospital for four years.",
+            "Led installation and commissioning of equipment across the IHK "
+            "laboratory, theatre, ICU, and radiology departments.",
+            "Lab leadership included haematology analysers, chemistry "
+            "analysers, and blood bank machines; imaging included CT and "
+            "X-ray; ICU and theatre systems were part of the same programme.",
+            "Also led installs of oxygen plant and related support systems.",
+            "Set up preventive maintenance routines to cut downtime and keep "
+            "devices safe for clinical use.",
+            "Supported procurement, lifecycle planning, service records, "
             "staff training, and COHSASA accreditation work.",
         ],
     },
@@ -329,9 +352,10 @@ ROLES = [
         "title": "Biomedical Engineer, Norvik Hospital Ltd",
         "dates": "Apr 2019 - Jan 2020",
         "bullets": [
-            "Serviced diagnostic and monitoring equipment day to day.",
-            "Helped with installation and calibration of imaging and ICU devices.",
-            "Supported the hospital's preventive maintenance routines.",
+            "Serviced diagnostic and patient-monitoring equipment day to day.",
+            "Supported installation and calibration of imaging and ICU devices.",
+            "Helped build and follow preventive maintenance schedules and "
+            "service follow-up.",
         ],
     },
 ]
@@ -340,35 +364,52 @@ EARLIER = [
     (
         "Research Intern, Uganda Virus Research Institute",
         "Dec 2018 - Apr 2019",
-        "Helped with biomedical research and lab data work.",
+        "Supported biomedical research projects and laboratory data work.",
     ),
     (
         "Teaching Assistant, Makerere University, College of Health Sciences",
         "Mar 2016 - Aug 2017",
-        "Supported biomedical engineering classes and lab sessions.",
+        "Supported biomedical engineering teaching and laboratory practical "
+        "sessions.",
     ),
 ]
 
 ACHIEVEMENTS = [
-    "Field biomedical work in Uganda, Congo, Kenya, Tanzania, and Somaliland.",
+    "7+ years of hands-on hospital biomedical work across Uganda, Congo, "
+    "Kenya, Tanzania, and Somaliland.",
     "At IHK, led equipment installation across laboratory, theatre, ICU, and "
-    "radiology.",
+    "radiology departments.",
     "Installed and supported haematology, chemistry, and blood bank laboratory "
     "machines alongside theatre and radiology systems.",
-    "Congo installs include the hospital serving Kibali Gold Mine; supported "
-    "COHSASA accreditation at IHK.",
+    "Completed Congo hospital installs including the facility serving Kibali "
+    "Gold Mine.",
+    "Commissioned CT, X-ray, oxygen plant, and ICU systems in Uganda and "
+    "supported COHSASA accreditation at IHK.",
+    "Trained engineers, technicians, and clinical users so equipment stays "
+    "useful after install day.",
 ]
 
 EQUIPMENT = [
-    ("Radiology / imaging", "CT, X-ray, ultrasound, C-arm"),
-    ("Theatre and ICU", "Theatre systems, ventilators, monitors, infusion pumps"),
+    ("Radiology / imaging", "CT scanners, X-ray machines, ultrasound systems, C-arms"),
     (
-        "Laboratory",
-        "Haematology analysers; clinical chemistry analysers; blood bank "
-        "machines and transfusion support systems",
+        "Theatre and ICU",
+        "Theatre systems, ventilators, patient monitors, infusion pumps, "
+        "related critical-care devices",
+    ),
+    (
+        "Laboratory - haematology",
+        "Haematology analysers and related blood-count laboratory systems",
+    ),
+    (
+        "Laboratory - chemistry",
+        "Clinical chemistry analysers and related chemistry lab systems",
+    ),
+    (
+        "Laboratory - blood bank",
+        "Blood bank machines and transfusion / blood-banking support equipment",
     ),
     ("Support plant", "Oxygen plants, RO water systems"),
-    ("Maternity / neonatal", "Incubators, phototherapy, foetal Dopplers, CTG"),
+    ("Maternity / neonatal", "Incubators, phototherapy units, foetal Dopplers, CTG"),
 ]
 
 EDUCATION = [
@@ -403,6 +444,14 @@ CERTIFICATIONS = [
         "school": "Greenbridge School of Open Technologies",
         "detail": "JAVA Programming - Level 1, Dec 2015 - Jan 2016.",
     },
+    {
+        "level": "Workplace safety training",
+        "school": "Fire Technologies Limited (IHK)",
+        "detail": (
+            "Fire safety, prevention, firefighting, emergency scene "
+            "management, and evacuation drills, April 2021."
+        ),
+    },
 ]
 
 REFEREES = [
@@ -426,13 +475,14 @@ LETTER_BODY = [
     (
         "I have over 7 years installing, commissioning, maintaining, and "
         "training users on hospital equipment. At Norvik Hospital I serviced "
-        "diagnostic and monitoring systems. At International Hospital Kampala "
-        "I spent four years as Biomedical Manager - leading equipment "
-        "installation across the lab, theatre, ICU, and radiology departments "
-        "(including haematology, chemistry, and blood bank machines, plus CT "
-        "and X-ray), running preventive maintenance, training staff, and "
-        "supporting COHSASA accreditation. I later managed biomedical "
-        "programmes for the Gould Family Foundation across several facilities."
+        "diagnostic and monitoring systems day to day. At International "
+        "Hospital Kampala I spent four years as Biomedical Manager - leading "
+        "equipment installation across the laboratory, theatre, ICU, and "
+        "radiology departments. That included haematology analysers, chemistry "
+        "analysers, blood bank machines, CT, X-ray, oxygen plant, and ICU "
+        "systems, plus preventive maintenance, staff training, and COHSASA "
+        "accreditation support. I later managed biomedical programmes for the "
+        "Gould Family Foundation across several facilities."
     ),
     (
         "Since March 2025 I have worked on personal contracts: installing and "
@@ -441,7 +491,7 @@ LETTER_BODY = [
         "that serves the Kibali Gold Mine. On the lab side I handle "
         "haematology analysers, chemistry analysers, and blood bank machines. "
         "I have done this kind of field work in Uganda, Congo, Kenya, "
-        "Tanzania, and Somaliland - travel to site, fix or install, train "
+        "Tanzania, and Somaliland - travel to site, install or repair, train "
         "users, and leave clear service notes."
     ),
     (
@@ -594,6 +644,11 @@ def build_cv_docx(path: Path) -> None:
         role_header(doc, role["title"], role["dates"])
         for b in role["bullets"]:
             bullet(doc, b)
+
+    section_title(doc, "Earlier roles")
+    for title, dates, note in EARLIER:
+        role_header(doc, title, dates)
+        bullet(doc, note)
 
     section_title(doc, "Selected highlights")
     for item in ACHIEVEMENTS:
@@ -1003,6 +1058,20 @@ def build_cv_pdf(path: Path) -> None:
         for b in role["bullets"]:
             block.append(Paragraph(f"&#8226; {b}", styles["CVBullet"]))
         story.append(KeepTogether(block))
+
+    story += [Paragraph("EARLIER ROLES", styles["CVSection"]), hr()]
+    for title, dates, note in EARLIER:
+        story.append(
+            KeepTogether(
+                [
+                    Paragraph(
+                        f'{title} <font color="#1A6B5C"><i>| {dates}</i></font>',
+                        styles["CVRole"],
+                    ),
+                    Paragraph(f"&#8226; {note}", styles["CVBullet"]),
+                ]
+            )
+        )
 
     story += [Paragraph("SELECTED HIGHLIGHTS", styles["CVSection"]), hr()]
     for item in ACHIEVEMENTS:
