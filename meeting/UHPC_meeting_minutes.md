@@ -31,8 +31,6 @@
 | Diana Kawoozo | FairBanks | Team member |
 | Kigenyi Conrad | FairBanks | Team member (joined after link shared) |
 
-> **Name note:** Audio sometimes referred to “Madame Rachel.” The Meet list shows Rebecca Kia; treat that reference with care if citing speakers by name.
-
 ---
 
 ## 1. Opening
@@ -224,9 +222,3 @@ Wasswa closed at about **3:53 PM**. He thanked everyone for joining. UHPC offere
 | 23:00–32:40 | Q&A — literature and eligible groups |
 | 32:40–38:20 | Partnership path, training, FairBanks follow-up |
 | 38:20–39:20 | Closing |
-
----
-
-## Source note
-
-Minutes prepared from the meeting recording (`UHPC meeting.aac`, about 39 minutes) and the participant list from the Google Meet session. Some passages were noisy or interrupted; key figures should be confirmed with UHPC’s written materials before formal citation.
