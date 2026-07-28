@@ -16,6 +16,7 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from reportlab.pdfgen import canvas as pdf_canvas
 from reportlab.platypus import (
     HRFlowable,
     Image as RLImage,
@@ -35,6 +36,78 @@ NAVY = HexColor("#0F2C4C")
 TEAL = HexColor("#1A6B5C")
 GRAY = HexColor("#2F2F2F")
 MUTED = HexColor("#5A5A5A")
+
+
+class NumberedCanvas(pdf_canvas.Canvas):
+    """Draw 'Page x of y' centered in the footer on every page."""
+
+    def __init__(self, *args, **kwargs):
+        pdf_canvas.Canvas.__init__(self, *args, **kwargs)
+        self._saved_page_states = []
+
+    def showPage(self):
+        self._saved_page_states.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self):
+        page_count = len(self._saved_page_states)
+        for state in self._saved_page_states:
+            self.__dict__.update(state)
+            self._draw_page_number(page_count)
+            pdf_canvas.Canvas.showPage(self)
+        pdf_canvas.Canvas.save(self)
+
+    def _draw_page_number(self, page_count: int) -> None:
+        page_num = self._pageNumber
+        self.setFont("Helvetica", 9)
+        self.setFillColor(MUTED)
+        self.drawCentredString(
+            A4[0] / 2.0,
+            8 * mm,
+            f"Page {page_num} of {page_count}",
+        )
+
+
+def add_docx_page_footer(doc: Document) -> None:
+    """Add centered Word footer: Page X of Y."""
+    section = doc.sections[0]
+    footer = section.footer
+    footer.is_linked_to_previous = False
+    p = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # clear existing runs
+    for run in list(p.runs):
+        run._element.getparent().remove(run._element)
+
+    def add_field(paragraph, instr: str) -> None:
+        run = paragraph.add_run()
+        fld_char_begin = run._r.makeelement(
+            qn("w:fldChar"), {qn("w:fldCharType"): "begin"}
+        )
+        run._r.append(fld_char_begin)
+
+        run2 = paragraph.add_run()
+        instr_text = run2._r.makeelement(qn("w:instrText"), {qn("xml:space"): "preserve"})
+        instr_text.text = instr
+        run2._r.append(instr_text)
+
+        run3 = paragraph.add_run()
+        fld_char_end = run3._r.makeelement(
+            qn("w:fldChar"), {qn("w:fldCharType"): "end"}
+        )
+        run3._r.append(fld_char_end)
+
+    r = p.add_run("Page ")
+    r.font.size = Pt(9)
+    r.font.color.rgb = RGBColor(0x5A, 0x5A, 0x5A)
+    add_field(p, " PAGE ")
+    r = p.add_run(" of ")
+    r.font.size = Pt(9)
+    r.font.color.rgb = RGBColor(0x5A, 0x5A, 0x5A)
+    add_field(p, " NUMPAGES ")
+    for run in p.runs:
+        run.font.size = Pt(9)
+        run.font.color.rgb = RGBColor(0x5A, 0x5A, 0x5A)
 
 
 def prepare_signature() -> Path:
@@ -176,17 +249,15 @@ CONTACT = {
 
 SUMMARY = (
     "I am a biomedical engineer with over 7 years installing, commissioning, "
-    "maintaining, and training users on hospital equipment. I have done this "
-    "work in Uganda, Congo, Kenya, Tanzania, and Somaliland. My experience "
-    "covers radiology, theatre, ICU, and laboratory systems - including "
-    "haematology analysers, chemistry analysers, and blood bank machines. "
-    "Since early 2025 I have also worked on personal contracts, including "
-    "lab, theatre, and radiology installs in Congo (among them the hospital "
-    "that serves the Kibali Gold Mine). I am used to travelling for service "
-    "jobs, working alone on site, writing clear service notes, and teaching "
-    "clinical staff how to use and care for the machines. I want to bring "
-    "that regional field experience to Medequip's clients across Rwanda and "
-    "beyond."
+    "maintaining, and training users on hospital equipment across Uganda, "
+    "Congo, Kenya, Tanzania, and Somaliland. At International Hospital Kampala "
+    "I led equipment installs across laboratory, theatre, ICU, and radiology - "
+    "including haematology, chemistry, and blood bank machines. Since early "
+    "2025 I have also worked on personal contracts, including Congo installs "
+    "at the hospital serving Kibali Gold Mine. I travel for service jobs, work "
+    "independently on site, write clear service notes, and train clinical "
+    "staff. I want to bring that field experience to Medequip's clients across "
+    "Rwanda and beyond."
 )
 
 SKILLS = [
@@ -201,11 +272,6 @@ SKILLS = [
         "(ventilators, monitors, infusion pumps, theatre systems); "
         "laboratory (haematology analysers, chemistry analysers, blood bank "
         "machines); support plant (RO water, oxygen)",
-    ),
-    (
-        "Countries worked",
-        "Uganda, Democratic Republic of Congo, Kenya, Tanzania, and Somaliland "
-        "- field installs, maintenance, and user training",
     ),
     (
         "Client support",
@@ -250,15 +316,13 @@ ROLES = [
         "title": "Biomedical Manager, International Hospital Kampala (IHK)",
         "dates": "Jan 2020 - Jan 2024",
         "bullets": [
-            "Looked after biomedical engineering for a major private hospital "
-            "for four years.",
-            "Led installs and commissioning of CT scanners, oxygen plants, "
-            "X-ray systems, and ICU equipment.",
-            "Set up preventive maintenance so machines stayed up and safe for "
-            "patients.",
-            "Helped with procurement, lifecycle planning, service records, "
-            "and COHSASA accreditation work.",
-            "Trained clinical and technical staff on correct use and care.",
+            "Managed biomedical engineering for a major private hospital for "
+            "four years.",
+            "Led installation and commissioning across IHK laboratory, "
+            "theatre, ICU, and radiology - including haematology, chemistry, "
+            "and blood bank machines, plus CT, X-ray, and oxygen plant.",
+            "Ran preventive maintenance, procurement support, service records, "
+            "staff training, and COHSASA accreditation work.",
         ],
     },
     {
@@ -287,10 +351,11 @@ EARLIER = [
 
 ACHIEVEMENTS = [
     "Field biomedical work in Uganda, Congo, Kenya, Tanzania, and Somaliland.",
+    "At IHK, led equipment installation across laboratory, theatre, ICU, and "
+    "radiology.",
     "Installed and supported haematology, chemistry, and blood bank laboratory "
     "machines alongside theatre and radiology systems.",
-    "Congo installs include the hospital serving Kibali Gold Mine.",
-    "Commissioned CT, X-ray, oxygen plant, and ICU systems in Uganda; supported "
+    "Congo installs include the hospital serving Kibali Gold Mine; supported "
     "COHSASA accreditation at IHK.",
 ]
 
@@ -309,7 +374,7 @@ EQUIPMENT = [
 EDUCATION = [
     {
         "level": "Bachelor's degree (undergraduate)",
-        "school": "Makerere University - Faculty of Medicine",
+        "school": "Makerere University",
         "detail": "BSc Biomedical Engineering, 2012-2016.",
     },
     {
@@ -338,14 +403,6 @@ CERTIFICATIONS = [
         "school": "Greenbridge School of Open Technologies",
         "detail": "JAVA Programming - Level 1, Dec 2015 - Jan 2016.",
     },
-    {
-        "level": "Workplace safety training",
-        "school": "Fire Technologies Limited (IHK)",
-        "detail": (
-            "Fire safety, prevention, firefighting, and evacuation drills, "
-            "April 2021."
-        ),
-    },
 ]
 
 REFEREES = [
@@ -370,11 +427,12 @@ LETTER_BODY = [
         "I have over 7 years installing, commissioning, maintaining, and "
         "training users on hospital equipment. At Norvik Hospital I serviced "
         "diagnostic and monitoring systems. At International Hospital Kampala "
-        "I spent four years as Biomedical Manager - leading installs of CT, "
-        "X-ray, oxygen plant, and ICU equipment, running preventive "
-        "maintenance, training staff, and supporting COHSASA accreditation. "
-        "I later managed biomedical programmes for the Gould Family Foundation "
-        "across several facilities."
+        "I spent four years as Biomedical Manager - leading equipment "
+        "installation across the lab, theatre, ICU, and radiology departments "
+        "(including haematology, chemistry, and blood bank machines, plus CT "
+        "and X-ray), running preventive maintenance, training staff, and "
+        "supporting COHSASA accreditation. I later managed biomedical "
+        "programmes for the Gould Family Foundation across several facilities."
     ),
     (
         "Since March 2025 I have worked on personal contracts: installing and "
@@ -401,13 +459,13 @@ LETTER_BODY = [
 
 def set_docx_defaults(doc: Document) -> None:
     section = doc.sections[0]
-    section.top_margin = Inches(0.55)
-    section.bottom_margin = Inches(0.55)
-    section.left_margin = Inches(0.7)
-    section.right_margin = Inches(0.7)
+    section.top_margin = Inches(0.5)
+    section.bottom_margin = Inches(0.5)
+    section.left_margin = Inches(0.65)
+    section.right_margin = Inches(0.65)
     style = doc.styles["Normal"]
     style.font.name = "Calibri"
-    style.font.size = Pt(10.5)
+    style.font.size = Pt(11)
     style.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
     style.paragraph_format.space_after = Pt(0)
     style._element.rPr.rFonts.set(qn("w:eastAsia"), "Calibri")
@@ -427,7 +485,7 @@ def section_title(doc: Document, text: str) -> None:
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(10)
     p.paragraph_format.space_after = Pt(4)
-    add_heading_run(p, text.upper(), 10.5, True, RGBColor(0x0F, 0x2C, 0x4C))
+    add_heading_run(p, text.upper(), 11.5, True, RGBColor(0x0F, 0x2C, 0x4C))
     pPr = p._p.get_or_add_pPr()
     pBdr = pPr.makeelement(qn("w:pBdr"), {})
     bottom = pBdr.makeelement(
@@ -449,7 +507,7 @@ def body_para(doc: Document, text: str, space_after: int = 6) -> None:
     p.paragraph_format.space_before = Pt(0)
     p.paragraph_format.line_spacing = 1.15
     for run in p.runs:
-        run.font.size = Pt(10.5)
+        run.font.size = Pt(11)
         run.font.name = "Calibri"
         run.font.color.rgb = RGBColor(0x2F, 0x2F, 0x2F)
 
@@ -459,21 +517,21 @@ def bullet(doc: Document, text: str) -> None:
     p.paragraph_format.space_after = Pt(2)
     p.paragraph_format.space_before = Pt(0)
     p.paragraph_format.left_indent = Inches(0.2)
-    p.paragraph_format.line_spacing = 1.1
+    p.paragraph_format.line_spacing = 1.12
     for run in p.runs:
-        run.font.size = Pt(10)
+        run.font.size = Pt(11)
         run.font.name = "Calibri"
         run.font.color.rgb = RGBColor(0x2F, 0x2F, 0x2F)
 
 
 def role_header(doc: Document, title: str, dates: str) -> None:
     p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(8)
+    p.paragraph_format.space_before = Pt(7)
     p.paragraph_format.space_after = Pt(2)
-    add_heading_run(p, title, 10.5, True, RGBColor(0x1A, 0x1A, 0x1A))
+    add_heading_run(p, title, 11, True, RGBColor(0x1A, 0x1A, 0x1A))
     r = p.add_run(f"  |  {dates}")
     r.italic = True
-    r.font.size = Pt(9)
+    r.font.size = Pt(10)
     r.font.color.rgb = RGBColor(0x1A, 0x6B, 0x5C)
     r.font.name = "Calibri"
 
@@ -485,37 +543,37 @@ def build_cv_docx(path: Path) -> None:
     name = doc.add_paragraph()
     name.alignment = WD_ALIGN_PARAGRAPH.CENTER
     name.paragraph_format.space_after = Pt(2)
-    add_heading_run(name, CONTACT["name"], 18, True, RGBColor(0x0F, 0x2C, 0x4C))
+    add_heading_run(name, CONTACT["name"], 20, True, RGBColor(0x0F, 0x2C, 0x4C))
 
     title = doc.add_paragraph()
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     title.paragraph_format.space_after = Pt(2)
-    add_heading_run(title, CONTACT["title"], 11, True, RGBColor(0x1A, 0x6B, 0x5C))
+    add_heading_run(title, CONTACT["title"], 12, True, RGBColor(0x1A, 0x6B, 0x5C))
 
     years = doc.add_paragraph()
     years.alignment = WD_ALIGN_PARAGRAPH.CENTER
     years.paragraph_format.space_after = Pt(4)
-    add_heading_run(years, CONTACT["years"], 10, True, RGBColor(0x1A, 0x6B, 0x5C))
+    add_heading_run(years, CONTACT["years"], 11, True, RGBColor(0x1A, 0x6B, 0x5C))
 
     contact = doc.add_paragraph()
     contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
     contact.paragraph_format.space_after = Pt(1)
     r = contact.add_run(f"{CONTACT['email']}  ·  {CONTACT['phone']}")
-    r.font.size = Pt(9.5)
+    r.font.size = Pt(10.5)
     r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
     loc = doc.add_paragraph()
     loc.alignment = WD_ALIGN_PARAGRAPH.CENTER
     loc.paragraph_format.space_after = Pt(1)
     r = loc.add_run(CONTACT["location"])
-    r.font.size = Pt(9)
+    r.font.size = Pt(10)
     r.font.color.rgb = RGBColor(0x55, 0x55, 0x55)
 
     langs = doc.add_paragraph()
     langs.alignment = WD_ALIGN_PARAGRAPH.CENTER
     langs.paragraph_format.space_after = Pt(4)
     r = langs.add_run(CONTACT["languages"])
-    r.font.size = Pt(9)
+    r.font.size = Pt(10)
     r.font.color.rgb = RGBColor(0x55, 0x55, 0x55)
 
     section_title(doc, "Profile")
@@ -526,9 +584,9 @@ def build_cv_docx(path: Path) -> None:
         p = doc.add_paragraph()
         p.paragraph_format.space_after = Pt(3)
         p.paragraph_format.line_spacing = 1.1
-        add_heading_run(p, f"{label}: ", 10, True, RGBColor(0x0F, 0x2C, 0x4C))
+        add_heading_run(p, f"{label}: ", 11, True, RGBColor(0x0F, 0x2C, 0x4C))
         r = p.add_run(value)
-        r.font.size = Pt(10)
+        r.font.size = Pt(11)
         r.font.color.rgb = RGBColor(0x2F, 0x2F, 0x2F)
 
     section_title(doc, "Work experience")
@@ -536,11 +594,6 @@ def build_cv_docx(path: Path) -> None:
         role_header(doc, role["title"], role["dates"])
         for b in role["bullets"]:
             bullet(doc, b)
-
-    section_title(doc, "Earlier roles")
-    for title, dates, note in EARLIER:
-        role_header(doc, title, dates)
-        bullet(doc, note)
 
     section_title(doc, "Selected highlights")
     for item in ACHIEVEMENTS:
@@ -550,20 +603,20 @@ def build_cv_docx(path: Path) -> None:
     for label, value in EQUIPMENT:
         p = doc.add_paragraph()
         p.paragraph_format.space_after = Pt(3)
-        add_heading_run(p, f"{label}: ", 10, True, RGBColor(0x0F, 0x2C, 0x4C))
+        add_heading_run(p, f"{label}: ", 11, True, RGBColor(0x0F, 0x2C, 0x4C))
         r = p.add_run(value)
-        r.font.size = Pt(10)
+        r.font.size = Pt(11)
 
     section_title(doc, "Education and academic levels")
     for item in EDUCATION:
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(4)
         p.paragraph_format.space_after = Pt(1)
-        add_heading_run(p, item["level"], 10, True, RGBColor(0x1A, 0x6B, 0x5C))
+        add_heading_run(p, item["level"], 10.5, True, RGBColor(0x1A, 0x6B, 0x5C))
         p2 = doc.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
         p2.paragraph_format.space_after = Pt(0)
-        add_heading_run(p2, item["school"], 10.5, True)
+        add_heading_run(p2, item["school"], 11, True)
         body_para(doc, item["detail"], space_after=2)
 
     section_title(doc, "Certificates and short courses")
@@ -571,11 +624,11 @@ def build_cv_docx(path: Path) -> None:
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(4)
         p.paragraph_format.space_after = Pt(1)
-        add_heading_run(p, item["level"], 10, True, RGBColor(0x1A, 0x6B, 0x5C))
+        add_heading_run(p, item["level"], 10.5, True, RGBColor(0x1A, 0x6B, 0x5C))
         p2 = doc.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
         p2.paragraph_format.space_after = Pt(0)
-        add_heading_run(p2, item["school"], 10.5, True)
+        add_heading_run(p2, item["school"], 11, True)
         body_para(doc, item["detail"], space_after=2)
 
     section_title(doc, "Referees")
@@ -589,15 +642,16 @@ def build_cv_docx(path: Path) -> None:
         name_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
         name_p.paragraph_format.space_before = Pt(2)
         name_p.paragraph_format.space_after = Pt(1)
-        add_heading_run(name_p, "Wasswa Wilson", 10.5, True)
+        add_heading_run(name_p, "Wasswa Wilson", 11, True)
         title_p = doc.add_paragraph()
         title_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
         title_p.paragraph_format.space_before = Pt(0)
         title_p.paragraph_format.space_after = Pt(0)
         r = title_p.add_run("Biomedical Engineer")
-        r.font.size = Pt(10)
+        r.font.size = Pt(10.5)
         r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
+    add_docx_page_footer(doc)
     doc.save(path)
 
 
@@ -607,14 +661,14 @@ def build_letter_docx(path: Path) -> None:
 
     header = doc.add_paragraph()
     header.paragraph_format.space_after = Pt(2)
-    add_heading_run(header, "WASSWA WILSON", 16, True, RGBColor(0x0F, 0x2C, 0x4C))
+    add_heading_run(header, "WASSWA WILSON", 18, True, RGBColor(0x0F, 0x2C, 0x4C))
 
     sub = doc.add_paragraph()
     sub.paragraph_format.space_after = Pt(4)
     add_heading_run(
         sub,
         "Biomedical Engineer · 7+ years experience",
-        10.5,
+        11.5,
         True,
         RGBColor(0x1A, 0x6B, 0x5C),
     )
@@ -623,7 +677,7 @@ def build_letter_docx(path: Path) -> None:
         p = doc.add_paragraph(line)
         p.paragraph_format.space_after = Pt(1)
         for run in p.runs:
-            run.font.size = Pt(10)
+            run.font.size = Pt(11)
             run.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
     rule = doc.add_paragraph()
@@ -656,7 +710,7 @@ def build_letter_docx(path: Path) -> None:
         p = doc.add_paragraph(line)
         p.paragraph_format.space_after = Pt(1)
         for run in p.runs:
-            run.font.size = Pt(10)
+            run.font.size = Pt(11)
 
     spacer = doc.add_paragraph()
     spacer.paragraph_format.space_after = Pt(6)
@@ -666,7 +720,7 @@ def build_letter_docx(path: Path) -> None:
     add_heading_run(
         subj,
         "Subject: Application for Biomedical Engineer",
-        11,
+        12,
         True,
         RGBColor(0x0F, 0x2C, 0x4C),
     )
@@ -693,6 +747,7 @@ def build_letter_docx(path: Path) -> None:
     r.font.size = Pt(10)
     r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
+    add_docx_page_footer(doc)
     doc.save(path)
 
 
@@ -702,29 +757,29 @@ def pdf_styles():
         ParagraphStyle(
             name="CVName",
             fontName="Helvetica-Bold",
-            fontSize=17,
+            fontSize=20,
             textColor=NAVY,
             alignment=TA_CENTER,
             spaceAfter=3,
-            leading=20,
+            leading=24,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVTitle",
             fontName="Helvetica-Bold",
-            fontSize=11,
+            fontSize=12,
             textColor=TEAL,
             alignment=TA_CENTER,
             spaceAfter=2,
-            leading=14,
+            leading=15,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVYears",
             fontName="Helvetica-Bold",
-            fontSize=9.5,
+            fontSize=11,
             textColor=TEAL,
             alignment=TA_CENTER,
             spaceAfter=4,
@@ -734,32 +789,32 @@ def pdf_styles():
         ParagraphStyle(
             name="CVContact",
             fontName="Helvetica",
-            fontSize=9,
+            fontSize=10,
             textColor=MUTED,
             alignment=TA_CENTER,
             spaceAfter=1,
-            leading=12,
+            leading=13,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVSection",
             fontName="Helvetica-Bold",
-            fontSize=10,
+            fontSize=11,
             textColor=NAVY,
-            spaceBefore=7,
+            spaceBefore=8,
             spaceAfter=2,
-            leading=12,
+            leading=13,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVBody",
             fontName="Helvetica",
-            fontSize=9.5,
+            fontSize=10.5,
             textColor=GRAY,
             alignment=TA_JUSTIFY,
-            leading=13,
+            leading=14,
             spaceAfter=4,
         )
     )
@@ -767,21 +822,21 @@ def pdf_styles():
         ParagraphStyle(
             name="CVRole",
             fontName="Helvetica-Bold",
-            fontSize=9.5,
+            fontSize=10.5,
             textColor=GRAY,
-            spaceBefore=6,
+            spaceBefore=5,
             spaceAfter=1,
-            leading=12,
+            leading=13,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVBullet",
             fontName="Helvetica",
-            fontSize=9,
+            fontSize=10.5,
             textColor=GRAY,
             leftIndent=11,
-            leading=12,
+            leading=13.5,
             spaceAfter=1.5,
         )
     )
@@ -789,17 +844,17 @@ def pdf_styles():
         ParagraphStyle(
             name="CVLabel",
             fontName="Helvetica",
-            fontSize=9,
+            fontSize=10.5,
             textColor=GRAY,
-            leading=12,
-            spaceAfter=3,
+            leading=13.5,
+            spaceAfter=2.5,
         )
     )
     styles.add(
         ParagraphStyle(
             name="LetterHead",
             fontName="Helvetica-Bold",
-            fontSize=15,
+            fontSize=18,
             textColor=NAVY,
             spaceAfter=3,
         )
@@ -808,7 +863,7 @@ def pdf_styles():
         ParagraphStyle(
             name="LetterSub",
             fontName="Helvetica-Bold",
-            fontSize=10,
+            fontSize=11.5,
             textColor=TEAL,
             spaceAfter=4,
         )
@@ -817,31 +872,31 @@ def pdf_styles():
         ParagraphStyle(
             name="LetterLine",
             fontName="Helvetica",
-            fontSize=10,
+            fontSize=11,
             textColor=GRAY,
             spaceAfter=1,
-            leading=13,
+            leading=14,
         )
     )
     styles.add(
         ParagraphStyle(
             name="LetterBody",
             fontName="Helvetica",
-            fontSize=10.5,
+            fontSize=11.5,
             textColor=GRAY,
             alignment=TA_JUSTIFY,
-            leading=15,
-            spaceAfter=10,
+            leading=16,
+            spaceAfter=9,
         )
     )
     styles.add(
         ParagraphStyle(
             name="LetterLeft",
             fontName="Helvetica",
-            fontSize=10.5,
+            fontSize=11.5,
             textColor=GRAY,
             alignment=TA_LEFT,
-            leading=14,
+            leading=15,
             spaceAfter=5,
         )
     )
@@ -849,31 +904,7 @@ def pdf_styles():
         ParagraphStyle(
             name="CVSignName",
             fontName="Helvetica-Bold",
-            fontSize=10,
-            textColor=GRAY,
-            alignment=TA_LEFT,
-            spaceBefore=0,
-            spaceAfter=1,
-            leading=12,
-        )
-    )
-    styles.add(
-        ParagraphStyle(
-            name="CVSignTitle",
-            fontName="Helvetica",
-            fontSize=9,
-            textColor=MUTED,
-            alignment=TA_LEFT,
-            spaceBefore=0,
-            spaceAfter=2,
-            leading=11,
-        )
-    )
-    styles.add(
-        ParagraphStyle(
-            name="LetterSignName",
-            fontName="Helvetica-Bold",
-            fontSize=10.5,
+            fontSize=11,
             textColor=GRAY,
             alignment=TA_LEFT,
             spaceBefore=0,
@@ -883,14 +914,38 @@ def pdf_styles():
     )
     styles.add(
         ParagraphStyle(
-            name="LetterSignTitle",
+            name="CVSignTitle",
             fontName="Helvetica",
-            fontSize=10,
+            fontSize=10.5,
             textColor=MUTED,
             alignment=TA_LEFT,
             spaceBefore=0,
             spaceAfter=2,
             leading=12,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="LetterSignName",
+            fontName="Helvetica-Bold",
+            fontSize=11.5,
+            textColor=GRAY,
+            alignment=TA_LEFT,
+            spaceBefore=0,
+            spaceAfter=1,
+            leading=14,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="LetterSignTitle",
+            fontName="Helvetica",
+            fontSize=11,
+            textColor=MUTED,
+            alignment=TA_LEFT,
+            spaceBefore=0,
+            spaceAfter=2,
+            leading=13,
         )
     )
     return styles
@@ -914,7 +969,7 @@ def build_cv_pdf(path: Path) -> None:
         leftMargin=16 * mm,
         rightMargin=16 * mm,
         topMargin=11 * mm,
-        bottomMargin=11 * mm,
+        bottomMargin=12 * mm,
     )
     email_phone = (
         f"{CONTACT['email']}&nbsp;&nbsp;&#183;&nbsp;&nbsp;{CONTACT['phone']}"
@@ -948,20 +1003,6 @@ def build_cv_pdf(path: Path) -> None:
         for b in role["bullets"]:
             block.append(Paragraph(f"&#8226; {b}", styles["CVBullet"]))
         story.append(KeepTogether(block))
-
-    story += [Paragraph("EARLIER ROLES", styles["CVSection"]), hr()]
-    for title, dates, note in EARLIER:
-        story.append(
-            KeepTogether(
-                [
-                    Paragraph(
-                        f'{title} <font color="#1A6B5C"><i>| {dates}</i></font>',
-                        styles["CVRole"],
-                    ),
-                    Paragraph(f"&#8226; {note}", styles["CVBullet"]),
-                ]
-            )
-        )
 
     story += [Paragraph("SELECTED HIGHLIGHTS", styles["CVSection"]), hr()]
     for item in ACHIEVEMENTS:
@@ -1006,12 +1047,18 @@ def build_cv_pdf(path: Path) -> None:
         story.append(Paragraph(ref, styles["CVLabel"]))
 
     if SIGNATURE_SRC.exists():
-        story.append(Spacer(1, 6))
+        story.append(Spacer(1, 4))
         story.append(
-            signature_block_pdf(styles, "CVSignName", "CVSignTitle", width_mm=34)
+            KeepTogether(
+                [
+                    signature_block_pdf(
+                        styles, "CVSignName", "CVSignTitle", width_mm=32
+                    )
+                ]
+            )
         )
 
-    doc.build(story)
+    doc.build(story, canvasmaker=NumberedCanvas)
 
 
 def build_letter_pdf(path: Path) -> None:
@@ -1022,7 +1069,7 @@ def build_letter_pdf(path: Path) -> None:
         leftMargin=20 * mm,
         rightMargin=20 * mm,
         topMargin=16 * mm,
-        bottomMargin=16 * mm,
+        bottomMargin=18 * mm,
     )
     story = [
         Paragraph("WASSWA WILSON", styles["LetterHead"]),
@@ -1073,7 +1120,7 @@ def build_letter_pdf(path: Path) -> None:
     else:
         story.append(Paragraph("Wasswa Wilson", styles["LetterSignName"]))
         story.append(Paragraph("Biomedical Engineer", styles["LetterSignTitle"]))
-    doc.build(story)
+    doc.build(story, canvasmaker=NumberedCanvas)
 
 
 def main() -> None:
