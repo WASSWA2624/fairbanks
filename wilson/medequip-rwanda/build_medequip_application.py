@@ -176,14 +176,17 @@ CONTACT = {
 
 SUMMARY = (
     "I am a biomedical engineer with over 7 years installing, commissioning, "
-    "maintaining, and training users on hospital equipment. Most of that time "
-    "was inside busy hospitals in Uganda. Since early 2025 I have also worked "
-    "on personal contracts, including lab, theatre, and radiology installs at "
-    "hospitals in the Democratic Republic of Congo - one of them serves the "
-    "Kibali Gold Mine. I am used to travelling for service jobs, working on my "
-    "own on site, writing clear service notes, and teaching clinical staff how "
-    "to use and care for the machines. I want to bring that field experience to "
-    "Medequip's clients across Rwanda and the region."
+    "maintaining, and training users on hospital equipment. I have done this "
+    "work in Uganda, Congo, Kenya, Tanzania, and Somaliland. My experience "
+    "covers radiology, theatre, ICU, and laboratory systems - including "
+    "haematology analysers, chemistry analysers, and blood bank machines. "
+    "Since early 2025 I have also worked on personal contracts, including "
+    "lab, theatre, and radiology installs in Congo (among them the hospital "
+    "that serves the Kibali Gold Mine). I am used to travelling for service "
+    "jobs, working alone on site, writing clear service notes, and teaching "
+    "clinical staff how to use and care for the machines. I want to bring "
+    "that regional field experience to Medequip's clients across Rwanda and "
+    "beyond."
 )
 
 SKILLS = [
@@ -196,7 +199,13 @@ SKILLS = [
         "Equipment I know well",
         "Radiology (X-ray, CT, ultrasound, C-arm); theatre and ICU "
         "(ventilators, monitors, infusion pumps, theatre systems); "
-        "lab analysers and support plant (blood bank, RO water, oxygen)",
+        "laboratory (haematology analysers, chemistry analysers, blood bank "
+        "machines); support plant (RO water, oxygen)",
+    ),
+    (
+        "Countries worked",
+        "Uganda, Democratic Republic of Congo, Kenya, Tanzania, and Somaliland "
+        "- field installs, maintenance, and user training",
     ),
     (
         "Client support",
@@ -216,14 +225,15 @@ ROLES = [
         "dates": "Mar 2025 - Present",
         "bullets": [
             "Install and maintain medical equipment for hospitals on a "
-            "personal-contract basis after leaving GFF.",
+            "personal-contract basis after leaving GFF, including field work "
+            "in Uganda, Congo, Kenya, Tanzania, and Somaliland.",
             "Completed lab, theatre, and radiology installations at several "
-            "hospitals in the Democratic Republic of Congo, including the "
-            "hospital that serves the Kibali Gold Mine.",
+            "hospitals in Congo, including the hospital that serves the "
+            "Kibali Gold Mine.",
+            "Lab installs and support cover haematology analysers, chemistry "
+            "analysers, and blood bank machines, plus user handover.",
             "Handle preventive and corrective maintenance, on-site "
-            "troubleshooting, and basic user training after handover.",
-            "Work independently on travel assignments and report back clearly "
-            "to the client after each job.",
+            "troubleshooting, and clear client reporting after each job.",
         ],
     },
     {
@@ -276,20 +286,22 @@ EARLIER = [
 ]
 
 ACHIEVEMENTS = [
-    "7+ years of hands-on hospital biomedical work across Uganda and Congo.",
-    "Installed lab, theatre, and radiology equipment for hospitals in Congo, "
-    "including the facility serving Kibali Gold Mine.",
-    "Commissioned critical systems in Uganda such as CT, X-ray, oxygen plant, "
-    "and ICU technologies.",
-    "Helped IHK through COHSASA accreditation on the biomedical side.",
-    "Trained engineers, technicians, and clinical users so equipment stays "
-    "useful after install day.",
+    "Field biomedical work in Uganda, Congo, Kenya, Tanzania, and Somaliland.",
+    "Installed and supported haematology, chemistry, and blood bank laboratory "
+    "machines alongside theatre and radiology systems.",
+    "Congo installs include the hospital serving Kibali Gold Mine.",
+    "Commissioned CT, X-ray, oxygen plant, and ICU systems in Uganda; supported "
+    "COHSASA accreditation at IHK.",
 ]
 
 EQUIPMENT = [
     ("Radiology / imaging", "CT, X-ray, ultrasound, C-arm"),
     ("Theatre and ICU", "Theatre systems, ventilators, monitors, infusion pumps"),
-    ("Laboratory", "Haematology and chemistry analysers, blood bank systems"),
+    (
+        "Laboratory",
+        "Haematology analysers; clinical chemistry analysers; blood bank "
+        "machines and transfusion support systems",
+    ),
     ("Support plant", "Oxygen plants, RO water systems"),
     ("Maternity / neonatal", "Incubators, phototherapy, foetal Dopplers, CTG"),
 ]
@@ -299,9 +311,8 @@ EDUCATION = [
         "level": "Bachelor's degree (undergraduate)",
         "school": "Makerere University - Faculty of Medicine",
         "detail": (
-            "BSc Biomedical Engineering (BBIO). Second Class Honours - Upper "
-            "Division. CGPA 3.69 / 5.0. 173 credit units. Studied 2012-2016 "
-            "(completed May/June 2016). Reg. No. 12/U/15375/PS."
+            "BSc Biomedical Engineering. Second Class Honours - Upper Division "
+            "(CGPA 3.69 / 5.0). 2012-2016."
         ),
     },
     {
@@ -309,15 +320,15 @@ EDUCATION = [
         "school": "Mengo Secondary School",
         "detail": (
             "UACE 2011. Principal: Mathematics (B), Physics (B), Biology (B), "
-            "Chemistry (D). Subsidiary: General Paper (4)."
+            "Chemistry (D)."
         ),
     },
     {
         "level": "Uganda Certificate of Education (O-Level)",
         "school": "St. John's Wakiso Secondary School",
         "detail": (
-            "UCE 2009. Division I. Passed 10 of 10 subjects, including "
-            "Distinctions in Mathematics (1), Physics (1), and Biology (2)."
+            "UCE 2009. Division I. Distinctions in Mathematics (1), Physics (1), "
+            "and Biology (2)."
         ),
     },
 ]
@@ -327,25 +338,22 @@ CERTIFICATIONS = [
         "level": "Professional development certificate",
         "school": "University of Washington",
         "detail": (
-            "Leadership and Management in Health (Professional Development), "
-            "December 2022. 7.5 Continuing Education Units (CEUs)."
+            "Leadership and Management in Health, December 2022 (7.5 CEUs)."
         ),
     },
     {
         "level": "Technical certificate",
         "school": "Greenbridge School of Open Technologies",
         "detail": (
-            "Certificate in JAVA Programming - Level 1, "
-            "1 Dec 2015 - 22 Jan 2016. Grade: A+."
+            "JAVA Programming - Level 1, Dec 2015 - Jan 2016. Grade: A+."
         ),
     },
     {
         "level": "Workplace safety training",
-        "school": "Fire Technologies Limited (at International Hospital Kampala)",
+        "school": "Fire Technologies Limited (IHK)",
         "detail": (
-            "General fire safety, fire prevention, firefighting, emergency "
-            "scene management, and evacuation with live drills, "
-            "8-9 April 2021. Cert. No. FTL/IHK/05052021."
+            "Fire safety, prevention, firefighting, and evacuation drills, "
+            "April 2021."
         ),
     },
 ]
@@ -384,15 +392,19 @@ LETTER_BODY = [
         "Since March 2025 I have been on personal contracts, installing and "
         "maintaining equipment for hospitals that call me in. That includes "
         "lab, theatre, and radiology jobs at several hospitals in Congo, "
-        "including the hospital that serves the Kibali Gold Mine. Those "
-        "assignments meant travel, long days on site, and leaving behind "
-        "working machines plus staff who know how to use them."
+        "including the hospital that serves the Kibali Gold Mine. On the lab "
+        "side I work with haematology analysers, chemistry analysers, and "
+        "blood bank machines. Beyond Uganda and Congo, I have also done "
+        "equipment work in Kenya, Tanzania, and Somaliland - travel, long "
+        "days on site, and leaving behind working machines plus staff who "
+        "know how to use them."
     ),
     (
         "If you take me on, you get someone who can walk into a facility, "
-        "install or fix the equipment, train the users, write the service "
-        "notes, and travel when the job needs it. For me, Medequip offers "
-        "steady regional work, product training, and a chance to grow with a "
+        "install or fix the equipment - including lab haematology, chemistry, "
+        "and blood bank systems - train the users, write the service notes, "
+        "and travel when the job needs it. For me, Medequip offers steady "
+        "regional work, product training, and a chance to grow with a "
         "supplier that already serves hospitals across Rwanda and the region. "
         "I speak clear English, I am ready to relocate to Kigali, and I am "
         "happy to learn your product lines through international training."
@@ -751,7 +763,7 @@ def pdf_styles():
             fontName="Helvetica-Bold",
             fontSize=10,
             textColor=NAVY,
-            spaceBefore=9,
+            spaceBefore=7,
             spaceAfter=2,
             leading=12,
         )
@@ -915,10 +927,10 @@ def build_cv_pdf(path: Path) -> None:
     doc = SimpleDocTemplate(
         str(path),
         pagesize=A4,
-        leftMargin=17 * mm,
-        rightMargin=17 * mm,
-        topMargin=13 * mm,
-        bottomMargin=13 * mm,
+        leftMargin=16 * mm,
+        rightMargin=16 * mm,
+        topMargin=11 * mm,
+        bottomMargin=11 * mm,
     )
     email_phone = (
         f"{CONTACT['email']}&nbsp;&nbsp;&#183;&nbsp;&nbsp;{CONTACT['phone']}"
@@ -1010,10 +1022,9 @@ def build_cv_pdf(path: Path) -> None:
         story.append(Paragraph(ref, styles["CVLabel"]))
 
     if SIGNATURE_SRC.exists():
-        story += [Paragraph("SIGNATURE", styles["CVSection"]), hr()]
-        story.append(Spacer(1, 2))
+        story.append(Spacer(1, 6))
         story.append(
-            signature_block_pdf(styles, "CVSignName", "CVSignTitle", width_mm=36)
+            signature_block_pdf(styles, "CVSignName", "CVSignTitle", width_mm=34)
         )
 
     doc.build(story)
