@@ -297,23 +297,56 @@ EQUIPMENT = [
 EDUCATION = [
     {
         "level": "Bachelor's degree (undergraduate)",
-        "school": "Makerere University",
+        "school": "Makerere University - Faculty of Medicine",
         "detail": (
-            "BSc Biomedical Engineering, Second Upper Honours (Class II Division I), "
-            "2012-2017"
+            "BSc Biomedical Engineering (BBIO). Second Class Honours - Upper "
+            "Division. CGPA 3.69 / 5.0. 173 credit units. Studied 2012-2016 "
+            "(completed May/June 2016). Reg. No. 12/U/15375/PS."
         ),
     },
     {
-        "level": "Professional certificate (postgraduate short course)",
+        "level": "Uganda Advanced Certificate of Education (A-Level)",
+        "school": "Mengo Secondary School",
+        "detail": (
+            "UACE 2011. Principal: Mathematics (B), Physics (B), Biology (B), "
+            "Chemistry (D). Subsidiary: General Paper (4)."
+        ),
+    },
+    {
+        "level": "Uganda Certificate of Education (O-Level)",
+        "school": "St. John's Wakiso Secondary School",
+        "detail": (
+            "UCE 2009. Division I. Passed 10 of 10 subjects, including "
+            "Distinctions in Mathematics (1), Physics (1), and Biology (2)."
+        ),
+    },
+]
+
+CERTIFICATIONS = [
+    {
+        "level": "Professional development certificate",
         "school": "University of Washington",
         "detail": (
-            "Certificate in Leadership and Management in Health, 2022 - Grade: A+"
+            "Leadership and Management in Health (Professional Development), "
+            "December 2022. 7.5 Continuing Education Units (CEUs)."
         ),
     },
     {
-        "level": "Advanced professional certificate",
-        "school": "Green Bridge School of Open Technology",
-        "detail": "Advanced Java Programming, 2016 - Grade: A+",
+        "level": "Technical certificate",
+        "school": "Greenbridge School of Open Technologies",
+        "detail": (
+            "Certificate in JAVA Programming - Level 1, "
+            "1 Dec 2015 - 22 Jan 2016. Grade: A+."
+        ),
+    },
+    {
+        "level": "Workplace safety training",
+        "school": "Fire Technologies Limited (at International Hospital Kampala)",
+        "detail": (
+            "General fire safety, fire prevention, firefighting, emergency "
+            "scene management, and evacuation with live drills, "
+            "8-9 April 2021. Cert. No. FTL/IHK/05052021."
+        ),
     },
 ]
 
@@ -336,15 +369,16 @@ LETTER_BODY = [
         "do on the ground, and I would like to do it with your team."
     ),
     (
-        "I have over 7 years in biomedical equipment work. My academic level "
-        "is a Bachelor's degree: BSc Biomedical Engineering from Makerere "
-        "University, Second Upper Honours (Class II Division I). I also hold "
-        "a University of Washington certificate in Leadership and Management "
-        "in Health (A+) and an Advanced Java Programming certificate (A+). "
-        "I started at Norvik Hospital, then spent four years as Biomedical "
-        "Manager at International Hospital Kampala - installs, maintenance, "
-        "staff training, and the paperwork that came with COHSASA. After that "
-        "I managed biomedical programmes for the Gould Family Foundation."
+        "I have over 7 years in biomedical equipment work. Academically I hold "
+        "a BSc in Biomedical Engineering from Makerere University (Second Class "
+        "Honours - Upper Division, CGPA 3.69), plus UACE from Mengo S.S. and "
+        "UCE Division I from St. John's Wakiso. I also completed University of "
+        "Washington Leadership and Management in Health training (2022) and a "
+        "Greenbridge Java Programming certificate (A+). I started at Norvik "
+        "Hospital, then spent four years as Biomedical Manager at International "
+        "Hospital Kampala - installs, maintenance, staff training, and the "
+        "paperwork that came with COHSASA. After that I managed biomedical "
+        "programmes for the Gould Family Foundation."
     ),
     (
         "Since March 2025 I have been on personal contracts, installing and "
@@ -526,6 +560,18 @@ def build_cv_docx(path: Path) -> None:
 
     section_title(doc, "Education and academic levels")
     for item in EDUCATION:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_after = Pt(1)
+        add_heading_run(p, item["level"], 10, True, RGBColor(0x1A, 0x6B, 0x5C))
+        p2 = doc.add_paragraph()
+        p2.paragraph_format.space_before = Pt(0)
+        p2.paragraph_format.space_after = Pt(0)
+        add_heading_run(p2, item["school"], 10.5, True)
+        body_para(doc, item["detail"], space_after=2)
+
+    section_title(doc, "Certificates and short courses")
+    for item in CERTIFICATIONS:
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(4)
         p.paragraph_format.space_after = Pt(1)
@@ -931,6 +977,21 @@ def build_cv_pdf(path: Path) -> None:
 
     story += [Paragraph("EDUCATION AND ACADEMIC LEVELS", styles["CVSection"]), hr()]
     for item in EDUCATION:
+        story.append(
+            KeepTogether(
+                [
+                    Paragraph(
+                        f'<font color="#1A6B5C"><b>{item["level"]}</b></font>',
+                        styles["CVLabel"],
+                    ),
+                    Paragraph(item["school"], styles["CVRole"]),
+                    Paragraph(item["detail"], styles["CVBody"]),
+                ]
+            )
+        )
+
+    story += [Paragraph("CERTIFICATES AND SHORT COURSES", styles["CVSection"]), hr()]
+    for item in CERTIFICATIONS:
         story.append(
             KeepTogether(
                 [
