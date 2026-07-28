@@ -310,26 +310,20 @@ EDUCATION = [
     {
         "level": "Bachelor's degree (undergraduate)",
         "school": "Makerere University - Faculty of Medicine",
-        "detail": (
-            "BSc Biomedical Engineering. Second Class Honours - Upper Division "
-            "(CGPA 3.69 / 5.0). 2012-2016."
-        ),
+        "detail": "BSc Biomedical Engineering, 2012-2016.",
     },
     {
         "level": "Uganda Advanced Certificate of Education (A-Level)",
         "school": "Mengo Secondary School",
         "detail": (
-            "UACE 2011. Principal: Mathematics (B), Physics (B), Biology (B), "
-            "Chemistry (D)."
+            "UACE 2011. Principal subjects: Mathematics, Physics, Biology, "
+            "and Chemistry."
         ),
     },
     {
         "level": "Uganda Certificate of Education (O-Level)",
         "school": "St. John's Wakiso Secondary School",
-        "detail": (
-            "UCE 2009. Division I. Distinctions in Mathematics (1), Physics (1), "
-            "and Biology (2)."
-        ),
+        "detail": "UCE 2009.",
     },
 ]
 
@@ -337,16 +331,12 @@ CERTIFICATIONS = [
     {
         "level": "Professional development certificate",
         "school": "University of Washington",
-        "detail": (
-            "Leadership and Management in Health, December 2022 (7.5 CEUs)."
-        ),
+        "detail": "Leadership and Management in Health, December 2022.",
     },
     {
         "level": "Technical certificate",
         "school": "Greenbridge School of Open Technologies",
-        "detail": (
-            "JAVA Programming - Level 1, Dec 2015 - Jan 2016. Grade: A+."
-        ),
+        "detail": "JAVA Programming - Level 1, Dec 2015 - Jan 2016.",
     },
     {
         "level": "Workplace safety training",
