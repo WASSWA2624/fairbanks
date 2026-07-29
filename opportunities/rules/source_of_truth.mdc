@@ -12,10 +12,14 @@ Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing mu
 
 | What | Path |
 |---|---|
-| Tracker (Excel) | `opportunities/opportunities.xlsx` |
-| Build script | `opportunities/build_opportunities.py` |
+| Working tracker | `opportunities/best_opportinities.xlsx` |
+| New-scan workbook | `opportunities/new_opportunities.xlsx` |
+| Canonical rebuild | `opportunities/build_opportunities.py` |
+| New-scan rebuild | `opportunities/build_new_opportunities.py` |
 
-Keep one tracker — no draft copies. Always update via the build script.
+**Working tracker** = shortlist + live status (and `applications/` links). One file — no drafts. Spelling `opportinities` is intentional.
+
+**New-scan** = fresh crawl (same columns). Does not replace the working tracker; promote strong fits when you act. After submit, update the working-tracker row (status, date, folder).
 
 ## Excel layout
 
@@ -26,44 +30,42 @@ Keep one tracker — no draft copies. Always update via the build script.
 | Project Title | Official or common programme name |
 | URL | Direct link to the official call |
 | Brief Description | Clear English, max 100 words: goal, eligibility, FairBanks fit |
-| Application Deadline | Exact date (e.g. `31 July 2026`) or `Rolling`; timezone if shown |
+| Application Deadline | Exact date (e.g. `31 July 2026`) or `Rolling` |
 | Gender Category | One of the options below |
-| Application Status | e.g. Drafting, Ready to Submit, Submitted |
+| Application Status | e.g. Not started, Drafting, Submitted, Complete |
 | Submission Status | Submitted, rejected, awarded, or unknown |
 | Submission Date | Date submitted; blank if not yet |
+| Application Folder | `applications/{slug}` when a pack exists; else blank |
 
-**Sheet 2: Scan Notes** — sources, date, approach, eligibility checks, exclusions, gender counts, priority-soon list.
+**Sheet 2: Scan Notes** — sources, date, approach, exclusions, gender counts, priority-soon.
+
+**Sheet 3 (new-scan only): Fit Summary** — quick FairBanks fit triage.
 
 ### Sorting
 
-Soonest Application Deadline first; unknown or rolling last.
-(Peri-urban priority rows keep their green / blue / red / black highlights.)
+Soonest deadline first; unknown or rolling last. Keep green / blue / red / black peri-urban highlights.
 
 ## Gender category — use one only
 
-- **Gender-based (women/girls):** targets women, girls, or women-led groups (e.g. AWIEF Pitch n Grow).
-- **Multi-gender (all genders):** open to everyone, even if women are encouraged.
-
-Don't create new labels unless asked.
+- **Gender-based (women/girls):** women, girls, or women-led (e.g. AWIEF).
+- **Multi-gender (all genders):** open to everyone.
 
 ## Eligibility — Uganda focus
 
-Include only if still open (future deadline or officially rolling) and Ugandans can apply (global, Africa-wide, East Africa, or Uganda-specific).
-
-Exclude — and note why — calls that skip Uganda, unfit sectors, consultancies/tenders/scholarships Ugandans can't access, and passed deadlines (unless asked for an archive). If unsure after checking the official site, leave it out and explain in Scan Notes.
+Include only if still open and Ugandans can apply (global, Africa, East Africa, or Uganda). Exclude Uganda-blocked, unfit, inaccessible, or closed calls (unless asked to archive); note why in Scan Notes.
 
 ## How to scan
 
-For each site: check homepage, category, and listing pages; review fits; verify eligibility and deadlines on listing and funder pages. If rate-limited, do targeted searches.
+Check homepage, category, and listings; verify eligibility and deadlines on listing **and** funder pages. Aggregators (e.g. fundsforNGOs) need the official funder page before apply.
 
 ## What's a good fit?
 
-Community health intelligence, CHW/VHT, digital health, disease prediction, maternal/child health; women-led deep tech (AWIEF: Deep Roots. Digital Futures); health systems, NGO/social enterprise; AI-for-good and GovTech. Keep okay fits even if the link is indirect.
+Community health intelligence, CHW/VHT, digital health, prediction, maternal/child; women-led deep tech; health systems; AI-for-good, GovTech, climate–health, DPI / safeguards. Keep okay fits even if indirect.
 
 ## Scan these sites
 
 - https://opportunitiesforyouth.org
-- https://www.fundsforngos.org
+- https://www.fundsforngos.org / https://www2.fundsforngos.org
 - https://opportunitydesk.org
 - https://www.developmentaid.org
 - https://ec.europa.eu/info/funding-tenders/opportunities/portal
@@ -77,12 +79,11 @@ Start with **Opportunities for Youth**, then the rest.
 
 ## Before submitting an update
 
-- Every description is 100 words or less (script checks).
-- Deadlines accurate; flag "verify on official site" if unclear.
-- No closed or ineligible calls in the Opportunities sheet.
-- Every row has a gender category.
-- File saves properly (close Excel if locked).
+- Descriptions ≤ 100 words; deadlines accurate (flag verify if unclear).
+- No closed/ineligible rows unless user asked to keep a submitted/archive row.
+- Every row has a gender category; submitted rows have date + Application Folder when a pack exists.
+- Close Excel if the file is locked.
 
 ## Application packs
 
-When a scan becomes a full application under `applications/`, follow `.cursor/rules/documents.mdc` and `.cursor/rules/folder_structure.mdc` — including elegant PowerPoint standards for `{project}_ppt.pptx`.
+When a call becomes a pack under `applications/`, follow `.cursor/rules/documents.mdc` and `folder_structure.mdc` (elegant PPT for `{project}_ppt.pptx`). Set **Application Folder** on the working tracker.
