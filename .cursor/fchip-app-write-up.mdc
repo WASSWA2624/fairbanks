@@ -1,0 +1,590 @@
+---
+description: FCHIP product source of truth — Community Health Intelligence Platform narrative
+alwaysApply: true
+---
+# FCHIP — Community Health Intelligence Platform
+
+**Slogan:** Your health, our mission.
+
+**Product Write-Up (Source of Truth)**
+**Sector:** HealthTech | Artificial Intelligence & Machine Learning
+**Geography:** Uganda (pilot) → East Africa → Pan-African scale
+**Use:** Canonical narrative for product framing, grants, accelerators, investors, and partners — adapt programme name, theme, and eligibility to each call. This file is the **only** product source of truth for the FCHIP app in this repo.
+
+**Mission:** Connecting Care, Empowering Communities, Creating Lasting Impact.
+**Tagline:** Health for All — *Obulamu eri Bonna* · *Afya kwa Wote* · *Oburamu bwa Boona*
+**Principles:** Health for All · Communities First · Empowerment for Sustainable Change
+
+### Canonical terms (use exactly)
+
+| Term | Meaning |
+| --- | --- |
+| **FCHIP** | Community Health Intelligence Platform — the deep-tech **product** this monorepo builds; not a hospital brand and not a generic EMR/HMS |
+| **Community health cascade** | The field system FCHIP serves (six layers + continuous **Data & Feedback** loop) — communities → CHWs/VHTs → outreach programmes → facilities → research/partners → empowerment |
+| **Outreach programmes** | Cascade layer 3 — outreach, education, screening, maternal & child, adolescent, chronic care, home visits |
+| **CHIS** | Community Health Insurance Scheme (or equivalent financial-protection schemes) — optional data domain FCHIP can monitor when partners capture enrolment, contributions, and claims |
+| **CHW / VHT** | Community Health Worker / Village Health Team — "the bridge" between households and care |
+| **EMR / HMS** | External electronic medical records / hospital management systems that FCHIP **interoperates with** via secure data APIs — FCHIP does not replace them |
+| **GIS + climate APIs** | Place and climate signals fused with community/facility data for early detection |
+
+Do **not** invent alternate product names, reorder the cascade, or describe FCHIP as a stand-alone hospital or EMR brand. Do **not** frame this product as a company ecosystem write-up — this SoT is **FCHIP only**.
+
+This file is the **complete** FCHIP source of truth. The cascade, theory of change, indicators, user journeys, architecture, MVP, and funding copy live here. Do not rely on separate concept images, PDFs, or older idea files.
+
+---
+
+## 1. Executive Summary
+
+**FCHIP** (Community Health Intelligence Platform) is a deep-technology platform that turns fragmented community and facility health signals into **predictive, climate-aware intelligence**. It connects community members, CHWs/VHTs, schools, outreach programmes, hospitals, clinics, pharmacies, and public-health decision-makers into one intelligent network — powering a continuous **Data & Feedback** loop.
+
+FCHIP **safely exposes data APIs to existing EMR/HMS systems** so facilities can share clinical records into the platform in real time — without replacing the systems clinics already use.
+
+Today, primary healthcare in underserved African communities is largely **reactive**: facilities treat patients only after illness appears, with little visibility into surrounding villages until outbreaks, complications, or stock-outs occur. FCHIP continuously analyses multi-source health data and combines it with **GIS mapping and climate APIs** to forecast disease risk, maternal complications, chronic-disease hotspots, child-health threats, climate-linked outbreaks, and medicine demand **before** crises escalate — supporting the theory of change: **Participation → Prevention → Access → Earlier care → Better health → Livelihoods → Learning → Better services**.
+
+**Vision:** To become Africa's leading Community Health Intelligence Platform — harnessing artificial intelligence, community-generated data, GIS, climate signals, and predictive analytics to transform primary healthcare from reactive treatment to proactive prevention.
+
+**Funding ask (indicative):** Support to validate and scale the working FCHIP MVP — mobile data collection for CHWs/VHTs, cloud sync, secure EMR/HMS data APIs for real-time clinical ingest, GIS and climate API integration, predictive analytics engine, and facility/district dashboards — proven in live community catchments before district and regional scale-up.
+
+---
+
+## 2. The community health cascade FCHIP serves
+
+This section is the **field operating context** FCHIP digitises and intelligently amplifies. FCHIP does not replace community programmes, clinics, or insurance schemes; it connects their signals and closes the learning loop.
+
+**Model framing:** Quality clinical care + community outreach + CHW/VHT bridges + research + economic empowerment + optional financial protection (CHIS) — so underserved communities get healthier, afford care, and stay resilient.
+
+**Focus geography (Phase 1):** Kampala peri-urban catchments — Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and surrounding communities — then district and regional expansion.
+
+### 2.1 Core cascade (top → bottom — do not reorder)
+
+1. **Community members** — Communities identify needs, participate, and own solutions ("It starts with you").
+2. **Community Health Workers / VHTs ("The Bridge")** — Outreach, education, referrals, follow-up, and **data collection** in homes, schools, churches, and community spaces ("Health workers come to you").
+3. **Outreach programmes** — Outreach · health education · screening · maternal & child health · adolescent health · chronic care · home visits; care close to home.
+4. **Medical centres, clinics & hospitals (clinical anchor)** — Clinical care, diagnostics, pharmacy, specialist support, referrals, quality assurance ("Facilities treat you" — treatment, lab tests, medicines, follow-up).
+5. **Research · Partnerships · Skills development** — Evidence · innovation · academic & institutional partners · training · capacity building ("We learn and improve").
+6. **Economic empowerment & sustainable communities** — Livelihoods · financial inclusion · **CHIS** (where used) · IGAs · savings groups · resilient families ("Families grow stronger").
+
+**Continuous feedback loop:** Community needs & priorities flow down the cascade; services & solutions flow back. Loop actors: Communities · CHWs/VHTs · Outreach programmes · Facilities · Research · Empowerment · **Data & Feedback (FCHIP)** — learn, improve, and serve again ("And it all comes back to you").
+
+### 2.2 Theory of change
+
+Participation → Prevention → Access → Earlier care → Better health → Livelihoods → Learning → Better services.
+
+### 2.3 Needs & priorities (inputs) and services & enablers (outputs)
+
+| Needs & priorities (inputs)        | Includes                                                                                                                 |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Preventive health**        | Health promotion, immunisation, screening, early detection                                                               |
+| **Education & awareness**    | Health literacy, school health, community dialogues, behaviour change                                                    |
+| **Vulnerable group support** | Women & mothers, children & adolescents, elderly, persons with disabilities, refugees, urban poor — everyone is welcome |
+
+| Services & enablers (outputs)      | Includes                                                                                           |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Livelihoods & enterprise** | CHIS (where used), IGAs, savings groups, entrepreneurship, skills for jobs                         |
+| **Data & feedback**          | Community data, monitoring & learning, continuous improvement —**this is where FCHIP sits** |
+| **Partnerships & resources** | Government, NGOs & CBOs, academic institutions, donors & private sector, CHIS partners & sponsors  |
+
+### 2.4 How FCHIP fits each layer
+
+| Cascade layer                         | FCHIP role                                                                                                                          |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Community members                     | Capture needs, participation, and household signals                                                                                 |
+| CHWs/VHTs                             | Mobile offline tools, worklists, alerts, structured data collection                                                                 |
+| Outreach programmes                   | Outreach planning, screening campaigns, school/community education metrics                                                          |
+| Medical centres / clinics / hospitals | Facility dashboard, referrals, clinical records fusion;**secure data APIs to existing EMR/HMS** for real-time clinical ingest |
+| Research · partnerships · skills    | Anonymised evidence, training analytics, partner reporting                                                                          |
+| Economic empowerment / CHIS / IGAs    | Enrolment, contribution/claims, and livelihood-linked health access indicators (where data exists)                                  |
+| **Data & feedback loop**        | GIS maps, climate API fusion, AI early warning, continuous improvement                                                              |
+
+### 2.5 Community-facing journey (plain language)
+
+Use this six-step story for community audiences (same cascade, simpler words):
+
+1. **It starts with you** — You and your neighbours tell us what your community needs.
+2. **Health workers come to you** — Trained CHWs/VHTs visit homes, schools, and churches.
+3. **Care close to home** — Health checks, health education, and care for mothers and children.
+4. **Facilities treat you** — When you need more care, clinics and hospitals treat you and follow up.
+5. **We learn and improve** — We study what works and partner with others to serve you better.
+6. **Families grow stronger** — Skills, savings, and (where available) CHIS help families stay well and afford care.
+
+**And it all comes back to you.**
+
+**Everyone is welcome:** mothers & children, young people, the elderly, persons with disabilities, every family.
+
+**How communities can engage:** talk to your community health worker · join a community health day · visit a partner facility · join CHIS where offered.
+
+### 2.6 CHIS — as a data domain (optional)
+
+Where partners run a Community Health Insurance Scheme (or similar), families pool small contributions so care is there when someone falls sick. FCHIP may later monitor enrolment, contributions, claims, and access — as programme intelligence, **not** as a replacement for clinical or climate intelligence, and **not** as FCHIP's core product identity.
+
+### 2.7 Example indicators FCHIP can digitise
+
+- CHWs/VHTs active and supervised
+- Outreach events and community screenings
+- Referrals completed to facilities
+- Maternal & child health visits / home visits
+- Health education sessions (schools & communities)
+- Households supported through livelihoods / IGAs (where tracked)
+- Households enrolled in CHIS (where used)
+- CHIS contributions collected and claims paid (where used)
+
+### 2.8 Partner ways to strengthen the FCHIP layer
+
+- Fund CHW/VHT digital training and device readiness
+- Sponsor outreach / screening / school-health data capture
+- Support maternal & child health intelligence pilots
+- Provide equipment or specialist volunteer time linked to data workflows
+- Partner on research, learning & student placements using anonymised evidence
+- Co-fund climate–health early-warning validation
+- Strengthen secure EMR/HMS API onboarding for partner facilities
+
+**Audience note:** Use section 2.5 for community materials; use sections 2.1–2.8 plus architecture for partners, funders, and technical decks.
+
+---
+
+## 3. Problem Statement
+
+### 3.1 The reactive healthcare gap
+
+Across underserved African communities, health systems face a structural information gap:
+
+| Current reality                                                            | Consequence                                                            |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Facilities wait for patients to become sick                                | Late detection of outbreaks and complications                          |
+| Care ends when the patient leaves the facility                             | No continuous view of community-level health trends                    |
+| Outreach data sits in paper registers or siloed systems                    | District offices and NGOs lack real-time intelligence                  |
+| Medicine ordering is based on historical guesswork                         | Stock-outs during seasonal disease surges                              |
+| High-risk pregnancies and NCDs are identified late                         | Preventable maternal morbidity and stroke/diabetes burden              |
+| Climate and weather signals stay separate from health data                 | Missed early warning when rainfall, heat, or floods raise disease risk |
+| Cascade data (CHW visits, referrals, school health, CHIS) stays fragmented | The continuous feedback loop cannot learn and improve in real time     |
+| Clinical data stays locked inside facility EMR/HMS systems                 | Community and facility intelligence cannot fuse in real time           |
+
+Health facilities, district health offices, NGOs, and ministries of health are forced to **react** to visible crises rather than **predict and prevent** them — despite having CHWs, outreach programmes, clinics, schools, and mobile connectivity on the ground.
+
+### 3.2 Why existing approaches fall short
+
+Many digital health tools in Africa focus on single use cases — appointment booking, EMR digitisation, or SMS reminders. These are valuable but do not constitute **deep technology** or population-level intelligence. They rarely combine:
+
+- The full community health cascade (communities → CHWs/VHTs → programmes → facilities → research → empowerment)
+- Multi-source community and facility data (CHWs/VHTs, schools, communities, hospitals, clinics, pharmacies, outreach, CHIS/IGA signals where available)
+- AI/ML-driven predictive modelling
+- **GIS mapping** of disease and risk geography
+- **Climate API integration** linked to health outcomes
+- **Safe interoperability with existing EMR/HMS** so clinical data can flow in real time without ripping out systems facilities already use
+- Real-time decision support for frontline workers and policy makers — closing the **Data & Feedback** loop
+
+The result is fragmented data, delayed response, and missed opportunities for climate-aware prevention at the community level — exactly the gap **FCHIP** is built to close.
+
+---
+
+## 4. Solution: FCHIP
+
+### 4.1 Product positioning
+
+| Instead of                      | We present                                                                                              |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| "Just an app"                   | **FCHIP** — the digital nervous system for community health intelligence across the cascade      |
+| "A hospital system"             | A**predictive intelligence platform** that interoperates with EMR/HMS — it does not replace them |
+| "Single-purpose digital health" | Multi-source AI + GIS + climate fusion for population-level early warning and action                    |
+
+**FCHIP** connects communities, healthcare providers, governments, and development partners through one intelligent system that powers the continuous feedback loop.
+
+### 4.2 What FCHIP analyses (existing and planned data sources)
+
+FCHIP continuously receives and analyses structured health information along the cascade, including:
+
+- **Community Health Workers and Village Health Teams** (household visits, symptom checks, referrals, data collection — “the bridge”)
+- **Schools** (school health programmes, screening camps, absenteeism and wellness signals, health education sessions)
+- **Communities** (outreach events, churches, mosques, community dialogues, self-reporting via mobile where used)
+- **Hospitals and clinics** (encounters, vitals, diagnoses, digital health records, completed referrals)
+- **Existing EMR/HMS systems** (via FCHIP’s securely exposed data APIs — authenticated, consent-aware, least-privilege access — so facilities can push or sync clinical data into FCHIP in real time without replacing their current software)
+- Patients and caregivers (via mobile applications and self-reporting)
+- Pharmacies, drug shops, and medicine outlets (dispensing patterns, stock levels, common complaints)
+- Maternal and child health touchpoints (ANC/PNC visits, immunisation posts, nutrition programmes, home visits)
+- Corporate and workplace wellness programmes (BP, BMI, glucose, occupational health checks)
+- Laboratories and point-of-care testing (malaria RDTs, HIV, Hb, glucose, and related results)
+- Geriatric and chronic-disease follow-up cohorts (hypertension, diabetes, elderly care)
+- **CHIS and livelihood programmes** (enrolment, contribution status, IGA/savings-group participation linked to health access — where captured)
+- Public health and administrative systems (district HMIS/DHIS2 aggregates, where integration is approved)
+- Research partners and programme M&E teams (anonymised field datasets from NGO and academic collaborations)
+
+### 4.3 GIS mapping, climate API integration, and early detection
+
+A defining FCHIP capability is **combining place, climate, and community health signals** for earlier detection:
+
+| Capability                         | Role                                                                                                                                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **GIS mapping**              | Maps disease distribution, risk hotspots, resource gaps, and alert geography by village/parish/facility catchment                                                              |
+| **Climate API integration**  | Ingests weather and climate feeds (e.g. rainfall, temperature, humidity, extreme heat, flood-related signals) into the FCHIP pipeline                                          |
+| **Climate–health fusion**   | Links seasonal and short-term climate patterns to climate-sensitive conditions (e.g. malaria/fever clusters after rainfall, heat-related strain, diarrhoeal risk after floods) |
+| **Multi-source analysis**    | Fuses climate and GIS layers with CHW/VHT, school, community, hospital, and clinic data to score risk and trigger early warnings                                               |
+| **Early detection**          | Surfaces explainable alerts to CHWs, facilities, and district partners*before* caseloads spike                                                                               |
+| **Secure EMR/HMS data APIs** | Safely expose authenticated APIs so existing EMR/HMS systems can send clinical data into FCHIP in real time                                                                    |
+
+**Example:** Rising fever reports from VHTs in three neighbouring villages + above-normal rainfall from the climate API + GIS clustering → FCHIP flags elevated malaria/outbreak risk within a defined window → outreach, testing, and pharmacy pre-stocking deploy early.
+
+### 4.4 Platform architecture
+
+FCHIP sits between **field and climate capture** and **decision-makers**, on top of the community health cascade. Data flows in from the community, climate APIs, and **existing EMR/HMS systems via secure data APIs**, is processed by intelligence modules (including GIS), and returns as alerts, dashboards, and referrals — closing the continuous feedback loop.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     DATA SOURCES (last mile)                    │
+│  CHWs/VHTs · Schools · Communities · Hospitals · Clinics        │
+│  Patients (mobile) · Pharmacies · ANC/PNC · Corporate wellness  │
+│  Labs/PoC · Gericare / NCD · HMIS/DHIS2 (where approved)        │
+│  Existing EMR/HMS (via secure FCHIP data APIs)                  │
+│  Research / NGO M&E · Climate API (rainfall, heat, extremes)    │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│         CAPTURE LAYER — Mobile, facility & climate feeds        │
+│  Offline forms · secure EMR/HMS APIs · climate API ingest       │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              FCHIP — COMMUNITY HEALTH INTELLIGENCE              │
+│                                                                 │
+│  ┌────────┐ ┌────────────┐ ┌─────────┐ ┌──────────┐ ┌─────────┐ │
+│  │ AI/ML  │ │ Predictive │ │ GIS     │ │ Climate  │ │ Clinical│ │
+│  │ Engine │ │ Analytics  │ │ Maps    │ │ Fusion   │ │ Support │ │
+│  └────────┘ └────────────┘ └─────────┘ └──────────┘ └─────────┘ │
+│     Risk scores · climate-aware early warnings · hotspots       │
+└───────────┬─────────────────┬─────────────────┬─────────────────┘
+            │                 │                 │
+            ▼                 ▼                 ▼
+   ┌────────────────┐ ┌──────────────┐ ┌──────────────────────┐
+   │ CHW / VHT      │ │ Health       │ │ District Health      │
+   │ mobile alerts  │ │ Facility     │ │ Office · NGOs ·      │
+   │ & worklists    │ │ Dashboard    │ │ Partners             │
+   └───────┬────────┘ └──────┬───────┘ └──────────┬───────────┘
+           │                 │                    │
+           └─────────────────┴────────────────────┘
+                             │
+                             ▼
+                    Actions in the community
+         (referrals · outreach · stock · surveillance)
+```
+
+| Layer                  | Role                                                                                                 |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Data sources** | CHWs/VHTs, schools, communities, hospitals, clinics, EMR/HMS, climate, and related cascade signals   |
+| **Capture**      | Mobile/offline +**secure EMR/HMS data APIs** + facility systems + **climate API** ingest |
+| **FCHIP core**   | AI/ML, predictive analytics,**GIS maps**, climate fusion, clinical guidance                    |
+| **Consumers**    | CHWs (field), facilities (care), districts/partners (programmes)                                     |
+
+FCHIP is the **digital nervous system** for community healthcare — moving data from the last mile, facility EMR/HMS feeds, and climate APIs to decision-makers in near real time, and closing the loop with actionable alerts back to the field.
+
+---
+
+## 5. Deep Technology Core
+
+Funders looking for substantial research and engineering — not lightweight digital services — will find FCHIP meets that bar through an integrated deep-tech stack:
+
+| Technology                            | Function in FCHIP                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Artificial Intelligence**     | Disease-risk prediction, outbreak early warning, maternal and NCD risk scoring                         |
+| **Machine Learning**            | Pattern learning from historical community health data, seasonal/climate trends, and outreach outcomes |
+| **GIS Mapping**                 | Geospatial visualisation of disease distribution, climate-linked hotspots, and resource gaps           |
+| **Climate API integration**     | Live and forecast weather/climate feeds fused with health signals for early detection                  |
+| **Secure EMR/HMS data APIs**    | Authenticated APIs so existing EMR/HMS systems can share clinical data into FCHIP in real time         |
+| **Mobile Data Collection**      | Offline-capable CHW/VHT apps for structured capture at household and community level                   |
+| **Cloud Computing**             | Secure synchronisation across facilities, partners, and administrative levels                          |
+| **Analytics Dashboard**         | Real-time trend and map monitoring for clinicians, programme managers, and district officials          |
+| **Natural Language Processing** | Local-language symptom reporting and summarisation where appropriate                                   |
+
+This combination — AI + ML + **GIS** + **climate APIs** + **secure EMR/HMS interoperability** + edge/mobile capture + cloud orchestration — is the **deep technology core** that distinguishes FCHIP from a simple health app or consumer website.
+
+---
+
+## 6. Predictive Use Cases (Proof of Concept Scenarios)
+
+### 6.1 Disease surveillance (climate-aware)
+
+**Signal:** Three neighbouring villages report increasing fever cases via VHT mobile entries; climate API shows recent heavy rainfall; GIS maps a tight geographic cluster.
+**Prediction:** Possible malaria outbreak within 14 days.
+**Action:** District office and outreach teams deploy targeted testing, bed-net distribution, and pharmacy pre-stocking.
+
+### 6.2 Maternal health
+
+**Signal:** Pregnant mothers' home-visit data (BP, haemoglobin proxies, visit adherence); heat extremes from climate API where relevant.
+**Prediction:** High-risk pregnancy, missed antenatal care, anaemia risk, possible pre-eclampsia / heat-related strain.
+**Action:** CHWs receive alerts; mothers are referred before complications occur.
+
+### 6.3 Non-communicable diseases (NCDs)
+
+**Signal:** Blood pressure readings from community screening, clinics, hospitals, and corporate/school programmes.
+**Prediction:** Communities with rising hypertension, diabetes hotspots, elevated stroke risk.
+**Action:** Targeted screening campaigns and lifestyle intervention planning.
+
+### 6.4 Child health
+
+**Signal:** Growth monitoring, immunisation records, diarrhoea incidence from CHWs, schools, and clinics; flood/sanitation-linked climate signals where available.
+**Prediction:** Rising malnutrition, low immunisation coverage, diarrhoeal disease clusters.
+**Action:** Community flags trigger nutrition support and immunisation drives.
+
+### 6.5 Medicine demand forecasting
+
+**Signal:** Disease trends, rainfall patterns (climate API), historical consumption, outreach schedules, hospital/clinic utilisation.
+**Prediction:** Medicine demand by facility and community before stock-outs.
+**Action:** Procurement and pharmacy replenishment aligned to forecasted need.
+
+### 6.6 Cascade / loop metrics
+
+**Signal:** CHW activity, completed referrals, school health sessions, CHIS enrolment, IGA participation (where tracked).
+**Prediction / insight:** Gaps in the cascade (e.g. high outreach but low completed referrals; low CHIS coverage in a high-risk parish).
+**Action:** Programme managers rebalance training, camps, co-funding, or facility capacity — "learn, improve, and serve again."
+
+### 6.7 Do not invent alternate product identity
+
+- Do **not** describe FCHIP as a generic hospital management system or EMR brand.
+- Do **not** reorder the community health cascade or invent parallel programme names.
+- Facility clinical tools may support the facility layer, but product copy, pitch, and agent framing must follow this SoT.
+- Do **not** reframe this product SoT as a non-FCHIP company or ecosystem narrative.
+
+---
+
+## 7. Target Market & Customers
+
+| Customer segment                          | Value delivered                                                       |
+| ----------------------------------------- | --------------------------------------------------------------------- |
+| **Medical centres & clinics**       | Better follow-up, outreach planning, and population health visibility |
+| **District health offices**         | Population-level disease intelligence and early warning               |
+| **NGOs & development partners**     | Real-time M&E, impact evidence, programme optimisation                |
+| **Community health workers / VHTs** | Mobile tools, structured workflows, decision support                  |
+| **Insurance companies**             | Prevention-focused population health insights                         |
+| **Ministries of health**            | National and sub-national planning, outbreak preparedness             |
+| **Research institutions**           | Ethical, anonymised datasets for community health research            |
+
+**Primary market (Phase 1):** Uganda — starting with established peri-urban community catchments and partner facility networks.
+**Expansion markets (Phase 2–3):** East Africa, then additional African countries with similar primary healthcare and CHW/VHT infrastructure.
+
+---
+
+## 8. Business Model & Revenue Streams
+
+FCHIP monetises through a diversified, scalable model:
+
+1. **Subscription licences** for clinics and hospitals
+2. **District health office** deployments (SaaS + implementation)
+3. **NGO programme monitoring** contracts
+4. **Ministry of Health** national/sub-national implementations
+5. **Custom analytics and reporting** for partners
+6. **Research collaborations** with universities
+7. **API integrations** for digital health, climate-data ecosystem partners, and **secure EMR/HMS data APIs** that let facilities plug clinical feeds into FCHIP in real time
+8. **Training and certification** for community health workers on platform use
+9. **Implementation partnerships** (section 2.8): digital CHW training, outreach data capture, maternal & child intelligence pilots, EMR/HMS onboarding, climate–health validation
+
+This multi-channel model reduces dependence on a single revenue stream and aligns with B2G, B2B, and B2B2C pathways common in African HealthTech scale-up.
+
+---
+
+## 9. Traction, Foundation & Competitive Advantage
+
+### 9.1 Live validation foundation
+
+FCHIP is not a concept-stage idea disconnected from the field. The cascade in **section 2** is the operating frame for validation. Active ground truth includes:
+
+- **CHW and VHT engagement** in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and surrounding Kampala peri-urban communities
+- **Maternal and child health** initiatives and home visits
+- **School health** and community health education
+- **Geriatric and chronic-disease** screening / follow-up cohorts
+- **Corporate and school health** programmes
+- **Partner facility** workflows with digital health record foundations
+- **Optional CHIS / livelihood** indicators where programmes capture them
+- **Research and community partnerships**
+- **Example indicators** already in programme logic: active CHWs/VHTs, outreach/screenings, completed referrals, MCH home visits, school/community education sessions, and (where used) CHIS/IGA metrics
+
+### 9.2 Why FCHIP wins
+
+| Typical startup                 | Typical health facility         | FCHIP                                                                         |
+| ------------------------------- | ------------------------------- | ----------------------------------------------------------------------------- |
+| Technology without field access | Patients without technology     | **Both**: live cascade access + deep-tech intelligence                  |
+| Imported solutions              | Manual, reactive workflows      | **Context-rooted** AI built from African community health realities     |
+| Pilot without validation site   | Data without intelligence layer | **Design → pilot → validate → refine** inside the live feedback loop |
+
+FCHIP can be **designed, piloted, validated, and refined** inside operating community health cascades — de-risking product-market fit for district and national deployment.
+
+### 9.3 Venture stage (for funders)
+
+| Stage                           | Fit assessment                                                                                                 |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Early / idea**          | Less relevant now that a working FCHIP MVP exists                                                              |
+| **Startup (typical fit)** | Strong fit: working MVP to validate and scale on proven field operations with CHWs/VHTs and partner facilities |
+| **Scale-up**              | Future state after multi-market expansion and institutional funding                                            |
+
+---
+
+## 10. Social Impact & Development Alignment
+
+### 10.1 Impact thesis
+
+FCHIP shifts primary healthcare from **sick-care** to **predictive, climate-aware, community-centred prevention** — and can link better health to **livelihoods and financial protection** where those programmes exist — directly benefiting underserved populations who depend on CHWs, outreach, schools, clinics, and under-resourced facilities.
+
+### 10.2 Expected outcomes
+
+- **Earlier outbreak detection** (including climate-linked risk) and reduced morbidity from communicable diseases
+- **Fewer maternal and neonatal complications** through risk-based alerting
+- **Reduced NCD burden** via hotspot-targeted screening
+- **Improved child nutrition and immunisation coverage** through community-level monitoring
+- **Reduced medicine stock-outs** and more efficient public-health resource allocation
+- **Stronger cascade performance**: supervised CHWs, completed referrals, school/community education, CHIS and IGA reach (where tracked)
+- Progress along the theory of change: Participation → Prevention → Access → Earlier care → Better health → Livelihoods → Learning → Better services
+- **Evidence base** for NGOs, donors, and governments to invest in what works
+
+### 10.3 Sustainable Development Goal (SDG) alignment
+
+| SDG                                                        | FCHIP contribution                                                           |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **SDG 3 – Good Health and Well-Being**              | Predictive community health, maternal/child/NCD focus                        |
+| **SDG 1 / livelihoods**                              | Optional CHIS, IGA, and savings-group intelligence where partners capture it |
+| **SDG 5 – Gender Equality**                         | Women-led venture; maternal health intelligence                              |
+| **SDG 9 – Industry, Innovation and Infrastructure** | Deep-tech health infrastructure for last-mile Africa                         |
+| **SDG 10 – Reduced Inequalities**                   | Intelligence and care for underserved / vulnerable groups                    |
+| **SDG 13 – Climate Action**                         | Climate API + health fusion for early warning and response                   |
+| **SDG 17 – Partnerships**                           | Multi-stakeholder cascade + FCHIP integration                                |
+
+---
+
+## 11. MVP Scope & Product Roadmap
+
+### 11.1 Minimum Viable Product (MVP)
+
+**Status:** Working MVP exists. Phase 1 focus is real-world validation, usability, and evidence inside live community catchments — not greenfield build.
+
+**Goal:** Prove predictive community health intelligence — with GIS and climate fusion — with CHWs/VHTs, facility teams, and partners.
+
+| MVP component                        | Description                                                                                                                        |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **CHW/VHT mobile app**         | Offline data capture: symptoms, vitals, maternal/child indicators, household visits, referrals                                     |
+| **Multi-source ingest**        | Connect CHW/VHT, school, community, hospital, and clinic signals                                                                   |
+| **Secure EMR/HMS data APIs**   | Authenticated, consent-aware APIs so existing EMR/HMS systems can push clinical data into FCHIP in real time                       |
+| **Cascade / loop metrics**     | Digitise core indicators (CHW activity, outreach, referrals, school sessions; CHIS/IGA where available)                            |
+| **Cloud sync & data pipeline** | Secure ingestion, validation, and storage from field, EMR/HMS, and climate feeds                                                   |
+| **Climate API integration**    | Rainfall, temperature, and extreme-weather feeds fused with health events                                                          |
+| **Analytics dashboard**        | Facility- and programme-level view of trends, alerts, maps, cascade gaps, and outreach priorities                                  |
+| **AI Module v1**               | Rule-based + ML-assisted risk scoring for priority use cases (e.g. fever cluster + rainfall, maternal risk flags, BP trend alerts) |
+| **GIS layer v1**               | Map visualisation of reported cases, climate overlays, and risk zones by village/parish                                            |
+| **Pilot integration**          | Connect existing digital records, EMR/HMS feeds, and cascade workflows from section 2                                              |
+
+### 11.2 Roadmap
+
+| Phase                                    | Timeline (indicative) | Milestones                                                                                                                                                         |
+| ---------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Phase 1 – Validate**            | Months 0–12          | Validate MVP with CHWs/VHTs; GIS + climate API; secure EMR/HMS data APIs; prove 3 predictive use cases + cascade metrics; measure alert accuracy and response time |
+| **Phase 2 – District scale**      | Months 12–24         | Expand to partner clinics/hospitals and district structures; broader EMR/HMS API onboarding; NGO M&E; optional CHIS/livelihood dashboards; partner APIs            |
+| **Phase 3 – National & regional** | Months 24–36         | Multi-district Uganda deployment; East Africa market entry; advanced ML and medicine demand forecasting                                                            |
+| **Phase 4 – Platform expansion**  | Year 3+               | Clinical decision support, expanded NLP for local languages, research modules, optional future capabilities (e.g. workforce wellbeing analytics)                   |
+
+---
+
+## 12. Funding Fit Themes
+
+Use this section to map **FCHIP** to a specific call's theme or criteria.
+
+| Common funder priority                      | FCHIP response                                                                                         |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Local context and community roots           | Cascade in named Kampala peri-urban communities; CHW/VHT relationships; primary care + optional CHIS   |
+| Deep understanding of communities           | Model rooted in how communities participate, access care, and build livelihoods (section 2)            |
+| Deep technology, not superficial digital    | AI + ML + GIS + climate APIs + secure EMR/HMS data APIs + mobile edge + cloud + NLP on Data & Feedback |
+| African problems, African-built solutions   | Technology developed and validated in African community health operations                              |
+| Climate–health nexus                       | Climate API fusion with community and facility signals for early detection                             |
+| Health + livelihoods / financial protection | Optional CHIS, IGAs, savings groups as cascade empowerment signals FCHIP can monitor                   |
+| Women-led / gender-responsive health        | Women-led venture; maternal health intelligence; vulnerable-group support                              |
+
+### Sector snapshot (adapt per call)
+
+- **Sector:** HealthTech / digital health / climate–health / community health systems (as relevant)
+- **Deep-tech core:** Artificial Intelligence & Machine Learning (plus GIS and climate integration)
+- **Market focus:** African communities (Uganda pilot → continental scale)
+- **Founder profile:** Women-led; present eligibility as required by each programme
+- **Operating-context proof:** Section 2 (cascade, indicators, partner menu, community-facing journey)
+
+---
+
+## 13. Application-Ready Copy Blocks
+
+*Use the sections below when completing grant, accelerator, or investor applications. Swap in the call name and word limits as needed.*
+
+### 13.1 One-line pitch
+
+FCHIP is a Community Health Intelligence Platform that uses AI, GIS, and climate APIs with community and facility data — plus secure EMR/HMS interoperability — to turn African primary healthcare from reactive treatment to proactive prevention.
+
+### 13.2 Problem (short form)
+
+Underserved African communities lack real-time health intelligence. Facilities treat sickness after it appears, while data from CHWs, schools, communities, hospitals, and clinics stays fragmented — climate signals rarely join the picture, and clinical records often stay locked in facility EMR/HMS systems — so the feedback loop cannot learn fast enough to prevent outbreaks, maternal complications, or stock-outs.
+
+### 13.3 Solution (short form)
+
+FCHIP sits on the community health cascade: it ingests multi-source health data (CHW/VHT, schools, communities, hospitals, clinics), safely exposes data APIs to existing EMR/HMS systems for real-time clinical capture, fuses signals with GIS maps and climate APIs, and delivers predictive alerts and dashboards so facilities, districts, and partners can act before crises escalate.
+
+### 13.4 Why now
+
+Mobile penetration, CHW networks, open climate data, and cloud infrastructure make community health intelligence deployable at scale — and a working FCHIP MVP is ready to validate and scale on live cascade operations.
+
+### 13.5 Unique value proposition
+
+A **deep-tech predictive health platform** (GIS + climate + multi-source analysis + secure EMR/HMS APIs) validated inside a **live community health cascade** — allowing real-world design, pilot, and proof before district and national scale. Full operating context: **section 2**.
+
+### 13.6 Technology demo narrative (3-minute video script outline)
+
+1. **Hook (0:00–0:20):** "Health facilities wait for patients to get sick. We predict what happens in the community — and the climate — before they arrive."
+2. **Problem (0:20–0:50):** Show reactive clinic flow vs. invisible community and climate-linked disease trends.
+3. **Context (0:50–1:10):** Brief cascade (section 2) — then FCHIP as the intelligence layer on Data & Feedback.
+4. **Solution (1:10–1:50):** CHW/clinic/school capture + secure EMR/HMS APIs → climate API → FCHIP (AI + GIS) → facility dashboard → district map.
+5. **Use case (1:50–2:25):** Rainfall + fever cluster or maternal risk alert triggered and acted upon.
+6. **Traction (2:25–2:45):** Live catchments, CHW/VHT networks, partner facilities, working MVP.
+7. **Ask & vision (2:45–3:00):** Validation and scale support; vision for Africa's leading Community Health Intelligence Platform.
+
+### 13.7 Suggested pitch deck structure (10–12 slides)
+
+1. Title & one-line vision (FCHIP)
+2. Problem: reactive healthcare in underserved communities
+3. **How the cascade works** (section 2.1–2.8 for partners/funders; 2.5 for community audiences)
+4. Solution: FCHIP on the Data & Feedback loop
+5. Deep technology architecture (AI, GIS, climate API, secure EMR/HMS data APIs)
+6. How it works (data flow diagram)
+7. Use cases: surveillance, maternal, NCD, child health, pharmacy, cascade metrics
+8. Market & customers / partner pathways
+9. Business model
+10. Traction & competitive advantage
+11. MVP & roadmap · Impact & SDG alignment
+12. Team, ask, and contact
+
+*Community audiences:* use section 2.5. *Partners / funders:* use sections 2.1–2.8 plus FCHIP architecture.
+
+---
+
+## 14. Risks & Mitigation (Grant Reviewer Section)
+
+| Risk                            | Mitigation                                                                                                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Data quality from field capture | Structured mobile forms, validation rules, CHW training and certification                                                                              |
+| Climate / GIS data gaps         | Start with proven public climate APIs and simple overlays; validate against clinical outcomes                                                          |
+| Low CHW digital literacy        | Simple UX, offline mode, local-language support, supervised rollout through existing VHT networks                                                      |
+| Privacy and consent             | Ethical data governance, anonymisation for analytics, data-protection compliance; EMR/HMS APIs use authentication, consent, and least-privilege scopes |
+| EMR/HMS integration friction    | Expose stable, well-documented data APIs; start with willing partner facilities; do not require replacing existing EMR/HMS                             |
+| Model accuracy in early phase   | Start with rule-based + limited ML scope; validate against clinical outcomes before scaling algorithms                                                 |
+| Adoption by public sector       | Pilot evidence from live catchments; NGO and district co-design; align with MoH community health strategy                                              |
+| Cascade / CHIS data incomplete  | Phase indicators: start with CHW, referral, and facility signals; add CHIS/IGA metrics as capture matures                                              |
+
+---
+
+## 15. Conclusion
+
+**FCHIP** is a Community Health Intelligence Platform grounded in the cascade operating context in **section 2**. It delivers deep-technology solutions rooted in African community health reality — ready to adapt to grants, accelerators, investors, and development partners.
+
+With established CHW/VHT relationships across Kampala peri-urban communities, school and clinic programme access, digital health foundations, and a **working FCHIP MVP**, the product is ready to validate, refine, and scale — connecting multi-source community data and climate signals to life-saving predictions, and closing the continuous loop: **learn, improve, and serve again**.
+
+**Next immediate steps:**
+
+1. Validate the working MVP on Phase 1 priorities (climate-aware surveillance, maternal risk, NCD hotspots, cascade metrics) with GIS, climate API, and secure EMR/HMS data API integration in the live catchment
+2. Tailor this narrative to each funding call (theme, eligibility, ask, and word limits); choose partner vs community framing from section 2
+3. Keep pitch deck and technology demo materials current (include cascade slide drawn from section 2)
+4. Run structured CHW/VHT and facility validation cohorts in primary catchment communities
+
+---
+
+*Canonical FCHIP product source of truth. Path: `.cursor/app-write-up.mdc`. If another rule conflicts on product framing, this file wins. The community health cascade is fully specified in section 2.*
