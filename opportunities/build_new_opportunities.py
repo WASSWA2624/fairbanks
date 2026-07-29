@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Build opportunities/new_opportunities.xlsx from the July 2026
-www2.fundsforngos.org scan for FairBanks / FCHIP.
+"""Build opportunities/new_opportunities.xlsx — fresh scan (29 July 2026).
 
-Same Excel layout as opportunities/opportunities.xlsx
-(per opportunities/rules/source_of_truth.mdc).
+Clears prior rows and writes only still-open, Uganda-eligible FairBanks /
+FCHIP fits not already on the working tracker (best_opportinities.xlsx) or
+the canonical rebuild list in build_opportunities.py.
+
+Layout per opportunities/rules/source_of_truth.mdc.
+Applicant context: FAIRBANKS MEDICAL CENTRE LIMITED — women-led Ugandan
+private company (not NGO); Community Reach + FCHIP.
 """
 
 from datetime import datetime
@@ -18,319 +22,165 @@ OUT = ROOT / "new_opportunities.xlsx"
 GENDER_BASED = "Gender-based (women/girls)"
 MULTI_GENDER = "Multi-gender (all genders)"
 
-# Only still-open, Uganda-eligible, FairBanks-applicable calls found on
-# https://www2.fundsforngos.org/ (verified 20 July 2026). Prefer official
-# apply URLs when known; otherwise the fundsforNGOs listing page.
-# Excludes anything already tracked in opportunities/opportunities.xlsx.
+# Verified open as of 29 July 2026. Prefer official URLs.
+# Excludes closed calls, Uganda-blocked countries, Switzerland-only work
+# permits, NGO-INGO-only sport RFPs, agriculture-only AI challenges, and
+# anything already on best_opportinities / build_opportunities.py.
 OPPORTUNITIES = [
     {
-        "title": "ISS African Futures & Innovation — Young Changemakers 2026",
-        "url": "https://www2.fundsforngos.org/science/call-for-submissions-young-changemakers-2026/",
+        "title": "Nexa Transition to Scale — Climate × Health (extended)",
+        "url": "https://www.grandchallenges.ca/funding-opportunity-nexa/",
         "gender": MULTI_GENDER,
         "description": (
-            "Institute for Security Studies call for young Africans "
-            "(18–35) to share innovative ideas about Africa’s future. "
-            "Visibility and networking for youth-led community health "
-            "intelligence concepts. Uganda eligible via Africa-wide "
-            "scope. Confirm age and submission format on the official "
-            "ISS / African Futures page before applying."
+            "Grand Challenges Canada / Science for Africa Foundation "
+            "Transition to Scale track for innovations that turn "
+            "climate-driven health risk signals into timely care "
+            "(mosquito-borne disease, heat, air quality). Funding about "
+            "USD 250,000–2,000,000. PoC window closed 22 July; TTS "
+            "extended to 12 August 2026, 2 p.m. ET via Fluxx. Uganda "
+            "eligible. Strong FCHIP climate–GIS early-warning fit if "
+            "MVP evidence is ready to scale. Confirm TTS maturity bar."
         ),
-        "deadline": "26 July 2026",
-        "deadline_sort": "2026-07-26",
-        "fit": "Visibility / youth innovation",
+        "deadline": "12 August 2026 (2:00 p.m. ET / 6:00 p.m. UTC)",
+        "deadline_sort": "2026-08-12",
+        "fit": "FCHIP climate early warning scale",
+        "highlight": "00B0F0",
     },
     {
-        "title": "Feminist Leadership Accelerator for Change Fellowship 2026",
-        "url": "https://www2.fundsforngos.org/leadership/feminist-leadership-accelerator-for-change-fellowship-2026/",
-        "gender": GENDER_BASED,
+        "title": "CDC — Strengthening Global Health Security via Local Partnerships (Uganda)",
+        "url": "https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b",
+        "gender": MULTI_GENDER,
         "description": (
-            "Structured leadership and learning fellowship for young "
-            "women across Africa. Builds advocacy, organising, and "
-            "leadership capacity useful for a women-led FairBanks "
-            "community health venture. Not a direct FCHIP product grant "
-            "but strong founder/team development. Confirm age and "
-            "eligibility on the official programme page."
+            "CDC cooperative agreement (CDC-RFA-JG-26-0054) to strengthen "
+            "Uganda capacities for prevent, detect, and respond — "
+            "surveillance, labs, rapid response, and multi-hazard "
+            "preparedness. About USD 5M programme total; ~3 awards. "
+            "Listing includes for-profit / unrestricted entity types, "
+            "so a Ugandan private health company may apply — still a "
+            "large USG package. Strong thematic fit with FCHIP "
+            "community–facility surveillance intelligence. Confirm "
+            "full NOFO eligibility and partnership expectations on "
+            "Simpler.Grants.gov before drafting."
         ),
-        "deadline": "27 July 2026",
-        "deadline_sort": "2026-07-27",
-        "fit": "Women founder capacity",
+        "deadline": "14 August 2026 (11:59 p.m. ET)",
+        "deadline_sort": "2026-08-14",
+        "fit": "Uganda health security / surveillance",
+        "highlight": "00B0F0",
+    },
+    {
+        "title": "Blue Ambition Fund 2026 (Wilde Ganzen) — Uganda / Ethiopia / South Africa",
+        "url": "https://www.wildeganzen.org/programs/blue-ambition-fund/baf-call-for-applications",
+        "gender": MULTI_GENDER,
+        "description": (
+            "Wilde Ganzen Blue Ambition Fund supports non-profits and "
+            "social enterprises creating jobs for youth (15–35) and "
+            "women via skills-to-employment or support to small growing "
+            "businesses. Grants about EUR 100,000–300,000 over 2–3 "
+            "years; org annual budget roughly EUR 300k–5M. Uganda "
+            "eligible. Aligns with FairBanks livelihoods / CHIS / "
+            "IGA empowerment layer more than FCHIP tech. Frame as "
+            "social enterprise; confirm budget band and own-contribution "
+            "rules in BAF participation requirements."
+        ),
+        "deadline": "15 August 2026",
+        "deadline_sort": "2026-08-15",
+        "fit": "Livelihoods / women & youth jobs",
         "highlight": "92D050",
     },
     {
-        "title": "DPI Safeguards Accelerator (Digital Public Infrastructure)",
-        "url": "https://www2.fundsforngos.org/construction/safeguards-accelerator-supporting-safe-and-inclusive-digital-public-infrastructure/",
+        "title": "Australian High Commission DAP 2026–27 (East Africa — incl. Uganda)",
+        "url": "https://kenya.highcommission.gov.au/nair/dap.html",
         "gender": MULTI_GENDER,
         "description": (
-            "Global cohort programme helping NGOs, CSOs, CBOs, and UN "
-            "entities build safe, inclusive safeguards into Digital "
-            "Public Infrastructure. Catalytic grants up to about USD "
-            "70,000 plus tools and peer learning. Relevant if FCHIP "
-            "aligns with national digital health / DPI pathways and "
-            "privacy safeguards. Uganda tagged; confirm active DPI "
-            "project requirement on the official accelerator site."
+            "Direct Aid Program small grants up to AUD 60,000 for "
+            "community projects in Burundi, Kenya, Rwanda, Somalia, "
+            "Tanzania, or Uganda. 2026–27 priorities include health and "
+            "community wellbeing, climate adaptation, gender equality, "
+            "and essential services. Apply via SmartyGrants. Typically "
+            "targets NGOs/CBOs and registered community groups — "
+            "FairBanks would need a clear community project frame "
+            "(e.g. outreach / CHW / maternal–child). Confirm applicant "
+            "type on the Nairobi DAP page before drafting."
         ),
-        "deadline": "30 July 2026",
-        "deadline_sort": "2026-07-30",
-        "fit": "Digital health safeguards / DPI",
-        "highlight": "00B0F0",
+        "deadline": "16 August 2026 (11:59 p.m. EAT)",
+        "deadline_sort": "2026-08-16",
+        "fit": "Community health / climate small grant",
     },
     {
-        "title": "UNDP African Youth Co-Creators Council 2026",
-        "url": "https://www.undp.org/africa/blog/call-applications-african-youth-co-creators-council",
+        "title": "AU–UNDP YouthConnekt Africa Export Accelerator 2026",
+        "url": "https://opportunitiesforyouth.org/2026/07/21/african-union-undp-youthconnekt-africa-export-accelerator-2026-applications-open-for-youth-led-businesses-expanding-across-africa/",
         "gender": MULTI_GENDER,
         "description": (
-            "UNDP selects 11 young African leaders (about 18–34, Africa "
-            "or diaspora) to advise on youth policy, programmes, and "
-            "partnerships. High visibility for community health and "
-            "digital innovation voices. Not a project grant. Ugandans "
-            "eligible. Apply via the official UNDP Africa call."
-        ),
-        "deadline": "31 July 2026",
-        "deadline_sort": "2026-07-31",
-        "fit": "Youth policy advisory visibility",
-    },
-    {
-        "title": "Uganda Public Health Fellowship Program (UPHFP) — Field Epidemiology Track",
-        "url": "https://www2.fundsforngos.org/leadership/advanced-field-epidemiology-fellowship-program-uganda/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Two-year learning-through-service fellowship strengthening "
-            "Uganda’s field epidemiology workforce (outbreaks, "
-            "surveillance, investigations). Directly relevant to FCHIP "
-            "disease-surveillance capacity and MoH links. Individual "
-            "fellowship for Ugandan public-health professionals — "
-            "useful for FairBanks staff/partners. Confirm degree, "
-            "employer, and MoH/CDC application steps on the official "
-            "UPHFP site."
-        ),
-        "deadline": "31 July 2026",
-        "deadline_sort": "2026-07-31",
-        "fit": "Uganda epidemiology capacity (strong)",
-        "highlight": "00B0F0",
-    },
-    {
-        "title": "Uganda Public Health Fellowship Program (UPHFP) — Laboratory Leadership Track",
-        "url": "https://www2.fundsforngos.org/leadership/laboratory-leadership-fellowship-program-uganda/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Two-year UPHFP fellowship to strengthen Uganda’s public "
-            "health laboratory leadership. Supports lab quality, "
-            "networks, and outbreak readiness that complement FairBanks "
-            "community testing and surveillance pathways. Individual "
-            "Ugandan applicants; verify lab experience and official "
-            "UPHFP application requirements before preparing a package."
-        ),
-        "deadline": "31 July 2026",
-        "deadline_sort": "2026-07-31",
-        "fit": "Uganda lab leadership capacity",
-    },
-    {
-        "title": "Barry & Marie Lipman Family Prize 2027 (University of Pennsylvania)",
-        "url": "https://www2.fundsforngos.org/cat/submission-open-for-lipman-family-prize-2027/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Prize recognising nonprofits with exceptional leadership, "
-            "innovation, and measurable social impact on global "
-            "challenges. Possible organisational recognition path for "
-            "FairBanks community health work. Highly selective; confirm "
-            "nomination/application rules and geography on the official "
-            "Penn Lipman Prize page."
-        ),
-        "deadline": "31 July 2026",
-        "deadline_sort": "2026-07-31",
-        "fit": "Nonprofit recognition (selective)",
-    },
-    {
-        "title": "Climate Tech Fellowship 2026 (The New York Climate Exchange)",
-        "url": "https://www2.fundsforngos.org/innovation/apply-now-for-climate-tech-fellowship-program-2026/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Six-month hybrid fellowship for early-stage climate "
-            "technology innovators (about USD 10,000 stipend). Global "
-            "eligibility. Partial FairBanks fit only if framed around "
-            "climate-adaptation tech tied to health resilience (heat, "
-            "floods). Energy-focused teams may fit better. Verify "
-            "technology scope on the official Climate Exchange page."
-        ),
-        "deadline": "1 August 2026",
-        "deadline_sort": "2026-08-01",
-        "fit": "Partial — climate tech only",
-    },
-    {
-        "title": "UEFA Foundation for Children — Call for Projects 2026",
-        "url": "https://uefafoundation.org/general-information/call-for-projects-2/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Global grants for NGOs improving vulnerable children’s "
-            "lives through sport, education, health, and inclusion. "
-            "Needs 3+ years registration and audited accounts. FairBanks "
-            "child-health / school-health programmes may fit if sport or "
-            "healthy-lifestyle components are clear. Uganda eligible. "
-            "Apply on the official UEFA Foundation portal."
-        ),
-        "deadline": "3 August 2026",
-        "deadline_sort": "2026-08-03",
-        "fit": "Child health via sport/education",
-    },
-    {
-        "title": "Purpose Earth Grant and Mentorship Program 2027",
-        "url": "https://www.purposeearth.org/apply-for-a-grant",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Grants up to about USD 10,000 plus mentorship for "
-            "purpose-driven leaders and organisations on environment, "
-            "climate, community empowerment, and cultural impact. Does "
-            "not cover salaries/ops. Possible small support for "
-            "community climate–health outreach. Global; Uganda tagged. "
-            "Requires a professional reference letter."
-        ),
-        "deadline": "10 August 2026",
-        "deadline_sort": "2026-08-10",
-        "fit": "Small community/climate grant",
-    },
-    {
-        "title": "African Futures Conference 2026 — Open Call (ISS AFI)",
-        "url": "https://www2.fundsforngos.org/innovation/open-call-for-african-futures-conference-2026/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "ISS African Futures & Innovation conference (13–14 October "
-            "2026, hybrid) seeking proposals on data-driven African "
-            "futures. Good platform to present community health "
-            "intelligence / predictive analytics ideas. Uganda eligible. "
-            "Confirm proposal themes and format on the official ISS "
-            "conference call."
-        ),
-        "deadline": "10 August 2026",
-        "deadline_sort": "2026-08-10",
-        "fit": "Conference / data futures visibility",
-    },
-    {
-        "title": "UNESCO Youth Hackathon 2026 (Media & Information Literacy)",
-        "url": "https://www2.fundsforngos.org/innovation/entries-open-unesco-youth-hackathon-2026/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Team hackathon for ages 18–30 building innovative MIL "
-            "solutions, including AI tools. Indirect FairBanks fit for "
-            "youth digital skills and health-misinformation work. "
-            "Ugandans eligible if age/team rules met. Verify themes and "
-            "registration on the official UNESCO hackathon page."
+            "YouthConnekt Africa / UNDP / AU export-readiness accelerator "
+            "for youth-led businesses expanding under AfCFTA. Pilot "
+            "countries include Uganda. Founders must be under 35 with an "
+            "established, export-ready enterprise. Not a health grant; "
+            "useful for regional growth of FairBanks / FCHIP services "
+            "if founder age and export pathway fit. Confirm official "
+            "registration form and sector rules on YouthConnekt / UNDP "
+            "pages before applying."
         ),
         "deadline": "16 August 2026",
         "deadline_sort": "2026-08-16",
-        "fit": "Youth digital / MIL (indirect)",
+        "fit": "Youth export growth (age check)",
+        "highlight": "FF0000",
     },
     {
-        "title": "Science Advice Skills Development Program (SASDP) 5th Cohort 2026",
-        "url": "https://www2.fundsforngos.org/innovation/2026-science-advice-skills-development-program-sasdp-5th-cohort/",
+        "title": "Africa Deep Tech Challenge 2026 — Laptop LLM (offline AI)",
+        "url": "https://africadeeptech.org/challenge-2026/",
         "gender": MULTI_GENDER,
         "description": (
-            "Six-month mentorship for early/mid-career African "
-            "researchers at the science–policy interface. Useful "
-            "capacity for FairBanks evidence-to-district-policy work "
-            "around community health intelligence. Not a product grant. "
-            "Confirm eligibility on the official SASDP host site."
+            "Africa Deep Tech Foundation competition to build useful "
+            "offline language-model apps on commodity 8 GB laptops "
+            "(no cloud). Healthcare / medical support is an allowed "
+            "domain — strong match for offline CHW/VHT tools and "
+            "clinic decision support under FCHIP. Gate 1 by 25 August "
+            "2026 via Devpost; prizes up to USD 8,000 plus residency "
+            "and mentorship. Uganda / Africa builders eligible. "
+            "Requires a working prototype, not a proposal-only pitch."
         ),
-        "deadline": "17 August 2026",
-        "deadline_sort": "2026-08-17",
-        "fit": "Science–policy capacity",
-    },
-    {
-        "title": "Joke Waller-Hunter Initiative — Small Grants for Young CSO Leaders",
-        "url": "https://www2.fundsforngos.org/cat/rfas-small-grants-for-young-civil-society-leaders-in-developing-countries/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Small grants helping young environmental professionals in "
-            "developing countries strengthen leadership through "
-            "training, internships, and conferences. Indirect fit for "
-            "climate–health staff development. Confirm age, environment "
-            "focus, and country eligibility on the official JWHI page."
-        ),
-        "deadline": "31 August 2026",
-        "deadline_sort": "2026-08-31",
-        "fit": "Young leader training (indirect)",
-    },
-    {
-        "title": "Novo Nordisk Foundation — Global Science Summit Programme 2026",
-        "url": "https://novonordiskfonden.dk/en/grant/global-science-summit-programme/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Interdisciplinary research call for technology-enabled, "
-            "scalable solutions on cardiometabolic disease prevention, "
-            "detection, diagnosis, treatment, and long-term management. "
-            "Aligns with FairBanks NCD screening and community data. "
-            "Needs international collaborative teams. Verify PI rules "
-            "and budget on the Novo Nordisk Foundation grant page."
-        ),
-        "deadline": "1 September 2026",
-        "deadline_sort": "2026-09-01",
-        "fit": "NCD / cardiometabolic research",
+        "deadline": "25 August 2026 (Gate 1)",
+        "deadline_sort": "2026-08-25",
+        "fit": "Offline AI for CHW / clinic tools",
         "highlight": "00B0F0",
     },
     {
-        "title": "Neurotorium Clinical Education Grants (Psychiatry & Neurology)",
-        "url": "https://www2.fundsforngos.org/individuals/cfps-neurotorium-clinical-education-grants-within-psychiatry-and-neurology/",
+        "title": "Global Health EDCTP3 — DIGIT-02 Digital Innovation & AI in SSA",
+        "url": "https://www.edctp.org/edctp-association-as-coordinator-of-global-health-edctp3-projects-2/2026-calls-for-proposals/",
         "gender": MULTI_GENDER,
         "description": (
-            "Up to about DKK 100,000 (~USD 15,000) for nonprofit "
-            "clinical education projects that raise psychiatry and "
-            "neurology skills among health professionals. Narrower fit "
-            "— possible if FairBanks builds clinician training linked "
-            "to Gericare / brain-health outreach. Confirm nonprofit "
-            "rules on the official Neurotorium site."
+            "Horizon Europe / Global Health EDCTP3 CSA call "
+            "HORIZON-JU-GH-EDCTP3-2026-03-DIGIT-02 to strengthen use of "
+            "existing digital health and AI tools for infectious-disease "
+            "care and preparedness in sub-Saharan Africa (scale/"
+            "interop, not greenfield gadgets). Up to about EUR 2.25M "
+            "per project; deadline 2 September 2026, 17:00 Brussels. "
+            "Needs a research consortium — FairBanks as community/"
+            "facility digital partner. Confirm portal topic page and "
+            "consortium lead before joining."
         ),
-        "deadline": "2 September 2026",
+        "deadline": "2 September 2026 (17:00 Brussels)",
         "deadline_sort": "2026-09-02",
-        "fit": "Clinical education (narrow)",
-        "highlight": "FF0000",
-    },
-    {
-        "title": "Dementia, Mental Health and Brain Ageing School (Africa) — Nairobi",
-        "url": "https://www2.fundsforngos.org/individuals/applications-open-for-dementia-mental-health-and-brain-ageing-school-africa/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "In-person professional development school in Nairobi for "
-            "graduate students, early-career researchers, fellows, and "
-            "medical professionals across Africa. Supports Gericare / "
-            "elderly-care capacity around brain ageing and mental "
-            "health. Not a project grant. Ugandans eligible. Confirm "
-            "fees, travel, and selection on the official school page."
-        ),
-        "deadline": "30 September 2026",
-        "deadline_sort": "2026-09-30",
-        "fit": "Gericare / brain-health training",
-    },
-    {
-        "title": "Encephalitis International Seed Funding for Research Projects 2026 (Africa)",
-        "url": "https://www2.fundsforngos.org/individuals/encephalitis-international-seed-funding-for-research-projects-2026/",
-        "gender": MULTI_GENDER,
-        "description": (
-            "Seed grants up to £10,000 for pilot encephalitis research "
-            "based in Africa. Helps early-career researchers generate "
-            "preliminary evidence. Narrow clinical-research fit unless "
-            "FairBanks partners with academic investigators. Confirm "
-            "PI location and ethics requirements on the official "
-            "Encephalitis International page."
-        ),
-        "deadline": "30 September 2026",
-        "deadline_sort": "2026-09-30",
-        "fit": "Narrow Africa research seed",
-        "highlight": "FF0000",
+        "fit": "Digital health / AI consortium path",
+        "highlight": "00B0F0",
     },
     {
         "title": "Oneness Revival Team (ORT) SEED Grant Program 2026",
         "url": "https://onenessrevivalteam.info/grant-application/",
         "gender": MULTI_GENDER,
         "description": (
-            "USD 25,000–50,000 one-year grants for NGOs worldwide with "
-            "annual budgets under USD 100,000 for grassroots community "
-            "impact. Possible organisational support for FairBanks "
-            "community reach if budget/eligibility matches. Verify "
-            "budget ceiling, allowable costs, and authenticity of the "
-            "ORT portal before investing major proposal time."
+            "USD 25,000–50,000 one-year SEED grants aimed at legally "
+            "registered grassroots NGOs / CSOs (often with budgets under "
+            "USD 100,000). Possible community-reach support only if "
+            "FairBanks can partner through an eligible CSO path — "
+            "private limited companies are usually out of scope. "
+            "Verify authenticity, budget ceiling, and legal-form rules "
+            "on the official ORT portal before investing proposal time."
         ),
         "deadline": "20 December 2026",
         "deadline_sort": "2026-12-20",
-        "fit": "Small NGO general support",
+        "fit": "NGO-only small grant (partner path)",
+        "highlight": "FF0000",
     },
 ]
 
@@ -431,46 +281,57 @@ def main() -> None:
         ("Scanned on", datetime.now().strftime("%Y-%m-%d %H:%M")),
         (
             "Document type",
-            "NEW scan file: new_opportunities.xlsx from www2.fundsforngos.org "
-            "only. Same column layout as opportunities.xlsx. Does not replace "
-            "the canonical tracker. Deduped against opportunities.xlsx.",
+            "CLEARED and rebuilt new_opportunities.xlsx (29 July 2026). "
+            "Fresh open-call scan only. Does not replace "
+            "best_opportinities.xlsx. Deduped against working tracker "
+            "and build_opportunities.py titles.",
         ),
         (
             "Applicant context",
-            "FairBanks / FCHIP — Ugandan community health intelligence "
-            "venture (CHW/VHT cascade, maternal/child, Gericare, NCDs, "
-            "GIS + climate early warning).",
+            "FAIRBANKS MEDICAL CENTRE LIMITED — Ugandan private company "
+            "limited by shares (Co. 80020003843337; TIN 1053370026); "
+            "women-led (MD Racheal Nabukeera; 60% women shareholding). "
+            "Not an NGO/CBO. Live Community Reach + FCHIP MVP "
+            "(CHW/VHT, GIS, climate, EMR/HMS APIs).",
         ),
         (
-            "Source",
-            "https://www2.fundsforngos.org/ — homepage categories, "
-            "latest-funds-for-ngos, health/innovation/HIV/children/"
-            "leadership/community-development, Uganda tag pages 1–3, "
-            "and July 2026 leadership listing round-up. Detail pages "
-            "verified for deadline and Uganda/Africa/global eligibility.",
+            "Sources",
+            "Opportunities for Youth; www2.fundsforngos.org health/"
+            "innovation listings; Grand Challenges Canada Nexa page; "
+            "Australian High Commission Nairobi DAP; Wilde Ganzen BAF; "
+            "Africa Deep Tech Foundation; EDCTP / Global Health EDCTP3; "
+            "Grants.gov CDC Uganda GHS; IDRC/official pages cross-checked.",
         ),
         (
             "Approach",
-            "1) Crawl listing/tag/category pages for Deadline + titles. "
-            "2) Keep deadlines on/after 20 July 2026 (or rolling). "
-            "3) Filter for health, digital, AI, climate, women, community, "
-            "Uganda/Africa. 4) Open detail pages; drop closed, "
-            "country-blocked, or weak-sector calls. 5) Prefer official "
-            "apply URLs when listed on the FFN page.",
+            "1) Clear prior new-scan rows. 2) Search OFY + fundsforNGOs + "
+            "GCC + EDCTP + DAP + Wilde Ganzen for deadlines on/after "
+            "29 July 2026. 3) Keep Uganda/Africa/global eligibility. "
+            "4) Prefer private-company / women-led / HealthTech / "
+            "community-health / climate–health / DPI / livelihoods fits. "
+            "5) Prefer official apply URLs. 6) Dedup vs best tracker.",
         ),
         (
             "Eligibility filter",
-            "Still open + Ugandans can apply (Uganda-specific, East Africa, "
-            "Africa-wide, or global). Excluded US/UK/AU/CA-only, "
-            "West-Africa-only cooking funds, Ghana/Kenya-only when Uganda "
-            "excluded, and pure arts/climbing/journalism calls.",
+            "Still open + Ugandans can apply. Flag private-company vs "
+            "NGO-only. Exclude country lists without Uganda, "
+            "Switzerland work-permit AI fund, INGO-only Adidas Moving "
+            "for Change, GC AI Family Planning (Uganda not in country "
+            "list), Purpose Earth (capacity closed), French-only AREF "
+            "grant-writing cohort, university-only AREF-MRC leadership, "
+            "and agriculture-only Innovate Africa Challenge.",
         ),
-        ("Gender categories", f"Gender-based (women/girls): {gb}. Multi-gender: {mg}. Total: {len(rows)}."),
+        (
+            "Gender categories",
+            f"Gender-based (women/girls): {gb}. Multi-gender: {mg}. "
+            f"Total: {len(rows)}.",
+        ),
         (
             "Highlight legend",
-            "Green = women/gender priority. Blue = strong FCHIP / digital / "
-            "Uganda health capacity fit. Red = narrower research or "
-            "indirect fit.",
+            "Green = livelihoods / women–youth employment priority. "
+            "Blue = strong FCHIP / digital / climate–health / Uganda "
+            "health-security fit. Red = narrower or age/partner-path "
+            "caveat.",
         ),
         (
             "Priority soon",
@@ -480,51 +341,53 @@ def main() -> None:
         ),
         (
             "Best FairBanks / FCHIP fits from this scan",
-            "1) UPHFP Field Epidemiology 2) DPI Safeguards Accelerator "
-            "3) Feminist Leadership Accelerator 4) Global Science Summit "
-            "(NCD) 5) SEED Grant if budget under USD 100k 6) Purpose Earth "
-            "small climate–community grant 7) UEFA Children if sport/"
-            "child-health framing fits.",
+            "1) Nexa TTS (climate early warning scale) 2) Africa Deep "
+            "Tech Challenge (offline CHW AI) 3) EDCTP3 DIGIT-02 "
+            "(consortium digital health) 4) CDC Uganda GHS "
+            "(surveillance — verify entity type) 5) Blue Ambition "
+            "(livelihoods / CHIS empowerment layer).",
         ),
         (
-            "Excluded (already in opportunities.xlsx)",
-            "AWIEF Pitch n Grow; Nexa Climate and Health; UN Women SIARP "
-            "2.0; Brandtech AI for Good; IDRC ANeSA Cohort 2; Wellcome "
-            "Snakebite Innovation Prize.",
+            "Excluded (already on best / canonical tracker)",
+            "AWIEF; Africa Health-Tech Accelerator; Nexa PoC (submitted); "
+            "DPI Safeguards (submitted); DoS Uganda MOU; Japan GGP; "
+            "Jay Shetty; Yunus; ANeSA LoI; FID reopen watch; DIV; "
+            "Gadfly; WHS Youth Group; SIARP; Brandtech; AES Fellowship; "
+            "and other build_opportunities.py titles.",
         ),
         (
-            "Excluded (closed on FFN detail check)",
-            "SAFEStart+ Uganda (30 Jun); UNICEF Uganda Health & HIV EOI "
-            "(20 Mar); UNICEF Nutrition EOI (31 Mar); Evidence for AI in "
-            "Health (1 Apr); Google.org AI for Science (17 Apr); POWER "
-            "Young Women Accelerator Cohort V (15 May); la Caixa Child "
-            "Survival (26 May); Uganda Gov digital systems showcase "
-            "(1 Jun); Japan GGP Uganda (15 Feb / 15 Jun variants); Mama "
-            "Hope LDA (10 Jan); EAGYFF (28 Feb); MARS Awards (30 Jun); "
-            "AI for Climate Action Award (3 Jul); CREATIVE Fellowship "
-            "(29 May); WSA Young Innovators page still showed 2025 "
-            "deadline.",
+            "Excluded (closed / capacity / passed)",
+            "ISS Young Changemakers (26 Jul); Feminist Leadership "
+            "Accelerator (27 Jul); Purpose Earth 2027 (200-app "
+            "capacity closed); Standard Chartered Women in Tech Uganda "
+            "(30 Jun); Cartier Women’s Initiative 2027 (16 Jun); "
+            "prior new-scan rows past deadline (UPHFP 31 Jul listed "
+            "separately — verify if still open on MoH/Makerere pages).",
         ),
         (
             "Excluded (open but unfit / ineligible)",
-            "Pan-Orthoebolavirus diagnostics (specialised BSL pathogen "
-            "diagnostics); country-only calls (Philippines, Botswana "
-            "Humphrey, Vietnam Humphrey, Ghana SPARK, Kenya Rise Up, "
-            "Canada/UK/AU community grants, Ireland AI awards, West "
-            "Africa clean cooking); climbing grants; ocean youth "
-            "council; fashion/film/photography; ICSSR India fellowships; "
-            "Digital Rights Exchange (rights advocacy, not health "
-            "product); many AUD community arts grants.",
+            "Grand Challenges AI Family Planning (eligible countries "
+            "omit Uganda); Prototype Fund Switzerland (Swiss work "
+            "permit); Adidas Moving for Change East Africa (INGO + "
+            "local S4D only); Innovate Africa Challenge (AI climate-"
+            "smart agriculture); AREF French grant-writing cohort; "
+            "AREF-MRC Towards Leadership (university/research "
+            "employment); UK/US/AU/Canada-only community grants on "
+            "fundsforNGOs health page.",
         ),
         (
             "Important",
-            "fundsforNGOs republishes calls — ALWAYS confirm deadline, "
-            "eligibility, and apply link on the official funder page "
-            "before submitting. This file is a scan snapshot, not legal "
+            "Aggregator pages republish calls — ALWAYS confirm deadline, "
+            "eligibility, and apply link on the official funder page. "
+            "FairBanks is a private company: many NGO-only calls need a "
+            "partner pathway. This file is a scan snapshot, not legal "
             "advice.",
         ),
         ("Build script", "opportunities/build_new_opportunities.py"),
-        ("Related canonical tracker", "opportunities/opportunities.xlsx"),
+        (
+            "Related working tracker",
+            "opportunities/best_opportinities.xlsx",
+        ),
     ]
     meta["A1"] = "Field"
     meta["B1"] = "Detail"
@@ -539,7 +402,6 @@ def main() -> None:
     meta.column_dimensions["A"].width = 28
     meta.column_dimensions["B"].width = 96
 
-    # Fit summary sheet for quick triage
     fit = wb.create_sheet("Fit Summary")
     fit_headers = ["Deadline sort", "Project Title", "FairBanks fit note", "Gender"]
     for col, h in enumerate(fit_headers, 1):
