@@ -6,33 +6,32 @@ alwaysApply: false
 
 # DPI Safeguards Accelerator 2026 — source of truth
 
-Official sources win: [Accelerator](https://www.dpi-safeguards.org/accelerator), [home](https://www.dpi-safeguards.org/), [NGO form](https://airtable.com/appcltTa6tzGwskOA/pagJNFsEqox4M5WAU/form). Legal facts: `company-docs/` (incorporation, Memarts, UMDPC, TIN, NSSF).
+Official sources win: [Accelerator](https://www.dpi-safeguards.org/accelerator), [NGO form](https://airtable.com/appcltTa6tzGwskOA/pagJNFsEqox4M5WAU/form). **Address/TIN:** `company-docs/TIN CERTIFICATE - FAIRBANKS MEDICAL.pdf` (URA DT-1112, 02/07/2026). Also: incorporation, Memarts, UMDPC.
 
 Follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, `fairBanks_refined_project_idea.mdc`.
 
 ## Call facts
 
-- **Deadline Stage 1:** 30 July 2026 (Wave 3 final).
-- **Pathway:** NGO form; single country **Uganda**.
-- **Ask:** USD **70,000** · **9 months** · issue-specific track.
-- **Stage 2:** detailed plan, legal proof, **government support letter** (by 15 Aug if invited).
-- Selection wants: government alignment, real civil society roles, tangible outputs.
+- **Deadline Stage 1:** 30 July 2026. **Pathway:** NGO form · **Uganda** only.
+- **Ask:** USD **70,000** · **9 months** · **Issue-Specific Work**.
+- **Stage 1 topics:** org/country/DPI; government counterpart; track; why now; outputs; coordination; budget/duration.
+- **Stage 2:** plan, legal proof, **government letter** (if invited).
 
-## Applicant facts (from company-docs)
+## Applicant facts
 
-- Legal name: **FAIRBANKS MEDICAL CENTRE LIMITED**
-- Type: private company limited by shares (Company No. **80020003843337**; incorporated **4 Oct 2022**) — **not** an NGO
-- Lead: **Racheal Nabukeera**, Managing Director & Co-founder
-- Address: Tirupati Road, Kyebando Kisalosalo, Kawempe, Kampala; P.O. Box 185104
-- Phone: **+256 772 849 258** · Email: **info@fairbanksmedicalcentre.com**
-- UMDPC licence current for 2026
+- Legal name: **FAIRBANKS MEDICAL CENTRE LIMITED** · TIN **1053370026**
+- Type: private company limited by shares (No. **80020003843337**) — not an NGO
+- Principal address (TIN): **Plot 1423 and 1425 Tirupati Road, Fairbanks Medical Centre, Kampala Central Division, Kololo IV, Lugogo, Kampala**
+- Lead: **Racheal Nabukeera** · Email: **info@fairbanksmedicalcentre.org** · Phone: **+256 748 319 052 / +256 777 462 398**
+- Website: https://www.fairbanksmedicalcentre.org/ · Public location: Kyebando–Kisalosalo, Northern Bypass, Kampala
+- Counterpart: **KCCA — Central Division health structures**
 
-Apply as a community-based health operator on the NGO form. Do not claim NGO/CBO registration. Stage 2 proof = incorporation + licences.
+Apply as community-based health operator. Stage 2 proof: incorporation + TIN certificate + UMDPC licence.
 
 ## Positioning
 
-FCHIP = sectoral digital health DPI on Community Reach Data & Feedback. Pitch **safeguards in a live deployment**, not a product sale. Counterpart: **KCCA / Kawempe Division health** (letter still needed for Stage 2). Three measures: consent/data sharing; offline inclusion; grievance path.
+FCHIP = sectoral digital health DPI. Pitch safeguards in a live deployment. Three measures: consent/data sharing; offline inclusion; grievance path.
 
 ## Deliverables
 
-Regenerate with `build_dpi-safeguards_docs.py`. Paste sheet: `stage1_airtable_answers.md`. Synced: Word, PDF, PPT in `documents/`. Human language; slogan **Your health, our mission.** No placeholder markers in submission text.
+Paste sheet: `stage1_airtable_answers.md` (authoritative for Airtable). Regenerate Word/PDF/PPT with `build_dpi-safeguards_docs.py`. Slogan: **Your health, our mission.**

@@ -53,13 +53,21 @@ DURATION = "9 months"
 ORG_LEGAL = "FAIRBANKS MEDICAL CENTRE LIMITED"
 ORG = "FairBanks Medical Centre"
 COMPANY_NO = "80020003843337"
+TIN = "1053370026"
 CONTACT_NAME = "Racheal Nabukeera"
 CONTACT_TITLE = "Managing Director and Co-founder"
-EMAIL = "info@fairbanksmedicalcentre.com"
-PHONE = "+256 772 849 258"
-LOCATION = "Tirupati Road, Kyebando Kisalosalo, Kawempe Division, Kampala"
+EMAIL = "info@fairbanksmedicalcentre.org"
+PHONE = "+256 748 319 052 / +256 777 462 398"
+WEBSITE = "https://www.fairbanksmedicalcentre.org/"
+PUBLIC_LOCATION = "Kyebando–Kisalosalo, Northern Bypass, Kampala"
+LOCATION = (
+    "Plot 1423 and 1425 Tirupati Road, Fairbanks Medical Centre, "
+    "Kampala Central Division, Kololo IV, Lugogo, Kampala"
+)
 COUNTRY = "Uganda"
-GOVT = "Kampala Capital City Authority (KCCA) — Kawempe Division health structures"
+GOVT = (
+    "Kampala Capital City Authority (KCCA) — Central Division health structures"
+)
 
 OFFICIAL_ACCEL = "https://www.dpi-safeguards.org/accelerator"
 OFFICIAL_HOME = "https://www.dpi-safeguards.org/"
@@ -123,37 +131,38 @@ READINESS = [
         f"{ORG_LEGAL} — private company limited by shares "
         f"(No. {COMPANY_NO}). Not an NGO; apply as community-based health operator.",
     ),
+    ("TIN", TIN),
     ("Lead contact", f"{CONTACT_NAME}, {CONTACT_TITLE} · {EMAIL} · {PHONE}"),
-    ("Address", LOCATION),
+    ("Website", WEBSITE),
+    ("Address (URA TIN)", LOCATION),
+    ("Public location (website)", PUBLIC_LOCATION),
     ("Government counterpart", GOVT),
     (
         "Stage 2 letter",
-        "No MoU yet. First Stage 2 task: written support from KCCA / Kawempe Division health.",
+        "No MoU yet. First Stage 2 task: written support from KCCA Central Division health.",
     ),
     (
         "Stage 2 legal proof",
-        "Certificate of Incorporation + UMDPC 2026 licence from company-docs/",
+        "Certificate of Incorporation + URA TIN certificate + UMDPC 2026 licence",
     ),
 ]
 
 ORG_CONTEXT = (
-    f"{ORG_LEGAL} is a Uganda private company limited by shares "
-    f"(Company No. {COMPANY_NO}, incorporated 4 October 2022). We run a UMDPC-licensed "
-    "medical centre and pharmacy on Tirupati Road, Kyebando–Kisalosalo, Kawempe Division, "
-    "Kampala. Through FairBanks Community Reach we work with community members, Village "
-    "Health Teams and community health workers, schools and local groups in Bukoto, "
-    "Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby areas. Care runs from home and "
-    "community outreach into our medical centre. We also run GeriCare for older people, "
-    "maternal and child support, chronic-disease screening, and a community health "
-    "insurance scheme (CHIS) so families can share the cost of care. "
-    "The digital piece is FCHIP — the FairBanks Community Health Intelligence Platform. "
-    "It is already a working MVP. Frontline workers can capture household and outreach "
-    "data on phones even when the network is weak. The platform brings community signals "
-    "together with facility records and secure data links so existing clinic systems can "
-    "send approved clinical data into FCHIP without forcing clinics to throw away the "
-    "software they already use. In this Accelerator we are not selling software. We are "
-    "putting practical safeguards into that live digital health rollout while it is "
-    "still young."
+    f"{ORG_LEGAL} (TIN {TIN}) is a Uganda private company limited by shares "
+    f"(Company No. {COMPANY_NO}, incorporated 4 October 2022). Our principal place of "
+    "business on the URA TIN certificate is Plot 1423 and 1425 Tirupati Road, Fairbanks "
+    "Medical Centre, Kampala Central Division, Kololo IV, Lugogo, Kampala. Our public "
+    f"website ({WEBSITE}) lists the community location as {PUBLIC_LOCATION}. Slogan: "
+    f"{SLOGAN} Contact: {EMAIL}, {PHONE}. "
+    "We run a UMDPC-licensed medical centre and pharmacy with outpatient and inpatient "
+    "care, 24/7 emergency, diagnostics, paediatrics, obstetrics and gynaecology, retail "
+    "pharmacy, and vaccination programmes. Through FairBanks Community Reach and GeriCare "
+    "we work with VHTs, community health workers, schools and local groups in Bukoto, "
+    "Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby Kampala communities, plus CHIS. "
+    "FCHIP is our working MVP Data & Feedback layer (Capture → Analyse → Alert → Act): "
+    "offline CHW/VHT forms, secure facility system links, GIS and climate signals, "
+    "dashboards and follow-up — with privacy and consent in mind. In this Accelerator we "
+    "put practical safeguards into that live rollout."
 )
 
 DPI_INITIATIVE = (
@@ -169,12 +178,12 @@ DPI_INITIATIVE = (
 
 GOVERNMENT_COUNTERPART = (
     f"Our named counterpart is {GOVT}. "
-    "Our facility is licensed and operates in Kawempe Division. Community Reach and "
-    "VHT-linked work sit in the same city health geography. We already engage the public "
-    "health system as a licensed private provider (UMDPC licence current for 2026) and "
-    "through frontline VHT relationships. We do not yet have a signed MoU or commitment "
-    "letter for this Accelerator. If longlisted, Stage 2 requires written support. "
-    f"Getting that letter is our first Stage 2 task, led by {CONTACT_NAME}."
+    "Our facility’s registered principal place of business is in Kampala Central Division "
+    "(Kololo IV, Lugogo) per the URA TIN certificate. We operate as a UMDPC-licensed "
+    "private health unit in Kampala and work with VHTs linked to city community health "
+    "practice. We do not yet have a signed MoU or Accelerator commitment letter. If "
+    "longlisted, Stage 2 requires written institutional support. Getting that letter from "
+    f"KCCA Central Division health leadership is our first Stage 2 task, led by {CONTACT_NAME}."
 )
 
 TRACK_CHOICE = (
@@ -208,7 +217,7 @@ TANGIBLE_OUTPUTS = (
     "(4) a live grievance pathway with named owners, contact channel, and response times, "
     "tested with community members; (5) a small working group that meets monthly — "
     "FairBanks clinical and Community Reach leads, VHT representatives, a facility "
-    "contact, and a KCCA/Kawempe liaison once confirmed — with simple meeting notes; "
+    "contact, and a KCCA Central Division liaison once confirmed — with simple meeting notes; "
     "(6) a two-to-four page learning note for the DPI Safeguards Resource Hub. We will "
     "judge success by use in the field, not by documents sitting in a folder."
 )
@@ -218,7 +227,7 @@ COORDINATION_MODEL = (
     "and Community Reach coordinators run field tests. A technical lead wires consent "
     "prompts, access controls, and offline behaviour into FCHIP. A data-protection lead "
     "(named in Stage 2) owns the protocol and the grievance log. "
-    "Government: KCCA / Kawempe Division health focal point reviews priorities, joins the "
+    "Government: KCCA Central Division health focal point reviews priorities, joins the "
     "monthly working group when available, and is the path for the Stage 2 support letter. "
     "Civil society and affected users: VHTs from our catchments co-write consent wording; "
     "community members — including women, older people, and GeriCare clients — help test "
@@ -255,14 +264,14 @@ PROBLEM_SHORT = (
 
 SOLUTION_SHORT = (
     "We will embed consent rules, offline-friendly inclusion, and a community grievance "
-    "path into FairBanks' live FCHIP health data platform in Kawempe, with KCCA Division "
-    "health and VHTs at the table."
+    "path into FairBanks' live FCHIP platform (Capture, Analyse, Alert, Act), with KCCA "
+    "Central Division health and VHTs at the table."
 )
 
 WIN_THEMES = [
     (
         "Government link",
-        "Named counterpart: KCCA / Kawempe Division health. Stage 2 letter is the next step.",
+        "Named counterpart: KCCA Central Division health. Stage 2 letter is the next step.",
     ),
     (
         "Community role",
@@ -282,7 +291,7 @@ STAGE2_CHECKLIST = [
     "Month-by-month activity plan with owners",
     "Final budget with quotes and salary scales",
     "Certificate of Incorporation + UMDPC licence as legal proof",
-    "Written support letter from KCCA / Kawempe Division health",
+    "Written support letter from KCCA Central Division health",
     "Named VHT and community roles and meeting dates",
     "Simple data-protection and safeguarding note for health data",
     "Risks: privacy, exclusion, wrong alerts, weak adoption — and how we handle them",
@@ -529,7 +538,7 @@ def build_docx() -> None:
             "Paste answers from stage1_airtable_answers.md (match field meaning).",
             "Open the NGO Airtable form (use a network that allows Airtable if blocked).",
             "Save confirmation or screenshot after submit.",
-            "Same day: draft the KCCA / Kawempe Division support-letter request.",
+            "Same day: draft the KCCA Central Division support-letter request.",
         ]
     )
 
@@ -829,7 +838,7 @@ def build_pptx() -> None:
     bullets(
         s,
         [
-            "Use FAIRBANKS MEDICAL CENTRE LIMITED; counterpart KCCA / Kawempe Division health",
+            "Use FAIRBANKS MEDICAL CENTRE LIMITED; counterpart KCCA Central Division health",
             "Paste Stage 1 answers from stage1_airtable_answers.md",
             "Same day: start the KCCA support-letter request",
         ],
