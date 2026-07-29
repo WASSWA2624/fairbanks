@@ -1,0 +1,41 @@
+---
+description: DPI Safeguards Accelerator 2026 application compliance
+globs: applications/dpi-safeguards/**
+alwaysApply: false
+---
+
+# DPI Safeguards Accelerator 2026 — source of truth
+
+Official sources win: [Accelerator page](https://www.dpi-safeguards.org/accelerator), [DPI Safeguards home](https://www.dpi-safeguards.org/), [NGO Stage 1 form](https://airtable.com/appcltTa6tzGwskOA/pagJNFsEqox4M5WAU/form), [fundsforNGOs summary](https://www2.fundsforngos.org/construction/safeguards-accelerator-supporting-safe-and-inclusive-digital-public-infrastructure/). Stewarded by UN ODET and UNDP with 50-in-5, OGP, and Co-Develop.
+
+Follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, and `fairBanks_refined_project_idea.mdc`.
+
+## Call facts
+
+- **Deadline (Stage 1):** 30 July 2026. Rolling waves; Wave 3 is final.
+- **Pathway:** NGO / civil society (single country). Not the UN Entities form.
+- **Country:** Uganda only.
+- **Support:** Tools, advisory, peer learning, and catalytic grants up to **USD 70,000** over **6–9 months**. Non-funded track exists.
+- **Stage 1:** Concise Airtable screening (no full proposal yet).
+- **Stage 2 (invite only):** Detailed plan, budget, legal proof, **written government support letter** due by 15 Aug 2026.
+- **Three selection attributes:** strong government alignment; meaningful civil society role; measurable 6–9 month outputs.
+- **Entry points:** System-level safeguards work **or** issue-specific measures.
+- **Airtable note:** Form may block some regions; use a permitted network/VPN if needed, then submit.
+
+## Funding fit (FairBanks / FCHIP)
+
+Frame FCHIP as **sectoral digital health DPI** — community health data exchange linking CHWs/VHTs, programmes, medical centre/clinics, and **secure EMR/HMS data APIs** — sitting on Community Reach **Data & Feedback**. Lead with **issue-specific safeguards** (consent/responsible data use; offline inclusion; grievance/recourse), plus a short system-level risk map tied to the Universal DPI Safeguards Framework. Do not pitch FCHIP as a product sales pitch; pitch **safeguards woven into a live digital health deployment**.
+
+## Honesty gates
+
+Mark **CONFIRM BEFORE SUBMISSION**. Do not invent: NGO/CBO legal status, government MoU or letter, MoH/district endorsement, measured AI accuracy, or national DPI ownership. Stage 2 needs formal government confirmation. If FairBanks is not a non-profit/CBO under local law, confirm eligibility or a eligible lead partner before applying.
+
+## Deliverables
+
+Synced set only via `build_dpi-safeguards_docs.py`:
+
+- `documents/dpi-safeguards_word.docx`
+- `documents/dpi-safeguards_pdf.pdf`
+- `documents/dpi-safeguards_ppt.pptx`
+
+Simple human language. Slogan: **Your health, our mission.** Visuals: `.cursor/concept_improved.jpeg` (partners), `concept_simple.jpeg` (community), `concept.jpeg` (classic).
