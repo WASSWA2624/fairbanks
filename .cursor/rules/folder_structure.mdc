@@ -20,7 +20,7 @@ Every project under `applications/` uses this layout. Shared application rules l
 
 ## Opportunities (outside applications/)
 
-`opportunities/` keeps its tracker (`opportunities.xlsx`), build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`. Scope with `globs: opportunities/**`.
+`opportunities/` keeps its tracker (`tracker.xlsx`), new-scan build script, and `rules/source_of_truth.mdc`. Same rule: one SoT copy; no second tree under `opportunities/.cursor/`. Scope with `globs: opportunities/**`.
 
 ## Shared rules (root `.cursor/rules/`)
 
@@ -61,8 +61,9 @@ applications/
       {project}_ppt.pptx
       {project}_word.docx
 opportunities/
-  build_opportunities.py
-  opportunities.xlsx
+  build_new_opportunities.py
+  tracker.xlsx
+  new_opportunities.xlsx
   rules/
     source_of_truth.mdc
 ```

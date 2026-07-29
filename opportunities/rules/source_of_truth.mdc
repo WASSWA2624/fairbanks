@@ -12,12 +12,11 @@ Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing mu
 
 | What | Path |
 |---|---|
-| Working tracker | `opportunities/best_opportinities.xlsx` |
+| Working tracker | `opportunities/tracker.xlsx` |
 | New-scan workbook | `opportunities/new_opportunities.xlsx` |
-| Canonical rebuild | `opportunities/build_opportunities.py` |
 | New-scan rebuild | `opportunities/build_new_opportunities.py` |
 
-**Working tracker** = shortlist + live status (and `applications/` links). One file — no drafts. Spelling `opportinities` is intentional.
+**Working tracker** = shortlist + live Application / Submission status (and `applications/` links). One file — no drafts. Update rows by editing the Excel (or a small helper if added later).
 
 **New-scan** = fresh crawl (same columns). Does not replace the working tracker; promote strong fits when you act. After submit, update the working-tracker row (status, date, folder).
 

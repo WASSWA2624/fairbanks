@@ -2,8 +2,7 @@
 """Build opportunities/new_opportunities.xlsx — fresh scan (29 July 2026).
 
 Clears prior rows and writes only still-open, Uganda-eligible FairBanks /
-FCHIP fits not already on the working tracker (best_opportinities.xlsx) or
-the canonical rebuild list in build_opportunities.py.
+FCHIP fits not already on the working tracker (tracker.xlsx).
 
 Layout per opportunities/rules/source_of_truth.mdc.
 Applicant context: FAIRBANKS MEDICAL CENTRE LIMITED — women-led Ugandan
@@ -25,7 +24,7 @@ MULTI_GENDER = "Multi-gender (all genders)"
 # Verified open as of 29 July 2026. Prefer official URLs.
 # Excludes closed calls, Uganda-blocked countries, Switzerland-only work
 # permits, NGO-INGO-only sport RFPs, agriculture-only AI challenges, and
-# anything already on best_opportinities / build_opportunities.py.
+# anything already on opportunities/tracker.xlsx.
 OPPORTUNITIES = [
     {
         "title": "Nexa Transition to Scale — Climate × Health (extended)",
@@ -283,8 +282,7 @@ def main() -> None:
             "Document type",
             "CLEARED and rebuilt new_opportunities.xlsx (29 July 2026). "
             "Fresh open-call scan only. Does not replace "
-            "best_opportinities.xlsx. Deduped against working tracker "
-            "and build_opportunities.py titles.",
+            "tracker.xlsx. Deduped against the working tracker.",
         ),
         (
             "Applicant context",
@@ -348,12 +346,12 @@ def main() -> None:
             "(livelihoods / CHIS empowerment layer).",
         ),
         (
-            "Excluded (already on best / canonical tracker)",
+            "Excluded (already on working tracker)",
             "AWIEF; Africa Health-Tech Accelerator; Nexa PoC (submitted); "
             "DPI Safeguards (submitted); DoS Uganda MOU; Japan GGP; "
             "Jay Shetty; Yunus; ANeSA LoI; FID reopen watch; DIV; "
             "Gadfly; WHS Youth Group; SIARP; Brandtech; AES Fellowship; "
-            "and other build_opportunities.py titles.",
+            "and other titles already listed in tracker.xlsx.",
         ),
         (
             "Excluded (closed / capacity / passed)",
@@ -386,7 +384,7 @@ def main() -> None:
         ("Build script", "opportunities/build_new_opportunities.py"),
         (
             "Related working tracker",
-            "opportunities/best_opportinities.xlsx",
+            "opportunities/tracker.xlsx",
         ),
     ]
     meta["A1"] = "Field"
