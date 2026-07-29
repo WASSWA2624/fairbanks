@@ -41,24 +41,25 @@ WHITE = "FFFFFF"
 RED = "A3312D"
 
 PROGRAMME = "DPI Safeguards Accelerator 2026"
-TITLE = "Safeguards for community health DPI in Uganda"
-SUBTITLE = "Issue-specific safeguards on FairBanks FCHIP sectoral digital health infrastructure"
+TITLE = "Safeguards for community health data tools in Uganda"
+SUBTITLE = "Consent, offline inclusion, and a complaint path for FairBanks FCHIP"
 SLOGAN = "Your health, our mission."
-DEADLINE = "30 July 2026 (Stage 1 final Wave 3)"
-PATHWAY = "Non-Governmental Organization (NGO) Pathway — Uganda only"
-TRACK = "Issue-specific safeguards work (with a short system-level risk map)"
+DEADLINE = "30 July 2026"
+PATHWAY = "NGO pathway form (Uganda only) — community-based health operator"
+TRACK = "Issue-specific safeguards work"
 AMOUNT_REQUESTED = 70_000
 DURATION = "9 months"
-CONFIRM = "[CONFIRM BEFORE SUBMISSION]"
 
+ORG_LEGAL = "FAIRBANKS MEDICAL CENTRE LIMITED"
 ORG = "FairBanks Medical Centre"
+COMPANY_NO = "80020003843337"
 CONTACT_NAME = "Racheal Nabukeera"
-CONTACT_TITLE = "Managing Director"
-WEBSITE = "https://fairbanksmedicalcentre.org"
-EMAIL = "info@fairbanksmedicalcentre.org"
+CONTACT_TITLE = "Managing Director and Co-founder"
+EMAIL = "info@fairbanksmedicalcentre.com"
 PHONE = "+256 772 849 258"
-LOCATION = "Kampala, Uganda"
+LOCATION = "Tirupati Road, Kyebando Kisalosalo, Kawempe Division, Kampala"
 COUNTRY = "Uganda"
+GOVT = "Kampala Capital City Authority (KCCA) — Kawempe Division health structures"
 
 OFFICIAL_ACCEL = "https://www.dpi-safeguards.org/accelerator"
 OFFICIAL_HOME = "https://www.dpi-safeguards.org/"
@@ -109,183 +110,183 @@ CALL_FACTS = [
     ("Stewards", "UN ODET and UNDP; with 50-in-5, OGP, and Co-Develop"),
     ("Pathway", PATHWAY),
     ("Deadline Stage 1", DEADLINE),
-    ("Stage 2 (invite only)", "Detailed proposal + government letter by 15 Aug 2026"),
-    ("Funding", f"Catalytic grant up to USD {AMOUNT_REQUESTED:,} (6–9 months)"),
-    ("Draft ask", f"USD {AMOUNT_REQUESTED:,} over {DURATION}"),
+    ("Stage 2 (if invited)", "Full proposal + government letter by 15 Aug 2026"),
+    ("Ask", f"USD {AMOUNT_REQUESTED:,} over {DURATION}"),
     ("Track", TRACK),
+    ("Government counterpart", GOVT),
     ("Submit via", OFFICIAL_FORM),
 ]
 
 READINESS = [
-    ("NGO / CBO / non-profit legal status for NGO pathway", CONFIRM),
-    ("Applicant legal name exactly as on registration documents", CONFIRM),
-    ("Named government counterpart agency and contact", CONFIRM),
-    ("Path to written government support letter for Stage 2", CONFIRM),
-    ("Airtable access (region/VPN if form is blocked)", CONFIRM),
-    ("Lead contact, email, phone, and org website", f"{CONTACT_NAME}; still verify {CONFIRM}"),
-    ("Indicative budget owners and co-funding (if any)", CONFIRM),
-    ("Named CSO / VHT / community champions for co-design", CONFIRM),
+    (
+        "Legal form",
+        f"{ORG_LEGAL} — private company limited by shares "
+        f"(No. {COMPANY_NO}). Not an NGO; apply as community-based health operator.",
+    ),
+    ("Lead contact", f"{CONTACT_NAME}, {CONTACT_TITLE} · {EMAIL} · {PHONE}"),
+    ("Address", LOCATION),
+    ("Government counterpart", GOVT),
+    (
+        "Stage 2 letter",
+        "No MoU yet. First Stage 2 task: written support from KCCA / Kawempe Division health.",
+    ),
+    (
+        "Stage 2 legal proof",
+        "Certificate of Incorporation + UMDPC 2026 licence from company-docs/",
+    ),
 ]
 
-# --- Stage 1 narrative blocks (paste-ready) ---
-
 ORG_CONTEXT = (
-    "FairBanks is a community health organisation in Kampala, Uganda. We run a medical "
-    "centre and FairBanks Community Reach — a six-step cascade linking community members, "
-    "CHWs and VHTs, outreach programmes, clinical care, research and skills, and economic "
-    "empowerment including CHIS (community health insurance) and livelihoods. Our active "
-    "catchments include Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya, and surrounding "
-    "peri-urban communities. FCHIP (FairBanks Community Health Intelligence Platform) is "
-    "our working MVP digital component on the Data and Feedback loop: offline mobile "
-    "capture for CHWs/VHTs, multi-source health signals, GIS, climate-aware early warning, "
-    "facility dashboards, and secure authenticated data APIs so existing EMR/HMS systems "
-    "can share clinical data into FCHIP in real time without replacing clinic software. "
-    f"Legal entity type and registration evidence: {CONFIRM}."
+    f"{ORG_LEGAL} is a Uganda private company limited by shares "
+    f"(Company No. {COMPANY_NO}, incorporated 4 October 2022). We run a UMDPC-licensed "
+    "medical centre and pharmacy on Tirupati Road, Kyebando–Kisalosalo, Kawempe Division, "
+    "Kampala. Through FairBanks Community Reach we work with community members, Village "
+    "Health Teams and community health workers, schools and local groups in Bukoto, "
+    "Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby areas. Care runs from home and "
+    "community outreach into our medical centre. We also run GeriCare for older people, "
+    "maternal and child support, chronic-disease screening, and a community health "
+    "insurance scheme (CHIS) so families can share the cost of care. "
+    "The digital piece is FCHIP — the FairBanks Community Health Intelligence Platform. "
+    "It is already a working MVP. Frontline workers can capture household and outreach "
+    "data on phones even when the network is weak. The platform brings community signals "
+    "together with facility records and secure data links so existing clinic systems can "
+    "send approved clinical data into FCHIP without forcing clinics to throw away the "
+    "software they already use. In this Accelerator we are not selling software. We are "
+    "putting practical safeguards into that live digital health rollout while it is "
+    "still young."
 )
 
 DPI_INITIATIVE = (
-    "The active DPI effort we support is sectoral digital health infrastructure for "
-    "community-to-facility data exchange in Uganda — not a consumer health app. In "
-    "practice this is FCHIP as a live deployment layer that connects last-mile CHW/VHT "
-    "data, school and community outreach signals, FairBanks Medical Centre and partner "
-    "clinic workflows, and secure EMR/HMS interoperability. This sits alongside Uganda's "
-    "broader digital health and HMIS/DHIS2 landscape and is designed to strengthen trust, "
-    "inclusion, and accountable data use as digital health services scale. We treat this "
-    "as sectoral DPI because it is a shared digital building block for public-interest "
-    "health services: identity of households for continuity of care (with consent), "
-    "structured data exchange across actors, and decision support that affects real "
-    f"people. National programme name / MoH digital health alignment wording: {CONFIRM}."
+    "The DPI we support is sectoral digital health infrastructure for community-to-facility "
+    "data exchange in Uganda. In practice that is FCHIP: last-mile VHT and community health "
+    "worker data, school and outreach signals, FairBanks Medical Centre workflows, and "
+    "narrow links to existing clinic records systems. Uganda's digital health tools are "
+    "growing — continuity of care, data exchange, and dashboards that guide outreach. "
+    "People feel that in their homes and at the clinic desk. Our focus is trust: clear "
+    "consent, offline access for people with weak networks, and a real way to challenge "
+    "mistakes before the platform scales."
 )
 
 GOVERNMENT_COUNTERPART = (
-    f"Intended government counterpart for Stage 1 alignment (must be confirmed): {CONFIRM} "
-    "(examples to verify — do not submit unconfirmed names: Ministry of Health digital "
-    "health / community health structures; Kampala Capital City Authority health "
-    "directorate; or the District Health Office covering FairBanks catchments). We seek "
-    "a working relationship that can progress to a formal written institutional "
-    "confirmation for Stage 2 — a commitment letter supporting the safeguards "
-    "intervention and willingness to participate in the cohort. Current status of "
-    f"endorsement discussions: {CONFIRM}."
+    f"Our named counterpart is {GOVT}. "
+    "Our facility is licensed and operates in Kawempe Division. Community Reach and "
+    "VHT-linked work sit in the same city health geography. We already engage the public "
+    "health system as a licensed private provider (UMDPC licence current for 2026) and "
+    "through frontline VHT relationships. We do not yet have a signed MoU or commitment "
+    "letter for this Accelerator. If longlisted, Stage 2 requires written support. "
+    f"Getting that letter is our first Stage 2 task, led by {CONTACT_NAME}."
 )
 
 TRACK_CHOICE = (
-    "Issue-specific safeguards work, with a short system-level risk map to prioritise "
-    "actions. Over 6–9 months we will advance three concrete safeguards inside the live "
-    "FCHIP / community health DPI deployment: (1) responsible data use, consent, and "
-    "least-privilege EMR/HMS data sharing; (2) offline-first inclusion for underserved "
-    "peri-urban users and frontline workers with limited connectivity or literacy; "
-    "(3) a practical grievance and recourse pathway for people affected by digital health "
-    "data use or alerts. The short system-level map will use the Universal DPI Safeguards "
-    "Framework to show gaps, owners, and sequence — then we execute the three measures."
+    "Issue-specific safeguards work. Over nine months we will put three concrete "
+    "safeguards into the live FCHIP deployment: (1) consent and responsible data sharing — "
+    "clear household consent, purpose limits, least-privilege access for any facility data "
+    "link, and a simple audit trail; (2) offline and inclusion — tools that work without "
+    "steady internet, design for low literacy, and reach to women, older people, people "
+    "with disabilities, and poorer urban households; (3) grievance and recourse — a named "
+    "route to ask about data, request a correction, or raise a concern about an alert, "
+    "with someone responsible and a response time. We start with a short risk map of the "
+    "FCHIP data path so the three measures sit in the right order."
 )
 
 WHY_NOW = (
-    "FCHIP already has a working MVP and is moving from build toward field validation "
-    "inside FairBanks Community Reach. This is the moment when safeguards must be woven "
-    "into live workflows — consent, API scopes, offline inclusion, and recourse — before "
-    "habits harden and before EMR/HMS feeds, GIS alerts, and climate-linked early warnings "
-    "scale. The Universal DPI Safeguards Framework and Accelerator emphasise that "
-    "2026–2028 is a crucial window to embed operational safeguards into code, design, "
-    "governance, and oversight as DPI moves from pilots to population use. Digital health "
-    "is exactly the kind of sectoral DPI use case the Framework anticipates. Acting now "
-    "lets Uganda produce a practical, community-rooted safeguards package others can "
-    "learn from, instead of retrofitting trust after exclusion or privacy harms appear."
+    "FCHIP is past the blank-page stage. The MVP works. We are moving into real use with "
+    "VHTs and our facility team. That is when bad habits stick — weak consent, open data "
+    "pipes, no way for a mother in Kyebando to challenge a wrong record. If we wait until "
+    "the platform is finished, fixing trust later will be harder. Putting safeguards in "
+    "now means consent, access rules, offline access, and a complaint path ship with the "
+    "same workflows we are validating in Bukoto, Kyebando, Kisaasi, Kamwokya and Kikaaya. "
+    "Uganda needs examples grounded in a real clinic and real communities, not only "
+    "frameworks on paper."
 )
 
 TANGIBLE_OUTPUTS = (
-    "Within the 6–9 month Accelerator cycle we commit to these operational assets: "
-    "(1) a safeguards risk-and-gap brief for the FCHIP community health data exchange, "
-    "mapped to Universal DPI Safeguards Framework principles and practices; "
-    "(2) an operational consent and data-sharing protocol for CHW/VHT capture and "
-    "secure EMR/HMS APIs (authentication, purpose limitation, least privilege, audit); "
-    "(3) an inclusion playbook for offline access, low-literacy UX, and reach to women, "
-    "older people, persons with disabilities, and urban poor households in our catchments; "
-    "(4) a community grievance / user recourse pathway for data access requests, "
-    "correction, and alert-related concerns, with named owners and response times; "
-    "(5) a standing multistakeholder safeguards working group (FairBanks, VHTs/CHWs, "
-    "facility clinical lead, government liaison, and community champions) with meeting "
-    "records; (6) a short public learning note suitable for the DPI Safeguards Resource "
-    "Hub. Success means these assets are used in live workflows — not only written."
+    "By the end of nine months we will deliver and use: (1) a short safeguards "
+    "risk-and-gap note for the FCHIP community–facility data path; (2) a consent and "
+    "data-sharing protocol used in VHT capture and any facility records link; (3) an "
+    "inclusion checklist and field playbook for offline use and underserved groups; "
+    "(4) a live grievance pathway with named owners, contact channel, and response times, "
+    "tested with community members; (5) a small working group that meets monthly — "
+    "FairBanks clinical and Community Reach leads, VHT representatives, a facility "
+    "contact, and a KCCA/Kawempe liaison once confirmed — with simple meeting notes; "
+    "(6) a two-to-four page learning note for the DPI Safeguards Resource Hub. We will "
+    "judge success by use in the field, not by documents sitting in a folder."
 )
 
 COORDINATION_MODEL = (
-    "FairBanks team: product/clinical/data-protection leads implement protocols inside "
-    "FCHIP and facility workflows; Community Reach coordinators convene field testing. "
-    "Government counterpart: validates priorities, aligns with national digital health "
-    "and community health guidance, and participates in the working group "
-    f"({CONFIRM} named focal point). Civil society and affected users: VHTs/CHWs, "
-    "community members from Bukoto, Kyebando, Kisaasi, Kamwokya, and Kikaaya, CHIS/"
-    "livelihood group representatives, and local CSO champions co-design consent "
-    "language, inclusion tests, and the grievance pathway — with defined roles in "
-    "validation and monitoring, not one-off consultations. Private/ecosystem: EMR/HMS "
-    "and facility IT contacts advise on API scopes without replacing existing systems. "
-    "Rhythm: kick-off workshop; monthly working-group reviews; community listening "
-    "sessions each quarter; end-of-cycle demo of live safeguards in the deployment."
+    f"FairBanks: {CONTACT_NAME} ({CONTACT_TITLE}) holds overall accountability. Clinical "
+    "and Community Reach coordinators run field tests. A technical lead wires consent "
+    "prompts, access controls, and offline behaviour into FCHIP. A data-protection lead "
+    "(named in Stage 2) owns the protocol and the grievance log. "
+    "Government: KCCA / Kawempe Division health focal point reviews priorities, joins the "
+    "monthly working group when available, and is the path for the Stage 2 support letter. "
+    "Civil society and affected users: VHTs from our catchments co-write consent wording; "
+    "community members — including women, older people, and GeriCare clients — help test "
+    "offline tools and the complaint path; CHIS group representatives speak for families "
+    "who pool money for care; local champions help check whether the grievance route is "
+    "reachable. This is ongoing work, not a one-day workshop. "
+    "Rhythm: kick-off in month 1; monthly working-group check-ins; community listening "
+    "each quarter; end-of-cycle walkthrough of the three safeguards in live use."
 )
 
 BUDGET_NARRATIVE = (
-    f"Indicative request: USD {AMOUNT_REQUESTED:,} catalytic grant over {DURATION}. "
-    "This accelerates safeguards mobilisation inside an existing deployment; it does not "
-    "replace FairBanks' ongoing Community Reach or clinical financing. Approximate "
-    "allocation (refine in Stage 2): personnel and community stipends for co-design and "
-    "safeguards facilitation (~40%); technical work to operationalise consent, API "
-    "controls, offline inclusion, and grievance tooling in the MVP (~30%); workshops, "
-    "travel within Kampala catchments, translation/printing (~15%); MEL, documentation, "
-    f"and learning products for the Resource Hub (~15%). Co-funding / in-kind: {CONFIRM}."
+    f"Duration: {DURATION}. Request: USD {AMOUNT_REQUESTED:,}. "
+    "Rough split: staff time, VHT and community stipends, and safeguards facilitation "
+    "USD 28,000; technical work on consent flows, access controls, offline UX, and "
+    "grievance tooling USD 21,000; workshops, local Kampala travel, translation and "
+    "printing USD 10,500; monitoring, documentation, learning note and cohort "
+    "participation USD 10,500. This speeds up safeguards inside work we already run. "
+    "It does not replace clinic income or Community Reach operating costs."
 )
 
 BUDGET_ROWS = [
-    ("Safeguards lead, clinical/data-protection time, VHT/CHW stipends", "28,000"),
-    ("Technical implementation (consent flows, API scopes, offline UX, grievance tooling)", "21,000"),
-    ("Workshops, community sessions, local travel, translation, materials", "10,500"),
-    ("MEL, documentation, Resource Hub learning note, cohort participation costs", "10,500"),
-    ("Total catalytic ask", "70,000"),
+    ("Staff time, VHT/community stipends, safeguards facilitation", "28,000"),
+    ("Technical work (consent, access controls, offline UX, grievance tooling)", "21,000"),
+    ("Workshops, local travel, translation, printing", "10,500"),
+    ("Monitoring, documentation, learning note, cohort participation", "10,500"),
+    ("Total", "70,000"),
 ]
 
 PROBLEM_SHORT = (
-    "As Uganda expands digital health tools, community and facility data often move "
-    "without clear consent, inclusion for offline users, or a simple way for people to "
-    "challenge mistakes. Trust then lags behind technology — and exclusion grows."
+    "Community and clinic health data are going digital in Kampala, but consent, offline "
+    "access, and a simple way to challenge mistakes are still thin — so trust can fail "
+    "just as the tools scale."
 )
 
 SOLUTION_SHORT = (
-    "Embed three live safeguards into FairBanks' FCHIP sectoral digital health DPI: "
-    "responsible consent and EMR/HMS data sharing; offline-first inclusion; and a "
-    "community grievance pathway — co-owned with government and civil society."
+    "We will embed consent rules, offline-friendly inclusion, and a community grievance "
+    "path into FairBanks' live FCHIP health data platform in Kawempe, with KCCA Division "
+    "health and VHTs at the table."
 )
 
 WIN_THEMES = [
     (
-        "Government alignment",
-        "Work with a named public health authority on an active digital health deployment; "
-        "prepare for a Stage 2 commitment letter.",
+        "Government link",
+        "Named counterpart: KCCA / Kawempe Division health. Stage 2 letter is the next step.",
     ),
     (
-        "Civil society integration",
-        "VHTs, households, and community champions co-design, validate, and monitor — "
-        "not a one-off consultation.",
+        "Community role",
+        "VHTs, households, CHIS groups, and GeriCare clients help design and test — ongoing.",
     ),
     (
-        "Tangible outputs",
-        "Six operational assets in 9 months, used in live FCHIP workflows and shared as "
-        "learning for the global Framework.",
+        "Clear outputs",
+        "Six field assets in nine months, used inside FCHIP and Community Reach.",
     ),
     (
-        "Framework fit",
-        "Maps to Universal DPI Safeguards priorities: inclusion, accountable data use, "
-        "recourse, multistakeholder governance, and sectoral DPI (digital health).",
+        "Honest fit",
+        "Licensed clinic, working digital health MVP, peri-urban Kampala catchments.",
     ),
 ]
 
 STAGE2_CHECKLIST = [
-    "Granular activity plan by month with owners and milestones",
-    "Finalised budget with quotations and salary scales",
-    "Organisational profile + verified proof of legal status (NGO pathway)",
-    "Written government support / commitment letter from collaborating authority",
-    "Named civil society / affected-user roles and meeting cadence",
-    "Data protection, safeguarding, and ethics approach for health data",
-    "Risk register and mitigation (privacy, exclusion, alert harm, adoption)",
-    "Learning and contribution plan for the DPI Safeguards Resource Hub",
+    "Month-by-month activity plan with owners",
+    "Final budget with quotes and salary scales",
+    "Certificate of Incorporation + UMDPC licence as legal proof",
+    "Written support letter from KCCA / Kawempe Division health",
+    "Named VHT and community roles and meeting dates",
+    "Simple data-protection and safeguarding note for health data",
+    "Risks: privacy, exclusion, wrong alerts, weak adoption — and how we handle them",
+    "Learning note plan for the DPI Safeguards Resource Hub",
 ]
 
 SOURCES = [
@@ -297,60 +298,13 @@ SOURCES = [
 
 
 def write_paste_sheet() -> None:
-    text = f"""# DPI Safeguards Accelerator — Stage 1 paste sheet
-
-**Deadline:** {DEADLINE}  
-**Form:** {OFFICIAL_FORM}  
-**Pathway:** {PATHWAY}  
-**Track:** {TRACK}  
-**Draft ask:** USD {AMOUNT_REQUESTED:,} / {DURATION}
-
-> Replace every `{CONFIRM}` before submitting. Airtable may block some regions — use a permitted network if needed.
-
-## Organisation / country / DPI rollout
-
-{ORG_CONTEXT}
-
-## Active DPI initiative
-
-{DPI_INITIATIVE}
-
-## Government counterpart
-
-{GOVERNMENT_COUNTERPART}
-
-## Track focus
-
-{TRACK_CHOICE}
-
-## Why this deployment moment matters
-
-{WHY_NOW}
-
-## Expected tangible outputs (6–9 months)
-
-{TANGIBLE_OUTPUTS}
-
-## Coordination model (team + government + civil society)
-
-{COORDINATION_MODEL}
-
-## Indicative budget and duration
-
-{BUDGET_NARRATIVE}
-
-## One-line pitch (if asked)
-
-{SOLUTION_SHORT}
-
-## Official links
-
-- {OFFICIAL_ACCEL}
-- {OFFICIAL_HOME}
-- {OFFICIAL_FORM}
-"""
-    PASTE.write_text(text.strip() + "\n", encoding="utf-8")
-    print(f"PASTE: {PASTE}")
+    """Keep the curated markdown; do not overwrite with generated filler."""
+    if not PASTE.exists() or PASTE.stat().st_size < 1000:
+        raise RuntimeError(
+            f"Curated paste sheet missing or too small: {PASTE}. "
+            "Restore stage1_airtable_answers.md before building."
+        )
+    print(f"PASTE: {PASTE} (curated; not overwritten)")
 
 
 def build_docx() -> None:
@@ -452,15 +406,17 @@ def build_docx() -> None:
     table(
         ["Field", "Value"],
         [
-            ("Organisation", ORG),
+            ("Legal name", ORG_LEGAL),
+            ("Known as", ORG),
             ("Country", COUNTRY),
-            ("Pathway", "NGO / civil society (single country)"),
-            ("Track", "Issue-specific (+ short system-level risk map)"),
-            ("Draft ask", f"USD {AMOUNT_REQUESTED:,} / {DURATION}"),
+            ("Pathway", "NGO form — community-based health operator (private company)"),
+            ("Track", "Issue-specific safeguards"),
+            ("Ask", f"USD {AMOUNT_REQUESTED:,} / {DURATION}"),
             ("Deadline", DEADLINE),
             ("Contact", f"{CONTACT_NAME}, {CONTACT_TITLE}"),
             ("Email / phone", f"{EMAIL} · {PHONE}"),
-            ("Website", WEBSITE),
+            ("Counterpart", GOVT),
+            ("Address", LOCATION),
         ],
         [2.0, 4.6],
     )
@@ -475,15 +431,15 @@ def build_docx() -> None:
         color=MUTED,
     )
 
-    heading("2. Submission readiness gates")
+    heading("2. Applicant facts (from company-docs)")
     para(
-        "Orange items cannot be guessed. Stage 2 will require legal proof and a government letter.",
+        "Stage 2 still needs the KCCA support letter and incorporation papers. We do not invent NGO status.",
         10,
-        color=ORANGE,
+        color=MUTED,
     )
-    table(["Gate", "Status"], READINESS, [3.6, 3.0])
+    table(["Item", "Detail"], READINESS, [2.4, 4.2])
 
-    heading("3. Win-win positioning")
+    heading("3. Why this fits")
     para(PROBLEM_SHORT)
     para(SOLUTION_SHORT, bold=True)
     bullets([f"{a}: {b}" for a, b in WIN_THEMES])
@@ -569,13 +525,11 @@ def build_docx() -> None:
     heading("8. Submit checklist (before 30 July)")
     bullets(
         [
-            "Confirm NGO-pathway legal eligibility (or eligible lead partner).",
-            "Replace every CONFIRM BEFORE SUBMISSION marker with verified facts.",
-            "Name the government counterpart you can truthfully claim today.",
-            "Open the NGO Airtable form (use permitted network/VPN if region-blocked).",
-            "Paste Stage 1 answers; keep tone practical and community-rooted.",
-            "Save confirmation / screenshot of submission.",
-            "Start drafting the government commitment letter request the same day.",
+            "Use legal name FAIRBANKS MEDICAL CENTRE LIMITED on the form.",
+            "Paste answers from stage1_airtable_answers.md (match field meaning).",
+            "Open the NGO Airtable form (use a network that allows Airtable if blocked).",
+            "Save confirmation or screenshot after submit.",
+            "Same day: draft the KCCA / Kawempe Division support-letter request.",
         ]
     )
 
@@ -875,9 +829,9 @@ def build_pptx() -> None:
     bullets(
         s,
         [
-            f"Confirm legal eligibility and government counterpart ({CONFIRM})",
-            "Paste Stage 1 answers from the Word pack / stage1_airtable_answers.md",
-            "Start the Stage 2 government letter request the same day",
+            "Use FAIRBANKS MEDICAL CENTRE LIMITED; counterpart KCCA / Kawempe Division health",
+            "Paste Stage 1 answers from stage1_airtable_answers.md",
+            "Same day: start the KCCA support-letter request",
         ],
         0.85,
         3.5,
@@ -919,9 +873,9 @@ def validate() -> None:
     )
     for phrase in (
         "Stage 1 — Airtable answer bank",
-        CONFIRM,
         OFFICIAL_FORM,
         "Issue-specific",
+        ORG_LEGAL,
         f"{AMOUNT_REQUESTED:,}",
     ):
         if phrase not in content:
