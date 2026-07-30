@@ -1,0 +1,63 @@
+---
+description: CDC-RFA-JG-26-0054 Uganda GHS cooperative agreement compliance
+globs: applications/cdc-uganda-ghs/**
+alwaysApply: false
+---
+
+# CDC Uganda GHS — source of truth
+
+Official sources win over drafts:
+
+1. [Simpler.Grants.gov listing](https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b)
+2. `rules/opportunity-CDC-RFA-JG-26-0054-attachments/cdc-rfa-jg-26-0054-v2_For_Publishing.pdf`
+3. `rules/opportunity-CDC-RFA-JG-26-0054-attachments/DGHP_FY26_ME_Indicator_List_01_Standard.pdf`
+
+Also follow `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, `fairBanks_refined_project_idea.mdc`. Legal facts: `company-docs/`.
+
+## Call facts
+
+- **NOFO:** CDC-RFA-JG-26-0054 — Strengthening global health security through local partnerships in Uganda
+- **Agency:** CDC Global Health Center / Division of Global Health Protection
+- **CFDA:** 93.318
+- **Deadline:** 14 August 2026, 11:59 p.m. ET (Grants.gov)
+- **Type:** Cooperative agreement · 5 years (five 12-month budget periods)
+- **Expected awards:** 1–3 · Year 1 total NOFO funding about $15M across awards
+- **Cost share:** None required
+- **Delivery:** Must be in Uganda
+- **Eligibility:** Includes foreign / non-U.S. entities and for-profits — FairBanks fits
+- **Local partner preference:** +15 points if documented (Uganda-incorporated entity with local ownership/staff/board tests)
+
+## Component ceilings (Year 1 — apply for all)
+
+| Component | Focus | Ceiling |
+|---|---|---|
+| 1 | Core GHS priorities (expected initial fund) | $5,000,000 |
+| 2 | Small-scale outbreak / PHE response | $10,000,000 |
+| 3 | Large-scale outbreak / PHE response | $15,000,000 |
+| 4 | Emerging infectious disease threats | $15,000,000 |
+| 5 | Humanitarian emergency | $20,000,000 |
+
+## FairBanks scope (honest)
+
+- Prime: **FAIRBANKS MEDICAL CENTRE LIMITED** as local Ugandan partner.
+- Lead with Strategies **4** (surveillance / NISS contribution), **1** (community–district emergency linkage / 7-1-7), **2** (CHW/VHT and frontline workforce), and **6** (community–facility public health programme links). Support Strategies **3** and **5** through MoH-aligned partners — do not claim national lab or border lead alone.
+- **FCHIP** = FairBanks intelligence component on Community Reach Data & Feedback — feeds MoH/NISS; not a parallel silo.
+- Funds may **not** be used for research or for clinical care except as allowed by law. Frame clinic work as surveillance, referral linkage, training, and emergency readiness — not routine fee-for-service care paid by the award.
+- Draft Year 1 Component 1 ask: **$2,450,000** (CONFIRM before submit). Components 2–5: contingency work plans under ceilings.
+
+## Contacts
+
+- **Email:** info@fairbanksmedicalcentre.org  
+- **Phone:** +256 772 849 258  
+- **Lead:** Racheal Nabukeera, Managing Director and Co-founder  
+- **Website:** https://www.fairbanksmedicalcentre.org/
+
+## Deliverables
+
+Synced set via `build_cdc-uganda-ghs_docs.py` only:
+
+- `documents/cdc-uganda-ghs_word.docx`
+- `documents/cdc-uganda-ghs_pdf.pdf`
+- `documents/cdc-uganda-ghs_ppt.pptx`
+
+Copy-paste bank: `application_answers.md`. Mark **CONFIRM** for UEI/SAM.gov, board citizenship %, budget final figures, and named MoH/district letters.
