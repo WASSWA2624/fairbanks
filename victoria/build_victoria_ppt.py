@@ -219,15 +219,19 @@ def build():
         logo_x = SW - MR - LOGO_W
         add_logo(s, logo_x, LOGO_Y, LOGO_H, plate=True)
 
-        # Title stays left of logo plate (extra 0.55" clearance)
         title_w = logo_x - ML - 0.55
-        textbox(s, kicker.upper(), ML, 0.28, title_w, 0.26, 13, ORANGE, True)
-        textbox(s, title, ML, 0.56, title_w, 0.52, 24, NAVY, True)
+        if kicker.strip():
+            textbox(s, kicker.upper(), ML, 0.28, title_w, 0.26, 13, ORANGE, True)
+            textbox(s, title, ML, 0.56, title_w, 0.52, 24, NAVY, True)
+            title_bottom = 1.10
+        else:
+            textbox(s, title, ML, 0.35, title_w, 0.55, 26, NAVY, True)
+            title_bottom = 1.00
 
         if subtitle:
-            textbox(s, subtitle, ML, 1.16, CW, 0.32, 15, MUTED)
+            textbox(s, subtitle, ML, title_bottom + 0.08, CW, 0.32, 15, MUTED)
             return HEADER_BOTTOM_WITH_SUB
-        return HEADER_BOTTOM
+        return max(HEADER_BOTTOM, title_bottom + 0.20)
 
     def footer(s, number, total):
         rect(s, ML, FOOTER_Y, CW, 0.012, LINE)
@@ -273,11 +277,24 @@ def build():
 
     rect(s, 0.55, 4.15, 3.20, 0.10, GOLD)
 
-    textbox(s, "Building the FairBanks Community Health", 0.55, 4.45, 7.1, 0.42, 22, LIGHT)
-    textbox(s, "Improvement Programme (FCHIP)", 0.55, 4.88, 7.1, 0.42, 22, LIGHT)
-    textbox(s, "with Victoria University", 0.55, 5.31, 7.1, 0.42, 22, LIGHT)
+    textbox(s, "Building the FairBanks Community Health Improvement Programme", 0.55, 4.40, 7.1, 0.48, 18, LIGHT)
+    textbox(s, "(FCHIP) with Victoria University", 0.55, 5.05, 7.1, 0.45, 22, GOLD, True)
 
-    textbox(s, SLOGAN, 0.55, 5.85, 7.1, 0.42, 26, GOLD, True)
+    textbox(s, SLOGAN, 0.55, 5.65, 7.1, 0.42, 26, GOLD, True)
+
+    rect(s, 0, 6.40, panel_w, 1.10, TEAL)
+    textbox(
+        s,
+        "Prepared for Victoria University leadership",
+        0.55,
+        6.55,
+        7.1,
+        0.40,
+        20,
+        WHITE,
+        True,
+    )
+    textbox(s, "Kyebando–Kisalosalo, Kampala  ·  Institutional briefing", 0.55, 7.00, 7.1, 0.35, 16, LIGHT)
 
     rect(s, 0, 6.40, panel_w, 1.10, TEAL)
     textbox(
@@ -295,14 +312,14 @@ def build():
     slides_meta.append(s)
 
     # ------------------------------------------------------------------
-    # 2 Agenda
+    # 2 Slide contents
     # ------------------------------------------------------------------
     s = new_slide()
-    y0 = header(s, "Overview", "Agenda", "A clear path through the partnership proposal.")
+    y0 = header(s, "", "Slide Contents")
     agenda = [
         ("01", "Executive summary"),
         ("02", "About FairBanks Medical Centre"),
-        ("03", "The FCHIP programme"),
+        ("03", "What FCHIP is"),
         ("04", "Why Victoria University"),
         ("05", "Five areas of collaboration"),
         ("06", "Partnership network and outcomes"),
@@ -433,27 +450,42 @@ def build():
     slides_meta.append(s)
 
     # ------------------------------------------------------------------
-    # 5 FCHIP
+    # 5 What is FCHIP
     # ------------------------------------------------------------------
     s = new_slide()
-    y0 = header(
+    y0 = header(s, "What it means", "What is FCHIP?")
+
+    # Clear definition card
+    def_h = 2.35
+    rect(s, ML, y0, CW, def_h, TEAL, rounded=True)
+    textbox(s, "FCHIP stands for", ML + 0.40, y0 + 0.25, CW - 0.80, 0.35, 16, GOLD, True)
+    textbox(
         s,
-        "Flagship programme",
         "FairBanks Community Health Improvement Programme",
-        "FCHIP — implemented through the FairBanks Social Enterprise.",
+        ML + 0.40,
+        y0 + 0.60,
+        CW - 0.80,
+        0.45,
+        24,
+        WHITE,
+        True,
     )
     textbox(
         s,
-        "FCHIP strengthens family and community primary healthcare by bringing together "
-        "healthcare providers, universities, government, development partners, corporates, "
-        "and local communities.",
-        ML,
-        y0,
-        CW,
-        0.65,
-        13,
-        MUTED,
+        "It is FairBanks Medical Centre's flagship community programme — run through the "
+        "FairBanks Social Enterprise. FCHIP brings healthcare closer to families by combining "
+        "preventive care, outreach, education, research, skills development, and partnerships "
+        "with universities, government, and community partners.",
+        ML + 0.40,
+        y0 + 1.20,
+        CW - 0.80,
+        0.95,
+        16,
+        LIGHT,
     )
+
+    textbox(s, "What FCHIP focuses on", ML, y0 + def_h + 0.22, CW, 0.35, 16, NAVY, True)
+
     focus = [
         "Preventive healthcare",
         "Community outreach",
@@ -467,8 +499,8 @@ def build():
         "Skills & student learning",
     ]
     cols, rows = 5, 2
-    gap_x, gap_y = 0.35, 0.32
-    grid_top = y0 + 0.80
+    gap_x, gap_y = 0.22, 0.18
+    grid_top = y0 + def_h + 0.60
     avail_h = CONTENT_BOTTOM - grid_top
     cell_w = (CW - (cols - 1) * gap_x) / cols
     cell_h = (avail_h - (rows - 1) * gap_y) / rows
@@ -478,14 +510,14 @@ def build():
         x = ML + col * (cell_w + gap_x)
         y = grid_top + row * (cell_h + gap_y)
         rect(s, x, y, cell_w, cell_h, WHITE, LINE, rounded=True)
-        rect(s, x + 0.18, y + 0.18, cell_w - 0.36, 0.08, accents[col])
+        rect(s, x + 0.14, y + 0.14, cell_w - 0.28, 0.07, accents[col])
         textbox(
             s,
             item,
-            x + 0.15,
-            y + 0.40,
-            cell_w - 0.30,
-            cell_h - 0.55,
+            x + 0.12,
+            y + 0.32,
+            cell_w - 0.24,
+            cell_h - 0.45,
             12,
             NAVY,
             True,
