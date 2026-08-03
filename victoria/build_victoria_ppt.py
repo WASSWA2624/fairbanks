@@ -284,7 +284,7 @@ def build():
 
     rect(s, 0.55, 4.15, 3.20, 0.10, GOLD)
 
-    textbox(s, "Building the FairBanks Community Health Improvement Programme", 0.55, 4.40, 7.1, 0.48, 18, LIGHT)
+    textbox(s, "Building the FairBanks Community Health Intelligence Platform", 0.55, 4.40, 7.1, 0.48, 18, LIGHT)
     textbox(s, "(FCHIP) with Victoria University", 0.55, 5.05, 7.1, 0.45, 22, GOLD, True)
 
     textbox(s, SLOGAN, 0.55, 5.65, 7.1, 0.42, 26, GOLD, True)
@@ -364,8 +364,9 @@ def build():
     points = [
         (
             "FCHIP at the centre",
-            "The FairBanks Community Health Improvement Programme is the flagship platform for "
-            "preventive care, outreach, research, skills development, and partnerships.",
+            "The FairBanks Community Health Intelligence Platform is the deep-tech platform for "
+            "predictive community health — using community and facility data to support prevention, "
+            "outreach, research, skills development, and partnerships.",
             TEAL,
         ),
         (
@@ -448,13 +449,13 @@ def build():
     s = new_slide()
     y0 = header(s, "", "What is FCHIP?")
 
-    # Clear definition card — taller for larger presentation type
+    # Clear definition card — product meaning from fchip-app-write-up.mdc
     def_h = 2.55
     rect(s, ML, y0, CW, def_h, TEAL, rounded=True)
     textbox(s, "FCHIP stands for", ML + 0.40, y0 + 0.22, CW - 0.80, 0.35, 16, GOLD, True)
     textbox(
         s,
-        "FairBanks Community Health Improvement Programme",
+        "FairBanks Community Health Intelligence Platform",
         ML + 0.40,
         y0 + 0.55,
         CW - 0.80,
@@ -465,10 +466,10 @@ def build():
     )
     textbox(
         s,
-        "It is FairBanks Medical Centre's flagship community programme — run through the "
-        "FairBanks Social Enterprise. FCHIP brings healthcare closer to families by combining "
-        "preventive care, outreach, education, research, skills development, and partnerships "
-        "with universities, government, and community partners.",
+        "FCHIP is a deep-technology platform that turns community and facility health data into "
+        "useful predictions. It connects community members, CHWs and VHTs, schools, outreach "
+        "programmes, clinics, and hospitals — and uses AI, GIS mapping, and climate signals to "
+        "spot risks early so partners can act before crises escalate.",
         ML + 0.40,
         y0 + 1.15,
         CW - 0.80,
@@ -480,16 +481,16 @@ def build():
     textbox(s, "What FCHIP focuses on", ML, y0 + def_h + 0.18, CW, 0.35, 17, NAVY, True)
 
     focus = [
-        "Preventive healthcare",
-        "Community outreach",
-        "Health education",
-        "Early disease detection",
-        "Maternal and child health",
-        "NCD prevention",
-        "Elderly care & healthy ageing",
-        "Community-based research",
-        "Digital health innovation",
-        "Skills & student learning",
+        "Disease early warning",
+        "Maternal health risk",
+        "NCD hotspots",
+        "Child health signals",
+        "Medicine demand forecasts",
+        "CHW / VHT mobile tools",
+        "GIS risk mapping",
+        "Climate–health fusion",
+        "EMR / HMS data APIs",
+        "Facility dashboards",
     ]
     cols, rows = 5, 2
     gap_x, gap_y = 0.22, 0.18
