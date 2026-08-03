@@ -61,8 +61,8 @@ TOP_BAR = 0.06
 LOGO_H = 0.36
 LOGO_W = LOGO_H * (269 / 101)
 LOGO_Y = 0.40
-HEADER_BOTTOM_WITH_SUB = 1.65
-HEADER_BOTTOM = 1.35
+HEADER_BOTTOM_WITH_SUB = 1.72
+HEADER_BOTTOM = 1.42
 FOOTER_Y = 7.10
 CONTENT_BOTTOM = 6.65
 
@@ -72,6 +72,13 @@ def rgb(value: str) -> RGBColor:
 
 
 def set_run(run, text, size, color, bold=False, font="Calibri"):
+    # Presentation bump: small type grows more; large titles a little
+    if size >= 32:
+        size = size + 2
+    elif size >= 20:
+        size = size + 3
+    else:
+        size = size + 4
     run.text = text
     run.font.name = font
     run.font.size = Pt(size)
@@ -164,7 +171,7 @@ def build():
             set_run(r, line, size, color, bold, font)
         return box
 
-    def bullets(slide, items, x, y, w, h, size=14, color=SLATE, space=8):
+    def bullets(slide, items, x, y, w, h, size=16, color=SLATE, space=9):
         box = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
         tf = box.text_frame
         tf.clear()
@@ -221,39 +228,39 @@ def build():
 
         title_w = logo_x - ML - 0.55
         if kicker.strip():
-            textbox(s, kicker.upper(), ML, 0.28, title_w, 0.26, 13, ORANGE, True)
-            textbox(s, title, ML, 0.56, title_w, 0.52, 24, NAVY, True)
-            title_bottom = 1.10
+            textbox(s, kicker.upper(), ML, 0.28, title_w, 0.28, 15, ORANGE, True)
+            textbox(s, title, ML, 0.58, title_w, 0.55, 26, NAVY, True)
+            title_bottom = 1.18
         else:
-            textbox(s, title, ML, 0.35, title_w, 0.55, 26, NAVY, True)
-            title_bottom = 1.00
+            textbox(s, title, ML, 0.32, title_w, 0.58, 28, NAVY, True)
+            title_bottom = 1.05
 
         if subtitle:
-            textbox(s, subtitle, ML, title_bottom + 0.08, CW, 0.32, 15, MUTED)
+            textbox(s, subtitle, ML, title_bottom + 0.08, CW, 0.36, 16, MUTED)
             return HEADER_BOTTOM_WITH_SUB
-        return max(HEADER_BOTTOM, title_bottom + 0.20)
+        return max(HEADER_BOTTOM, title_bottom + 0.22)
 
     def footer(s, number, total):
         rect(s, ML, FOOTER_Y, CW, 0.012, LINE)
-        textbox(s, FOOTER, ML, FOOTER_Y + 0.10, 9.5, 0.26, 10, MUTED)
+        textbox(s, FOOTER, ML, FOOTER_Y + 0.08, 9.5, 0.28, 12, MUTED)
         textbox(
             s,
             f"{number}  /  {total}",
             SW - MR - 1.4,
-            FOOTER_Y + 0.10,
+            FOOTER_Y + 0.08,
             1.4,
-            0.26,
-            10,
+            0.28,
+            12,
             MUTED,
             align=PP_ALIGN.RIGHT,
         )
 
-    def card(s, x, y, w, h, title, items, accent=TEAL, title_size=13, item_size=13):
+    def card(s, x, y, w, h, title, items, accent=TEAL, title_size=16, item_size=15):
         """Card with inset accent bar — text never sits on the bar."""
         rect(s, x, y, w, h, WHITE, LINE, rounded=True)
         rect(s, x + 0.12, y + 0.18, 0.08, h - 0.36, accent)
-        textbox(s, title, x + 0.35, y + 0.22, w - 0.55, 0.38, title_size, NAVY, True)
-        bullets(s, items, x + 0.30, y + 0.70, w - 0.50, h - 0.95, item_size, SLATE, space=8)
+        textbox(s, title, x + 0.35, y + 0.20, w - 0.55, 0.42, title_size, NAVY, True)
+        bullets(s, items, x + 0.30, y + 0.70, w - 0.50, h - 0.95, item_size, SLATE, space=9)
 
     slides_meta = []
 
@@ -295,20 +302,6 @@ def build():
         True,
     )
     textbox(s, "Kyebando–Kisalosalo, Kampala  ·  Institutional briefing", 0.55, 7.00, 7.1, 0.35, 16, LIGHT)
-
-    rect(s, 0, 6.40, panel_w, 1.10, TEAL)
-    textbox(
-        s,
-        "Prepared for Victoria University leadership",
-        0.55,
-        6.55,
-        7.1,
-        0.40,
-        20,
-        WHITE,
-        True,
-    )
-    textbox(s, "Kyebando–Kisalosalo, Kampala  ·  Institutional briefing", 0.55, 7.00, 7.1, 0.35, 16, LIGHT)
     slides_meta.append(s)
 
     # ------------------------------------------------------------------
@@ -320,8 +313,8 @@ def build():
         ("01", "Executive summary"),
         ("02", "About FairBanks Medical Centre"),
         ("03", "What FCHIP is"),
-        ("04", "Why Victoria University"),
-        ("05", "Five areas of collaboration"),
+        ("04", "How we work together"),
+        ("05", "Why Victoria University"),
         ("06", "Partnership network and outcomes"),
         ("07", "Roadmap and long-term vision"),
         ("08", "Invitation to partner"),
@@ -453,20 +446,20 @@ def build():
     # 5 What is FCHIP
     # ------------------------------------------------------------------
     s = new_slide()
-    y0 = header(s, "What it means", "What is FCHIP?")
+    y0 = header(s, "", "What is FCHIP?")
 
-    # Clear definition card
-    def_h = 2.35
+    # Clear definition card — taller for larger presentation type
+    def_h = 2.55
     rect(s, ML, y0, CW, def_h, TEAL, rounded=True)
-    textbox(s, "FCHIP stands for", ML + 0.40, y0 + 0.25, CW - 0.80, 0.35, 16, GOLD, True)
+    textbox(s, "FCHIP stands for", ML + 0.40, y0 + 0.22, CW - 0.80, 0.35, 16, GOLD, True)
     textbox(
         s,
         "FairBanks Community Health Improvement Programme",
         ML + 0.40,
-        y0 + 0.60,
+        y0 + 0.55,
         CW - 0.80,
-        0.45,
-        24,
+        0.48,
+        22,
         WHITE,
         True,
     )
@@ -477,14 +470,14 @@ def build():
         "preventive care, outreach, education, research, skills development, and partnerships "
         "with universities, government, and community partners.",
         ML + 0.40,
-        y0 + 1.20,
+        y0 + 1.15,
         CW - 0.80,
-        0.95,
-        16,
+        1.20,
+        15,
         LIGHT,
     )
 
-    textbox(s, "What FCHIP focuses on", ML, y0 + def_h + 0.22, CW, 0.35, 16, NAVY, True)
+    textbox(s, "What FCHIP focuses on", ML, y0 + def_h + 0.18, CW, 0.35, 17, NAVY, True)
 
     focus = [
         "Preventive healthcare",
@@ -500,7 +493,7 @@ def build():
     ]
     cols, rows = 5, 2
     gap_x, gap_y = 0.22, 0.18
-    grid_top = y0 + def_h + 0.60
+    grid_top = y0 + def_h + 0.55
     avail_h = CONTENT_BOTTOM - grid_top
     cell_w = (CW - (cols - 1) * gap_x) / cols
     cell_h = (avail_h - (rows - 1) * gap_y) / rows
@@ -514,11 +507,11 @@ def build():
         textbox(
             s,
             item,
-            x + 0.12,
-            y + 0.32,
-            cell_w - 0.24,
-            cell_h - 0.45,
-            12,
+            x + 0.10,
+            y + 0.28,
+            cell_w - 0.20,
+            cell_h - 0.40,
+            13,
             NAVY,
             True,
             align=PP_ALIGN.CENTER,
@@ -527,10 +520,61 @@ def build():
     slides_meta.append(s)
 
     # ------------------------------------------------------------------
-    # 6 Why Victoria
+    # 6 How we work together (after What, before Why)
     # ------------------------------------------------------------------
     s = new_slide()
-    y0 = header(s, "Strategic fit", "Why Victoria University?")
+    y0 = header(s, "", "How we work together")
+    textbox(
+        s,
+        "Five strategic areas of collaboration between Victoria University and FairBanks Medical Centre.",
+        ML,
+        y0,
+        CW,
+        0.40,
+        15,
+        MUTED,
+    )
+    areas = [
+        ("A", "Student Experiential Learning", "Structured placements across health and related fields", TEAL),
+        ("B", "Research and Innovation", "Joint studies, publications, and evidence for policy", ORANGE),
+        ("C", "Community Engagement", "Camps, schools, screening, and volunteer programmes", GREEN),
+        ("D", "Digital Health & Innovation", "AI, EMRs, telemedicine, and predictive analytics", GOLD),
+        ("E", "Resource Mobilisation", "Shared pursuit of grants and development partnerships", TEAL),
+    ]
+    badge = 0.52
+    inset = 0.24
+    gap_y = 0.22
+    areas_top = y0 + 0.50
+    row_h = (CONTENT_BOTTOM - areas_top - (len(areas) - 1) * gap_y) / len(areas)
+    for i, (letter, title, desc, accent) in enumerate(areas):
+        y = areas_top + i * (row_h + gap_y)
+        rect(s, ML, y, CW, row_h, WHITE, LINE, rounded=True)
+        by = y + (row_h - badge) / 2
+        rect(s, ML + inset, by, badge, badge, accent, rounded=True)
+        textbox(
+            s,
+            letter,
+            ML + inset,
+            by,
+            badge,
+            badge,
+            18,
+            WHITE,
+            True,
+            align=PP_ALIGN.CENTER,
+            valign=MSO_ANCHOR.MIDDLE,
+        )
+        tx = ML + inset + badge + 0.28
+        tw = CW - (inset + badge + 0.28) - 0.30
+        textbox(s, title, tx, y + 0.14, tw, 0.30, 15, NAVY, True)
+        textbox(s, desc, tx, y + 0.44, tw, 0.30, 12, MUTED)
+    slides_meta.append(s)
+
+    # ------------------------------------------------------------------
+    # 7 Why Victoria (after How)
+    # ------------------------------------------------------------------
+    s = new_slide()
+    y0 = header(s, "", "Why Victoria University?")
     textbox(
         s,
         "Victoria University is committed to practical learning, innovation, entrepreneurship, "
@@ -576,46 +620,6 @@ def build():
     for i, (title, items, accent) in enumerate(roles):
         x = ML + i * (card_w + gap)
         card(s, x, card_top, card_w, card_h, title, items, accent=accent)
-    slides_meta.append(s)
-
-    # ------------------------------------------------------------------
-    # 7 Collaboration overview — letter badge SEPARATE from card (no overlap)
-    # ------------------------------------------------------------------
-    s = new_slide()
-    y0 = header(s, "How we work together", "Five strategic areas of collaboration")
-    areas = [
-        ("A", "Student Experiential Learning", "Structured placements across health and related fields", TEAL),
-        ("B", "Research and Innovation", "Joint studies, publications, and evidence for policy", ORANGE),
-        ("C", "Community Engagement", "Camps, schools, screening, and volunteer programmes", GREEN),
-        ("D", "Digital Health & Innovation", "AI, EMRs, telemedicine, and predictive analytics", GOLD),
-        ("E", "Resource Mobilisation", "Shared pursuit of grants and development partnerships", TEAL),
-    ]
-    badge = 0.52
-    inset = 0.24
-    gap_y = 0.30
-    row_h = (CONTENT_BOTTOM - y0 - (len(areas) - 1) * gap_y) / len(areas)
-    for i, (letter, title, desc, accent) in enumerate(areas):
-        y = y0 + i * (row_h + gap_y)
-        rect(s, ML, y, CW, row_h, WHITE, LINE, rounded=True)
-        by = y + (row_h - badge) / 2
-        rect(s, ML + inset, by, badge, badge, accent, rounded=True)
-        textbox(
-            s,
-            letter,
-            ML + inset,
-            by,
-            badge,
-            badge,
-            18,
-            WHITE,
-            True,
-            align=PP_ALIGN.CENTER,
-            valign=MSO_ANCHOR.MIDDLE,
-        )
-        tx = ML + inset + badge + 0.28
-        tw = CW - (inset + badge + 0.28) - 0.30
-        textbox(s, title, tx, y + 0.16, tw, 0.32, 15, NAVY, True)
-        textbox(s, desc, tx, y + 0.50, tw, 0.32, 12, MUTED)
     slides_meta.append(s)
 
     # ------------------------------------------------------------------
