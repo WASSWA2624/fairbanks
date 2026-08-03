@@ -228,7 +228,7 @@ def build():
     rect(s, panel, 0, 0.12, SH, GOLD)
     add_logo(s, 0.55, 0.28, 0.48)
 
-    textbox(s, "STRATEGIC INSTITUTIONAL PROPOSAL", 0.55, 1.05, 7.0, 0.32, 15, GOLD, True)
+    textbox(s, "INSTITUTIONAL PARTNERSHIP PROPOSAL", 0.55, 1.05, 7.0, 0.32, 15, GOLD, True)
     textbox(s, ORG, 0.55, 1.42, 7.0, 0.40, 20, TEAL, True)
     textbox(s, "University–Community Health", 0.55, 2.05, 7.0, 0.65, 32, WHITE, True)
     textbox(s, "Partnership Proposal", 0.55, 2.75, 7.0, 0.65, 32, GOLD, True)
@@ -277,10 +277,10 @@ def build():
     # 3 Executive summary
     # ------------------------------------------------------------------
     s = new_slide()
-    y0 = header(s, "Executive summary", "A strategic partnership for health, learning, and impact")
+    y0 = header(s, "Executive summary", "A partnership for health, learning, and impact")
     textbox(
         s,
-        "FairBanks Medical Centre proposes a strategic partnership with Victoria University "
+        "FairBanks Medical Centre proposes a partnership with Victoria University "
         "to integrate healthcare service delivery, academic excellence, research, innovation, "
         "and community engagement.",
         ML, y0, CW, 0.70, 16, SLATE,
@@ -390,7 +390,7 @@ def build():
     y0 = header(s, "", "How we work together")
     textbox(
         s,
-        "Five strategic areas of collaboration between Victoria University and FairBanks Medical Centre.",
+        "Five key areas of collaboration between Victoria University and FairBanks Medical Centre.",
         ML, y0, CW, 0.38, 15, MUTED,
     )
     areas = [
@@ -594,7 +594,7 @@ def build():
     # ------------------------------------------------------------------
     s = new_slide()
     y0 = header(
-        s, "Ecosystem", "Strategic partnerships and collaborative network",
+        s, "Ecosystem", "Partnerships and collaborative network",
         "Victoria University as the flagship academic and research partner.",
     )
     partners = [
@@ -740,7 +740,7 @@ def build():
     textbox(
         s,
         "FairBanks Medical Centre invites Victoria University to join as a\n"
-        "strategic partner in advancing FCHIP.",
+        "partner in advancing FCHIP.",
         0.55, 3.90, 7.0, 0.70, 16, LIGHT,
     )
     textbox(s, SLOGAN, 0.55, 4.70, 7.0, 0.38, 20, GOLD, True)
