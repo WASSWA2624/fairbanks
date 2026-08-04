@@ -51,8 +51,8 @@ LOGO_W = LOGO_H * (269 / 101)
 LOGO_Y = 0.24
 FOOTER_Y = 7.02
 CONTENT_BOTTOM = 6.62
-HEADER_Y = 1.20
-HEADER_Y_SUB = 1.58
+HEADER_Y = 1.05
+HEADER_Y_SUB = 1.42
 
 
 def rgb(value: str) -> RGBColor:
@@ -199,9 +199,24 @@ def build():
         add_logo(s, logo_x, LOGO_Y)
         tw = logo_x - ML - 0.40
         if kicker.strip():
-            textbox(s, kicker.upper(), ML, 0.16, tw, 0.32, 17, ORANGE, True)
-            textbox(s, title, ML, 0.44, tw, 0.58, 32, NAVY, True)
-            y = 1.10
+            # One line: "Kicker: Title" — orange kicker, navy title
+            box = s.shapes.add_textbox(Inches(ML), Inches(0.28), Inches(tw), Inches(0.62))
+            tf = box.text_frame
+            tf.clear()
+            tf.word_wrap = True
+            tf.margin_left = tf.margin_right = Emu(18000)
+            tf.margin_top = tf.margin_bottom = Emu(4000)
+            tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+            p = tf.paragraphs[0]
+            p.alignment = PP_ALIGN.LEFT
+            p.space_before = Pt(0)
+            p.space_after = Pt(0)
+            p.line_spacing = 1.15
+            r1 = p.add_run()
+            set_run(r1, kicker.strip() + ": ", 28, ORANGE, True)
+            r2 = p.add_run()
+            set_run(r2, title, 28, NAVY, True)
+            y = 1.00
         else:
             textbox(s, title, ML, 0.24, tw, 0.62, 34, NAVY, True)
             y = 0.98
