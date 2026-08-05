@@ -191,6 +191,24 @@ def build():
             pic.crop_top = pic.crop_bottom = a
         return pic
 
+    def fit_photo(slide, path, x, y, w, h, bg=WHITE, line=LINE):
+        """Place the whole image inside the box — no cropping."""
+        if bg is not None:
+            rect(slide, x, y, w, h, bg, line, True)
+        with PILImage.open(path) as im:
+            iw, ih = im.size
+        ir = iw / ih
+        fr = w / h
+        if ir > fr:
+            pw, ph = w, w / ir
+            px, py = x, y + (h - ph) / 2
+        else:
+            ph, pw = h, h * ir
+            px, py = x + (w - pw) / 2, y
+        return slide.shapes.add_picture(
+            str(path), Inches(px), Inches(py), width=Inches(pw), height=Inches(ph)
+        )
+
     def new_slide(bg=CREAM):
         s = prs.slides.add_slide(blank)
         rect(s, 0, 0, SW, SH, bg)
@@ -329,14 +347,17 @@ def build():
     y0 = header(
         s,
         "Operating model",
-        "How FairBanks Community Reach works",
-        "FCHIP sits on the Data & Feedback loop — it does not replace the cascade.",
+        "How we care for your community",
+        "The simple Community Reach journey — FCHIP supports the Data & Feedback loop.",
     )
-    left_w = CW * 0.46
-    gap = 0.24
-    right_w = CW - left_w - gap
     h = CONTENT_BOTTOM - y0
-    crop_photo(s, PHOTOS["concept"], ML, y0, left_w, h)
+    gap = 0.28
+    with PILImage.open(PHOTOS["concept"]) as im:
+        concept_ratio = im.size[0] / im.size[1]
+    # Portrait diagram: size panel to full content height so nothing is cropped
+    left_w = min(h * concept_ratio + 0.24, CW * 0.40)
+    right_w = CW - left_w - gap
+    fit_photo(s, PHOTOS["concept"], ML, y0, left_w, h, bg=WHITE, line=LINE)
     steps = [
         ("1", "Community members"),
         ("2", "CHWs / VHTs — the bridge"),
