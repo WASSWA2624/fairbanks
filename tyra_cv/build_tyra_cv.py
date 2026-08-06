@@ -1,4 +1,4 @@
-"""Generate professional CV for Tyra Rebecca Nalukwago (DOCX + PDF).
+"""Generate a visually polished CV for Tyra Rebecca Nalukwago (DOCX + PDF).
 Leaves the original TYRA REBECCA NALUKWAGO.docx untouched.
 """
 
@@ -7,22 +7,26 @@ from __future__ import annotations
 from pathlib import Path
 
 from docx import Document
+from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm, Pt, RGBColor, Twips
-from reportlab.lib.colors import Color, HexColor, white
-from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
+from docx.shared import Cm, Pt, RGBColor
+from reportlab.lib.colors import HexColor, white
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT, TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm, mm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    HRFlowable,
+    Flowable,
+    Frame,
     KeepTogether,
-    ListFlowable,
-    ListItem,
+    NextPageTemplate,
+    PageTemplate,
+    BaseDocTemplate,
     Paragraph,
-    SimpleDocTemplate,
     Spacer,
     Table,
     TableStyle,
@@ -31,16 +35,24 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parent
 DOCX_OUT = ROOT / "TYRA_REBECCA_NALUKWAGO_CV.docx"
 PDF_OUT = ROOT / "TYRA_REBECCA_NALUKWAGO_CV.pdf"
+FONTS = Path(r"C:\Windows\Fonts")
 
-NAVY = HexColor("#1B3A4B")
-ACCENT = HexColor("#2C5F6E")
-MUTED = HexColor("#4A5568")
-RULE = HexColor("#CBD5E0")
-LIGHT_BG = HexColor("#F0F4F6")
+# Palette — deep teal, calm and professional
+TEAL = HexColor("#0F3D4C")
+TEAL_MID = HexColor("#1A5A6E")
+TEAL_SOFT = HexColor("#E8F1F4")
+INK = HexColor("#2D3748")
+MUTED = HexColor("#5A6A75")
+RULE = HexColor("#B8CDD4")
+GOLD = HexColor("#C4A35A")  # thin accent only
 
-NAVY_RGB = RGBColor(0x1B, 0x3A, 0x4B)
-ACCENT_RGB = RGBColor(0x2C, 0x5F, 0x6E)
-MUTED_RGB = RGBColor(0x4A, 0x55, 0x68)
+TEAL_RGB = RGBColor(0x0F, 0x3D, 0x4C)
+TEAL_MID_RGB = RGBColor(0x1A, 0x5A, 0x6E)
+TEAL_SOFT_RGB = RGBColor(0xE8, 0xF1, 0xF4)
+INK_RGB = RGBColor(0x2D, 0x37, 0x48)
+MUTED_RGB = RGBColor(0x5A, 0x6A, 0x75)
+WHITE_RGB = RGBColor(0xFF, 0xFF, 0xFF)
+GOLD_RGB = RGBColor(0xC4, 0xA3, 0x5A)
 
 PROFILE = (
     "Accomplished Land Economist and Graduate Valuation Surveyor with over five years "
@@ -167,6 +179,22 @@ COMPETENCIES = [
     "Data Collection & Analysis",
 ]
 
+TAGLINE = "Senior Valuation Surveyor  ·  Land Economist  ·  Property & Resettlement Specialist"
+
+
+# ---------------------------------------------------------------------------
+# Font registration (PDF)
+# ---------------------------------------------------------------------------
+
+def register_fonts():
+    pdfmetrics.registerFont(TTFont("Georgia", str(FONTS / "georgia.ttf")))
+    pdfmetrics.registerFont(TTFont("Georgia-Bold", str(FONTS / "georgiab.ttf")))
+    pdfmetrics.registerFont(TTFont("Georgia-Italic", str(FONTS / "georgiai.ttf")))
+    pdfmetrics.registerFont(TTFont("Calibri", str(FONTS / "calibri.ttf")))
+    pdfmetrics.registerFont(TTFont("Calibri-Bold", str(FONTS / "calibrib.ttf")))
+    pdfmetrics.registerFont(TTFont("Calibri-Italic", str(FONTS / "calibrii.ttf")))
+    pdfmetrics.registerFont(TTFont("Calibri-Light", str(FONTS / "calibril.ttf")))
+
 
 # ---------------------------------------------------------------------------
 # DOCX helpers
@@ -182,42 +210,74 @@ def _set_run_font(run, name="Calibri", size=10, bold=False, color=None, italic=F
         run.font.color.rgb = color
 
 
-def _para_spacing(p, before=0, after=6, line=1.08):
+def _para_spacing(p, before=0, after=6, line=1.12):
     pf = p.paragraph_format
     pf.space_before = Pt(before)
     pf.space_after = Pt(after)
     pf.line_spacing = line
 
 
-def _add_bottom_border(paragraph, color="2C5F6E", size="12"):
-    pPr = paragraph._p.get_or_add_pPr()
-    pBdr = OxmlElement("w:pBdr")
-    bottom = OxmlElement("w:bottom")
-    bottom.set(qn("w:val"), "single")
-    bottom.set(qn("w:sz"), size)
-    bottom.set(qn("w:space"), "4")
-    bottom.set(qn("w:color"), color)
-    pBdr.append(bottom)
-    pPr.append(pBdr)
+def _shade_cell(cell, hex_color):
+    tc = cell._tc
+    tcPr = tc.get_or_add_tcPr()
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:fill"), hex_color)
+    shd.set(qn("w:val"), "clear")
+    tcPr.append(shd)
+
+
+def _set_cell_margins(cell, top=40, bottom=40, left=80, right=80):
+    tc = cell._tc
+    tcPr = tc.get_or_add_tcPr()
+    tcMar = OxmlElement("w:tcMar")
+    for edge, val in (("top", top), ("left", left), ("bottom", bottom), ("right", right)):
+        node = OxmlElement(f"w:{edge}")
+        node.set(qn("w:w"), str(val))
+        node.set(qn("w:type"), "dxa")
+        tcMar.append(node)
+    tcPr.append(tcMar)
+
+
+def _remove_table_borders(table):
+    tbl = table._tbl
+    tblPr = tbl.tblPr if tbl.tblPr is not None else OxmlElement("w:tblPr")
+    borders = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        el = OxmlElement(f"w:{edge}")
+        el.set(qn("w:val"), "nil")
+        el.set(qn("w:sz"), "0")
+        el.set(qn("w:space"), "0")
+        el.set(qn("w:color"), "auto")
+        borders.append(el)
+    tblPr.append(borders)
 
 
 def _section_heading(doc, text):
     p = doc.add_paragraph()
-    _para_spacing(p, before=12, after=4, line=1.0)
+    _para_spacing(p, before=14, after=2, line=1.0)
     run = p.add_run(text.upper())
-    _set_run_font(run, size=11, bold=True, color=NAVY_RGB)
-    _add_bottom_border(p)
+    _set_run_font(run, name="Calibri", size=11, bold=True, color=TEAL_RGB)
+
+    # Gold accent underline via bottom border
+    pPr = p._p.get_or_add_pPr()
+    pBdr = OxmlElement("w:pBdr")
+    bottom = OxmlElement("w:bottom")
+    bottom.set(qn("w:val"), "single")
+    bottom.set(qn("w:sz"), "12")
+    bottom.set(qn("w:space"), "6")
+    bottom.set(qn("w:color"), "1A5A6E")
+    pBdr.append(bottom)
+    pPr.append(pBdr)
     return p
 
 
 def _bullet(doc, text, size=9.5):
     p = doc.add_paragraph(style="List Bullet")
-    _para_spacing(p, before=0, after=2, line=1.05)
     p.clear()
+    _para_spacing(p, before=0, after=1.5, line=1.12)
+    p.paragraph_format.left_indent = Cm(0.5)
     run = p.add_run(text)
-    _set_run_font(run, size=size, color=MUTED_RGB)
-    # tighten left indent slightly
-    p.paragraph_format.left_indent = Cm(0.55)
+    _set_run_font(run, name="Calibri", size=size, color=MUTED_RGB)
     return p
 
 
@@ -226,216 +286,284 @@ def build_docx():
     section = doc.sections[0]
     section.page_width = Cm(21.0)
     section.page_height = Cm(29.7)
-    section.top_margin = Cm(1.4)
-    section.bottom_margin = Cm(1.4)
-    section.left_margin = Cm(1.6)
-    section.right_margin = Cm(1.6)
+    section.top_margin = Cm(0)
+    section.bottom_margin = Cm(1.3)
+    section.left_margin = Cm(0)
+    section.right_margin = Cm(0)
 
-    # Name
-    name = doc.add_paragraph()
-    name.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    _para_spacing(name, before=0, after=2, line=1.0)
-    r = name.add_run("TYRA REBECCA NALUKWAGO")
-    _set_run_font(r, size=20, bold=True, color=NAVY_RGB)
+    # ---- Header banner ----
+    header = doc.add_table(rows=1, cols=1)
+    header.alignment = WD_TABLE_ALIGNMENT.CENTER
+    _remove_table_borders(header)
+    cell = header.rows[0].cells[0]
+    _shade_cell(cell, "0F3D4C")
+    _set_cell_margins(cell, top=160, bottom=140, left=200, right=200)
 
-    # Tagline
-    tag = doc.add_paragraph()
-    tag.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    _para_spacing(tag, before=0, after=2, line=1.0)
-    r = tag.add_run(
-        "Senior Valuation Surveyor  |  Land Economist  |  Property & Resettlement Specialist"
-    )
-    _set_run_font(r, size=10, color=ACCENT_RGB)
+    name_p = cell.paragraphs[0]
+    name_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    _para_spacing(name_p, before=0, after=4, line=1.0)
+    r = name_p.add_run("TYRA REBECCA NALUKWAGO")
+    _set_run_font(r, name="Georgia", size=26, bold=True, color=WHITE_RGB)
 
-    # Accent rule under header
-    rule = doc.add_paragraph()
-    _para_spacing(rule, before=2, after=8, line=1.0)
-    _add_bottom_border(rule, color="1B3A4B", size="18")
+    tag_p = cell.add_paragraph()
+    tag_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    _para_spacing(tag_p, before=0, after=2, line=1.0)
+    r = tag_p.add_run(TAGLINE)
+    _set_run_font(r, name="Calibri", size=11.5, color=RGBColor(0xD4, 0xE4, 0xEA))
 
-    # Profile
-    _section_heading(doc, "Professional Profile")
+    # Gold hairline under banner
+    gold = doc.add_table(rows=1, cols=1)
+    _remove_table_borders(gold)
+    gcell = gold.rows[0].cells[0]
+    _shade_cell(gcell, "C4A35A")
+    _set_cell_margins(gcell, top=0, bottom=0, left=0, right=0)
+    gp = gcell.paragraphs[0]
+    _para_spacing(gp, before=0, after=0, line=0.5)
+    r = gp.add_run(" ")
+    _set_run_font(r, size=3)
+
+    # Content wrapper with side margins via nested table
+    body = doc.add_table(rows=1, cols=1)
+    _remove_table_borders(body)
+    bcell = body.rows[0].cells[0]
+    _set_cell_margins(bcell, top=80, bottom=40, left=200, right=200)
+
+    def add_p(before=0, after=4, align=WD_ALIGN_PARAGRAPH.LEFT):
+        p = bcell.add_paragraph()
+        p.alignment = align
+        _para_spacing(p, before=before, after=after, line=1.12)
+        return p
+
+    def add_heading(text):
+        p = add_p(before=12, after=3)
+        r = p.add_run(text.upper())
+        _set_run_font(r, name="Calibri", size=13, bold=True, color=TEAL_RGB)
+        pPr = p._p.get_or_add_pPr()
+        pBdr = OxmlElement("w:pBdr")
+        bottom = OxmlElement("w:bottom")
+        bottom.set(qn("w:val"), "single")
+        bottom.set(qn("w:sz"), "12")
+        bottom.set(qn("w:space"), "5")
+        bottom.set(qn("w:color"), "1A5A6E")
+        pBdr.append(bottom)
+        pPr.append(pBdr)
+
+    # Clear the default empty paragraph
+    bcell.paragraphs[0].clear()
+
+    add_heading("Professional Profile")
     for text in (PROFILE, PROFILE_2):
-        p = doc.add_paragraph()
-        _para_spacing(p, before=2, after=4, line=1.1)
+        p = add_p(before=2, after=4)
         p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         r = p.add_run(text)
-        _set_run_font(r, size=9.5, color=MUTED_RGB)
+        _set_run_font(r, name="Calibri", size=11, color=INK_RGB)
 
-    # Highlights - two columns via table
-    _section_heading(doc, "Career Highlights")
+    # Highlights in soft panel
+    add_heading("Career Highlights")
+    hl = bcell.add_table(rows=1, cols=1)
+    _remove_table_borders(hl)
+    hcell = hl.rows[0].cells[0]
+    _shade_cell(hcell, "E8F1F4")
+    _set_cell_margins(hcell, top=60, bottom=50, left=100, right=100)
+
     mid = (len(HIGHLIGHTS) + 1) // 2
     left, right = HIGHLIGHTS[:mid], HIGHLIGHTS[mid:]
-    table = doc.add_table(rows=max(len(left), len(right)), cols=2)
-    table.autofit = True
+    cols = hcell.add_table(rows=max(len(left), len(right)), cols=2)
+    _remove_table_borders(cols)
     for i in range(max(len(left), len(right))):
-        for col, items in enumerate((left, right)):
-            cell = table.rows[i].cells[col]
-            cell.text = ""
-            p = cell.paragraphs[0]
-            _para_spacing(p, before=0, after=1, line=1.05)
+        for ci, items in enumerate((left, right)):
+            c = cols.rows[i].cells[ci]
+            c.text = ""
+            _set_cell_margins(c, top=20, bottom=20, left=40, right=60)
+            p = c.paragraphs[0]
+            _para_spacing(p, before=0, after=0, line=1.15)
             if i < len(items):
                 r = p.add_run(f"•  {items[i]}")
-                _set_run_font(r, size=9, color=MUTED_RGB)
-            # remove cell margins slightly
-            tc = cell._tc
-            tcPr = tc.get_or_add_tcPr()
-            tcMar = OxmlElement("w:tcMar")
-            for m, v in (("top", "20"), ("left", "40"), ("bottom", "20"), ("right", "80")):
-                node = OxmlElement(f"w:{m}")
-                node.set(qn("w:w"), v)
-                node.set(qn("w:type"), "dxa")
-                tcMar.append(node)
-            tcPr.append(tcMar)
+                _set_run_font(r, name="Calibri", size=10.5, color=TEAL_MID_RGB)
 
-    # Experience
-    _section_heading(doc, "Professional Experience")
+    add_heading("Professional Experience")
     for job in EXPERIENCE:
-        head = doc.add_paragraph()
-        _para_spacing(head, before=6, after=0, line=1.05)
-        r = head.add_run(job["title"])
-        _set_run_font(r, size=10.5, bold=True, color=NAVY_RGB)
+        # Title + dates row
+        row = bcell.add_table(rows=1, cols=2)
+        _remove_table_borders(row)
+        row.columns[0].width = Cm(11.5)
+        row.columns[1].width = Cm(5.5)
+        lc, rc = row.rows[0].cells
+        _set_cell_margins(lc, top=40, bottom=0, left=0, right=40)
+        _set_cell_margins(rc, top=40, bottom=0, left=0, right=0)
+        lp = lc.paragraphs[0]
+        _para_spacing(lp, before=0, after=0, line=1.05)
+        r = lp.add_run(job["title"])
+        _set_run_font(r, name="Calibri", size=12.5, bold=True, color=TEAL_RGB)
+        rp = rc.paragraphs[0]
+        rp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        _para_spacing(rp, before=0, after=0, line=1.05)
+        r = rp.add_run(job["dates"])
+        _set_run_font(r, name="Calibri", size=10.5, color=TEAL_MID_RGB)
 
-        meta = doc.add_paragraph()
-        _para_spacing(meta, before=0, after=2, line=1.0)
-        r = meta.add_run(f"{job['org']}  |  {job['dates']}")
-        _set_run_font(r, size=9, italic=True, color=ACCENT_RGB)
+        org = add_p(before=0, after=2)
+        r = org.add_run(job["org"])
+        _set_run_font(r, name="Calibri", size=11, italic=True, color=TEAL_MID_RGB)
 
         for b in job["bullets"]:
-            _bullet(doc, b)
+            p = add_p(before=0, after=1)
+            p.paragraph_format.left_indent = Cm(0.35)
+            r = p.add_run(f"•  {b}")
+            _set_run_font(r, name="Calibri", size=11, color=MUTED_RGB)
 
-    # Earlier experience
-    early_h = doc.add_paragraph()
-    _para_spacing(early_h, before=6, after=2, line=1.0)
-    r = early_h.add_run("Earlier Experience")
-    _set_run_font(r, size=10, bold=True, color=NAVY_RGB)
+    p = add_p(before=8, after=2)
+    r = p.add_run("Earlier Experience")
+    _set_run_font(r, name="Calibri", size=11.5, bold=True, color=TEAL_RGB)
     for item in EARLIER:
-        _bullet(doc, item)
+        p = add_p(before=0, after=1)
+        p.paragraph_format.left_indent = Cm(0.35)
+        r = p.add_run(f"•  {item}")
+        _set_run_font(r, name="Calibri", size=11, color=MUTED_RGB)
 
-    # Education + Membership side by side
-    _section_heading(doc, "Education & Professional Membership")
-    em = doc.add_table(rows=2, cols=2)
-    em.rows[0].cells[0].text = ""
-    em.rows[0].cells[1].text = ""
-    em.rows[1].cells[0].text = ""
-    em.rows[1].cells[1].text = ""
+    # Education | Membership
+    add_heading("Education & Membership")
+    em = bcell.add_table(rows=2, cols=2)
+    _remove_table_borders(em)
+    cells = [
+        (0, 0, "Bachelor of Science (Hons) in Land Economics", True, TEAL_RGB),
+        (1, 0, "Makerere University", False, TEAL_MID_RGB),
+        (0, 1, "Graduate Member, ISU", True, TEAL_RGB),
+        (1, 1, "Institute of Surveyors of Uganda", False, TEAL_MID_RGB),
+    ]
+    for ri, ci, text, bold, color in cells:
+        c = em.rows[ri].cells[ci]
+        c.text = ""
+        _set_cell_margins(c, top=20, bottom=20, left=0, right=80)
+        p = c.paragraphs[0]
+        _para_spacing(p, before=0, after=0, line=1.1)
+        r = p.add_run(text)
+        _set_run_font(
+            r, name="Calibri", size=11.5 if bold else 11, bold=bold, italic=not bold, color=color
+        )
 
-    p = em.rows[0].cells[0].paragraphs[0]
-    _para_spacing(p, before=2, after=0, line=1.05)
-    r = p.add_run("Bachelor of Science (Hons) in Land Economics")
-    _set_run_font(r, size=10, bold=True, color=NAVY_RGB)
-    p = em.rows[1].cells[0].paragraphs[0]
-    _para_spacing(p, before=0, after=2, line=1.0)
-    r = p.add_run("Makerere University")
-    _set_run_font(r, size=9.5, italic=True, color=ACCENT_RGB)
-
-    p = em.rows[0].cells[1].paragraphs[0]
-    _para_spacing(p, before=2, after=0, line=1.05)
-    r = p.add_run("Graduate Member")
-    _set_run_font(r, size=10, bold=True, color=NAVY_RGB)
-    p = em.rows[1].cells[1].paragraphs[0]
-    _para_spacing(p, before=0, after=2, line=1.0)
-    r = p.add_run("Institute of Surveyors of Uganda (ISU)")
-    _set_run_font(r, size=9.5, italic=True, color=ACCENT_RGB)
-
-    # Key Projects - two columns
-    _section_heading(doc, "Key Projects")
+    add_heading("Key Projects")
     mid = (len(PROJECTS) + 1) // 2
     left, right = PROJECTS[:mid], PROJECTS[mid:]
-    table = doc.add_table(rows=max(len(left), len(right)), cols=2)
+    pt = bcell.add_table(rows=max(len(left), len(right)), cols=2)
+    _remove_table_borders(pt)
     for i in range(max(len(left), len(right))):
-        for col, items in enumerate((left, right)):
-            cell = table.rows[i].cells[col]
-            cell.text = ""
-            p = cell.paragraphs[0]
-            _para_spacing(p, before=0, after=1, line=1.05)
+        for ci, items in enumerate((left, right)):
+            c = pt.rows[i].cells[ci]
+            c.text = ""
+            _set_cell_margins(c, top=15, bottom=15, left=0, right=60)
+            p = c.paragraphs[0]
+            _para_spacing(p, before=0, after=0, line=1.12)
             if i < len(items):
                 r = p.add_run(f"•  {items[i]}")
-                _set_run_font(r, size=9, color=MUTED_RGB)
+                _set_run_font(r, name="Calibri", size=11, color=MUTED_RGB)
 
-    # Technical expertise
-    _section_heading(doc, "Technical Expertise")
-    tech = doc.add_paragraph()
-    _para_spacing(tech, before=2, after=4, line=1.15)
-    tech.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = tech.add_run("  ·  ".join(TECHNICAL))
-    _set_run_font(r, size=9, color=MUTED_RGB)
+    add_heading("Technical Expertise")
+    p = add_p(before=2, after=4)
+    p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    r = p.add_run("  ·  ".join(TECHNICAL))
+    _set_run_font(r, name="Calibri", size=11, color=INK_RGB)
 
-    # Competencies - two columns
-    _section_heading(doc, "Core Competencies")
+    add_heading("Core Competencies")
     mid = (len(COMPETENCIES) + 1) // 2
     left, right = COMPETENCIES[:mid], COMPETENCIES[mid:]
-    table = doc.add_table(rows=max(len(left), len(right)), cols=2)
+    ct = bcell.add_table(rows=max(len(left), len(right)), cols=2)
+    _remove_table_borders(ct)
     for i in range(max(len(left), len(right))):
-        for col, items in enumerate((left, right)):
-            cell = table.rows[i].cells[col]
-            cell.text = ""
-            p = cell.paragraphs[0]
-            _para_spacing(p, before=0, after=1, line=1.05)
+        for ci, items in enumerate((left, right)):
+            c = ct.rows[i].cells[ci]
+            c.text = ""
+            _set_cell_margins(c, top=15, bottom=15, left=0, right=60)
+            p = c.paragraphs[0]
+            _para_spacing(p, before=0, after=0, line=1.12)
             if i < len(items):
                 r = p.add_run(f"•  {items[i]}")
-                _set_run_font(r, size=9, color=MUTED_RGB)
+                _set_run_font(r, name="Calibri", size=11, color=MUTED_RGB)
 
-    # Languages
-    _section_heading(doc, "Languages")
-    lang = doc.add_paragraph()
-    _para_spacing(lang, before=2, after=0, line=1.05)
-    r = lang.add_run("English  ·  Fluent")
-    _set_run_font(r, size=9.5, color=MUTED_RGB)
-    r = lang.add_run("          ")
-    _set_run_font(r, size=9.5)
-    r = lang.add_run("Luganda  ·  Native")
-    _set_run_font(r, size=9.5, color=MUTED_RGB)
+    add_heading("Languages")
+    p = add_p(before=2, after=6)
+    r = p.add_run("English")
+    _set_run_font(r, name="Calibri", size=11.5, bold=True, color=TEAL_RGB)
+    r = p.add_run("  ·  Fluent")
+    _set_run_font(r, name="Calibri", size=11.5, color=MUTED_RGB)
+    r = p.add_run("          ")
+    _set_run_font(r, size=11.5)
+    r = p.add_run("Luganda")
+    _set_run_font(r, name="Calibri", size=11.5, bold=True, color=TEAL_RGB)
+    r = p.add_run("  ·  Native")
+    _set_run_font(r, name="Calibri", size=11.5, color=MUTED_RGB)
 
     doc.save(DOCX_OUT)
     print(f"Wrote {DOCX_OUT}")
 
 
 # ---------------------------------------------------------------------------
-# PDF
+# PDF flowables & styles
 # ---------------------------------------------------------------------------
+
+class ColoredBox(Flowable):
+    """Rounded-ish soft panel by drawing a filled rect behind child table."""
+
+    def __init__(self, inner, width, pad=8, bg=TEAL_SOFT, radius=4):
+        Flowable.__init__(self)
+        self.inner = inner
+        self.box_width = width
+        self.pad = pad
+        self.bg = bg
+        self.radius = radius
+
+    def wrap(self, availWidth, availHeight):
+        w = self.box_width or availWidth
+        iw, ih = self.inner.wrap(w - 2 * self.pad, availHeight - 2 * self.pad)
+        self.width = w
+        self.height = ih + 2 * self.pad
+        self._ih = ih
+        return self.width, self.height
+
+    def draw(self):
+        self.canv.setFillColor(self.bg)
+        self.canv.roundRect(0, 0, self.width, self.height, self.radius, fill=1, stroke=0)
+        self.inner.drawOn(self.canv, self.pad, self.pad)
+
+
+class SectionRule(Flowable):
+    """Section title with teal rule and short gold accent tick."""
+
+    def __init__(self, title, styles, width):
+        Flowable.__init__(self)
+        self.title = title.upper()
+        self.styles = styles
+        self.rule_width = width
+
+    def wrap(self, availWidth, availHeight):
+        self.width = self.rule_width or availWidth
+        self.height = 22
+        return self.width, self.height
+
+    def draw(self):
+        c = self.canv
+        c.setFillColor(TEAL)
+        c.setFont("Calibri-Bold", 13)
+        c.drawString(0, 7, self.title)
+        # Main teal rule
+        c.setStrokeColor(TEAL_MID)
+        c.setLineWidth(0.9)
+        c.line(0, 2.5, self.width, 2.5)
+        # Short gold accent at start
+        c.setStrokeColor(GOLD)
+        c.setLineWidth(2.2)
+        c.line(0, 2.5, 28, 2.5)
+
+
 
 def _styles():
     styles = getSampleStyleSheet()
     styles.add(
         ParagraphStyle(
-            name="CVName",
-            fontName="Helvetica-Bold",
-            fontSize=18,
-            leading=22,
-            textColor=NAVY,
-            alignment=TA_CENTER,
-            spaceAfter=2,
-        )
-    )
-    styles.add(
-        ParagraphStyle(
-            name="CVTag",
-            fontName="Helvetica",
-            fontSize=9,
-            leading=12,
-            textColor=ACCENT,
-            alignment=TA_CENTER,
-            spaceAfter=6,
-        )
-    )
-    styles.add(
-        ParagraphStyle(
-            name="CVSection",
-            fontName="Helvetica-Bold",
-            fontSize=10,
-            leading=12,
-            textColor=NAVY,
-            spaceBefore=8,
-            spaceAfter=2,
-        )
-    )
-    styles.add(
-        ParagraphStyle(
             name="CVBody",
-            fontName="Helvetica",
-            fontSize=8.6,
-            leading=11,
-            textColor=MUTED,
+            fontName="Calibri",
+            fontSize=10.5,
+            leading=13.2,
+            textColor=INK,
             alignment=TA_JUSTIFY,
             spaceAfter=3,
         )
@@ -443,187 +571,347 @@ def _styles():
     styles.add(
         ParagraphStyle(
             name="CVJobTitle",
-            fontName="Helvetica-Bold",
-            fontSize=9.2,
-            leading=11.5,
-            textColor=NAVY,
-            spaceBefore=4,
+            fontName="Calibri-Bold",
+            fontSize=11.5,
+            leading=14,
+            textColor=TEAL,
+            spaceBefore=0,
             spaceAfter=0,
         )
     )
     styles.add(
         ParagraphStyle(
-            name="CVMeta",
-            fontName="Helvetica-Oblique",
-            fontSize=8.2,
-            leading=10.5,
-            textColor=ACCENT,
-            spaceAfter=1,
+            name="CVDates",
+            fontName="Calibri",
+            fontSize=10.5,
+            leading=13,
+            textColor=TEAL_MID,
+            alignment=TA_RIGHT,
+            spaceBefore=0,
+            spaceAfter=0,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="CVOrg",
+            fontName="Calibri-Italic",
+            fontSize=10.5,
+            leading=13,
+            textColor=TEAL_MID,
+            spaceBefore=0,
+            spaceAfter=2,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVBullet",
-            fontName="Helvetica",
-            fontSize=8.3,
-            leading=10.5,
+            fontName="Calibri",
+            fontSize=10.5,
+            leading=13,
             textColor=MUTED,
-            leftIndent=10,
-            bulletIndent=0,
+            leftIndent=8,
             spaceAfter=0.5,
         )
     )
     styles.add(
         ParagraphStyle(
             name="CVCell",
-            fontName="Helvetica",
-            fontSize=8.3,
-            leading=11,
+            fontName="Calibri",
+            fontSize=10.5,
+            leading=13.2,
             textColor=MUTED,
         )
     )
     styles.add(
         ParagraphStyle(
+            name="CVHighlight",
+            fontName="Calibri",
+            fontSize=10.2,
+            leading=13,
+            textColor=TEAL_MID,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
             name="CVSubhead",
-            fontName="Helvetica-Bold",
-            fontSize=9,
-            leading=11,
-            textColor=NAVY,
-            spaceBefore=5,
+            fontName="Calibri-Bold",
+            fontSize=11.5,
+            leading=14,
+            textColor=TEAL,
+            spaceBefore=4,
             spaceAfter=2,
+        )
+    )
+    styles.add(
+        ParagraphStyle(
+            name="CVLang",
+            fontName="Calibri",
+            fontSize=11,
+            leading=13.5,
+            textColor=MUTED,
         )
     )
     return styles
 
 
-def _section_block(title, styles):
-    """Return plain flowables (no nested KeepTogether)."""
-    return [
-        Paragraph(title.upper(), styles["CVSection"]),
-        HRFlowable(width="100%", thickness=1, color=ACCENT, spaceBefore=0, spaceAfter=4),
-    ]
-
-
-def _two_col_bullets(items, styles, col_widths=None):
+def _two_col(items, styles, style_name="CVCell", marker="•  ", col_w=None):
     mid = (len(items) + 1) // 2
     left, right = items[:mid], items[mid:]
     rows = []
     for i in range(max(len(left), len(right))):
-        l = f"•  {left[i]}" if i < len(left) else ""
-        r = f"•  {right[i]}" if i < len(right) else ""
+        l = f"{marker}{left[i]}" if i < len(left) else ""
+        r = f"{marker}{right[i]}" if i < len(right) else ""
         rows.append(
-            [
-                Paragraph(l, styles["CVCell"]),
-                Paragraph(r, styles["CVCell"]),
-            ]
+            [Paragraph(l, styles[style_name]), Paragraph(r, styles[style_name])]
         )
-    if col_widths is None:
-        col_widths = [8.7 * cm, 8.7 * cm]
-    t = Table(rows, colWidths=col_widths)
+    if col_w is None:
+        col_w = [8.6 * cm, 8.6 * cm]
+    t = Table(rows, colWidths=col_w)
     t.setStyle(
         TableStyle(
             [
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
                 ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-                ("TOPPADDING", (0, 0), (-1, -1), 1),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-1, -1), 1.5),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 1.5),
             ]
         )
     )
     return t
 
 
+def _draw_footer(canvas, doc):
+    canvas.saveState()
+    canvas.setFillColor(MUTED)
+    canvas.setFont("Calibri", 9)
+    page_w, _ = A4
+    canvas.drawCentredString(
+        page_w / 2, 0.9 * cm, f"Tyra Rebecca Nalukwago  ·  Page {doc.page}"
+    )
+    canvas.restoreState()
+
+
+def _draw_first_page(canvas, doc):
+    """Full-bleed teal header banner + footer."""
+    page_w, page_h = A4
+    banner_h = 3.7 * cm
+    canvas.saveState()
+    canvas.setFillColor(TEAL)
+    canvas.rect(0, page_h - banner_h, page_w, banner_h, fill=1, stroke=0)
+    # Gold accent line under banner
+    canvas.setFillColor(GOLD)
+    canvas.rect(0, page_h - banner_h - 2.5, page_w, 2.5, fill=1, stroke=0)
+    # Name
+    canvas.setFillColor(white)
+    canvas.setFont("Georgia-Bold", 24)
+    canvas.drawCentredString(page_w / 2, page_h - 1.65 * cm, "TYRA REBECCA NALUKWAGO")
+    # Tagline
+    canvas.setFillColor(HexColor("#D4E4EA"))
+    canvas.setFont("Calibri", 11)
+    canvas.drawCentredString(page_w / 2, page_h - 2.45 * cm, TAGLINE)
+    canvas.restoreState()
+    _draw_footer(canvas, doc)
+
+
 def build_pdf():
+    register_fonts()
     styles = _styles()
-    doc = SimpleDocTemplate(
+    page_w, page_h = A4
+    content_w = page_w - 3.0 * cm
+    banner_h = 3.7 * cm
+
+    doc = BaseDocTemplate(
         str(PDF_OUT),
         pagesize=A4,
         leftMargin=1.5 * cm,
         rightMargin=1.5 * cm,
-        topMargin=1.3 * cm,
-        bottomMargin=1.3 * cm,
-    )
-    story = []
-
-    story.append(Paragraph("TYRA REBECCA NALUKWAGO", styles["CVName"]))
-    story.append(
-        Paragraph(
-            "Senior Valuation Surveyor  |  Land Economist  |  Property &amp; Resettlement Specialist",
-            styles["CVTag"],
-        )
-    )
-    story.append(
-        HRFlowable(width="100%", thickness=1.6, color=NAVY, spaceBefore=0, spaceAfter=6)
+        topMargin=1.1 * cm,
+        bottomMargin=1.4 * cm,
     )
 
-    story.extend(_section_block("Professional Profile", styles))
+    # Page 1: leave room under full-bleed banner
+    frame1 = Frame(
+        1.5 * cm,
+        1.4 * cm,
+        content_w,
+        page_h - banner_h - 2.5 - 1.4 * cm - 0.25 * cm,
+        id="first",
+    )
+    frame2 = Frame(
+        1.5 * cm,
+        1.4 * cm,
+        content_w,
+        page_h - 1.1 * cm - 1.4 * cm,
+        id="later",
+    )
+    doc.addPageTemplates(
+        [
+            PageTemplate(id="first", frames=frame1, onPage=_draw_first_page),
+            PageTemplate(id="later", frames=frame2, onPage=_draw_footer),
+        ]
+    )
+
+    story = [NextPageTemplate("later"), Spacer(1, 4)]
+
+    # Profile
+    story.append(SectionRule("Professional Profile", styles, content_w))
+    story.append(Spacer(1, 5))
     story.append(Paragraph(PROFILE, styles["CVBody"]))
     story.append(Paragraph(PROFILE_2, styles["CVBody"]))
 
-    story.extend(_section_block("Career Highlights", styles))
-    story.append(_two_col_bullets(HIGHLIGHTS, styles))
+    # Highlights panel
+    story.append(SectionRule("Career Highlights", styles, content_w))
+    story.append(Spacer(1, 5))
+    hl_table = _two_col(
+        HIGHLIGHTS,
+        styles,
+        style_name="CVHighlight",
+        marker="•  ",
+        col_w=[8.3 * cm, 8.3 * cm],
+    )
+    story.append(ColoredBox(hl_table, content_w, pad=10, bg=TEAL_SOFT, radius=5))
+    story.append(Spacer(1, 6))
 
-    story.extend(_section_block("Professional Experience", styles))
+    # Experience
+    story.append(SectionRule("Professional Experience", styles, content_w))
+    story.append(Spacer(1, 2))
     for job in EXPERIENCE:
+        title_row = Table(
+            [
+                [
+                    Paragraph(job["title"], styles["CVJobTitle"]),
+                    Paragraph(job["dates"], styles["CVDates"]),
+                ]
+            ],
+            colWidths=[11.5 * cm, 5.7 * cm],
+        )
+        title_row.setStyle(
+            TableStyle(
+                [
+                    ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                    ("TOPPADDING", (0, 0), (-1, -1), 4),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+                ]
+            )
+        )
         block = [
-            Paragraph(job["title"], styles["CVJobTitle"]),
-            Paragraph(f"{job['org']}  |  {job['dates']}", styles["CVMeta"]),
+            title_row,
+            Paragraph(job["org"], styles["CVOrg"]),
         ]
         for b in job["bullets"]:
             block.append(Paragraph(f"•  {b}", styles["CVBullet"]))
+        # Keep last role + earlier experience together to avoid orphans
+        if job is EXPERIENCE[-1]:
+            block.append(Paragraph("Earlier Experience", styles["CVSubhead"]))
+            for item in EARLIER:
+                block.append(Paragraph(f"•  {item}", styles["CVBullet"]))
         story.append(KeepTogether(block))
 
-    story.append(Paragraph("Earlier Experience", styles["CVSubhead"]))
-    for item in EARLIER:
-        story.append(Paragraph(f"•  {item}", styles["CVBullet"]))
-
-    story.extend(_section_block("Education", styles))
-    story.append(
-        Paragraph(
-            "Bachelor of Science (Hons) in Land Economics", styles["CVJobTitle"]
+    # Education & Membership
+    story.append(SectionRule("Education & Membership", styles, content_w))
+    story.append(Spacer(1, 5))
+    edu_mem = Table(
+        [
+            [
+                Paragraph(
+                    "<font color='#0F3D4C'><b>Bachelor of Science (Hons) in Land Economics</b></font>"
+                    "<br/><font color='#1A5A6E'><i>Makerere University</i></font>",
+                    styles["CVCell"],
+                ),
+                Paragraph(
+                    "<font color='#0F3D4C'><b>Graduate Member</b></font>"
+                    "<br/><font color='#1A5A6E'><i>Institute of Surveyors of Uganda (ISU)</i></font>",
+                    styles["CVCell"],
+                ),
+            ]
+        ],
+        colWidths=[8.6 * cm, 8.6 * cm],
+    )
+    edu_mem.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("BACKGROUND", (0, 0), (-1, -1), TEAL_SOFT),
+                ("TOPPADDING", (0, 0), (-1, -1), 9),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
+                ("LEFTPADDING", (0, 0), (-1, -1), 10),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 10),
+            ]
         )
     )
-    story.append(Paragraph("Makerere University", styles["CVMeta"]))
+    story.append(edu_mem)
 
-    story.extend(_section_block("Professional Membership", styles))
-    story.append(Paragraph("Graduate Member", styles["CVJobTitle"]))
-    story.append(
-        Paragraph("Institute of Surveyors of Uganda (ISU)", styles["CVMeta"])
-    )
-
-    # Keep projects block intact so the 2-col table does not split mid-row
+    # Key Projects
+    story.append(Spacer(1, 8))
     story.append(
         KeepTogether(
-            _section_block("Key Projects", styles)
-            + [_two_col_bullets(PROJECTS, styles)]
+            [
+                SectionRule("Key Projects", styles, content_w),
+                Spacer(1, 6),
+                _two_col(PROJECTS, styles),
+            ]
         )
     )
 
-    story.extend(_section_block("Technical Expertise", styles))
+    story.append(Spacer(1, 8))
+    story.append(SectionRule("Technical Expertise", styles, content_w))
+    story.append(Spacer(1, 6))
     story.append(Paragraph("  ·  ".join(TECHNICAL), styles["CVBody"]))
 
+    story.append(Spacer(1, 8))
+    comp_table = _two_col(COMPETENCIES, styles)
     story.append(
         KeepTogether(
-            _section_block("Core Competencies", styles)
-            + [_two_col_bullets(COMPETENCIES, styles)]
+            [
+                SectionRule("Core Competencies", styles, content_w),
+                Spacer(1, 6),
+                ColoredBox(comp_table, content_w, pad=10, bg=TEAL_SOFT, radius=5),
+            ]
         )
     )
 
-    story.extend(_section_block("Languages", styles))
-    story.append(
-        Paragraph(
-            "English  ·  Fluent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Luganda  ·  Native",
-            styles["CVBody"],
+    story.append(Spacer(1, 8))
+    story.append(SectionRule("Languages", styles, content_w))
+    story.append(Spacer(1, 6))
+    lang_box = Table(
+        [
+            [
+                Paragraph(
+                    "<font color='#0F3D4C'><b>English</b></font>"
+                    "<br/><font color='#5A6A75'>Fluent</font>",
+                    styles["CVCell"],
+                ),
+                Paragraph(
+                    "<font color='#0F3D4C'><b>Luganda</b></font>"
+                    "<br/><font color='#5A6A75'>Native</font>",
+                    styles["CVCell"],
+                ),
+            ]
+        ],
+        colWidths=[8.6 * cm, 8.6 * cm],
+    )
+    lang_box.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), TEAL_SOFT),
+                ("TOPPADDING", (0, 0), (-1, -1), 10),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
+                ("LEFTPADDING", (0, 0), (-1, -1), 12),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 12),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ]
         )
     )
+    story.append(lang_box)
 
     doc.build(story)
     print(f"Wrote {PDF_OUT}")
 
 
 def render_preview():
-    """Render PDF pages to PNG for visual QA."""
     import pypdfium2 as pdfium
 
     preview_dir = ROOT / "tmp_preview"
@@ -631,17 +919,14 @@ def render_preview():
     for old in preview_dir.glob("*.png"):
         old.unlink()
     pdf = pdfium.PdfDocument(str(PDF_OUT))
-    paths = []
     print(f"PDF pages: {len(pdf)}")
     for i in range(len(pdf)):
         page = pdf[i]
-        bitmap = page.render(scale=2)
+        bitmap = page.render(scale=2.2)
         pil = bitmap.to_pil()
         out = preview_dir / f"cv_page_{i + 1}.png"
         pil.save(out)
-        paths.append(out)
         print(f"Preview: {out}")
-    return paths
 
 
 if __name__ == "__main__":
