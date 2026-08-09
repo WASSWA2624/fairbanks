@@ -751,19 +751,11 @@ def build_narrative():
         ),
         Paragraph(f"{ORG}", st["Center"]),
         Paragraph(f"{SLOGAN}", st["Center"]),
-        Paragraph(
-            "Guided by The FairBanks Blueprint: Building the Future of Family and Community Health.",
-            st["Center"],
-        ),
         Paragraph("Table of contents", st["H1"]),
-        *lines(
-            [
-                "1. Background and approach",
-                "2. Evaluation and performance measurement plan",
-                "3. Organizational capacity and collaborations",
-                "4. Work plan snapshots",
-            ]
-        ),
+        Paragraph("1. Background and approach", st["Body"]),
+        Paragraph("2. Evaluation and performance measurement plan", st["Body"]),
+        Paragraph("3. Organizational capacity and collaborations", st["Body"]),
+        Paragraph("4. Work plan snapshots", st["Body"]),
         Paragraph("1. Background and approach", st["H1"]),
         Paragraph("1.1 Who we are", st["H2"]),
         Paragraph(
