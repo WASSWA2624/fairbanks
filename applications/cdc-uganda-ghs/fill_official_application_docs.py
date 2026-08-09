@@ -160,35 +160,38 @@ def bullets(st, items):
 
 
 ABSTRACT = (
-    f"{ORG} ({ORG_SHORT}) is a Uganda-registered health organisation in Kampala. "
-    f"We run a licensed medical centre and FairBanks Community Reach with CHWs and VHTs "
-    f"in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban communities. "
-    f"Slogan: {SLOGAN} "
-    "Uganda's 2023 Joint External Evaluation showed progress — and still named hard gaps: "
-    "community and facility signals that reach decision-makers too late; weak information "
-    "sharing across sectors; limited surge-ready workforce at subnational level; and "
-    "incomplete links into national surveillance and emergency structures, including work "
-    "toward a functional National Integrated Surveillance System (NISS). When those gaps "
-    "stay open, outbreaks grow before anyone can act. That puts Ugandans at risk first — "
-    "and Americans at risk later. "
-    "This project closes the last-mile gap under Ministry of Health leadership. We will "
-    "not rebuild Uganda's national architecture. We will make community and clinic signals "
-    "usable inside it. "
-    "Year 1 focus (Component 1 — Core GHS) has four practical pillars: (1) community and "
-    "facility surveillance that contributes to MoH/NISS pathways using FairBanks' FCHIP "
-    "tools; (2) faster community-to-district detection and response using 7-1-7 style "
-    "timing; (3) CHW/VHT and frontline workforce skills for One Health-aware surveillance "
-    "and surge readiness; and (4) stronger community-facility links for priority disease "
-    "programmes (including HIV, TB, malaria, cholera, viral hemorrhagic fevers, mpox, and "
-    "immunisation) during routine work and outbreaks. Laboratory and border-health work "
-    "will be done with MoH-aligned partners rather than as a FairBanks-only national lead. "
-    "Components 2-5 set out contingency surge plans for small and large outbreaks, "
-    "emerging infectious threats, and humanitarian emergencies. They may be approved but "
-    "unfunded until CDC releases emergency funds. "
-    "Expected shared results: shorter detection and response times; more complete "
-    "community signals in national channels; a better-prepared frontline workforce; and "
-    f"clear handoff of tools and data to government systems. Contact: {PD_NAME}, {EMAIL}, "
-    f"{PHONE}."
+    f"{ORG} ({ORG_SHORT}) is a Uganda-registered Family & Community Health organisation "
+    f"in Kampala, guided by The FairBanks Blueprint: Building the Future of Family & "
+    f"Community Health. We run a licensed medical centre and FairBanks Community Reach with "
+    f"CHWs and VHTs in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban "
+    f"communities — extending care beyond consultation rooms into homes, schools, and "
+    f"community spaces. Slogan: {SLOGAN} "
+    "Strong health systems are built on strong local institutions. Uganda's 2023 Joint "
+    "External Evaluation showed progress — and still named hard gaps: community and facility "
+    "signals that reach decision-makers too late; weak information sharing across sectors; "
+    "limited surge-ready workforce at subnational level; and incomplete links into national "
+    "surveillance and emergency structures, including work toward a functional National "
+    "Integrated Surveillance System (NISS). When those gaps stay open, outbreaks grow before "
+    "anyone can act. That puts Ugandans at risk first — and Americans at risk later. "
+    "Under Ministry of Health leadership, this project puts the Blueprint into practice for "
+    "Global Health Security: we will not rebuild Uganda's national architecture; we will make "
+    "community and clinic signals usable inside it. "
+    "Year 1 focus (Component 1 — Core GHS) has four practical pillars aligned to FairBanks' "
+    "Community Health Intelligence Platform (FCHIP) and Community Reach model: (1) community "
+    "and facility surveillance that contributes to MoH/NISS pathways; (2) faster "
+    "community-to-district detection and response using 7-1-7 style timing; (3) CHW/VHT and "
+    "frontline workforce skills for One Health-aware surveillance and surge readiness; and "
+    "(4) stronger community-facility links for priority disease programmes (including HIV, "
+    "TB, malaria, cholera, viral hemorrhagic fevers, mpox, and immunisation) during routine "
+    "work and outbreaks. Laboratory and border-health work will be done with MoH-aligned "
+    "partners rather than as a FairBanks-only national lead. "
+    "Components 2-5 set out contingency surge plans for small and large outbreaks, emerging "
+    "infectious threats, and humanitarian emergencies. They may be approved but unfunded "
+    "until CDC releases emergency funds. "
+    "Expected shared results: shorter detection and response times; more complete community "
+    "signals in national channels; a better-prepared frontline workforce; and clear handoff "
+    "of tools and data to government systems — advancing healthier families and communities "
+    f"while containing threats closer to source. Contact: {PD_NAME}, {EMAIL}, {PHONE}."
 )
 
 
@@ -605,10 +608,16 @@ def build_abstract():
         Paragraph("Project Abstract Summary", st["Cover"]),
         Paragraph(f"{ORG} | {OPPORTUNITY} | {SLOGAN}", st["Center"]),
         Paragraph(
+            "Guided by The FairBanks Blueprint: Building the Future of Family & Community Health. "
             "Paste this text into the Grants.gov Project Abstract Summary form (trim if character limit requires).",
             st["Meta"],
         ),
-        Paragraph(f"Project Title: {TITLE}", st["Body"]),
+        Paragraph(
+            "Project Title: FairBanks Blueprint in action: strengthening Uganda last-mile Global Health "
+            "Security through Community Reach, CHW/VHT surveillance, and FCHIP intelligence feeding "
+            "MoH/NISS pathways",
+            st["Body"],
+        ),
         Paragraph(f"Applicant: {ORG}", st["Body"]),
         Paragraph(f"Project Director: {PD_NAME}, {PD_TITLE}", st["Body"]),
         Paragraph(f"Period: {START} to {END} | Funding instrument: Cooperative agreement | CFDA: {CFDA}", st["Body"]),
