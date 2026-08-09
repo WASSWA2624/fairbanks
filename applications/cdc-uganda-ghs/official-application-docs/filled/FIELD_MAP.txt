@@ -1,0 +1,61 @@
+CDC-RFA-JG-26-0054 FIELD MAP — FAIRBANKS MEDICAL CENTRE LIMITED
+Generated 2026-08-09
+
+=== SF-424 ===
+1. Type of Submission: Application
+2. Type of Application: New
+5a. Federal Entity Identifier: CDC-RFA-JG-26-0054
+5b. Federal Award Identifier: (leave blank for new)
+8a. Legal Name: FAIRBANKS MEDICAL CENTRE LIMITED
+8b. Employer/Taxpayer ID: N/A - foreign entity (Uganda TIN 1053370026)
+8c. UEI: [CONFIRM - paste UEI from SAM.gov]
+8d. Address: Plot 1423 and 1425 Tirupati Road, Fairbanks Medical Centre; Kampala; Kampala Central Division, Kololo IV, Lugogo; Kampala; UGANDA; N/A
+8e. Organizational Unit: FairBanks Community Reach / GHS Programme
+8f. Name and contact: Racheal Nabukeera; Managing Director and Co-founder; +256772849258; info@fairbanksmedicalcentre.org
+9. Type of Applicant: X. For-Profit Organization (Other than Small Business) OR foreign entity as listed
+   Also applicable: Foreign Organization / Non-domestic (non-U.S.) Entity
+10. Name of Federal Agency: Centers for Disease Control and Prevention
+11. CFDA/Assistance Listing: 93.318 — Protecting and Improving Health Globally: Building and Strengthening Public Health Impact, Systems, Capacity, and Security
+12. Funding Opportunity Number: CDC-RFA-JG-26-0054
+    Title: Strengthening global health security through local partnerships in Uganda
+13. Competition ID: (if shown on package — leave blank if N/A)
+14. Areas Affected: Uganda (Kampala peri-urban catchments; expand under MoH guidance)
+15. Descriptive Title: Last-mile Global Health Security for Uganda: FairBanks will help CHWs, VHTs, clinics, and districts put timely outbreak and priority-disease signals into Ministry of Health systems (including NISS-linked pathways), train frontline workers, and practise 7-1-7 style detect-notify-respond loops so threats are contained closer to source.
+16. Congressional Districts: Applicant N/A (foreign); Program N/A (Uganda)
+17. Proposed Project: Start 09/30/2026  Ending 09/29/2031
+18. Estimated Funding:
+    a. Federal $10,000,000
+    b. Applicant $0
+    c. State $0
+    d. Local $0
+    e. Other $0
+    f. Program Income $0
+    g. TOTAL $10,000,000
+19. Is Application Subject to Review by State Under EO 12372? c. Program is not covered by EO 12372
+20. Delinquent on Federal Debt? No
+21. Authorized Representative: Racheal Nabukeera; Managing Director and Co-founder; +256772849258; info@fairbanksmedicalcentre.org; Date 08/09/2026; Signature: sign in Grants.gov
+
+=== SF-424A Year 1 ===
+Section A — Component 1 Core GHS federal $2,450,000
+Section A — Component 2 Small-scale response federal $1,800,000
+Section A — Component 3 Large-scale response federal $2,750,000
+Section A — Component 4 Emerging threats federal $1,500,000
+Component 5 Humanitarian $1,500,000 — put on second SF-424A if form only has 4 columns
+TOTAL FEDERAL Year 1 $10,000,000
+Non-federal / match: $0 (none required, none proposed)
+
+=== SF-LLL ===
+Reporting Entity: FAIRBANKS MEDICAL CENTRE LIMITED
+Street/City/State/Zip: Plot 1423 and 1425 Tirupati Road, Fairbanks Medical Centre, Kampala, UGANDA
+Program: CDC Global Health Security — Uganda local partnerships
+Federal Agency: CDC / Opportunity CDC-RFA-JG-26-0054
+Lobbying registrant: NONE — no lobbying activities; check 'No' / not applicable as form allows
+Signature: Racheal Nabukeera, Managing Director and Co-founder, 08/09/2026
+
+=== Project Abstract ===
+See 04_Project_Abstract_Summary.pdf
+
+=== Attachments ===
+Project Narrative -> attach 05_Project_Narrative.pdf
+Budget Narrative -> attach 06_Budget_Narrative.pdf
+Local partner letter -> attach 07_Local_Partner_Preference_Letter.pdf + company-docs/

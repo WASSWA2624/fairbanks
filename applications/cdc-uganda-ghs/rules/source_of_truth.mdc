@@ -61,4 +61,8 @@ Also: `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-communit
 
 ## Deliverables
 
-Build only via `build_cdc-uganda-ghs_docs.py` → `documents/` Word · PDF · PPT. Copy bank: `application_answers.md`. Mark **CONFIRM** for UEI/SAM, board/staff citizenship %, budgets, MoH letters.
+Build pack: `build_cdc-uganda-ghs_docs.py` → `documents/` Word · PDF · PPT.  
+Copy bank: `application_answers.md`.  
+Official Grants.gov shells: `official-application-docs/` (Adobe XFA — fill in Reader/webforms).  
+Filled companions: `fill_official_application_docs.py` → `official-application-docs/filled/`.  
+Mark **CONFIRM** for UEI/SAM, board/staff citizenship %, budgets, MoH letters.
