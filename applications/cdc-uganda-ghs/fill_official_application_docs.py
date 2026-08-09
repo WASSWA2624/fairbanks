@@ -1076,97 +1076,229 @@ def build_budget_narrative():
     st = styles()
     path = OUT / "WS01739425-BudgetNarrativeAttachments_1_2-V1.2.pdf"
     template, on_page = doc_template(path, "Budget Narrative")
+    pw = letter[0] - 1.5 * inch
+
+    def split(total, weights):
+        raw = {k: int(total * w) for k, w in weights.items()}
+        gap = total - sum(raw.values())
+        raw["Other"] = raw.get("Other", 0) + gap
+        return raw
+
+    w_surge = {
+        "Personnel": 0.28,
+        "Fringe Benefits": 0.05,
+        "Travel": 0.08,
+        "Equipment": 0.03,
+        "Supplies": 0.12,
+        "Contractual": 0.28,
+        "Other": 0.10,
+        "Indirect Charges": 0.06,
+    }
+    c2, c3, c4 = split(C2, w_surge), split(C3, w_surge), split(C4, w_surge)
+    c1_direct = sum(v for k, v in C1_CAT.items() if k != "Indirect Charges")
+    year1_indirect = (
+        C1_CAT["Indirect Charges"]
+        + c2["Indirect Charges"]
+        + c3["Indirect Charges"]
+        + c4["Indirect Charges"]
+    )
+    year1_direct = TOTAL - year1_indirect
+    assert year1_direct + year1_indirect == TOTAL
+
+    def cat_table(bud, label_total):
+        direct = sum(v for k, v in bud.items() if k != "Indirect Charges")
+        return tbl(
+            st,
+            ["Object class", "Amount", "Use of funds"],
+            [
+                ["Personnel", money(bud["Personnel"]), "Surge / surge-ready staffing charged to this component"],
+                ["Fringe Benefits", money(bud["Fringe Benefits"]), "Statutory and organisational benefits on surge staff"],
+                ["Travel", money(bud["Travel"]), "Rapid field deployment and coordination travel"],
+                ["Equipment", money(bud.get("Equipment", 0)), "Approved field devices if needed for activation"],
+                ["Supplies", money(bud["Supplies"]), "Emergency supplies, PPE, printing, connectivity"],
+                ["Contractual", money(bud["Contractual"]), "Surge partners for investigation, RCCE, data, logistics"],
+                ["Construction", "$0", "None"],
+                ["Other", money(bud["Other"]), "Community meetings, short-term trainers, translation"],
+                ["Direct subtotal", money(direct), ""],
+                ["Indirect (8% MTDC)", money(bud["Indirect Charges"]), "Foreign organisation rate as for Component 1"],
+                [label_total, money(direct + bud["Indirect Charges"]), ""],
+            ],
+            [1.55 * inch, 1.15 * inch, 4.5 * inch],
+        )
+
     story = [
-        Paragraph("Budget Narrative (Year 1) — All Components", st["Cover"]),
-        Paragraph(f"{ORG} | {OPPORTUNITY} | All figures U.S. dollars | Generated {date.today().isoformat()}", st["Center"]),
-        Paragraph(
-            "Attach this PDF to the Grants.gov Budget Narrative Attachments form. "
-            "CONFIRM final figures before submit. Cost share: none. No research. "
-            "Routine clinical care not charged to this award.",
-            st["Meta"],
-        ),
-        Paragraph("Summary of Year 1 federal requests", st["H1"]),
+        Paragraph("Budget Narrative", st["Cover"]),
+        Paragraph(f"{ORG}", st["Center"]),
+        Paragraph(f"CDC-RFA-JG-26-0054 | Year 1 | U.S. dollars", st["Center"]),
+        Paragraph("1. Year 1 federal summary", st["H1"]),
         tbl(
             st,
-            ["Component", "Draft ask", "Ceiling", "Status"],
+            ["Component", "Year 1 federal ask", "Ceiling", "Status"],
             [
-                ["1 Core GHS", money(C1), "$5,000,000", "Expected initial funding"],
-                ["2 Small-scale response", money(C2), "$10,000,000", "Contingency"],
-                ["3 Large-scale response", money(C3), "$15,000,000", "Contingency"],
-                ["4 Emerging threats", money(C4), "$15,000,000", "Contingency"],
-                ["TOTAL (SF-424A 4 rows)", money(TOTAL), "", "Equals Box 18a"],
+                ["1 Core GHS priorities", money(C1), "$5,000,000", "Expected initial funding"],
+                ["2 Small-scale outbreak / PHE", money(C2), "$10,000,000", "Contingency"],
+                ["3 Large-scale outbreak / PHE", money(C3), "$15,000,000", "Contingency"],
+                ["4 Emerging infectious disease threats", money(C4), "$15,000,000", "Contingency"],
+                ["TOTAL", money(TOTAL), "", ""],
             ],
-            [2.4 * inch, 1.4 * inch, 1.4 * inch, 2.0 * inch],
+            [2.6 * inch, 1.4 * inch, 1.3 * inch, 1.9 * inch],
         ),
         Paragraph(
-            "Indirect costs: foreign organisation rate 8% of MTDC (exclusive of equipment and "
-            "subawards over $25,000), unless a negotiated rate applies — CONFIRM method before submit.",
+            f"Year 1 direct costs: {money(year1_direct)}. "
+            f"Year 1 indirect costs: {money(year1_indirect)}. "
+            f"Total federal request: {money(TOTAL)}. No cost sharing is proposed.",
             st["Body"],
         ),
-        Paragraph("Component 1 — Core GHS detailed justification", st["H1"]),
+        Paragraph("2. Indirect costs", st["H1"]),
+        Paragraph(
+            "FairBanks is a foreign organisation. We apply the standard foreign rate of 8% of "
+            "Modified Total Direct Costs (MTDC), exclusive of equipment and each subaward portion "
+            f"over $25,000. Year 1 indirect across Components 1-4 is {money(year1_indirect)}. "
+            "If a negotiated rate is approved later, we will update the budget accordingly.",
+            st["Body"],
+        ),
+        Paragraph("3. Future budget periods (Years 2-5)", st["H1"]),
+        Paragraph(
+            "The project runs for five 12-month budget periods. For Years 2-5 we plan "
+            f"{money(C1)} per year for Component 1 (Core GHS). Components 2-4 are contingency "
+            "response lines. We show $0 for those components in future years until CDC activates "
+            "emergency funding. Continuation amounts will follow CDC funding decisions and progress.",
+            st["Body"],
+        ),
+        Paragraph("4. Component 1 - Core GHS", st["H1"]),
+        Paragraph(
+            f"Year 1 total: {money(C1)}. This supports community and facility surveillance linked "
+            "to MoH and NISS pathways, CHW/VHT and frontline training, faster detect-notify-respond "
+            "work with districts, and stronger community-facility links for priority diseases under "
+            "Ministry of Health leadership.",
+            st["Body"],
+        ),
+        Paragraph("4.1 Personnel", st["H2"]),
         tbl(
             st,
-            ["Category", "Amount", "Justification"],
+            ["Role", "Effort on award", "Year 1 amount", "Duties"],
             [
-                ["Salaries and wages", money(C1_CAT["Personnel"]), "Project Director portion; Programme Manager; M&E; Data/FCHIP; CHW supervisors; finance/admin charged to award"],
-                ["Fringe benefits", money(C1_CAT["Fringe Benefits"]), "Statutory and organisational benefits on award-charged staff"],
-                ["Travel", money(C1_CAT["Travel"]), "In-country field supervision, district meetings, limited regional workshops"],
-                ["Equipment", money(C1_CAT["Equipment"]), "Field devices and approved IT — each item justified; furniture generally not allowed"],
-                ["Supplies", money(C1_CAT["Supplies"]), "Training materials, PPE for drills/sample handling, connectivity, form printing"],
-                ["Contractual", money(C1_CAT["Contractual"]), "MoH-aligned technical partners for lab/border support modules; software hosting; external audit"],
-                ["Other", money(C1_CAT["Other"]), "Short-term trainers, translation, community meeting costs, evaluation support"],
-                [
-                    "Direct subtotal",
-                    money(sum(C1_CAT[k] for k in C1_CAT if k != "Indirect Charges")),
-                    "",
-                ],
-                ["Indirect (8% MTDC est.)", money(C1_CAT["Indirect Charges"]), "CONFIRM MTDC base"],
-                ["Component 1 TOTAL", money(C1), "Within $5,000,000 ceiling"],
+                ["Project Director (Racheal Nabukeera)", "Partial", "$90,000", "Leadership, MoH and CDC liaison, quality and compliance"],
+                ["Programme Manager - GHS", "Full", "$72,000", "Work plan, district coordination, reporting"],
+                ["M&E Officer", "Full", "$54,000", "Indicators, monitoring plans, quarterly reviews"],
+                ["Data / FCHIP Officer", "Full", "$60,000", "Mobile data capture, data quality, MoH data exports"],
+                ["CHW/VHT Supervisors (team)", "Full", "$144,000", "Field supervision, mentoring, weekly reporting"],
+                ["Surveillance / Training Officer", "Full", "$66,000", "SOPs, drills, training, response timing support"],
+                ["Finance / Grants Admin", "Partial", "$60,000", "Award accounting, procurement support, audit prep"],
+                ["Field Outreach Coordinators", "Full", "$64,000", "Community-facility linkage, RCCE support, referrals"],
+                ["Personnel TOTAL", "", money(C1_CAT["Personnel"]), ""],
             ],
-            [1.6 * inch, 1.2 * inch, 4.4 * inch],
-        ),
-        Paragraph("Components 2-4 — Contingency narratives (SF-424A dollar rows)", st["H1"]),
-        Paragraph(
-            f"Component 2 ({money(C2)}): Surge staffing and fringe; rapid travel; emergency supplies/PPE; "
-            "contractual surge support for investigation/RCCE/data dashboards; other community meeting "
-            "costs; indirect. Activate only if CDC funds small-scale outbreak/PHE response.",
-            st["Body"],
+            [1.7 * inch, 1.0 * inch, 1.0 * inch, 3.5 * inch],
         ),
         Paragraph(
-            f"Component 3 ({money(C3)}): Larger surge staffing; multi-district travel/logistics; expanded "
-            "supplies; contractual partners for mobilisation and sample referral volume; recovery support; "
-            "indirect. For large-scale outbreak/PHE response when activated.",
-            st["Body"],
+            "Amounts are the share of salary charged to this award, not always full organisational salary.",
+            st["Small"],
         ),
+        Paragraph("4.2 Fringe benefits", st["H2"]),
         Paragraph(
-            f"Component 4 ({money(C4)}): Rapid form/tool updates; sentinel intensification staffing; "
-            "special training; partner lab referral contractual support; travel/supplies; indirect. "
-            "For emerging infectious disease threats when activated.",
+            f"{money(C1_CAT['Fringe Benefits'])} covers about 20% of award-charged personnel for "
+            "statutory and organisational benefits, including NSSF and related employer costs where "
+            "applicable. Fringe applies only to salaries charged to this award.",
             st["Body"],
         ),
-        Paragraph("Component 5 — Humanitarian emergency (narrative plan; not a fifth SF-424A row)", st["H1"]),
+        Paragraph("4.3 Travel", st["H2"]),
         Paragraph(
-            "The NOFO requires a Component 5 humanitarian contingency plan. Because official SF-424A "
-            "V1.0 / Grants.gov allows only four Section A activity rows, Year 1 federal dollars are "
-            f"entered on Components 1-4 only and total {money(TOTAL)}. "
-            "Component 5 readiness: community surveillance and RCCE in crisis-affected groups under "
-            "MoH tasking; surge staffing/travel/supplies; contractual support when CDC activates "
-            "humanitarian emergency funding under the $20,000,000 ceiling.",
+            f"{money(C1_CAT['Travel'])} covers in-country field supervision in Kampala peri-urban "
+            "catchments and partner districts, coordination meetings with MoH and district health "
+            "teams, and limited regional workshops needed for GHS alignment. No international travel "
+            "is included unless CDC later approves a specific trip.",
             st["Body"],
         ),
-        Paragraph("Unallowable costs (we will not charge)", st["H1"]),
-        bullets(
+        Paragraph("4.4 Equipment", st["H2"]),
+        Paragraph(
+            f"{money(C1_CAT['Equipment'])} covers field tablets or phones for CHW/VHT data capture, "
+            "laptops for data and M&E staff, and accessories needed for offline sync. Each purchase "
+            "will include unit cost. Furniture is not charged to the award.",
+            st["Body"],
+        ),
+        Paragraph("4.5 Supplies", st["H2"]),
+        Paragraph(
+            f"{money(C1_CAT['Supplies'])} covers training materials, PPE for drills and sample-handling "
+            "support, connectivity and airtime for field reporting, and printing of SOPs and community "
+            "education materials. This does not include routine clinical stock.",
+            st["Body"],
+        ),
+        Paragraph("4.6 Contractual", st["H2"]),
+        tbl(
             st,
+            ["Contract package", "Amount", "Purpose"],
             [
-                "Research as defined by this NOFO",
-                "Lobbying",
-                "Routine clinical care not allowed by law / not the purpose of the award",
-                "Pre-award costs without written approval",
-                "Budgets in any currency other than U.S. dollars",
+                ["Lab and border technical support modules", "$280,000", "MoH-aligned support for laboratory and border health work"],
+                ["FCHIP hosting, security, and interoperability", "$180,000", "Secure hosting, backups, and data export support for MoH/NISS pathways"],
+                ["External audit and compliance support", "$60,000", "Independent financial review for award accountability"],
+                ["Training facilitation and short courses", "$150,000", "Training delivery and One Health awareness modules with partners"],
+                ["Contractual TOTAL", money(C1_CAT["Contractual"]), ""],
             ],
+            [2.6 * inch, 1.2 * inch, 3.4 * inch],
         ),
+        Paragraph("4.7 Other direct costs", st["H2"]),
         Paragraph(
-            f"Authorised official for budget: {PD_NAME}, {PD_TITLE}, {EMAIL}, {PHONE}.",
+            f"{money(C1_CAT['Other'])} covers short-term trainers, translation and local-language "
+            "materials, community meeting costs, and programme learning support tied to project "
+            "delivery.",
+            st["Body"],
+        ),
+        Paragraph("4.8 Component 1 totals", st["H2"]),
+        tbl(
+            st,
+            ["Category", "Amount"],
+            [
+                ["Direct subtotal", money(c1_direct)],
+                ["Indirect (8% MTDC)", money(C1_CAT["Indirect Charges"])],
+                ["Component 1 TOTAL", money(C1)],
+            ],
+            [4.5 * inch, 2.5 * inch],
+        ),
+        PageBreak(),
+        Paragraph("5. Component 2 - Small-scale outbreak / PHE response", st["H1"]),
+        Paragraph(
+            f"Year 1 request: {money(C2)} (ceiling $10,000,000). This contingency budget supports "
+            "a surge roster, community investigation and contact support, risk communication, "
+            "temporary dashboards, and district incident management support if CDC funds a "
+            "small-scale outbreak or public health emergency response.",
+            st["Body"],
+        ),
+        cat_table(c2, "Component 2 TOTAL"),
+        Paragraph("6. Component 3 - Large-scale outbreak / PHE response", st["H1"]),
+        Paragraph(
+            f"Year 1 request: {money(C3)} (ceiling $15,000,000). This contingency budget supports "
+            "expanded surge staffing, multi-district mobilisation under MoH, sample-referral "
+            "logistics, extended risk communication, and recovery support if CDC funds a "
+            "large-scale response.",
+            st["Body"],
+        ),
+        cat_table(c3, "Component 3 TOTAL"),
+        Paragraph("7. Component 4 - Emerging infectious disease threats", st["H1"]),
+        Paragraph(
+            f"Year 1 request: {money(C4)} (ceiling $15,000,000). This contingency budget supports "
+            "rapid form and tool updates, sentinel intensification, partner laboratory referral "
+            "support, and special training if CDC funds an emerging-threat response.",
+            st["Body"],
+        ),
+        cat_table(c4, "Component 4 TOTAL"),
+        Paragraph("8. Component 5 - Humanitarian emergency", st["H1"]),
+        Paragraph(
+            "We include a humanitarian contingency plan as required by the NOFO. Year 1 federal "
+            f"budget lines on this form total {money(TOTAL)} across Components 1-4. If CDC activates "
+            "Component 5 under the $20,000,000 ceiling, FairBanks will support community surveillance "
+            "and risk communication in crisis-affected groups under MoH tasking, with surge staffing, "
+            "travel, supplies, and contractual support to keep essential public health links working.",
+            st["Body"],
+        ),
+        Paragraph("9. Costs not charged to this award", st["H1"]),
+        Paragraph("- Research as defined by this NOFO", st["Body"]),
+        Paragraph("- Lobbying", st["Body"]),
+        Paragraph("- Routine clinical care that is not the purpose of this award", st["Body"]),
+        Paragraph("- Pre-award costs without written approval", st["Body"]),
+        Paragraph("- Costs in any currency other than U.S. dollars", st["Body"]),
+        Paragraph("10. Authorised official", st["H1"]),
+        Paragraph(
+            f"{PD_NAME}, {PD_TITLE}, {ORG}. Email: {EMAIL}. Phone: {PHONE}.",
             st["Body"],
         ),
     ]
