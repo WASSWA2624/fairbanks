@@ -739,201 +739,221 @@ def build_narrative():
     st = styles()
     path = OUT / "WS01739425-ProjectNarrativeAttachments_1_2-V1.2.pdf"
     template, on_page = doc_template(path, "Project Narrative")
+
+    def lines(items):
+        return [Paragraph(f"- {item}", st["Body"]) for item in items]
+
     story = [
         Paragraph("Project Narrative", st["Cover"]),
         Paragraph(
-            f"CDC-RFA-JG-26-0054 — Strengthening global health security through local partnerships in Uganda",
+            "CDC-RFA-JG-26-0054: Strengthening global health security through local partnerships in Uganda",
             st["Center"],
         ),
-        Paragraph(f"{ORG} ({ORG_SHORT}) | {SLOGAN}", st["Center"]),
+        Paragraph(f"{ORG}", st["Center"]),
+        Paragraph(f"{SLOGAN}", st["Center"]),
         Paragraph(
-            f"Attach this PDF to the Grants.gov Project Narrative Attachments form. "
-            f"Format: English, Times 11-12 pt, ~1-inch margins. Generated {date.today().isoformat()}. "
-            f"UEI: {UEI}",
-            st["Meta"],
+            "Guided by The FairBanks Blueprint: Building the Future of Family and Community Health.",
+            st["Center"],
         ),
         Paragraph("Table of contents", st["H1"]),
-        bullets(
-            st,
+        *lines(
             [
                 "1. Background and approach",
-                "2. Evaluation and performance measurement plan (EPMP)",
+                "2. Evaluation and performance measurement plan",
                 "3. Organizational capacity and collaborations",
-                "4. Work plan snapshots (Components 1-5)",
-            ],
+                "4. Work plan snapshots",
+            ]
         ),
         Paragraph("1. Background and approach", st["H1"]),
-        Paragraph("1.1 Shared win", st["H2"]),
+        Paragraph("1.1 Who we are", st["H2"]),
         Paragraph(
-            "CDC's America First Global Health Strategy asks partners to help make America safer, "
-            "stronger, and more prosperous by containing threats at source, building resilient systems, "
-            "and using data for real response. Uganda's NAPHS II and the 2023 JEE ask for the same "
-            "practical things on the ground: better surveillance links, ready workers, and emergency "
-            "systems that reach districts and communities.",
+            "FairBanks Medical Centre Limited is a Uganda health organisation in Kampala. "
+            "We run a medical centre and FairBanks Community Reach. Our work starts with "
+            "families and communities, then moves through community health workers and VHTs, "
+            "outreach programmes, clinical care, learning with partners, and livelihoods support. "
+            "Our slogan is simple: Your health, our mission.",
             st["Body"],
         ),
         Paragraph(
-            "FairBanks sits where those two needs meet. We already walk the streets and homes of "
-            "peri-urban Kampala. We already see patients at FairBanks Medical Centre. We already "
-            "collect community data through CHWs/VHTs and a working FCHIP MVP. What CDC and MoH "
-            "still need is a local partner that can turn that daily work into timely, government-usable "
-            "signals — without inventing a second national system.",
+            "The FairBanks Blueprint says strong health systems are built on strong local "
+            "institutions. It asks us to put people before processes, serve with stewardship, "
+            "and leave our communities better than we found them. That is why we built the "
+            "FairBanks Integrated Health Ecosystem (clinical care, community health, training, "
+            "financing, and partnerships working together) and the FairBanks Community Health "
+            "Intelligence Platform (FCHIP). FCHIP helps us collect community and facility signals, "
+            "see patterns earlier, and feed useful information into government pathways.",
+            st["Body"],
+        ),
+        Paragraph("1.2 Why this CDC partnership matters", st["H2"]),
+        Paragraph(
+            "CDC wants partners who help keep America safer by stopping health threats closer "
+            "to where they start. Uganda wants the same thing for its own people: better "
+            "surveillance links, ready workers, and emergency systems that reach districts and "
+            "communities. Uganda's NAPHS II and the 2023 Joint External Evaluation point to "
+            "those same needs.",
             st["Body"],
         ),
         Paragraph(
-            "If funded, CDC gets a Uganda partner with skin in the game. MoH gets last-mile feed into "
-            "NISS-aligned pathways and practised 7-1-7 loops. Communities get earlier alerts and clearer "
-            "referrals. FairBanks gets to prove its tools serve the public system.",
-            st["Body"],
-        ),
-        Paragraph("1.2 Problem", st["H2"]),
-        Paragraph(
-            "Uganda sits in a region where endemic, new, and returning infectious diseases keep causing "
-            "outbreaks. Fast urban growth, crowded peri-urban settlements, and high border and travel "
-            "movement raise the chance that a local cluster becomes a national — and cross-border — "
-            "threat. Americans and Ugandans are safer when outbreaks are found and contained early, "
-            "close to where people live.",
+            "FairBanks already works in peri-urban Kampala homes, schools, and community spaces. "
+            "We already see patients at the medical centre. We already collect field data through "
+            "CHWs, VHTs, and a working FCHIP toolset. What is still missing is a steady last-mile "
+            "link so that daily community work becomes timely information the Ministry of Health "
+            "can use. We are not trying to build a second national system. We want to strengthen "
+            "the one Uganda already leads.",
             st["Body"],
         ),
         Paragraph(
-            "In Kampala peri-urban communities where FairBanks already works — Bukoto, Kyebando, "
-            "Kisaasi, Kamwokya, Kikaaya and nearby areas — families often reach care late. CHWs and "
-            "VHTs visit homes and schools, but much of what they see still sits in paper books or "
-            "separate tools. Clinic records, community reports, lab results, and weather or place "
-            "signals rarely join one picture.",
+            "If funded, CDC gains a local partner with real field presence. The Ministry of Health "
+            "gains better last-mile feed into NISS-aligned pathways and practised detect, notify, "
+            "and respond loops. Communities get earlier alerts and clearer referrals. FairBanks "
+            "gets to prove that its tools serve the public system.",
+            st["Body"],
+        ),
+        Paragraph("1.3 The problem", st["H2"]),
+        Paragraph(
+            "Uganda sits in a region where endemic, new, and returning infectious diseases keep "
+            "causing outbreaks. Fast urban growth, crowded peri-urban settlements, and high travel "
+            "movement raise the chance that a local cluster becomes a national and cross-border "
+            "threat. People in Uganda and people in America are safer when outbreaks are found "
+            "early, close to where families live.",
             st["Body"],
         ),
         Paragraph(
-            "Uganda's 2023 Joint External Evaluation showed real progress on emergency response, labs, "
-            "surveillance, and workforce — and still named clear gaps: weak information sharing across "
-            "sectors; limited internet access for surveillance data; incomplete surge plans and staffing "
-            "at subnational level; uneven use of data to forecast risk; and the need for stronger links "
-            "from communities and facilities into national emergency and surveillance structures, "
-            "including work toward a functional National Integrated Surveillance System (NISS).",
+            "In communities where FairBanks already works (Bukoto, Kyebando, Kisaasi, Kamwokya, "
+            "Kikaaya, and nearby areas), families often reach care late. CHWs and VHTs visit homes "
+            "and schools, but much of what they see still sits in paper books or separate tools. "
+            "Clinic records, community reports, lab results, and place or weather signals rarely "
+            "join one shared picture.",
             st["Body"],
         ),
         Paragraph(
-            "FairBanks proposes to close the last-mile gap under MoH leadership: help community and "
-            "clinic signals reach MoH systems faster, train the people who collect those signals, and "
-            "practise response with district structures so 7-1-7 style timing becomes real on the ground.",
+            "Uganda's 2023 Joint External Evaluation showed real progress on emergency response, "
+            "labs, surveillance, and workforce. It also named clear gaps: weak information sharing "
+            "across sectors; limited internet access for surveillance data; incomplete surge plans "
+            "and staffing at subnational level; uneven use of data to forecast risk; and the need "
+            "for stronger links from communities and facilities into national emergency and "
+            "surveillance structures, including work toward a functional National Integrated "
+            "Surveillance System (NISS).",
             st["Body"],
         ),
-        Paragraph("1.3 Goal, theory of action, and outcomes", st["H2"]),
+        Paragraph(
+            "FairBanks proposes to close that last-mile gap under Ministry of Health leadership. "
+            "We will help community and clinic signals reach MoH systems faster, train the people "
+            "who collect those signals, and practise response with district structures so "
+            "7-1-7 style timing becomes real on the ground.",
+            st["Body"],
+        ),
+        Paragraph("1.4 Goal, approach, and outcomes", st["H2"]),
         Paragraph(
             "Goal: Strengthen Uganda's prevention, detection, and response capacities for priority "
-            "human and zoonotic threats by linking FairBanks Community Reach, FairBanks Medical Centre, "
-            "and FCHIP tools into Ministry of Health-led surveillance and emergency pathways — so "
-            "outbreaks are found earlier and contained closer to source.",
+            "human and zoonotic threats by linking FairBanks Community Reach, FairBanks Medical "
+            "Centre, and FCHIP tools into Ministry of Health-led surveillance and emergency "
+            "pathways, so outbreaks are found earlier and contained closer to source.",
             st["Body"],
         ),
         Paragraph(
-            "Theory of action: Train and equip frontline workers -> capture structured community and "
-            "facility signals -> share into NISS-aligned / MoH channels -> trigger district and regional "
-            "response -> review timing against 7-1-7 -> improve and hand tools to government use.",
+            "How we will work: train and equip frontline workers; capture structured community and "
+            "facility signals; share into NISS-aligned and MoH channels; trigger district and "
+            "regional response; review timing against 7-1-7; improve; and leave tools ready for "
+            "government use.",
             st["Body"],
         ),
-        Paragraph("Asterisked outcomes we will substantially contribute to:", st["Body"]),
-        bullets(
-            st,
+        Paragraph("Outcomes we will contribute to:", st["Body"]),
+        *lines(
             [
-                "Strategy 1: Improved health systems resilience for emergencies linked to districts and communities.",
-                "Strategy 2: Increased capacity, coordination, and response readiness of the public health workforce.",
-                "Strategy 4: Resilient integrated surveillance infrastructure capable of real-time detection and response; shorter detection and response time guided by 7-1-7 style benchmarks.",
-                "Strategy 6: Better coordination between public health systems, clinical care, and communities; culturally responsive frontline workforce supporting public health operations.",
-            ],
+                "Strategy 1: Stronger health emergency systems linked to districts and communities.",
+                "Strategy 2: A more ready public health workforce with better coordination and response skills.",
+                "Strategy 4: Better integrated surveillance that supports earlier detection and response, guided by 7-1-7 style timing.",
+                "Strategy 6: Stronger links between public health systems, clinical care, and communities.",
+            ]
         ),
         Paragraph(
-            "For Strategies 3 (national laboratory systems) and 5 (border health), FairBanks will support "
-            "MoH and specialised partners with referral pathways, specimen logistics coordination, "
-            "private-facility incident reporting support where asked, and community risk communication "
-            "near travel corridors — without claiming sole national lead.",
+            "For Strategy 3 (national laboratory systems) and Strategy 5 (border health), FairBanks "
+            "will support the Ministry of Health and specialised partners. We will help with "
+            "referral pathways, specimen logistics coordination, private-facility incident reporting "
+            "where asked, and community risk communication near travel corridors. We will not claim "
+            "to lead national lab or Points of Entry programmes alone.",
             st["Body"],
         ),
         Paragraph(
-            "Geographic start: Kampala Capital City Authority catchments linked to FairBanks Community "
-            "Reach, with Year 1-2 expansion to selected neighbouring districts agreed with MoH/CDC.",
+            "Geography: we start in Kampala Capital City Authority catchments linked to FairBanks "
+            "Community Reach. In Years 1 and 2 we can expand to selected neighbouring districts "
+            "agreed with the Ministry of Health and CDC.",
             st["Body"],
         ),
         PageBreak(),
-        Paragraph("1.4 Year 1 Component 1 activities by strategy", st["H2"]),
+        Paragraph("1.5 Year 1 Component 1 activities by strategy", st["H2"]),
         Paragraph(
-            "We build on IDSR/eIDSR, community-based surveillance, CHW/VHT structures, PHEOC incident "
-            "management, 7-1-7 timing, One Health awareness, and RCCE. Tools will work offline first and "
-            "respect Uganda data-protection and consent norms.",
+            "We build on IDSR and eIDSR, community-based surveillance, CHW and VHT structures, "
+            "PHEOC incident management, 7-1-7 timing, One Health awareness, and risk communication. "
+            "Tools will work offline first and respect Uganda data protection and consent rules.",
             st["Body"],
         ),
-        Paragraph("Strategy 1 — Health emergency management", st["H2"]),
-        bullets(
-            st,
+        Paragraph("Strategy 1: Health emergency management", st["H2"]),
+        *lines(
             [
-                "Map FairBanks catchments to district/regional PHEOC and agree notification SOPs.",
+                "Map FairBanks catchments to district and regional PHEOC structures and agree notification SOPs.",
                 "Run table-top and field drills with CHWs, facility staff, and district teams using 7-1-7 timing.",
-                "Practise incident management for small events from community alert to district activation.",
+                "Practise incident management for small events, from community alert to district activation.",
                 "Support district-level response coordination for events in FairBanks catchments.",
                 "Document after-action reviews and corrective actions.",
-            ],
+            ]
         ),
-        Paragraph("Strategy 2 — Human resources / workforce development", st["H2"]),
-        bullets(
-            st,
+        Paragraph("Strategy 2: Workforce development", st["H2"]),
+        *lines(
             [
-                "Train and coach CHWs/VHTs and selected facility staff on community-based surveillance, event notification, and safe specimen/referral pathways.",
-                "Support One Health-aware briefings with local animal/environmental focal points where MoH/districts arrange joint sessions.",
-                "Build a surge roster of FairBanks-linked workers for community investigation and RCCE.",
-                "Align training with MoH competency expectations; share materials with MoH and CDC.",
-            ],
+                "Train and coach CHWs, VHTs, and selected facility staff on community-based surveillance, event notification, and safe specimen and referral pathways.",
+                "Support One Health briefings with local animal and environmental focal points when districts arrange joint sessions.",
+                "Build a surge roster of FairBanks-linked workers for community investigation and risk communication.",
+                "Align training with Ministry of Health expectations and share materials with MoH and CDC.",
+            ]
         ),
-        Paragraph("Strategy 3 — National laboratory systems (support role)", st["H2"]),
-        bullets(
-            st,
+        Paragraph("Strategy 3: National laboratory systems (support role)", st["H2"]),
+        *lines(
             [
                 "Strengthen sample referral and transport links from FairBanks Medical Centre and outreach points into MoH-approved laboratory pathways.",
                 "Help MoH track private-facility coverage and routine incident reporting for priority outbreak diseases in our catchments.",
-                "Support biosafety basics at facility sample handling points (SOPs, PPE, documentation).",
-            ],
+                "Support biosafety basics at facility sample handling points through SOPs, PPE, and documentation.",
+            ]
         ),
-        Paragraph("Strategy 4 — Surveillance", st["H2"]),
-        bullets(
-            st,
+        Paragraph("Strategy 4: Surveillance", st["H2"]),
+        *lines(
             [
-                "Deploy and validate FCHIP mobile capture for CHW/VHT and facility sentinel signals.",
-                "Configure exports and dashboards that contribute to NISS/MoH pathways under MoH rules (not a parallel silo).",
+                "Deploy and validate FCHIP mobile capture for CHW, VHT, and facility sentinel signals.",
+                "Configure exports and dashboards that contribute to NISS and MoH pathways under MoH rules.",
                 "Train staff on data quality, analysis, and simple visualisation for catchment and district review.",
-                "Use GIS and approved climate/weather feeds where they help early warning, with clear limits on model claims.",
-            ],
+                "Use maps and approved weather feeds where they help early warning, with honest limits on what models can claim.",
+            ]
         ),
-        Paragraph("Strategy 5 — Border health security (support role)", st["H2"]),
-        bullets(
-            st,
+        Paragraph("Strategy 5: Border health security (support role)", st["H2"]),
+        *lines(
             [
-                "Coordinate with MoH/border health partners on RCCE and community surveillance near high-mobility corridors serving Kampala catchments.",
-                "Share community mobility and event signals that support POPCAB-style risk pictures when districts request them.",
+                "Coordinate with MoH and border health partners on risk communication and community surveillance near high-mobility corridors serving Kampala catchments.",
+                "Share community mobility and event signals that support district risk pictures when asked.",
                 "Do not claim to run national Points of Entry programmes.",
-            ],
+            ]
         ),
-        Paragraph("Strategy 6 — Public health programmes and service delivery links", st["H2"]),
-        bullets(
-            st,
+        Paragraph("Strategy 6: Public health programmes and service delivery links", st["H2"]),
+        *lines(
             [
-                "Strengthen community-facility linkages for priority diseases (GHS, HIV, TB, malaria, cholera, Ebola, Marburg, mpox, immunisation) during routine and outbreak periods.",
-                "Support public health campaigns with community mobilisation and data feedback — not award-funded routine clinical care.",
-                "Write SOPs for data use in service and public health decisions; train teams to use them.",
+                "Strengthen community to facility linkages for priority diseases during routine and outbreak periods, including GHS priorities, HIV, TB, malaria, cholera, Ebola, Marburg, mpox, and immunisation work.",
+                "Support public health campaigns with community mobilisation and data feedback. Routine clinical care is not charged to this award.",
+                "Write SOPs for data use in service and public health decisions, and train teams to use them.",
                 "Provide MoH, CDC, and partners with copies of or access to tools, training materials, and systems developed under the award.",
-            ],
+            ]
         ),
-        Paragraph("1.5 Complementing the national programme and timelines", st["H2"]),
+        Paragraph("1.6 How this continues national work, and Year 1 timeline", st["H2"]),
         Paragraph(
-            "This proposal continues the direction of prior CDC GHS investment in Uganda (including "
-            "work under CDC-RFA-GH20-2124 as described in the NOFO). FairBanks adds the missing "
-            "community last mile through the Community Reach cascade and FCHIP on the Data & Feedback "
-            "loop, configured to feed government systems.",
+            "This proposal continues the direction of prior CDC Global Health Security investment "
+            "in Uganda. FairBanks adds the missing community last mile through Community Reach and "
+            "FCHIP on the data and feedback loop, configured to feed government systems.",
             st["Body"],
         ),
         tbl(
             st,
             ["Quarter", "Year 1 milestones"],
             [
-                ["Q1", "Staffing; MoH/district kick-off; SOP drafts; CHW roster; FCHIP form pack; EPMP/DMP drafts started"],
+                ["Q1", "Staffing; MoH and district kick-off; SOP drafts; CHW roster; FCHIP form pack; start EPMP and data management drafts"],
                 ["Q2", "Train first cohorts; routine community event reporting; first joint drill; sample referral pathway live"],
                 ["Q3", "Expand sites; mid-year data quality review; second drill; MoH data-sharing test exports"],
                 ["Q4", "Annual performance package; Year 2 work plan; tool handoff package; surge roster exercise"],
@@ -941,132 +961,154 @@ def build_narrative():
             [1.0 * inch, 6.2 * inch],
         ),
         PageBreak(),
-        Paragraph("2. Evaluation and performance measurement plan (EPMP)", st["H1"]),
+        Paragraph("2. Evaluation and performance measurement plan", st["H1"]),
         Paragraph(
-            "About 5-10% of project funds will support monitoring, reporting, and evaluation. Final "
-            "indicators will be agreed with CDC after award from the DGHP partner-level list.",
+            "About 5 to 10 percent of project funds will support monitoring, reporting, and "
+            "evaluation. Final indicators will be agreed with CDC after award from the DGHP "
+            "partner-level list.",
             st["Body"],
         ),
         Paragraph("2.1 Priority indicator areas", st["H2"]),
-        bullets(
-            st,
+        *lines(
             [
-                "Surveillance / community mitigation: staff trained in investigation/contact support; tailored risk mitigation strategies; RCCE knowledge gains.",
-                "Emergency operations: trainings on RRT/RCCE/PHEM skills; SOPs for notification/IMS/RCCE; timely notification toward district activation (7-1-7 style).",
-                "Laboratory (support): sample referral completeness and turnaround from FairBanks-linked sites.",
-                "IPC: IPC focal person and guideline-based improvements at FairBanks Medical Centre and linked sites.",
-            ],
+                "Surveillance and community mitigation: staff trained in investigation and contact support; risk mitigation actions; risk communication knowledge gains.",
+                "Emergency operations: trainings on rapid response, risk communication, and public health emergency management skills; SOPs for notification and incident management; timely notification toward district activation using 7-1-7 style timing.",
+                "Laboratory support: sample referral completeness and turnaround from FairBanks-linked sites.",
+                "Infection prevention and control: IPC focal person and guideline-based improvements at FairBanks Medical Centre and linked sites.",
+            ]
         ),
-        Paragraph("2.2 Project-specific measures (Year 1 plan)", st["H2"]),
+        Paragraph("2.2 Project measures for Year 1", st["H2"]),
         tbl(
             st,
-            ["Measure", "Baseline plan", "Year 1 target plan"],
+            ["Measure", "Baseline plan", "Year 1 target"],
             [
-                ["Median days community signal to district notification", "Establish Q1-Q2", "Move toward 7-1-7; publish quarterly trend"],
-                ["CHWs/VHTs with complete weekly reports", "Roster at kick-off", "At least 80% of active roster by Q4"],
-                ["Priority referrals with documented outcome", "Baseline audit Q1", "At least 70% documented by Q4"],
-                ["Successful MoH/NISS-aligned data package tests", "0", "At least 2 by Q4"],
-                ["After-action reviews after drills/events", "0", "At least 2 by Q4"],
+                ["Median days from community signal to district notification", "Establish in Q1 to Q2", "Move toward 7-1-7 and publish quarterly trends"],
+                ["CHWs and VHTs with complete weekly reports", "Roster at kick-off", "At least 80 percent of the active roster by Q4"],
+                ["Priority referrals with documented outcome", "Baseline audit in Q1", "At least 70 percent documented by Q4"],
+                ["Successful MoH or NISS-aligned data package tests", "0", "At least 2 by Q4"],
+                ["After-action reviews after drills or events", "0", "At least 2 by Q4"],
             ],
             [2.6 * inch, 2.2 * inch, 2.4 * inch],
         ),
-        Paragraph("2.3 Methods, reporting, DMP summary", st["H2"]),
-        bullets(
-            st,
+        Paragraph("2.3 Methods, reporting, and data protection", st["H2"]),
+        *lines(
             [
-                "Collect: mobile forms (offline), facility registers, training pre/post tests, drill logs, sample referral logs, dashboard extracts.",
-                "Frequency: weekly ops checks; monthly internal review; quarterly packs to CDC; Annual Performance Report.",
-                "Quality: form validation; supervisor spot checks; quarterly data-quality audits.",
-                "Use: monthly improvement meetings; share with district/MoH; adjust SOPs and training.",
-                "Evaluation: Year 2 process evaluation; optional Year 4 outcome evaluation if funds allow.",
-                "DMP: role-based access; Uganda Data Protection and Privacy Act; minimise PII; de-identify analytics; detailed DMP within six months of award.",
-            ],
+                "Collect data through mobile forms that work offline, facility registers, training pre and post tests, drill logs, sample referral logs, and dashboard extracts.",
+                "Review weekly for operations, monthly inside the team, and quarterly with CDC. Submit an Annual Performance Report.",
+                "Check quality through form validation, supervisor spot checks, and quarterly data quality audits.",
+                "Use the findings in monthly improvement meetings, share with district and MoH teams, and adjust SOPs and training.",
+                "Plan a Year 2 process evaluation. Consider a later outcome evaluation if funds allow.",
+                "Protect data with role-based access, follow the Uganda Data Protection and Privacy Act, minimise personal data, and de-identify analytics. A detailed data management plan will be ready within six months of award.",
+            ]
         ),
         Paragraph("3. Organizational capacity and collaborations", st["H1"]),
         Paragraph(
             f"{ORG} (Company No. {COMPANY_NO}; TIN {TIN}; NSSF {NSSF}) is a Uganda company with "
-            f"principal operations in Kampala ({STREET}, {COUNTY}). We run: (1) FairBanks Medical "
-            "Centre — outpatient care, diagnostics, pharmacy, referrals, and related services; "
-            "(2) FairBanks Community Reach — CHWs/VHTs, outreach, MCH support, GeriCare, school "
-            "health, CHIS, and livelihood pathways; (3) FCHIP — working MVP for mobile capture, "
-            "sync, dashboards, GIS, and secure data APIs.",
+            f"principal operations in Kampala ({STREET}, {COUNTY}). We run three connected pieces "
+            "of work: FairBanks Medical Centre for outpatient care, diagnostics, pharmacy, and "
+            "referrals; FairBanks Community Reach for CHWs and VHTs, outreach, maternal and child "
+            "support, GeriCare, school health, CHIS, and livelihood pathways; and FCHIP, a working "
+            "platform for mobile capture, sync, dashboards, maps, and secure data links.",
             st["Body"],
         ),
         Paragraph(
-            f"Project Director: {PD_NAME}, {PD_TITLE} — 15+ years in Uganda private healthcare "
-            "leadership and HR; MA Social Sector Planning and Management (Makerere); PhD in "
-            f"Management in progress; Uganda Healthcare Federation links. Contact: {EMAIL}, {PHONE}. "
-            "Website: " + WEBSITE + ".",
+            "This matches the Blueprint idea of one ecosystem. Clinical care, community health, "
+            "learning, and data belong together. Stewardship means we use every award resource "
+            "carefully and leave usable tools with government and district partners.",
             st["Body"],
         ),
         Paragraph(
-            "Honest limit: we have not previously managed a multi-million-dollar U.S. federal "
-            "cooperative agreement. We will strengthen segregated ledgers, procurement, timesheets, "
-            "and audits for this award. We ask CDC to judge us on local presence, technical fit for "
-            "community surveillance, documented company standing, and willingness to work under MoH leadership.",
+            f"Project Director: {PD_NAME}, {PD_TITLE}. She brings more than 15 years in Uganda "
+            "private healthcare leadership and human resources, an MA in Social Sector Planning "
+            "and Management from Makerere University, and ongoing doctoral study in Management. "
+            f"She also works through Uganda Healthcare Federation links. Contact: {EMAIL}, {PHONE}. "
+            f"Website: {WEBSITE}.",
             st["Body"],
         ),
-        Paragraph("Collaborations (if funded):", st["H2"]),
-        bullets(
-            st,
+        Paragraph(
+            "We have not previously managed a large U.S. federal cooperative agreement. We will "
+            "strengthen segregated ledgers, procurement, timesheets, and audits for this award. "
+            "We ask CDC to judge us on local presence, technical fit for community surveillance, "
+            "documented company standing, and our commitment to work under Ministry of Health "
+            "leadership.",
+            st["Body"],
+        ),
+        Paragraph("Collaborations if funded", st["H2"]),
+        *lines(
             [
                 "Ministry of Health (surveillance, community health, emergency operations, digital health).",
-                "District / KCCA health teams covering our catchments.",
-                "Other CDC-funded GHS, HIV/TB, immunisation, and emerging infection partners.",
-                "Community leaders, CHWs/VHTs, schools, and local CBOs in Community Reach.",
-            ],
+                "District and KCCA health teams covering our catchments.",
+                "Other CDC-funded GHS, HIV and TB, immunisation, and emerging infection partners.",
+                "Community leaders, CHWs, VHTs, schools, and local community organisations in Community Reach.",
+            ]
         ),
         Paragraph("Key personnel", st["H2"]),
         tbl(
             st,
             ["Role", "Person", "Notes"],
             [
-                ["Project Director / Authorized Official", PD_NAME, "Overall accountability"],
-                ["GHS Programme Manager", "To hire / CONFIRM", "Day-to-day delivery"],
-                ["M&E Lead", "To hire / CONFIRM", "EPMP, indicators, APR"],
-                ["Data / FCHIP Lead", "To hire / CONFIRM", "Mobile tools, NISS-aligned exports"],
-                ["CHW Supervisor", "Existing + surge", "Field quality and coaching"],
-                ["Clinical / IPC Focal", "Existing Medical Centre role", "Sample SOPs/IPC — award-allowed time only"],
+                ["Project Director / Authorised Official", PD_NAME, "Overall accountability"],
+                ["GHS Programme Manager", "To be hired", "Day-to-day delivery"],
+                ["M&E Lead", "To be hired", "Indicators, reporting, annual performance"],
+                ["Data / FCHIP Lead", "To be hired", "Mobile tools and MoH-aligned exports"],
+                ["CHW Supervisor", "Existing staff plus surge", "Field quality and coaching"],
+                ["Clinical / IPC Focal", "Existing Medical Centre role", "Sample SOPs and IPC for award-allowed time only"],
             ],
             [2.2 * inch, 2.0 * inch, 3.0 * inch],
         ),
         PageBreak(),
         Paragraph("4. Work plan snapshots", st["H1"]),
-        Paragraph("4.1 Component 1 — Core GHS (Year 1)", st["H2"]),
+        Paragraph("4.1 Component 1: Core GHS (Year 1)", st["H2"]),
         tbl(
             st,
             ["Strategy", "Activity", "Measure examples", "By"],
             [
-                ["1", "District notification SOPs + 2 drills", "Drill reports; time metrics", "Q2, Q4"],
-                ["2", "Train CHW/VHT cohorts (target CONFIRM e.g. 80)", "# trained; pre/post scores", "Q2-Q3"],
-                ["3", "Sample referral pathway SOPs live", "% complete referrals", "Q2"],
-                ["4", "FCHIP surveillance live + MoH export tests", "Weekly reports; export tests", "Q2-Q4"],
-                ["5", "Corridor RCCE + signal sharing", "# sessions; signals shared", "Q3-Q4"],
-                ["6", "Priority-disease community-facility linkage", "Completed referral outcomes", "Ongoing"],
-                ["M&E", "EPMP/DMP detailed; quarterly reviews", "Reports submitted", "Month 6+"],
+                ["1", "District notification SOPs and 2 drills", "Drill reports; time metrics", "Q2, Q4"],
+                ["2", "Train CHW and VHT cohorts (about 80 people)", "Number trained; pre and post scores", "Q2 to Q3"],
+                ["3", "Sample referral pathway SOPs live", "Percent complete referrals", "Q2"],
+                ["4", "FCHIP surveillance live and MoH export tests", "Weekly reports; export tests", "Q2 to Q4"],
+                ["5", "Corridor risk communication and signal sharing", "Sessions held; signals shared", "Q3 to Q4"],
+                ["6", "Priority-disease community to facility linkage", "Completed referral outcomes", "Ongoing"],
+                ["M&E", "Detailed EPMP and data plan; quarterly reviews", "Reports submitted", "Month 6 onward"],
             ],
             [0.8 * inch, 2.6 * inch, 2.4 * inch, 0.9 * inch],
         ),
-        Paragraph("4.2 Components 2-4 — Contingency (approved but unfunded until CDC activates)", st["H2"]),
-        bullets(
-            st,
-            [
-                f"Component 2 ({money(C2)} draft): surge roster; community investigation/contact support; RCCE; temporary dashboards; district IMS support.",
-                f"Component 3 ({money(C3)} draft): expand surge staffing; multi-district mobilisation under MoH; sample referral volume logistics; extended RCCE; recovery support.",
-                f"Component 4 ({money(C4)} draft): rapid form updates for new pathogens; sentinel intensification; partner lab referral; special training modules.",
-                "Component 5 (humanitarian emergency): contingency plan in this narrative for NOFO completeness. "
-                "SF-424A has only four activity rows, so Year 1 federal dollars are on Components 1-4 "
-                f"totaling {money(TOTAL)}. Component 5 would activate with CDC emergency funding under the $20M ceiling.",
-            ],
-        ),
-        Paragraph("Closing statement", st["H1"]),
+        Paragraph("4.2 Components 2 to 5: Contingency response", st["H2"]),
         Paragraph(
-            "FairBanks is ready to serve as a documented local partner for CDC-RFA-JG-26-0054: "
-            "closing Uganda's last-mile Global Health Security gap under MoH leadership so threats "
-            "are detected and contained closer to source — safer for Uganda and for the United States.",
+            f"Component 2 ({money(C2)}): surge roster; community investigation and contact support; "
+            "risk communication; temporary dashboards; district incident management support.",
             st["Body"],
         ),
-        Paragraph(f"{PD_NAME} | {PD_TITLE} | {EMAIL} | {PHONE} | {SLOGAN}", st["Center"]),
+        Paragraph(
+            f"Component 3 ({money(C3)}): expand surge staffing; multi-district mobilisation under "
+            "MoH; sample referral logistics; extended risk communication; recovery support.",
+            st["Body"],
+        ),
+        Paragraph(
+            f"Component 4 ({money(C4)}): rapid form updates for new pathogens; sentinel "
+            "intensification; partner lab referral; special training modules.",
+            st["Body"],
+        ),
+        Paragraph(
+            f"Component 5: humanitarian contingency plan. Year 1 federal budget lines total "
+            f"{money(TOTAL)} across Components 1 to 4. If CDC activates Component 5 under the "
+            "$20,000,000 ceiling, FairBanks will support community surveillance and risk "
+            "communication in crisis-affected groups under MoH tasking.",
+            st["Body"],
+        ),
+        Paragraph("Closing", st["H1"]),
+        Paragraph(
+            "The FairBanks Blueprint calls us to build institutions that deserve the trust of the "
+            "people they serve. Under CDC-RFA-JG-26-0054, FairBanks is ready to serve as a local "
+            "partner that closes Uganda's last-mile Global Health Security gap under Ministry of "
+            "Health leadership, so threats are found and contained closer to source. That makes "
+            "Uganda safer, and it makes America safer too.",
+            st["Body"],
+        ),
+        Paragraph(f"{PD_NAME}", st["Center"]),
+        Paragraph(f"{PD_TITLE}", st["Center"]),
+        Paragraph(f"{EMAIL} | {PHONE}", st["Center"]),
+        Paragraph(f"{SLOGAN}", st["Center"]),
     ]
     template.build(story, onFirstPage=on_page, onLaterPages=on_page)
     print("Narrative:", path)
