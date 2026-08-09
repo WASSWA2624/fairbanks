@@ -851,14 +851,10 @@ def build_narrative():
             st["Body"],
         ),
         Paragraph("Outcomes we will contribute to:", st["Body"]),
-        *lines(
-            [
-                "Strategy 1: Stronger health emergency systems linked to districts and communities.",
-                "Strategy 2: A more ready public health workforce with better coordination and response skills.",
-                "Strategy 4: Better integrated surveillance that supports earlier detection and response, guided by 7-1-7 style timing.",
-                "Strategy 6: Stronger links between public health systems, clinical care, and communities.",
-            ]
-        ),
+        Paragraph("Strategy 1: Stronger health emergency systems linked to districts and communities.", st["Body"]),
+        Paragraph("Strategy 2: A more ready public health workforce with better coordination and response skills.", st["Body"]),
+        Paragraph("Strategy 4: Better integrated surveillance that supports earlier detection and response, guided by 7-1-7 style timing.", st["Body"]),
+        Paragraph("Strategy 6: Stronger links between public health systems, clinical care, and communities.", st["Body"]),
         Paragraph(
             "For Strategy 3 (national laboratory systems) and Strategy 5 (border health), FairBanks "
             "will support the Ministry of Health and specialised partners. We will help with "
