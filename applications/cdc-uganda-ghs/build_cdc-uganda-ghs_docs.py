@@ -30,7 +30,7 @@ SLATE, MUTED, CREAM, LINE, WHITE = "1E2F38", "52636C", "F7F5F0", "CED9D8", "FFFF
 SLOGAN = "Your health, our mission."
 
 PROGRAMME = "CDC-RFA-JG-26-0054 — Strengthening global health security through local partnerships in Uganda"
-DOC_TITLE = "Project Narrative Pack (submission companion)"
+DOC_TITLE = "Win-ready project narrative pack (submission companion)"
 ORG_LEGAL = "FAIRBANKS MEDICAL CENTRE LIMITED"
 ORG = "FairBanks Medical Centre"
 CONTACT_NAME = "Racheal Nabukeera"
@@ -40,15 +40,23 @@ PHONE = "+256 772 849 258"
 WEBSITE = "https://www.fairbanksmedicalcentre.org/"
 COMPANY_NO = "80020003843337"
 TIN = "1053370026"
+NSSF = "NS043295"
 LOCATION = (
     "Plot 1423 and 1425 Tirupati Road, Fairbanks Medical Centre, "
     "Kampala Central Division, Kololo IV, Lugogo, Kampala, Uganda"
 )
 PUBLIC_LOCATION = "Kyebando–Kisalosalo, Northern Bypass, Kampala"
-OFFICIAL = "https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b"
+OFFICIAL = "https://www.grants.gov/search-results-detail/360339"
+OFFICIAL_ALT = "https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b"
+APPLY_GUIDE = "https://grants.gov/quick-start-guide/applicants"
 DEADLINE = "14 August 2026, 11:59 p.m. ET"
 C1_ASK = "$2,450,000"
 PERIOD = "5 years (five 12-month budget periods)"
+WIN_LINE = (
+    "CDC and Uganda need outbreaks stopped closer to where people live. "
+    "FairBanks already runs a clinic, CHW/VHT outreach, and working FCHIP tools — "
+    "ready to feed MoH/NISS pathways under government leadership."
+)
 
 PHOTOS = {
     "cover": "cover_hero_cinematic.jpg",
@@ -75,15 +83,24 @@ def photo(key: str) -> Path:
 CRITICAL = [
     ["Opportunity number", "CDC-RFA-JG-26-0054"],
     ["Applicant", ORG_LEGAL],
+    ["Company No. / TIN / NSSF", f"{COMPANY_NO} · {TIN} · {NSSF}"],
     ["Country of performance", "Uganda"],
     ["Funding instrument", "Cooperative agreement"],
     ["Assistance listing", "93.318"],
     ["Period of performance", PERIOD],
     ["Year 1 Component 1 ask (draft)", f"{C1_ASK} (CONFIRM; ceiling $5,000,000)"],
     ["Cost share", "None proposed"],
-    ["Local partner preference", "Yes — Uganda-incorporated entity (document before submit)"],
+    ["Local partner preference", "Yes — Uganda-incorporated entity (+15 points; document before submit)"],
+    ["Merit scoring focus", "Approach 35 · EPMP 40 · Capacity 25"],
     ["Deadline", DEADLINE],
     ["Contact", f"{CONTACT_NAME} · {EMAIL} · {PHONE}"],
+]
+
+SHARED_WIN = [
+    ["CDC / United States", "Earlier containment at source — Safer, Stronger, More Prosperous"],
+    ["Uganda / MoH", "Last-mile signals into NISS/NAPHS II; trained CHWs; 7-1-7 practice"],
+    ["FairBanks", "Local partner with live clinic, Community Reach, and FCHIP that feeds government"],
+    ["Communities", "Earlier alerts and clearer referral paths when something looks wrong"],
 ]
 
 ABSTRACT = (
@@ -91,18 +108,19 @@ ABSTRACT = (
     f"We run a licensed medical centre and FairBanks Community Reach with CHWs and VHTs "
     f"in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby communities. "
     f"Slogan: {SLOGAN} "
-    "This project helps Uganda close last-mile Global Health Security gaps flagged by the "
-    "2023 Joint External Evaluation: community and facility signals that reach decision-makers "
-    "too late; limited surge-ready workforce at subnational level; and incomplete links into "
-    "national surveillance and emergency structures, including National Integrated Surveillance "
-    "System (NISS) pathways. Under Ministry of Health leadership, Year 1 Component 1 will "
-    "(1) strengthen community and facility surveillance that contributes to MoH/NISS channels "
-    "using FairBanks FCHIP tools, (2) speed community-to-district detection and response using "
-    "7-1-7 style timing, (3) train CHWs/VHTs and frontline workers for One Health–aware "
-    "surveillance and surge readiness, and (4) tighten community–facility links for priority "
-    "diseases during routine work and outbreaks. Laboratory and border-health modules will be "
-    "delivered with MoH-aligned partners. Components 2–5 are contingency surge plans that may "
-    "be approved but unfunded until CDC activates emergency funding."
+    "Uganda’s 2023 Joint External Evaluation still flags last-mile gaps: community and "
+    "facility signals that reach decision-makers too late; limited surge-ready workforce at "
+    "subnational level; and incomplete links into national surveillance and emergency "
+    "structures, including National Integrated Surveillance System (NISS) pathways. "
+    "Under Ministry of Health leadership, Year 1 Component 1 will (1) strengthen community "
+    "and facility surveillance that contributes to MoH/NISS channels using FairBanks FCHIP "
+    "tools, (2) speed community-to-district detection and response using 7-1-7 style timing, "
+    "(3) train CHWs/VHTs and frontline workers for One Health–aware surveillance and surge "
+    "readiness, and (4) tighten community–facility links for priority diseases during routine "
+    "work and outbreaks. Laboratory and border-health modules will be delivered with "
+    "MoH-aligned partners. Components 2–5 are contingency surge plans that may be approved "
+    "but unfunded until CDC activates emergency funding. Shared result: threats found and "
+    "acted on closer to source — safer for Uganda and for the United States."
 )
 
 PROBLEM = [
@@ -121,8 +139,9 @@ PROBLEM = [
 ]
 
 APPROACH = [
-    "FairBanks Community Reach cascade stays the operating model: community members → "
-    "CHWs/VHTs → Community Reach programmes → Medical Centre → research and skills → "
+    WIN_LINE,
+    "FairBanks Community Reach cascade stays the operating model: community members -> "
+    "CHWs/VHTs -> Community Reach programmes -> Medical Centre -> research and skills -> "
     "economic empowerment. FCHIP is the intelligence component on the Data & Feedback loop.",
     "Award funds will support surveillance systems, training, emergency readiness, data "
     "linkages, and public health programme coordination. Routine clinical care continues on "
@@ -136,7 +155,7 @@ STRATEGIES = [
     ["1 Emergency management", "District notification SOPs, 7-1-7 drills, catchment IMS practice, AARs"],
     ["2 Workforce", "CHW/VHT and facility training; surge roster; One Health–aware sessions with districts"],
     ["3 Laboratory (support)", "Sample referral pathways; private-facility incident reporting support; biosafety basics"],
-    ["4 Surveillance", "FCHIP capture → MoH/NISS-aligned exports; data quality; simple GIS early warning"],
+    ["4 Surveillance", "FCHIP capture -> MoH/NISS-aligned exports; data quality; simple GIS early warning"],
     ["5 Border health (support)", "RCCE and signal sharing for high-mobility corridors with MoH partners"],
     ["6 Public health programmes", "Community–facility links for HIV, TB, malaria, VHFs, mpox, immunisation campaigns"],
 ]
@@ -150,12 +169,20 @@ OUTCOMES = [
 ]
 
 CAPACITY = [
-    f"{ORG_LEGAL} (No. {COMPANY_NO}; TIN {TIN}) — Uganda company with principal place of business in Kampala.",
+    f"{ORG_LEGAL} (No. {COMPANY_NO}; TIN {TIN}; NSSF {NSSF}) — Uganda company with principal place of business in Kampala.",
     f"Live Medical Centre and Pharmacy; Community Reach with CHWs/VHTs; working FCHIP MVP.",
     f"Public community base: {PUBLIC_LOCATION}. Catchments include Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya.",
-    f"Lead: {CONTACT_NAME}, {CONTACT_TITLE} — 15+ years in Uganda private health leadership.",
+    f"Lead: {CONTACT_NAME}, {CONTACT_TITLE} — 15+ years in Uganda private health leadership; "
+    "MA Social Sector Planning (Makerere); PhD in progress; Uganda Healthcare Federation links.",
+    "Company evidence pack available (incorporation, TIN, NSSF, licences, insurance) — see company-docs/.",
     "Honest note: we have not yet been prime on a multi-million CDC GHS award; financial controls "
     "and staffing for federal compliance will be strengthened as described in attachments (CONFIRM).",
+]
+
+INDICATORS = [
+    "DGHP partner-level indicators from the FY26 list (surveillance, community mitigation, emergency ops, IPC, lab support) — final set agreed with CDC after award.",
+    "Project measures with Year 1 targets: median days signal-to-notify (toward 7-1-7); at least 80% active CHWs with complete weekly reports by Q4; at least 70% priority referrals documented; at least 2 successful MoH export tests; at least 2 AARs.",
+    "About 5–10% of funds for M&E; detailed EPMP and DMP within six months of award.",
 ]
 
 BUDGET_ROWS = [
@@ -164,12 +191,6 @@ BUDGET_ROWS = [
     ["3 Large-scale response", "$2,750,000", "$15,000,000", "Contingency"],
     ["4 Emerging threats", "$1,500,000", "$15,000,000", "Contingency"],
     ["5 Humanitarian", "$1,500,000", "$20,000,000", "Contingency"],
-]
-
-INDICATORS = [
-    "DGHP partner-level indicators from the FY26 list (surveillance, community mitigation, emergency ops, IPC, lab support) — final set agreed with CDC after award.",
-    "Project measures: median days signal→notify; CHWs submitting complete weekly reports; completed priority referrals; successful MoH export tests; AARs after drills/events.",
-    "About 5–10% of funds for M&E; detailed EPMP and DMP within six months of award.",
 ]
 
 
@@ -249,6 +270,10 @@ def build_docx() -> None:
     add_h("Table of critical details")
     add_table(["Item", "Detail"], CRITICAL)
 
+    add_h("Shared win")
+    add_table(["Who", "What they gain"], SHARED_WIN)
+    add_p(WIN_LINE)
+
     add_h("Project abstract summary")
     add_p(ABSTRACT)
 
@@ -295,13 +320,15 @@ def build_docx() -> None:
     add_h("8. Pre-submit checklist")
     add_bullets(
         [
-            "SAM.gov active + UEI for physical location receiving funds",
-            "Grants.gov / Login.gov active; authorised official ready to certify",
-            "Local partner letter + ownership/staff/board citizenship evidence",
+            "SAM.gov active + UEI for physical location receiving funds (start now)",
+            "Grants.gov / Login.gov active; AOR ready to Sign and Submit",
+            f"Follow applicant quick start: {APPLY_GUIDE}",
+            "Local partner letter + ownership/staff/board citizenship evidence from company-docs/",
             "Project narrative PDF ≤60 pages; attachments ≤50 pages; English; USD only",
             "All five components included; no research; clinical care not the award purpose",
             f"Submit by {DEADLINE} via Grants.gov",
             f"Official listing: {OFFICIAL}",
+            f"Alt listing: {OFFICIAL_ALT}",
         ]
     )
 
@@ -399,6 +426,9 @@ def build_pdf() -> None:
     img_path(photo("logo"), w=1.1 * inch, max_h=1.1 * inch)
     story.append(Paragraph("Table of critical details", st["H1"]))
     tbl(["Item", "Detail"], CRITICAL, [pw * 0.32, pw * 0.68])
+    story.append(Paragraph("Shared win", st["H1"]))
+    tbl(["Who", "What they gain"], SHARED_WIN, [pw * 0.28, pw * 0.72])
+    story.append(Paragraph(WIN_LINE, st["Body"]))
     story.append(PageBreak())
 
     story.append(Paragraph("Project abstract summary", st["H1"]))
@@ -442,7 +472,9 @@ def build_pdf() -> None:
     story.append(Paragraph("8. Contacts and sources", st["H1"]))
     story.append(Paragraph(
         f"{CONTACT_NAME}, {CONTACT_TITLE}<br/>{EMAIL} · {PHONE}<br/>{WEBSITE}<br/>"
-        f"Official opportunity: {OFFICIAL}<br/>"
+        f"Grants.gov: {OFFICIAL}<br/>"
+        f"Simpler listing: {OFFICIAL_ALT}<br/>"
+        f"Applicant quick start: {APPLY_GUIDE}<br/>"
         f"Grantor email: DGHPNOFOs@cdc.gov<br/>"
         f"Companion copy-paste file: application_answers.md · Generated {date.today().isoformat()}.",
         st["Body"],
@@ -582,7 +614,7 @@ def build_pptx() -> None:
     def pic(sl, path, x, y, w, h):
         sl.shapes.add_picture(str(path), x, y, width=w, height=h)
 
-    def footer(sl, page, total=10):
+    def footer(sl, page, total=12):
         textbox(sl, Inches(0.5), SH - Inches(0.45), Inches(10), Inches(0.3), SLOGAN, size=10, color=MUTED)
         textbox(
             sl,
@@ -600,18 +632,34 @@ def build_pptx() -> None:
     sl = prs.slides.add_slide(blank)
     pic(sl, photo("cover"), Emu(0), Emu(0), SW, SH)
     rect(sl, Emu(0), Emu(0), SW, SH, "0A1F2E")
-    # darken by overlay — use semi via shape; keep solid navy with photo peek left
     pic(sl, photo("cover"), Emu(0), Emu(0), Inches(6.2), SH)
     rect(sl, Inches(5.8), Emu(0), SW - Inches(5.8), SH, NAVY)
     textbox(sl, Inches(6.2), Inches(1.4), Inches(6.5), Inches(0.8), "CDC · Uganda GHS", size=16, color=ORANGE)
-    textbox(sl, Inches(6.2), Inches(2.1), Inches(6.5), Inches(1.6), "Local partner for faster detection and response", size=28, bold=True)
-    textbox(sl, Inches(6.2), Inches(4.0), Inches(6.5), Inches(0.8), f"{ORG} · FCHIP component", size=16)
-    slogan_box = textbox(sl, Inches(6.2), Inches(4.8), Inches(6.5), Inches(0.5), SLOGAN, size=14)
+    textbox(sl, Inches(6.2), Inches(2.1), Inches(6.5), Inches(1.8), "A local partner for earlier detection — shared win for Uganda and the U.S.", size=26, bold=True)
+    textbox(sl, Inches(6.2), Inches(4.1), Inches(6.5), Inches(0.8), f"{ORG} · FCHIP component", size=16)
+    slogan_box = textbox(sl, Inches(6.2), Inches(4.9), Inches(6.5), Inches(0.5), SLOGAN, size=14)
     slogan_box.text_frame.paragraphs[0].runs[0].font.italic = True
     textbox(sl, Inches(6.2), Inches(5.6), Inches(6.5), Inches(0.6), f"CDC-RFA-JG-26-0054 · Due {DEADLINE}", size=12, color="B8C4C8")
     add_fade(sl)
 
-    # 2 Opportunity
+    # 2 Shared win
+    sl = prs.slides.add_slide(blank)
+    rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
+    rect(sl, Emu(0), Emu(0), SW, Inches(0.9), ORANGE)
+    textbox(sl, Inches(0.5), Inches(0.25), Inches(12), Inches(0.5), "The shared win", size=24, bold=True)
+    bullets(
+        sl,
+        Inches(0.6),
+        Inches(1.3),
+        Inches(12),
+        Inches(5.5),
+        [f"{who}: {gain}" for who, gain in SHARED_WIN],
+        size=20,
+    )
+    footer(sl, 2)
+    add_fade(sl)
+
+    # 3 Opportunity
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), NAVY)
@@ -626,15 +674,16 @@ def build_pptx() -> None:
             "Strengthen Uganda GHS capacities from the 2023 JEE (surveillance, labs, response, workforce, border health).",
             "Cooperative agreement · 5 years · apply for all five funding components.",
             f"Year 1 Component 1 draft ask: {C1_ASK} (ceiling $5M) · local partner preference +15 points.",
+            "Scoring: Approach 35 · EPMP 40 · Capacity 25 — we lead with measurable last-mile surveillance.",
             "Must work in Uganda · English · USD · no research · clinical care not the award purpose.",
             f"Submit on Grants.gov by {DEADLINE}.",
         ],
-        size=18,
+        size=17,
     )
-    footer(sl, 2)
+    footer(sl, 3)
     add_fade(sl)
 
-    # 3 Problem
+    # 4 Problem
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), NAVY)
@@ -654,20 +703,20 @@ def build_pptx() -> None:
         ],
         size=17,
     )
-    footer(sl, 3)
+    footer(sl, 4)
     add_fade(sl)
 
-    # 4 Model
+    # 5 Model
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), TEAL)
     textbox(sl, Inches(0.5), Inches(0.25), Inches(12), Inches(0.5), "How FairBanks works", size=24, bold=True)
     if CONCEPT.exists():
         pic(sl, CONCEPT, Inches(0.8), Inches(1.2), Inches(11.6), Inches(5.4))
-    footer(sl, 4)
+    footer(sl, 5)
     add_fade(sl)
 
-    # 5 Solution
+    # 6 Solution
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), NAVY)
@@ -688,19 +737,19 @@ def build_pptx() -> None:
         ],
         size=17,
     )
-    footer(sl, 5)
+    footer(sl, 6)
     add_fade(sl)
 
-    # 6 Architecture
+    # 7 Architecture
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), TEAL)
     textbox(sl, Inches(0.5), Inches(0.25), Inches(12), Inches(0.5), "FCHIP on the Data & Feedback loop", size=24, bold=True)
     pic(sl, photo("architecture"), Inches(1.2), Inches(1.2), Inches(10.8), Inches(5.4))
-    footer(sl, 6)
+    footer(sl, 7)
     add_fade(sl)
 
-    # 7 Outcomes
+    # 8 Outcomes
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), NAVY)
@@ -715,10 +764,10 @@ def build_pptx() -> None:
         [f"{a} — {b}" for a, b in OUTCOMES],
         size=16,
     )
-    footer(sl, 7)
+    footer(sl, 8)
     add_fade(sl)
 
-    # 8 Budget components
+    # 9 Budget components
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), ORANGE)
@@ -732,10 +781,10 @@ def build_pptx() -> None:
         [f"Component {c}: {ask} draft (ceiling {ceil}) — {note}" for c, ask, ceil, note in BUDGET_ROWS],
         size=17,
     )
-    footer(sl, 8)
+    footer(sl, 9)
     add_fade(sl)
 
-    # 9 Capacity
+    # 10 Capacity
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
     rect(sl, Emu(0), Emu(0), SW, Inches(0.9), TEAL)
@@ -751,22 +800,45 @@ def build_pptx() -> None:
             "Uganda-incorporated company with Kampala operations.",
             "Live clinic + Community Reach + working FCHIP MVP.",
             "Named catchments already in motion.",
-            "Women-led leadership · ready to document local partner preference.",
+            "Documented company standing (TIN, NSSF, licences) ready to attach.",
             "Contact: info@fairbanksmedicalcentre.org · +256 772 849 258",
         ],
         size=17,
     )
-    footer(sl, 9)
+    footer(sl, 10)
     add_fade(sl)
 
-    # 10 Ask / close
+    # 11 Grants.gov prep
+    sl = prs.slides.add_slide(blank)
+    rect(sl, Emu(0), Emu(0), SW, SH, CREAM)
+    rect(sl, Emu(0), Emu(0), SW, Inches(0.9), NAVY)
+    textbox(sl, Inches(0.5), Inches(0.25), Inches(12), Inches(0.5), "Before you submit — Grants.gov", size=24, bold=True)
+    bullets(
+        sl,
+        Inches(0.6),
+        Inches(1.3),
+        Inches(12),
+        Inches(5.5),
+        [
+            "SAM.gov first - get UEI (can take weeks).",
+            "Login.gov + Grants.gov organisation profile with the same email as SAM EBiz POC.",
+            "Create a workspace for CDC-RFA-JG-26-0054; AOR must Sign and Submit.",
+            "CONFIRM local partner citizenship percentages before signing the preference letter.",
+            f"Deadline: {DEADLINE} · Quick start: grants.gov/quick-start-guide/applicants",
+        ],
+        size=18,
+    )
+    footer(sl, 11)
+    add_fade(sl)
+
+    # 12 Ask / close
     sl = prs.slides.add_slide(blank)
     rect(sl, Emu(0), Emu(0), SW, SH, NAVY)
-    textbox(sl, Inches(0.8), Inches(1.8), Inches(11.5), Inches(1.2), "Ready to help Uganda detect and respond faster", size=28, bold=True, align=PP_ALIGN.CENTER)
+    textbox(sl, Inches(0.8), Inches(1.6), Inches(11.5), Inches(1.4), "Ready to help Uganda detect and respond faster — so threats stop closer to source", size=26, bold=True, align=PP_ALIGN.CENTER)
     textbox(
         sl,
         Inches(1.5),
-        Inches(3.3),
+        Inches(3.4),
         Inches(10),
         Inches(1.2),
         f"Draft Year 1 Component 1: {C1_ASK} · Local partner · MoH-aligned · Contingency surge plans ready",
@@ -777,7 +849,7 @@ def build_pptx() -> None:
     textbox(
         sl,
         Inches(1.5),
-        Inches(4.8),
+        Inches(5.0),
         Inches(10),
         Inches(1.0),
         f"{CONTACT_NAME} · {EMAIL} · {PHONE}\n{SLOGAN}",

@@ -2,14 +2,23 @@
 
 **Opportunity:** Strengthening global health security through local partnerships in Uganda  
 **NOFO number:** CDC-RFA-JG-26-0054  
-**Listing:** https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b  
+**Grants.gov:** https://www.grants.gov/search-results-detail/360339  
+**Simpler listing:** https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b  
+**How to register / apply:** https://grants.gov/quick-start-guide/applicants  
+**Public summary:** https://www2.fundsforngos.org/individuals/apply-now-local-partnerships-for-global-health-security-uganda/  
 **Deadline:** 14 August 2026, 11:59 p.m. ET (Grants.gov)  
 **Organisation website:** https://www.fairbanksmedicalcentre.org/  
 **FCHIP page:** https://www.fairbanksmedicalcentre.org/fchip/
 
 Paste each block into the matching Grants.gov field or PDF section. Keep short fields short. Expand long blocks only if the portal allows more space. Marked **CONFIRM** items need a live check before submit.
 
-Official PDFs live in `rules/opportunity-CDC-RFA-JG-26-0054-attachments/`.
+Official PDFs live in `rules/opportunity-CDC-RFA-JG-26-0054-attachments/`. Company evidence lives in `company-docs/`.
+
+---
+
+## Shared win in one breath
+
+CDC and Uganda need outbreaks found and stopped closer to where people live. FairBanks already runs a licensed clinic, CHW/VHT outreach in named Kampala peri-urban communities, and a working FCHIP tools layer. Under Ministry of Health leadership, we turn last-mile visits and facility flags into signals that can reach MoH / NISS pathways faster — with 7-1-7 style practice, trained frontline workers, and clear handoff of tools to government. America is safer when threats are contained at source. Uganda gains usable community surveillance. Families get earlier action. That is the deal.
 
 ---
 
@@ -24,6 +33,7 @@ Official PDFs live in `rules/opportunity-CDC-RFA-JG-26-0054-attachments/`.
 | Country of performance | Uganda |
 | Company registration number | 80020003843337 |
 | TIN (Uganda) | 1053370026 |
+| NSSF employer number | NS043295 |
 | Year incorporated | 2022 (4 October 2022) |
 | Nature of business | Human health and social work activities |
 | Registered / principal address | Plot 1423 and 1425 Tirupati Road, Fairbanks Medical Centre, Kampala Central Division, Kololo IV, Lugogo, Kampala, Uganda |
@@ -34,7 +44,7 @@ Official PDFs live in `rules/opportunity-CDC-RFA-JG-26-0054-attachments/`.
 | Phone | +256 772 849 258 |
 | Website | https://www.fairbanksmedicalcentre.org/ |
 | UEI (SAM.gov) | CONFIRM — register or renew in SAM.gov before submit; use the UEI tied to the physical location receiving funds |
-| Grants.gov / Login.gov | CONFIRM — active account required |
+| Grants.gov / Login.gov | CONFIRM — active account required (see Section K) |
 | Opportunity number | CDC-RFA-JG-26-0054 |
 | Assistance listing | 93.318 |
 | Funding instrument | Cooperative agreement |
@@ -48,17 +58,21 @@ Official PDFs live in `rules/opportunity-CDC-RFA-JG-26-0054-attachments/`.
 
 ### SF-424 Box 15 (Descriptive Title of Applicant’s Project)
 
-Strengthening Uganda community-to-national detection and response: FairBanks will help CHWs, VHTs, clinics, and districts feed timely outbreak and priority-disease signals into Ministry of Health systems (including NISS-linked pathways), train frontline workers, and speed 7-1-7 style detection–notify–respond loops so threats are contained closer to source.
+Last-mile Global Health Security for Uganda: FairBanks will help CHWs, VHTs, clinics, and districts put timely outbreak and priority-disease signals into Ministry of Health systems (including NISS-linked pathways), train frontline workers, and practise 7-1-7 style detect–notify–respond loops so threats are contained closer to source.
 
 ### Project Abstract Summary (1 page — paste / trim to fit)
 
-FAIRBANKS MEDICAL CENTRE LIMITED (FairBanks) is a Uganda-registered health organisation based in Kampala. We run FairBanks Medical Centre and FairBanks Community Reach with CHWs and VHTs in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban communities. Slogan: Your health, our mission.
+FAIRBANKS MEDICAL CENTRE LIMITED (FairBanks) is a Uganda-registered health organisation in Kampala. We run a licensed medical centre and FairBanks Community Reach with CHWs and VHTs in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban communities. Slogan: Your health, our mission.
 
-This project strengthens Uganda’s Global Health Security capacities that the 2023 Joint External Evaluation still flags as weak: community and facility surveillance that does not always reach decision-makers in time; limited surge-ready workforce at subnational level; and incomplete links between communities, clinics, laboratories, and emergency structures. We will work under Ministry of Health leadership and complement — not replace — national programmes and other CDC-supported partners.
+Uganda’s 2023 Joint External Evaluation showed progress — and still named hard gaps: community and facility signals that reach decision-makers too late; weak information sharing across sectors; limited surge-ready workforce at subnational level; and incomplete links into national surveillance and emergency structures, including work toward a functional National Integrated Surveillance System (NISS). When those gaps stay open, outbreaks grow before anyone can act. That puts Ugandans at risk first — and Americans at risk later.
 
-Year 1 focus (Component 1 — Core GHS) is four practical pillars: (1) community and facility surveillance that contributes to Uganda’s National Integrated Surveillance System (NISS) pathways using FairBanks’ FCHIP tools; (2) faster community-to-district detection and response using 7-1-7 style timing; (3) CHW/VHT and frontline workforce skills for One Health–aware surveillance and surge readiness; and (4) stronger community–facility links for priority disease programmes (including HIV, TB, malaria, cholera, viral hemorrhagic fevers, mpox, and immunisation) during routine work and outbreaks. Laboratory and border-health work will be done with MoH-aligned partners rather than as a FairBanks-only national lead.
+This project closes the last-mile gap under Ministry of Health leadership. We will not rebuild Uganda’s national architecture. We will make community and clinic signals usable inside it.
 
-Components 2–5 set out contingency surge plans for small and large outbreaks, emerging infectious threats, and humanitarian emergencies. They may be approved but unfunded until CDC releases emergency funds. Expected outcomes include shorter detection and response times, more complete community signals in national surveillance channels, a better-prepared frontline workforce, and clearer handoff of tools and data to government systems. Contact: Racheal Nabukeera, info@fairbanksmedicalcentre.org, +256 772 849 258.
+Year 1 focus (Component 1 — Core GHS) has four practical pillars: (1) community and facility surveillance that contributes to MoH/NISS pathways using FairBanks’ FCHIP tools; (2) faster community-to-district detection and response using 7-1-7 style timing; (3) CHW/VHT and frontline workforce skills for One Health–aware surveillance and surge readiness; and (4) stronger community–facility links for priority disease programmes (including HIV, TB, malaria, cholera, viral hemorrhagic fevers, mpox, and immunisation) during routine work and outbreaks. Laboratory and border-health work will be done with MoH-aligned partners rather than as a FairBanks-only national lead.
+
+Components 2–5 set out contingency surge plans for small and large outbreaks, emerging infectious threats, and humanitarian emergencies. They may be approved but unfunded until CDC releases emergency funds.
+
+Expected shared results: shorter detection and response times; more complete community signals in national channels; a better-prepared frontline workforce; and clear handoff of tools and data to government systems. Contact: Racheal Nabukeera, info@fairbanksmedicalcentre.org, +256 772 849 258.
 
 ---
 
@@ -86,17 +100,25 @@ Yes. We apply for Components 1–5 with separate Year 1 budgets and work plans. 
 Yes.
 
 **Do you claim local partner preference?**  
-Yes. FairBanks is incorporated in Uganda with its principal place of business in Kampala. We will attach the local partner letter and supporting company documents. CONFIRM board citizenship percentages and staff residency percentages before signing the letter.
+Yes. FairBanks is incorporated in Uganda with its principal place of business in Kampala. We will attach the local partner letter and supporting company documents from `company-docs/`. CONFIRM board citizenship percentages and staff residency percentages before signing the letter.
 
 ---
 
 ## C. Project narrative — Background and approach (35 points)
 
+### C0. Why this is a shared win (open with this)
+
+CDC’s America First Global Health Strategy asks partners to help make America safer, stronger, and more prosperous by containing threats at source, building resilient systems, and using data for real response. Uganda’s NAPHS II and the 2023 JEE ask for the same practical things on the ground: better surveillance links, ready workers, and emergency systems that reach districts and communities.
+
+FairBanks sits where those two needs meet. We already walk the streets and homes of peri-urban Kampala. We already see patients at FairBanks Medical Centre. We already collect community data through CHWs/VHTs and a working FCHIP MVP. What CDC and MoH still need is a local partner that can turn that daily work into timely, government-usable signals — without inventing a second national system.
+
+If funded, CDC gets a Uganda partner with skin in the game. MoH gets last-mile feed into NISS-aligned pathways and practised 7-1-7 loops. Communities get earlier alerts and clearer referrals. FairBanks gets to prove its tools serve the public system. Everyone wins when the same fever cluster is seen in seven days, not after the ward fills up.
+
 ### C1. Problem (population and geography)
 
 Uganda sits in a region where endemic, new, and returning infectious diseases keep causing outbreaks. Fast urban growth, crowded peri-urban settlements, and high border and travel movement raise the chance that a local cluster becomes a national — and cross-border — threat. Americans and Ugandans are safer when outbreaks are found and contained early, close to where people live.
 
-In Kampala peri-urban communities where FairBanks already works — Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby areas — families often reach care late. CHWs and VHTs visit homes and schools, but much of what they see still sits in paper books or separate tools. Clinic records, community reports, lab results, and weather or place signals rarely join one picture. District and national teams then learn about fever clusters, missed maternal danger signs, or unusual events after harm has grown.
+In Kampala peri-urban communities where FairBanks already works — Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby areas — families often reach care late. CHWs and VHTs visit homes and schools, but much of what they see still sits in paper books or separate tools. Clinic records, community reports, lab results, and weather or place signals rarely join one picture. District and national teams then learn about fever clusters, missed danger signs, or unusual events after harm has grown.
 
 Uganda’s 2023 Joint External Evaluation showed real progress on emergency response, labs, surveillance, and workforce — and still named clear gaps: weak information sharing across sectors; limited internet access for surveillance data; incomplete surge plans and staffing at subnational level; uneven use of data to forecast risk; and the need for stronger links from communities and facilities into national emergency and surveillance structures, including work toward a functional National Integrated Surveillance System (NISS).
 
@@ -195,9 +217,11 @@ Years 2–5 (high level): widen district coverage under MoH guidance; deepen NIS
 
 ## D. Evaluation and performance measurement plan (40 points)
 
+*This criterion carries the most points. Keep it concrete.*
+
 ### D1. Purpose
 
-The EPMP shows how we will track progress, learn, and report. About 5–10% of project funds will support monitoring, reporting, and evaluation. Final indicators will be agreed with CDC after award from the DGHP partner-level list.
+The EPMP shows how we will track progress, learn, and report — so CDC, MoH, and FairBanks can see whether last-mile investment actually shortens detection and response. About 5–10% of project funds will support monitoring, reporting, and evaluation. Final indicators will be agreed with CDC after award from the DGHP partner-level list.
 
 ### D2. Selected DGHP partner-level indicators (initial menu — CONFIRM with CDC)
 
@@ -219,13 +243,15 @@ From the FY26 DGHP list, Year 1 Component 1 will prioritise:
 **Infection prevention and control (facility)**  
 - Presence of an IPC focal person and guideline-based IPC improvements at FairBanks Medical Centre and participating linked sites.
 
-We will also propose project-specific measures:
+We will also propose project-specific measures with Year 1 baselines and targets (CONFIRM final numbers with CDC after award):
 
-- Median days from community signal to district notification (target moving toward 7-1-7).  
-- Number of CHWs/VHTs submitting complete weekly surveillance reports.  
-- Proportion of priority referrals from community to facility with documented outcome.  
-- Number of NISS/MoH-aligned data packages successfully submitted or tested.  
-- Number of after-action reviews completed after drills or real events.
+| Measure | Year 1 baseline (plan) | Year 1 target (plan) |
+| --- | --- | --- |
+| Median days from community signal to district notification | Establish in Q1–Q2 from first reporting cycle | Move toward 7-1-7 style timing; publish quarterly trend |
+| CHWs/VHTs submitting complete weekly surveillance reports | Roster count at kick-off | ≥80% of active roster by Q4 |
+| Priority community→facility referrals with documented outcome | Baseline audit Q1 | ≥70% documented by Q4 |
+| Successful MoH/NISS-aligned data package tests | 0 at start | ≥2 successful tests by Q4 |
+| After-action reviews after drills or real events | 0 | ≥2 by Q4 |
 
 ### D3. Methods
 
@@ -250,7 +276,7 @@ Separate Component 1–5 ledgers will be kept so emergency components stay ready
 
 ### D5. Ability to monitor public health investment impact on readiness
 
-FairBanks combines a live clinic, community network, and FCHIP data layer. That lets us see whether investments change real readiness: Are alerts faster? Do drills improve? Do community signals reach the district? Do sample referrals arrive complete? We will document these links so MoH can judge what to keep after the award.
+FairBanks combines a live clinic, community network, and FCHIP data layer. That lets us see whether investments change real readiness: Are alerts faster? Do drills improve? Do community signals reach the district? Do sample referrals arrive complete? We will document these links so MoH can judge what to keep after the award — and so CDC can see whether U.S. investment is buying earlier containment at source.
 
 ### D6. At least one evaluation during the award
 
@@ -284,17 +310,23 @@ Key questions: Did training and tools shorten time from signal to district notif
 
 ### E1. Capacity narrative
 
-FAIRBANKS MEDICAL CENTRE LIMITED is a Uganda company (No. 80020003843337; TIN 1053370026) with principal operations in Kampala. We run:
+FAIRBANKS MEDICAL CENTRE LIMITED is a Uganda company (No. 80020003843337; TIN 1053370026; NSSF employer NS043295) with principal operations in Kampala. Supporting registration, tax, NSSF, licensing, and insurance documents are held in our company file and can be attached as required.
 
-1. **FairBanks Medical Centre** — outpatient care, diagnostics, pharmacy, referrals, and related services.  
-2. **FairBanks Community Reach** — CHWs/VHTs, outreach, health education, maternal and child support, GeriCare, school health, CHIS, and livelihood pathways.  
+We run three connected pieces of work:
+
+1. **FairBanks Medical Centre** — outpatient care, diagnostics, pharmacy, referrals, accident and emergency response capacity, and related services at our Kyebando–Kisalosalo / Kampala base.  
+2. **FairBanks Community Reach** — CHWs/VHTs, outreach, health education, maternal and child support, GeriCare, school health, CHIS, and livelihood pathways in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban areas.  
 3. **FCHIP** — FairBanks Community Health Intelligence Platform — working MVP for mobile capture, sync, dashboards, GIS, and secure data APIs toward existing EMR/HMS tools.
 
-Communities we already serve include Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban areas. Slogan: Your health, our mission.
+Slogan: Your health, our mission.
 
-This is not a paper partnership. We have daily clinic flow, trusted community relationships, and a technology layer ready to validate against MoH surveillance needs. Managing Director Racheal Nabukeera brings 15+ years in Uganda private healthcare leadership, HR, and stakeholder work with MoH-linked councils and the Uganda Healthcare Federation. We will hire or second dedicated GHS programme, M&E, and data staff for this award and keep clinical operations separately funded.
+This is not a paper partnership. We have daily clinic flow, trusted community relationships, and a technology layer ready to validate against MoH surveillance needs.
 
-**Honest limits:** We have not previously managed a multi-million-dollar U.S. federal cooperative agreement. Our financial capability statement describes systems we will strengthen (segregated ledgers, procurement, audits) and any partner or fiscal agent arrangements CONFIRM before submit. We ask CDC to judge us on local presence, technical fit for community surveillance, and willingness to work under MoH leadership.
+Managing Director Racheal Nabukeera brings 15+ years in Uganda private healthcare leadership and HR. She co-founded FairBanks; also serves as HR Administrator at Norvik Group; and works with MoH-linked councils and the Uganda Healthcare Federation. Academic base: MA in Social Sector Planning and Management and BA Social Sciences (Makerere); PhD in Management in progress (Uganda Christian University). She has led facility digitisation, solar energy integration, community programme growth, and external fundraising for clinical expansion.
+
+We will hire or second dedicated GHS programme, M&E, and data staff for this award and keep clinical operations separately funded.
+
+**Honest limits:** We have not previously managed a multi-million-dollar U.S. federal cooperative agreement. Our financial capability statement describes systems we will strengthen (segregated ledgers, procurement, audits) and any partner or fiscal agent arrangements CONFIRM before submit. We ask CDC to judge us on local presence, technical fit for community surveillance, documented company standing, and willingness to work under MoH leadership.
 
 ### E2. Collaborations
 
@@ -408,7 +440,7 @@ We meet the **entity** definition as follows:
 2. CONFIRM one: (a) at least 75% beneficial ownership by Uganda citizens or permanent residents; and/or (b) at least 75% of senior, mid-level, or support staff are Uganda citizens or permanent residents. Supporting lists are attached.  
 3. CONFIRM board: at least 51% of board members are Uganda citizens or permanent residents — OR state if the company has no board of directors and explain governance.
 
-Attached: Certificate of Incorporation / company registration evidence; officers/owners list with citizenship; staff residency summary; board list with citizenship (or statement of no board).
+Attached: Certificate of Incorporation / company registration evidence; TIN certificate; NSSF employer certificate; officers/owners list with citizenship; staff residency summary; board list with citizenship (or statement of no board); facility licence extracts as available.
 
 Sincerely,  
 Racheal Nabukeera  
@@ -418,11 +450,11 @@ info@fairbanksmedicalcentre.org · +256 772 849 258
 
 ### H2. Experience statement (short)
 
-FAIRBANKS MEDICAL CENTRE LIMITED operates FairBanks Medical Centre and FairBanks Community Reach in Kampala. Since incorporation in 2022 we have built outpatient and pharmacy services, CHW/VHT outreach in named peri-urban communities, maternal and child support, GeriCare, school health, CHIS, and a working FCHIP MVP for community and facility data. Leadership has long experience in Uganda private health administration and partner engagement. We have not yet been prime on a CDC GHS cooperative agreement; this application is our proposal to bring a proven local service platform into MoH-led GHS surveillance and response work under CDC technical guidance.
+FAIRBANKS MEDICAL CENTRE LIMITED operates FairBanks Medical Centre and FairBanks Community Reach in Kampala. Since incorporation in 2022 we have built outpatient and pharmacy services, CHW/VHT outreach in named peri-urban communities, maternal and child support, GeriCare, school health, CHIS, and a working FCHIP MVP for community and facility data. Leadership has long experience in Uganda private health administration and partner engagement (MoH-linked councils, Uganda Healthcare Federation). We have not yet been prime on a CDC GHS cooperative agreement; this application is our proposal to bring a proven local service platform into MoH-led GHS surveillance and response work under CDC technical guidance.
 
 ### H3. Financial capability statement (short)
 
-FairBanks maintains company accounts, URA tax registration (TIN 1053370026), NSSF employer registration, and licensed health facility operations. For this award we will: open a dedicated project account; segregate Component 1–5 costs; apply written procurement thresholds; keep timesheets for effort charged to the award; and engage an external auditor as required. We have CONFIRM experience managing budgets above $1,000,000 — update this sentence with verified figures or describe the staged controls and any fiscal partner before submit. We will follow 2 CFR 200 and CDC terms.
+FairBanks maintains company accounts, URA tax registration (TIN 1053370026), NSSF employer registration (NS043295), and licensed health facility operations. Supporting documents are available in our company file. For this award we will: open a dedicated project account; segregate Component 1–5 costs; apply written procurement thresholds; keep timesheets for effort charged to the award; and engage an external auditor as required. We have CONFIRM experience managing budgets above $1,000,000 — update this sentence with verified figures or describe the staged controls and any fiscal partner before submit. We will follow 2 CFR 200 and CDC terms.
 
 ### H4. Table of contents (application package)
 
@@ -432,14 +464,14 @@ FairBanks maintains company accounts, URA tax registration (TIN 1053370026), NSS
 4. Project Abstract Summary  
 5. Project Narrative (Background and approach; EPMP; Organizational capacity; Collaborations)  
 6. Budget Narrative (Components 1–5)  
-7. Attachments: Table of contents; Experience statement; Financial capability statement; Resumes and job descriptions; Organizational chart; Indirect cost note; Local partner preference package; Company registration extracts; Optional MoH/district support letters (CONFIRM)
+7. Attachments: Table of contents; Experience statement; Financial capability statement; Resumes and job descriptions; Organizational chart; Indirect cost note; Local partner preference package; Company registration / TIN / NSSF / licence extracts; Optional MoH/district support letters (CONFIRM)
 
 ---
 
 ## I. Pre-submit action list
 
-1. Complete SAM.gov registration and record UEI.  
-2. Activate Grants.gov / Login.gov.  
+1. Complete SAM.gov registration and record UEI (start early — can take weeks).  
+2. Activate Grants.gov / Login.gov (see Section K).  
 3. CONFIRM ownership, staff, and board citizenship percentages for the local partner letter.  
 4. Finalise Component budgets in USD under ceilings.  
 5. Name MoH and district coordination contacts; request support letters if available (helpful, not a substitute for NOFO attachments).  
@@ -453,6 +485,38 @@ FairBanks maintains company accounts, URA tax registration (TIN 1053370026), NSS
 
 ## J. One-paragraph elevator pitch (meetings / emails)
 
-FairBanks is a Uganda-owned community health organisation in Kampala with a live medical centre, CHW/VHT network, and working health intelligence tools. For CDC-RFA-JG-26-0054 we propose to close the last-mile gap in Uganda’s Global Health Security system: structured community and facility surveillance that feeds Ministry of Health / NISS pathways, faster 7-1-7 style response with districts, frontline workforce training, and stronger community–facility links for priority diseases — under MoH leadership, as a documented local partner, with contingency surge plans ready if CDC activates emergency components.
+FairBanks is a Uganda company with a live medical centre, CHW/VHT network, and working health intelligence tools in Kampala. For CDC-RFA-JG-26-0054 we close the last-mile Global Health Security gap: structured community and facility surveillance that feeds Ministry of Health / NISS pathways, faster 7-1-7 style response with districts, frontline workforce training, and stronger community–facility links for priority diseases — under MoH leadership, as a documented local partner, with contingency surge plans ready if CDC activates emergency components. CDC gets earlier containment at source. Uganda gets usable community signals. Families get faster action.
 
 **Contact:** Racheal Nabukeera · info@fairbanksmedicalcentre.org · +256 772 849 258
+
+---
+
+## K. Grants.gov / SAM.gov quick start (do this now)
+
+From the [Grants.gov applicant quick start](https://grants.gov/quick-start-guide/applicants) and the NOFO “Before you begin” note:
+
+1. **SAM.gov first** — Active registration + Unique Entity Identifier (UEI). Use the same email for the electronic business point of contact that you will use on Grants.gov so you become the organisation superuser. Allow up to about 10 business days once documents are ready; start earlier if address or Tax ID validation is pending.  
+2. **Login.gov** — Every person who downloads or edits forms needs Login.gov linked to Grants.gov.  
+3. **Register on Grants.gov** — Create a profile → Add Organizational Profile with your UEI → Save and Login.  
+4. **Roles** — At least one person needs Expanded AOR, Standard AOR, or Workspace Manager so you can create a workspace and submit. Only AOR roles (or custom submit privilege) can click Sign and Submit.  
+5. **Create a workspace** for CDC-RFA-JG-26-0054 → add participants → complete forms online or offline (Adobe Reader for offline PDFs) → Check Application → Sign and Submit before the deadline.  
+6. **Track** status in Grants.gov after submit. Support: 1-800-518-4726 or support@grants.gov. SAM help: 866-606-8220.
+
+**File naming if the NOFO does not specify otherwise:** ≤50 characters; unique names; letters, numbers, underscore, hyphen, space, period only.
+
+---
+
+## L. Company evidence checklist (attach as required)
+
+From `company-docs/` (use certified copies where needed):
+
+- Certificate of Incorporation / company registration (No. 80020003843337)  
+- TIN Certificate — FAIRBANKS MEDICAL CENTRE LIMITED (1053370026)  
+- NSSF Employer Registration Certificate (NS043295)  
+- Annual return extract (CONFIRM ownership/citizenship lists for local preference)  
+- Facility licence / NDA licence / suitability of premises (as applicable)  
+- Insurance / PI policy extracts if requested  
+- Racheal Nabukeera executive profile / CV for key personnel attachment  
+- Memarts / certified company extracts as available
+
+Do not invent ownership percentages. Fill CONFIRM fields from live company records before signing the local partner letter.
