@@ -388,18 +388,17 @@ Each component has a separate budget narrative below.
 
 ## G. Budget narrative outline (U.S. dollars — CONFIRM before submit)
 
-**Draft Year 1 totals (all five components = $3,300,000)**
+**Draft Year 1 totals (SF-424A = four rows totaling $3,300,000)**
 
 | Component | Draft Year 1 federal ask | Ceiling | Notes |
 | --- | --- | --- | --- |
-| 1 Core GHS | $2,000,000 | $5,000,000 | Expected initial funding |
-| 2 Small-scale response | $350,000 | $10,000,000 | Contingency |
-| 3 Large-scale response | $450,000 | $15,000,000 | Contingency |
-| 4 Emerging threats | $250,000 | $15,000,000 | Contingency |
-| 5 Humanitarian | $250,000 | $20,000,000 | Contingency |
-| **TOTAL** | **$3,300,000** | | Year 1 federal ask |
+| 1 Core GHS | $2,100,000 | $5,000,000 | Expected initial funding |
+| 2 Small-scale response | $400,000 | $10,000,000 | Contingency |
+| 3 Large-scale response | $500,000 | $15,000,000 | Contingency |
+| 4 Emerging threats | $300,000 | $15,000,000 | Contingency |
+| **TOTAL** | **$3,300,000** | | Year 1 federal ask (SF-424 Box 18a) |
 
-**SF-424A layout note:** Section A Totals and Section B line 6k Total = **$3,300,000** (all five components). Grants.gov webform has only 4 rows — paste C1–C4 there ($3,050,000), then Component 5 ($250,000) on a second SF-424A so the package still equals **$3,300,000**. SF-424 Box 18a = **$3,300,000**.
+**SF-424A layout note:** Official form / Grants.gov has **exactly 4** Section A activity rows. Components 1–4 fill those rows; line 5 Totals and Section B 6k Total = **$3,300,000**. Component 5 humanitarian contingency plan stays in the Project/Budget Narrative (NOFO); it is not a fifth SF-424A dollar row.
 
 **Indirect costs:** Foreign organisation rate 8% of MTDC (exclusive of equipment and subawards over $25,000), unless a negotiated rate applies. CONFIRM method before submit.
 
@@ -407,16 +406,16 @@ Each component has a separate budget narrative below.
 
 | Category | Draft amount | Justification (short) |
 | --- | --- | --- |
-| Salaries and wages | $580,000 | Project Director portion, Programme Manager, M&E, Data/FCHIP, CHW supervisors, finance/admin for award |
-| Fringe benefits | $116,000 | Statutory and organisational benefits on award staff |
-| Travel | $70,000 | In-country field supervision, district meetings, limited regional workshops |
-| Equipment | $50,000 | Field devices and approved IT — justify each item; furniture generally not allowed |
-| Supplies | $75,000 | Training materials, PPE for drills/sample handling, connectivity, form printing |
-| Contractual | $640,000 | MoH-aligned technical partners for lab/border support modules; software hosting; audit |
-| Other (incl. consultants) | $225,000 | Short-term trainers, translation, community meeting costs, evaluation |
-| Direct subtotal | $1,756,000 | |
-| Indirect (8% MTDC est.) | $244,000 | CONFIRM MTDC base |
-| **Component 1 total** | **$2,000,000** | |
+| Salaries and wages | $610,000 | Project Director portion, Programme Manager, M&E, Data/FCHIP, CHW supervisors, finance/admin for award |
+| Fringe benefits | $122,000 | Statutory and organisational benefits on award staff |
+| Travel | $75,000 | In-country field supervision, district meetings, limited regional workshops |
+| Equipment | $52,000 | Field devices and approved IT — justify each item; furniture generally not allowed |
+| Supplies | $80,000 | Training materials, PPE for drills/sample handling, connectivity, form printing |
+| Contractual | $670,000 | MoH-aligned technical partners for lab/border support modules; software hosting; audit |
+| Other (incl. consultants) | $235,000 | Short-term trainers, translation, community meeting costs, evaluation |
+| Direct subtotal | $1,844,000 | |
+| Indirect (8% MTDC est.) | $256,000 | CONFIRM MTDC base |
+| **Component 1 total** | **$2,100,000** | |
 
 Repeat the same category structure for Components 2–5 with surge staffing, emergency supplies, surge contractual support, and rapid travel — kept within ceilings.
 

@@ -18,7 +18,7 @@ This `filled/` folder has **complete companion PDFs** with FairBanks answers rea
 | File | Use |
 |---|---|
 | `WS01739425-SF424_4_0-V4.0.pdf` | Copy into SF-424 (V4.0) |
-| `WS01739425-SF424A-V1.0.pdf` | Copy into SF-424A (Components 1-4 + note for Component 5 / second form) |
+| `WS01739425-SF424A-V1.0.pdf` | Copy into SF-424A (exactly 4 activity rows totaling $3.3M) |
 | `WS01739425-SFLLL_2_0-V2.0.pdf` | Copy into SF-LLL (no lobbying activities) |
 | `WS01739425-Project_AbstractSummary_2_0-V2.0.pdf` | Paste/upload into Project Abstract Summary |
 | `WS01739425-ProjectNarrativeAttachments_1_2-V1.2.pdf` | **Attach** to Project Narrative Attachments form |
@@ -32,7 +32,7 @@ Also mirrors `WS01739423-SF424_4_0-V4.0.pdf` (same SF-424 content as the WS01739
 
 - Paste live **UEI** from SAM.gov everywhere marked CONFIRM
 - Ownership / staff / board citizenship % for local partner letter
-- Final budget numbers (draft Year 1 Component 1 = $2,000,000)
+- Final budget numbers (draft Year 1 Component 1 = $2,100,000)
 - Authorised official signature / date in Grants.gov
 
 ## Do not edit

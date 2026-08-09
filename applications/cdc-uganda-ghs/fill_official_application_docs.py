@@ -68,25 +68,27 @@ END = "09/29/2031"
 TODAY = date.today().strftime("%m/%d/%Y")
 SLOGAN = "Your health, our mission."
 
-# Year 1 component asks (USD) - total application ask $3,300,000
-# Redistributed so all five components fit the $3.3M ask.
-C1, C2, C3, C4, C5 = 2_000_000, 350_000, 450_000, 250_000, 250_000
-TOTAL = C1 + C2 + C3 + C4 + C5  # 3,300,000
-FORM1_TOTAL = C1 + C2 + C3 + C4  # 3,050,000 (first SF-424A, 4 activity rows)
-assert FORM1_TOTAL + C5 == TOTAL
+# Year 1 federal ask on SF-424A = $3,300,000 across exactly 4 activity rows
+# (matches official SF-424A V1.0 / Grants.gov Section A limit).
+# NOFO Component 5 (humanitarian) contingency plan stays in the narrative;
+# SF-424A dollars are entered on Components 1-4 only.
+C1, C2, C3, C4 = 2_100_000, 400_000, 500_000, 300_000
+TOTAL = C1 + C2 + C3 + C4  # 3,300,000
+assert TOTAL == 3_300_000
 
 # Component 1 category split (sums to C1)
 C1_CAT = {
-    "Personnel": 580_000,
-    "Fringe Benefits": 116_000,
-    "Travel": 70_000,
-    "Equipment": 50_000,
-    "Supplies": 75_000,
-    "Contractual": 640_000,
+    "Personnel": 610_000,
+    "Fringe Benefits": 122_000,
+    "Travel": 75_000,
+    "Equipment": 52_000,
+    "Supplies": 80_000,
+    "Contractual": 670_000,
     "Construction": 0,
-    "Other": 225_000,
-    "Indirect Charges": 244_000,
+    "Other": 235_000,
+    "Indirect Charges": 256_000,
 }
+assert sum(C1_CAT.values()) == C1
 
 
 def money(n: int) -> str:
@@ -221,7 +223,7 @@ This `filled/` folder has **complete companion PDFs** with FairBanks answers rea
 | File | Use |
 |---|---|
 | `WS01739425-SF424_4_0-V4.0.pdf` | Copy into SF-424 (V4.0) |
-| `WS01739425-SF424A-V1.0.pdf` | Copy into SF-424A (Components 1-4 + note for Component 5 / second form) |
+| `WS01739425-SF424A-V1.0.pdf` | Copy into SF-424A (exactly 4 activity rows totaling $3.3M) |
 | `WS01739425-SFLLL_2_0-V2.0.pdf` | Copy into SF-LLL (no lobbying activities) |
 | `WS01739425-Project_AbstractSummary_2_0-V2.0.pdf` | Paste/upload into Project Abstract Summary |
 | `WS01739425-ProjectNarrativeAttachments_1_2-V1.2.pdf` | **Attach** to Project Narrative Attachments form |
@@ -284,23 +286,21 @@ def build_field_map():
         "20. Delinquent on Federal Debt? No",
         f"21. Authorized Representative: {PD_NAME}; {PD_TITLE}; {PHONE}; {EMAIL}; Date {TODAY}; Signature: sign in Grants.gov",
         "",
-        "=== SF-424A Year 1 (Section A + B totals = $3,300,000) ===",
+        "=== SF-424A Year 1 (exactly 4 Section A rows = official form) ===",
         f"APPLICATION FEDERAL TOTAL (SF-424 Box 18a / 18g): {money(TOTAL)}",
         "",
-        "Section A — all five components (line 5 Totals = $3,300,000):",
+        "Section A — four activity rows only (line 5 Totals = $3,300,000):",
         f"  1. Component 1 - Core GHS priorities | CFDA {CFDA} | (e) {money_cents(C1)}",
         f"  2. Component 2 - Small-scale outbreak / PHE response | (e) {money_cents(C2)}",
         f"  3. Component 3 - Large-scale outbreak / PHE response | (e) {money_cents(C3)}",
         f"  4. Component 4 - Emerging infectious disease threats | (e) {money_cents(C4)}",
-        f"  5. Component 5 - Humanitarian emergency | (e) {money_cents(C5)}",
-        f"  Line 5 Totals (e)/(g): {money_cents(TOTAL)}",
+        f"  5. Totals (e)/(g): {money_cents(TOTAL)}",
         "  Columns (c)/(d)/(f) = $0.00 on every row (new application; no cost share).",
         "",
-        "Section B — object classes 6a-6k; columns (1)-(5) = Components 1-5; Total column = $3,300,000.",
+        "Section B — object classes 6a-6k; columns (1)-(4) = Section A activities 1-4; (5) Total = $3,300,000.",
         "Section D line 13 Federal Year 1 = $3,300,000.",
-        "",
-        "Grants.gov webform has only 4 Section A rows: paste C1-C4 first, then C5 on a second SF-424A.",
-        f"Webform Form1 subtotal {money(FORM1_TOTAL)} + Form2 {money(C5)} = {money(TOTAL)}.",
+        "Component 5 humanitarian contingency plan: described in Project/Budget Narrative (NOFO);",
+        "  not a fifth SF-424A dollar row (form limit is 4). Activation would use CDC emergency funding.",
         "Non-federal / match: $0 (none required, none proposed)",
         "",
         "=== SF-LLL ===",
@@ -417,10 +417,12 @@ def build_sf424():
         ),
         Spacer(1, 8),
         Paragraph(
-            "Note: Year 1 federal total above equals Components 1-5 draft asks "
-            f"({money(C1)} + {money(C2)} + {money(C3)} + {money(C4)} + {money(C5)}). "
-            "Only Component 1 is expected to be funded initially; Components 2-5 may be "
-            "approved but unfunded until CDC activates emergency funding. CONFIRM final figures.",
+            "Note: Year 1 federal total above equals the four SF-424A activity rows "
+            f"({money(C1)} + {money(C2)} + {money(C3)} + {money(C4)} = {money(TOTAL)}). "
+            "Only Component 1 is expected to be funded initially; Components 2-4 may be "
+            "approved but unfunded until CDC activates emergency funding. "
+            "Component 5 humanitarian contingency plan is in the narrative (NOFO) and is not "
+            "a fifth SF-424A dollar row. CONFIRM final figures.",
             st["Small"],
         ),
     ]
@@ -435,7 +437,7 @@ def build_sf424():
 
 
 def build_sf424a():
-    """Companion PDF aligned to official SF-424A V1.0; Section A + B totals = $3.3M."""
+    """Companion PDF matching official SF-424A V1.0: exactly 4 Section A rows totaling $3.3M."""
     st = styles()
     path = OUT / "WS01739425-SF424A-V1.0.pdf"
     template, on_page = doc_template(path, "SF-424A")
@@ -458,25 +460,18 @@ def build_sf424a():
         "Other": 0.10,
         "Indirect Charges": 0.06,
     }
-    # All five components — Section A line 5 and Section B 6k Total = $3,300,000
-    col_budgets = [
-        C1_CAT,
-        split(C2, w_surge),
-        split(C3, w_surge),
-        split(C4, w_surge),
-        split(C5, w_surge),
-    ]
-    col_totals = [C1, C2, C3, C4, C5]
-    assert sum(col_totals) == TOTAL
+    # Exactly 4 columns — matches official form / Grants.gov webform
+    col_budgets = [C1_CAT, split(C2, w_surge), split(C3, w_surge), split(C4, w_surge)]
+    col_totals = [C1, C2, C3, C4]
+    assert sum(col_totals) == TOTAL == 3_300_000
 
     activities = [
         "Component 1 - Core GHS priorities",
         "Component 2 - Small-scale outbreak / PHE response",
         "Component 3 - Large-scale outbreak / PHE response",
         "Component 4 - Emerging infectious disease threats",
-        "Component 5 - Humanitarian emergency",
     ]
-    amounts = [C1, C2, C3, C4, C5]
+    amounts = [C1, C2, C3, C4]
 
     object_lines = [
         ("6a. Personnel", "Personnel"),
@@ -519,8 +514,7 @@ def build_sf424a():
         return rows
 
     sec_a_widths = [pw * 0.34, pw * 0.10, pw * 0.11, pw * 0.11, pw * 0.12, pw * 0.11, pw * 0.11]
-    # 5 activity columns + Total (official form has 4 columns; companion shows all 5 so totals = $3.3M)
-    sec_b_widths = [1.05 * inch] + [0.78 * inch] * 5 + [0.90 * inch]
+    sec_b_widths = [1.35 * inch] + [0.95 * inch] * 4 + [1.0 * inch]
 
     story = [
         Paragraph("BUDGET INFORMATION - Non-Construction Programs", st["Cover"]),
@@ -528,11 +522,11 @@ def build_sf424a():
         Paragraph(f"{ORG} | {OPPORTUNITY} | Year 1 draft | {date.today().isoformat()}", st["Center"]),
         Paragraph(
             f"Year 1 federal ask: {money_cents(TOTAL)}. "
-            "Section A Totals and Section B line 6k Total both equal this amount. "
-            "All figures USD. Cost share: none. "
-            "Note: Grants.gov webform shows only 4 Section A rows — paste Components 1-4 there, "
-            f"then add Component 5 ({money_cents(C5)}) on a second SF-424A so the package still totals "
-            f"{money_cents(TOTAL)}.",
+            "Official SF-424A V1.0 has four Section A activity rows — this companion uses the same "
+            "four rows (Components 1-4). Section A line 5 Totals and Section B line 6k Total both "
+            f"equal {money_cents(TOTAL)}. All figures USD. Cost share: none. "
+            "Component 5 humanitarian contingency plan is in the Project/Budget Narrative (NOFO) "
+            "and is not a fifth SF-424A dollar row.",
             st["Body"],
         ),
         Paragraph("SECTION A - BUDGET SUMMARY", st["H2"]),
@@ -565,41 +559,46 @@ def build_sf424a():
             sec_a_widths,
         ),
         Paragraph(
-            f"Line 5 Totals = {money_cents(TOTAL)}. Must match Section B line 6k Total column. "
-            "Unobligated (c)/(d) and Non-Federal (f) = $0.00 (new application; no cost share).",
+            f"Exactly four activity rows. Line 5 Totals = {money_cents(TOTAL)}. "
+            "Must match Section B line 6k column (5). Unobligated (c)/(d) and Non-Federal (f) = $0.00.",
             st["Small"],
         ),
         Paragraph("SECTION B - BUDGET CATEGORIES", st["H2"]),
         Paragraph(
-            "6. Object Class Categories — columns (1)-(5) = Components 1-5; last column = Total "
-            f"({money_cents(TOTAL)}).",
+            "6. Object Class Categories — columns (1)-(4) match Section A activities 1-4; "
+            f"column (5) Total = {money_cents(TOTAL)}.",
             st["Small"],
         ),
         tbl(
             st,
             [
                 "6. Object Class Categories",
-                "(1) C1",
-                "(2) C2",
-                "(3) C3",
-                "(4) C4",
-                "(5) C5",
-                "Total",
+                "(1) Comp 1",
+                "(2) Comp 2",
+                "(3) Comp 3",
+                "(4) Comp 4",
+                "(5) Total",
             ],
             section_b_rows(col_budgets, col_totals),
             sec_b_widths,
         ),
         Paragraph(
-            "Ceilings (do not exceed): C1 $5M; C2 $10M; C3 $15M; C4 $15M; C5 $20M. "
-            "Component 1 expected initial funding; Components 2-5 contingency.",
+            "Ceilings (do not exceed): C1 $5M; C2 $10M; C3 $15M; C4 $15M. "
+            "Component 1 expected initial funding; Components 2-4 contingency. "
+            "Component 5 ceiling $20M applies if CDC later activates humanitarian emergency funding.",
             st["Small"],
         ),
         Paragraph("SECTION C - NON-FEDERAL RESOURCES", st["H2"]),
         tbl(
             st,
             ["(a) Grant Program", "(b) Applicant", "(c) State", "(d) Other Sources", "(e) TOTALS"],
-            [[f"{8 + i}. {act}", z, z, z, z] for i, act in enumerate(activities)]
-            + [["13. TOTAL (sum of lines 8-12)", z, z, z, z]],
+            [
+                [f"8. {activities[0]}", z, z, z, z],
+                [f"9. {activities[1]}", z, z, z, z],
+                [f"10. {activities[2]}", z, z, z, z],
+                [f"11. {activities[3]}", z, z, z, z],
+                ["12. TOTAL (sum of lines 8-11)", z, z, z, z],
+            ],
             [pw * 0.40, pw * 0.15, pw * 0.15, pw * 0.15, pw * 0.15],
         ),
         Paragraph("SECTION D - FORECASTED CASH NEEDS", st["H2"]),
@@ -643,11 +642,14 @@ def build_sf424a():
         Paragraph(
             f"21. Direct Charges: see Section B 6i. 22. Indirect Charges: estimated 8% MTDC "
             f"(foreign organisation; exclusive of equipment and subawards over $25,000) — "
-            f"Year 1 indirect across Components 1-5 = "
+            f"Year 1 indirect across Components 1-4 = "
             f"{money_cents(sum(b.get('Indirect Charges', 0) for b in col_budgets))} (CONFIRM). "
             "23. Remarks: Award funds systems strengthening, surveillance, training, emergency "
             "readiness, and community-facility linkages. Routine clinical care is not charged to "
-            f"this award. No research proposed. Application federal total: {money_cents(TOTAL)}.",
+            "this award. No research proposed. "
+            f"SF-424A federal total (four rows): {money_cents(TOTAL)}. "
+            "Component 5 humanitarian contingency plan is described in attachments; activation "
+            "would use CDC emergency funding under the NOFO Component 5 ceiling.",
             st["Body"],
         ),
         Paragraph(
@@ -1045,14 +1047,16 @@ def build_narrative():
             ],
             [0.8 * inch, 2.6 * inch, 2.4 * inch, 0.9 * inch],
         ),
-        Paragraph("4.2 Components 2-5 — Contingency (approved but unfunded until CDC activates)", st["H2"]),
+        Paragraph("4.2 Components 2-4 — Contingency (approved but unfunded until CDC activates)", st["H2"]),
         bullets(
             st,
             [
                 f"Component 2 ({money(C2)} draft): surge roster; community investigation/contact support; RCCE; temporary dashboards; district IMS support.",
                 f"Component 3 ({money(C3)} draft): expand surge staffing; multi-district mobilisation under MoH; sample referral volume logistics; extended RCCE; recovery support.",
                 f"Component 4 ({money(C4)} draft): rapid form updates for new pathogens; sentinel intensification; partner lab referral; special training modules.",
-                f"Component 5 ({money(C5)} draft): community health surveillance and RCCE in crisis-affected groups within MoH tasking; maintain essential programme links.",
+                "Component 5 (humanitarian emergency): contingency plan in this narrative for NOFO completeness. "
+                "SF-424A has only four activity rows, so Year 1 federal dollars are on Components 1-4 "
+                f"totaling {money(TOTAL)}. Component 5 would activate with CDC emergency funding under the $20M ceiling.",
             ],
         ),
         Paragraph("Closing statement", st["H1"]),
@@ -1090,8 +1094,7 @@ def build_budget_narrative():
                 ["2 Small-scale response", money(C2), "$10,000,000", "Contingency"],
                 ["3 Large-scale response", money(C3), "$15,000,000", "Contingency"],
                 ["4 Emerging threats", money(C4), "$15,000,000", "Contingency"],
-                ["5 Humanitarian", money(C5), "$20,000,000", "Contingency"],
-                ["TOTAL", money(TOTAL), "", ""],
+                ["TOTAL (SF-424A 4 rows)", money(TOTAL), "", "Equals Box 18a"],
             ],
             [2.4 * inch, 1.4 * inch, 1.4 * inch, 2.0 * inch],
         ),
@@ -1122,7 +1125,7 @@ def build_budget_narrative():
             ],
             [1.6 * inch, 1.2 * inch, 4.4 * inch],
         ),
-        Paragraph("Components 2-5 — Contingency narratives", st["H1"]),
+        Paragraph("Components 2-4 — Contingency narratives (SF-424A dollar rows)", st["H1"]),
         Paragraph(
             f"Component 2 ({money(C2)}): Surge staffing and fringe; rapid travel; emergency supplies/PPE; "
             "contractual surge support for investigation/RCCE/data dashboards; other community meeting "
@@ -1141,10 +1144,14 @@ def build_budget_narrative():
             "For emerging infectious disease threats when activated.",
             st["Body"],
         ),
+        Paragraph("Component 5 — Humanitarian emergency (narrative plan; not a fifth SF-424A row)", st["H1"]),
         Paragraph(
-            f"Component 5 ({money(C5)}): Community surveillance and RCCE in humanitarian settings under "
-            "MoH tasking; surge staffing/travel/supplies; contractual support; indirect. For humanitarian "
-            "emergency response when activated.",
+            "The NOFO requires a Component 5 humanitarian contingency plan. Because official SF-424A "
+            "V1.0 / Grants.gov allows only four Section A activity rows, Year 1 federal dollars are "
+            f"entered on Components 1-4 only and total {money(TOTAL)}. "
+            "Component 5 readiness: community surveillance and RCCE in crisis-affected groups under "
+            "MoH tasking; surge staffing/travel/supplies; contractual support when CDC activates "
+            "humanitarian emergency funding under the $20,000,000 ceiling.",
             st["Body"],
         ),
         Paragraph("Unallowable costs (we will not charge)", st["H1"]),

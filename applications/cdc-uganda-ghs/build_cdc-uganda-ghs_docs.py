@@ -50,7 +50,7 @@ OFFICIAL = "https://www.grants.gov/search-results-detail/360339"
 OFFICIAL_ALT = "https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b"
 APPLY_GUIDE = "https://grants.gov/quick-start-guide/applicants"
 DEADLINE = "14 August 2026, 11:59 p.m. ET"
-C1_ASK = "$2,000,000"
+C1_ASK = "$2,100,000"
 PERIOD = "5 years (five 12-month budget periods)"
 TOTAL_ASK = "$3,300,000"
 WIN_LINE = (
@@ -189,11 +189,10 @@ INDICATORS = [
 
 BUDGET_ROWS = [
     ["1 Core GHS", C1_ASK, "$5,000,000", "Expected initial funding"],
-    ["2 Small-scale response", "$350,000", "$10,000,000", "Contingency"],
-    ["3 Large-scale response", "$450,000", "$15,000,000", "Contingency"],
-    ["4 Emerging threats", "$250,000", "$15,000,000", "Contingency"],
-    ["5 Humanitarian", "$250,000", "$20,000,000", "Contingency"],
-    ["TOTAL Year 1", TOTAL_ASK, "", "All components"],
+    ["2 Small-scale response", "$400,000", "$10,000,000", "Contingency"],
+    ["3 Large-scale response", "$500,000", "$15,000,000", "Contingency"],
+    ["4 Emerging threats", "$300,000", "$15,000,000", "Contingency"],
+    ["TOTAL Year 1 (SF-424A 4 rows)", TOTAL_ASK, "", "Equals Box 18a"],
 ]
 
 
