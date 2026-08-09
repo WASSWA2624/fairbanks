@@ -68,21 +68,21 @@ END = "09/29/2031"
 TODAY = date.today().strftime("%m/%d/%Y")
 SLOGAN = "Your health, our mission."
 
-# Year 1 component asks (USD) - CONFIRM before submit
-C1, C2, C3, C4, C5 = 2_450_000, 1_800_000, 2_750_000, 1_500_000, 1_500_000
-TOTAL = C1 + C2 + C3 + C4 + C5  # 10,000,000
+# Year 1 component asks (USD) - total application ask $3,300,000
+C1, C2, C3, C4, C5 = 1_850_000, 400_000, 500_000, 275_000, 275_000
+TOTAL = C1 + C2 + C3 + C4 + C5  # 3,300,000
 
 # Component 1 category split
 C1_CAT = {
-    "Personnel": 720_000,
-    "Fringe Benefits": 144_000,
-    "Travel": 85_000,
-    "Equipment": 60_000,
-    "Supplies": 95_000,
-    "Contractual": 780_000,
+    "Personnel": 540_000,
+    "Fringe Benefits": 108_000,
+    "Travel": 65_000,
+    "Equipment": 45_000,
+    "Supplies": 70_000,
+    "Contractual": 590_000,
     "Construction": 0,
-    "Other": 280_000,
-    "Indirect Charges": 286_000,
+    "Other": 210_000,
+    "Indirect Charges": 222_000,
 }
 
 
@@ -432,14 +432,14 @@ def build_sf424a():
         return raw
 
     w_core = {
-        "Personnel": 720_000 / C1,
-        "Fringe Benefits": 144_000 / C1,
-        "Travel": 85_000 / C1,
-        "Equipment": 60_000 / C1,
-        "Supplies": 95_000 / C1,
-        "Contractual": 780_000 / C1,
-        "Other": 280_000 / C1,
-        "Indirect Charges": 286_000 / C1,
+        "Personnel": C1_CAT["Personnel"] / C1,
+        "Fringe Benefits": C1_CAT["Fringe Benefits"] / C1,
+        "Travel": C1_CAT["Travel"] / C1,
+        "Equipment": C1_CAT["Equipment"] / C1,
+        "Supplies": C1_CAT["Supplies"] / C1,
+        "Contractual": C1_CAT["Contractual"] / C1,
+        "Other": C1_CAT["Other"] / C1,
+        "Indirect Charges": C1_CAT["Indirect Charges"] / C1,
     }
     w_surge = {
         "Personnel": 0.28,
@@ -1003,15 +1003,19 @@ def build_budget_narrative():
             st,
             ["Category", "Amount", "Justification"],
             [
-                ["Salaries and wages", money(720_000), "Project Director portion; Programme Manager; M&E; Data/FCHIP; CHW supervisors; finance/admin charged to award"],
-                ["Fringe benefits", money(144_000), "Statutory and organisational benefits on award-charged staff"],
-                ["Travel", money(85_000), "In-country field supervision, district meetings, limited regional workshops"],
-                ["Equipment", money(60_000), "Field devices and approved IT — each item justified; furniture generally not allowed"],
-                ["Supplies", money(95_000), "Training materials, PPE for drills/sample handling, connectivity, form printing"],
-                ["Contractual", money(780_000), "MoH-aligned technical partners for lab/border support modules; software hosting; external audit"],
-                ["Other", money(280_000), "Short-term trainers, translation, community meeting costs, evaluation support"],
-                ["Direct subtotal", money(2_164_000), ""],
-                ["Indirect (8% MTDC est.)", money(286_000), "CONFIRM MTDC base"],
+                ["Salaries and wages", money(C1_CAT["Personnel"]), "Project Director portion; Programme Manager; M&E; Data/FCHIP; CHW supervisors; finance/admin charged to award"],
+                ["Fringe benefits", money(C1_CAT["Fringe Benefits"]), "Statutory and organisational benefits on award-charged staff"],
+                ["Travel", money(C1_CAT["Travel"]), "In-country field supervision, district meetings, limited regional workshops"],
+                ["Equipment", money(C1_CAT["Equipment"]), "Field devices and approved IT — each item justified; furniture generally not allowed"],
+                ["Supplies", money(C1_CAT["Supplies"]), "Training materials, PPE for drills/sample handling, connectivity, form printing"],
+                ["Contractual", money(C1_CAT["Contractual"]), "MoH-aligned technical partners for lab/border support modules; software hosting; external audit"],
+                ["Other", money(C1_CAT["Other"]), "Short-term trainers, translation, community meeting costs, evaluation support"],
+                [
+                    "Direct subtotal",
+                    money(sum(C1_CAT[k] for k in C1_CAT if k != "Indirect Charges")),
+                    "",
+                ],
+                ["Indirect (8% MTDC est.)", money(C1_CAT["Indirect Charges"]), "CONFIRM MTDC base"],
                 ["Component 1 TOTAL", money(C1), "Within $5,000,000 ceiling"],
             ],
             [1.6 * inch, 1.2 * inch, 4.4 * inch],

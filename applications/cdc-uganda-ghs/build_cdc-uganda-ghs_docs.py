@@ -50,8 +50,9 @@ OFFICIAL = "https://www.grants.gov/search-results-detail/360339"
 OFFICIAL_ALT = "https://simpler.grants.gov/opportunity/264249e6-fdbb-4b1c-ac90-23b7d9b07b1b"
 APPLY_GUIDE = "https://grants.gov/quick-start-guide/applicants"
 DEADLINE = "14 August 2026, 11:59 p.m. ET"
-C1_ASK = "$2,450,000"
+C1_ASK = "$1,850,000"
 PERIOD = "5 years (five 12-month budget periods)"
+TOTAL_ASK = "$3,300,000"
 WIN_LINE = (
     "CDC and Uganda need outbreaks stopped closer to where people live. "
     "FairBanks already runs a clinic, CHW/VHT outreach, and working FCHIP tools — "
@@ -88,6 +89,7 @@ CRITICAL = [
     ["Funding instrument", "Cooperative agreement"],
     ["Assistance listing", "93.318"],
     ["Period of performance", PERIOD],
+    ["Year 1 total federal ask (draft)", f"{TOTAL_ASK} (CONFIRM; all components)"],
     ["Year 1 Component 1 ask (draft)", f"{C1_ASK} (CONFIRM; ceiling $5,000,000)"],
     ["Cost share", "None proposed"],
     ["Local partner preference", "Yes — Uganda-incorporated entity (+15 points; document before submit)"],
@@ -187,10 +189,11 @@ INDICATORS = [
 
 BUDGET_ROWS = [
     ["1 Core GHS", C1_ASK, "$5,000,000", "Expected initial funding"],
-    ["2 Small-scale response", "$1,800,000", "$10,000,000", "Contingency"],
-    ["3 Large-scale response", "$2,750,000", "$15,000,000", "Contingency"],
-    ["4 Emerging threats", "$1,500,000", "$15,000,000", "Contingency"],
-    ["5 Humanitarian", "$1,500,000", "$20,000,000", "Contingency"],
+    ["2 Small-scale response", "$400,000", "$10,000,000", "Contingency"],
+    ["3 Large-scale response", "$500,000", "$15,000,000", "Contingency"],
+    ["4 Emerging threats", "$275,000", "$15,000,000", "Contingency"],
+    ["5 Humanitarian", "$275,000", "$20,000,000", "Contingency"],
+    ["TOTAL Year 1", TOTAL_ASK, "", "All components"],
 ]
 
 

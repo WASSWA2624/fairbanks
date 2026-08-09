@@ -392,11 +392,12 @@ Each component has a separate budget narrative below.
 
 | Component | Draft Year 1 federal ask | Ceiling | Notes |
 | --- | --- | --- | --- |
-| 1 Core GHS | $2,450,000 | $5,000,000 | Expected initial funding |
-| 2 Small-scale response | $1,800,000 | $10,000,000 | Contingency |
-| 3 Large-scale response | $2,750,000 | $15,000,000 | Contingency |
-| 4 Emerging threats | $1,500,000 | $15,000,000 | Contingency |
-| 5 Humanitarian | $1,500,000 | $20,000,000 | Contingency |
+| 1 Core GHS | $1,850,000 | $5,000,000 | Expected initial funding |
+| 2 Small-scale response | $400,000 | $10,000,000 | Contingency |
+| 3 Large-scale response | $500,000 | $15,000,000 | Contingency |
+| 4 Emerging threats | $275,000 | $15,000,000 | Contingency |
+| 5 Humanitarian | $275,000 | $20,000,000 | Contingency |
+| **TOTAL** | **$3,300,000** | | Year 1 federal ask |
 
 **Indirect costs:** Foreign organisation rate 8% of MTDC (exclusive of equipment and subawards over $25,000), unless a negotiated rate applies. CONFIRM method before submit.
 
@@ -404,16 +405,16 @@ Each component has a separate budget narrative below.
 
 | Category | Draft amount | Justification (short) |
 | --- | --- | --- |
-| Salaries and wages | $720,000 | Project Director portion, Programme Manager, M&E, Data/FCHIP, CHW supervisors, finance/admin for award |
-| Fringe benefits | $144,000 | Statutory and organisational benefits on award staff |
-| Travel | $85,000 | In-country field supervision, district meetings, limited regional workshops |
-| Equipment | $60,000 | Field devices and approved IT — justify each item; furniture generally not allowed |
-| Supplies | $95,000 | Training materials, PPE for drills/sample handling, connectivity, form printing |
-| Contractual | $780,000 | MoH-aligned technical partners for lab/border support modules; software hosting; audit |
-| Other (incl. consultants) | $280,000 | Short-term trainers, translation, community meeting costs, evaluation |
-| Direct subtotal | $2,164,000 | |
-| Indirect (8% MTDC est.) | $286,000 | CONFIRM MTDC base |
-| **Component 1 total** | **$2,450,000** | |
+| Salaries and wages | $540,000 | Project Director portion, Programme Manager, M&E, Data/FCHIP, CHW supervisors, finance/admin for award |
+| Fringe benefits | $108,000 | Statutory and organisational benefits on award staff |
+| Travel | $65,000 | In-country field supervision, district meetings, limited regional workshops |
+| Equipment | $45,000 | Field devices and approved IT — justify each item; furniture generally not allowed |
+| Supplies | $70,000 | Training materials, PPE for drills/sample handling, connectivity, form printing |
+| Contractual | $590,000 | MoH-aligned technical partners for lab/border support modules; software hosting; audit |
+| Other (incl. consultants) | $210,000 | Short-term trainers, translation, community meeting costs, evaluation |
+| Direct subtotal | $1,628,000 | |
+| Indirect (8% MTDC est.) | $222,000 | CONFIRM MTDC base |
+| **Component 1 total** | **$1,850,000** | |
 
 Repeat the same category structure for Components 2–5 with surge staffing, emergency supplies, surge contractual support, and rapid travel — kept within ceilings.
 
