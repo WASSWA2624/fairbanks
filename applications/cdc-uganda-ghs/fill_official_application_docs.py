@@ -1047,6 +1047,13 @@ def build_narrative():
         PageBreak(),
         Paragraph("4. Work plan snapshots", st["H1"]),
         Paragraph("4.1 Component 1: Core GHS (Year 1)", st["H2"]),
+        Paragraph(
+            f"Component 1 ({money(C1)}): expected initial funding for Core GHS. "
+            "Supports surveillance pathways into MoH and NISS, CHW and VHT training, "
+            "detect-notify-respond practice with districts, and community to facility linkages "
+            "for priority diseases under Ministry of Health leadership.",
+            st["Body"],
+        ),
         tbl(
             st,
             ["Strategy", "Activity", "Measure examples", "By"],
