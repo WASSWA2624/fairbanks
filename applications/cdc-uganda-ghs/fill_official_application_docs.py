@@ -560,7 +560,7 @@ def build_sf424a():
 
 def build_sflll():
     st = styles()
-    path = OUT / "03_SFLLL_Disclosure_of_Lobbying.pdf"
+    path = OUT / "WS01739425-SFLLL_2_0-V2.0.pdf"
     template, on_page = doc_template(path, "SF-LLL")
     story = [
         Paragraph("SF-LLL Disclosure of Lobbying Activities — FILLED VALUES", st["Cover"]),
@@ -599,7 +599,7 @@ def build_sflll():
 
 def build_abstract():
     st = styles()
-    path = OUT / "04_Project_Abstract_Summary.pdf"
+    path = OUT / "WS01739425-Project_AbstractSummary_2_0-V2.0.pdf"
     template, on_page = doc_template(path, "Project Abstract")
     story = [
         Paragraph("Project Abstract Summary", st["Cover"]),
@@ -622,7 +622,7 @@ def build_abstract():
 
 def build_narrative():
     st = styles()
-    path = OUT / "05_Project_Narrative.pdf"
+    path = OUT / "WS01739425-ProjectNarrativeAttachments_1_2-V1.2.pdf"
     template, on_page = doc_template(path, "Project Narrative")
     story = [
         Paragraph("Project Narrative", st["Cover"]),
@@ -957,7 +957,7 @@ def build_narrative():
 
 def build_budget_narrative():
     st = styles()
-    path = OUT / "06_Budget_Narrative.pdf"
+    path = OUT / "WS01739425-BudgetNarrativeAttachments_1_2-V1.2.pdf"
     template, on_page = doc_template(path, "Budget Narrative")
     story = [
         Paragraph("Budget Narrative (Year 1) — All Components", st["Cover"]),
@@ -1052,7 +1052,7 @@ def build_budget_narrative():
 
 def build_local_partner_letter():
     st = styles()
-    path = OUT / "07_Local_Partner_Preference_Letter.pdf"
+    path = OUT / "Local_Partner_Preference_Letter.pdf"
     template, on_page = doc_template(path, "Local Partner Letter")
     story = [
         Paragraph(ORG, st["Cover"]),

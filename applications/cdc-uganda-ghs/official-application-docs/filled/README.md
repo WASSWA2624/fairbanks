@@ -13,18 +13,20 @@ This `filled/` folder has **complete companion PDFs** with FairBanks answers rea
 1. Copy into Grants.gov webforms / Adobe Reader fields, or
 2. Upload as attachments where the shell asks for a file (Project Narrative, Budget Narrative).
 
-## Files
+## Files (names match Grants.gov package shells)
 
 | File | Use |
 |---|---|
-| `01_SF424_Application_for_Federal_Assistance.pdf` | Copy into SF-424 (V4.0) |
-| `02_SF424A_Budget_Information.pdf` | Copy into SF-424A (Components 1-4 + note for Component 5 / second form) |
-| `03_SFLLL_Disclosure_of_Lobbying.pdf` | Copy into SF-LLL (no lobbying activities) |
-| `04_Project_Abstract_Summary.pdf` | Paste/upload into Project Abstract Summary |
-| `05_Project_Narrative.pdf` | **Attach** to Project Narrative Attachments form |
-| `06_Budget_Narrative.pdf` | **Attach** to Budget Narrative Attachments form |
-| `07_Local_Partner_Preference_Letter.pdf` | Attach with company evidence |
+| `WS01739425-SF424_4_0-V4.0.pdf` | Copy into SF-424 (V4.0) |
+| `WS01739425-SF424A-V1.0.pdf` | Copy into SF-424A (Components 1-4 + note for Component 5 / second form) |
+| `WS01739425-SFLLL_2_0-V2.0.pdf` | Copy into SF-LLL (no lobbying activities) |
+| `WS01739425-Project_AbstractSummary_2_0-V2.0.pdf` | Paste/upload into Project Abstract Summary |
+| `WS01739425-ProjectNarrativeAttachments_1_2-V1.2.pdf` | **Attach** to Project Narrative Attachments form |
+| `WS01739425-BudgetNarrativeAttachments_1_2-V1.2.pdf` | **Attach** to Budget Narrative Attachments form |
+| `Local_Partner_Preference_Letter.pdf` | Attach with company evidence |
 | `FIELD_MAP.txt` | Box-by-box paste guide |
+
+Also mirrors `WS01739423-SF424_4_0-V4.0.pdf` (same SF-424 content as the WS01739425 SF-424).
 
 ## CONFIRM before submit
 

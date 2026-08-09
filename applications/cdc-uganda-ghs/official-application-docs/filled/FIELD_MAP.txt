@@ -53,9 +53,9 @@ Lobbying registrant: NONE — no lobbying activities; check 'No' / not applicabl
 Signature: Racheal Nabukeera, Managing Director and Co-founder, 08/09/2026
 
 === Project Abstract ===
-See 04_Project_Abstract_Summary.pdf
+See WS01739425-Project_AbstractSummary_2_0-V2.0.pdf
 
 === Attachments ===
-Project Narrative -> attach 05_Project_Narrative.pdf
-Budget Narrative -> attach 06_Budget_Narrative.pdf
-Local partner letter -> attach 07_Local_Partner_Preference_Letter.pdf + company-docs/
+Project Narrative -> attach WS01739425-ProjectNarrativeAttachments_1_2-V1.2.pdf
+Budget Narrative -> attach WS01739425-BudgetNarrativeAttachments_1_2-V1.2.pdf
+Local partner letter -> attach Local_Partner_Preference_Letter.pdf + company-docs/
