@@ -32,7 +32,7 @@ Also mirrors `WS01739423-SF424_4_0-V4.0.pdf` (same SF-424 content as the WS01739
 
 - Paste live **UEI** from SAM.gov everywhere marked CONFIRM
 - Ownership / staff / board citizenship % for local partner letter
-- Final budget numbers (draft Year 1 total = $3,300,000; Component 1 = $1,850,000)
+- Final budget numbers (draft Year 1 Component 1 = $2,000,000)
 - Authorised official signature / date in Grants.gov
 
 ## Do not edit

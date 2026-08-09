@@ -69,25 +69,33 @@ TODAY = date.today().strftime("%m/%d/%Y")
 SLOGAN = "Your health, our mission."
 
 # Year 1 component asks (USD) - total application ask $3,300,000
-C1, C2, C3, C4, C5 = 1_850_000, 400_000, 500_000, 275_000, 275_000
+# Redistributed so all five components fit the $3.3M ask.
+C1, C2, C3, C4, C5 = 2_000_000, 350_000, 450_000, 250_000, 250_000
 TOTAL = C1 + C2 + C3 + C4 + C5  # 3,300,000
+FORM1_TOTAL = C1 + C2 + C3 + C4  # 3,050,000 (first SF-424A, 4 activity rows)
+assert FORM1_TOTAL + C5 == TOTAL
 
-# Component 1 category split
+# Component 1 category split (sums to C1)
 C1_CAT = {
-    "Personnel": 540_000,
-    "Fringe Benefits": 108_000,
-    "Travel": 65_000,
-    "Equipment": 45_000,
-    "Supplies": 70_000,
-    "Contractual": 590_000,
+    "Personnel": 580_000,
+    "Fringe Benefits": 116_000,
+    "Travel": 70_000,
+    "Equipment": 50_000,
+    "Supplies": 75_000,
+    "Contractual": 640_000,
     "Construction": 0,
-    "Other": 210_000,
-    "Indirect Charges": 222_000,
+    "Other": 225_000,
+    "Indirect Charges": 244_000,
 }
 
 
 def money(n: int) -> str:
     return f"${n:,.0f}"
+
+
+def money_cents(n: int) -> str:
+    """Match Grants.gov SF-424A style ($X,XXX.00)."""
+    return f"${n:,.0f}.00"
 
 
 def styles():
@@ -276,13 +284,23 @@ def build_field_map():
         "20. Delinquent on Federal Debt? No",
         f"21. Authorized Representative: {PD_NAME}; {PD_TITLE}; {PHONE}; {EMAIL}; Date {TODAY}; Signature: sign in Grants.gov",
         "",
-        "=== SF-424A Year 1 ===",
-        f"Section A — Component 1 Core GHS federal {money(C1)}",
-        f"Section A — Component 2 Small-scale response federal {money(C2)}",
-        f"Section A — Component 3 Large-scale response federal {money(C3)}",
-        f"Section A — Component 4 Emerging threats federal {money(C4)}",
-        f"Component 5 Humanitarian {money(C5)} — put on second SF-424A if form only has 4 columns",
-        f"TOTAL FEDERAL Year 1 {money(TOTAL)}",
+        "=== SF-424A Year 1 (Section A + B totals = $3,300,000) ===",
+        f"APPLICATION FEDERAL TOTAL (SF-424 Box 18a / 18g): {money(TOTAL)}",
+        "",
+        "Section A — all five components (line 5 Totals = $3,300,000):",
+        f"  1. Component 1 - Core GHS priorities | CFDA {CFDA} | (e) {money_cents(C1)}",
+        f"  2. Component 2 - Small-scale outbreak / PHE response | (e) {money_cents(C2)}",
+        f"  3. Component 3 - Large-scale outbreak / PHE response | (e) {money_cents(C3)}",
+        f"  4. Component 4 - Emerging infectious disease threats | (e) {money_cents(C4)}",
+        f"  5. Component 5 - Humanitarian emergency | (e) {money_cents(C5)}",
+        f"  Line 5 Totals (e)/(g): {money_cents(TOTAL)}",
+        "  Columns (c)/(d)/(f) = $0.00 on every row (new application; no cost share).",
+        "",
+        "Section B — object classes 6a-6k; columns (1)-(5) = Components 1-5; Total column = $3,300,000.",
+        "Section D line 13 Federal Year 1 = $3,300,000.",
+        "",
+        "Grants.gov webform has only 4 Section A rows: paste C1-C4 first, then C5 on a second SF-424A.",
+        f"Webform Form1 subtotal {money(FORM1_TOTAL)} + Form2 {money(C5)} = {money(TOTAL)}.",
         "Non-federal / match: $0 (none required, none proposed)",
         "",
         "=== SF-LLL ===",
@@ -417,30 +435,19 @@ def build_sf424():
 
 
 def build_sf424a():
+    """Companion PDF aligned to official SF-424A V1.0; Section A + B totals = $3.3M."""
     st = styles()
     path = OUT / "WS01739425-SF424A-V1.0.pdf"
     template, on_page = doc_template(path, "SF-424A")
     pw = letter[0] - 1.5 * inch
+    z = money_cents(0)
 
-    # Approximate category splits for C2-C5 (surge-weighted)
     def split(total, weights):
-        # weights sum ~1
         raw = {k: int(total * w) for k, w in weights.items()}
-        # fix rounding on Other
         gap = total - sum(raw.values())
         raw["Other"] = raw.get("Other", 0) + gap
         return raw
 
-    w_core = {
-        "Personnel": C1_CAT["Personnel"] / C1,
-        "Fringe Benefits": C1_CAT["Fringe Benefits"] / C1,
-        "Travel": C1_CAT["Travel"] / C1,
-        "Equipment": C1_CAT["Equipment"] / C1,
-        "Supplies": C1_CAT["Supplies"] / C1,
-        "Contractual": C1_CAT["Contractual"] / C1,
-        "Other": C1_CAT["Other"] / C1,
-        "Indirect Charges": C1_CAT["Indirect Charges"] / C1,
-    }
     w_surge = {
         "Personnel": 0.28,
         "Fringe Benefits": 0.05,
@@ -451,109 +458,204 @@ def build_sf424a():
         "Other": 0.10,
         "Indirect Charges": 0.06,
     }
-    comps = {
-        "1 Core GHS": C1_CAT,
-        "2 Small-scale": split(C2, w_surge),
-        "3 Large-scale": split(C3, w_surge),
-        "4 Emerging": split(C4, w_surge),
-        "5 Humanitarian": split(C5, w_surge),
-    }
-    cats = [
-        "Personnel",
-        "Fringe Benefits",
-        "Travel",
-        "Equipment",
-        "Supplies",
-        "Contractual",
-        "Construction",
-        "Other",
-        "Indirect Charges",
+    # All five components — Section A line 5 and Section B 6k Total = $3,300,000
+    col_budgets = [
+        C1_CAT,
+        split(C2, w_surge),
+        split(C3, w_surge),
+        split(C4, w_surge),
+        split(C5, w_surge),
     ]
+    col_totals = [C1, C2, C3, C4, C5]
+    assert sum(col_totals) == TOTAL
+
+    activities = [
+        "Component 1 - Core GHS priorities",
+        "Component 2 - Small-scale outbreak / PHE response",
+        "Component 3 - Large-scale outbreak / PHE response",
+        "Component 4 - Emerging infectious disease threats",
+        "Component 5 - Humanitarian emergency",
+    ]
+    amounts = [C1, C2, C3, C4, C5]
+
+    object_lines = [
+        ("6a. Personnel", "Personnel"),
+        ("6b. Fringe Benefits", "Fringe Benefits"),
+        ("6c. Travel", "Travel"),
+        ("6d. Equipment", "Equipment"),
+        ("6e. Supplies", "Supplies"),
+        ("6f. Contractual", "Contractual"),
+        ("6g. Construction", "Construction"),
+        ("6h. Other", "Other"),
+    ]
+
+    def section_b_rows(budgets, totals):
+        rows = []
+        direct_by_col = [0] * len(budgets)
+        for label, key in object_lines:
+            vals = [b.get(key, 0) for b in budgets]
+            for i, v in enumerate(vals):
+                direct_by_col[i] += v
+            rows.append([label] + [money_cents(v) for v in vals] + [money_cents(sum(vals))])
+        rows.append(
+            ["6i. Total Direct Charges (sum of 6a-6h)"]
+            + [money_cents(v) for v in direct_by_col]
+            + [money_cents(sum(direct_by_col))]
+        )
+        indirect = [b.get("Indirect Charges", 0) for b in budgets]
+        rows.append(
+            ["6j. Indirect Charges"]
+            + [money_cents(v) for v in indirect]
+            + [money_cents(sum(indirect))]
+        )
+        computed = [d + i for d, i in zip(direct_by_col, indirect)]
+        assert computed == totals, (computed, totals)
+        assert sum(totals) == TOTAL
+        rows.append(
+            ["6k. TOTALS (sum of 6i and 6j)"]
+            + [money_cents(v) for v in totals]
+            + [money_cents(sum(totals))]
+        )
+        return rows
+
+    sec_a_widths = [pw * 0.34, pw * 0.10, pw * 0.11, pw * 0.11, pw * 0.12, pw * 0.11, pw * 0.11]
+    # 5 activity columns + Total (official form has 4 columns; companion shows all 5 so totals = $3.3M)
+    sec_b_widths = [1.05 * inch] + [0.78 * inch] * 5 + [0.90 * inch]
 
     story = [
-        Paragraph("SF-424A Budget Information — Non-Construction Programs", st["Cover"]),
-        Paragraph(f"{ORG} | Year 1 draft (CONFIRM) | {date.today().isoformat()}", st["Center"]),
+        Paragraph("BUDGET INFORMATION - Non-Construction Programs", st["Cover"]),
+        Paragraph("OMB Number: 4040-0006 | Expiration Date: 02/28/2025 | SF-424A (Rev. 7-97)", st["Center"]),
+        Paragraph(f"{ORG} | {OPPORTUNITY} | Year 1 draft | {date.today().isoformat()}", st["Center"]),
         Paragraph(
-            "Enter these amounts on SF-424A. Forms often show only 4 grant-program columns — "
-            "put Components 1-4 on the first SF-424A and Component 5 on a second SF-424A if required. "
-            "All figures USD. Cost share: none.",
-            st["Meta"],
+            f"Year 1 federal ask: {money_cents(TOTAL)}. "
+            "Section A Totals and Section B line 6k Total both equal this amount. "
+            "All figures USD. Cost share: none. "
+            "Note: Grants.gov webform shows only 4 Section A rows — paste Components 1-4 there, "
+            f"then add Component 5 ({money_cents(C5)}) on a second SF-424A so the package still totals "
+            f"{money_cents(TOTAL)}.",
+            st["Body"],
         ),
-        Paragraph("Section A — Budget Summary (Federal)", st["H1"]),
+        Paragraph("SECTION A - BUDGET SUMMARY", st["H2"]),
         tbl(
             st,
-            ["Grant Program Function", "CFDA", "Federal"],
             [
-                ["Component 1 — Core GHS priorities", CFDA, money(C1)],
-                ["Component 2 — Small-scale outbreak / PHE response", CFDA, money(C2)],
-                ["Component 3 — Large-scale outbreak / PHE response", CFDA, money(C3)],
-                ["Component 4 — Emerging infectious disease threats", CFDA, money(C4)],
-                ["Component 5 — Humanitarian emergency", CFDA, money(C5)],
-                ["TOTAL", "", money(TOTAL)],
+                "(a) Grant Program Function or Activity",
+                "(b) Catalog of Federal Domestic Assistance Number",
+                "(c) Federal Unobligated",
+                "(d) Non-Federal Unobligated",
+                "(e) Federal New or Revised",
+                "(f) Non-Federal New or Revised",
+                "(g) Total",
             ],
-            [pw * 0.55, pw * 0.15, pw * 0.30],
+            [
+                [act, CFDA, z, z, money_cents(amt), z, money_cents(amt)]
+                for act, amt in zip(activities, amounts)
+            ]
+            + [
+                [
+                    "5. Totals",
+                    "",
+                    z,
+                    z,
+                    money_cents(TOTAL),
+                    z,
+                    money_cents(TOTAL),
+                ]
+            ],
+            sec_a_widths,
         ),
-        Paragraph("Non-Federal funds: $0 for all components. Total (Federal + Non-Federal) = Federal.", st["Small"]),
-        Paragraph("Section B — Budget Categories (Year 1 Federal by component)", st["H1"]),
-    ]
-
-    header = ["Object Class"] + list(comps.keys()) + ["Total"]
-    rows = []
-    totals = {k: 0 for k in comps}
-    grand = 0
-    for cat in cats:
-        row = [cat]
-        line = 0
-        for name, bud in comps.items():
-            v = bud.get(cat, 0)
-            row.append(money(v) if v else "$0")
-            totals[name] += v
-            line += v
-        row.append(money(line))
-        grand += line
-        rows.append(row)
-    rows.append(["TOTAL"] + [money(totals[k]) for k in comps] + [money(grand)])
-    story.append(tbl(st, header, rows, [1.15 * inch] + [0.95 * inch] * 5 + [0.9 * inch]))
-    story.append(
+        Paragraph(
+            f"Line 5 Totals = {money_cents(TOTAL)}. Must match Section B line 6k Total column. "
+            "Unobligated (c)/(d) and Non-Federal (f) = $0.00 (new application; no cost share).",
+            st["Small"],
+        ),
+        Paragraph("SECTION B - BUDGET CATEGORIES", st["H2"]),
+        Paragraph(
+            "6. Object Class Categories — columns (1)-(5) = Components 1-5; last column = Total "
+            f"({money_cents(TOTAL)}).",
+            st["Small"],
+        ),
+        tbl(
+            st,
+            [
+                "6. Object Class Categories",
+                "(1) C1",
+                "(2) C2",
+                "(3) C3",
+                "(4) C4",
+                "(5) C5",
+                "Total",
+            ],
+            section_b_rows(col_budgets, col_totals),
+            sec_b_widths,
+        ),
         Paragraph(
             "Ceilings (do not exceed): C1 $5M; C2 $10M; C3 $15M; C4 $15M; C5 $20M. "
-            "Indirect: foreign organisation 8% MTDC estimated (CONFIRM). "
             "Component 1 expected initial funding; Components 2-5 contingency.",
             st["Small"],
-        )
-    )
-    story.append(Paragraph("Section C — Non-Federal Resources", st["H1"]))
-    story.append(Paragraph("All zeros — no cost sharing or matching proposed.", st["Body"]))
-    story.append(Paragraph("Section D — Forecasted Cash Needs", st["H1"]))
-    story.append(
+        ),
+        Paragraph("SECTION C - NON-FEDERAL RESOURCES", st["H2"]),
+        tbl(
+            st,
+            ["(a) Grant Program", "(b) Applicant", "(c) State", "(d) Other Sources", "(e) TOTALS"],
+            [[f"{8 + i}. {act}", z, z, z, z] for i, act in enumerate(activities)]
+            + [["13. TOTAL (sum of lines 8-12)", z, z, z, z]],
+            [pw * 0.40, pw * 0.15, pw * 0.15, pw * 0.15, pw * 0.15],
+        ),
+        Paragraph("SECTION D - FORECASTED CASH NEEDS", st["H2"]),
+        tbl(
+            st,
+            ["", "Total for 1st Year", "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"],
+            [
+                [
+                    "13. Federal",
+                    money_cents(TOTAL),
+                    money_cents(TOTAL // 4),
+                    money_cents(TOTAL // 4),
+                    money_cents(TOTAL // 4),
+                    money_cents(TOTAL - 3 * (TOTAL // 4)),
+                ],
+                ["14. Non-Federal", z, z, z, z, z],
+                [
+                    "15. TOTAL (sum of lines 13 and 14)",
+                    money_cents(TOTAL),
+                    money_cents(TOTAL // 4),
+                    money_cents(TOTAL // 4),
+                    money_cents(TOTAL // 4),
+                    money_cents(TOTAL - 3 * (TOTAL // 4)),
+                ],
+            ],
+            [1.4 * inch] + [0.95 * inch] * 5,
+        ),
         Paragraph(
-            f"Year 1 total federal need {money(TOTAL)}. If only Component 1 is funded initially, "
-            f"cash need is {money(C1)}. Quarterly distribution for Component 1 (illustrative): "
-            f"Q1 {money(C1 // 4)}; Q2 {money(C1 // 4)}; Q3 {money(C1 // 4)}; Q4 {money(C1 - 3 * (C1 // 4))}.",
-            st["Body"],
-        )
-    )
-    story.append(Paragraph("Section E — Budget Estimates of Federal Funds Needed for Balance of the Project", st["H1"]))
-    story.append(
+            f"If only Component 1 is funded initially, Year 1 federal cash need is {money_cents(C1)} "
+            f"(illustrative quarters {money_cents(C1 // 4)} each).",
+            st["Small"],
+        ),
+        Paragraph("SECTION E - BUDGET ESTIMATES OF FEDERAL FUNDS NEEDED FOR BALANCE OF THE PROJECT", st["H2"]),
         Paragraph(
-            "Years 2-5 amounts to be set at continuation based on progress and available funds. "
-            "Illustrative planning level for Core GHS (Component 1) similar to Year 1 order of magnitude "
-            f"({money(C1)}/year) subject to CDC continuation decisions. Contingency components remain "
-            "event-driven.",
+            "Future years (2-5) set at continuation based on progress and available funds. "
+            f"Illustrative Core GHS planning level about {money(C1)}/year subject to CDC decisions. "
+            "Contingency components remain event-driven.",
             st["Body"],
-        )
-    )
-    story.append(Paragraph("Section F — Other Budget Information", st["H1"]))
-    story.append(
+        ),
+        Paragraph("SECTION F - OTHER BUDGET INFORMATION", st["H2"]),
         Paragraph(
-            "Indirect charges: estimated 8% of MTDC for foreign organisation (exclusive of equipment "
-            "and subawards over $25,000), unless a negotiated rate applies — CONFIRM before submit. "
-            "Remarks: Award funds systems strengthening, surveillance, training, emergency readiness, "
-            "and community-facility linkages. Routine clinical care is not charged to this award. "
-            "No research proposed.",
+            f"21. Direct Charges: see Section B 6i. 22. Indirect Charges: estimated 8% MTDC "
+            f"(foreign organisation; exclusive of equipment and subawards over $25,000) — "
+            f"Year 1 indirect across Components 1-5 = "
+            f"{money_cents(sum(b.get('Indirect Charges', 0) for b in col_budgets))} (CONFIRM). "
+            "23. Remarks: Award funds systems strengthening, surveillance, training, emergency "
+            "readiness, and community-facility linkages. Routine clinical care is not charged to "
+            f"this award. No research proposed. Application federal total: {money_cents(TOTAL)}.",
             st["Body"],
-        )
-    )
+        ),
+        Paragraph(
+            f"CHECK: Section A line 5 = Section B line 6k Total = Section D line 13 = "
+            f"SF-424 Box 18a / 18g = {money_cents(TOTAL)}.",
+            st["Body"],
+        ),
+    ]
     template.build(story, onFirstPage=on_page, onLaterPages=on_page)
     print("SF-424A:", path)
 
