@@ -160,38 +160,35 @@ def bullets(st, items):
 
 
 ABSTRACT = (
-    f"{ORG} ({ORG_SHORT}) is a Uganda-registered Family & Community Health organisation "
-    f"in Kampala, guided by The FairBanks Blueprint: Building the Future of Family & "
-    f"Community Health. We run a licensed medical centre and FairBanks Community Reach with "
-    f"CHWs and VHTs in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya and nearby peri-urban "
-    f"communities — extending care beyond consultation rooms into homes, schools, and "
-    f"community spaces. Slogan: {SLOGAN} "
-    "Strong health systems are built on strong local institutions. Uganda's 2023 Joint "
-    "External Evaluation showed progress — and still named hard gaps: community and facility "
-    "signals that reach decision-makers too late; weak information sharing across sectors; "
-    "limited surge-ready workforce at subnational level; and incomplete links into national "
-    "surveillance and emergency structures, including work toward a functional National "
-    "Integrated Surveillance System (NISS). When those gaps stay open, outbreaks grow before "
-    "anyone can act. That puts Ugandans at risk first — and Americans at risk later. "
-    "Under Ministry of Health leadership, this project puts the Blueprint into practice for "
-    "Global Health Security: we will not rebuild Uganda's national architecture; we will make "
-    "community and clinic signals usable inside it. "
-    "Year 1 focus (Component 1 — Core GHS) has four practical pillars aligned to FairBanks' "
-    "Community Health Intelligence Platform (FCHIP) and Community Reach model: (1) community "
-    "and facility surveillance that contributes to MoH/NISS pathways; (2) faster "
-    "community-to-district detection and response using 7-1-7 style timing; (3) CHW/VHT and "
-    "frontline workforce skills for One Health-aware surveillance and surge readiness; and "
-    "(4) stronger community-facility links for priority disease programmes (including HIV, "
-    "TB, malaria, cholera, viral hemorrhagic fevers, mpox, and immunisation) during routine "
-    "work and outbreaks. Laboratory and border-health work will be done with MoH-aligned "
-    "partners rather than as a FairBanks-only national lead. "
-    "Components 2-5 set out contingency surge plans for small and large outbreaks, emerging "
-    "infectious threats, and humanitarian emergencies. They may be approved but unfunded "
-    "until CDC releases emergency funds. "
-    "Expected shared results: shorter detection and response times; more complete community "
-    "signals in national channels; a better-prepared frontline workforce; and clear handoff "
-    "of tools and data to government systems — advancing healthier families and communities "
-    f"while containing threats closer to source. Contact: {PD_NAME}, {EMAIL}, {PHONE}."
+    f"{ORG} (FairBanks) is a health organisation in Kampala, Uganda. "
+    "We run FairBanks Medical Centre and FairBanks Community Reach. "
+    "Our CHWs and VHTs already work in Bukoto, Kyebando, Kisaasi, Kamwokya, Kikaaya "
+    "and nearby communities. We meet people in homes, schools, and local gatherings, "
+    f"not only at the clinic. Our slogan is simple: {SLOGAN} "
+    "Uganda has made progress on health security, but the 2023 Joint External Evaluation "
+    "still pointed to real gaps. Community and clinic reports often reach decision makers "
+    "too late. Information does not always move well between sectors. Subnational teams "
+    "need more workers ready for surge response. Links into national surveillance, "
+    "including the National Integrated Surveillance System (NISS), are still incomplete. "
+    "When that happens, outbreaks grow before anyone can act. Ugandans feel the harm first. "
+    "Americans are safer when threats are stopped closer to where they start. "
+    "This project helps close that last mile gap under Ministry of Health leadership. "
+    "We are not trying to replace national systems. We want community and facility signals "
+    "to reach MoH pathways faster and in a form government can use. "
+    "In Year 1 (Component 1, Core GHS) we will focus on four practical things: "
+    "(1) community and facility surveillance that feeds MoH and NISS pathways using our FCHIP "
+    "tools; (2) faster detect, notify, and respond timing with districts, using CDC 717 style "
+    "benchmarks; (3) training CHWs, VHTs, and frontline staff for surveillance and surge "
+    "readiness, including One Health awareness; and (4) stronger links between communities "
+    "and facilities for priority diseases such as HIV, TB, malaria, cholera, viral "
+    "hemorrhagic fevers, mpox, and immunisation work. For laboratory and border health, "
+    "we will support MoH aligned partners rather than claim a national lead role alone. "
+    "Components 2 to 5 are contingency plans for small and large outbreaks, emerging "
+    "threats, and humanitarian emergencies. CDC may approve them but leave them unfunded "
+    "until emergency money is released. "
+    "If we succeed, alerts should move faster, community reports should be more complete, "
+    "frontline workers should be better prepared, and tools and data should be handed to "
+    f"government for continued use. Contact: {PD_NAME}, {EMAIL}, {PHONE}."
 )
 
 
@@ -604,24 +601,29 @@ def build_abstract():
     st = styles()
     path = OUT / "WS01739425-Project_AbstractSummary_2_0-V2.0.pdf"
     template, on_page = doc_template(path, "Project Abstract")
+    title = (
+        "Helping Uganda find and stop health threats earlier through FairBanks Community "
+        "Reach, CHW and VHT reporting, and FCHIP tools that feed Ministry of Health and NISS pathways"
+    )
     story = [
         Paragraph("Project Abstract Summary", st["Cover"]),
-        Paragraph(f"{ORG} | {OPPORTUNITY} | {SLOGAN}", st["Center"]),
+        Paragraph(f"{ORG}", st["Center"]),
+        Paragraph(f"{OPPORTUNITY}", st["Center"]),
+        Paragraph(SLOGAN, st["Center"]),
         Paragraph(
-            "Guided by The FairBanks Blueprint: Building the Future of Family & Community Health. "
-            "Paste this text into the Grants.gov Project Abstract Summary form (trim if character limit requires).",
+            "Copy this into the Grants.gov Project Abstract form. Shorten it if the portal has a character limit.",
             st["Meta"],
         ),
+        Paragraph(f"Project title: {title}", st["Body"]),
+        Paragraph(f"Applicant: {ORG}", st["Body"]),
+        Paragraph(f"Project director: {PD_NAME}, {PD_TITLE}", st["Body"]),
+        Paragraph(f"Period: {START} to {END}", st["Body"]),
+        Paragraph(f"Funding type: Cooperative agreement | CFDA: {CFDA}", st["Body"]),
         Paragraph(
-            "Project Title: FairBanks Blueprint in action: strengthening Uganda last-mile Global Health "
-            "Security through Community Reach, CHW/VHT surveillance, and FCHIP intelligence feeding "
-            "MoH/NISS pathways",
+            f"Year 1 ask (draft): {money(TOTAL)} total across components; "
+            f"Component 1 (core) {money(C1)}. CONFIRM before submit.",
             st["Body"],
         ),
-        Paragraph(f"Applicant: {ORG}", st["Body"]),
-        Paragraph(f"Project Director: {PD_NAME}, {PD_TITLE}", st["Body"]),
-        Paragraph(f"Period: {START} to {END} | Funding instrument: Cooperative agreement | CFDA: {CFDA}", st["Body"]),
-        Paragraph(f"Year 1 federal request (draft, all components): {money(TOTAL)} | Component 1 core: {money(C1)}", st["Body"]),
         Paragraph("Abstract", st["H1"]),
         Paragraph(ABSTRACT, st["Body"]),
     ]
