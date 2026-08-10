@@ -6,7 +6,7 @@ parent: "The FairBanks Blueprint — Founding Edition Version 1.0.1 (Master Free
 period: "2027–2032 Strategic Horizon"
 publisher: "FAIRBANKS MEDICAL CENTRE LIMITED"
 tin: "1053370026"
-status: "Handbook companion derived from .cursor/source-of-truth Blueprint"
+status: "Handbook Version 1.0.0 — MASTER FREEZE (three editorial refinements applied)"
 ---
 
 # THE FAIRBANKS HANDBOOK
@@ -247,7 +247,7 @@ FairBanks should not advance merely because a calendar year has ended. Before mo
 
 ---
 
-## 10. Language locks (do not drift)
+## 10. Institutional Language & Terminology
 
 Use these exact institutional conventions from Blueprint v1.0.1:
 
@@ -265,12 +265,12 @@ Use these exact institutional conventions from Blueprint v1.0.1:
 By the end of the 2027–2032 strategic horizon, FairBanks aims to be recognised for:
 
 - Making significant progress toward becoming Uganda's leading Family & Community Health Social Enterprise  
-- Trusted integrated healthcare services  
-- Excellence in community health and preventive care  
-- Leadership in digital health and community health intelligence  
-- Respected research and innovation partnership  
-- Preferred partnership with government, universities, insurers, and development agencies  
-- Financial sustainability with measurable social impact  
+- Trusted for integrated healthcare services  
+- Recognised for excellence in community health and preventive care  
+- Recognised as a leader in digital health and community health intelligence  
+- Recognised as a respected research and innovation partner  
+- Recognised as a preferred partner for government, universities, insurers, and development agencies  
+- Financially sustainable, with measurable social impact  
 
 Track these as outcome themes in MEL — not as marketing slogans alone.
 
