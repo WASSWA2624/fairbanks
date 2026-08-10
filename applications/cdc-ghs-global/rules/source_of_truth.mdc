@@ -1,0 +1,66 @@
+---
+description: CDC-RFA-JG-26-0056 global GHS detect-notify-respond compliance
+globs: applications/cdc-ghs-global/**
+alwaysApply: false
+---
+
+# CDC GHS Global (0056) — source of truth
+
+Official sources win over drafts:
+
+1. [Simpler.Grants.gov](https://simpler.grants.gov/opportunity/8454e463-cd43-4d0d-97a2-8a4310e0ce6b)
+2. [Grants.gov search](https://www.grants.gov) — opportunity CDC-RFA-JG-26-0056
+3. `rules/opportunity-CDC-RFA-JG-26-0056-attachments/cdc-rfa-jg-26-0056-rev3_For_Publication.pdf`
+4. `rules/opportunity-CDC-RFA-JG-26-0056-attachments/DGHP_FY26_ME_Indicator_List_01_Standard.pdf`
+5. [Applicant quick start](https://grants.gov/quick-start-guide/applicants)
+
+Also: `.cursor/rules/documents.mdc`, `folder_structure.mdc`, `fairbanks-community-reach.mdc`, `fairBanks_refined_project_idea.mdc`. Legal facts: `company-docs/`.
+
+## Win thesis (shared value)
+
+**CDC / U.S.:** Stop threats at source — Safer · Stronger · More Prosperous.  
+**Host governments:** Local systems detect, notify, and respond faster (7-1-7).  
+**FairBanks:** Uganda-registered clinic + Community Reach + FCHIP that feeds MoH — not a parallel silo.  
+**Communities:** Earlier alerts and clearer referral paths.
+
+## Call facts
+
+- **NOFO:** CDC-RFA-JG-26-0056  
+- **Agency:** CDC Global Health Center / DGHP · **CFDA:** 93.318  
+- **Deadline:** 14 August 2026, 11:59 p.m. ET  
+- **Type:** Cooperative agreement · 5 years · Expected awards 4–8  
+- **Year 1 NOFO pool:** about $24M  
+- **Cost share:** None  
+- **Geography:** Multi-country/region preferred; Uganda is a named DGHP country  
+- **Eligibility:** Foreign / for-profit OK  
+- **Local preference:** +10 points if documented  
+- **Scoring:** Approach 35 · EPMP 30 · Capacity 35 (+ preference)
+
+## Component ceilings (Year 1 — apply for all five)
+
+| # | Focus | Ceiling |
+|---|---|---|
+| 1 | Core GHS (expected initial fund) | $3,000,000 |
+| 2 | Small-scale outbreak / PHE | $5,000,000 |
+| 3 | Large-scale outbreak / PHE | $10,000,000 |
+| 4 | Small-scale emerging threats | $15,000,000 |
+| 5 | Large-scale emerging threats | $20,000,000 |
+
+## FairBanks scope (honest)
+
+- Prime: **FAIRBANKS MEDICAL CENTRE LIMITED** (No. 80020003843337; TIN 1053370026).  
+- **Year 1 countries:** Uganda (primary, registered). East Africa corridor learning with MoH Uganda; second-country LOIs CONFIRM before claiming.  
+- Lead Strategies **1, 2, 5** strongly; support **3, 4, 6, 7** with MoH-aligned partners.  
+- **FCHIP** = intelligence on Community Reach Data & Feedback → MoH/NISS pathways.  
+- Draft Year 1 **total ask: $3,200,000** (CONFIRM). Component 1 core: **$2,200,000** (ceiling $3M).
+
+## Contacts
+
+- **Email:** info@fairbanksmedicalcentre.org · **Phone:** +256 772 849 258  
+- **Lead:** Racheal Nabukeera, Managing Director and Co-founder  
+- **Web:** https://www.fairbanksmedicalcentre.org/
+
+## Deliverables
+
+Build: `build_cdc-ghs-global_docs.py` → `documents/` Word · PDF · PPT.  
+Copy bank: `application_answers.md`. Mark **CONFIRM** for UEI/SAM, citizenship %, budgets, MoH/partner letters.
