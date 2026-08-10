@@ -11,4 +11,4 @@ alwaysApply: true
 - Application packs: one **project-specific** generator per call. Do not auto-stamp many projects from one shared template or SPECS file.
 - Decks (`{project}_ppt.pptx`) must follow the elegant PowerPoint standard in [documents.mdc](documents.mdc): balanced type, pictures first, clean visual design, light purposeful animations.
 - The FairBanks Blueprint Master Freeze lives only in `.cursor/source-of-truth/` (`*_v1_0_1.docx` / `.md` / `.pdf`). Do not keep parallel or near-duplicate Blueprint copies under `.cursor/`.
-- Handbook companions derived from the Blueprint also live in `.cursor/source-of-truth/` (e.g. `*_HANDBOOK_v1_0_0.*`). Keep one synced set per handbook edition.
+- Handbook companions derived from the Blueprint also live in `.cursor/source-of-truth/` (e.g. `*_HANDBOOK_v1_0_0.*` compact guide; `*_HANDBOOK_v1_0_1.*` full Institutional Transformation Handbook). Keep one synced set per handbook edition.
