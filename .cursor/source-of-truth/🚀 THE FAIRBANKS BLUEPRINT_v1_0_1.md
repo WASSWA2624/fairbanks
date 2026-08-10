@@ -6,8 +6,8 @@ edition: "Founding Edition — Version 1.0.1"
 period: "2027–2032 Strategic Transformation Blueprint"
 publisher: "FAIRBANKS MEDICAL CENTRE LIMITED"
 tin: "1053370026"
-source: "🚀 THE FAIRBANKS BLUEPRINT_v1_0_0.docx"
-status: "Master freeze Version 1.0.1 — final two micro-edits applied"
+source: "🚀 THE FAIRBANKS BLUEPRINT_v1_0_1.docx (canonical; .cursor/source-of-truth)"
+status: "Master freeze Version 1.0.1 — canonical sole copy in .cursor/source-of-truth"
 ---
 
 

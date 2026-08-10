@@ -40,6 +40,7 @@ These are the only shared rules. Do not copy them under `applications/` or `oppo
 - Media may come from repo `assets/` or a project `assets/` subfolder — prefer real photos, diagrams, maps, and dashboards in decks.
 - Final edited docs live only in `documents/`.
 - Temporary and build artifacts go in repo `tmp/` (gitignored).
+- FairBanks Blueprint Master Freeze (Founding Edition v1.0.1) lives only in `.cursor/source-of-truth/` as the synced `.docx` / `.md` / `.pdf` set. Do not keep Blueprint drafts, backups, or near-duplicates elsewhere under `.cursor/`.
 
 ## Example
 
@@ -51,6 +52,10 @@ These are the only shared rules. Do not copy them under `applications/` or `oppo
   fairbanks-community-reach.mdc
   fairbanks_raw_project_idea.mdc
   fairBanks_refined_project_idea.mdc
+.cursor/source-of-truth/
+  {blueprint}_v1_0_1.docx
+  {blueprint}_v1_0_1.md
+  {blueprint}_v1_0_1.pdf
 applications/
   {project}/
     build_{project}_docs.py
