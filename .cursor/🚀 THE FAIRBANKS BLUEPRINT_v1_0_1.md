@@ -7,13 +7,13 @@ period: "2027–2032 Strategic Transformation Blueprint"
 publisher: "FAIRBANKS MEDICAL CENTRE LIMITED"
 tin: "1053370026"
 source: "🚀 THE FAIRBANKS BLUEPRINT_v1_0_0.docx"
-status: "Final precision freeze against update.md"
+status: "Master freeze Version 1.0.1 — final two micro-edits applied"
 ---
 
 
 ## PUBLICATION INFORMATION
 
-Document control: Founding Edition Version 1.0.1 (final precision freeze against update.md; five-stage / 2027–2032 horizon terminology locked; filenames retained as v1_0_0).
+Document control: Founding Edition Version 1.0.1 — MASTER FREEZE (final two micro-edits applied; no further substantive rewrite).
 
 # THE FAIRBANKS BLUEPRINT
 
@@ -513,7 +513,7 @@ Collectively, they provide a practical roadmap for transforming FairBanks into a
 
 The Blueprint also recognises that meaningful transformation cannot be achieved in isolation. It calls for collaboration among government, universities, development partners, insurers, professional associations, the private sector, communities, and citizens who share a common commitment to improving health outcomes.
 
-by the end of the 2027–2032 strategic horizon, FairBanks seeks to be recognised not only for the quality of its clinical services but also for its contribution to stronger families, healthier communities, and a more resilient healthcare system.
+By the end of the 2027–2032 strategic horizon, FairBanks seeks to be recognised not only for the quality of its clinical services but also for its contribution to stronger families, healthier communities, and a more resilient healthcare system.
 
 Ultimately, this Blueprint is not simply about organisational growth.
 
@@ -633,7 +633,7 @@ The transformation of FairBanks will unfold through five progressive stages:
 
 By the end of the implementation period, FairBanks aims to be recognised as:
 
-Recognised for progress toward becoming Uganda's leading Family & Community Health Social Enterprise.
+Making significant progress toward becoming Uganda's leading Family & Community Health Social Enterprise.
 
 A trusted provider of integrated healthcare services.
 
@@ -7114,9 +7114,9 @@ The roadmap should therefore function as a living management instrument, rather 
 
 ### 10.15 What Success Will Look Like by 2032
 
-by the end of the 2027–2032 strategic horizon, FairBanks aspires to be recognised as:
+By the end of the 2027–2032 strategic horizon, FairBanks aspires to be recognised as:
 
-Recognised for progress toward becoming Uganda's leading Family & Community Health Social Enterprise.
+Making significant progress toward becoming Uganda's leading Family & Community Health Social Enterprise.
 
 A trusted provider of integrated healthcare services.
 
