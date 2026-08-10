@@ -2,16 +2,18 @@
 title: "The FairBanks Blueprint"
 subtitle: "Building the Future of Family & Community Health"
 volume: "Volume I – Vision"
-edition: "Founding Edition — Version 1.0.0"
+edition: "Founding Edition — Version 1.0.1"
 period: "2027–2032 Strategic Transformation Blueprint"
 publisher: "FAIRBANKS MEDICAL CENTRE LIMITED"
+tin: "1053370026"
+address: "Plot 1423 and 1425, Tirupati Road, Lugogo, Kololo IV, Kampala Central Division, Kampala, Uganda"
 source: "🚀 THE FAIRBANKS BLUEPRINT_v1_0_0.docx"
 ---
 
 
 ## PUBLICATION INFORMATION
 
-Document control: Founding Edition Version 1.0.0 (ASS 4 editorial remediation release).
+Document control: Founding Edition Version 1.0.1 (controlled editorial audit against update.md; filenames retained as v1_0_0).
 
 # THE FAIRBANKS BLUEPRINT
 
@@ -21,17 +23,17 @@ Volume I – Vision
 
 2027–2032 Strategic Transformation Blueprint
 
-Founding Edition — Version 1.0.0
+Founding Edition — Version 1.0.1
 
-### Published by:
+Published by:
 
-FAIRBANKS MEDICAL CENTRE LIMITED
+## FAIRBANKS MEDICAL CENTRE LIMITED
 
 Plot 1423 and 1425, Tirupati Road, Fairbanks Medical Centre
 Lugogo, Kololo IV, Kampala Central Division
 Kampala, Uganda
 
-### Institutional Particulars (URA Certificate of Registration — Notice DT-1112)
+Institutional Particulars (verified against URA Certificate of Registration — Notice DT-1112, Notice Date 02 July 2026)
 
 Taxpayer Identification Number (TIN): 1053370026
 
@@ -47,26 +49,32 @@ Accounting date: 30 June (Income Tax Act, Cap 340, Sec 39(1))
 
 Certificate notice date: 02 July 2026
 
-Principal place of business: Plot 1423 and 1425, Tirupati Road, Lugogo, Kololo IV, Kampala Central Division, Kampala, Uganda
+Principal place of business (URA-registered): Plot 1423 and 1425, Tirupati Road, Lugogo, Kololo IV, Kampala Central Division, Kampala, Uganda
 
-### Copyright
+Address verification: the publisher address used in this Founding Edition is the URA-registered principal place of business as stated on the FairBanks Medical Centre Limited TIN Certificate (Notice DT-1112). No alternate trading address is substituted in this publication.
 
-© 2027 FairBanks Medical Centre Limited. Founding Edition Version 1.0.0.
+Copyright
+
+© 2027 FairBanks Medical Centre Limited. Founding Edition Version 1.0.1.
+
+Prepared and approved in 2026 | Founding Edition published 2027.
+
+This Blueprint is the founding strategic publication for the 2027-2032 transformation period. Institutional particulars below are taken from the Uganda Revenue Authority Certificate of Registration (Notice DT-1112; TIN 1053370026).
 
 All rights reserved.
 
 No part of this publication may be reproduced, stored in a retrieval system, transmitted, or distributed in any form or by any means without the prior written permission of FairBanks Medical Centre Limited, except for brief quotations used for educational, research, policy, or review purposes with appropriate acknowledgement.
 
-### Recommended Citation
+Recommended Citation
 
 FairBanks Medical Centre Limited. (2027).
 
-The FairBanks Blueprint: Building the Future of Family & Community Health. Volume I - Vision (2027-2032 Strategic Transformation Blueprint), Founding Edition Version 1.0.0.
+The FairBanks Blueprint: Building the Future of Family & Community Health. Volume I - Vision (2027-2032 Strategic Transformation Blueprint), Founding Edition Version 1.0.1.
 
 Lugogo, Kampala, Uganda.
 
 
-### Founder's Note
+Founder's Note
 
 A Journey of Purpose, Stewardship and Hope
 
@@ -133,12 +141,12 @@ FairBanks Medical Centre Limited
 > Your Health, Our Mission.
 
 
-### Dedication
+Dedication
 
 This Founding Edition is respectfully dedicated to every patient who places their trust in healthcare professionals, every healthcare worker who serves with compassion, every community that believes better health is possible, and every future leader who chooses stewardship over self-interest, service over status, and legacy over personal success.
 
 
-### Publication Purpose
+Publication Purpose
 
 This publication establishes the official strategic vision of FairBanks Medical Centre Limited for the period 2027–2032.
 
@@ -170,7 +178,7 @@ Community Leaders
 
 Patients and the General Public
 
-### Scope
+Scope
 
 This publication serves as the primary institutional reference for:
 
@@ -523,6 +531,14 @@ This is the future we choose to build.
 > Healthy Families Build Strong Communities. Strong Communities Build Healthier Nations.
 
 
+## Institutional Architecture at a Glance
+
+The FairBanks Blueprint is organised as one coherent architecture:
+
+Purpose → Vision / Mission → Seven Strategic Priorities → Six Core Frameworks (FIHE, FITF, F7TM, FMM, FCHIP, CHIP) → Supporting Instruments → FIMS (FairBanks Institutional Management System) → Five-Stage Transformation Roadmap (2027-2032) → Governance, Financing, Partnerships, MEL, Risk and Investment → Manifesto / Declaration / Covenant.
+
+Readers should interpret every chapter through this hierarchy. Supporting instruments do not replace the six core frameworks; FIMS shows how they work together.
+
 ## THE FAIRBANKS BLUEPRINT AT A GLANCE
 
 One Institution. One Vision. One Integrated Future.
@@ -537,7 +553,7 @@ The Blueprint provides an integrated framework for organisational growth, health
 
 Rather than presenting isolated initiatives, it introduces a unified institutional model in which every programme, partnership, investment, and strategic decision contributes to one overarching purpose:
 
-Building healthier families, stronger communities, and more resilient health systems.
+Strengthening family health while contributing to more resilient health systems.
 
 ## OUR STRATEGIC ASPIRATION
 
@@ -902,7 +918,7 @@ FairBanks Manifesto
 These chapters demonstrate how communities become active partners in improving health outcomes.
 
 
-HOW THIS BLUEPRINT SHOULD BE USED
+## HOW THIS BLUEPRINT SHOULD BE USED
 
 This publication is intended to serve as:
 
@@ -932,20 +948,20 @@ The transformation described in these pages will not be achieved by one institut
 
 It will be realised through the collective efforts of people and organisations committed to a common purpose:
 
-Building healthier families, stronger communities, and a healthier future for Uganda.
+Building healthier families and more resilient communities across Uganda.
 
 
 ## TABLE OF CONTENTS
 
-(Page numbers to be generated automatically in Microsoft Word after Heading styles are applied.)
+(Production note: page numbers are generated in the PDF edition via Microsoft Word pagination. Readers should use PDF page numbers for navigation. A field-linked Word TOC may be refreshed before print.)
 
 Front Matter
 
 Publication Information
 
-### Founder's Note
+Founder's Note
 
-### Dedication
+Dedication
 
 Editorial Certification
 
@@ -1029,16 +1045,16 @@ Chapter 21 - The FairBanks Covenant
 
 Technical Appendices
 
-Detailed technical appendices (organisational charts, framework diagrams, indicator matrices, and risk registers) are deferred to a companion Technical Annex and will be published once figures and datasets are finalised. This Founding Edition Version 1.0.0 therefore keeps architecture in the chapters themselves rather than listing undelivered appendices.
+Detailed technical appendices (organisational charts, framework diagrams, indicator matrices, and risk registers) are deferred to a companion Technical Annex and will be published once figures and datasets are finalised. This Founding Edition Version 1.0.1 therefore keeps architecture in the chapters themselves rather than listing undelivered appendices.
 
 ## LIST OF FIGURES
 
-Version 1.0.0 lists only figures that are captioned in the body of this Founding Edition. Additional framework diagrams will be added in the Technical Annex and future reprints.
+Version 1.0.1 lists figures captioned in the body of this Founding Edition, including Figure 3.1 (Health Ecosystem Continuum). Additional framework diagrams will be added in the Technical Annex and future reprints.
 
 
 ## LIST OF TABLES
 
-Version 1.0.0 lists the principal structured tables retained in this edition. Ghost tables previously promised without captions (including SWOT) have been removed from the catalogue until produced.
+Version 1.0.1 lists the principal structured tables retained in this edition. Ghost tables previously promised without captions (including SWOT) have been removed from the catalogue until produced.
 
 
 ## ACRONYMS AND ABBREVIATIONS
@@ -1046,7 +1062,7 @@ Version 1.0.0 lists the principal structured tables retained in this edition. Gh
 
 ## GLOSSARY OF TERMS
 
-This glossary defines key institutional terms used in Founding Edition Version 1.0.0.
+This glossary defines key institutional terms used in Founding Edition Version 1.0.1.
 
 Clinical Excellence - Consistent delivery of safe, effective, compassionate, and evidence-informed clinical care.
 
@@ -1760,7 +1776,19 @@ No healthcare institution exists in isolation.
 
 Evidence note for readers
 
-This chapter presents FairBanks' strategic reading of the healthcare landscape. Where national statistics, district baselines, and facility performance data are cited in future updates, they will be drawn from Ministry of Health reports, partner datasets, and FairBanks operational records. In this Founding Edition, directional analysis is used to frame institutional choices; implementation chapters translate those choices into measurable roadmap targets for 2027-2032.
+This chapter presents FairBanks' strategic reading of the healthcare landscape. It is evidence-aware rather than encyclopaedic: directional claims are oriented to authoritative public sources, while facility baselines and local programme metrics will be published in the Technical Annex and annual performance reports as datasets mature.
+
+Sources of orientation for this chapter
+
+Ministry of Health, Uganda — Strategic Plan 2020/21-2024/25 (focus on primary health care and progress toward Universal Health Coverage by 2030).
+
+Government of Uganda — National Development Plan III / Human Capital Development orientations relevant to population health and service demand.
+
+Uganda Bureau of Statistics (UBOS) — national demographic and urbanisation statistical releases used for directional population and settlement trends.
+
+World Health Organization (WHO) — guidance on Universal Health Coverage, health systems strengthening, and the rising importance of non-communicable diseases alongside communicable disease control.
+
+FairBanks Medical Centre Limited — operational experience serving patients and communities in Kampala; local baselines to be formalised in MEL reports.
 
 Every clinic, hospital, pharmacy, university, research centre, insurance provider, community organisation, and government agency forms part of a wider ecosystem whose collective purpose is to improve the health and wellbeing of society.
 
@@ -1804,21 +1832,23 @@ These achievements have contributed to improvements in life expectancy, expanded
 
 At the same time, the healthcare system continues to face important and evolving challenges.
 
-Population growth is increasing demand for healthcare services.
+Population growth continues to increase demand for healthcare services, as reflected in national demographic trends reported through UBOS statistical releases.
 
-Urbanisation is changing patterns of disease and healthcare utilisation.
+Urbanisation is changing patterns of disease and healthcare utilisation, a shift recognised in Uganda's health and development planning documents.
 
-Non-communicable diseases are becoming more prevalent alongside infectious diseases.
+Non-communicable diseases are becoming more prevalent alongside infectious diseases — the dual burden emphasised in Ministry of Health strategic planning toward UHC.
 
-Healthcare financing remains a challenge for many families.
+Healthcare financing remains a challenge for many families, consistent with national concern about out-of-pocket spending and the unfinished agenda of financial protection.
 
-The demand for specialised services continues to grow.
+The demand for specialised services continues to grow as the disease profile diversifies and referral pathways become more complex.
 
-Digital transformation is creating new opportunities while requiring new capabilities.
+Digital transformation is creating new opportunities while requiring new capabilities across clinical, community, and administrative systems — a theme also reflected in contemporary health-systems guidance from WHO and national digital-health directions.
 
 These realities require institutions that are adaptive, collaborative, and committed to continuous improvement.
 
 For FairBanks, these trends represent an opportunity to contribute in ways that complement national priorities while responding directly to community needs.
+
+These national orientations do not replace FairBanks' own measurement responsibilities. They situate the institution's choices within publicly recognised health-system priorities.
 
 ### 3.2 The Evolving Role of Private Healthcare
 
@@ -1888,6 +1918,14 @@ Recognising these interdependencies, FairBanks has developed the FairBanks Healt
 
 Unlike traditional models that begin with illness and end with treatment, the FairBanks continuum begins with people and extends to the strengthening of the entire health system.
 
+
+### Figure 3.1: The FairBanks Health Ecosystem Continuum
+
+```
+INDIVIDUAL → FAMILY → COMMUNITY → PRIMARY CARE → SPECIALISED CARE → RESEARCH & INNOVATION → DIGITAL HEALTH & FCHIP → CHIP → PARTNERSHIPS → HEALTH SYSTEM STRENGTHENING → IMPROVED POPULATION HEALTH
+```
+
+FairBanks sits across this continuum as an integrating Family & Community Health Social Enterprise — connecting people, services, knowledge, financing, and partnerships rather than occupying only one layer.
 
 Understanding the Continuum
 
@@ -7156,7 +7194,7 @@ This chapter has translated the FairBanks strategic vision into a practical impl
 
 The roadmap moves through five progressive stages:
 
-FOUNDATION → INTEGRATION → INNOVATION → LEADERSHIP → SUSTAINABILITY
+## FOUNDATION → INTEGRATION → INNOVATION → LEADERSHIP → SUSTAINABILITY
 
 Each stage has a defined strategic goal, priority actions, deliverables, milestones, and institutional emphasis.
 
@@ -9846,7 +9884,7 @@ The FairBanks Investment and Sustainability Conceptual Framework
 
 I recommend that the published book include the following conceptual diagram.
 
-LONG-TERM IMPACT
+## LONG-TERM IMPACT
 
 
 Sustainable Institutional Transformation
@@ -9860,7 +9898,7 @@ Institutional Legacy
 ▲
 
 
-INSTITUTIONAL OUTCOMES
+## INSTITUTIONAL OUTCOMES
 
 
 • Clinical Excellence
@@ -9883,7 +9921,7 @@ INSTITUTIONAL OUTCOMES
 ────────────────────────────────────────────
 
 
-DOMAIN III – SECURING THE FUTURE
+## DOMAIN III – SECURING THE FUTURE
 
 
 Environmental Sustainability
@@ -9898,7 +9936,7 @@ Institutional Legacy
 ────────────────────────────────────────────
 
 
-DOMAIN II – CREATING VALUE
+## DOMAIN II – CREATING VALUE
 
 
 Research & Innovation
@@ -9915,7 +9953,7 @@ Intellectual Capital
 ────────────────────────────────────────────
 
 
-DOMAIN I – BUILDING CAPACITY
+## DOMAIN I – BUILDING CAPACITY
 
 
 Infrastructure Development
@@ -9930,14 +9968,14 @@ Digital Transformation
 ────────────────────────────────────────────
 
 
-FAIRBANKS PHILOSOPHY OF STEWARDSHIP
+## FAIRBANKS PHILOSOPHY OF STEWARDSHIP
 
 
 Integrity • Accountability • Innovation
 
 Transparency • Responsibility • Foresight
 
-Figure 17.1: The FairBanks Investment and Sustainability Conceptual Framework.
+### Figure 17.1: The FairBanks Investment and Sustainability Conceptual Framework.
 
 
 ### 17.7.5 Strategic Significance
@@ -10640,7 +10678,7 @@ The FIMS demonstrates how transformation, leadership, finance, partnerships, com
 I.
 
 
-THE FAIRBANKS INSTITUTIONAL MANAGEMENT SYSTEM (FIMS)
+## THE FAIRBANKS INSTITUTIONAL MANAGEMENT SYSTEM (FIMS)
 
 The Integrated Strategic Architecture of The FairBanks Blueprint
 
@@ -10769,116 +10807,88 @@ FSC – Sustainability Compass
 
 This layer ensures that today's decisions strengthen tomorrow's opportunities.
 
-Figure 17.2: The FairBanks Institutional Management System (FIMS).
+### Figure 17.2: The FairBanks Institutional Management System (FIMS).
 
 The FairBanks Institutional Management System (FIMS)
 
-THE FAIRBANKS VISION
+## THE FAIRBANKS VISION
 
 > Transforming Healthcare, Strengthening Communities
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-LAYER I – INSTITUTIONAL PURPOSE
+## LAYER I – INSTITUTIONAL PURPOSE
 
 Vision • Mission • Values • Stewardship
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-LAYER II – INSTITUTIONAL TRANSFORMATION
+## LAYER II – INSTITUTIONAL TRANSFORMATION
 
-FITF • FIHE • F7TM • FMM
+## FITF • FIHE • F7TM • FMM
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-LAYER III – COMMUNITY & SERVICE DELIVERY
+## LAYER III – COMMUNITY & SERVICE DELIVERY
 
 FCHIP • Community Health • Outreach
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-LAYER IV – INSTITUTIONAL PERFORMANCE
+## LAYER IV – INSTITUTIONAL PERFORMANCE
 
 Hybrid Structure • FSFF • FFSS • FSPCDF • FIIF
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-LAYER V – INSTITUTIONAL INTELLIGENCE
+## LAYER V – INSTITUTIONAL INTELLIGENCE
 
-MELKMF • FERMRF
+## MELKMF • FERMRF
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-LAYER VI – INSTITUTIONAL STEWARDSHIP
+## LAYER VI – INSTITUTIONAL STEWARDSHIP
 
-FSSF • FIPM • FSC
+## FSSF • FIPM • FSC
 
 
-`
 │
-`
 
-`
 ▼
-`
 
 
-SUSTAINABLE INSTITUTIONAL IMPACT
+## SUSTAINABLE INSTITUTIONAL IMPACT
 
 
 Healthier Communities • Stronger Health Systems
 
 Institutional Excellence • Enduring Legacy
 
-Figure 17.2: The FairBanks Institutional Management System (FIMS): The Integrated Strategic Architecture of The FairBanks Blueprint.
+### Figure 17.2: The FairBanks Institutional Management System (FIMS): The Integrated Strategic Architecture of The FairBanks Blueprint.
 
 Significance of the FIMS
 
@@ -10890,7 +10900,7 @@ The model also provides a practical framework for strategic planning, executive 
 
 Most importantly, it positions FairBanks Medical Centre not simply as a healthcare provider, but as a learning institution, community partner, knowledge contributor, and steward of long-term health system development.
 
-THE FUTURE WE CHOOSE
+## THE FUTURE WE CHOOSE
 
 Vision, Legacy and Institutional Commitment
 
@@ -11563,8 +11573,6 @@ And may FairBanks Medical Centre always remain faithful to its promise:
 
 ## Embedded Tables
 
-The following tables are exported from the Word manuscript in order of appearance.
-
 ### Table 1
 
 | Institution | FairBanks Medical Centre Limited |
@@ -11602,6 +11610,7 @@ The following tables are exported from the Word manuscript in order of appearanc
 | --- | --- |
 | Figure 17.1 | The FairBanks Investment and Sustainability Conceptual Framework |
 | Figure 17.2 | The FairBanks Institutional Management System (FIMS) |
+| Figure 3.1 | The FairBanks Health Ecosystem Continuum |
 
 ### Table 5
 
@@ -11677,7 +11686,7 @@ The following tables are exported from the Word manuscript in order of appearanc
 
 ### Table 11
 
-> The FairBanks Health Ecosystem Continuum /                   THE FAIRBANKS HEALTH ECOSYSTEM CONTINUUM /  /    INDIVIDUALS /         │ /         ▼ /    HEALTHY FAMILIES /         │ /         ▼ /    EMPOWERED COMMUNITIES /         │ /         ▼ /    PRIMARY HEALTHCARE /         │ /         ▼ /    SPECIALISED CLINICAL SERVICES /         │ /         ▼ /    RESEARCH & INNOVATION /         │ /         ▼ /    DIGITAL HEALTH & FCHIP /         │ /         ▼ /    COMMUNITY HEALTH INSURANCE (CHIP) /         │ /         ▼ /    STRATEGIC PARTNERSHIPS /         │ /         ▼ /    HEALTH SYSTEM STRENGTHENING /         │ /         ▼ /    IMPROVED POPULATION HEALTH /
+> Figure 3.1 — The FairBanks Health Ecosystem Continuum /  / Individuals → Healthy Families → Empowered Communities → Primary Healthcare → Specialised Clinical Services → Research & Innovation → Digital Health & FCHIP → Community Health Insurance (CHIP) → Strategic Partnerships → Health System Strengthening → Improved Population Health /  / Signature institutional model of FairBanks Medical Centre Limited. /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /  /
 
 ### Table 12
 
