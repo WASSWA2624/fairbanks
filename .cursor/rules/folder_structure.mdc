@@ -41,6 +41,7 @@ These are the only shared rules. Do not copy them under `applications/` or `oppo
 - Final edited docs live only in `documents/`.
 - Temporary and build artifacts go in repo `tmp/` (gitignored).
 - FairBanks Blueprint Master Freeze (Founding Edition v1.0.1) lives only in `.cursor/source-of-truth/` as the synced `.docx` / `.md` / `.pdf` set. Do not keep Blueprint drafts, backups, or near-duplicates elsewhere under `.cursor/`.
+- Handbook companions (e.g. Institutional Transformation Handbook v1.0.0) also live in `.cursor/source-of-truth/` as their own synced `.docx` / `.md` / `.pdf` set.
 
 ## Example
 
