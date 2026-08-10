@@ -6,14 +6,14 @@ edition: "Founding Edition — Version 1.0.1"
 period: "2027–2032 Strategic Transformation Blueprint"
 publisher: "FAIRBANKS MEDICAL CENTRE LIMITED"
 tin: "1053370026"
-address: "Plot 1423 and 1425, Tirupati Road, Lugogo, Kololo IV, Kampala Central Division, Kampala, Uganda"
 source: "🚀 THE FAIRBANKS BLUEPRINT_v1_0_0.docx"
+status: "Final precision freeze against update.md"
 ---
 
 
 ## PUBLICATION INFORMATION
 
-Document control: Founding Edition Version 1.0.1 (controlled editorial audit against update.md; filenames retained as v1_0_0).
+Document control: Founding Edition Version 1.0.1 (final precision freeze against update.md; five-stage / 2027–2032 horizon terminology locked; filenames retained as v1_0_0).
 
 # THE FAIRBANKS BLUEPRINT
 
@@ -25,15 +25,15 @@ Volume I – Vision
 
 Founding Edition — Version 1.0.1
 
-Published by:
+### Published by:
 
-## FAIRBANKS MEDICAL CENTRE LIMITED
+FAIRBANKS MEDICAL CENTRE LIMITED
 
 Plot 1423 and 1425, Tirupati Road, Fairbanks Medical Centre
 Lugogo, Kololo IV, Kampala Central Division
 Kampala, Uganda
 
-Institutional Particulars (verified against URA Certificate of Registration — Notice DT-1112, Notice Date 02 July 2026)
+### Institutional Particulars (verified against URA Certificate of Registration — Notice DT-1112, Notice Date 02 July 2026)
 
 Taxpayer Identification Number (TIN): 1053370026
 
@@ -49,11 +49,11 @@ Accounting date: 30 June (Income Tax Act, Cap 340, Sec 39(1))
 
 Certificate notice date: 02 July 2026
 
-Principal place of business (URA-registered): Plot 1423 and 1425, Tirupati Road, Lugogo, Kololo IV, Kampala Central Division, Kampala, Uganda
+Principal place of business (URA-registered): Plot 1423 and 1425, Tirupati Road, Fairbanks Medical Centre, Lugogo, Kololo IV, Kampala Central Division, Kampala, Uganda
 
-Address verification: the publisher address used in this Founding Edition is the URA-registered principal place of business as stated on the FairBanks Medical Centre Limited TIN Certificate (Notice DT-1112). No alternate trading address is substituted in this publication.
+Address verification: the publisher address used in this Founding Edition is the URA-registered principal place of business as stated on the Fairbanks Medical Centre URA Certificate of Registration (Notice DT-1112, Notice Date 02 July 2026; TIN 1053370026).
 
-Copyright
+### Copyright
 
 © 2027 FairBanks Medical Centre Limited. Founding Edition Version 1.0.1.
 
@@ -65,7 +65,7 @@ All rights reserved.
 
 No part of this publication may be reproduced, stored in a retrieval system, transmitted, or distributed in any form or by any means without the prior written permission of FairBanks Medical Centre Limited, except for brief quotations used for educational, research, policy, or review purposes with appropriate acknowledgement.
 
-Recommended Citation
+### Recommended Citation
 
 FairBanks Medical Centre Limited. (2027).
 
@@ -74,7 +74,7 @@ The FairBanks Blueprint: Building the Future of Family & Community Health. Volum
 Lugogo, Kampala, Uganda.
 
 
-Founder's Note
+### Founder's Note
 
 A Journey of Purpose, Stewardship and Hope
 
@@ -141,12 +141,12 @@ FairBanks Medical Centre Limited
 > Your Health, Our Mission.
 
 
-Dedication
+### Dedication
 
 This Founding Edition is respectfully dedicated to every patient who places their trust in healthcare professionals, every healthcare worker who serves with compassion, every community that believes better health is possible, and every future leader who chooses stewardship over self-interest, service over status, and legacy over personal success.
 
 
-Publication Purpose
+### Publication Purpose
 
 This publication establishes the official strategic vision of FairBanks Medical Centre Limited for the period 2027–2032.
 
@@ -178,7 +178,7 @@ Community Leaders
 
 Patients and the General Public
 
-Scope
+### Scope
 
 This publication serves as the primary institutional reference for:
 
@@ -513,7 +513,7 @@ Collectively, they provide a practical roadmap for transforming FairBanks into a
 
 The Blueprint also recognises that meaningful transformation cannot be achieved in isolation. It calls for collaboration among government, universities, development partners, insurers, professional associations, the private sector, communities, and citizens who share a common commitment to improving health outcomes.
 
-By the end of the strategic period, FairBanks seeks to be recognised not only for the quality of its clinical services but also for its contribution to stronger families, healthier communities, and a more resilient healthcare system.
+by the end of the 2027–2032 strategic horizon, FairBanks seeks to be recognised not only for the quality of its clinical services but also for its contribution to stronger families, healthier communities, and a more resilient healthcare system.
 
 Ultimately, this Blueprint is not simply about organisational growth.
 
@@ -531,7 +531,7 @@ This is the future we choose to build.
 > Healthy Families Build Strong Communities. Strong Communities Build Healthier Nations.
 
 
-## Institutional Architecture at a Glance
+Institutional Architecture at a Glance
 
 The FairBanks Blueprint is organised as one coherent architecture:
 
@@ -606,7 +606,7 @@ These frameworks collectively define the FairBanks operating model.
 
 ## THE SEVEN STRATEGIC PRIORITIES
 
-Over the next five years, FairBanks will focus on seven mutually reinforcing priorities:
+During the 2027–2032 strategic horizon, FairBanks will focus on seven mutually reinforcing priorities:
 
 Delivering Clinical Excellence
 
@@ -625,7 +625,7 @@ Achieving Institutional Excellence
 These priorities will guide planning, investment, implementation, and performance measurement across the institution.
 
 
-## THE FIVE-YEAR TRANSFORMATION JOURNEY
+## THE FIVE-STAGE TRANSFORMATION JOURNEY
 
 The transformation of FairBanks will unfold through five progressive stages:
 
@@ -736,7 +736,7 @@ Vision and Institutional Philosophy
 
 Organisational Structure
 
-Five-Year Transformation Roadmap
+Five-Stage Transformation Roadmap (2027–2032)
 
 Sustainable Financing Strategy
 
@@ -819,7 +819,7 @@ FairBanks Community Health Intelligence Platform (FCHIP)
 
 Community Health Insurance Programme (CHIP)
 
-Five-Year Transformation Roadmap
+Five-Stage Transformation Roadmap (2027–2032)
 
 These sections highlight FairBanks' contribution to national health priorities, Universal Health Coverage, and health systems strengthening.
 
@@ -857,7 +857,7 @@ FairBanks Community Health Intelligence Platform (FCHIP)
 
 Community Health Insurance Programme (CHIP)
 
-Five-Year Transformation Roadmap
+Five-Stage Transformation Roadmap (2027–2032)
 
 Monitoring and Evaluation
 
@@ -895,7 +895,7 @@ Partnership Framework
 
 Investment Strategy
 
-Five-Year Transformation Roadmap
+Five-Stage Transformation Roadmap (2027–2032)
 
 These chapters outline FairBanks' growth trajectory, governance arrangements, and long-term sustainability.
 
@@ -918,7 +918,7 @@ FairBanks Manifesto
 These chapters demonstrate how communities become active partners in improving health outcomes.
 
 
-## HOW THIS BLUEPRINT SHOULD BE USED
+HOW THIS BLUEPRINT SHOULD BE USED
 
 This publication is intended to serve as:
 
@@ -959,9 +959,9 @@ Front Matter
 
 Publication Information
 
-Founder's Note
+### Founder's Note
 
-Dedication
+### Dedication
 
 Editorial Certification
 
@@ -1919,11 +1919,9 @@ Recognising these interdependencies, FairBanks has developed the FairBanks Healt
 Unlike traditional models that begin with illness and end with treatment, the FairBanks continuum begins with people and extends to the strengthening of the entire health system.
 
 
-### Figure 3.1: The FairBanks Health Ecosystem Continuum
+Figure 3.1: The FairBanks Health Ecosystem Continuum
 
-```
 INDIVIDUAL → FAMILY → COMMUNITY → PRIMARY CARE → SPECIALISED CARE → RESEARCH & INNOVATION → DIGITAL HEALTH & FCHIP → CHIP → PARTNERSHIPS → HEALTH SYSTEM STRENGTHENING → IMPROVED POPULATION HEALTH
-```
 
 FairBanks sits across this continuum as an integrating Family & Community Health Social Enterprise — connecting people, services, knowledge, financing, and partnerships rather than occupying only one layer.
 
@@ -6638,7 +6636,7 @@ Rather than attempting to implement every initiative simultaneously, the roadmap
 
 The roadmap also recognises that implementation is not solely the responsibility of management. Successful transformation requires shared ownership among the Board of Directors, executive leadership, staff, strategic partners, community representatives, and other stakeholders who contribute to the FairBanks mission.
 
-Ultimately, this chapter provides the bridge between aspiration and achievement. It establishes the practical pathway through which the vision articulated in this Blueprint can become a measurable reality over the five-year strategic period.
+Ultimately, this chapter provides the bridge between aspiration and achievement. It establishes the practical pathway through which the vision articulated in this Blueprint can become a measurable reality over the 2027–2032 strategic horizon.
 
 ### 10.2 Purpose of the Chapter
 
@@ -6678,7 +6676,7 @@ The stages should not be interpreted as isolated annual projects. Rather, each r
 
 ### 10.5 Strategic Implementation Principles
 
-Five principles will guide implementation throughout the strategic period.
+Five principles will guide implementation throughout the 2027–2032 strategic horizon.
 
 1. Build Strong Foundations Before Expansion
 
@@ -7112,11 +7110,11 @@ Risk indicators.
 
 Where circumstances change or implementation assumptions prove inaccurate, FairBanks should adapt its approach while maintaining alignment with the overall strategic direction of the Blueprint.
 
-The roadmap should therefore function as a living management instrument, rather than a static five-year schedule.
+The roadmap should therefore function as a living management instrument, rather than a static calendar schedule.
 
 ### 10.15 What Success Will Look Like by 2032
 
-By the end of the strategic period, FairBanks aspires to be recognised as:
+by the end of the 2027–2032 strategic horizon, FairBanks aspires to be recognised as:
 
 Recognised for progress toward becoming Uganda's leading Family & Community Health Social Enterprise.
 
@@ -7194,7 +7192,7 @@ This chapter has translated the FairBanks strategic vision into a practical impl
 
 The roadmap moves through five progressive stages:
 
-## FOUNDATION → INTEGRATION → INNOVATION → LEADERSHIP → SUSTAINABILITY
+FOUNDATION → INTEGRATION → INNOVATION → LEADERSHIP → SUSTAINABILITY
 
 Each stage has a defined strategic goal, priority actions, deliverables, milestones, and institutional emphasis.
 
@@ -8231,7 +8229,7 @@ Adopt the FSPCDF as the institution's official partnership framework.
 
 Establish a Partnership Development Committee reporting to the Executive Leadership Team.
 
-Develop a five-year partnership strategy aligned with the Blueprint.
+Develop a 2027–2032 partnership strategy aligned with the Blueprint.
 
 Create partnership performance indicators and annual reviews.
 
@@ -9884,7 +9882,7 @@ The FairBanks Investment and Sustainability Conceptual Framework
 
 I recommend that the published book include the following conceptual diagram.
 
-## LONG-TERM IMPACT
+LONG-TERM IMPACT
 
 
 Sustainable Institutional Transformation
@@ -9898,7 +9896,7 @@ Institutional Legacy
 ▲
 
 
-## INSTITUTIONAL OUTCOMES
+INSTITUTIONAL OUTCOMES
 
 
 • Clinical Excellence
@@ -9921,7 +9919,7 @@ Institutional Legacy
 ────────────────────────────────────────────
 
 
-## DOMAIN III – SECURING THE FUTURE
+DOMAIN III – SECURING THE FUTURE
 
 
 Environmental Sustainability
@@ -9936,7 +9934,7 @@ Institutional Legacy
 ────────────────────────────────────────────
 
 
-## DOMAIN II – CREATING VALUE
+DOMAIN II – CREATING VALUE
 
 
 Research & Innovation
@@ -9953,7 +9951,7 @@ Intellectual Capital
 ────────────────────────────────────────────
 
 
-## DOMAIN I – BUILDING CAPACITY
+DOMAIN I – BUILDING CAPACITY
 
 
 Infrastructure Development
@@ -9968,14 +9966,14 @@ Digital Transformation
 ────────────────────────────────────────────
 
 
-## FAIRBANKS PHILOSOPHY OF STEWARDSHIP
+FAIRBANKS PHILOSOPHY OF STEWARDSHIP
 
 
 Integrity • Accountability • Innovation
 
 Transparency • Responsibility • Foresight
 
-### Figure 17.1: The FairBanks Investment and Sustainability Conceptual Framework.
+Figure 17.1: The FairBanks Investment and Sustainability Conceptual Framework.
 
 
 ### 17.7.5 Strategic Significance
@@ -10678,7 +10676,7 @@ The FIMS demonstrates how transformation, leadership, finance, partnerships, com
 I.
 
 
-## THE FAIRBANKS INSTITUTIONAL MANAGEMENT SYSTEM (FIMS)
+THE FAIRBANKS INSTITUTIONAL MANAGEMENT SYSTEM (FIMS)
 
 The Integrated Strategic Architecture of The FairBanks Blueprint
 
@@ -10807,88 +10805,116 @@ FSC – Sustainability Compass
 
 This layer ensures that today's decisions strengthen tomorrow's opportunities.
 
-### Figure 17.2: The FairBanks Institutional Management System (FIMS).
+Figure 17.2: The FairBanks Institutional Management System (FIMS).
 
 The FairBanks Institutional Management System (FIMS)
 
-## THE FAIRBANKS VISION
+THE FAIRBANKS VISION
 
 > Transforming Healthcare, Strengthening Communities
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## LAYER I – INSTITUTIONAL PURPOSE
+LAYER I – INSTITUTIONAL PURPOSE
 
 Vision • Mission • Values • Stewardship
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## LAYER II – INSTITUTIONAL TRANSFORMATION
+LAYER II – INSTITUTIONAL TRANSFORMATION
 
-## FITF • FIHE • F7TM • FMM
+FITF • FIHE • F7TM • FMM
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## LAYER III – COMMUNITY & SERVICE DELIVERY
+LAYER III – COMMUNITY & SERVICE DELIVERY
 
 FCHIP • Community Health • Outreach
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## LAYER IV – INSTITUTIONAL PERFORMANCE
+LAYER IV – INSTITUTIONAL PERFORMANCE
 
 Hybrid Structure • FSFF • FFSS • FSPCDF • FIIF
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## LAYER V – INSTITUTIONAL INTELLIGENCE
+LAYER V – INSTITUTIONAL INTELLIGENCE
 
-## MELKMF • FERMRF
+MELKMF • FERMRF
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## LAYER VI – INSTITUTIONAL STEWARDSHIP
+LAYER VI – INSTITUTIONAL STEWARDSHIP
 
-## FSSF • FIPM • FSC
+FSSF • FIPM • FSC
 
 
+`
 │
+`
 
+`
 ▼
+`
 
 
-## SUSTAINABLE INSTITUTIONAL IMPACT
+SUSTAINABLE INSTITUTIONAL IMPACT
 
 
 Healthier Communities • Stronger Health Systems
 
 Institutional Excellence • Enduring Legacy
 
-### Figure 17.2: The FairBanks Institutional Management System (FIMS): The Integrated Strategic Architecture of The FairBanks Blueprint.
+Figure 17.2: The FairBanks Institutional Management System (FIMS): The Integrated Strategic Architecture of The FairBanks Blueprint.
 
 Significance of the FIMS
 
@@ -10900,7 +10926,7 @@ The model also provides a practical framework for strategic planning, executive 
 
 Most importantly, it positions FairBanks Medical Centre not simply as a healthcare provider, but as a learning institution, community partner, knowledge contributor, and steward of long-term health system development.
 
-## THE FUTURE WE CHOOSE
+THE FUTURE WE CHOOSE
 
 Vision, Legacy and Institutional Commitment
 
@@ -11618,7 +11644,7 @@ And may FairBanks Medical Centre always remain faithful to its promise:
 | --- | --- |
 | Table A | Vision, Mission and Core Values (front summary) |
 | Table B | Six Core Institutional Frameworks summary |
-| Table C | Five-Year Transformation Journey phases |
+| Table C | Five-Stage Transformation Journey phases |
 | Table D | FITF leadership questions by layer |
 | Table E | FairBanks 7x7 Transformation Matrix (F7TM) |
 | Table F | FairBanks Maturity Model assessment matrix |
