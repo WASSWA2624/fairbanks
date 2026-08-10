@@ -67,9 +67,9 @@ applications/
       {project}_ppt.pptx
       {project}_word.docx
 opportunities/
-  build_new_opportunities.py
+  build_new_grants.py
   tracker.xlsx
-  new_opportunities.xlsx
+  new_grants.xlsx
   rules/
     source_of_truth.mdc
 ```

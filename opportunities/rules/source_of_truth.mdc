@@ -14,11 +14,14 @@ Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing mu
 |---|---|
 | Working tracker | `opportunities/tracker.xlsx` |
 | New-scan workbook | `opportunities/new_opportunities.xlsx` |
-| New-scan rebuild | `opportunities/build_new_opportunities.py` |
+| Simpler.Grants.gov scan | `opportunities/new_grants.xlsx` |
+| Scan rebuild | `opportunities/build_new_grants.py` |
 
-**Working tracker** = shortlist + live Application / Submission status (and `applications/` links). One file — no drafts. Update rows by editing the Excel (or a small helper if added later).
+**Working tracker** = shortlist + Application / Submission status and `applications/` links. One file — no drafts.
 
-**New-scan** = fresh crawl (same columns). Does not replace the working tracker; promote strong fits when you act. After submit, update the working-tracker row (status, date, folder).
+**New-scan** = fresh crawl (same columns). Does not replace the tracker; promote strong fits when you act.
+
+**new_grants.xlsx** = live [Simpler.Grants.gov](https://simpler.grants.gov) Health grants FairBanks can apply for (Ugandan private company, women-led, Community Reach + FCHIP). Sorted by earliest deadline. Built by `build_new_grants.py`.
 
 ## Excel layout
 
@@ -38,11 +41,11 @@ Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing mu
 
 **Sheet 2: Scan Notes** — sources, date, approach, exclusions, gender counts, priority-soon.
 
-**Sheet 3 (new-scan only): Fit Summary** — quick FairBanks fit triage.
+**Sheet 3 (new-scan / grants): Fit Summary** — FairBanks fit triage.
 
 ### Sorting
 
-Soonest deadline first; unknown or rolling last. Keep green / blue / red / black peri-urban highlights.
+Soonest deadline first; unknown or rolling last. Keep green / blue / red highlights.
 
 ## Gender category — use one only
 
@@ -51,11 +54,11 @@ Soonest deadline first; unknown or rolling last. Keep green / blue / red / black
 
 ## Eligibility — Uganda focus
 
-Include only if still open and Ugandans can apply (global, Africa, East Africa, or Uganda). Exclude Uganda-blocked, unfit, inaccessible, or closed calls (unless asked to archive); note why in Scan Notes.
+Include only if still open and Ugandans can apply (global, Africa, East Africa, or Uganda). Exclude Uganda-blocked, unfit, or closed calls unless asked to archive; note why in Scan Notes.
 
 ## How to scan
 
-Check homepage, category, and listings; verify eligibility and deadlines on listing **and** funder pages. Aggregators (e.g. fundsforNGOs) need the official funder page before apply.
+Verify eligibility and deadlines on listing **and** funder pages. Aggregators need the official funder page before apply.
 
 ## What's a good fit?
 
@@ -63,6 +66,7 @@ Community health intelligence, CHW/VHT, digital health, prediction, maternal/chi
 
 ## Scan these sites
 
+- https://simpler.grants.gov — federal Health grants → `new_grants.xlsx`
 - https://opportunitiesforyouth.org
 - https://www.fundsforngos.org / https://www2.fundsforngos.org
 - https://opportunitydesk.org
@@ -74,15 +78,15 @@ Community health intelligence, CHW/VHT, digital health, prediction, maternal/chi
 - https://www.usaid.gov/work-usaid
 - https://grandchallenges.org
 
-Start with **Opportunities for Youth**, then the rest.
+US federal: prefer **Simpler.Grants.gov**. Other calls: start with **Opportunities for Youth**.
 
 ## Before submitting an update
 
-- Descriptions ≤ 100 words; deadlines accurate (flag verify if unclear).
-- No closed/ineligible rows unless user asked to keep a submitted/archive row.
+- Descriptions ≤ 100 words; deadlines accurate.
+- No closed/ineligible rows unless asked to keep.
 - Every row has a gender category; submitted rows have date + Application Folder when a pack exists.
 - Close Excel if the file is locked.
 
 ## Application packs
 
-When a call becomes a pack under `applications/`, follow `.cursor/rules/documents.mdc` and `folder_structure.mdc` (elegant PPT for `{project}_ppt.pptx`). Set **Application Folder** on the working tracker.
+When a call becomes a pack under `applications/`, follow `.cursor/rules/documents.mdc` and `folder_structure.mdc`. Set **Application Folder** on the working tracker.
