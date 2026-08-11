@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from pathlib import Path
 
 from openpyxl import Workbook, load_workbook
@@ -302,27 +301,6 @@ def build() -> None:
             cell.font = Font(name="Calibri", size=10)
             cell.alignment = Alignment(vertical="top", wrap_text=True)
         ws.row_dimensions[i].height = 48
-
-    # Legend row at bottom
-    legend_row = len(rows) + 3
-    ws.cell(legend_row, 1, "How to use").font = Font(name="Calibri", size=10, bold=True)
-    ws.cell(
-        legend_row + 1,
-        1,
-        "Priority 1 = do today. Priority 2 = this week / before deadline. "
-        "Priority 3 = later. Done = already applied or finished. "
-        "Update the Status column as you finish (To do -> Doing -> Done).",
-    )
-    ws.merge_cells(start_row=legend_row + 1, start_column=1, end_row=legend_row + 1, end_column=8)
-    ws.cell(legend_row + 1, 1).alignment = Alignment(wrap_text=True)
-    ws.row_dimensions[legend_row + 1].height = 40
-    ws.cell(
-        legend_row + 2,
-        1,
-        f"Built {datetime.now().strftime('%Y-%m-%d %H:%M')} from tracker.xlsx + new_grants.xlsx. "
-        "Rebuild: python opportunities/build_activity_tracker.py",
-    )
-    ws.merge_cells(start_row=legend_row + 2, start_column=1, end_row=legend_row + 2, end_column=8)
 
     widths = {
         "A": 14,
