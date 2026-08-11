@@ -53,9 +53,13 @@ OFFICIAL = "https://www.grants.gov"
 OFFICIAL_ALT = "https://simpler.grants.gov/opportunity/8454e463-cd43-4d0d-97a2-8a4310e0ce6b"
 APPLY_GUIDE = "https://grants.gov/quick-start-guide/applicants"
 DEADLINE = "14 August 2026, 11:59 p.m. ET"
-C1_ASK = "$2,200,000"
+C1_ASK = "$3,000,000"
+C2_ASK = "$1,000,000"
+C3_ASK = "$1,500,000"
+C4_ASK = "$1,000,000"
+C5_ASK = "$1,000,000"
 PERIOD = "5 years (five 12-month budget periods)"
-TOTAL_ASK = "$3,200,000"
+TOTAL_ASK = "$7,500,000"
 WIN_LINE = (
     "CDC needs outbreaks stopped closer to where people live. "
     "FairBanks already runs a Uganda clinic, CHW/VHT outreach, and working FCHIP tools - "
@@ -93,8 +97,8 @@ CRITICAL = [
     ["Assistance listing", "93.318"],
     ["Period of performance", PERIOD],
     ["Year 1 NOFO pool / awards", "About $24M · expected 4-8 awards"],
-    ["Year 1 total federal ask (draft)", f"{TOTAL_ASK} (CONFIRM; components 1-4)"],
-    ["Year 1 Component 1 ask (draft)", f"{C1_ASK} (CONFIRM; ceiling $3,000,000)"],
+    ["Year 1 total federal ask (feasible)", f"{TOTAL_ASK} (C1-C5; Box 18)"],
+    ["Year 1 Component 1 ask (feasible)", f"{C1_ASK} (NOFO estimate / full ceiling)"],
     ["Cost share", "None proposed"],
     ["Local partner preference", "Yes - Uganda-incorporated entity (+10 points; document before submit)"],
     ["Merit scoring focus", "Approach 35 · EPMP 30 · Capacity 35"],
@@ -196,12 +200,12 @@ INDICATORS = [
 ]
 
 BUDGET_ROWS = [
-    ["1 Core GHS", C1_ASK, "$3,000,000", "Expected initial funding"],
-    ["2 Small-scale response", "$350,000", "$5,000,000", "Contingency ABU"],
-    ["3 Large-scale response", "$400,000", "$10,000,000", "Contingency ABU"],
-    ["4 Small emerging threats", "$250,000", "$15,000,000", "Contingency ABU"],
-    ["5 Large emerging threats", "ABU playbook", "$20,000,000", "Narrative + CONFIRM SF-424A"],
-    ["TOTAL Year 1 (draft C1-C4)", TOTAL_ASK, "", "Equals Box 18a when final"],
+    ["1 Core GHS", C1_ASK, "$3,000,000", "Expected initial funding (full ceiling)"],
+    ["2 Small-scale response", C2_ASK, "$5,000,000", "Contingency ABU"],
+    ["3 Large-scale response", C3_ASK, "$10,000,000", "Contingency ABU"],
+    ["4 Small emerging threats", C4_ASK, "$15,000,000", "Contingency ABU"],
+    ["5 Large emerging threats", C5_ASK, "$20,000,000", "Contingency ABU"],
+    ["TOTAL Year 1 (feasible C1-C5)", TOTAL_ASK, "", "Equals Box 18a / 18g"],
 ]
 
 
@@ -320,7 +324,7 @@ def build_docx() -> None:
     add_p(f"Website: {WEBSITE}")
     add_p(f"Registered address: {LOCATION}")
 
-    add_h("7. Draft Year 1 component budgets (CONFIRM before submit)")
+    add_h("7. Feasible Year 1 component budgets (CONFIRM before submit)")
     add_table(["Component", "Draft ask", "Ceiling", "Notes"], BUDGET_ROWS)
     add_p(
         "Indirect: foreign organisation 8% of MTDC (CONFIRM). Separate SF-424A lines per "
@@ -477,7 +481,7 @@ def build_pdf() -> None:
     story.append(ListFlowable(items, bulletType="bullet", start="•"))
     img_path(photo("facility"), cap="FairBanks Medical Centre — clinical anchor", max_h=1.9 * inch)
 
-    story.append(Paragraph("7. Draft Year 1 component budgets (CONFIRM)", st["H1"]))
+    story.append(Paragraph("7. Feasible Year 1 component budgets (CONFIRM)", st["H1"]))
     tbl(["Component", "Draft ask", "Ceiling", "Notes"], BUDGET_ROWS, [pw * 0.22, pw * 0.22, pw * 0.22, pw * 0.34])
 
     story.append(Paragraph("8. Contacts and sources", st["H1"]))
@@ -684,7 +688,7 @@ def build_pptx() -> None:
         [
             "Strengthen Uganda GHS capacities from the 2023 JEE (surveillance, labs, response, workforce, border health).",
             "Cooperative agreement · 5 years · apply for all five funding components.",
-            f"Year 1 Component 1 draft ask: {C1_ASK} (ceiling $3M) · local partner preference +10 points.",
+            f"Year 1 Component 1 ask: {C1_ASK} (NOFO estimate / full ceiling) · local partner preference +10 points.",
             "Scoring: Approach 35 · EPMP 30 · Capacity 35 - we lead with measurable last-mile surveillance.",
             "Must work in Uganda · English · USD · no research · clinical care not the award purpose.",
             f"Submit on Grants.gov by {DEADLINE}.",
@@ -852,7 +856,7 @@ def build_pptx() -> None:
         Inches(3.4),
         Inches(10),
         Inches(1.2),
-        f"Draft Year 1 Component 1: {C1_ASK} · Local partner · MoH-aligned · Contingency surge plans ready",
+        f"Feasible Year 1 Component 1: {C1_ASK} · Local partner · MoH-aligned · Contingency surge plans ready",
         size=16,
         align=PP_ALIGN.CENTER,
         color="B8C4C8",

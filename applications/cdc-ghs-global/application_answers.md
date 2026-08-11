@@ -125,16 +125,20 @@ Required attachments (CONFIRM before submit): Experience statement; Financial ca
 
 ---
 
-## F. Draft Year 1 budgets (CONFIRM)
+## F. Year 1 budgets — $7.5M total (CONFIRM before Grants.gov)
 
-| Component | Draft ask | Ceiling | Notes |
+**Why this level:** [NOFO](https://simpler.grants.gov/opportunity/8454e463-cd43-4d0d-97a2-8a4310e0ce6b) Year 1 pool is about $24M for 4–8 awards; Component 1 ceiling and estimated Year 1 funding is **$3,000,000 per recipient**. FairBanks asks the full C1 estimate for Uganda-primary core GHS (Strategies 1, 2, 5 lead; clinic + Community Reach + FCHIP → MoH/NISS). Components 2–5 stay ABU and add **$4.5M** for surge activation under MoH — total federal Year 1 request **$7,500,000**.
+
+| Component | Ask | Ceiling | Notes |
 |---|---|---|---|
-| 1 Core GHS | $2,200,000 | $3,000,000 | Expected initial funding |
-| 2 Small-scale response | $350,000 | $5,000,000 | Contingency ABU |
-| 3 Large-scale response | $400,000 | $10,000,000 | Contingency ABU |
-| 4 Small emerging threats | $250,000 | $15,000,000 | Contingency ABU |
-| 5 Large emerging threats | $0 planning line / narrative | $20,000,000 | ABU playbook in narrative (CONFIRM SF-424A row) |
-| **TOTAL (draft C1-C4)** | **$3,200,000** | | Equals Box 18a when finalised |
+| 1 Core GHS | $3,000,000 | $3,000,000 | Expected initial funding (NOFO estimate / ceiling) |
+| 2 Small-scale response | $1,000,000 | $5,000,000 | Contingency ABU — moderate PHE surge |
+| 3 Large-scale response | $1,500,000 | $10,000,000 | Contingency ABU — substantial PHE under MoH |
+| 4 Small emerging threats | $1,000,000 | $15,000,000 | Contingency ABU |
+| 5 Large emerging threats | $1,000,000 | $20,000,000 | Contingency ABU — SF-424A activity row required |
+| **TOTAL Year 1 (C1–C5)** | **$7,500,000** | | Equals SF-424 Box 18a / 18g |
+
+**Component 1 rough split (illustrative — finalise in budget narrative):** personnel & fringe ~32%; CHW/VHT supervision & community surveillance ~14%; FCHIP / data systems & MoH export ~14%; training & surge drills ~12%; travel / equipment / supplies ~10%; contractual MoH-aligned partners ~10%; M&E ~5–8%; foreign indirect 8% MTDC (CONFIRM).
 
 Indirect: foreign organisation 8% of MTDC (CONFIRM). Separate SF-424A activity rows per component. Itemise: salaries, fringe, travel, equipment, supplies, contractual, other, indirect.
 
