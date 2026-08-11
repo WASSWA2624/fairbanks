@@ -22,6 +22,44 @@ Shared result: threats found and acted on closer to source — safer for Uganda 
 
 ---
 
+## A2. Project Abstract Summary (Grants.gov form — paste)
+
+**Form:** `WS01740564-Project_AbstractSummary_2_0-V2.0.pdf`  
+**Companion:** `documents to fill/WS01740564-Project_AbstractSummary_2_0-V2.0_ANSWERS_FINAL.pdf` (also regenerate `*_ANSWERS.pdf` when that file is closed)  
+Limit: 4,000 characters exactly for the paste block below. Public / USAspending — no PII.  
+**Human thread for the rest of the application:** recognise → connect → act → contain.
+
+| Field | Value |
+|---|---|
+| Funding Opportunity Number | CDC-RFA-JG-26-0056 |
+| Assistance Listing Number(s) | 93.318 |
+| Applicant Name | FAIRBANKS MEDICAL CENTRE LIMITED |
+| Descriptive Title | FairBanks strengthens last-mile surveillance across the region for faster outbreak detection and response, using CHWs/VHTs, FCHIP, 7-1-7 timing, surge readiness and contingency capacity. |
+
+**Project Abstract:**
+
+FAIRBANKS MEDICAL CENTRE LIMITED (FairBanks) is a Uganda-registered health organisation committed to quality healthcare and stronger public health protection closer to communities. FairBanks operates a licensed medical centre and FairBanks Community Reach, working with Community Health Workers (CHWs) and Village Health Teams (VHTs) in Kampala peri-urban communities. Our slogan is Your Health, Our Mission.
+
+Under CDC-RFA-JG-26-0056, FairBanks proposes to strengthen last-mile capacity to recognise, report, and respond to disease threats earlier. Under Ministry of Health (MoH) leadership, the project will bring surveillance closer to where people live and seek care, so early warning signals reach the right people before threats become larger public health emergencies.
+
+Purpose. Early outbreak signals may first appear in communities or health facilities but fail to reach formal surveillance systems quickly. FairBanks will help close these gaps by strengthening community and facility surveillance and improving the flow of structured information into MoH and National Integrated Surveillance System (NISS)-aligned pathways through the FairBanks Community Health Intelligence Platform (FCHIP). FCHIP will strengthen existing systems rather than create a parallel data silo. Routine clinical care will continue under FairBanks operations and is not the purpose of this award.
+
+Year 1 - Component 1 will: (1) Strengthen surveillance and data quality through CHWs/VHTs and frontline teams. (2) Improve reporting links among communities, facilities, laboratories, districts, and MoH. (3) Apply 7-1-7 principles to improve the speed from detection to notification and early response. (4) Train and supervise a surge-ready workforce with One Health awareness. (5) Strengthen community-to-facility referral and follow-up for priority disease signals. (6) Coordinate with MoH, district authorities, Kampala Capital City Authority, and other CDC partners. Laboratory and selected surge activities will be delivered through MoH-aligned partners. Tools, SOPs, software, and training materials developed under the award will be available to MoH and CDC for appropriate use.
+
+Components 2-5 will establish contingency plans and budgets for moderate and substantial responses to outbreaks, public health emergencies, and emerging infectious disease threats. These components will remain unfunded until CDC activates emergency funding. Total Year 1 federal request: USD 7,500,000, including USD 3,000,000 for Component 1.
+
+Geography. Uganda will be the primary country of implementation in Year 1, with East African corridor learning and cross-border signal protocols under MoH Uganda leadership. Additional countries will only be included where partner documentation and registration requirements are met.
+
+Expected outcomes include faster detection and response; stronger community and facility reporting; successful MoH/NISS-aligned data exchange tests; trained CHWs/VHTs and surge rosters; improved referral and follow-up for priority signals; and practical tools and learning for government and partners. About 5-10% of funds will support monitoring, evaluation, and learning aligned with DGHP indicators agreed with CDC after award.
+
+Beneficiaries include communities served through FairBanks Community Reach, CHWs/VHTs, frontline workers, public health decision-makers, and regional partners. Earlier detection and containment will help protect communities and strengthen health security across the region.
+
+FairBanks is applying as an in-country local partner, bringing established community relationships, frontline health experience, and practical knowledge of last-mile health challenges. FairBanks will document local-partner preference criteria required by the funding notice.
+
+At its heart, this project is about helping communities recognise health threats earlier, connecting those signals to the public health system, enabling timely action before a local threat becomes a wider emergency.
+
+---
+
 ## B. Background and approach (35 points)
 
 ### B1. Problem (Uganda / East Africa last mile)
