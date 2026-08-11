@@ -180,6 +180,34 @@ Required attachments (CONFIRM before submit): Experience statement; Financial ca
 
 Indirect: foreign organisation 8% of MTDC (CONFIRM). Separate SF-424A activity rows per component. Itemise: salaries, fringe, travel, equipment, supplies, contractual, other, indirect.
 
+### F1. Budget narrative attachment
+
+**Grants.gov form:** `WS01740564-BudgetNarrativeAttachments_1_2-V1.2.pdf` (upload vehicle)  
+**Narrative PDF to attach:** `documents to fill/WS01740564-BudgetNarrative_Year1.pdf`  
+**Suggested upload file name:** `Budget_narrative.pdf`  
+**Year 1 total:** **$7,500,000** USD (C1 $3.0M · C2 $1.0M · C3 $1.5M · C4 $1.0M · C5 $1.0M)
+
+One document, separate headed section per component. NOFO category order: salaries & wages; fringe; consultants; equipment; supplies; travel; other; contractual; total direct; total indirect (8% MTDC). Rebuild: `python applications/cdc-ghs-global/build_budget_narrative_pdf.py`.
+
+### F2. SF-424A fill map (two forms)
+
+**Form:** `WS01740564-SF424A-V1.0.pdf`  
+**Companion:** `documents to fill/WS01740564-SF424A-V1.0_ANSWERS.pdf`  
+NOFO: only four activity columns → submit **two** SF-424A forms.
+
+| SF-424A file | Activities | Federal total |
+|---|---|---|
+| Form 1 (main package) | C1 Core GHS · C2 Small PHE · C3 Large PHE · C4 Small emerging | **$6,500,000** |
+| Form 2 (Other Attachments) | C5 Large emerging | **$1,000,000** |
+| **Combined (= SF-424 Box 18)** | | **$7,500,000** |
+
+- Section A: CFDA **93.318**; Unobligated **$0**; New Federal = component totals; Non-Federal **$0**.  
+- Section B: object-class worksheet in the answers PDF (Personnel, Fringe, Travel, Equipment, Supplies, Contractual, Construction $0, Other, Indirect 8% MTDC).  
+- Section C: all **$0**.  
+- Section D: even quarterly split of that form’s federal total (CONFIRM activation timing for ABU).  
+- Section E: for **each** future year (b)–(e) / Yrs 2–5 enter: C1 **$3,000,000**; C2 **$1,000,000**; C3 **$1,500,000**; C4 **$1,000,000**; Form 1 line 20 total **$6,500,000** per column. Form 2 Comp 5: **$1,000,000** per future year. (Same as Year 1 asks; ABU still activation-dependent — CONFIRM.)  
+- Section F: state foreign **8% MTDC** indirect method; note two-form / five-component structure.
+
 ---
 
 ## G. Shared win (one paragraph)
@@ -221,6 +249,7 @@ CDC lists this form as required **if applicable**.
 - [ ] Local partner preference PDF (2 of 3 entity criteria + evidence)  
 - [ ] MoH / district engagement letters (CONFIRM)  
 - [ ] Budgets under ceilings; USD only; all five components present  
+- [ ] Two SF-424A forms (C1–C4 + C5); totals = SF-424 Box 18 ($7,500,000)  
 - [ ] Project narrative ≤ 60 pages; attachments ≤ 90 pages  
 - [ ] No research aims; English only  
 - [ ] Overlap report if needed  
