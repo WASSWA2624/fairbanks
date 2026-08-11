@@ -22,7 +22,7 @@ Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing mu
 
 **new_grants.xlsx** = live [Simpler.Grants.gov](https://simpler.grants.gov) Health grants FairBanks can apply for. Sorted by earliest deadline. Built by `build_new_grants.py`.
 
-**activity_tracker.xlsx** = day-to-day actions merged from tracker + new_grants + live ops (meetings, partner calls, toolkit, tools). Built by `build_activity_tracker.py`.
+**activity_tracker.xlsx** = one simple sheet of what to do (priority, when, owner, deadline, status). Built from tracker + new_grants + live ops by `build_activity_tracker.py`.
 
 ## Excel layout
 
