@@ -13,15 +13,16 @@ Find, check, and track opportunities for **FairBanks / FCHIP**. Every listing mu
 | What | Path |
 |---|---|
 | Working tracker | `opportunities/tracker.xlsx` |
-| New-scan workbook | `opportunities/new_opportunities.xlsx` |
 | Simpler.Grants.gov scan | `opportunities/new_grants.xlsx` |
+| Activity tracker | `opportunities/activity_tracker.xlsx` |
 | Scan rebuild | `opportunities/build_new_grants.py` |
+| Activity rebuild | `opportunities/build_activity_tracker.py` |
 
 **Working tracker** = shortlist + Application / Submission status and `applications/` links. One file — no drafts.
 
-**New-scan** = fresh crawl (same columns). Does not replace the tracker; promote strong fits when you act.
+**new_grants.xlsx** = live [Simpler.Grants.gov](https://simpler.grants.gov) Health grants FairBanks can apply for. Sorted by earliest deadline. Built by `build_new_grants.py`.
 
-**new_grants.xlsx** = live [Simpler.Grants.gov](https://simpler.grants.gov) Health grants FairBanks can apply for (Ugandan private company, women-led, Community Reach + FCHIP). Sorted by earliest deadline. Built by `build_new_grants.py`.
+**activity_tracker.xlsx** = day-to-day actions merged from tracker + new_grants + live ops (meetings, partner calls, toolkit, tools). Built by `build_activity_tracker.py`.
 
 ## Excel layout
 
