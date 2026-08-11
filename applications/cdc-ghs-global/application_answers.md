@@ -188,6 +188,33 @@ CDC / United States gain earlier containment at source. Uganda / MoH gain last-m
 
 ---
 
+## G2. SF-LLL — Disclosure of Lobbying Activities (paste / decision)
+
+**Form:** `WS01740564-SFLLL_2_0-V2.0.pdf`  
+**Companion:** `documents to fill/WS01740564-SFLLL_2_0-V2.0_ANSWERS.pdf`  
+CDC lists this form as required **if applicable**.
+
+**Primary answer:** FairBanks has **no reportable lobbying** for this application (no paid lobbying registrant retained to influence CDC/HHS/Congress on CDC-RFA-JG-26-0056). Prefer **not attaching** SF-LLL when the workspace allows. Authorized official must CONFIRM.
+
+**If Grants.gov forces completion (Path B):**
+
+| Field | Value |
+|---|---|
+| 1. Type of Federal Action | c. Cooperative agreement |
+| 2. Status of Federal Action | a. Bid/offer/application |
+| 3. Report Type | a. Initial filing |
+| 4. Reporting Entity | Prime — FAIRBANKS MEDICAL CENTRE LIMITED |
+| 4. Address | Plot 1423 and 1425 Tirupati Road; Fairbanks Medical Centre, Kololo IV, Lugogo; Kampala; Uganda; Congressional District 00-000 |
+| 5. Prime (if sub) | Leave blank |
+| 6. Federal Department/Agency | Centers for Disease Control and Prevention (CDC) |
+| 7. CFDA | 93.318 |
+| 8. Federal Action Number | CDC-RFA-JG-26-0056 |
+| 9. Award Amount | Leave blank (or $7,500,000 only if form insists — not an award yet) |
+| 10.a / 10.b Lobbyist fields | N/A (do not invent names) |
+| 11. Certifying Official | Ms. Racheal Nabukeera, Managing Director and Co-founder, +256 772 849 258 |
+
+---
+
 ## H. Pre-submit checklist
 
 - [ ] Active SAM.gov UEI and Grants.gov registration  
@@ -198,3 +225,4 @@ CDC / United States gain earlier containment at source. Uganda / MoH gain last-m
 - [ ] No research aims; English only  
 - [ ] Overlap report if needed  
 - [ ] Confirm distinction from any parallel CDC-RFA-JG-26-0054 submission
+- [ ] SF-LLL: skip if no lobbying, or complete Path B with N/A lobbyist fields (CONFIRM)
