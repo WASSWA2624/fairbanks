@@ -48,7 +48,7 @@ Year 1 - Component 1 will: (1) Strengthen surveillance and data quality through 
 
 Components 2-5 will establish contingency plans and budgets for moderate and substantial responses to outbreaks, public health emergencies, and emerging infectious disease threats. These components will remain unfunded until CDC activates emergency funding. Total Year 1 federal request: USD 7,500,000, including USD 3,000,000 for Component 1.
 
-Geography. Uganda will be the primary country of implementation in Year 1, with East African corridor learning and cross-border signal protocols under MoH Uganda leadership. Additional countries will only be included where partner documentation and registration requirements are met.
+Geography. Uganda will be the primary country of implementation in Year 1, with East African corridor learning and cross-border signal protocols under MoH Uganda leadership. Additional countries will only be included where appropriate partner documentation and registration requirements are met.
 
 Expected outcomes include faster detection and response; stronger community and facility reporting; successful MoH/NISS-aligned data exchange tests; trained CHWs/VHTs and surge rosters; improved referral and follow-up for priority signals; and practical tools and learning for government and partners. About 5-10% of funds will support monitoring, evaluation, and learning aligned with DGHP indicators agreed with CDC after award.
 
@@ -57,6 +57,13 @@ Beneficiaries include communities served through FairBanks Community Reach, CHWs
 FairBanks is applying as an in-country local partner, bringing established community relationships, frontline health experience, and practical knowledge of last-mile health challenges. FairBanks will document local-partner preference criteria required by the funding notice.
 
 At its heart, this project is about helping communities recognise health threats earlier, connecting those signals to the public health system, enabling timely action before a local threat becomes a wider emergency.
+
+### A3. Project narrative attachment
+
+**Grants.gov form:** `WS01740564-ProjectNarrativeAttachments_1_2-V1.2.pdf`  
+**Narrative PDF:** `documents to fill/WS01740564-ProjectNarrative.pdf`  
+**Suggested upload name:** `Project_narrative.pdf`  
+NOFO headings (exact order): Background and approach (35) · Evaluation and performance measurement plan (30) including Data management plan · Organizational capacity (35) · Collaborations. Format: 12-pt, single-spaced, 1-inch margins, numbered pages; max 60 counted pages. Rebuild: `python applications/cdc-ghs-global/build_project_narrative_pdf.py`.
 
 ---
 

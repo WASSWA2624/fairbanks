@@ -86,7 +86,7 @@ COMPONENTS = [
         "purpose": (
             "Stand up a moderate-scale surge package for a small outbreak or public "
             "health emergency in FairBanks catchments and linked districts under MoH "
-            "direction — community investigation, referral surge, training refreshers, "
+            "direction: community investigation, referral surge, training refreshers, "
             "and temporary staffing/supplies."
         ),
     },
@@ -98,7 +98,7 @@ COMPONENTS = [
         "status": "Approved but unfunded (ABU) until CDC activates",
         "purpose": (
             "Scale a substantial response under MoH leadership when caseload, geography, "
-            "or severity exceeds Component 2 — expanded CHW/VHT surge, multi-district "
+            "or severity exceeds Component 2: expanded CHW/VHT surge, multi-district "
             "coordination, partner contractual surge, and logistics."
         ),
     },
@@ -122,7 +122,7 @@ COMPONENTS = [
         "status": "Approved but unfunded (ABU) until CDC activates",
         "purpose": (
             "Contingency package for a large-scale emerging threat response under MoH/"
-            "CDC activation — broader geographic coverage, heavier contractual surge, "
+            "CDC activation: broader geographic coverage, heavier contractual surge, "
             "and intensified field operations. Submitted on SF-424A Form 2."
         ),
     },
@@ -293,28 +293,28 @@ def simple_table(rows: list[tuple[str, int]], sty, label_w=5.2 * inch, amt_w=1.5
 def personnel_rows_c1(target: int) -> list[tuple[str, int]]:
     # Annual salary x % effort (12-month Year 1)
     base = [
-        ("Project Director / Authorized Official — 80% of $90,000", int(0.80 * 90000)),
-        ("Technical Lead, Surveillance & 7-1-7 — 100% of $62,000", 62000),
-        ("FCHIP / Data Systems Manager — 100% of $56,000", 56000),
-        ("M&E and Learning Specialist — 100% of $48,000", 48000),
-        ("Finance & Grants Compliance Manager — 100% of $52,000", 52000),
-        ("Training & Workforce Coordinator — 100% of $44,000", 44000),
-        ("Community Surveillance Officers (4) — 100% of $30,000 each", 120000),
-        ("CHW/VHT Supervisors (8) — 100% of $20,000 each", 160000),
-        ("Partner / MoH Liaison Officer — 100% of $40,000", 40000),
-        ("Admin & Operations Officers (2) — 100% of $24,000 each", 48000),
-        ("Drivers / field logistics (3) — 100% of $14,000 each", 42000),
+        ("Project Director / Authorized Official: 80% of $90,000", int(0.80 * 90000)),
+        ("Technical Lead, Surveillance & 7-1-7: 100% of $62,000", 62000),
+        ("FCHIP / Data Systems Manager: 100% of $56,000", 56000),
+        ("M&E and Learning Specialist: 100% of $48,000", 48000),
+        ("Finance & Grants Compliance Manager: 100% of $52,000", 52000),
+        ("Training & Workforce Coordinator: 100% of $44,000", 44000),
+        ("Community Surveillance Officers (4): 100% of $30,000 each", 120000),
+        ("CHW/VHT Supervisors (8): 100% of $20,000 each", 160000),
+        ("Partner / MoH Liaison Officer: 100% of $40,000", 40000),
+        ("Admin & Operations Officers (2): 100% of $24,000 each", 48000),
+        ("Drivers / field logistics (3): 100% of $14,000 each", 42000),
     ]
     return fit_rows(base, target)
 
 
 def personnel_rows_surge(target: int, scale_label: str) -> list[tuple[str, int]]:
     base = [
-        (f"Surge Coordinator ({scale_label}) — 100% of $48,000 (activation period)", 48000),
-        ("Field Epidemiologist / Investigation Lead — 100% of $44,000", 44000),
-        ("Data / Reporting Officer — 100% of $36,000", 36000),
-        ("Community Surge Supervisors (4) — 100% of $22,000 each", 88000),
-        ("Finance surge support — 50% of $40,000", 20000),
+        (f"Surge Coordinator ({scale_label}): 100% of $48,000 (activation period)", 48000),
+        ("Field Epidemiologist / Investigation Lead: 100% of $44,000", 44000),
+        ("Data / Reporting Officer: 100% of $36,000", 36000),
+        ("Community Surge Supervisors (4): 100% of $22,000 each", 88000),
+        ("Finance surge support: 50% of $40,000", 20000),
     ]
     # Scale remaining into temporary field staff pool
     used = sum(a for _, a in base)
@@ -421,18 +421,18 @@ def build_component(story, sty, comp: dict, cats: dict[str, int], w: float):
     if comp["id"] == "1":
         crow = fit_rows(
             [
-                ("Epidemiology / 7-1-7 practice advisor — ~60 days x $800", 48000),
-                ("One Health / zoonoses training consultant — ~40 days x $750", 30000),
-                ("Data standards / MoH-NISS interoperability consultant — ~45 days x $850", consult - 78000),
+                ("Epidemiology / 7-1-7 practice advisor: ~60 days x $800", 48000),
+                ("One Health / zoonoses training consultant: ~40 days x $750", 30000),
+                ("Data standards / MoH-NISS interoperability consultant: ~45 days x $850", consult - 78000),
             ],
             consult,
         )
     else:
         crow = fit_rows(
             [
-                (f"Surge epidemiology consultant — days x daily rate (pooled)", int(consult * 0.55)),
-                (f"Risk communication / RCCE consultant — pooled days", int(consult * 0.25)),
-                (f"Logistics / IPC technical consultant — pooled days", consult - int(consult * 0.55) - int(consult * 0.25)),
+                (f"Surge epidemiology consultant: days x daily rate (pooled)", int(consult * 0.55)),
+                (f"Risk communication / RCCE consultant: pooled days", int(consult * 0.25)),
+                (f"Logistics / IPC technical consultant: pooled days", consult - int(consult * 0.55) - int(consult * 0.25)),
             ],
             consult,
         )
@@ -614,7 +614,7 @@ def build():
         rightMargin=0.65 * inch,
         topMargin=0.7 * inch,
         bottomMargin=0.7 * inch,
-        title=f"Budget Narrative — {ORG} — {NOFO}",
+        title=f"Budget Narrative: {ORG}: {NOFO}",
         author=ORG,
     )
     w = LETTER[0] - 1.3 * inch
@@ -623,7 +623,7 @@ def build():
     story.append(p("BUDGET NARRATIVE ATTACHMENT", sty["kicker"]))
     story.append(
         p(
-            "Year 1 Budget Narrative — Strengthening Global Health Security "
+            "Year 1 Budget Narrative: Strengthening Global Health Security "
             "(Detect, Notify, Respond)",
             sty["title"],
         )
@@ -665,9 +665,9 @@ def build():
             "No restricted lobbying with federal funds.<br/>"
             "<b>Procurement:</b> FairBanks will use competitive methods appropriate to value, "
             "document selection, and avoid conflicts of interest.<br/>"
-            "<b>M&E:</b> About 5–10% of programme effort supports monitoring, evaluation, and "
+            "<b>M&E:</b> About 5-10% of programme effort supports monitoring, evaluation, and "
             "learning aligned to DGHP indicators agreed with CDC after award.<br/>"
-            "<b>SF-424A mapping:</b> Form 1 = Components 1–4 ($6,500,000). Form 2 = Component 5 "
+            "<b>SF-424A mapping:</b> Form 1 = Components 1-4 ($6,500,000). Form 2 = Component 5 "
             "($1,000,000) under Other Attachments. Combined Year 1 federal = $7,500,000.<br/>"
             "<b>CONFIRM before submit:</b> final salary scales, fringe policy, vendor quotes, "
             "indirect / MTDC treatment, and MoH partner contracting approach.",
