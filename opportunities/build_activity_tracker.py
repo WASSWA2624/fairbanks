@@ -183,8 +183,38 @@ def build() -> None:
             P1,
         )
     )
+    rows.append(
+        (
+            [
+                "1 - Do first",
+                "This week (in person)",
+                "Team",
+                "Physically visit Victoria University and follow up with the DVC AA",
+                "Victoria University - DVC Academic Affairs",
+                "",
+                "To do",
+                "Follow-up visit (per Racheal, 11 Aug 2026)",
+            ],
+            P1,
+        )
+    )
 
     # --- Priority 2: this week meetings / open drafts ---
+    rows.append(
+        (
+            [
+                "2 - This week",
+                "Fri 14 Aug 2026 (tentative)",
+                "Team",
+                "Meeting with Prof Firminus - save the date (confirm time/place)",
+                "Prof Firminus meeting",
+                "",
+                "Tentative - save date",
+                "Per Racheal, 11 Aug 2026",
+            ],
+            P2,
+        )
+    )
     rows.append(
         (
             [
