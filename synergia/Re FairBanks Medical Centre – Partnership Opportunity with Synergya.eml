@@ -1,0 +1,610 @@
+Return-Path: <info@synergya.io>
+Delivered-To: info@fairbanksmedicalcentre.org
+Received: from DIR-04 ([10.50.14.136])
+	by localhost with LMTP
+	id kAekCpGTnmooNQQAm6a3fA:P1
+	(envelope-from <info@synergya.io>)
+	for <info@fairbanksmedicalcentre.org>; Mon, 07 Sep 2026 06:36:01 -0400
+Received: from mxs-04.privateemail.com ([10.50.14.136])
+	by DIR-04 with LMTP
+	id kAekCpGTnmooNQQAm6a3fA
+	(envelope-from <info@synergya.io>)
+	for <info@fairbanksmedicalcentre.org>; Mon, 07 Sep 2026 10:36:01 +0000
+Received: from asp-relay-pe.jellyfish.systems (infra-nat.jellyfish.systems [198.177.122.24])
+	by mxs-04.privateemail.com (Postfix) with ESMTP id 4hdk4d18R8z3hhTJ
+	for <info@fairbanksmedicalcentre.org>; Mon,  7 Sep 2026 06:36:01 -0400 (EDT)
+Authentication-Results: asp-relay-pe.jellyfish.systems;
+	dkim=pass header.d=synergya.io header.s=ovhemp1222819-selector1 header.b=PLKjQ1xj;
+	spf=pass (asp-relay-pe.jellyfish.systems: domain of info@synergya.io designates 178.33.106.244 as permitted sender) smtp.mailfrom=info@synergya.io;
+	dmarc=pass (policy=none) header.from=synergya.io
+X-Original-To: <info@fairbanksmedicalcentre.org>
+Received: from 1.mo563.mail-out.ovh.net (1.mo563.mail-out.ovh.net [178.33.106.244])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by asp-relay-pe.jellyfish.systems (Postfix) with ESMTPS id 4hdk4V2crQz7t9F
+	for <info@fairbanksmedicalcentre.org>; Mon, 07 Sep 2026 10:35:54 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net (director6.derp.mail-out.ovh.net [79.137.60.226])
+	by mo563.mail-out.ovh.net (Postfix) with ESMTPS id 4hdk4P5fR3z5wBg;
+	Mon,  7 Sep 2026 10:35:49 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net (director6.derp.mail-out.ovh.net. [127.0.0.1])
+        by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+        for <info@fairbanksmedicalcentre.org>; Mon,  7 Sep 2026 10:35:49 +0000 (UTC)
+Received: from DAG6EX1.emp3.local (unknown [10.108.42.39])
+	by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4hdk4P42Hjz47ld;
+	Mon,  7 Sep 2026 10:35:49 +0000 (UTC)
+Received: from DAG6EX2.emp3.local (172.16.2.62) by DAG6EX1.emp3.local
+ (172.16.2.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 7 Sep
+ 2026 12:35:49 +0200
+Received: from DAG6EX2.emp3.local ([fe80::9beb:5177:e9df:9250]) by
+ DAG6EX2.emp3.local ([fe80::9beb:5177:e9df:9250%3]) with mapi id
+ 15.02.2562.046; Mon, 7 Sep 2026 12:35:48 +0200
+From: Info Synergya <info@synergya.io>
+To: info <info@fairbanksmedicalcentre.org>
+CC: "nracheal017@gmail.com" <nracheal017@gmail.com>, "dkawoozo@gmail.com"
+	<dkawoozo@gmail.com>, "tyrabecky@gmail.com" <tyrabecky@gmail.com>
+Subject: =?Windows-1252?Q?Re:_FairBanks_Medical_Centre_=96_Partnership_Opportunity?=
+ =?Windows-1252?Q?_with_Synergya?=
+Thread-Topic: =?Windows-1252?Q?FairBanks_Medical_Centre_=96_Partnership_Opportunity_wit?=
+ =?Windows-1252?Q?h_Synergya?=
+Thread-Index: AQHdO5lbjyEPe4AaxUWhTQsoWWEqAbbC8a+E
+Date: Mon, 7 Sep 2026 10:35:48 +0000
+Message-ID: <6bbcdb51710146c39f2616d0f05a9617@synergya.io>
+References: <4BFKOG7S7UU4.CRZKPK2VWHG21@mailcore-795886656f-4pqdq>
+In-Reply-To: <4BFKOG7S7UU4.CRZKPK2VWHG21@mailcore-795886656f-4pqdq>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [45.80.136.213]
+Content-Type: multipart/alternative;
+	boundary="_000_6bbcdb51710146c39f2616d0f05a9617synergyaio_"
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; d=synergya.io; s=ovhemp1222819-selector1;
+ c=relaxed/relaxed; t=1788777349; h=from:to:subject:date;
+ bh=Bz8EpgBXn9hP+zYN3ghVdy+jvH7VWwZ7ZKmGi5YFuq8=;
+ b=PLKjQ1xjpud9STynIEgrkTTpFOPthgBW3Edn70exorDZ2/n0G0pceuIitmPud208gpscyiRIA7M9H2Zwh2wnWZ4j2m3BL2ZpM8LKVxdJwiMg1/kc08zqM1PuULHvnA1yDGChV7kPKH6tKAOiGSeDi6mKae6doPdeFKP7/woRvFLi0qu/jAY9UkLe3m8UzTdRaXvSDXzNjMKlKJcJwS88Fjmvc0uAbD3P6IeIoUTNpKpxRrCwfe0yoh52l+8eKLsP2M2ka9qlUL2LMNS3AGXodpti+6fTcIVfU6cGe+8akJmNQDevN/25/IxmdLMGjQDIvgFMl5Yf4O3CmS1wRFLXXQ==
+x-ovh-tracer-id: 10629902498676986484
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: dmFkZTE3LOjFilr3v//J5UPulSAdyE9ALCo2T7hkotCdP9zeAKw474nqmvCR+OqGg54nb08fh7yAEJod2P0nmoyc/5naZeudhN5J78T6dJBg1nCEp0ARVKXo5/WrtIoY/NDTTm2Ucr6xNGJzLSqT+0eDO2jgLrmXtx36G43TdZCmGfCWOKCmwN7w6Mmewo3bi4lyi0d8/QjYfqYrXJ62UxEC9x5DrOro9BHOv5dRejWbXQ1yLOTu713/ZvmNjlgMi+B0cJs+9XDy7dx+HIteIY4F5RU6iW3Pe2OfGgofZuXCEQcTFI56RJhMAuLL00JuYTLBzSI3qABZAARzgBynRobMFu3mXyHl+hY21nXl49s3DNtYqV6YLHY6ffxlbgojL0xPxY5lPAtef0VrLSIUUo8TGrjLc4d3iHJC0Vkhuk1pqEINcLhZUGjBoUiQnZagL0hnHVmt/VIuJbJa1zKtmSn5FyE8/yjnfue3qgtYafITGgscBMOmKyaNskBaWJvUpZCjJRUcusctxArgYOWT9h4QJT11Vi9kq2fpt8c8Fd/vcyu/BDl9SGkua0nmq3xRk65VlpYimrRGATa9pPDjOWUBWk0PzFjCuLlyUiBVFpZVI2Pa+JIv6mx5Zj9IIbUiVgOTVgqv8PnsXVdjmXP1RXErUnQbwGbZSnPxIqDl6hnjLb/COQ
+
+--_000_6bbcdb51710146c39f2616d0f05a9617synergyaio_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Racheal,
+
+
+Thank you again for sharing the FairBanks Partnership Brief. We see a stron=
+g thematic and geographic fit with Synergya, particularly around healthcare=
+ innovation and the Uganda/East Africa ecosystem.
+
+
+At this stage, I think the most appropriate way for us to work together is =
+through our Ecosystem Partner model, rather than positioning FairBanks as a=
+ Synergya venture. As a first step to that, we would be very happy to onboa=
+rd FairBanks as an Ecosystem Partner now, particularly if you can help us i=
+dentify and refer relevant Ugandan health and sustainability startups and s=
+caleups that could benefit from Synergya's zero-fee, zero-equity scaling mo=
+del. Once we have received the above information and started seeing some re=
+levant Ugandan startups referred through FairBanks, I suggest we find time =
+to meet end of October to review the first opportunities and discuss the fo=
+rmalisation of our agreement.
+
+
+For referred ventures, please ask them to apply through https://synergya.io=
+/apply and use referral code 67E06CE1, which is valid through the end of se=
+pt 2026. We would also be pleased for you to share this short video with re=
+levant founders to help them understand what Synergya does:
+
+https://www.youtube.com/watch?v=3DsnNAGIvMA0c
+
+
+Looking further ahead, we expect our next marketplace release in approximat=
+ely 6 months to open the Partner Circle to a broader range of providers and=
+ implementation partners. Given FairBanks' operating healthcare environment=
+ in Kampala, community-facing capacity and potential to support pilots and =
+local implementation, there may be a particularly interesting role for you =
+there. When we reach that stage, we would be happy to explore FairBanks bec=
+oming an official Synergya Marketplace Provider, with a defined set of serv=
+ices, facilities or implementation capabilities made available to Synergya =
+members under preferential conditions.
+
+
+For now, it would be very helpful if you could start identifying the specif=
+ic services, facilities or capabilities FairBanks could make available to S=
+ynergya members, together with your preferential pricing or conditions. As =
+a general principle, marketplace offers should be either fully free or at l=
+east 20% below market value for Synergya members, and Synergya charges 15% =
+on completed sales. There is no listing fee.
+
+
+We are also currently a finalist for the Swiss Future Award 2026 and would =
+greatly appreciate FairBanks' support with a vote:
+https://www.linkedin.com/posts/synergyaintl_were-in-theswiss-future-awardfi=
+nals-activity-7500942633754787840-O5R4
+
+
+We look forward to seeing what we can build together.
+
+
+Warm regards,
+Lucy Setian
+Founder
+Synergya.io<https://synergya.io>
+Swiss Social Enterprise & Venture Scaler
+2026 ITU/WSIS Prizes Champion - Best International Cooperation
+Swiss Future Award 2026 - Top 5 Innovation Finalist
+info@synergya.io<mailto:info@synergya.io>
++41 78 326 07 03
+
+
+
+________________________________
+From: info <info@fairbanksmedicalcentre.org>
+Sent: Thursday, September 3, 2026 11:42:28 AM
+To: Info Synergya
+Cc: nracheal017@gmail.com; dkawoozo@gmail.com; tyrabecky@gmail.com
+Subject: FairBanks Medical Centre =96 Partnership Opportunity with Synergya
+
+
+
+
+Dear Synergya Team,
+
+Thank you for your encouraging response and for inviting us to share more a=
+bout FairBanks and the kind of partnership we would like to explore.
+
+Please find attached our FairBanks Medical Centre Investment & Partnership =
+Brief, which provides an overview of our current position, transformation v=
+ision and potential partnership pathways.
+
+About FairBanks
+
+FairBanks Medical Centre is an operating healthcare institution in Kampala,=
+ Uganda, building toward an integrated Family & Community Health Social Ent=
+erprise. Our vision is to connect quality clinical and specialist care with=
+ preventive healthcare, community engagement, digital health, research, inn=
+ovation and more sustainable approaches to healthcare access.
+
+Our longer-term ambition is to develop FairBanks into a leading Family & Co=
+mmunity Health Social Enterprise in Uganda, with the capacity to create mea=
+surable and scalable impact across communities. Our 2027=962032 roadmap foc=
+uses on clinical and specialist services, preventive and community healthca=
+re, digital health and community health intelligence, research and innovati=
+on, inclusive healthcare financing, institutional capacity and long-term pa=
+rtnerships.
+
+What we are looking to explore with Synergya
+
+We are particularly interested in exploring how Synergya could support Fair=
+Banks to move from a promising local healthcare model toward a scalable, su=
+stainable and impact-driven community health platform.
+
+Specifically, we would welcome conversations around:
+
+  *   Strategic scaling: advice and support on developing a scalable model =
+for our community health initiatives.
+  *   Partnership development: connections to organisations, institutions, =
+investors and development partners that could strengthen our model.
+  *   Health innovation and digital transformation: guidance, partnerships =
+or technical expertise that can strengthen our digital health and community=
+ health intelligence ambitions.
+  *   Impact and sustainability: support in developing stronger models for =
+measuring impact, financing programmes and building long-term sustainabilit=
+y.
+  *   Investment and growth opportunities: exploring suitable financing or =
+investment partnerships for infrastructure, technology, community programme=
+s and service expansion.
+
+These areas align closely with the partnership pathways we have identified,=
+ including clinical care, diagnostics and technology, digital health, commu=
+nity health, research and innovation, and infrastructure and growth.
+
+What FairBanks can offer in return
+
+We are approaching this as a mutually beneficial strategic partnership, rat=
+her than simply seeking financial support.
+
+FairBanks can offer Synergya an opportunity to:
+
+  *   Co-develop and test community health solutions within an operating he=
+althcare environment in Uganda.
+  *   Provide a practical platform for piloting innovations in community-ba=
+sed healthcare, preventive services and digital health.
+  *   Generate local insights and learning from implementation within under=
+served urban and peri-urban communities.
+  *   Contribute healthcare expertise, community relationships and implemen=
+tation capacity to joint initiatives.
+  *   Build a long-term partnership in Uganda and potentially East Africa a=
+round scalable healthcare solutions with measurable social impact.
+
+Our partnership philosophy is simple: =93We are not simply seeking resource=
+s. We are seeking partners who want to explore what can be built together.=
+=94
+
+We would therefore be very interested in an introductory conversation with =
+the Synergya team to understand your current areas of focus and explore whe=
+re our respective capabilities, networks and ambitions may intersect.
+
+Thank you again for the opportunity to introduce FairBanks. We look forward=
+ to exploring what we might be able to build together.
+
+Warm regards,
+Racheal Nabukeera Sekagiri
+Managing Director
+FairBanks Medical Centre Limited
+Kampala, Uganda
++256 777 462 398
+info@fairbanksmedicalcentre.org<mailto:info@fairbanksmedicalcentre.org>
+www.fairbanksmedicalcentre.org
+
+Attachment: FairBanks Medical Centre =96 Investment & Partnership Brief
+
+
+--_000_6bbcdb51710146c39f2616d0f05a9617synergyaio_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style>
+body,
+.spm-email {
+    font: 400 1rem / 1.5 "GB Proxima Nova", -apple-system, BlinkMacSystemFo=
+nt, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", =
+"Segoe UI Emoji", "Segoe UI Symbol";
+    overflow-y: hidden;
+    color: var(--sds-color-text-neutral-primary, #2b2b2d);
+    text-rendering: geometricprecision;
+    -webkit-font-smoothing: antialiased;
+    min-width: unset !important;
+}
+
+html[data-sds-mode=3D"dark"] {
+    background: none !important;
+}
+
+pre {
+    word-break: initial;
+    white-space: pre-wrap;
+}
+
+blockquote,
+.spm-email blockquote {
+    margin: 16px 0 0;
+    padding: 16px 0 0;
+    color: var(--sds-color-text-neutral-primary, #2b2b2d);
+    border-top: 1px solid var(--sds-color-border-neutral-subtle, #6f6e6f);
+}
+
+.spm-quoted-email--title,
+.spm-email .spm-quoted-email--title {
+    width: auto;
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--sds-color-text-neutral-secondary, #575860);
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.spm-email .spm-signature-block {
+    margin-top: 24px;
+}
+
+.spm-signature-block p {
+    margin: 0;
+}
+
+.spm-embedded-image:not([width], [style*=3D"width"]) {
+  max-inline-size: 100%;
+  min-inline-size: 38px;
+}
+
+.spm-email hr,
+hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--sds-color-border-inverted-minimal);
+}
+   =20
+#iframeContentContainer {
+    width: 100%;=20
+    padding-bottom: 18px;
+}</style>
+</head>
+<body class=3D"spm-email">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<p data-start=3D"1476" data-end=3D"1489" class=3D"PDq2pG_selectionAnchorCon=
+tainer">Dear Racheal,<span aria-hidden=3D"true" class=3D"PDq2pG_selectionAn=
+chor"></span></p>
+<p data-start=3D"1476" data-end=3D"1489" class=3D"PDq2pG_selectionAnchorCon=
+tainer"><br>
+</p>
+<p data-start=3D"1491" data-end=3D"1690">Thank you again for sharing the Fa=
+irBanks Partnership Brief. We see a strong thematic and geographic fit with=
+ Synergya, particularly around healthcare innovation and the Uganda/East Af=
+rica ecosystem.</p>
+<p data-start=3D"1491" data-end=3D"1690"><br>
+</p>
+<p data-start=3D"1692" data-end=3D"1864">At this stage, I think the most ap=
+propriate way for us to work together is through our
+<strong data-start=3D"1779" data-end=3D"1806">Ecosystem Partner model</stro=
+ng>, rather than positioning FairBanks as a Synergya venture. As a first st=
+ep to that, w<span style=3D"font-size: 12pt;">e would be very happy to onbo=
+ard FairBanks as an Ecosystem Partner
+ now, particularly if you can help us identify and refer relevant </span><s=
+trong data-start=3D"1999" data-end=3D"2058" style=3D"font-size: 12pt;">Ugan=
+dan health and sustainability startups and scaleups</strong><span style=3D"=
+font-size: 12pt;"> that could benefit from
+ Synergya's zero-fee, zero-equity scaling model.&nbsp;</span><span style=3D=
+"font-size: 12pt;">Once we have received the above information and started =
+seeing some relevant Ugandan startups referred through FairBanks, I suggest=
+ we find time to meet end of&nbsp;</span><strong data-start=3D"3701" data-e=
+nd=3D"3718" style=3D"font-size: 12pt;">October</strong><span style=3D"font-=
+size: 12pt;">
+ to review the first opportunities and discuss the formalisation of our agr=
+eement.</span><span style=3D"font-size: 12pt;"></p>
+<p data-start=3D"3545" data-end=3D"3789"><br style=3D"font-family: Calibri,=
+ Helvetica, sans-serif, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Seg=
+oe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Andro=
+id Emoji&quot;, EmojiSymbols; font-size: 16px;">
+</p>
+</span>
+<p></p>
+<p data-start=3D"2132" data-end=3D"2293">For referred ventures, please ask =
+them to apply through
+<strong data-start=3D"2188" data-end=3D"2217"><a data-start=3D"2190" data-e=
+nd=3D"2215" rel=3D"noopener" target=3D"_new" class=3D"decorated-link" href=
+=3D"https://synergya.io/apply" id=3D"LPlnk421106" previewremoved=3D"true">h=
+ttps://synergya.io/apply</a></strong> and use referral
+ code <strong data-start=3D"2240" data-end=3D"2252">67E06CE1</strong>, whic=
+h is valid through the end of sept 2026.&nbsp;<span style=3D"font-size: 12p=
+t;">We would also be pleased for you to share this short video with relevan=
+t founders to help them understand what Synergya
+ does:</span></p>
+<p data-start=3D"2295" data-end=3D"2466"><a data-start=3D"2423" data-end=3D=
+"2466" rel=3D"noopener" target=3D"_new" class=3D"decorated-link cursor-poin=
+ter">https://www.youtube.com/watch?v=3DsnNAGIvMA0c&nbsp;</a></p>
+<p data-start=3D"2295" data-end=3D"2466"><a data-start=3D"2423" data-end=3D=
+"2466" rel=3D"noopener" target=3D"_new" class=3D"decorated-link cursor-poin=
+ter"><br>
+</a></p>
+<p data-start=3D"2468" data-end=3D"2855">Looking further ahead, we expect o=
+ur <strong data-start=3D"2505" data-end=3D"2561">
+next marketplace release in approximately 6&nbsp;months</strong> to open th=
+e Partner Circle to a broader range of
+<b><u>providers and implementation partners.</u></b> Given FairBanks' opera=
+ting healthcare environment in Kampala, community-facing capacity and poten=
+tial to support pilots and local implementation, there may be a particularl=
+y interesting role for you there.&nbsp;<span style=3D"font-size: 12pt;">Whe=
+n
+ we reach&nbsp;that stage, we would be happy to explore FairBanks becoming =
+an </span><strong data-start=3D"2923" data-end=3D"2965" style=3D"font-size:=
+ 12pt;">official Synergya Marketplace Provider</strong><span style=3D"font-=
+size: 12pt;">, with a defined set of services,
+ facilities or implementation capabilities made available to Synergya membe=
+rs under preferential conditions.</span></p>
+<p data-start=3D"2857" data-end=3D"3106"><br>
+</p>
+<p data-start=3D"3108" data-end=3D"3543">For now, it would be very helpful =
+if you could start identifying the specific
+<strong data-start=3D"3186" data-end=3D"3277">services, facilities or capab=
+ilities FairBanks could make available to Synergya members</strong>, togeth=
+er with your preferential pricing or conditions. As a general principle, ma=
+rketplace offers should be either fully
+ free or at least <strong data-start=3D"3417" data-end=3D"3464">20% below m=
+arket value for Synergya members</strong>, and Synergya charges
+<strong data-start=3D"3487" data-end=3D"3513">15% on completed sales</stron=
+g>. There is
+<strong data-start=3D"3524" data-end=3D"3542">no listing fee</strong>.</p>
+<p data-start=3D"3108" data-end=3D"3543"><br>
+</p>
+<p data-start=3D"3791" data-end=3D"4036">We are also currently a finalist f=
+or the <strong data-start=3D"3832" data-end=3D"3859">
+Swiss Future Award 2026</strong> and would greatly appreciate FairBanks' su=
+pport with a vote:<br data-start=3D"3920" data-end=3D"3923">
+<a data-start=3D"3923" data-end=3D"4036" rel=3D"noopener" target=3D"_new" c=
+lass=3D"decorated-link cursor-pointer">https://www.linkedin.com/posts/syner=
+gyaintl_were-in-theswiss-future-awardfinals-activity-7500942633754787840-O5=
+R4</a></p>
+<p data-start=3D"3791" data-end=3D"4036"><a data-start=3D"3923" data-end=3D=
+"4036" rel=3D"noopener" target=3D"_new" class=3D"decorated-link cursor-poin=
+ter"><br>
+</a></p>
+<p data-start=3D"4038" data-end=3D"4091">We look forward to seeing what we =
+can build together.</p>
+<p data-start=3D"4038" data-end=3D"4091"><br>
+</p>
+<p data-start=3D"4093" data-end=3D"4380">Warm regards,<br data-start=3D"410=
+6" data-end=3D"4109">
+<strong data-start=3D"4109" data-end=3D"4129">Lucy Setian</strong><br data-=
+start=3D"4129" data-end=3D"4132">
+Founder<br data-start=3D"4139" data-end=3D"4142">
+<strong data-start=3D"4142" data-end=3D"4180"><a data-start=3D"4144" data-e=
+nd=3D"4178" rel=3D"noopener" target=3D"_new" class=3D"decorated-link" href=
+=3D"https://synergya.io">Synergya.io</a></strong><br data-start=3D"4180" da=
+ta-end=3D"4183">
+Swiss Social Enterprise &amp; Venture Scaler<br data-start=3D"4223" data-en=
+d=3D"4226">
+2026 ITU/WSIS Prizes Champion - Best International Cooperation<br data-star=
+t=3D"4288" data-end=3D"4291">
+Swiss Future Award 2026 - Top 5 Innovation Finalist<br data-start=3D"4342" =
+data-end=3D"4345">
+<a data-start=3D"4345" data-end=3D"4361" class=3D"decorated-link" href=3D"m=
+ailto:info@synergya.io" rel=3D"noopener">info@synergya.io</a><br data-start=
+=3D"4361" data-end=3D"4364">
+&#43;41 78 326 07 03</p>
+<br>
+<p></p>
+<p><br>
+</p>
+<div id=3D"Signature">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
+uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
+uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<p></p>
+</div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> info &lt;info@fairban=
+ksmedicalcentre.org&gt;<br>
+<b>Sent:</b> Thursday, September 3, 2026 11:42:28 AM<br>
+<b>To:</b> Info Synergya<br>
+<b>Cc:</b> nracheal017@gmail.com; dkawoozo@gmail.com; tyrabecky@gmail.com<b=
+r>
+<b>Subject:</b> FairBanks Medical Centre =96 Partnership Opportunity with S=
+ynergya</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 10.5pt;=
+">
+<p data-end=3D"726" data-start=3D"649"><strong data-end=3D"726" data-start=
+=3D"649">&nbsp;</strong><span></span></p>
+<p data-end=3D"747" data-start=3D"728">Dear Synergya Team,</p>
+<p data-end=3D"892" data-start=3D"749">Thank you for your encouraging respo=
+nse and for inviting us to share more about FairBanks and the kind of partn=
+ership we would like to explore.</p>
+<p data-end=3D"1089" data-start=3D"894">Please find attached our <strong da=
+ta-end=3D"978" data-start=3D"919">
+FairBanks Medical Centre Investment &amp; Partnership Brief</strong>, which=
+ provides an overview of our current position, transformation vision and po=
+tential partnership pathways.</p>
+<h3 data-end=3D"1110" data-start=3D"1091" data-section-id=3D"1i1abr6">About=
+ FairBanks</h3>
+<p data-end=3D"1515" data-start=3D"1112">FairBanks Medical Centre is an ope=
+rating healthcare institution in Kampala, Uganda, building toward an integr=
+ated
+<strong data-end=3D"1273" data-start=3D"1226">Family &amp; Community Health=
+ Social Enterprise</strong>. Our vision is to connect quality clinical and =
+specialist care with preventive healthcare, community engagement, digital h=
+ealth, research, innovation and more sustainable
+ approaches to healthcare access. <span data-content-reference-end=3D"1499"=
+ data-content-reference-start=3D"1470">
+</span></p>
+<p data-end=3D"2014" data-start=3D"1517">Our longer-term ambition is to dev=
+elop FairBanks into a leading Family &amp; Community Health Social Enterpri=
+se in Uganda, with the capacity to create measurable and scalable impact ac=
+ross communities. Our 2027=962032 roadmap
+ focuses on clinical and specialist services, preventive and community heal=
+thcare, digital health and community health intelligence, research and inno=
+vation, inclusive healthcare financing, institutional capacity and long-ter=
+m partnerships.
+<span data-content-reference-end=3D"1990" data-content-reference-start=3D"1=
+961"></span></p>
+<h3 data-end=3D"2064" data-start=3D"2016" data-section-id=3D"10r9x5v">What =
+we are looking to explore with Synergya</h3>
+<p data-end=3D"2274" data-start=3D"2066">We are particularly interested in =
+exploring how Synergya could support FairBanks to
+<strong data-end=3D"2273" data-start=3D"2150">move from a promising local h=
+ealthcare model toward a scalable, sustainable and impact-driven community =
+health platform</strong>.</p>
+<p data-end=3D"2328" data-start=3D"2276">Specifically, we would welcome con=
+versations around:</p>
+<ul data-end=3D"3095" data-start=3D"2330">
+<li data-end=3D"2442" data-start=3D"2330" data-section-id=3D"vtpvp7"><stron=
+g data-end=3D"2354" data-start=3D"2332">Strategic scaling:</strong> advice =
+and support on developing a scalable model for our community health initiat=
+ives.
+</li><li data-end=3D"2585" data-start=3D"2443" data-section-id=3D"10t0mky">=
+<strong data-end=3D"2473" data-start=3D"2445">Partnership development:</str=
+ong> connections to organisations, institutions, investors and development =
+partners that could strengthen our model.
+</li><li data-end=3D"2767" data-start=3D"2586" data-section-id=3D"19s1mjv">=
+<strong data-end=3D"2637" data-start=3D"2588">Health innovation and digital=
+ transformation:</strong> guidance, partnerships or technical expertise tha=
+t can strengthen our digital health and community
+ health intelligence ambitions. </li><li data-end=3D"2920" data-start=3D"27=
+68" data-section-id=3D"1i10g7u"><strong data-end=3D"2800" data-start=3D"277=
+0">Impact and sustainability:</strong> support in developing stronger model=
+s for measuring impact, financing programmes and building long-term sustain=
+ability.
+</li><li data-end=3D"3095" data-start=3D"2921" data-section-id=3D"1pnx27m">=
+<strong data-end=3D"2963" data-start=3D"2923">Investment and growth opportu=
+nities:</strong> exploring suitable financing or investment partnerships fo=
+r infrastructure, technology, community programmes
+ and service expansion. </li></ul>
+<p data-end=3D"3353" data-start=3D"3097">These areas align closely with the=
+ partnership pathways we have identified, including clinical care, diagnost=
+ics and technology, digital health, community health, research and innovati=
+on, and infrastructure and growth.
+<span data-content-reference-end=3D"3321" data-content-reference-start=3D"3=
+292"></span></p>
+<h3 data-end=3D"3393" data-start=3D"3355" data-section-id=3D"1j4zw0s">What =
+FairBanks can offer in return</h3>
+<p data-end=3D"3516" data-start=3D"3395">We are approaching this as a <stro=
+ng data-end=3D"3469" data-start=3D"3424">
+mutually beneficial strategic partnership</strong>, rather than simply seek=
+ing financial support.</p>
+<p data-end=3D"3565" data-start=3D"3518">FairBanks can offer Synergya an op=
+portunity to:</p>
+<ul data-end=3D"4175" data-start=3D"3567">
+<li data-end=3D"3673" data-start=3D"3567" data-section-id=3D"mrk8sq"><stron=
+g data-end=3D"3619" data-start=3D"3569">Co-develop and test community healt=
+h solutions</strong> within an operating healthcare environment in Uganda.
+</li><li data-end=3D"3804" data-start=3D"3674" data-section-id=3D"1f59g4p">=
+<strong data-end=3D"3733" data-start=3D"3676">Provide a practical platform =
+for piloting innovations</strong> in community-based healthcare, preventive=
+ services and digital health.
+</li><li data-end=3D"3920" data-start=3D"3805" data-section-id=3D"15ru7kd">=
+<strong data-end=3D"3847" data-start=3D"3807">Generate local insights and l=
+earning</strong> from implementation within underserved urban and peri-urba=
+n communities.
+</li><li data-end=3D"4033" data-start=3D"3921" data-section-id=3D"adwjbm"><=
+strong data-end=3D"4011" data-start=3D"3923">Contribute healthcare expertis=
+e, community relationships and implementation capacity</strong> to joint in=
+itiatives.
+</li><li data-end=3D"4175" data-start=3D"4034" data-section-id=3D"1hvmbib">=
+<strong data-end=3D"4107" data-start=3D"4036">Build a long-term partnership=
+ in Uganda and potentially East Africa</strong> around scalable healthcare =
+solutions with measurable social impact.
+</li></ul>
+<p data-end=3D"4367" data-start=3D"4177">Our partnership philosophy is simp=
+le: <strong data-end=3D"4329" data-start=3D"4215">
+=93We are not simply seeking resources. We are seeking partners who want to=
+ explore what can be built together.=94</strong>
+<span data-content-reference-end=3D"4327" data-content-reference-start=3D"4=
+298"></span></p>
+<p data-end=3D"4588" data-start=3D"4369">We would therefore be very interes=
+ted in an introductory conversation with the Synergya team to understand yo=
+ur current areas of focus and explore where our respective capabilities, ne=
+tworks and ambitions may intersect.</p>
+<p data-end=3D"4719" data-start=3D"4590">Thank you again for the opportunit=
+y to introduce FairBanks. We look forward to exploring what we might be abl=
+e to build together.</p>
+<p data-end=3D"4930" data-start=3D"4721">Warm regards,<br data-end=3D"4737"=
+ data-start=3D"4734">
+<strong data-end=3D"4767" data-start=3D"4737">Racheal Nabukeera Sekagiri</s=
+trong><br data-end=3D"4770" data-start=3D"4767">
+Managing Director<br data-end=3D"4790" data-start=3D"4787">
+<strong data-end=3D"4826" data-start=3D"4790">FairBanks Medical Centre Limi=
+ted</strong><br data-end=3D"4829" data-start=3D"4826">
+Kampala, Uganda<br data-end=3D"4847" data-start=3D"4844">
+&#43;256 777 462 398<br data-end=3D"4866" data-start=3D"4863">
+<a target=3D"_blank" href=3D"mailto:info@fairbanksmedicalcentre.org" data-e=
+nd=3D"4897" data-start=3D"4866" rel=3D"noopener noreferrer">info@fairbanksm=
+edicalcentre.org</a><br data-end=3D"4900" data-start=3D"4897">
+<a target=3D"_blank" data-end=3D"4930" data-start=3D"4900">www.fairbanksmed=
+icalcentre.org</a></p>
+<p data-end=3D"5005" data-start=3D"4932"><strong data-end=3D"4947" data-sta=
+rt=3D"4932">Attachment:</strong> FairBanks Medical Centre =96 Investment &a=
+mp; Partnership Brief</p>
+<br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_6bbcdb51710146c39f2616d0f05a9617synergyaio_--
