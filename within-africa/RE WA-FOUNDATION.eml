@@ -1,0 +1,546 @@
+Return-Path: <stif.africa@gmail.com>
+Delivered-To: info@fairbanksmedicalcentre.org
+Received: from DIR-03 ([10.50.14.133])
+	by localhost with LMTP
+	id kDF+JByCnWrT1QwAtNLlyA:P1
+	(envelope-from <stif.africa@gmail.com>)
+	for <info@fairbanksmedicalcentre.org>; Sun, 06 Sep 2026 11:09:16 -0400
+Received: from mxs-01.privateemail.com ([10.50.14.133])
+	by DIR-03 with LMTP
+	id kDF+JByCnWrT1QwAtNLlyA
+	(envelope-from <stif.africa@gmail.com>)
+	for <info@fairbanksmedicalcentre.org>; Sun, 06 Sep 2026 15:09:16 +0000
+Received: from asp-relay-pe.jellyfish.systems (infra-nat.jellyfish.systems [198.177.122.24])
+	by mxs-01.privateemail.com (Postfix) with ESMTP id 4hdDBN4DVZz3hhTD
+	for <info@fairbanksmedicalcentre.org>; Sun,  6 Sep 2026 11:09:16 -0400 (EDT)
+Authentication-Results: asp-relay-pe.jellyfish.systems;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BXQUD27D;
+	spf=pass (asp-relay-pe.jellyfish.systems: domain of stif.africa@gmail.com designates 209.85.214.177 as permitted sender) smtp.mailfrom=stif.africa@gmail.com;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
+X-Original-To: <info@fairbanksmedicalcentre.org>
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by asp-relay-pe.jellyfish.systems (Postfix) with ESMTPS id 4hdDBG6LtKz3wbc
+	for <info@fairbanksmedicalcentre.org>; Sun, 06 Sep 2026 15:09:10 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2ceab75934dso25584395ad.2
+        for <info@fairbanksmedicalcentre.org>; Sun, 06 Sep 2026 08:09:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1788707350; cv=none;
+        d=google.com; s=arc-20260327;
+        b=E08VcHWxnqWsUNnWVGEObfTdIPMZquAOMWQ3uUJ26guB4FBOn5p6Os9GmaNaykbS0f
+         weZzAU2J6Ddg08EckFGYceJ+J2hl3onwbILEbep5fcppT4v4NJXN7tEbkzuWww00XSnz
+         oPCLX7i0uQpqOFGrAb26shS6xufJ8QVEAvRt5piRYgmqWwlptuQJhn0llyZfAkn4sPY6
+         /pYd4Gl92QRPQqPtP20Of6KQnOVDFCF1Drh0uRyIgxuDAHabIobf94YYNhR6L/u8O3Mg
+         3k9eG2VX7gAhTskkVrdXDNKstITAIyMFpDVW9BaQpc8ENmV9FGgPATVtAhv0xpwChRnF
+         JqDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Y2mjRtJcrubi83h7oKmjBzVoLtzlO8LD/RtLeG3nwto=;
+        fh=iRAOGyvvaU9H6iN1uWKb5Fnv6AOCLNFL8hy3Z+I3aWM=;
+        b=WZlf+9dG9G4OeAjTl4n37fKaLRndCATJSignsRTXLQQcNINbGUPvJlblvjARYnOrqa
+         Oz4LXdTOR/druHBngo4AOgrrbufzG3KDdjqXzvgUAbqBOrWnE2xlxOh2GAtKO4ucL2Wn
+         Sakmfpif2mOg8wC/nrigXXAl3+ItNfx21EExtMFQ2kddBcukU2nZJ7EQvAqcMZ3d94Mp
+         6BiqeCNbsPd91O4yyO6Y86a4iIzp4lLVwyGR/cUMjau3/PJqGg1ZrynmcJiIjeBwVvdj
+         Z6RzTQrQsZjjhQeRGo8r/ZS8gUYIhQaKH1oAdXTGRFxYdNLfDsIxzFir3jgJD4v7sZAg
+         q1zw==;
+        darn=fairbanksmedicalcentre.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1788707350; x=1789312150; darn=fairbanksmedicalcentre.org;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=Y2mjRtJcrubi83h7oKmjBzVoLtzlO8LD/RtLeG3nwto=;
+        b=BXQUD27DjkWDaVeW47Lm7Soy3bL/cXaXH/roPzsYgi5w++6YQBNPKsTRQM3B1JWe+Z
+         hJFqIgKbkGNY6Ko2OwJeGl9biT2sg4rZ7qxKG7qcVW/vni8v0lX2wkzeJLPM+wQ0DpcS
+         71RmDh3TC25qnp0PEuKAY1BLOBsznCgHKM1LLrqqt/o9vwPkbCTdeno7Jw83Zjz8tIIG
+         BT1VqvUV26tDdZvANRx94qY2acjMK5Br08m7nh/MrZ9yT03o5JY7pOPsfmBS37bb7aLC
+         Q8yZv/yOEmONx53MsW/zpuIK7UjKeF/eh615cBOOTW36pQtRnVASwo2pl6oqVpOxDeRC
+         yUNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788707350; x=1789312150;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Y2mjRtJcrubi83h7oKmjBzVoLtzlO8LD/RtLeG3nwto=;
+        b=k16vKF2b16yoCEfBNsKXCJ2PXKk4Oq61soOayqHQT2sgiO9NYyG6vH1jnfA3ikT6vT
+         51FA/hFQlBISJ5Ee6uY9Gvz2n0ZILrlK/1gsswbKkzYhHtRI1Lh2SfhfqhjQktfnNZz9
+         J9I/Fz/Kyb8xzauXHJQbmH3RQVBmIkd7cFm8J7saBQSrC6v/xx9bdsWiHI9e23otTKtG
+         nV/XTV79Siprp5V/+8Y114JQexhop6tGMs021Ns5IWxRTeMuu3lrccMfWLUJGLxlGCB5
+         K3E9KmoHB0eOVWG9gd/dSs/2bnY2uyBPDPJakIA0A6QBbDzyLwdT5xGHVwQV+QK/5DR6
+         dFYw==
+X-Gm-Message-State: AFuF++ngU5ykWIgnyrI1icAad26X3PaIhVe2CmkjAppxMgiZ46t7wkbc
+	aVsfuaGSP7nu7IKwmkubekg/pM9tbQtC1U7SyvgSMwCi9vB2mq5GUNbB3ubO2E1Hw4+0LLsH9Gj
+	6P6wX3f75LwtfqUHZrUhFULRLlEQKQZX5PWx9TuSUlQAo
+X-Gm-Gg: AYBFou3vEd+iuJ0ZezaQHrTVhgGImM4P9SmOmSbaIkEuQrRmlu6lblnNvyszcH2zuk5
+	mMfAO17uT/0QmC1PmeFRwn2NpSJVzDba76NzS4OXxFH/dBG5D6yD+wSIogURot6bUI684B+azGN
+	UkR/epaBjZcZUySCYMHiO8JxK22n5+C0LU/5gz0aPkscIH5WYT8g6MrJ9cwnZQZG2cbfXzjol9/
+	q+VTSWSvKiOTc7dorHAUcjJsUNtfcxPaCWdEoKOYSBbceoXgM7q6lWTlyDKpcifDDxk2IogvXpN
+	jS170PmR0MCGasvy2iDwPJ2ijWfQ4XPAMmMYhf7zVtTdwoiodCaXlgbpjC5lCKTjK0TVmwwqgfh
+	bokPumyzZXRifoA0j
+X-Received: by 2002:a17:902:ccca:b0:2c9:aae1:a61a with SMTP id
+ d9443c01a7336-2db127cc2afmr270893225ad.14.1788707350068; Sun, 06 Sep 2026
+ 08:09:10 -0700 (PDT)
+MIME-Version: 1.0
+From: WITHIN AFRICA FOUNDATION <stif.africa@gmail.com>
+Date: Sun, 6 Sep 2026 18:08:58 +0300
+X-Gm-Features: AcwNN1Wxc0gO9sBuPdw-M2btuwavegd-5zbvTUeQNy_pumHPd1OAX83m6o61cxQ
+Message-ID: <CAJA2MCyqkz6T0U2nw+t8Q3Rdn_NQ2-i529DWvfTsk+0QV07guw@mail.gmail.com>
+Subject: RE: WA-FOUNDATION
+To: info@fairbanksmedicalcentre.org
+Content-Type: multipart/alternative; boundary="00000000000035432b065ad1e226"
+
+--00000000000035432b065ad1e226
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+*Within Africa Foundation *
+
+*Oxford Road, Manchester, M12 9PL, UK*
+
+*https://wa-foundation.org
+<https://wa-foundation.org>**||**info@wa-foundation.org
+<info@wa-foundation.org>*
+
+*06-09-2026*
+
+
+
+*Organization/Company: Fairbanks Medical Centre Ltd,*
+
+*RE: QUALIFICATION FOR FUNDING*
+
+*Congratulations!*
+
+Following the completion of *CATEGORY 2 (PROPOSAL) Review Stage*, Within
+Africa Foundation (Wa-Foundation) is pleased to inform you that your
+project proposal successfully qualified for donation of *USD 45,000.*
+
+*Our review process majorly focused on the following areas;*
+
+=C2=B7       Projects that demonstrate high level of community involvement =
+or
+partnership
+
+=C2=B7       Accurate financial breakdown of costs involved
+
+=C2=B7       A time frame for implementing the project
+
+=C2=B7       Individuals involved in project implementation
+
+=C2=B7       Project background and clear outcomes
+
+=C2=B7       A clear strategy for financial accountability and project
+sustainability
+
+=C2=B7       Alternative sources of income.
+
+We therefore invite you to contact *Online ELT Centre* to help in
+establishing the credibility and legitimacy of your organization in
+accordance with our policies. This is normally done before funds are
+released to avoid funding organizations or companies that do not exist.
+
+After this verification, you will be issued with a *Certificate of
+Authenticity*. This Certificate once issued, must be forwarded to us
+immediately through our emails; *info@wa-foundation.org*
+<info@wa-foundation.org> & *afap3425@gmail.com* <afap3425@gmail.com> in
+order for the funds to be released.
+
+*Online ELT Centre* is an award winning partner organization dedicated to
+establishing the legitimacy and credibility of African charity
+organizations and companies that intend to seek financial support from
+Wa-Foundation and many other donors across the globe.
+
+This verification and certification process MUST be done latest,* 9th
+September 2026 (Wednesday)*. Since it takes Online ELT Centre between *one
+to three days* to complete this activity, we advise that you contact them
+early to give them enough time to complete the process before our deadline.
+
+*N/B: Provide the following details while contacting Online ELT Centre for
+verification support; *
+
+=C2=B7       The Name of your Organization.
+
+=C2=B7       Country of operation.
+
+=C2=B7       Name and email address of the contact person.
+
+=C2=B7       Letter requesting for verification.
+
+Kindly use the following contact details to reach out to Online ELT Centre
+for this process.
+
+*Email them about your request.*
+
+*Website; **https://www.eltcentre.com* <https://www.eltcentre.com>
+
+*Email; **onlineeltcentre@gmail.com* <onlineeltcentre@gmail.com>* and *
+*support@eltcentre.com* <support@eltcentre.com>
+
+
+
+*Regards,*
+
+
+
+Mrs. Kathy Havens,
+
+*Deputy Administrator =E2=80=93 Grants*
+
+*Within Africa Foundation.*
+
+--00000000000035432b065ad1e226
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style=3D"border-width:medium medium 1pt;border-style:=
+none none solid;border-color:currentcolor currentcolor rgb(79,129,189);padd=
+ing:0in 0in 4pt">
+
+<p class=3D"gmail-MsoTitleCxSpFirst" align=3D"center" style=3D"margin:0in 0=
+in 0.0001pt;text-align:center;border-width:medium;border-style:none;border-=
+color:currentcolor;padding:0in;font-size:26pt;font-family:Cambria,serif;col=
+or:rgb(23,54,93);letter-spacing:0.25pt"><b><span style=3D"font-size:16pt;fo=
+nt-family:&quot;Times New Roman&quot;,serif">Within Africa
+Foundation </span></b><b><span style=3D"font-size:14pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"></span></b></p>
+
+<p class=3D"gmail-MsoTitleCxSpMiddle" align=3D"center" style=3D"margin:0in =
+0in 0.0001pt;text-align:center;border-width:medium;border-style:none;border=
+-color:currentcolor;padding:0in;font-size:26pt;font-family:Cambria,serif;co=
+lor:rgb(23,54,93);letter-spacing:0.25pt"><b><span style=3D"font-size:12pt;f=
+ont-family:&quot;Times New Roman&quot;,serif">Oxford Road,
+Manchester, M12 9PL, UK</span></b></p>
+
+<p class=3D"gmail-MsoTitleCxSpLast" align=3D"center" style=3D"margin:0in 0i=
+n 0.0001pt;text-align:center;border-width:medium;border-style:none;border-c=
+olor:currentcolor;padding:0in;font-size:26pt;font-family:Cambria,serif;colo=
+r:rgb(23,54,93);letter-spacing:0.25pt"><span class=3D"gmail-17"><b><span st=
+yle=3D"font-size:12pt;font-family:&quot;Times New Roman&quot;,serif"><a hre=
+f=3D"https://wa-foundation.org">https://wa-foundation.org</a></span></b></s=
+pan><b><span style=3D"font-size:12pt;font-family:&quot;Times New Roman&quot=
+;,serif">||</span></b><span class=3D"gmail-17"><b><span style=3D"font-size:=
+12pt;font-family:&quot;Times New Roman&quot;,serif"><a href=3D"mailto:info@=
+wa-foundation.org">info@wa-foundation.org</a></span></b></span><b><span sty=
+le=3D"font-size:12pt;font-family:&quot;Times New Roman&quot;,serif"></span>=
+</b></p>
+
+</div>
+
+<p class=3D"MsoNormal" align=3D"right" style=3D"margin-bottom:0.0001pt;text=
+-align:right;margin-right:0in;margin-left:0in;line-height:110%;font-size:11=
+pt;font-family:Calibri,sans-serif"><b><u><span style=3D"font-size:12pt;line=
+-height:110%;font-family:&quot;Times New Roman&quot;,serif">06-09-2026</spa=
+n></u></b></p>
+
+<p class=3D"MsoNormal" align=3D"right" style=3D"margin-bottom:0.0001pt;text=
+-align:right;margin-right:0in;margin-left:0in;line-height:110%;font-size:11=
+pt;font-family:Calibri,sans-serif"><b><u><span style=3D"font-size:12pt;line=
+-height:110%;font-family:&quot;Times New Roman&quot;,serif">=C2=A0</span></=
+u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Organization/Company: Fairbanks Medical Centre Ltd,</sp=
+an></b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Tim=
+es New Roman&quot;,serif"></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><u><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times =
+New Roman&quot;,serif">RE:
+QUALIFICATION FOR FUNDING</span></u></b><b><span style=3D"font-size:12pt;li=
+ne-height:110%;font-family:&quot;Times New Roman&quot;,serif"> </span></b><=
+span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New R=
+oman&quot;,serif"></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Congratulations!</span></b><span style=3D"font-size:12p=
+t;line-height:110%;font-family:&quot;Times New Roman&quot;,serif"></span></=
+p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">Following the
+completion of <b>CATEGORY 2 (PROPOSAL) Review Stage</b>, Within Africa
+Foundation (Wa-Foundation) is pleased to inform you that your project propo=
+sal
+successfully qualified for donation of <b>USD 45,000.</b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Our
+review process majorly focused on the following areas;</span></b><span styl=
+e=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Roman&quot=
+;,serif"></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">Projects
+that demonstrate high level of community involvement or partnership</span><=
+/p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">Accurate
+financial breakdown of costs involved</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">A
+time frame for implementing the project</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">Individuals
+involved in project implementation</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">Project
+background and clear outcomes</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">A
+clear strategy for financial accountability and project sustainability</spa=
+n></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in;margin-right:0in;margin-b=
+ottom:10pt;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;line-height:110%;font-family:Symbol">=C2=B7<s=
+pan style=3D"font-style:normal;font-variant:normal;font-size-adjust:none;fo=
+nt-kerning:auto;font-feature-settings:normal;font-stretch:normal;font-size:=
+7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D"font-size:12pt;lin=
+e-height:110%;font-family:&quot;Times New Roman&quot;,serif">Alternative
+sources of income.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">We therefore
+invite you to contact <b>Online ELT Centre</b> to help in establishing the
+credibility and legitimacy of your organization in accordance with our
+policies. This is normally done before funds are released to avoid funding
+organizations or companies that do not exist.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">After this
+verification, you will be issued with a <b>Certificate of Authenticity</b>.
+This Certificate once issued, must be forwarded to us immediately through o=
+ur
+emails; </span><a href=3D"mailto:info@wa-foundation.org"><span class=3D"gma=
+il-15"><b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;=
+Times New Roman&quot;,serif">info@wa-foundation.org</span></b></span></a><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">
+&amp; </span><a href=3D"mailto:afap3425@gmail.com"><span class=3D"gmail-15"=
+><b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times =
+New Roman&quot;,serif">afap3425@gmail.com</span></b></span></a><span style=
+=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Roman&quot;=
+,serif">
+in order for the funds to be released.<b> </b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Online
+ELT Centre</span></b><span style=3D"font-size:12pt;line-height:110%;font-fa=
+mily:&quot;Times New Roman&quot;,serif"> is an award winning partner organi=
+zation dedicated to
+establishing the legitimacy and credibility of African charity organization=
+s
+and companies that intend to seek financial support from Wa-Foundation and =
+many
+other donors across the globe.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">This verification
+and certification process MUST be done latest,<b> 9<sup>th</sup> September =
+2026
+(Wednesday)</b>. Since it takes Online ELT Centre between <b>one to three d=
+ays</b>
+to complete this activity, we advise that you contact them early to give th=
+em
+enough time to complete the process before our deadline.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">N/B:
+Provide the following details while contacting Online ELT Centre for
+verification support; </span></b></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpFirst" style=3D"margin-right:0in;marg=
+in-left:0.5in;margin-bottom:0.0001pt;line-height:110%;font-size:11pt;font-f=
+amily:Calibri,sans-serif"><span style=3D"font-size:12pt;line-height:110%;fo=
+nt-family:Symbol">=C2=B7<span style=3D"font-style:normal;font-variant:norma=
+l;font-size-adjust:none;font-kerning:auto;font-feature-settings:normal;font=
+-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times Ne=
+w Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span sty=
+le=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Roman&quo=
+t;,serif">The
+Name of your Organization.</span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"margin-right:0in;mar=
+gin-left:0.5in;margin-bottom:0.0001pt;line-height:110%;font-size:11pt;font-=
+family:Calibri,sans-serif"><span style=3D"font-size:12pt;line-height:110%;f=
+ont-family:Symbol">=C2=B7<span style=3D"font-style:normal;font-variant:norm=
+al;font-size-adjust:none;font-kerning:auto;font-feature-settings:normal;fon=
+t-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times N=
+ew Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span st=
+yle=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Roman&qu=
+ot;,serif">Country
+of operation.</span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"margin-right:0in;mar=
+gin-left:0.5in;margin-bottom:0.0001pt;line-height:110%;font-size:11pt;font-=
+family:Calibri,sans-serif"><span style=3D"font-size:12pt;line-height:110%;f=
+ont-family:Symbol">=C2=B7<span style=3D"font-style:normal;font-variant:norm=
+al;font-size-adjust:none;font-kerning:auto;font-feature-settings:normal;fon=
+t-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times N=
+ew Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span st=
+yle=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Roman&qu=
+ot;,serif">Name
+and email address of the contact person.</span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpLast" style=3D"margin-right:0in;margi=
+n-bottom:10pt;margin-left:0.5in;line-height:110%;font-size:11pt;font-family=
+:Calibri,sans-serif"><span style=3D"font-size:12pt;line-height:110%;font-fa=
+mily:Symbol">=C2=B7<span style=3D"font-style:normal;font-variant:normal;fon=
+t-size-adjust:none;font-kerning:auto;font-feature-settings:normal;font-stre=
+tch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Rom=
+an&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span style=3D=
+"font-size:12pt;line-height:110%;font-family:&quot;Times New Roman&quot;,se=
+rif">Letter
+requesting for verification.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">Kindly use the
+following contact details to reach out to Online ELT Centre for this proces=
+s. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Email
+them about your request.</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Website;
+</span></b><a href=3D"https://www.eltcentre.com"><span class=3D"gmail-15"><=
+b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times Ne=
+w Roman&quot;,serif">https://www.eltcentre.com</span></b></span></a><span c=
+lass=3D"gmail-17"><b><span style=3D"font-size:12pt;line-height:110%;font-fa=
+mily:&quot;Times New Roman&quot;,serif"> </span></b></span><span class=3D"g=
+mail-16"><b><span style=3D"font-size:12pt;line-height:110%;font-family:&quo=
+t;Times New Roman&quot;,serif">=C2=A0</span></b></span><span style=3D"font-=
+size:12pt;line-height:110%;font-family:&quot;Times New Roman&quot;,serif"><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Email; </span></b><a href=3D"mailto:onlineeltcentre@gma=
+il.com"><span class=3D"gmail-15"><b><span style=3D"font-size:12pt;line-heig=
+ht:110%;font-family:&quot;Times New Roman&quot;,serif">onlineeltcentre@gmai=
+l.com</span></b></span></a><b><span style=3D"font-size:12pt;line-height:110=
+%;font-family:&quot;Times New Roman&quot;,serif">
+and </span></b><a href=3D"mailto:support@eltcentre.com"><span class=3D"gmai=
+l-15"><b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;T=
+imes New Roman&quot;,serif">support@eltcentre.com</span></b></span></a><b><=
+span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New R=
+oman&quot;,serif"> </span></b><span style=3D"font-size:12pt;line-height:110=
+%;font-family:&quot;Times New Roman&quot;,serif"></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">=C2=A0</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><b=
+><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New=
+ Roman&quot;,serif">Regards,</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif"><s=
+pan style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times New Ro=
+man&quot;,serif">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;margin-right:0in;mar=
+gin-left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif=
+"><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times Ne=
+w Roman&quot;,serif">Mrs. Kathy Havens,</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;margin-right:0in;mar=
+gin-left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif=
+"><b><u><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Ti=
+mes New Roman&quot;,serif">Deputy Administrator =E2=80=93 Grants</span></u>=
+</b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;margin-right:0in;mar=
+gin-left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif=
+"><b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times=
+ New Roman&quot;,serif">Within
+Africa Foundation.</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;margin-right:0in;mar=
+gin-left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif=
+"><b><span style=3D"font-size:12pt;line-height:110%;font-family:&quot;Times=
+ New Roman&quot;,serif">=C2=A0</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:10pt;margin-=
+left:0in;line-height:110%;font-size:11pt;font-family:Calibri,sans-serif">=
+=C2=A0</p></div>
+
+--00000000000035432b065ad1e226--
