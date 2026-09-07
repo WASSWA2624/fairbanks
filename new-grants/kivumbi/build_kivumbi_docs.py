@@ -8,7 +8,7 @@ Two outputs, written next to this script:
 House styling matches the rest of the new-grants pack: US Letter, Aptos,
 FairBanks green 165A43 with DDEBE4 / EAF4EF tints.
 
-Yellow-highlighted text marks the blanks Racheal must fill before sending.
+No fill-in blanks remain; the assumptions to replace are named in the proposal.
 """
 
 import os
@@ -178,6 +178,18 @@ def fill_row(table, widths, values, *, fill, bold=False, size=9,
     return row
 
 
+def keep_together(table):
+    """Stop Word breaking a short table across pages.
+
+    Word honours keep-with-next on the paragraphs inside table rows, so
+    chaining every row but the last pulls the whole table onto one page.
+    """
+    for row in table.rows[:-1]:
+        for cell in row.cells:
+            for p in cell.paragraphs:
+                p.paragraph_format.keep_with_next = True
+
+
 def spacer(doc, pts=4):
     p = para(doc, after=pts)
     run(p, "")
@@ -275,10 +287,8 @@ def build_cover_letter(path):
         bold=True, size=10.5, color=GREEN_RGB)
 
     p = para(doc, after=5, align=WD_ALIGN_PARAGRAPH.JUSTIFY, spacing=1.07)
-    run(p, "Thank you for the time you gave us on ")
-    run(p, "[date of our meeting]", highlight=True)
-    run(p, " and for the interest you showed in what we are building at Kyebando. "
-           "The full proposal is enclosed.")
+    run(p, "Thank you for the time you gave us when we last spoke, and for the interest "
+           "you showed in what we are building at Kyebando. The full proposal is enclosed.")
 
     def para_(text, after=5):
         return body(doc, text, after=after, spacing=1.07)
@@ -296,7 +306,7 @@ def build_cover_letter(path):
           "for the mother and for our name.")
 
     para_("So the enclosed proposal prices the complete unit, ward and theatre together, at "
-          "between 190 and 265 million shillings, split into two phases. Phase one is the 75 "
+          "between 192 and 265 million shillings, split into two phases. Phase one is the 75 "
           "to 100 million we discussed and can begin as soon as funds are released. Phase "
           "two is the theatre, and it can be committed separately once phase one is running "
           "and you have seen the numbers it actually produces.")
@@ -360,7 +370,7 @@ def build_proposal(path):
     run(p, "Prepared for Mr. Alex Kivumbi   |   7 September 2026", size=9.5)
 
     callout(doc, "In short",
-            "FairBanks is asking for UGX 190–265M to complete and commission a maternity "
+            "FairBanks is asking for UGX 192–265M to complete and commission a maternity "
             "and inpatient unit with its own obstetric theatre, built in two phases. Phase "
             "one costs UGX 75–100M and can begin immediately. Phase two, the theatre, can "
             "be committed once phase one is open and reporting.")
@@ -467,7 +477,7 @@ def build_proposal(path):
 
     spacer(doc, 6)
     callout(doc, "Complete programme",
-            "UGX 190–265M. Every figure above except the scanner is our own estimate, "
+            "UGX 192–265M. Every figure above except the scanner is our own estimate, "
             "prepared before going to suppliers. They are ranges because that is honestly "
             "what we know today. No funds should be released against an estimate: each line "
             "will be quoted and returned to you as a signed one-page budget first.",
@@ -500,6 +510,7 @@ def build_proposal(path):
         fill_row(t, w4, row, fill=(PALE if i % 2 == 0 else "FFFFFF"), aligns=a4)
     fill_row(t, w4, ("Monthly revenue", "", "", "19,000,000"), fill=MID,
              bold=True, size=9, aligns=a4)
+    keep_together(t)
 
     subhead(doc, "MONTHLY RUNNING COSTS", before=10)
 
@@ -519,6 +530,7 @@ def build_proposal(path):
         fill_row(t, w2, row, fill=(PALE if i % 2 == 0 else "FFFFFF"), aligns=a2)
     fill_row(t, w2, ("Monthly running costs", "10,200,000"), fill=MID,
              bold=True, size=9, aligns=a2)
+    keep_together(t)
 
     spacer(doc, 6)
     callout(doc, "Phase one monthly contribution",
@@ -541,9 +553,10 @@ def build_proposal(path):
         fill_row(t, w2, row, fill=(PALE if i % 2 == 0 else "FFFFFF"), aligns=a2)
     fill_row(t, w2, ("Additional monthly contribution", "2,700,000"), fill=MID,
              bold=True, size=9, aligns=a2)
+    keep_together(t)
 
     body(doc,
-         "That takes the combined contribution to roughly UGX 11,500,000 a month. We have "
+         "That takes the combined contribution to UGX 11,500,000 a month. We have "
          "not modelled gynaecological use of the theatre, which in practice will carry a "
          "share of the load and improve the figure.", before=8)
 
@@ -665,7 +678,7 @@ def build_proposal(path):
         "The first tranche is released and phase one begins.",
     ]
     for i, s in enumerate(steps, 1):
-        p = para(doc, after=5, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+        p = para(doc, after=5, align=WD_ALIGN_PARAGRAPH.LEFT)
         p.paragraph_format.left_indent = Twips(220)
         p.paragraph_format.first_line_indent = Twips(-220)
         run(p, f"{i}.   ", bold=True, color=GREEN_RGB)
