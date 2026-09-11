@@ -193,7 +193,7 @@ def para(container, space_before=0, space_after=4, align=None, line=1.02,
 
 def section(doc, title):
     """Teal left accent bar + navy caps + hairline underline."""
-    p = para(doc, space_before=9, space_after=4.5, left=0.11)
+    p = para(doc, space_before=8, space_after=4, left=0.11)
     keep_next(p)
     run(p, title, size=10.5, bold=True, color=NAVY_RGB, caps=True, spacing=26)
     para_border(p, "left", TEAL_HEX, size=22, space=6)
@@ -201,7 +201,7 @@ def section(doc, title):
     return p
 
 
-def bullet(container, text, size=9.6, left=0.20, color=INK_RGB, after=2.2):
+def bullet(container, text, size=9.5, left=0.20, color=INK_RGB, after=1.9):
     p = para(container, space_after=after, left=left, hanging=0.16,
              align=WD_ALIGN_PARAGRAPH.JUSTIFY)
     run(p, BULLET + "   ", size=size, color=TEAL_RGB, bold=True)
@@ -215,7 +215,7 @@ def label_table(doc, rows, label_w=1.66, size=9.5):
     t.alignment = WD_TABLE_ALIGNMENT.LEFT
     t.autofit = False
     no_table_borders(t)
-    set_cell_margins(t, top=42, left=85, bottom=42, right=85)
+    set_cell_margins(t, top=36, left=85, bottom=36, right=85)
     for i, (label, value) in enumerate(rows):
         cells = t.add_row().cells
         set_cell_width(cells[0], label_w)
@@ -452,11 +452,11 @@ def pdf_styles():
                                   leading=12, textColor=MUTED, alignment=1)
     s["section"] = ParagraphStyle("section", fontName="Helvetica-Bold", fontSize=10.2,
                                   leading=12.4, textColor=NAVY)
-    s["body"] = ParagraphStyle("body", fontName="Helvetica", fontSize=9.25,
-                               leading=11.6, textColor=INK, alignment=TA_JUSTIFY)
-    s["bullet"] = ParagraphStyle("bullet", fontName="Helvetica", fontSize=9.15,
-                                 leading=11.5, textColor=INK, alignment=TA_JUSTIFY,
-                                 leftIndent=13, bulletIndent=1, spaceAfter=2.4,
+    s["body"] = ParagraphStyle("body", fontName="Helvetica", fontSize=9.2,
+                               leading=11.4, textColor=INK, alignment=TA_JUSTIFY)
+    s["bullet"] = ParagraphStyle("bullet", fontName="Helvetica", fontSize=9.1,
+                                 leading=11.3, textColor=INK, alignment=TA_JUSTIFY,
+                                 leftIndent=13, bulletIndent=1, spaceAfter=2.1,
                                  bulletFontName="Helvetica-Bold", bulletFontSize=9.2,
                                  bulletColor=TEAL)
     s["panel"] = ParagraphStyle("panel", parent=s["bullet"], spaceAfter=3.6)
@@ -497,9 +497,9 @@ def pdf_section(story, s, title):
         ("LINEBELOW", (0, 0), (-1, -1), 0.5, HAIR),
     ]))
     t.keepWithNext = 1
-    story.append(Spacer(1, 7))
+    story.append(Spacer(1, 6))
     story.append(t)
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 3.5))
 
 
 def head_row(s, left_text, right_text):
@@ -514,8 +514,8 @@ def pdf_label_table(s, rows, label_w):
     t = Table(data, colWidths=[label_w * inch, CW - label_w * inch], hAlign="LEFT")
     style = [("LEFTPADDING", (0, 0), (-1, -1), 6),
              ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-             ("TOPPADDING", (0, 0), (-1, -1), 3.3),
-             ("BOTTOMPADDING", (0, 0), (-1, -1), 3.3),
+             ("TOPPADDING", (0, 0), (-1, -1), 3.0),
+             ("BOTTOMPADDING", (0, 0), (-1, -1), 3.0),
              ("VALIGN", (0, 0), (-1, -1), "TOP")]
     for i in range(len(rows)):
         if i % 2 == 0:
@@ -590,7 +590,7 @@ def build_pdf():
     # ---- experience ------------------------------------------------------
     pdf_section(story, s, "Professional experience")
     for i, job in enumerate(C.EXPERIENCE):
-        story.append(Spacer(1, 5 if i else 0))
+        story.append(Spacer(1, 4.5 if i else 0))
         story.append(KeepTogether([
             head_row(s, job["role"], job["dates"]),
             Spacer(1, 1.5),
@@ -602,7 +602,7 @@ def build_pdf():
     # ---- projects --------------------------------------------------------
     pdf_section(story, s, "Selected projects")
     for i, (name, role, org, period, detail) in enumerate(C.PROJECTS):
-        story.append(Spacer(1, 5 if i else 0))
+        story.append(Spacer(1, 4.5 if i else 0))
         story.append(KeepTogether([
             head_row(s, name, period),
             Spacer(1, 1.5),
@@ -623,7 +623,7 @@ def build_pdf():
         block = [head_row(s, award, year), Spacer(1, 1.5), Paragraph(inst, s["org"])]
         if note:
             block.append(Paragraph(note, s["body"]))
-        story.append(Spacer(1, 5 if i else 0))
+        story.append(Spacer(1, 4.5 if i else 0))
         story.append(KeepTogether(block))
 
     # ---- training --------------------------------------------------------
