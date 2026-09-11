@@ -342,6 +342,10 @@ def build_docx():
                after=0 if i == len(C.HIGHLIGHTS) - 1 else 3.4)
     drop_first_para(pc)
 
+    # ---- research, data and proposals ------------------------------------
+    section(doc, "Research, data and proposal development")
+    label_table(doc, C.RESEARCH, label_w=2.0)
+
     # ---- skills ----------------------------------------------------------
     section(doc, "Technical skills")
     label_table(doc, C.SKILLS, label_w=1.66)
@@ -361,14 +365,6 @@ def build_docx():
         entry_sub(doc, role + "  ·  " + org, after=2.0)
         p = para(doc, space_after=2, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
         run(p, detail, size=9.6)
-
-    # ---- competencies ----------------------------------------------------
-    section(doc, "Professional competencies")
-    label_table(doc, C.COMPETENCIES, label_w=2.05)
-
-    # ---- equipment -------------------------------------------------------
-    section(doc, "Medical equipment experience")
-    label_table(doc, C.EQUIPMENT, label_w=1.76)
 
     # ---- education -------------------------------------------------------
     section(doc, "Education")
@@ -583,6 +579,10 @@ def build_pdf():
     ]))
     story.append(panel)
 
+    # ---- research, data and proposals ------------------------------------
+    pdf_section(story, s, "Research, data and proposal development")
+    story.append(pdf_label_table(s, C.RESEARCH, 2.0))
+
     # ---- skills ----------------------------------------------------------
     pdf_section(story, s, "Technical skills")
     story.append(pdf_label_table(s, C.SKILLS, 1.66))
@@ -608,14 +608,6 @@ def build_pdf():
             Spacer(1, 1.5),
             Paragraph(role + "  ·  " + org, s["org"]),
             Paragraph(detail, s["body"])]))
-
-    # ---- competencies ----------------------------------------------------
-    pdf_section(story, s, "Professional competencies")
-    story.append(pdf_label_table(s, C.COMPETENCIES, 2.05))
-
-    # ---- equipment -------------------------------------------------------
-    pdf_section(story, s, "Medical equipment experience")
-    story.append(pdf_label_table(s, C.EQUIPMENT, 1.76))
 
     # ---- education -------------------------------------------------------
     pdf_section(story, s, "Education")

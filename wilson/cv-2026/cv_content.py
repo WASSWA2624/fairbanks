@@ -8,9 +8,11 @@ documents can never drift apart. Edit here, then re-run build_wilson_cv.py.
 House rules
 -----------
 * No em dashes. Use commas, colons, parentheses, full stops or the middot.
-* First person throughout. "I led", "I built", "I contributed", not
+* First person throughout. "I led", "I built", "I contributed", never
   "Led" or "Responsible for". The reader should never be in doubt about
   which parts of this were mine.
+* Research, proposal writing and data work are the spine of this CV, not
+  a footnote to the engineering.
 """
 
 # --------------------------------------------------------------------------
@@ -19,7 +21,8 @@ House rules
 
 NAME = "WASSWA WILSON"
 
-TAGLINE = "Biomedical Engineer  ·  Full-Stack Software Developer  ·  Health Technology Programme Lead"
+TAGLINE = ("Biomedical Engineer  ·  Researcher and Data Lead  ·  Full-Stack Software Developer"
+           "  ·  Proposal Writer")
 
 CONTACT_LINES = [
     "Kampala, Uganda   ·   wasswawilson0001@gmail.com   ·   +256 783 230 321",
@@ -31,18 +34,18 @@ CONTACT_LINES = [
 # --------------------------------------------------------------------------
 
 PROFILE = (
-    "I am a biomedical engineer and full-stack software developer based in Kampala, with over "
-    "nine years of work across hospital technology, health information systems and software "
-    "engineering. I lead development of the FairBanks Community Health Intelligence Platform "
-    "(FCHIP), where I handle the data capture tools, the database, the cloud data flows and the "
-    "management dashboards. Alongside it I am building a cross-sector application that collects "
-    "field data and generates finished reports in real time, for accounting, research, biology, "
-    "agriculture, social media and other record-heavy work. Before FairBanks I managed the Gould "
-    "Family Foundation biomedical programme across East and Central Africa, and I ran the "
-    "biomedical function at International Hospital Kampala through the COVID-19 response and "
-    "through successful COHSASA accreditation. I write Java, Python, JavaScript and TypeScript, "
-    "I work across React, Next.js, React Native, Node.js and Express, and I design AI agents and "
-    "automations that are running in production today."
+    "I am a biomedical engineer, researcher and full-stack software developer based in Kampala, "
+    "with over nine years of work across health research, data systems and software engineering. "
+    "I started in research at the Uganda Virus Research Institute and I have kept the habit: I "
+    "model a problem, test it against real data and document it so someone else can rely on it. "
+    "During the COVID-19 response that produced the oxygen consumption formulas that gave "
+    "hospital and national planners a defensible basis for sizing supply. Today I lead "
+    "development of the FairBanks Community Health Intelligence Platform (FCHIP), where I own "
+    "the data capture tools, the database, the cloud data flows and the management dashboards, "
+    "and I am building a cross-sector application that turns field data into finished reports in "
+    "real time. I also write the institutional proposals, grant applications and investment "
+    "materials FairBanks submits. I analyse in Python, SQL, MATLAB and Excel, I build automated "
+    "auditing tooling, and I design AI agents and automations that are running in production."
 )
 
 # --------------------------------------------------------------------------
@@ -50,6 +53,17 @@ PROFILE = (
 # --------------------------------------------------------------------------
 
 HIGHLIGHTS = [
+    "I developed the oxygen consumption formulas used to calculate patient demand during the "
+    "COVID-19 response at International Hospital Kampala, and I supported Ministry of Health "
+    "oxygen planning. I defined the model, tested it against real hospital demand and handed it "
+    "to management as a planning tool. It went on to inform capacity planning for later facility "
+    "projects.",
+
+    "I write the proposals FairBanks submits, among them the WA Foundation Category 2 full "
+    "project proposal for FairBanks Community Health Reach, accelerator and fellowship "
+    "applications, and the investment proposals for the maternity and diagnostics projects. I "
+    "handle the narrative, the financial annexes and the supporting evidence files.",
+
     "I lead development of FCHIP, the FairBanks Community Health Intelligence Platform. I built "
     "the community screening, referral and follow-up data capture, the database, the cloud sync "
     "and the reporting dashboards, and I deliver the platform across web and mobile.",
@@ -58,24 +72,54 @@ HIGHLIGHTS = [
     "report as the user works, instead of leaving it to be compiled afterwards. I designed it for "
     "accounting, research, biology, agriculture, social media and similar fields.",
 
-    "I developed the oxygen consumption formulas used to calculate patient demand during the "
-    "COVID-19 response at International Hospital Kampala, and I supported Ministry of Health "
-    "oxygen planning. My method went on to inform capacity planning for later facility projects.",
-
     "I designed, built and deployed an AI reception agent for a law firm in Texas, USA. It "
     "handles live inbound client calls, books and reschedules appointments, and runs client "
     "follow-up. It is in active production use.",
 
-    "I have delivered hospital technology projects in five countries: Uganda, the Democratic "
-    "Republic of Congo, Kenya, Tanzania and Somaliland. I completed the laboratory, theatre and "
-    "radiology installations at the hospital serving the Kibali Gold Mine, DR Congo.",
-
     "I prepared and maintained the biomedical compliance evidence that carried International "
-    "Hospital Kampala through successful COHSASA accreditation, and I cut equipment downtime with "
-    "a preventive maintenance programme that I designed, documented and ran.",
+    "Hospital Kampala through successful COHSASA accreditation, which is data quality assurance "
+    "against a published standard.",
 
-    "I upgraded partner health facilities across East and Central Africa for the Gould Family "
-    "Foundation, including the neonatal intensive care unit at Mama Lucy Kibaki Hospital, Nairobi.",
+    "I have delivered hospital technology projects in five countries: Uganda, the Democratic "
+    "Republic of Congo, Kenya, Tanzania and Somaliland, and I upgraded partner facilities for the "
+    "Gould Family Foundation including the neonatal intensive care unit at Mama Lucy Kibaki "
+    "Hospital, Nairobi.",
+]
+
+# --------------------------------------------------------------------------
+# Research, data and proposal development
+# --------------------------------------------------------------------------
+
+RESEARCH = [
+    ("Research",
+     "I worked as a research intern at the Uganda Virus Research Institute on laboratory data "
+     "analysis, mathematical modelling and research pipeline design in Python. My BSc at Makerere "
+     "covered Research Methods, Biomedical Modelling and Simulation, Biosignal Processing and "
+     "Analysis, and Bioinformatics and Functional Genomics, and I carried a full research project "
+     "through to completion. I apply the same method to operational problems, most visibly in the "
+     "COVID-19 oxygen demand modelling."),
+
+    ("Data management at scale",
+     "I design and run the data layer of FCHIP: capture schemas, validation rules, cloud data "
+     "flows, storage and synchronisation across web and mobile. Earlier I built and maintained "
+     "the equipment registers, maintenance schedules and service histories for multi-facility "
+     "programmes at International Hospital Kampala and the Gould Family Foundation, and kept them "
+     "accurate enough to survive accreditation review."),
+
+    ("Analysis and reporting",
+     "I analyse in Python, SQL, MATLAB and Excel. I publish results as live management dashboards "
+     "rather than static documents, so decision-makers work from current numbers, and I build "
+     "automated auditing and verification tooling that checks records in bulk instead of by hand."),
+
+    ("Proposals, grants and technical writing",
+     "I write and edit institutional proposals, grant applications, investment proposals, concept "
+     "notes, partnership documents, pitch decks, technical documentation and user manuals, "
+     "together with the annexes and evidence files that have to stand up to assessment."),
+
+    ("Modern tooling and automation",
+     "I work with AI agents and agent-assisted development daily, in Cursor, Claude, OpenAI GPT "
+     "and Codex, and I build automation pipelines that take routine collection, reconciliation "
+     "and reporting off people's hands."),
 ]
 
 # --------------------------------------------------------------------------
@@ -83,6 +127,15 @@ HIGHLIGHTS = [
 # --------------------------------------------------------------------------
 
 SKILLS = [
+    ("Data, analytics and reporting",
+     "Python  ·  SQL  ·  MATLAB  ·  Excel  ·  relational modelling and query optimisation  ·  "
+     "data cleaning and validation  ·  ETL and cloud data pipelines  ·  dashboard and report "
+     "design  ·  automated auditing and verification tooling"),
+
+    ("AI, agents and automation",
+     "AI agent design, deployment and monitoring  ·  workflow and process automation  ·  "
+     "third-party systems integration  ·  Cursor  ·  Claude  ·  OpenAI GPT  ·  Codex"),
+
     ("Programming languages",
      "Java  ·  Python  ·  JavaScript  ·  TypeScript  ·  C  ·  C++  ·  C#  ·  PHP  ·  SQL  ·  "
      "MATLAB  ·  Arduino C  ·  HTML5  ·  CSS3"),
@@ -93,32 +146,26 @@ SKILLS = [
 
     ("Backend and APIs",
      "Node.js  ·  Express  ·  Laravel  ·  CodeIgniter  ·  Spring / Spring Boot  ·  Convex  ·  "
-     "Prisma  ·  REST APIs  ·  JWT  ·  role-based access control"),
-
-    ("Databases and data",
-     "MySQL  ·  relational modelling and query optimisation  ·  SQL analytics  ·  "
-     "data cleaning and reporting  ·  MATLAB modelling  ·  Excel analysis and dashboards"),
+     "Prisma  ·  MySQL  ·  REST APIs  ·  JWT  ·  role-based access control"),
 
     ("Cloud and DevOps",
      "AWS  ·  Microsoft Azure  ·  Vercel  ·  EAS  ·  Bunny.net CDN  ·  Git and GitHub  ·  "
      "CI/CD pipelines  ·  release and environment management"),
 
-    ("AI, agents and automation",
-     "AI agent design, deployment and monitoring  ·  workflow and process automation  ·  "
-     "third-party systems integration  ·  automated auditing and verification tooling  ·  "
-     "Cursor  ·  Claude  ·  OpenAI GPT  ·  Codex"),
-
-    ("Operating systems",
-     "Windows  ·  Linux  ·  Android.  I administer, deploy and troubleshoot on all three."),
-
-    ("Engineering and scientific",
-     "Embedded systems design  ·  biosignal processing  ·  medical imaging  ·  "
-     "biomedical modelling and simulation  ·  bioinformatics and functional genomics  ·  "
-     "Proteus  ·  Eagle CAD  ·  Solid Edge"),
+    ("Research and scientific",
+     "Research methods and study documentation  ·  mathematical modelling and simulation  ·  "
+     "biosignal processing  ·  medical imaging  ·  bioinformatics and functional genomics  ·  "
+     "embedded systems design  ·  Proteus  ·  Eagle CAD  ·  Solid Edge"),
 
     ("Documents and productivity",
-     "Microsoft Word  ·  Excel  ·  PowerPoint  ·  technical writing  ·  proposal and grant "
-     "development  ·  document editing and design  ·  report and dashboard production"),
+     "Microsoft Word  ·  Excel  ·  PowerPoint  ·  proposal, grant and investment writing  ·  "
+     "technical writing  ·  document editing and design  ·  Windows, Linux and Android"),
+
+    ("Medical equipment",
+     "CT and X-ray imaging  ·  ultrasound and C-arms  ·  ventilators, monitors and infusion "
+     "pumps  ·  theatre and ICU systems  ·  haematology, chemistry and blood bank analysers  ·  "
+     "neonatal incubators, phototherapy, foetal Dopplers and CTG  ·  oxygen plants, cylinder "
+     "and manifold systems and piped medical gas  ·  RO water and sterilisation plant"),
 ]
 
 # --------------------------------------------------------------------------
@@ -135,25 +182,28 @@ EXPERIENCE = [
             "(FCHIP). I do the data capture form design, the database structure, the cloud data "
             "flows, the reporting dashboards and the delivery across both web and mobile.",
 
+            "I define the indicators, validation rules and data-quality checks behind FCHIP "
+            "reporting, and I analyse the resulting data in Python and SQL so that management "
+            "reporting rests on figures that have been checked.",
+
+            "I write and edit the institutional proposals, grant applications, investment "
+            "materials and partnership documents FairBanks submits, including the WA Foundation "
+            "Category 2 full project proposal for FairBanks Community Health Reach. I chaired the "
+            "FairBanks meeting with the Uganda Health Partners Cooperative on cooperative health "
+            "insurance in July 2026.",
+
             "I am building a cross-sector data collection and reporting application that turns "
             "work already being done into finished reports in real time, for accounting, research "
             "and laboratory science, biology, agriculture, social media and similar record-heavy "
             "fields.",
 
-            "I architect and maintain the hospital and clinic software that clinical and "
-            "administrative staff use daily, covering patient records, scheduling, referral "
-            "tracking and management reporting.",
-
             "I design and deploy the AI agents and automation pipelines that remove manual "
             "handling from reception, appointment management, client follow-up and routine "
-            "reporting.",
+            "reporting, and I architect and maintain the hospital and clinic software that staff "
+            "use daily.",
 
             "I own the technical documentation, the data-protection practice, the access control "
             "and the release management across the platform.",
-
-            "I write and edit the institutional proposals, grant applications, partnership "
-            "documents and investment materials, and I chaired the FairBanks meeting with the "
-            "Uganda Health Partners Cooperative on cooperative health insurance in July 2026.",
         ],
     },
     {
@@ -172,9 +222,6 @@ EXPERIENCE = [
             "I train the clinical users at handover, and I produce a written service report and "
             "maintenance record for every assignment, so the client keeps a verifiable equipment "
             "history.",
-
-            "I handle the preventive and corrective maintenance, the on-site fault diagnosis and "
-            "the specification advice for procurement.",
         ],
     },
     {
@@ -185,8 +232,8 @@ EXPERIENCE = [
             "I managed the regional biomedical team, covering programme planning, implementation "
             "and reporting across partner health facilities in multiple countries.",
 
-            "I oversaw the procurement, installation and commissioning of medical technologies, "
-            "and I kept the programme documentation in line with healthcare technology standards.",
+            "I built and maintained the programme data: equipment registers, lifecycle records, "
+            "procurement documentation and the routine reports that went to management.",
 
             "I developed the equipment lifecycle-management and master-planning strategies that "
             "were then applied across partner facilities.",
@@ -212,18 +259,16 @@ EXPERIENCE = [
             "patient oxygen consumption, which gave managers a dependable basis for sizing plant "
             "capacity, cylinder stock and flow requirements rather than estimating them.",
 
+            "I prepared and maintained the compliance evidence files reviewed for COHSASA "
+            "accreditation, and I supported the hospital through successful accreditation.",
+
             "I led the installation and commissioning of CT and X-ray imaging, oxygen plant, "
             "laboratory, theatre and ICU systems through to handover, and I trained the clinical "
             "users.",
 
             "I built the preventive maintenance schedules and service-record systems that reduced "
-            "equipment downtime and kept devices safe for clinical use.",
-
-            "I coordinated the procurement, technical specification, commissioning documentation "
-            "and lifecycle management of hospital medical equipment.",
-
-            "I prepared and maintained the compliance evidence files reviewed for COHSASA "
-            "accreditation, and I supported the hospital through successful accreditation.",
+            "equipment downtime, and I coordinated procurement, technical specification and "
+            "lifecycle management of hospital medical equipment.",
         ],
     },
     {
@@ -231,8 +276,8 @@ EXPERIENCE = [
         "org": "Norvik Hospital Ltd, Kampala",
         "dates": "Apr 2019 to Jan 2020",
         "bullets": [
-            "I maintained and serviced the hospital diagnostic and patient-monitoring equipment.",
-            "I supported the installation and calibration of medical imaging and ICU equipment.",
+            "I maintained and serviced the hospital diagnostic and patient-monitoring equipment, "
+            "and I supported the installation and calibration of imaging and ICU equipment.",
             "I helped establish the preventive maintenance schedules and service follow-up "
             "records.",
         ],
@@ -242,9 +287,11 @@ EXPERIENCE = [
         "org": "Uganda Virus Research Institute (UVRI)",
         "dates": "Dec 2018 to Apr 2019",
         "bullets": [
-            "I contributed to biomedical research projects and laboratory experimentation.",
             "I carried out laboratory data analysis, mathematical modelling and research pipeline "
             "design in Python.",
+            "I contributed to biomedical research projects and laboratory experimentation, and I "
+            "handled the recording, quality checking and documentation of research data so "
+            "results could be reproduced.",
         ],
     },
     {
@@ -264,23 +311,15 @@ EXPERIENCE = [
 # --------------------------------------------------------------------------
 
 PROJECTS = [
-    ("FairBanks Community Health Intelligence Platform (FCHIP)",
-     "Lead Software Developer",
+    ("Institutional proposals, grants and investment materials",
+     "Lead Writer",
      "FairBanks Medical Centre Limited",
      "2026 to present",
-     "I build the community, screening, referral and follow-up data capture, the database "
-     "structure, the cloud data flows, the management dashboards and the web and mobile "
-     "delivery. I work in Next.js, TypeScript, React Native and cloud data services."),
-
-    ("Cross-sector data collection and reporting application",
-     "Founder and Lead Developer",
-     "In development",
-     "2026 to present",
-     "I am building an application that simplifies data collection and reporting for professions "
-     "that live on records: accounting, research, biology and laboratory science, agriculture and "
-     "social media among them. Rather than collecting data now and writing the report later, the "
-     "user works inside the app and it generates the information and reports in real time as "
-     "they go."),
+     "I write and edit what FairBanks submits: the WA Foundation Category 2 full project proposal "
+     "for FairBanks Community Health Reach, accelerator and fellowship applications, investment "
+     "proposals for the maternity and diagnostics projects, partnership documents and pitch "
+     "decks. I handle the narrative, the annexes, the financial presentation and the evidence "
+     "files, and I maintain the pipeline of opportunities and deadlines."),
 
     ("COVID-19 oxygen therapy management and demand modelling",
      "Biomedical Manager",
@@ -320,8 +359,8 @@ PROJECTS = [
      "Wekebere",
      "2017 to 2024",
      "I built an Android and Arduino monitoring system for third-trimester foetal heart-rate "
-     "measurement, and I implemented the Java serial communication between the device and the "
-     "phone, with Microsoft Azure cloud storage."),
+     "measurement, and I implemented the Java serial communication between device and phone, with "
+     "Microsoft Azure cloud storage."),
 ]
 
 # --------------------------------------------------------------------------
@@ -333,19 +372,6 @@ COMPETENCIES = [
      "I managed a regional biomedical team across East and Central Africa, and a hospital "
      "biomedical function for four years: workplans, schedules, procurement coordination and "
      "management reporting."),
-
-    ("Monitoring, evaluation and data",
-     "I lead the FCHIP indicator, data-quality, dashboard and reporting build. I built the "
-     "equipment registers, maintenance schedules and routine management reports at IHK and GFF. "
-     "I analyse in Python, SQL, Java, JavaScript and MATLAB."),
-
-    ("Proposal, grant and technical writing",
-     "I write and edit institutional proposals, grant applications, investment materials, "
-     "partnership documents, technical documentation and user manuals."),
-
-    ("Data analysis and automated auditing",
-     "I clean, model and report on operational and clinical data, and I build automated auditing "
-     "and verification tooling that checks records in bulk rather than by hand."),
 
     ("Procurement, specification and compliance",
      "I coordinated specification, procurement, commissioning and lifecycle documentation, and I "
@@ -365,28 +391,6 @@ COMPETENCIES = [
 ]
 
 # --------------------------------------------------------------------------
-# Medical equipment experience
-# --------------------------------------------------------------------------
-
-EQUIPMENT = [
-    ("Radiology and imaging",
-     "CT scanners  ·  X-ray machines  ·  ultrasound systems  ·  C-arms"),
-    ("Theatre and intensive care",
-     "Theatre systems  ·  ventilators  ·  patient monitors  ·  infusion pumps  ·  "
-     "critical-care devices"),
-    ("Oxygen and medical gas",
-     "Oxygen plants  ·  concentrators  ·  cylinder and manifold systems  ·  piped medical gas  ·  "
-     "oxygen demand and capacity calculation"),
-    ("Laboratory",
-     "Haematology analysers  ·  clinical chemistry analysers  ·  blood bank and transfusion "
-     "equipment"),
-    ("Maternity and neonatal",
-     "Neonatal incubators  ·  phototherapy units  ·  foetal Dopplers  ·  CTG machines"),
-    ("Support plant",
-     "RO water treatment systems  ·  sterilisation and autoclave equipment"),
-]
-
-# --------------------------------------------------------------------------
 # Education & professional development
 # --------------------------------------------------------------------------
 
@@ -399,11 +403,9 @@ EDUCATION = [
     ("BSc Biomedical Engineering, Second Upper Honours",
      "Makerere University, Kampala",
      "2012 to 2017",
-     "Key course units: Information and Communication Technology, Computer OOP Principles, "
-     "Software Engineering, Database Systems, Computer-Based Medical Systems, Embedded Systems, "
-     "Biosignal Processing and Analysis, Medical Imaging, Biomedical Modelling and Simulation, "
-     "Bioinformatics and Functional Genomics, Clinical Engineering, Research Methods, "
-     "Principles of Management."),
+     "Research-relevant course units: Research Methods, Biomedical Modelling and Simulation, "
+     "Biosignal Processing and Analysis, Bioinformatics and Functional Genomics, Database Systems "
+     "and Software Engineering. I completed a full research project as part of the degree."),
 
     ("Advanced Java Programming, Level 1",
      "Green Bridge School of Open Technologies",

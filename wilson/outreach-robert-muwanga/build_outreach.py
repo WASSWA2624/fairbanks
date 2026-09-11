@@ -115,8 +115,8 @@ def letter_styles():
                                   textColor=NAVY)
     s["h"] = ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=9.5, leading=12.6,
                             textColor=TEAL, spaceBefore=4, spaceAfter=2)
-    s["p"] = ParagraphStyle("p", fontName="Helvetica", fontSize=9.5, leading=13.1,
-                            textColor=INK, alignment=TA_JUSTIFY, spaceAfter=7)
+    s["p"] = ParagraphStyle("p", fontName="Helvetica", fontSize=9.5, leading=12.6,
+                            textColor=INK, alignment=TA_JUSTIFY, spaceAfter=6)
     s["sig"] = ParagraphStyle("sg", fontName="Helvetica-Bold", fontSize=9.8, leading=12.5,
                               textColor=NAVY)
     s["sigsub"] = ParagraphStyle("ss", fontName="Helvetica", fontSize=8.8, leading=11.5,
